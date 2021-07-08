@@ -1,6 +1,6 @@
+.composer
 .idea
 .vscode
-.env
-.composer
-
 vendor
+
+.env

@@ -15,7 +15,7 @@ services:
 
 services:
   php:
-    image: ghcr.io/blumilksoftware/php:${PHP_VERSION}
+    image: ghcr.io/blumilksoftware/php:8.0.7.0
     container_name: intern-php
     working_dir: /application
     user: ${CURRENT_UID}
