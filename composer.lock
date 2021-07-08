@@ -4,9 +4,105 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8321b88019a5864c3e1ee9bb3a0d14c0",
+    "content-hash": "ddba42bd4df3ab7797bc05e1f91d03ce",
     "packages": [],
-    "packages-dev": [],
+    "packages-dev": [
+        {
+            "name": "blumilksoftware/codestyle",
+            "version": "v0.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blumilksoftware/codestyle.git",
+                "reference": "fa02efc66a576a4c2a0d592018de856a7ce0c499"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blumilksoftware/codestyle/zipball/fa02efc66a576a4c2a0d592018de856a7ce0c499",
+                "reference": "fa02efc66a576a4c2a0d592018de856a7ce0c499",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0",
+                "symplify/easy-coding-standard": "^9.3.12"
+            },
+            "require-dev": {
+                "jetbrains/phpstorm-attributes": "^1.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Blumilk\\Codestyle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Krzysztof Rewak",
+                    "email": "krzysztof.rewak@blumilk.pl"
+                }
+            ],
+            "description": "Blumilk codestyle configurator",
+            "support": {
+                "issues": "https://github.com/blumilksoftware/codestyle/issues",
+                "source": "https://github.com/blumilksoftware/codestyle/tree/v0.4.1"
+            },
+            "time": "2021-05-18T08:19:50+00:00"
+        },
+        {
+            "name": "symplify/easy-coding-standard",
+            "version": "9.4.15",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symplify/easy-coding-standard.git",
+                "reference": "baad5fabf29c258d4b56ae20cacc59b07949681f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symplify/easy-coding-standard/zipball/baad5fabf29c258d4b56ae20cacc59b07949681f",
+                "reference": "baad5fabf29c258d4b56ae20cacc59b07949681f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "conflict": {
+                "friendsofphp/php-cs-fixer": "<3.0",
+                "squizlabs/php_codesniffer": "<3.6"
+            },
+            "bin": [
+                "bin/ecs"
+            ],
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Prefixed scoped version of ECS package",
+            "support": {
+                "source": "https://github.com/symplify/easy-coding-standard/tree/9.4.15"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/rectorphp",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/tomasvotruba",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-07-08T12:06:14+00:00"
+        }
+    ],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": [],
