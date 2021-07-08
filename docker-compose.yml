@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   web:
-    image: nginx:1.19-alpine
+    image: nginx:1.21-alpine
     container_name: intern-web
     working_dir: /application
     restart: unless-stopped
