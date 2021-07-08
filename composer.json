@@ -1,0 +1,29 @@
+{
+  "name": "blumilksoftware/internships",
+  "description": "todo",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "Internships\\": "backend/"
+    }
+  },
+  "require": {
+    "php": "^8.0",
+    "illuminate/support": "^8.47",
+    "guzzlehttp/guzzle": "^7.3.0",
+    "vlucas/phpdotenv": "^5.3.0"
+  },
+  "require-dev": {
+    "blumilksoftware/codestyle": "^0.4.1",
+    "phpunit/phpunit": "^9"
+  },
+  "scripts": {
+    "build": [
+      "rm -rf ./public/api",
+      "sh -c 'cd backend && php index.php'"
+    ],
+    "test": "./vendor/bin/phpunit testing",
+    "ecs": "./vendor/bin/ecs check",
+    "ecsf": "./vendor/bin/ecs check --fix"
+  }
+}
