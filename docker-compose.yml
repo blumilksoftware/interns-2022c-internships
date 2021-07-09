@@ -21,3 +21,17 @@ services:
     volumes:
       - .:/application
     restart: unless-stopped
+  
+  node:
+    image: node:16.3.0-alpine3.11
+    container_name: intern-web
+    working_dir: /application
+    user: ${CURRENT_UID}
+    volumes:
+      - .:/application
+    tty: true
+    environment:
+      - HOST=0.0.0.0
+      - CHOKIDAR_USEPOLLING=true
+    ports: 
+      - "${DEVELOPMENT_NODE_PORT}:${DEVELOPMENT_NODE_PORT}"
