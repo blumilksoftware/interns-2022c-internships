@@ -24,7 +24,7 @@ services:
   
   node:
     image: node:16.3.0-alpine3.11
-    container_name: intern-web
+    container_name: intern-node
     working_dir: /application
     user: ${CURRENT_UID}
     volumes:
