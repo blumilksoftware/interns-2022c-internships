@@ -8,5 +8,5 @@ use Internships\Application\Application;
 
 $rootDirectory = __DIR__ . "/../";
 
-$application = new Application($rootDirectory);
+$application = new Application($rootDirectory, "/public/api/");
 $application->build();
