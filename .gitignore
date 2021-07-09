@@ -2,6 +2,7 @@
 node_modules
 /dist
 
+.env
 .env.local
 .env.*.local
 
@@ -10,10 +11,13 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+.composer
 .idea
 .vscode
+vendor
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
