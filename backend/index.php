@@ -2,4 +2,11 @@
 
 declare(strict_types=1);
 
-echo "Current PHP version: " . PHP_VERSION . PHP_EOL;
+require __DIR__ . "/../vendor/autoload.php";
+
+use Internships\Application\Application;
+
+$rootDirectory = __DIR__ . "/../";
+
+$application = new Application($rootDirectory);
+$application->build();
