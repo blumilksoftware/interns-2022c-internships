@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace Internships\Application;
 
-use Internships\FileSystem\DirectoryManager;
+use Internships\FileSystem\FileManager;
 
 class Application
 {
-    protected DirectoryManager $directoryManager;
+    protected FileManager $fileManager;
 
     public function __construct(
-        protected string $rootDirectoryPath
+        string $rootDirectoryPath
     ) {
-        $this->directoryManager = new DirectoryManager($rootDirectoryPath);
+        $this->fileManager = new FileManager($rootDirectoryPath);
     }
 
     public function build(): void
     {
-        echo $this->directoryManager->getFullPath("");
+        $this->fileManager->create("/test", "phpversion.txt", phpversion());
     }
 }

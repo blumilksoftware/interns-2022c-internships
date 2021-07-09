@@ -6,17 +6,16 @@ namespace Internships\FileSystem;
 
 class DirectoryManager
 {
-    protected string $apiDirectory;
 
     public function __construct(
-        string $rootDirectoryPath
+        protected string $apiDirectory
     ) {
-        $this->apiDirectory = $rootDirectoryPath . "/public/api/";
+        $this->apiDirectory = $apiDirectory . "/public/api/";
     }
 
-    public function getFullPath(string $relativePath): string
+    public function getApiPath(string $relativePath): string
     {
-        $directoryPath = $this->apiDirectory . $relativePath;
+        $directoryPath = $this->apiDirectory . $relativePath . "/";
 
         if (!file_exists($directoryPath)) {
             mkdir($directoryPath, 0777, true);
