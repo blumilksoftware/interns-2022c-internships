@@ -10,10 +10,15 @@
   "require": {
     "php": "^8.0"
   },
+  "require-dev": {
+    "blumilksoftware/codestyle": "^0.4.1"
+  },
   "scripts": {
     "build": [
       "rm -rf ./public/api",
       "sh -c 'cd backend && php index.php'"
-    ]
+    ],
+    "ecs": "./vendor/bin/ecs check",
+    "ecsf": "./vendor/bin/ecs check --fix"
   }
 }
