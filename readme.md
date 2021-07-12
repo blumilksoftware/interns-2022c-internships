@@ -13,10 +13,10 @@ cp .env.example .env
 ```shell script
 docker-compose up -d
 ```
-### 3.Install frontend dependencies and build frontend:
+### 3.Install frontend dependencies :
 ```
 docker-compose exec node npm install
-docker-compose exec node npm run build
+
 ```
 
 ### 4. Install backend dependencies and build static API endpoints:
