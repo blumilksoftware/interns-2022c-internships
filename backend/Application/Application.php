@@ -9,8 +9,8 @@ use Internships\FileSystem\FileManager;
 
 class Application
 {
-    protected FileManager $fileManager;
     protected DirectoryManager $directoryManager;
+    protected FileManager $fileManager;
 
     public function __construct(
         string $rootPath,

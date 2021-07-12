@@ -31,7 +31,7 @@ class FileManager
             $newName = $filename;
         }
         $destination = $this->directoryManager->getApiPath($relativeDestination);
-        $origin = $this->directoryManager->getResourcesPath($relativeOrigin);
+        $origin = $this->directoryManager->getResourcePath($relativeOrigin);
         if (!copy($origin . $filename, $destination . $newName)) {
             throw new Exception("Couldn't copy. File " . $origin . $filename . " not found.");
         }
