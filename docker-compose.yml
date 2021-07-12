@@ -30,6 +30,8 @@ services:
     volumes:
       - .:/application
     tty: true
-    entrypoint: "./environment/node-entrypoint.sh"
+    environment:
+      - HOST=0.0.0.0
+      - CHOKIDAR_USEPOLLING=true
     ports: 
       - "${DEVELOPMENT_NODE_PORT}:8080"
