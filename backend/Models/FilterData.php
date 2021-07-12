@@ -14,7 +14,7 @@ class FilterData implements JsonSerializable
     public function __construct(string $specialization, string $tags)
     {
         $this->specialization = $specialization;
-        $this->tags = explode(",", $tags);
+        $this->tags = explode(",", preg_replace("/\s+/", "", $tags));
     }
 
     public function getSpecialization(): string
