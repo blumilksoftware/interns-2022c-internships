@@ -8,13 +8,9 @@ use Exception;
 
 class FileManager
 {
-    protected DirectoryManager $directoryManager;
-
     public function __construct(
-        string $rootDirectoryPath,
-        string $apiRelativePath
+        protected DirectoryManager &$directoryManager
     ) {
-        $this->directoryManager = new DirectoryManager($rootDirectoryPath, $apiRelativePath);
     }
 
     public function create(string $relativePath, string $filename = "\0", mixed $content = ""): void
@@ -29,13 +25,13 @@ class FileManager
         }
     }
 
-    public function copy(string $relativeOrigin, string $relativeDestination, $filename, $newName = "\0"): void
+    public function copyResource(string $relativeOrigin, string $relativeDestination, $filename, $newName = "\0"): void
     {
         if ($newName === "\0") {
             $newName = $filename;
         }
         $destination = $this->directoryManager->getApiPath($relativeDestination);
-        $origin = $this->directoryManager->getRootPath($relativeOrigin);
+        $origin = $this->directoryManager->getResourcesPath($relativeOrigin);
         if (!copy($origin . $filename, $destination . $newName)) {
             throw new Exception("Couldn't copy. File " . $origin . $filename . " not found.");
         }

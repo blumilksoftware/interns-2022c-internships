@@ -4,25 +4,29 @@ declare(strict_types=1);
 
 namespace Internships\Application;
 
+use Internships\FileSystem\DirectoryManager;
 use Internships\FileSystem\FileManager;
 
 class Application
 {
     protected FileManager $fileManager;
+    protected DirectoryManager $directoryManager;
 
     public function __construct(
-        string $rootDirectoryPath,
-        string $apiRelativePath
+        string $rootPath,
+        string $apiRelativePath,
+        string $resourceRelativePath
     ) {
-        $this->fileManager = new FileManager($rootDirectoryPath, $apiRelativePath);
+        $this->directoryManager = new DirectoryManager($rootPath, $apiRelativePath, $resourceRelativePath);
+        $this->fileManager = new FileManager($this->directoryManager);
     }
 
     public function build(): void
     {
         $this->fileManager->create("/empty/");
         $this->fileManager->create("/test/", "phpversion.txt", PHP_VERSION);
-        $this->fileManager->copy(
-            "/resources/documents/wydzial-techniczny/",
+        $this->fileManager->copyResource(
+            "/documents/wydzial-techniczny/",
             "/test",
             "example.txt",
             "testing.txt"

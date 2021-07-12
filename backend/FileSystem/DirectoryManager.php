@@ -6,16 +6,22 @@ namespace Internships\FileSystem;
 
 class DirectoryManager
 {
+    protected Path $apiPathManager;
+    protected Path $resourcePathManager;
+
     public function __construct(
-        protected string $rootDirectoryPath,
-        protected string $apiDirectory
+        string $rootDirectoryPath,
+        string $relativeApiPath,
+        string $relativeResourcePath
     ) {
-        $this->apiDirectory = $rootDirectoryPath . $apiDirectory;
+        $rootManager = new Path($rootDirectoryPath);
+        $this->apiPathManager = new Path($rootManager->getFull($relativeApiPath));
+        $this->resourcePathManager = new Path($rootManager->getFull($relativeResourcePath));
     }
 
     public function getApiPath(string $relativePath): string
     {
-        $directoryPath = $this->apiDirectory . $relativePath . "/";
+        $directoryPath = $this->apiPathManager->getFull($relativePath);
         if (!file_exists($directoryPath)) {
             mkdir($directoryPath, 0777, true);
         }
@@ -23,8 +29,8 @@ class DirectoryManager
         return $directoryPath;
     }
 
-    public function getRootPath(string $relativePath): string
+    public function getResourcesPath(string $relativePath): string
     {
-        return $this->rootDirectoryPath . $relativePath . "/";
+        return $this->resourcePathManager->getFull($relativePath);
     }
 }

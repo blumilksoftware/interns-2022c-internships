@@ -23,5 +23,3 @@ vendor
 
 public/*
 !public/.gitkeep
-
-.env
