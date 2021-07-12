@@ -25,7 +25,6 @@ class DirectoryManager
         if (!file_exists($directoryPath)) {
             mkdir($directoryPath, 0777, true);
         }
-
         return $directoryPath;
     }
 

@@ -22,4 +22,5 @@ vendor
 *.sw?
 
 public/*
+public/api
 !public/.gitkeep
