@@ -18,30 +18,45 @@ class Company implements JsonSerializable
     protected bool $isPaid;
     protected string $logoFile;
 
-    public function __construct(int $id, array $rowData)
+    public function __construct(int $id, array $data)
     {
         $this->id = $id;
-        $this->name = $rowData[0];
+        $this->name = $data["name"];
         $this->address = new Address(
-            $rowData[1],
-            $rowData[2],
-            $rowData[3],
-            $rowData[4],
-            $rowData[5]
+            $data["country"],
+            $data["coordinates"],
+            $data["street"],
+            $data["city"],
+            $data["zip"]
         );
-        $this->filterData = new FilterData($rowData[6], $rowData[7]);
-        $this->website = $rowData[8];
-        $this->email = $rowData[9];
-        $this->phoneNumber = $rowData[10];
-        $this->isPaid = filter_var($rowData[11], FILTER_VALIDATE_BOOLEAN);
-        $this->logoFile = $rowData[12];
+        $this->filterData = new FilterData($data["specialization"], $data["tags"]);
+        $this->website = $data["website"];
+        $this->email = $data["email"];
+        $this->phoneNumber = $data["phoneNumber"];
+        $this->isPaid = filter_var($data["isPaid"], FILTER_VALIDATE_BOOLEAN);
+        $this->logoFile = $data["logoFile"];
     }
 
     public static function getCompanies(array $csvData): array
     {
         $companies = [];
-        foreach ($csvData as $i => $entry) {
+        foreach ($csvData as $i => $rowData) {
             if ($i > 0) {
+                $entry = [
+                    "name" => $rowData[0],
+                    "country" => $rowData[1],
+                    "coordinates" => $rowData[2],
+                    "street" => $rowData[3],
+                    "city" => $rowData[4],
+                    "zip" => $rowData[5],
+                    "specialization" => $rowData[6],
+                    "tags" => $rowData[7],
+                    "website" => $rowData[8],
+                    "email" => $rowData[9],
+                    "phoneNumber" => $rowData[10],
+                    "isPaid" => $rowData[11],
+                    "logoFile" => $rowData[12],
+                ];
                 array_push($companies, new self($i, $entry));
             }
         }

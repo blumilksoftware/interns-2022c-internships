@@ -12,7 +12,7 @@ class CSVReader
 
     public function getCSVData(string $fullPath): array
     {
-        $csvRows = array();
+        $csvRows = [];
         $csvFile = fopen($fullPath, "r");
         while (($row = fgetcsv($csvFile, 0, ",")) !== false) {
             array_push($csvRows, $row);
