@@ -34,4 +34,5 @@ services:
       - HOST=0.0.0.0
       - CHOKIDAR_USEPOLLING=true
     ports: 
-      - "${DEVELOPMENT_NODE_PORT}:${DEVELOPMENT_NODE_PORT}"
+      - "${DEVELOPMENT_NODE_PORT}:80"
+      
