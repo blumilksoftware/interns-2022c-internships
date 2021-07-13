@@ -12,6 +12,7 @@ abstract class DataBuilder implements BuildTool
 {
     protected string $workingDirectory;
     protected static array $paths = [];
+
     public function __construct(PathPair $source, PathPair $destination)
     {
         foreach (self::$paths as $path) {

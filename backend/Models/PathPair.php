@@ -19,6 +19,7 @@ class PathPair
     {
         return $this->relativePath;
     }
+
     public function getFileName(): string
     {
         return $this->fileName;

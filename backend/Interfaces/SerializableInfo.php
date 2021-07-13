@@ -9,5 +9,6 @@ use Internships\Models\PathPair;
 interface SerializableInfo
 {
     public function getSource(): PathPair;
+
     public function getDestination(): PathPair;
 }

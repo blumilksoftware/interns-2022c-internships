@@ -27,18 +27,22 @@ class Address implements JsonSerializable
     {
         return $this->coordinates;
     }
+
     public function getCountryLocaleCode(): string
     {
         return $this->countryLocaleCode;
     }
+
     public function getCityLocaleCode(): string
     {
         return $this->cityLocaleCode;
     }
+
     public function getStreet(): string
     {
         return $this->street;
     }
+
     public function getZipCode(): string
     {
         return $this->zip;

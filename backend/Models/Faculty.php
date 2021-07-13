@@ -11,6 +11,7 @@ class Faculty implements JsonSerializable
     protected int $id;
     protected string $name;
     protected string $directory;
+
     public function __construct(int $id, array $data)
     {
         $this->id = $id;
