@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Internships\FileSystem;
 
-class CSVReader
+class CsvReader
 {
     public function __construct()
     {
