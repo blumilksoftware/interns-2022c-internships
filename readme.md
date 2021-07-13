@@ -13,13 +13,18 @@ cp .env.example .env
 ```shell script
 docker-compose up -d
 ```
+### 3.Install frontend dependencies :
+```
+docker-compose exec node npm install
 
-### 3. Install backend dependencies and build static API endpoints:
+```
+
+### 4. Install backend dependencies and build static API endpoints:
 ```shell script
 docker-compose exec php composer install
 docker-compose exec php composer build
 ```
-
+Application should be available under `localhost:8027` or other port if you changed `EXTERNAL_WEBSERVER_PORT` value in `.env` file.
 
 Website for apprenticeship programme.
 ## Deployment
