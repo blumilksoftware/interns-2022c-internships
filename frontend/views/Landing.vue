@@ -34,31 +34,29 @@
           <polygon points="50,0 100,0 50,100 0,100" />
         </svg>
 
-        <Popover>
-          <div class="relative pt-6 px-4 sm:px-6 lg:px-8">
-            <nav
-              class="
-                relative
-                flex
-                items-center
-                justify-between
-                sm:h-10
-                lg:justify-start
-              "
-              aria-label="Global"
+        <div class="relative pt-6 px-4 sm:px-6 lg:px-8">
+          <nav
+            class="
+              relative
+              flex
+              items-center
+              justify-between
+              sm:h-10
+              lg:justify-start
+            "
+            aria-label="Global"
+          >
+            <div
+              class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0"
             >
-              <div
-                class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0"
-              >
-                <div class="flex items-center justify-between w-full md:w-auto">
-                  <a href="#">
-                    <p class="logo">Znajdź Praktyki</p>
-                  </a>
-                </div>
+              <div class="flex items-center justify-between w-full md:w-auto">
+                <a href="#">
+                  <p class="logo">Znajdź Praktyki</p>
+                </a>
               </div>
-            </nav>
-          </div>
-        </Popover>
+            </div>
+          </nav>
+        </div>
 
         <main
           class="
@@ -83,9 +81,9 @@
                 md:text-6xl
               "
             >
-              <span class="block xl:inline">Zdobądź doświadczenie</span>
+              <span class="block xl:inline">Zdobądź doświadczenie z</span>
               {{ " " }}
-              <span class="block text-yellow-500 m:inline">z PWSZ Legnica</span>
+              <span class="block text-indigo-500 m:inline">PWSZ Legnica</span>
             </h1>
             <p
               class="
@@ -117,8 +115,8 @@
                       text-base
                       border-gray-300
                       focus:outline-none
-                      focus:ring-yellow-500
-                      focus:border-yellow-500
+                      focus:ring-indigo-500
+                      focus:border-indigo-500
                       sm:text-sm
                       rounded-md
                     "
@@ -130,8 +128,9 @@
                 </div>
               </div>
               <div class="mt-3 sm:mt-0 sm:ml-3">
-                <button
-                  type="button"
+                <router-link
+                  to="/home"
+                  tag="button"
                   class="
                     inline-flex
                     items-center
@@ -143,16 +142,16 @@
                     rounded-md
                     shadow-sm
                     text-white
-                    bg-yellow-500
-                    hover:bg-yellow-500
+                    bg-indigo-500
+                    hover:bg-indigo-500
                     focus:outline-none
                     focus:ring-2
                     focus:ring-offset-2
-                    focus:ring-yellow-500
+                    focus:ring-indigo-500
                   "
                 >
                   Szukaj
-                </button>
+                </router-link>
               </div>
             </div>
           </div>
@@ -162,24 +161,24 @@
     <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
       <img
         class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
-        src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
+        src="https://images.unsplash.com/photo-1566647387313-9fda80664848?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2602&q=80"
         alt=""
       />
     </div>
   </div>
-  <!-- // -->
+
   <div class="relative bg-white">
     <div
       class="
         h-56
-        bg-indigo-600
+        bg-indigo-500
         sm:h-72
         lg:absolute lg:left-0 lg:h-full lg:w-1/2
       "
     >
       <img
         class="w-full h-full object-cover"
-        src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
+        src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"
         alt="Support team"
       />
     </div>
@@ -192,22 +191,6 @@
           mb-8
         "
       >
-        <!-- <div>
-            <div
-              class="
-                flex
-                items-center
-                justify-center
-                h-12
-                w-12
-                rounded-md
-                bg-indigo-500
-                text-white
-              "
-            >
-              <UsersIcon class="h-6 w-6" aria-hidden="true" />
-            </div>
-          </div> -->
         <h2
           class="
             mt-6
@@ -218,7 +201,7 @@
           "
         >
           Reprezentujesz szkołę? <br />
-          Dołącz do nas!
+          <span class="block text-indigo-500 m:inline">Dołącz do nas!</span>
         </h2>
         <p class="mt-6 text-lg text-left text-gray-500">
           Dzięki Znajdź Praktyki Twoja uczelnia uzyska dostęp do przyjaznego
@@ -226,8 +209,9 @@
           odpowiedniego praktykodawcy. Jest to projekt opern source - każdy może
           skorzystać w pełni za darmo.
         </p>
-        <button
-          type="button"
+        <router-link
+          to="/home"
+          tag="button"
           class="
             inline-flex
             items-center
@@ -239,69 +223,17 @@
             rounded-md
             shadow-sm
             text-white
-            bg-yellow-500
-            hover:bg-yellow-500
+            bg-indigo-500
+            hover:bg-indigo-500
             focus:outline-none
             focus:ring-2
             focus:ring-offset-2
-            focus:ring-yellow-500
+            focus:ring-indigo-500
             mt-8
           "
         >
-          Dołącz do nas!
-        </button>
-        <!-- <div class="mt-8 overflow-hidden">
-            <dl class="-mx-8 -mt-8 flex flex-wrap">
-              <div class="flex flex-col px-8 pt-8">
-                <dt class="order-2 text-base font-medium text-gray-500">
-                  Delivery
-                </dt>
-                <dd
-                  class="
-                    order-1
-                    text-2xl
-                    font-extrabold
-                    text-indigo-600
-                    sm:text-3xl
-                  "
-                >
-                  24/7
-                </dd>
-              </div>
-              <div class="flex flex-col px-8 pt-8">
-                <dt class="order-2 text-base font-medium text-gray-500">
-                  Pepperoni
-                </dt>
-                <dd
-                  class="
-                    order-1
-                    text-2xl
-                    font-extrabold
-                    text-indigo-600
-                    sm:text-3xl
-                  "
-                >
-                  99.9%
-                </dd>
-              </div>
-              <div class="flex flex-col px-8 pt-8">
-                <dt class="order-2 text-base font-medium text-gray-500">
-                  Calories
-                </dt>
-                <dd
-                  class="
-                    order-1
-                    text-2xl
-                    font-extrabold
-                    text-indigo-600
-                    sm:text-3xl
-                  "
-                >
-                  100k+
-                </dd>
-              </div>
-            </dl>
-          </div> -->
+          Sprawdź jak!
+        </router-link>
       </div>
     </div>
   </div>

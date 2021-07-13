@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 
 const routes = [
   {
-    path: "/landing",
+    path: "/",
     name: "Landing",
     component: () =>
       import(/* webpackChunkName: "landing" */ "@/views/Landing.vue"),
