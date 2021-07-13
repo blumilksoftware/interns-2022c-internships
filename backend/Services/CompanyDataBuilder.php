@@ -8,7 +8,7 @@ use Internships\Interfaces\SerializableInfo;
 use Internships\Models\Company;
 use Internships\Models\PathPair;
 
-class CompanyBuilder extends Builder implements SerializableInfo
+class CompanyDataBuilder extends DataBuilder implements SerializableInfo
 {
     public function __construct(
         protected string $workingDirectory

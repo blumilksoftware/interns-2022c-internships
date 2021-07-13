@@ -7,15 +7,15 @@ namespace Internships\Application;
 use Internships\FileSystem\CsvReader;
 use Internships\FileSystem\DirectoryManager;
 use Internships\FileSystem\FileManager;
-use Internships\Services\CompanyBuilder;
-use Internships\Services\FacultyBuilder;
+use Internships\Services\CompanyDataBuilder;
+use Internships\Services\FacultyDataBuilder;
 
 class Application
 {
     protected DirectoryManager $directoryManager;
     protected FileManager $fileManager;
     protected CsvReader $csvReader;
-    protected FacultyBuilder $facultyBuilder;
+    protected FacultyDataBuilder $facultyBuilder;
     protected array $childBuilders;
 
     public function __construct(
@@ -26,9 +26,9 @@ class Application
         $this->directoryManager = new DirectoryManager($rootPath, $apiRelativePath, $resourceRelativePath);
         $this->fileManager = new FileManager($this->directoryManager);
         $this->csvReader = new CsvReader();
-        $this->facultyBuilder = new FacultyBuilder("/faculties/");
+        $this->facultyBuilder = new FacultyDataBuilder("/faculties/");
         $this->childBuilders = [
-            new CompanyBuilder(""),
+            new CompanyDataBuilder(""),
         ];
     }
 
