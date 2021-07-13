@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Internships\Application;
 
-use Internships\FileSystem\CsvReader;
 use Internships\FileSystem\DirectoryManager;
 use Internships\FileSystem\FileManager;
 use Internships\Services\CompanyDataBuilder;
+use Internships\Services\CsvReader;
 use Internships\Services\FacultyDataBuilder;
 
 class Application

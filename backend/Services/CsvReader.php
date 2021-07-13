@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Internships\FileSystem;
+namespace Internships\Services;
 
 class CsvReader
 {
