@@ -16,7 +16,6 @@ docker-compose up -d
 ### 3.Install frontend dependencies :
 ```
 docker-compose exec node npm install
-
 ```
 
 ### 4. Install backend dependencies and build static API endpoints:

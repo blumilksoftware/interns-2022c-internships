@@ -23,7 +23,6 @@ services:
     restart: unless-stopped
   
   node:
-    
     container_name: intern-node
     working_dir: /application
     restart: always
