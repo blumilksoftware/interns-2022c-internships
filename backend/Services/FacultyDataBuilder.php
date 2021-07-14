@@ -25,7 +25,7 @@ class FacultyDataBuilder extends DataBuilder implements SerializableInfo
                     "name" => $rowData[0],
                     "directory" => $rowData[1],
                 ];
-                array_push($faculties, new Faculty($i-1, $entry));
+                array_push($faculties, new Faculty($i - 1, $entry));
             }
         }
         return $faculties;

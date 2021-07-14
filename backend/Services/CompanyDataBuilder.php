@@ -36,7 +36,7 @@ class CompanyDataBuilder extends DataBuilder implements SerializableInfo
                     "isPaid" => $rowData[11],
                     "logoFile" => $rowData[12],
                 ];
-                array_push($companies, new Company($i-1, $entry));
+                array_push($companies, new Company($i - 1, $entry));
             }
         }
         return $companies;
