@@ -206,7 +206,7 @@
         <p class="mt-6 text-lg text-left text-gray-500">
           Dzięki Znajdź Praktyki Twoja uczelnia uzyska dostęp do przyjaznego
           studentom interfejsu z wieloma funkcjami ułatiwającymi znalezienie
-          odpowiedniego praktykodawcy. Jest to projekt opern source - każdy może
+          odpowiedniego praktykodawcy. Jest to projekt open source - każdy może
           skorzystać w pełni za darmo.
         </p>
         <router-link
