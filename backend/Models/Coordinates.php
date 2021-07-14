@@ -11,12 +11,10 @@ class Coordinates implements JsonSerializable
     protected float $latitude;
     protected float $longitude;
 
-    public function __construct(string $coordinates)
+    public function __construct(float $latitude, float $longitude)
     {
-        $arrCoordinates = explode(",", preg_replace("/\s+/", "", $coordinates));
-        $this->latitude = floatval($arrCoordinates[0]);
-        $this->longitude = floatval($arrCoordinates[1]);
-        $this->normalize();
+        $this->latitude = $latitude;
+        $this->longitude = $longitude;
     }
 
     public function getLatitude(): float
@@ -35,11 +33,5 @@ class Coordinates implements JsonSerializable
             "latitude" => $this->latitude,
             "longitude" => $this->longitude,
         ];
-    }
-
-    protected function normalize(): void
-    {
-        $this->latitude = floatval(number_format($this->latitude, 6));
-        $this->longitude = floatval(number_format($this->longitude, 6));
     }
 }

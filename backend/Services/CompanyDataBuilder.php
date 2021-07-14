@@ -38,9 +38,72 @@ class CompanyDataBuilder extends DataBuilder implements SerializableInfo
                     "isPaid" => $rowData[11],
                     "logoFile" => $rowData[12],
                 ];
-                array_push($companies, new Company($i - 1, $entry));
+                array_push($companies, new Company($i - 1, $this->validate($i - 1, $entry)));
             }
         }
         return $companies;
+    }
+
+    public function validate(int $id, array $entry): array
+    {
+        $entry["name"] = $this->validateField($entry["name"], "Name", $id, true);
+
+        $entry["country"] = $this->validateField(
+            $entry["country"],
+            "country",
+            $id,
+            true,
+            SANITIZE_WHITESPACE_TRIM
+            | SANITIZE_CAPITALIZE_WORDS,
+        );
+
+        $entry["coordinates"] = $this->validateField(
+            $entry["coordinates"],
+            "coordinates",
+            $id,
+            true,
+            SANITIZE_WHITESPACE_REMOVE,
+            ",",
+            6
+        );
+
+        $entry["street"] = $this->validateField($entry["street"], "street", $id, true);
+
+        $entry["city"] = $this->validateField(
+            $entry["city"],
+            "city",
+            $id,
+            true,
+            SANITIZE_WHITESPACE_TRIM
+            | SANITIZE_CAPITALIZE_WORDS
+        );
+
+        $entry["zip"] = $this->validateField($entry["zip"], "zip", $id, true);
+
+        $entry["specialization"] = $this->validateField(
+            $entry["specialization"],
+            "specialization",
+            $id,
+            true,
+            SANITIZE_WHITESPACE_TRIM
+            | SANITIZE_CAPITALIZE_WORDS
+        );
+
+        $entry["tags"] = $this->validateField(
+            $entry["tags"],
+            "tags",
+            $id,
+            false,
+            SANITIZE_WHITESPACE_TRIM
+            | SANITIZE_TO_LOWER,
+            ","
+        );
+
+        $entry["website"] = $this->validateField($entry["website"], "website", $id);
+        $entry["email"] = $this->validateField($entry["email"], "email", $id);
+        $entry["phoneNumber"] = $this->validateField($entry["phoneNumber"], "phoneNumber", $id);
+        $entry["isPaid"] = false;
+        $entry["logoFile"] = $this->validateField($entry["logoFile"], "logoFile", $id);
+        return $entry;
     }
 }

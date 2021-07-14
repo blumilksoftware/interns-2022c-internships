@@ -11,10 +11,10 @@ class FilterData implements JsonSerializable
     protected string $specialization;
     protected array $tags;
 
-    public function __construct(string $specialization, string $tags)
+    public function __construct(string $specialization, array $tags)
     {
         $this->specialization = $specialization;
-        $this->tags = explode(",", preg_replace("/\s+/", "", $tags));
+        $this->tags = $tags;
     }
 
     public function getSpecialization(): string

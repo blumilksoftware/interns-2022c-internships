@@ -31,4 +31,11 @@ class FacultyDataBuilder extends DataBuilder
         }
         return $faculties;
     }
+
+    public function validate(int $id, array $entry): array
+    {
+        $entry["name"] = $this->validateField($entry["name"], "name", $id, true);
+        $entry["directory"] = $this->validateField($entry["directory"], "directory", $id, true);
+        return $entry;
+    }
 }

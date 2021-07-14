@@ -13,11 +13,10 @@ class FileManager
     ) {
     }
 
-    public function create(string $relativePath, string $filename = "", mixed $content = ""): void
+    public function create(string $relativePath, string $filename = null, mixed $content = ""): void
     {
         $path = $this->directoryManager->getApiDirectoryPath($relativePath);
-
-        if ($filename !== "") {
+        if ($filename !== null) {
             file_put_contents(
                 filename: $path . $filename,
                 data: $content
@@ -31,7 +30,7 @@ class FileManager
         string $filename,
         string $newName = ""
     ): void {
-        if ($newName === "") {
+        if ($newName !== null) {
             $newName = $filename;
         }
         $destination = $this->directoryManager->getApiDirectoryPath($relativeDestination);

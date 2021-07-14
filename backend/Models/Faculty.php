@@ -34,16 +34,6 @@ class Faculty implements JsonSerializable
         return $this->directory;
     }
 
-    public function getSource(): PathPair
-    {
-        return new PathPair("/faculties/", "faculty.csv");
-    }
-
-    public function getDestination(): PathPair
-    {
-        return new PathPair("/faculties/", "faculty.json");
-    }
-
     public function jsonSerialize(): array
     {
         return [

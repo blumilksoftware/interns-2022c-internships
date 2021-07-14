@@ -14,7 +14,7 @@ class Path
     public function getFull($relativePath, bool $isFile = false): string
     {
         $fullPath = $this->root . "/" . $relativePath;
-        if(!$isFile){
+        if (!$isFile) {
             $fullPath .= "/";
         }
         return $this->normalize($fullPath);

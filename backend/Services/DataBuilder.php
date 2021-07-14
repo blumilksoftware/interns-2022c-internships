@@ -8,11 +8,13 @@ use Internships\Interfaces\BuildTool;
 use Internships\Interfaces\SerializableInfo;
 use Internships\Models\PathPair;
 
-abstract class DataBuilder implements BuildTool, SerializableInfo
+abstract class DataBuilder extends DataSanitizer implements BuildTool, SerializableInfo
 {
-    public function __construct(protected string $temporaryDirectory,
+    public function __construct(
+        protected string $temporaryDirectory,
         protected PathPair $source,
-        protected PathPair $destination) {
+        protected PathPair $destination
+    ) {
     }
 
     public function getSourceRelativePath(): string
@@ -49,8 +51,8 @@ abstract class DataBuilder implements BuildTool, SerializableInfo
     public function getDestinationFilePath(): string
     {
         return $this->getDestinationRelativePath()
-        . "/"
-        . $this->getDestinationFileName();
+            . "/"
+            . $this->getDestinationFileName();
     }
 
     public function setDirectory(string $directory): void

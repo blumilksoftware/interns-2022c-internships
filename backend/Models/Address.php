@@ -14,10 +14,10 @@ class Address implements JsonSerializable
     protected string $zip;
     protected string $cityLocaleCode;
 
-    public function __construct(string $country, string $coordinates, string $street, string $zip, string $city)
+    public function __construct(string $country, array $coordinates, string $street, string $zip, string $city)
     {
         $this->countryLocaleCode = $country;
-        $this->coordinates = new Coordinates($coordinates);
+        $this->coordinates = new Coordinates($coordinates[0], $coordinates[1]);
         $this->street = $street;
         $this->zip = $zip;
         $this->cityLocaleCode = $city;

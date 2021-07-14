@@ -33,7 +33,7 @@ class Company implements JsonSerializable
         $this->website = $data["website"];
         $this->email = $data["email"];
         $this->phoneNumber = $data["phoneNumber"];
-        $this->isPaid = filter_var($data["isPaid"], FILTER_VALIDATE_BOOLEAN);
+        $this->isPaid = $data["isPaid"];
         $this->logoFile = $data["logoFile"];
     }
 
