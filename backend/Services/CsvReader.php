@@ -6,10 +6,6 @@ namespace Internships\Services;
 
 class CsvReader
 {
-    public function __construct()
-    {
-    }
-
     public function getCSVData(string $fullPath): array
     {
         $csvRows = [];

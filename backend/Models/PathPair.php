@@ -6,18 +6,18 @@ namespace Internships\Models;
 
 class PathPair
 {
-    protected string $relativePath;
+    protected string $relativeRootPath;
     protected string $fileName;
 
-    public function __construct(string $relativePath, string $fileName)
+    public function __construct(string $relativeRootPath, string $fileName)
     {
-        $this->relativePath = $relativePath;
+        $this->relativeRootPath = $relativeRootPath;
         $this->fileName = $fileName;
     }
 
     public function getRelativePath(): string
     {
-        return $this->relativePath;
+        return $this->relativeRootPath;
     }
 
     public function getFileName(): string

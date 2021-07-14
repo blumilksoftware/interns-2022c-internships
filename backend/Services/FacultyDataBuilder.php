@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace Internships\Services;
 
-use Internships\Interfaces\SerializableInfo;
 use Internships\Models\Faculty;
 use Internships\Models\PathPair;
 
-class FacultyDataBuilder extends DataBuilder implements SerializableInfo
+class FacultyDataBuilder extends DataBuilder
 {
     public function __construct(
-        protected string $workingDirectory
+        string $workingDirectory,
+        PathPair $source,
+        Pathpair $destination
     ) {
-        parent::__construct($this->getSource(), $this->getDestination());
+        parent::__construct($workingDirectory, $source, $destination);
     }
 
     public function buildFromData(array $csvData): array
@@ -29,15 +30,5 @@ class FacultyDataBuilder extends DataBuilder implements SerializableInfo
             }
         }
         return $faculties;
-    }
-
-    public function getSource(): PathPair
-    {
-        return new PathPair($this->workingDirectory, "faculties.csv");
-    }
-
-    public function getDestination(): PathPair
-    {
-        return new PathPair($this->workingDirectory, "faculties.json");
     }
 }

@@ -11,9 +11,11 @@ use Internships\Models\PathPair;
 class CompanyDataBuilder extends DataBuilder implements SerializableInfo
 {
     public function __construct(
-        protected string $workingDirectory
+        string $workingDirectory,
+        PathPair $source,
+        Pathpair $destination
     ) {
-        parent::__construct($this->getSource(), $this->getDestination());
+        parent::__construct($workingDirectory, $source, $destination);
     }
 
     public function buildFromData(array $csvData): array
@@ -40,15 +42,5 @@ class CompanyDataBuilder extends DataBuilder implements SerializableInfo
             }
         }
         return $companies;
-    }
-
-    public function getSource(): PathPair
-    {
-        return new PathPair($this->workingDirectory, "companies.csv");
-    }
-
-    public function getDestination(): PathPair
-    {
-        return new PathPair($this->workingDirectory, "companies.json");
     }
 }

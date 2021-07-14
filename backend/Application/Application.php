@@ -9,9 +9,11 @@ use Internships\FileSystem\FileManager;
 use Internships\Services\CompanyDataBuilder;
 use Internships\Services\CsvReader;
 use Internships\Services\FacultyDataBuilder;
+use Internships\Services\UniquePathGuard;
 
 class Application
 {
+    protected UniquePathGuard $pathGuard;
     protected DirectoryManager $directoryManager;
     protected FileManager $fileManager;
     protected CsvReader $csvReader;
@@ -23,12 +25,21 @@ class Application
         string $apiRelativePath,
         string $resourceRelativePath
     ) {
+        $this->pathGuard = $pathGuard = new UniquePathGuard();
         $this->directoryManager = new DirectoryManager($rootPath, $apiRelativePath, $resourceRelativePath);
         $this->fileManager = new FileManager($this->directoryManager);
         $this->csvReader = new CsvReader();
-        $this->facultyBuilder = new FacultyDataBuilder("/faculties/");
+        $this->facultyBuilder = new FacultyDataBuilder("/",
+                                                       $pathGuard->createPathPair("/faculties/",
+                                                                              "faculties.csv"),
+                                                       $pathGuard->createPathPair("/faculties/",
+                                                                              "faculties.json"));
         $this->childBuilders = [
-            new CompanyDataBuilder(""),
+            new CompanyDataBuilder("/",
+                                   $pathGuard->createPathPair("",
+                                                              "companies.csv"),
+                                   $pathGuard->createPathPair("",
+                                                              "companies.json")),
         ];
     }
 
@@ -36,27 +47,29 @@ class Application
     {
         $jsonPrintFlags = JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT;
         $facultyCsvData = $this->csvReader->getCSVData(
-            $this->directoryManager->getResourcePath($this->facultyBuilder->getSource()->getRelativePath())
-            . $this->facultyBuilder->getSource()->getFileName()
+            $this->directoryManager->getResourceFilePath($this->facultyBuilder->getSourceRelativePath(),
+                                                         $this->facultyBuilder->getSourceFileName())
         );
+
         $faculties = $this->facultyBuilder->buildFromData($facultyCsvData);
         $this->fileManager->create(
-            $this->facultyBuilder->getDestination()->getRelativePath(),
-            $this->facultyBuilder->getDestination()->getFileName(),
+            $this->facultyBuilder->getDestinationRelativePath(),
+            $this->facultyBuilder->getDestinationFileName(),
             json_encode($faculties, $jsonPrintFlags)
         );
 
         foreach ($faculties as $faculty) {
             foreach ($this->childBuilders as $builder) {
-                $builder->setWorkingDirectory("/faculties/" . $faculty->getDirectory());
+                $builder->setDirectory("/faculties/" . $faculty->getDirectory());
                 $csvData = $this->csvReader->getCSVData(
-                    $this->directoryManager->getResourcePath($builder->getSource()->getRelativePath())
-                    . $builder->getSource()->getFileName()
+                    $this->directoryManager->getResourceFilePath($builder->getSourceRelativePath(),
+                                                                 $builder->getSourceFileName())
                 );
+
                 $buildData = $builder->buildFromData($csvData);
                 $this->fileManager->create(
-                    $builder->getDestination()->getRelativePath(),
-                    $builder->getDestination()->getFileName(),
+                    $builder->getDestinationRelativePath(),
+                    $builder->getDestinationFileName(),
                     json_encode($buildData, $jsonPrintFlags)
                 );
             }

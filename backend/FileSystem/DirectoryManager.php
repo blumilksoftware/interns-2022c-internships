@@ -19,7 +19,7 @@ class DirectoryManager
         $this->resourcePath = new Path($rootManager->getFull($relativeResourcePath));
     }
 
-    public function getApiPath(string $relativePath): string
+    public function getApiDirectoryPath(string $relativePath): string
     {
         $directoryPath = $this->apiPath->getFull($relativePath);
         if (!file_exists($directoryPath)) {
@@ -28,8 +28,18 @@ class DirectoryManager
         return $directoryPath;
     }
 
-    public function getResourcePath(string $relativePath): string
+    public function getApiFilePath(string $relativePath, string $fileName): string
+    {
+        return $this->getApiDirectoryPath($relativePath) . $fileName;
+    }
+
+    public function getResourceDirectoryPath(string $relativePath): string
     {
         return $this->resourcePath->getFull($relativePath);
+    }
+
+    public function getResourceFilePath(string $relativePath, string $fileName): string
+    {
+        return $this->getResourceDirectoryPath($relativePath) . $fileName;
     }
 }

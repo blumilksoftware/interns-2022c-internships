@@ -11,9 +11,12 @@ class Path
     ) {
     }
 
-    public function getFull($relativePath): string
+    public function getFull($relativePath, bool $isFile = false): string
     {
-        $fullPath = $this->root . "/" . $relativePath . "/";
+        $fullPath = $this->root . "/" . $relativePath;
+        if(!$isFile){
+            $fullPath .= "/";
+        }
         return $this->normalize($fullPath);
     }
 
