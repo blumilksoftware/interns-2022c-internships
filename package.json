@@ -19,9 +19,11 @@
     "core-js": "^3.6.5",
     "css-what": "^5.0.1",
     "glob-parent": "^6.0.0",
+    "mapbox-gl": "^2.3.1",
     "postcss": "^7.0.36",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.4",
     "vue": "^3.0.0",
+    "vue-mapbox": "^0.4.1",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
   },

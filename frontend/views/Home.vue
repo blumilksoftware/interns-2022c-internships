@@ -40,6 +40,7 @@ export default {
 .maplist {
   margin-top: 64px;
   max-width: 100vw;
+  min-height: 80vh;
 }
 .margin-horizontal {
   max-width: 800px;

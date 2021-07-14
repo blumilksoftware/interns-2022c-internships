@@ -1,9 +1,20 @@
 <template>
   <div class="container">
-    <div class="listcontainer">LISTA</div>
-    <div class="map">MAPA</div>
+    <ListContainer class="listcontainer" />
+    <Map class="map" />
   </div>
 </template>
+<script>
+import Map from "./Map.vue";
+import ListContainer from "./ListContainer.vue";
+
+export default {
+  components: {
+    Map: Map,
+    ListContainer: ListContainer,
+  },
+};
+</script>
 
 <style>
 .container {
@@ -16,10 +27,9 @@
 }
 .listcontainer {
   grid-area: listcontainer;
-  background: red;
 }
 .map {
   grid-area: map;
-  background: blue;
+  /* height: 100%; */
 }
 </style>
