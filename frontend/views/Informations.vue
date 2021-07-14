@@ -1,22 +1,5 @@
-<!--
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/typography'),
-      require('@tailwindcss/aspect-ratio'),
-    ]
-  }
-  ```
--->
 <template>
-  <div class="bg-white overflow-hidden">
+  <div class="bg-white overflow-hidden" id="info">
     <div class="relative max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
       <div
         class="
@@ -110,13 +93,6 @@
                   height="1376"
                 />
               </div>
-              <figcaption class="mt-3 flex text-sm text-gray-500">
-                <CameraIcon
-                  class="flex-none w-5 h-5 text-gray-400"
-                  aria-hidden="true"
-                />
-                <span class="ml-2">Photograph by Marcus O’Leary</span>
-              </figcaption>
             </figure>
           </div>
         </div>
@@ -172,11 +148,7 @@
 </template>
 
 <script>
-import { CameraIcon } from "@heroicons/vue/solid";
-
 export default {
-  components: {
-    CameraIcon,
-  },
+  components: {},
 };
 </script>

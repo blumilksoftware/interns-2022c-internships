@@ -51,7 +51,7 @@
             >
               <div class="flex items-center justify-between w-full md:w-auto">
                 <a href="#">
-                  <p class="logo">Znajdź Praktyki</p>
+                  <p class="logo">{{ projectName }}</p>
                 </a>
               </div>
             </div>
@@ -60,7 +60,7 @@
 
         <main
           class="
-            mt-10
+            n
             mx-auto
             max-w-7xl
             px-4
@@ -83,7 +83,9 @@
             >
               <span class="block xl:inline">Zdobądź doświadczenie z</span>
               {{ " " }}
-              <span class="block text-indigo-500 m:inline">PWSZ Legnica</span>
+              <span class="block text-indigo-500 m:inline">{{
+                university
+              }}</span>
             </h1>
             <p
               class="
@@ -204,7 +206,7 @@
           <span class="block text-indigo-500 m:inline">Dołącz do nas!</span>
         </h2>
         <p class="mt-6 text-lg text-left text-gray-500">
-          Dzięki Znajdź Praktyki Twoja uczelnia uzyska dostęp do przyjaznego
+          Dzięki {{ projectName }} Twoja uczelnia uzyska dostęp do przyjaznego
           studentom interfejsu z wieloma funkcjami ułatiwającymi znalezienie
           odpowiedniego praktykodawcy. Jest to projekt open source - każdy może
           skorzystać w pełni za darmo.
@@ -239,7 +241,16 @@
   </div>
 </template>
 
-<script></script>
+<script>
+export default {
+  data() {
+    return {
+      projectName: "Znajdź Praktyki",
+      university: "PWSZ Legnica",
+    };
+  },
+};
+</script>
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
