@@ -25,7 +25,7 @@ class FileManager
         }
     }
 
-    public function copyResource(string $relativeOrigin, string $relativeDestination, $filename, $newName = "\0"): void
+    public function copyResource(string $relativeOrigin, string $relativeDestination, string $filename, string $newName = "\0"): void
     {
         if ($newName === "\0") {
             $newName = $filename;
