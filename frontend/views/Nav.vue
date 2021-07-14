@@ -5,12 +5,12 @@
         <div class="flex">
           <div class="flex-shrink-0 flex items-center">
             <router-link to="/home">
-              <p class="logo">Znajdź Praktyki</p>
+              <a class="logo" @click="goHome()">Znajdź Praktyki</a>
             </router-link>
           </div>
           <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
             <a
-              href="#"
+              @click="goInfo()"
               class="
                 border-indigo-500
                 text-gray-900
@@ -26,24 +26,7 @@
               Informacje o praktykach
             </a>
             <a
-              href="#"
-              class="
-                border-transparent
-                text-gray-500
-                hover:border-gray-300 hover:text-gray-700
-                inline-flex
-                items-center
-                px-1
-                pt-1
-                border-b-2
-                text-sm
-                font-medium
-              "
-            >
-              Regulamin praktyk
-            </a>
-            <a
-              href="#"
+              @click="goFiles()"
               class="
                 border-transparent
                 text-gray-500
@@ -60,7 +43,24 @@
               Pliki do pobrania
             </a>
             <a
-              href="#"
+              @click="goRegu()"
+              class="
+                border-transparent
+                text-gray-500
+                hover:border-gray-300 hover:text-gray-700
+                inline-flex
+                items-center
+                px-1
+                pt-1
+                border-b-2
+                text-sm
+                font-medium
+              "
+            >
+              Regulamin praktyk
+            </a>
+            <a
+              @click="goCoop()"
               class="
                 border-transparent
                 text-gray-500
@@ -79,11 +79,11 @@
           </div>
         </div>
         <div class="hidden sm:ml-6 sm:flex sm:items-center">
-          <!-- Profile dropdown -->
           <Menu as="div" class="ml-3 relative">
             <div>
               <MenuButton
                 class="
+                  d
                   bg-white
                   rounded-full
                   flex
@@ -105,57 +105,10 @@
               leave-from-class="transform opacity-100 scale-100"
               leave-to-class="transform opacity-0 scale-95"
             >
-              <MenuItems
-                class="
-                  origin-top-right
-                  absolute
-                  right-0
-                  mt-2
-                  w-48
-                  rounded-md
-                  shadow-lg
-                  py-1
-                  bg-white
-                  ring-1 ring-black ring-opacity-5
-                  focus:outline-none
-                "
-              >
-                <MenuItem v-slot="{ active }">
-                  <a
-                    href="#"
-                    :class="[
-                      active ? 'bg-gray-100' : '',
-                      'block px-4 py-2 text-sm text-gray-700',
-                    ]"
-                    >Your Profile</a
-                  >
-                </MenuItem>
-                <MenuItem v-slot="{ active }">
-                  <a
-                    href="#"
-                    :class="[
-                      active ? 'bg-gray-100' : '',
-                      'block px-4 py-2 text-sm text-gray-700',
-                    ]"
-                    >Settings</a
-                  >
-                </MenuItem>
-                <MenuItem v-slot="{ active }">
-                  <a
-                    href="#"
-                    :class="[
-                      active ? 'bg-gray-100' : '',
-                      'block px-4 py-2 text-sm text-gray-700',
-                    ]"
-                    >Sign out</a
-                  >
-                </MenuItem>
-              </MenuItems>
             </transition>
           </Menu>
         </div>
         <div class="-mr-2 flex items-center sm:hidden">
-          <!-- Mobile menu button -->
           <DisclosureButton
             class="
               inline-flex
@@ -181,9 +134,8 @@
 
     <DisclosurePanel class="sm:hidden">
       <div class="pt-2 pb-3 space-y-1">
-        <!-- Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
         <a
-          href="#"
+          @click="goInfo()"
           class="
             bg-indigo-50
             border-indigo-500
@@ -196,10 +148,10 @@
             text-base
             font-medium
           "
-          >Dashboard</a
+          >Information</a
         >
         <a
-          href="#"
+          @click="goFiles()"
           class="
             border-transparent
             text-gray-500
@@ -212,10 +164,10 @@
             text-base
             font-medium
           "
-          >Team</a
+          >Files</a
         >
         <a
-          href="#"
+          @click="goRegu()"
           class="
             border-transparent
             text-gray-500
@@ -228,10 +180,10 @@
             text-base
             font-medium
           "
-          >Projects</a
+          >Regulations</a
         >
         <a
-          href="#"
+          @click="goCoop()"
           class="
             border-transparent
             text-gray-500
@@ -244,7 +196,7 @@
             text-base
             font-medium
           "
-          >Calendar</a
+          >Cooperation</a
         >
       </div>
     </DisclosurePanel>
@@ -259,8 +211,6 @@ import {
   DisclosurePanel,
   Menu,
   MenuButton,
-  MenuItem,
-  MenuItems,
 } from "@headlessui/vue";
 import { MenuIcon, XIcon } from "@heroicons/vue/outline";
 
@@ -271,9 +221,6 @@ export default {
     DisclosurePanel,
     Menu,
     MenuButton,
-    MenuItem,
-    MenuItems,
-    // BellIcon,
     MenuIcon,
     XIcon,
   },
@@ -283,6 +230,37 @@ export default {
     return {
       open,
     };
+  },
+  methods: {
+    goHome() {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    },
+    goInfo() {
+      document.getElementById("info").scrollIntoView({
+        behavior: "smooth",
+      });
+    },
+    goFiles() {
+      document.getElementById("files").scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    },
+    goRegu() {
+      document.getElementById("regulations").scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    },
+    goCoop() {
+      document.getElementById("cooperation").scrollIntoView({
+        behavior: "smooth",
+      });
+    },
   },
 };
 </script>
