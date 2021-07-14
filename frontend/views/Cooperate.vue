@@ -31,3 +31,9 @@
     </div>
   </div>
 </template>
+
+<style>
+h1 {
+  font-size: 10px;
+}
+</style>

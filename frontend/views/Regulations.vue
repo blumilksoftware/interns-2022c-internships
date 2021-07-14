@@ -1,5 +1,5 @@
 <template>
-  <div class="relative py-16 bg-white overflow-hidden">
+  <div class="relative py-16 bg-white overflow-hidden scrollable">
     <div class="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
       <div
         class="relative h-full text-lg max-w-prose mx-auto"
@@ -211,3 +211,11 @@
     </div>
   </div>
 </template>
+
+<style>
+.scrollable {
+  max-height: 700px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+</style>
