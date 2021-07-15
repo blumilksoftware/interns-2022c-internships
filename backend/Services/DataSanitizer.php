@@ -19,8 +19,8 @@ class DataSanitizer
     public function sanitize(
         string $value,
         int $flags = SANITIZE_WHITESPACE_TRIM,
-        string $arraySeparator = null,
-        int $decimals = null
+        string $arraySeparator = "",
+        int $decimals = -1
     ): mixed {
         if ($flags & SANITIZE_NO_ACCENTS) {
             $value = normalizer_normalize($value);
@@ -54,10 +54,10 @@ class DataSanitizer
             }
         }
 
-        if ($arraySeparator !== null) {
+        if ($arraySeparator !== "") {
             $trimmedArray = [];
             foreach (explode($arraySeparator, $value) as $item) {
-                if ($decimals !== null) {
+                if ($decimals >= 0) {
                     $item = preg_replace("/\s+/", "", $item);
                     array_push($trimmedArray, floatval(number_format(floatval($item), $decimals)));
                 } else {

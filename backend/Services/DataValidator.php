@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Internships\Services;
 
-
 use Exception;
+use Internships\Models\ValidationOptions;
 
 class DataValidator
 {
@@ -19,42 +20,48 @@ class DataValidator
         string $fieldValue,
         int $entryID,
         string $fieldName,
-        bool $required = false,
-        int $sanitizationFlags = SANITIZE_WHITESPACE_TRIM,
-        string $arraySeparator = null,
-        int $maxDecimals = null,
-        int $expectedCount = null,
+        ValidationOptions $fieldSanatizationOptions
     ): mixed {
+        if ($fieldSanatizationOptions === null) {
+            return $fieldValue;
+        }
+
         if (!($fieldValue === null || $fieldValue === "")) {
             $sanitizedVal = $this->sanitizer->sanitize(
                 $fieldValue,
-                $sanitizationFlags,
-                $arraySeparator,
-                $maxDecimals
+                $fieldSanatizationOptions->getFlags(),
+                $fieldSanatizationOptions->getArraySeparator(),
+                $fieldSanatizationOptions->getMaxDecimals()
             );
-            if ($required && ($fieldValue === null || $fieldValue === "")){
-                throw new Exception("Required field " . $fieldName . " in ID:" . $entryID
-                                    . "is empty after sanitization.");
+            if ($fieldSanatizationOptions->isRequired() && ($fieldValue === null || $fieldValue === "")) {
+                throw new Exception(
+                    "Required field " . $fieldName . " in ID:" . $entryID
+                    . "is empty after sanitization."
+                );
             }
-            if(!is_null($expectedCount)){
-                if(!is_array($sanitizedVal)){
-                    throw new Exception("Field " . $fieldName . " in ID:" . $entryID
-                                        . "is not an array.");
+            $expectedCount = $fieldSanatizationOptions->getExpectedCount();
+            if ($expectedCount >= 0) {
+                if (!is_array($sanitizedVal)) {
+                    throw new Exception(
+                        "Field " . $fieldName . " in ID:" . $entryID
+                        . "is not an array."
+                    );
                 }
                 $count = count($sanitizedVal);
-                if($count != $expectedCount){
-                    throw new Exception("Field " . $fieldName . " in ID:" . $entryID
-                                        . " has invalid number of elements: " . $count
-                                        . ". Expected " . $expectedCount . ".");
+                if ($count !== $expectedCount) {
+                    throw new Exception(
+                        "Field " . $fieldName . " in ID:" . $entryID
+                        . " has invalid number of elements: " . $count
+                        . ". Expected " . $expectedCount . "."
+                    );
                 }
             }
             return $sanitizedVal;
-        }
-        else if ($required) {
+        } elseif ($fieldSanatizationOptions->isRequired()) {
             throw new Exception("Required field " . $fieldName . " in ID:" . $entryID . "is missing.");
         }
 
-        if ($arraySeparator !== null) {
+        if ($fieldSanatizationOptions->getArraySeparator() !== "") {
             return [];
         }
         return "";

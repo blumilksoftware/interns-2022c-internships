@@ -8,8 +8,8 @@ use Exception;
 
 class CsvReader
 {
-    const CSV_READ_LENGTH = 0;
-    const CSV_SEPARATOR = ',';
+    public const CSV_READ_LENGTH = 0;
+    public const CSV_SEPARATOR = ",";
 
     public function getCSVData(string $fullPath, array $fieldDefines): array
     {
@@ -24,10 +24,10 @@ class CsvReader
             }
             while (($row = fgetcsv($csvFile, self::CSV_READ_LENGTH, self::CSV_SEPARATOR)) !== false) {
                 if ($rowCount = count($row)
-                    != $fieldCount = count($fieldDefines)) {
+                    !== $fieldCount = count($fieldDefines)) {
                     throw new Exception(
                         "Unexpected field count at row " . count($csvRows) + 1
-                        . "Expected " . $fieldCount. ", got " . $rowCount
+                        . "Expected " . $fieldCount . ", got " . $rowCount
                     );
                 }
                 array_push($csvRows, $row);

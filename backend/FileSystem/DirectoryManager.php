@@ -6,8 +6,8 @@ namespace Internships\FileSystem;
 
 class DirectoryManager
 {
-    const DIRECTORY_PERMISSIONS = 0777;
-    const RECURSIVE_CREATION = true;
+    public const DIRECTORY_PERMISSIONS = 0777;
+    public const RECURSIVE_CREATION = true;
 
     protected Path $apiPath;
     protected Path $resourcePath;
