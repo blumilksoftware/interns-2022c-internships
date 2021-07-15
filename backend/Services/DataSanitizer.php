@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Internships\Services;
 
-use Exception;
-
 define("SANITIZE_NONE", (1 << 0));
 define("SANITIZE_WHITESPACE_TRIM", (1 << 1));
 define("SANITIZE_WHITESPACE_REMOVE", (1 << 2));
@@ -16,7 +14,7 @@ define("SANITIZE_TO_CAPITALIZE_FIRST", (1 << 6));
 define("SANITIZE_CAPITALIZE_WORDS", (1 << 7));
 define("SANITIZE_NO_ACCENTS", (1 << 8));
 
-abstract class DataSanitizer
+class DataSanitizer
 {
     public function sanitize(
         string $value,
@@ -70,32 +68,5 @@ abstract class DataSanitizer
             return $trimmedArray;
         }
         return $value;
-    }
-
-    public function validateField(
-        string $value,
-        string $dataName,
-        int $id,
-        bool $required = false,
-        int $flags = SANITIZE_WHITESPACE_TRIM,
-        string $arraySeparator = null,
-        int $decimals = null
-    ): mixed {
-        if (!($value === null || $value === "")) {
-            return $this->sanitize(
-                $value,
-                $flags,
-                $arraySeparator,
-                $decimals
-            );
-        }
-        if ($required) {
-            throw new Exception("Required field " . $dataName . " in ID:" . $id . "is missing.");
-        }
-
-        if ($arraySeparator !== null) {
-            return [];
-        }
-        return "";
     }
 }

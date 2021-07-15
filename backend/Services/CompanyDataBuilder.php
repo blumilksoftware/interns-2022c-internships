@@ -44,66 +44,97 @@ class CompanyDataBuilder extends DataBuilder implements SerializableInfo
         return $companies;
     }
 
-    public function validate(int $id, array $entry): array
+    public function validate(int $entryID, array $entry): array
     {
-        $entry["name"] = $this->validateField($entry["name"], "Name", $id, true);
+        $entry["name"] = $this->dataValidator->validateField(
+            $entry["name"],
+            $entryID,
+            fieldName: "name",
+            required: true
+        );
 
-        $entry["country"] = $this->validateField(
+        $entry["country"] = $this->dataValidator->validateField(
             $entry["country"],
-            "country",
-            $id,
-            true,
-            SANITIZE_WHITESPACE_TRIM
+            $entryID,
+            fieldName: "country",
+            required: true,
+            sanitizationFlags: SANITIZE_WHITESPACE_TRIM
             | SANITIZE_CAPITALIZE_WORDS,
         );
 
-        $entry["coordinates"] = $this->validateField(
+        $entry["coordinates"] = $this->dataValidator->validateField(
             $entry["coordinates"],
-            "coordinates",
-            $id,
-            true,
-            SANITIZE_WHITESPACE_REMOVE,
-            ",",
-            6
+            $entryID,
+            fieldName: "coordinates",
+            required: true,
+            sanitizationFlags: SANITIZE_WHITESPACE_REMOVE,
+            arraySeparator: ",",
+            maxDecimals: 6,
+            expectedCount: 2
         );
 
-        $entry["street"] = $this->validateField($entry["street"], "street", $id, true);
+        $entry["street"] = $this->dataValidator->validateField(
+            $entry["street"],
+            $entryID,
+            fieldName: "street",
+            required: true
+        );
 
-        $entry["city"] = $this->validateField(
+        $entry["city"] = $this->dataValidator->validateField(
             $entry["city"],
-            "city",
-            $id,
-            true,
-            SANITIZE_WHITESPACE_TRIM
+            $entryID,
+            fieldName: "city",
+            required: true,
+            sanitizationFlags: SANITIZE_WHITESPACE_TRIM
             | SANITIZE_CAPITALIZE_WORDS
         );
 
-        $entry["zip"] = $this->validateField($entry["zip"], "zip", $id, true);
+        $entry["zip"] = $this->dataValidator->validateField(
+            $entry["zip"],
+            $entryID,
+            fieldName: "zip",
+            required: true
+        );
 
-        $entry["specialization"] = $this->validateField(
+        $entry["specialization"] = $this->dataValidator->validateField(
             $entry["specialization"],
-            "specialization",
-            $id,
-            true,
-            SANITIZE_WHITESPACE_TRIM
+            $entryID,
+            fieldName: "specialization",
+            required: true,
+            sanitizationFlags: SANITIZE_WHITESPACE_TRIM
             | SANITIZE_CAPITALIZE_WORDS
         );
 
-        $entry["tags"] = $this->validateField(
-            $entry["tags"],
-            "tags",
-            $id,
-            false,
-            SANITIZE_WHITESPACE_TRIM
-            | SANITIZE_TO_LOWER,
-            ","
+        $entry["tags"] = $this->dataValidator->validateField(
+            fieldValue: $entry["tags"],
+            fieldName: "tags",
+            entryID: $entryID,
+            sanitizationFlags: SANITIZE_WHITESPACE_TRIM
+                        | SANITIZE_TO_LOWER,
+            arraySeparator: ","
         );
 
-        $entry["website"] = $this->validateField($entry["website"], "website", $id);
-        $entry["email"] = $this->validateField($entry["email"], "email", $id);
-        $entry["phoneNumber"] = $this->validateField($entry["phoneNumber"], "phoneNumber", $id);
+        $entry["website"] = $this->dataValidator->validateField(
+            $entry["website"],
+            $entryID,
+            fieldName: "website",
+        );
+        $entry["email"] = $this->dataValidator->validateField(
+            $entry["email"],
+            $entryID,
+            fieldName: "email",
+        );
+        $entry["phoneNumber"] = $this->dataValidator->validateField(
+            $entry["phoneNumber"],
+            $entryID,
+            fieldName: "phoneNumber",
+        );
         $entry["isPaid"] = false;
-        $entry["logoFile"] = $this->validateField($entry["logoFile"], "logoFile", $id);
+        $entry["logoFile"] = $this->dataValidator->validateField(
+            $entry["logoFile"],
+            $entryID,
+            fieldName: "logoFile",
+        );
         return $entry;
     }
 }

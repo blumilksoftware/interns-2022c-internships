@@ -10,11 +10,14 @@ use Internships\Models\PathPair;
 
 abstract class DataBuilder extends DataSanitizer implements BuildTool, SerializableInfo
 {
+    protected DataValidator $dataValidator;
+
     public function __construct(
         protected string $temporaryDirectory,
         protected PathPair $source,
         protected PathPair $destination
     ) {
+        $this->dataValidator = new DataValidator();
     }
 
     public function getSourceRelativePath(): string
