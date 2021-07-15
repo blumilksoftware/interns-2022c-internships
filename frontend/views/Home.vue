@@ -4,8 +4,8 @@
     <Maplist class="maplist" />
     <informations class="info" />
     <Files class="files" />
-    <Regulations class="margin-horizontal margin-vertical reg" />
-    <Cooperate />
+    <Regulations class="regulations margin-horizontal margin-vertical reg" />
+    <Cooperate class="cooperate" />
   </div>
 </template>
 
@@ -40,7 +40,8 @@ export default {
 .maplist {
   margin-top: 64px;
   max-width: 100vw;
-  min-height: 80vh;
+  max-height: 80vh;
+  z-index: 5;
 }
 .margin-horizontal {
   max-width: 800px;
@@ -54,10 +55,19 @@ export default {
 
 .info {
   margin-bottom: 50px;
+  z-index: 4;
 }
 
 .files {
   max-width: 400px;
   margin: 80px auto 0 auto;
+  z-index: 3;
+}
+.regulations {
+  z-index: 2;
+}
+
+.cooperate {
+  z-index: 1;
 }
 </style>

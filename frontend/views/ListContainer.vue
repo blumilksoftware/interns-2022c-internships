@@ -1,28 +1,38 @@
 <template>
   <div class="wrapper">
     <div class="datafields">
-      <p>rararara</p>
-      <p>rararara</p>
-      <p>rararara</p>
-      <p>rararara</p>
-      <p>rararara</p>
-      <p>rararara</p>
-      <p>rararara</p>
-      <p>rararara</p>
-      <p>rararara</p>
-      <p>rararara</p>
-      <p>rararara</p>
-      <p>rararara</p>
-      <p>rararara</p>
-      <p>rararara</p>
-      <p>rararara</p>
-      <p>rararara</p>
-      <p>rararara</p>
-      <p>rararara</p>
-      <p>rararara</p>
-      <p>rararara</p>
-
-      <!-- <DataField /> -->
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
     </div>
     <Buttons class="buttons" />
   </div>
@@ -30,12 +40,12 @@
 
 <script>
 import Btns from "./Buttons.vue";
-// import DtFld from "./DataField.vue";
+import DtFld from "./DataField.vue";
 
 export default {
   components: {
     Buttons: Btns,
-    // DataField: DtFld,
+    DataField: DtFld,
   },
 };
 </script>
@@ -45,15 +55,24 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  height: 600px;
 }
 .buttons {
   /* align-items: flex-start; */
+  height: 10%;
   width: 100%;
 }
 .datafields {
-  height: 100%;
-  overflow: hidden;
+  height: 90%;
+  overflow: scroll;
   overflow-x: hidden;
   justify-items: flex-start;
+}
+.datafield {
+  width: 100%;
+  background: #eaedf0;
+}
+.datafield:nth-child(odd) {
+  background: #f7f7f8;
 }
 </style>
