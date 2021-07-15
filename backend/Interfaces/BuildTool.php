@@ -6,6 +6,8 @@ namespace Internships\Interfaces;
 
 interface BuildTool
 {
+    public function defineDataFields();
+
     public function buildFromData(array $csvData): array;
 
     public function validate(int $id, array $entry): array;

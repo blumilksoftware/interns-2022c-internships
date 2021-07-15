@@ -25,17 +25,17 @@ class Application
         string $apiRelativePath,
         string $resourceRelativePath
     ) {
-        $this->pathGuard = $pathGuard = new UniquePathGuard();
+        $this->pathGuard = new UniquePathGuard();
         $this->directoryManager = new DirectoryManager($rootPath, $apiRelativePath, $resourceRelativePath);
         $this->fileManager = new FileManager($this->directoryManager);
         $this->csvReader = new CsvReader();
         $this->facultyBuilder = new FacultyDataBuilder(
             "/",
-            $pathGuard->createPathPair(
+            $this->pathGuard->createPathPair(
                 "/faculties/",
                 "faculties.csv"
             ),
-            $pathGuard->createPathPair(
+            $this->pathGuard->createPathPair(
                 "/faculties/",
                 "faculties.json"
             )
@@ -43,11 +43,11 @@ class Application
         $this->csvBuilders = [
             new CompanyDataBuilder(
                 "/",
-                $pathGuard->createPathPair(
+                $this->pathGuard->createPathPair(
                     "",
                     "companies.csv"
                 ),
-                $pathGuard->createPathPair(
+                $this->pathGuard->createPathPair(
                     "",
                     "companies.json"
                 )
@@ -61,8 +61,8 @@ class Application
         $facultyCsvData = $this->csvReader->getCSVData(
             $this->directoryManager->getResourceFilePath(
                 $this->facultyBuilder->getSourceRelativePath(),
-                $this->facultyBuilder->getSourceFileName()
-            )
+                $this->facultyBuilder->getSourceFileName()),
+            $this->facultyBuilder->getFields()
         );
 
         $faculties = $this->facultyBuilder->buildFromData($facultyCsvData);
@@ -79,7 +79,8 @@ class Application
                     $this->directoryManager->getResourceFilePath(
                         $builder->getSourceRelativePath(),
                         $builder->getSourceFileName()
-                    )
+                    ),
+                    $builder->getFields()
                 );
 
                 $buildData = $builder->buildFromData($csvData);

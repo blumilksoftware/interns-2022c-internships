@@ -18,27 +18,34 @@ class CompanyDataBuilder extends DataBuilder implements SerializableInfo
         parent::__construct($workingDirectory, $source, $destination);
     }
 
+    public function defineDataFields()
+    {
+        $this->fields = array(
+            "name",
+            "country",
+            "coordinates",
+            "street",
+            "city",
+            "zip",
+            "specialization",
+            "tags",
+            "website",
+            "email",
+            "phoneNumber",
+            "isPaid",
+            "logoFile",
+        );
+    }
+
     public function buildFromData(array $csvData): array
     {
         $companies = [];
-        foreach ($csvData as $i => $rowData) {
-            if ($i > 0) {
-                $entry = [
-                    "name" => $rowData[0],
-                    "country" => $rowData[1],
-                    "coordinates" => $rowData[2],
-                    "street" => $rowData[3],
-                    "city" => $rowData[4],
-                    "zip" => $rowData[5],
-                    "specialization" => $rowData[6],
-                    "tags" => $rowData[7],
-                    "website" => $rowData[8],
-                    "email" => $rowData[9],
-                    "phoneNumber" => $rowData[10],
-                    "isPaid" => $rowData[11],
-                    "logoFile" => $rowData[12],
-                ];
-                array_push($companies, new Company($i - 1, $this->validate($i - 1, $entry)));
+        foreach ($csvData as $rowNumber => $rowData) {
+            if ($rowNumber > 0) {
+                $entry = array_combine($this->fields, $rowData);
+                $offsetRowNumber = $rowNumber - 1;
+                array_push($companies, new Company($offsetRowNumber,
+                                                   $this->validate($offsetRowNumber, $entry)));
             }
         }
         return $companies;

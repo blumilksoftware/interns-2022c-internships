@@ -28,7 +28,7 @@ class FileManager
         string $relativeOrigin,
         string $relativeDestination,
         string $filename,
-        string $newName = ""
+        string $newName = null
     ): void {
         if ($newName !== null) {
             $newName = $filename;

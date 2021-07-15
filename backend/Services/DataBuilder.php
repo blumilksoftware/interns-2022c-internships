@@ -11,6 +11,7 @@ use Internships\Models\PathPair;
 abstract class DataBuilder extends DataSanitizer implements BuildTool, SerializableInfo
 {
     protected DataValidator $dataValidator;
+    protected array $fields;
 
     public function __construct(
         protected string $temporaryDirectory,
@@ -18,6 +19,12 @@ abstract class DataBuilder extends DataSanitizer implements BuildTool, Serializa
         protected PathPair $destination
     ) {
         $this->dataValidator = new DataValidator();
+        $this->defineDataFields();
+    }
+
+    public function getFields(): array
+    {
+        return $this->fields;
     }
 
     public function getSourceRelativePath(): string

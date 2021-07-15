@@ -17,16 +17,22 @@ class FacultyDataBuilder extends DataBuilder
         parent::__construct($workingDirectory, $source, $destination);
     }
 
+    public function defineDataFields()
+    {
+        $this->fields = [
+            "name",
+            "directory",
+        ];
+    }
+
     public function buildFromData(array $csvData): array
     {
         $faculties = [];
-        foreach ($csvData as $i => $rowData) {
-            if ($i > 0) {
-                $entry = [
-                    "name" => $rowData[0],
-                    "directory" => $rowData[1],
-                ];
-                array_push($faculties, new Faculty($i - 1, $entry));
+        foreach ($csvData as $rowNumber => $rowData) {
+            if ($rowNumber > 0) {
+                $entry = array_combine($this->fields, $rowData);
+                $offsetRowNumber = $rowNumber - 1;
+                array_push($faculties, new Faculty($offsetRowNumber, $this->validate($offsetRowNumber, $entry)));
             }
         }
         return $faculties;

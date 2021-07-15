@@ -6,6 +6,8 @@ namespace Internships\FileSystem;
 
 class Path
 {
+    const FOLDER_SEPARATOR = "/";
+
     public function __construct(
         protected string $root
     ) {
@@ -13,15 +15,15 @@ class Path
 
     public function getFull($relativePath, bool $isFile = false): string
     {
-        $fullPath = $this->root . "/" . $relativePath;
+        $fullPath = $this->root . self::FOLDER_SEPARATOR . $relativePath;
         if (!$isFile) {
-            $fullPath .= "/";
+            $fullPath .= self::FOLDER_SEPARATOR;
         }
         return $this->normalize($fullPath);
     }
 
     protected function normalize(string $path): string
     {
-        return preg_replace("#/+#", "/", $path);
+        return preg_replace("#/+#", self::FOLDER_SEPARATOR, $path);
     }
 }
