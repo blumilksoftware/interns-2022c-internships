@@ -10,8 +10,6 @@ use Internships\Models\PathPair;
 
 abstract class DataBuilder extends DataSanitizer implements BuildTool, SerializableInfo
 {
-    private const FOLDER_SEPARATOR = "/";
-
     protected DataValidator $dataValidator;
     protected array $fields;
 
@@ -46,7 +44,7 @@ abstract class DataBuilder extends DataSanitizer implements BuildTool, Serializa
     public function getSourceRelativePath(): string
     {
         return $this->source->getRelativePath()
-            . self::FOLDER_SEPARATOR
+            . PATHS_FOLDER_SEPARATOR
             . $this->temporaryDirectory;
     }
 
@@ -58,14 +56,14 @@ abstract class DataBuilder extends DataSanitizer implements BuildTool, Serializa
     public function getSourceFilePath(): string
     {
         return $this->getSourceRelativePath()
-            . self::FOLDER_SEPARATOR
+            . PATHS_FOLDER_SEPARATOR
             . $this->getSourceFileName();
     }
 
     public function getDestinationRelativePath(): string
     {
         return $this->destination->getRelativePath()
-            . self::FOLDER_SEPARATOR
+            . PATHS_FOLDER_SEPARATOR
             . $this->temporaryDirectory;
     }
 
@@ -77,7 +75,7 @@ abstract class DataBuilder extends DataSanitizer implements BuildTool, Serializa
     public function getDestinationFilePath(): string
     {
         return $this->getDestinationRelativePath()
-            . self::FOLDER_SEPARATOR
+            . PATHS_FOLDER_SEPARATOR
             . $this->getDestinationFileName();
     }
 
