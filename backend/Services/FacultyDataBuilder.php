@@ -6,6 +6,7 @@ namespace Internships\Services;
 
 use Internships\Models\Faculty;
 use Internships\Models\PathPair;
+use Internships\Models\ValidationOptions;
 
 class FacultyDataBuilder extends DataBuilder
 {
@@ -17,11 +18,11 @@ class FacultyDataBuilder extends DataBuilder
         parent::__construct($workingDirectory, $source, $destination);
     }
 
-    public function defineDataFields()
+    public function defineDataFields(): void
     {
         $this->fields = [
-            "name",
-            "directory",
+            "name" => new ValidationOptions(required: true),
+            "directory" => new ValidationOptions(required: true),
         ];
     }
 
@@ -30,26 +31,11 @@ class FacultyDataBuilder extends DataBuilder
         $faculties = [];
         foreach ($csvData as $rowNumber => $rowData) {
             if ($rowNumber > 0) {
-                $entry = array_combine($this->fields, $rowData);
+                $entry = array_combine(array_keys($this->fields), array_values($rowData));
                 $offsetRowNumber = $rowNumber - 1;
                 array_push($faculties, new Faculty($offsetRowNumber, $this->validate($offsetRowNumber, $entry)));
             }
         }
         return $faculties;
-    }
-
-    public function validate(int $entryID, array $entry): array
-    {
-        $entry["name"] = $this->dataValidator->validateField(
-            $entry["name"],
-            $entryID,
-            fieldName: "name",
-        );
-        $entry["directory"] = $this->dataValidator->validateField(
-            $entry["directory"],
-            $entryID,
-            fieldName: "directory",
-        );
-        return $entry;
     }
 }

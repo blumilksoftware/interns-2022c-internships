@@ -15,7 +15,7 @@ class Company implements JsonSerializable
     protected string $website;
     protected string $email;
     protected string $phoneNumber;
-    protected bool $isPaid;
+    protected string $isPaid;
     protected string $logoFile;
 
     public function __construct(int $id, array $data)

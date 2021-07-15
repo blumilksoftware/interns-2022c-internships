@@ -10,6 +10,8 @@ use Internships\Models\PathPair;
 
 abstract class DataBuilder extends DataSanitizer implements BuildTool, SerializableInfo
 {
+    private const FOLDER_SEPARATOR = "/";
+
     protected DataValidator $dataValidator;
     protected array $fields;
 
@@ -22,6 +24,20 @@ abstract class DataBuilder extends DataSanitizer implements BuildTool, Serializa
         $this->defineDataFields();
     }
 
+    public function validate(int $entryID, array $entry): array
+    {
+        foreach (array_keys($this->fields) as $fieldName) {
+            $fieldOptions = $this->fields[$fieldName];
+            $entry[$fieldName] = $this->dataValidator->validateField(
+                fieldValue: $entry[$fieldName],
+                entryID: $entryID,
+                fieldName: $fieldName,
+                fieldSanitizationOptions: $fieldOptions
+            );
+        }
+        return $entry;
+    }
+
     public function getFields(): array
     {
         return $this->fields;
@@ -30,7 +46,7 @@ abstract class DataBuilder extends DataSanitizer implements BuildTool, Serializa
     public function getSourceRelativePath(): string
     {
         return $this->source->getRelativePath()
-            . "/"
+            . self::FOLDER_SEPARATOR
             . $this->temporaryDirectory;
     }
 
@@ -42,14 +58,14 @@ abstract class DataBuilder extends DataSanitizer implements BuildTool, Serializa
     public function getSourceFilePath(): string
     {
         return $this->getSourceRelativePath()
-            . "/"
+            . self::FOLDER_SEPARATOR
             . $this->getSourceFileName();
     }
 
     public function getDestinationRelativePath(): string
     {
         return $this->destination->getRelativePath()
-            . "/"
+            . self::FOLDER_SEPARATOR
             . $this->temporaryDirectory;
     }
 
@@ -61,7 +77,7 @@ abstract class DataBuilder extends DataSanitizer implements BuildTool, Serializa
     public function getDestinationFilePath(): string
     {
         return $this->getDestinationRelativePath()
-            . "/"
+            . self::FOLDER_SEPARATOR
             . $this->getDestinationFileName();
     }
 

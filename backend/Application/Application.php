@@ -61,7 +61,8 @@ class Application
         $facultyCsvData = $this->csvReader->getCSVData(
             $this->directoryManager->getResourceFilePath(
                 $this->facultyBuilder->getSourceRelativePath(),
-                $this->facultyBuilder->getSourceFileName()),
+                $this->facultyBuilder->getSourceFileName()
+            ),
             $this->facultyBuilder->getFields()
         );
 

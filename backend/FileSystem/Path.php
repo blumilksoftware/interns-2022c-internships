@@ -6,7 +6,7 @@ namespace Internships\FileSystem;
 
 class Path
 {
-    const FOLDER_SEPARATOR = "/";
+    public const FOLDER_SEPARATOR = "/";
 
     public function __construct(
         protected string $root
