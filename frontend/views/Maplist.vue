@@ -24,6 +24,7 @@ export default {
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-template-areas: "listcontainer map";
+  /* height: 600px; */
 }
 .listcontainer {
   grid-area: listcontainer;

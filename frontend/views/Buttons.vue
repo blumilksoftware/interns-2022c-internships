@@ -37,19 +37,17 @@
 .resetfilters {
   background: #4f46e5;
   width: 100%;
-  /* padding: 15px 30px; */
-  max-height: 55px;
+  /* max-height: 55px; */
 }
 .saveasfile {
   background: #908dd3;
   width: 100%;
-  /* padding: 15px 30px; */
-  max-height: 55px;
+  /* max-height: 55px; */
 }
-.resetfilters div p,
-.saveasfile div p {
+.resetfilters a div p,
+.saveasfile a div p {
   color: white;
-  font-size: 14px;
+  font-size: 100%;
   text-align: center;
 }
 .btncontent {
