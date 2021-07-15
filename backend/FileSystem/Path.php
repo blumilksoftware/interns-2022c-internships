@@ -8,7 +8,6 @@ define("PATHS_FOLDER_SEPARATOR", "/");
 
 class Path
 {
-
     public function __construct(
         protected string $root
     ) {

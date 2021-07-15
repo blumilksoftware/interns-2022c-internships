@@ -23,8 +23,9 @@ class CsvReader
                 throw new Exception("File " . $fullPath . " cannot be read");
             }
             while (($row = fgetcsv($csvFile, self::CSV_READ_LENGTH, self::CSV_SEPARATOR)) !== false) {
-                if ($rowCount = count($row)
-                    !== $fieldCount = count($fieldDefines)) {
+                $rowCount = count($row);
+                $fieldCount = count($fieldDefines);
+                if ($rowCount !== $fieldCount) {
                     throw new Exception(
                         "Unexpected field count at row " . count($csvRows) + 1
                         . "Expected " . $fieldCount . ", got " . $rowCount
