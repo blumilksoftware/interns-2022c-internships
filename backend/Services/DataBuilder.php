@@ -30,7 +30,7 @@ abstract class DataBuilder extends DataSanitizer implements BuildTool, Serializa
                 fieldValue: $entry[$fieldName],
                 entryID: $entryID,
                 fieldName: $fieldName,
-                fieldSanitizationOptions: $fieldOptions
+                fieldValidationOptions: $fieldOptions
             );
         }
         return $entry;

@@ -20,26 +20,26 @@ class DataValidator
         string $fieldValue,
         int $entryID,
         string $fieldName,
-        ValidationOptions $fieldSanitizationOptions
+        ValidationOptions $fieldValidationOptions
     ): mixed {
-        if ($fieldSanitizationOptions === null) {
+        if ($fieldValidationOptions === null) {
             return $fieldValue;
         }
 
         if (!($fieldValue === null || $fieldValue === "")) {
             $sanitizedVal = $this->sanitizer->sanitize(
                 $fieldValue,
-                $fieldSanitizationOptions->getFlags(),
-                $fieldSanitizationOptions->getArraySeparator(),
-                $fieldSanitizationOptions->getMaxDecimals()
+                $fieldValidationOptions->getFlags(),
+                $fieldValidationOptions->getArraySeparator(),
+                $fieldValidationOptions->getMaxDecimals()
             );
-            if ($fieldSanitizationOptions->isRequired() && ($fieldValue === null || $fieldValue === "")) {
+            if ($fieldValidationOptions->isRequired() && ($fieldValue === null || $fieldValue === "")) {
                 throw new Exception(
                     "Required field " . $fieldName . " in ID:" . $entryID
                     . "is empty after sanitization."
                 );
             }
-            $expectedCount = $fieldSanitizationOptions->getExpectedCount();
+            $expectedCount = $fieldValidationOptions->getExpectedCount();
             if ($expectedCount >= 0) {
                 if (!is_array($sanitizedVal)) {
                     throw new Exception(
@@ -57,11 +57,11 @@ class DataValidator
                 }
             }
             return $sanitizedVal;
-        } elseif ($fieldSanitizationOptions->isRequired()) {
+        } elseif ($fieldValidationOptions->isRequired()) {
             throw new Exception("Required field " . $fieldName . " in ID:" . $entryID . "is missing.");
         }
 
-        if ($fieldSanitizationOptions->getArraySeparator() !== "") {
+        if ($fieldValidationOptions->getArraySeparator() !== "") {
             return [];
         }
         return "";

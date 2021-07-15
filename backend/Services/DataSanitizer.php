@@ -20,7 +20,7 @@ class DataSanitizer
         string $value,
         int $flags = SANITIZE_WHITESPACE_TRIM,
         string $arraySeparator = "",
-        int $decimals = -1
+        int $maxDecimals = -1
     ): mixed {
         if ($flags & SANITIZE_NO_ACCENTS) {
             $value = normalizer_normalize($value);
@@ -57,9 +57,9 @@ class DataSanitizer
         if ($arraySeparator !== "") {
             $trimmedArray = [];
             foreach (explode($arraySeparator, $value) as $item) {
-                if ($decimals >= 0) {
+                if ($maxDecimals >= 0) {
                     $item = preg_replace("/\s+/", "", $item);
-                    array_push($trimmedArray, floatval(number_format(floatval($item), $decimals)));
+                    array_push($trimmedArray, floatval(number_format(floatval($item), $maxDecimals)));
                 } else {
                     $item = trim($item);
                     array_push($trimmedArray, $item);
