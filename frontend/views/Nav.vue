@@ -12,8 +12,9 @@
             <a
               @click="goInfo()"
               class="
-                border-indigo-500
-                text-gray-900
+                border-transparent
+                text-gray-500
+                hover:border-indigo-400 hover:text-gray-700
                 inline-flex
                 items-center
                 px-1
@@ -30,7 +31,7 @@
               class="
                 border-transparent
                 text-gray-500
-                hover:border-gray-300 hover:text-gray-700
+                hover:border-indigo-400 hover:text-gray-700
                 inline-flex
                 items-center
                 px-1
@@ -47,7 +48,7 @@
               class="
                 border-transparent
                 text-gray-500
-                hover:border-gray-300 hover:text-gray-700
+                hover:border-indigo-400 hover:text-gray-700
                 inline-flex
                 items-center
                 px-1
@@ -64,7 +65,7 @@
               class="
                 border-transparent
                 text-gray-500
-                hover:border-gray-300 hover:text-gray-700
+                hover:border-indigo-400 hover:text-gray-700
                 inline-flex
                 items-center
                 px-1
@@ -137,9 +138,8 @@
         <a
           @click="goInfo()"
           class="
-            bg-indigo-50
-            border-indigo-500
-            text-indigo-700
+            text-gray-500
+            hover:bg-gray-50 hover:border-indigo-400 hover:text-gray-700
             block
             pl-3
             pr-4
@@ -155,7 +155,7 @@
           class="
             border-transparent
             text-gray-500
-            hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700
+            hover:bg-gray-50 hover:border-indigo-400 hover:text-gray-700
             block
             pl-3
             pr-4
@@ -171,7 +171,7 @@
           class="
             border-transparent
             text-gray-500
-            hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700
+            hover:bg-gray-50 hover:border-indigo-400 hover:text-gray-700
             block
             pl-3
             pr-4
@@ -187,7 +187,7 @@
           class="
             border-transparent
             text-gray-500
-            hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700
+            hover:bg-gray-50 hover:border-indigo-400 hover:text-gray-700
             block
             pl-3
             pr-4
