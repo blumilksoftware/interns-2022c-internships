@@ -6,8 +6,8 @@ namespace Internships\FileSystem;
 
 class DirectoryManager
 {
-    public const DIRECTORY_PERMISSIONS = 0777;
-    public const RECURSIVE_CREATION = true;
+    protected const DIRECTORY_PERMISSIONS = 0777;
+    protected const RECURSIVE_CREATION = true;
 
     protected Path $apiPath;
     protected Path $resourcePath;
@@ -26,7 +26,7 @@ class DirectoryManager
     {
         $directoryPath = $this->apiPath->getFull($relativePath);
         if (!file_exists($directoryPath)) {
-            mkdir($directoryPath, self::DIRECTORY_PERMISSIONS, self::RECURSIVE_CREATION);
+            mkdir($directoryPath, static::DIRECTORY_PERMISSIONS, static::RECURSIVE_CREATION);
         }
         return $directoryPath;
     }
