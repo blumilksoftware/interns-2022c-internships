@@ -9,7 +9,7 @@ use Internships\Interfaces\BuildTool;
 use Internships\Interfaces\SerializableInfo;
 use Internships\Models\PathPair;
 
-abstract class DataBuilder extends DataSanitizer implements BuildTool, SerializableInfo
+abstract class DataBuilder implements BuildTool, SerializableInfo
 {
     protected DataValidator $dataValidator;
     protected array $fields;
@@ -83,5 +83,20 @@ abstract class DataBuilder extends DataSanitizer implements BuildTool, Serializa
     public function setDirectory(string $directory): void
     {
         $this->temporaryDirectory = $directory;
+    }
+
+    public function buildFromData(array $csvData): array
+    {
+        $dataObjects = [];
+        foreach ($csvData as $rowNumber => $rowData) {
+            if ($rowNumber > 0) {
+                $entry = array_combine(array_keys($this->fields), array_values($rowData));
+                $jsonID = $rowNumber - 1;
+                $modelName = $this->getModelClassToBuild();
+                $modelObject = new $modelName($jsonID, $this->validate($jsonID, $entry));
+                array_push($dataObjects, $modelObject);
+            }
+        }
+        return $dataObjects;
     }
 }

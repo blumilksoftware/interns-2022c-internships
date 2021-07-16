@@ -18,24 +18,16 @@ class FacultyDataBuilder extends DataBuilder
         parent::__construct($workingDirectory, $source, $destination);
     }
 
+    public function getModelClassToBuild(): string
+    {
+        return Faculty::class;
+    }
+
     public function defineDataFields(): void
     {
         $this->fields = [
             "name" => new ValidationOptions(required: true),
             "directory" => new ValidationOptions(required: true),
         ];
-    }
-
-    public function buildFromData(array $csvData): array
-    {
-        $faculties = [];
-        foreach ($csvData as $rowNumber => $rowData) {
-            if ($rowNumber > 0) {
-                $entry = array_combine(array_keys($this->fields), array_values($rowData));
-                $jsonID = $rowNumber - 1;
-                array_push($faculties, new Faculty($jsonID, $this->validate($jsonID, $entry)));
-            }
-        }
-        return $faculties;
     }
 }

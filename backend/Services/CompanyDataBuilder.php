@@ -19,6 +19,11 @@ class CompanyDataBuilder extends DataBuilder implements SerializableInfo
         parent::__construct($workingDirectory, $source, $destination);
     }
 
+    public function getModelClassToBuild(): string
+    {
+        return Company::class;
+    }
+
     public function defineDataFields(): void
     {
         $this->fields = [
@@ -58,24 +63,5 @@ class CompanyDataBuilder extends DataBuilder implements SerializableInfo
             "isPaid" => new ValidationOptions(sanitizationFlags: SANITIZE_TO_UPPER | SANITIZE_WHITESPACE_REMOVE),
             "logoFile" => new ValidationOptions(),
         ];
-    }
-
-    public function buildFromData(array $csvData): array
-    {
-        $companies = [];
-        foreach ($csvData as $rowNumber => $rowData) {
-            if ($rowNumber > 0) {
-                $entry = array_combine(array_keys($this->fields), array_values($rowData));
-                $jsonID = $rowNumber - 1;
-                array_push(
-                    $companies,
-                    new Company(
-                        $jsonID,
-                        $this->validate($jsonID, $entry)
-                    )
-                );
-            }
-        }
-        return $companies;
     }
 }

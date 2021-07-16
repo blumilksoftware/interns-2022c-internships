@@ -21,10 +21,11 @@ class FileManager
                 filename: $path . $filename,
                 data: $content
             );
-        }
-        else if($filename==""){
-            throw new Exception("Couldn't create file in " . $relativePath
-                                . " No filename. Have you meant to create folder?");
+        } elseif ($filename === "") {
+            throw new Exception(
+                "Couldn't create file in " . $relativePath
+                . " No filename. Have you meant to create folder?"
+            );
         }
     }
 

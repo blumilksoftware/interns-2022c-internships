@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Internships\FileSystem;
 
-
 class Path
 {
     public const FOLDER_SEPARATOR = "/";
