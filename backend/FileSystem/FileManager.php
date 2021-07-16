@@ -13,14 +13,18 @@ class FileManager
     ) {
     }
 
-    public function create(string $relativePath, string $filename = null, mixed $content = ""): void
+    public function create(string $relativePath, string $filename = "", mixed $content = "", bool $noFile = false): void
     {
         $path = $this->directoryManager->getApiDirectoryPath($relativePath);
-        if ($filename !== null) {
+        if (!$noFile) {
             file_put_contents(
                 filename: $path . $filename,
                 data: $content
             );
+        }
+        else if($filename==""){
+            throw new Exception("Couldn't create file in " . $relativePath
+                                . " No filename. Have you meant to create folder?");
         }
     }
 
