@@ -70,7 +70,6 @@ class FileManager
                 . Path::FOLDER_SEPARATOR;
             $finalOrigin = $relativeOrigin . $fileRelativePath;
             $finalDestination = $relativeDestination . $fileRelativePath;
-            //var_dump($finalOrigin, $finalDestination, $fileName);
             $this->copyResource($finalOrigin, $finalDestination, $fileName, overwrite: false, toResource: true);
         }
     }
