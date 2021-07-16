@@ -10,7 +10,7 @@ define("SANITIZE_WHITESPACE_REMOVE", (1 << 2));
 define("SANITIZE_WHITESPACE_TO_DASH", (1 << 3));
 define("SANITIZE_TO_LOWER", (1 << 4));
 define("SANITIZE_TO_UPPER", (1 << 5));
-define("SANITIZE_TO_CAPITALIZE_FIRST", (1 << 6));
+define("SANITIZE_CAPITALIZE_FIRST", (1 << 6));
 define("SANITIZE_CAPITALIZE_WORDS", (1 << 7));
 define("SANITIZE_NO_ACCENTS", (1 << 8));
 
@@ -44,7 +44,7 @@ class DataSanitizer
             if ($flags & SANITIZE_TO_UPPER) {
                 $value = strtoupper($value);
             } else {
-                if ($flags & SANITIZE_TO_CAPITALIZE_FIRST) {
+                if ($flags & SANITIZE_CAPITALIZE_FIRST) {
                     $value = ucfirst($value);
                 } else {
                     if ($flags & SANITIZE_CAPITALIZE_WORDS) {
