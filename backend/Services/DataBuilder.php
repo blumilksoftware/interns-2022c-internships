@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Internships\Services;
 
+use Internships\FileSystem\Path;
 use Internships\Interfaces\BuildTool;
 use Internships\Interfaces\SerializableInfo;
 use Internships\Models\PathPair;
@@ -44,7 +45,7 @@ abstract class DataBuilder extends DataSanitizer implements BuildTool, Serializa
     public function getSourceRelativePath(): string
     {
         return $this->source->getRelativePath()
-            . PATHS_FOLDER_SEPARATOR
+            . Path::FOLDER_SEPARATOR
             . $this->temporaryDirectory;
     }
 
@@ -56,14 +57,14 @@ abstract class DataBuilder extends DataSanitizer implements BuildTool, Serializa
     public function getSourceFilePath(): string
     {
         return $this->getSourceRelativePath()
-            . PATHS_FOLDER_SEPARATOR
+            . Path::FOLDER_SEPARATOR
             . $this->getSourceFileName();
     }
 
     public function getDestinationRelativePath(): string
     {
         return $this->destination->getRelativePath()
-            . PATHS_FOLDER_SEPARATOR
+            . Path::FOLDER_SEPARATOR
             . $this->temporaryDirectory;
     }
 
@@ -75,7 +76,7 @@ abstract class DataBuilder extends DataSanitizer implements BuildTool, Serializa
     public function getDestinationFilePath(): string
     {
         return $this->getDestinationRelativePath()
-            . PATHS_FOLDER_SEPARATOR
+            . Path::FOLDER_SEPARATOR
             . $this->getDestinationFileName();
     }
 
