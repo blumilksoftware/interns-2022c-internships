@@ -7,6 +7,13 @@ require __DIR__ . "/../vendor/autoload.php";
 use Internships\Application\Application;
 
 $rootDirectory = __DIR__ . "/../";
+$options = getopt("r");
 
 $application = new Application($rootDirectory, "/public/api/", "/resources/");
-$application->build();
+
+if(array_key_exists("r", $options)) {
+    $application->populateFaculties();
+}
+else{
+    $application->build();
+}
