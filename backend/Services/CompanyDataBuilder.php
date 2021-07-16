@@ -66,12 +66,12 @@ class CompanyDataBuilder extends DataBuilder implements SerializableInfo
         foreach ($csvData as $rowNumber => $rowData) {
             if ($rowNumber > 0) {
                 $entry = array_combine(array_keys($this->fields), array_values($rowData));
-                $offsetRowNumber = $rowNumber - 1;
+                $jsonID = $rowNumber - 1;
                 array_push(
                     $companies,
                     new Company(
-                        $offsetRowNumber,
-                        $this->validate($offsetRowNumber, $entry)
+                        $jsonID,
+                        $this->validate($jsonID, $entry)
                     )
                 );
             }

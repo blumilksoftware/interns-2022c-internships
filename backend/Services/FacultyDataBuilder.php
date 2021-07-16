@@ -32,8 +32,8 @@ class FacultyDataBuilder extends DataBuilder
         foreach ($csvData as $rowNumber => $rowData) {
             if ($rowNumber > 0) {
                 $entry = array_combine(array_keys($this->fields), array_values($rowData));
-                $offsetRowNumber = $rowNumber - 1;
-                array_push($faculties, new Faculty($offsetRowNumber, $this->validate($offsetRowNumber, $entry)));
+                $jsonID = $rowNumber - 1;
+                array_push($faculties, new Faculty($jsonID, $this->validate($jsonID, $entry)));
             }
         }
         return $faculties;
