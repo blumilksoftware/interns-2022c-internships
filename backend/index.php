@@ -11,9 +11,8 @@ $options = getopt("r");
 
 $application = new Application($rootDirectory, "/public/api/", "/resources/");
 
-if(array_key_exists("r", $options)) {
-    $application->populateFaculties();
-}
-else{
+if (array_key_exists("r", $options)) {
+    $application->populate();
+} else {
     $application->build();
 }

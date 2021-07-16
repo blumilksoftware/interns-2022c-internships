@@ -39,7 +39,7 @@ class FileManager
         bool $overwrite = true,
         bool $toResource = false,
     ): void {
-        if ($newName == null) {
+        if ($newName === null) {
             $newName = $filename;
         }
         $origin = $this->directoryManager->getResourceDirectoryPath($relativeOrigin);
@@ -65,7 +65,7 @@ class FileManager
         $baseResourcePath = $this->directoryManager->getResourceDirectoryPath($relativeOrigin);
         foreach ($filePaths as $filePath) {
             $fileName = basename($filePath);
-            $path = substr($filePath, 0, strlen($filePath) - strlen($fileName) );
+            $path = substr($filePath, 0, strlen($filePath) - strlen($fileName));
             $fileRelativePath = Path::FOLDER_SEPARATOR . substr($path, strlen($baseResourcePath))
                 . Path::FOLDER_SEPARATOR;
             $finalOrigin = $relativeOrigin . $fileRelativePath;
@@ -90,7 +90,7 @@ class FileManager
         $filePaths = [];
         foreach ($recursiveIteratorI as $file) {
             if (!$file->isDir()) {
-                if($file->getPath()[0]) {
+                if ($file->getPath()[0]) {
                     array_push($filePaths, $file->getPathname());
                 }
             }

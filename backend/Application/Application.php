@@ -98,9 +98,9 @@ class Application
         }
     }
 
-    public function populateFaculties(): void
+    public function populate(): void
     {
-        echo "Generating faculty resource files..."  . PHP_EOL;
+        echo "Generating resource files..." . PHP_EOL;
         $source = "/templates/faculty-directory/";
         $destination = "/faculties/";
 
@@ -112,9 +112,13 @@ class Application
             $this->facultyBuilder->getFields()
         );
         $templatePaths = $this->fileManager->getResourceFilePathsFrom($source);
-        foreach($facultyCsvData as $rowNumber => $faculty){
-            if($rowNumber>0) {
-                $this->fileManager->copyResources($source, $destination . Path::FOLDER_SEPARATOR . $faculty[1], $templatePaths);
+        foreach ($facultyCsvData as $rowNumber => $faculty) {
+            if ($rowNumber > 0) {
+                $this->fileManager->copyResources(
+                    $source,
+                    $destination . Path::FOLDER_SEPARATOR . $faculty[1],
+                    $templatePaths
+                );
             }
         }
     }
