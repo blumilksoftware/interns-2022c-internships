@@ -16,7 +16,6 @@ services:
   php:
     build:
       context: ./environment/php
-      dockerfile: Dockerfile
       args:
         XDEBUG_HOST: ${XDEBUG_HOST}
         XDEBUG_PORT: ${XDEBUG_PORT}
