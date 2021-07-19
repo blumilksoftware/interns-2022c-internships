@@ -35,7 +35,7 @@ class FileManager
         string $filename,
         string $newName = null
     ): void {
-        if ($newName !== null) {
+        if ($newName === null) {
             $newName = $filename;
         }
         $destination = $this->directoryManager->getApiDirectoryPath($relativeDestination);
