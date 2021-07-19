@@ -27,8 +27,6 @@ class Application
         string $apiRelativePath,
         string $resourceRelativePath
     ) {
-        $this->jsonPrintFlags = JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT
-            | JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES;
         $this->pathGuard = new UniquePathGuard();
         $this->directoryManager = new DirectoryManager($rootPath, $apiRelativePath, $resourceRelativePath);
         $this->fileManager = new FileManager($this->directoryManager);
