@@ -18,7 +18,14 @@
       "rm -rf ./public/api",
       "sh -c 'cd backend && php index.php'"
     ],
-    "ecs": "./vendor/bin/ecs check",
-    "ecsf": "./vendor/bin/ecs check --fix"
+    "populate": [
+      "sh -c 'cd backend && php index.php -r'"
+    ],
+    "purge": [
+      "rm -rf ./public/api",
+      "rm -rf ./resources/faculties/*"
+    ],
+    "ecs": "./vendor/bin/ecs check --clear-cache",
+    "ecsf": "./vendor/bin/ecs check --clear-cache --fix"
   }
 }
