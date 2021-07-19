@@ -14,7 +14,7 @@ use Internships\Services\UniquePathGuard;
 
 class Application
 {
-    protected int $jsonPrintFlags;
+    protected int $jsonPrintFlags = JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES;
     protected UniquePathGuard $pathGuard;
     protected DirectoryManager $directoryManager;
     protected FileManager $fileManager;
