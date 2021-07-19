@@ -1,29 +1,13 @@
 <template>
   <div class="btncontainer">
-    <div class="resetfilters">
-      <a href="">
-        <div class="btncontent">
-          <img
-            src="../assets/filterson.svg"
-            class="icon"
-            alt="filtersoniccon"
-          />
-          <p>Zresetuj filtry</p>
-        </div>
-      </a>
-    </div>
-    <div class="saveasfile">
-      <a href="">
-        <div class="btncontent">
-          <img
-            src="../assets/downloadasfile.svg"
-            class="icon"
-            alt="downloadasfile"
-          />
-          <p>Zapisz do pliku</p>
-        </div></a
-      >
-    </div>
+    <button class="resetfilters" href="www.the100clth.pl">
+      <i class="far fa-eye"></i>
+      Zresetuj filtry
+    </button>
+    <button class="saveasfile" href="www.the100clth.pl">
+      <i class="fas fa-cloud-download-alt"></i>
+      Zapisz do pliku
+    </button>
   </div>
 </template>
 
@@ -31,36 +15,32 @@
 .btncontainer {
   display: flex;
   flex-direction: row;
-  /* flex-grow: initial; */
   align-items: stretch;
 }
+
+.resetfilters,
+.saveasfile {
+  width: 100%;
+  display: block;
+  font-size: 16px;
+  color: white;
+}
+
 .resetfilters {
   background: #4f46e5;
-  width: 100%;
-  /* max-height: 55px; */
 }
+
 .saveasfile {
   background: #908dd3;
-  width: 100%;
-  /* max-height: 55px; */
 }
-.resetfilters a div p,
-.saveasfile a div p {
+
+.resetfilters > *,
+.saveasfile > * {
   color: white;
-  font-size: 100%;
-  text-align: center;
 }
-.btncontent {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 20px;
-}
-.btncontent > p {
-  margin-left: 20px;
-}
-.icon {
-  height: 35px;
+
+.resetfilters > i,
+.saveasfile > i {
+  padding-right: 15px;
 }
 </style>

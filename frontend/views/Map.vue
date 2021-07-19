@@ -1,5 +1,9 @@
 <template>
-  <MglMap :accessToken="accessToken" :mapStyle="mapStyle" />
+  <MglMap
+    :accessToken="accessToken"
+    :mapStyle="mapStyle"
+    :mapCenter="[-96, 37]"
+  />
 </template>
 
 <script>
@@ -13,13 +17,12 @@ export default {
   data() {
     return {
       accessToken:
-        "pk.eyJ1IjoibHVrYXN6cG9kbGlwc2tpIiwiYSI6ImNrcjNiZzVwdTJqcXEyenFhcHMxYzVjN28ifQ.XWodc1OUd2t_VJoAM2QNpQ", // your access token. Needed if you using Mapbox maps
-      mapStyle: "mapbox://styles/lukaszpodlipski/ckr3bjz8s0vju18mppy99hag2", // your map style
+        "pk.eyJ1IjoibHVrYXN6cG9kbGlwc2tpIiwiYSI6ImNrcjNiZzVwdTJqcXEyenFhcHMxYzVjN28ifQ.XWodc1OUd2t_VJoAM2QNpQ",
+      mapStyle: "mapbox://styles/lukaszpodlipski/ckr3bjz8s0vju18mppy99hag2",
     };
   },
 
   created() {
-    // We need to set mapbox-gl library here in order to use it in template
     this.mapbox = Mapbox;
   },
 };

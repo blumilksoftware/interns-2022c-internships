@@ -3,12 +3,12 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16">
         <div class="flex">
-          <div class="flex-shrink-0 flex items-center">
+          <div class="noselect flex-shrink-0 flex items-center">
             <router-link to="/home">
               <a class="logo" @click="goHome()">Znajdź Praktyki</a>
             </router-link>
           </div>
-          <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+          <div class="noselect hidden sm:ml-6 sm:flex sm:space-x-8">
             <a
               @click="goInfo()"
               class="
@@ -43,7 +43,7 @@
             >
               Pliki do pobrania
             </a>
-            <a
+            <!-- <a
               @click="goRegu()"
               class="
                 border-transparent
@@ -59,7 +59,7 @@
               "
             >
               Regulamin praktyk
-            </a>
+            </a> -->
             <a
               @click="goCoop()"
               class="
@@ -95,7 +95,7 @@
                   focus:ring-indigo-500
                 "
               >
-                <span class="sr-only">Open user menu</span>
+                <span class="sr-only noselect">Open user menu</span>
               </MenuButton>
             </div>
             <transition
@@ -125,7 +125,7 @@
               focus:ring-indigo-500
             "
           >
-            <span class="sr-only">Open main menu</span>
+            <span class="sr-only noselect">Open main menu</span>
             <MenuIcon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
             <XIcon v-else class="block h-6 w-6" aria-hidden="true" />
           </DisclosureButton>
@@ -138,6 +138,7 @@
         <a
           @click="goInfo()"
           class="
+            noselect
             text-gray-500
             hover:bg-gray-50 hover:border-indigo-400 hover:text-gray-700
             block
@@ -153,6 +154,7 @@
         <a
           @click="goFiles()"
           class="
+            noselect
             border-transparent
             text-gray-500
             hover:bg-gray-50 hover:border-indigo-400 hover:text-gray-700
@@ -166,7 +168,7 @@
           "
           >Files</a
         >
-        <a
+        <!-- <a
           @click="goRegu()"
           class="
             border-transparent
@@ -181,10 +183,11 @@
             font-medium
           "
           >Regulations</a
-        >
+        > -->
         <a
           @click="goCoop()"
           class="
+            noselect
             border-transparent
             text-gray-500
             hover:bg-gray-50 hover:border-indigo-400 hover:text-gray-700
@@ -250,12 +253,12 @@ export default {
         block: "center",
       });
     },
-    goRegu() {
-      document.getElementById("regulations").scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
-    },
+    // goRegu() {
+    //   document.getElementById("regulations").scrollIntoView({
+    //     behavior: "smooth",
+    //     block: "center",
+    //   });
+    // },
     goCoop() {
       document.getElementById("cooperation").scrollIntoView({
         behavior: "smooth",
@@ -276,5 +279,19 @@ export default {
 }
 .bg-white {
   background-color: white;
+}
+
+.max-w-7xl {
+  max-width: none;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
 </style>

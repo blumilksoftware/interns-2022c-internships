@@ -4,7 +4,6 @@
     <Maplist class="maplist" />
     <informations class="info" />
     <Files class="files" />
-    <Regulations class="regulations margin-horizontal margin-vertical reg" />
     <Cooperate class="cooperate" />
   </div>
 </template>
@@ -14,7 +13,6 @@ import Navi from "./Nav.vue";
 import Coop from "./Cooperate.vue";
 import Info from "./Informations.vue";
 import Files from "./Files.vue";
-import Regulations from "./Regulations.vue";
 import Maplist from "./Maplist.vue";
 
 export default {
@@ -23,7 +21,6 @@ export default {
     Cooperate: Coop,
     Informations: Info,
     Files: Files,
-    Regulations: Regulations,
     Maplist: Maplist,
   },
 };
@@ -54,13 +51,16 @@ export default {
 }
 
 .info {
-  margin-bottom: 50px;
+  max-width: 80%;
+  /* margin-bottom: 50px; */
+  margin: 0px auto 50px auto;
+
   z-index: 4;
 }
 
 .files {
-  max-width: 400px;
-  margin: 80px auto 0 auto;
+  max-width: 700px;
+  margin: 50px auto 100px auto;
   z-index: 3;
 }
 .regulations {

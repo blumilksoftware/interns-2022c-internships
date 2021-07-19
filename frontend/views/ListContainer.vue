@@ -40,7 +40,7 @@
 
 <script>
 import Btns from "./Buttons.vue";
-import DtFld from "./DataField.vue";
+import DtFld from "./DataFld.vue";
 
 export default {
   components: {
@@ -55,15 +55,15 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: 600px;
+  height: 70vh;
 }
 .buttons {
   /* align-items: flex-start; */
-  height: 10%;
+  height: 7%;
   width: 100%;
 }
 .datafields {
-  height: 90%;
+  height: 93%;
   overflow: scroll;
   overflow-x: hidden;
   justify-items: flex-start;

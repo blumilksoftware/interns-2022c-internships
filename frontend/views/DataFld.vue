@@ -20,6 +20,12 @@
 
 <script>
 export default {
+  data() {
+    return {
+      //   height: document.querySelector("tags").clientHeight + 1 + "px",
+      //   width: document.querySelector("tags").clientWidth + 1 + "px",
+    };
+  },
   methods: {},
 };
 </script>
@@ -58,7 +64,7 @@ export default {
   align-items: center;
   justify-items: center;
   font-size: 14px;
-  height: 40px;
+  height: 50px;
 }
 .companyIcon {
   grid-area: companyLogo;
@@ -74,11 +80,14 @@ export default {
 }
 .course {
   grid-area: course;
-  display: block;
+  display: flex;
   height: 100%;
-  line-height: 300%;
+  /* line-height: 500%; */
   padding: 0 10px;
+  justify-items: center;
+  align-items: center;
 }
+
 .tagsList {
   grid-area: tags;
   font-size: 12px;
