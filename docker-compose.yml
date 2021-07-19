@@ -23,9 +23,10 @@ services:
     restart: unless-stopped
   
   node:
-    image: node:16-alpine3.14
     container_name: intern-node
     working_dir: /application
+    restart: always
+    build: .
     user: ${CURRENT_UID}
     volumes:
       - .:/application
