@@ -15,15 +15,15 @@ class Path
 
     public function getFull($relativePath, bool $isFile = false): string
     {
-        $fullPath = $this->root . self::FOLDER_SEPARATOR . $relativePath;
+        $fullPath = $this->root . static::FOLDER_SEPARATOR . $relativePath;
         if (!$isFile) {
-            $fullPath .= self::FOLDER_SEPARATOR;
+            $fullPath .= static::FOLDER_SEPARATOR;
         }
         return $this->normalize($fullPath);
     }
 
     protected function normalize(string $path): string
     {
-        return preg_replace("#/+#", self::FOLDER_SEPARATOR, $path);
+        return preg_replace("#/+#", static::FOLDER_SEPARATOR, $path);
     }
 }
