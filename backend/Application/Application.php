@@ -6,6 +6,7 @@ namespace Internships\Application;
 
 use Internships\FileSystem\DirectoryManager;
 use Internships\FileSystem\FileManager;
+use Internships\FileSystem\Path;
 use Internships\Services\CompanyDataBuilder;
 use Internships\Services\CsvReader;
 use Internships\Services\FacultyDataBuilder;
@@ -13,6 +14,7 @@ use Internships\Services\UniquePathGuard;
 
 class Application
 {
+    protected int $jsonPrintFlags;
     protected UniquePathGuard $pathGuard;
     protected DirectoryManager $directoryManager;
     protected FileManager $fileManager;
@@ -25,12 +27,14 @@ class Application
         string $apiRelativePath,
         string $resourceRelativePath
     ) {
+        $this->jsonPrintFlags = JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT
+            | JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES;
         $this->pathGuard = new UniquePathGuard();
         $this->directoryManager = new DirectoryManager($rootPath, $apiRelativePath, $resourceRelativePath);
         $this->fileManager = new FileManager($this->directoryManager);
         $this->csvReader = new CsvReader();
         $this->facultyBuilder = new FacultyDataBuilder(
-            "/",
+            "",
             $this->pathGuard->createPathPair(
                 "/faculties/",
                 "faculties.csv"
@@ -42,7 +46,7 @@ class Application
         );
         $this->csvBuilders = [
             new CompanyDataBuilder(
-                "/",
+                "",
                 $this->pathGuard->createPathPair(
                     "",
                     "companies.csv"
@@ -57,7 +61,7 @@ class Application
 
     public function build(): void
     {
-        $jsonPrintFlags = JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES;
+        echo "Building static site..." . PHP_EOL;
         $facultyCsvData = $this->csvReader->getCSVData(
             $this->directoryManager->getResourceFilePath(
                 $this->facultyBuilder->getSourceRelativePath(),
@@ -70,7 +74,7 @@ class Application
         $this->fileManager->create(
             $this->facultyBuilder->getDestinationRelativePath(),
             $this->facultyBuilder->getDestinationFileName(),
-            json_encode($faculties, $jsonPrintFlags)
+            json_encode($faculties, $this->jsonPrintFlags)
         );
 
         foreach ($faculties as $faculty) {
@@ -88,7 +92,32 @@ class Application
                 $this->fileManager->create(
                     $builder->getDestinationRelativePath(),
                     $builder->getDestinationFileName(),
-                    json_encode($buildData, $jsonPrintFlags)
+                    json_encode($buildData, $this->jsonPrintFlags)
+                );
+            }
+        }
+    }
+
+    public function populate(): void
+    {
+        echo "Generating resource files..." . PHP_EOL;
+        $source = "/templates/faculty-directory/";
+        $destination = "/faculties/";
+
+        $facultyCsvData = $this->csvReader->getCSVData(
+            $this->directoryManager->getResourceFilePath(
+                $this->facultyBuilder->getSourceRelativePath(),
+                $this->facultyBuilder->getSourceFileName()
+            ),
+            $this->facultyBuilder->getFields()
+        );
+        $templatePaths = $this->fileManager->getResourceFilePathsFrom($source);
+        foreach ($facultyCsvData as $rowNumber => $faculty) {
+            if ($rowNumber > 0) {
+                $this->fileManager->copyResources(
+                    $source,
+                    $destination . Path::FOLDER_SEPARATOR . $faculty[1],
+                    $templatePaths
                 );
             }
         }

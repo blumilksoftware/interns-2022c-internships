@@ -36,9 +36,13 @@ class DirectoryManager
         return $this->getApiDirectoryPath($relativePath) . $fileName;
     }
 
-    public function getResourceDirectoryPath(string $relativePath): string
+    public function getResourceDirectoryPath(string $relativePath, bool $createOnMissing = false): string
     {
-        return $this->resourcePath->getFull($relativePath);
+        $directoryPath = $this->resourcePath->getFull($relativePath);
+        if (!file_exists($directoryPath) && $createOnMissing) {
+            mkdir($directoryPath, static::DIRECTORY_PERMISSIONS, static::RECURSIVE_CREATION);
+        }
+        return $directoryPath;
     }
 
     public function getResourceFilePath(string $relativePath, string $fileName): string
