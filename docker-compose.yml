@@ -14,7 +14,15 @@ services:
       - "${EXTERNAL_WEBSERVER_PORT}:80"
 
   php:
-    image: ghcr.io/blumilksoftware/php:8.0.7.0
+    build:
+      context: ./environment/php
+      args:
+        XDEBUG_HOST: ${XDEBUG_HOST}
+        XDEBUG_PORT: ${XDEBUG_PORT}
+        XDEBUG_INSTALL: ${XDEBUG_INSTALL}
+        XDEBUG_START_WITH_REQUEST: ${XDEBUG_START_WITH_REQUEST}
+        XDEBUG_MODE: ${XDEBUG_MODE}
+        XDEBUG_LOG_LEVEL: ${XDEBUG_LOG_LEVEL}
     container_name: intern-php
     working_dir: /application
     user: ${CURRENT_UID}
