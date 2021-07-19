@@ -111,7 +111,9 @@ class Application
             ),
             $this->facultyBuilder->getFields()
         );
+        
         $templatePaths = $this->fileManager->getResourceFilePathsFrom($source);
+        
         foreach ($facultyCsvData as $rowNumber => $faculty) {
             if ($rowNumber > 0) {
                 $this->fileManager->copyResources(
