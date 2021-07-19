@@ -15,7 +15,7 @@ abstract class DataBuilder implements BuildTool, SerializableInfo
     protected array $fields;
 
     public function __construct(
-        protected string $temporaryDirectory,
+        protected string $workingDirectory,
         protected PathPair $source,
         protected PathPair $destination
     ) {
@@ -46,7 +46,7 @@ abstract class DataBuilder implements BuildTool, SerializableInfo
     {
         return $this->source->getRelativePath()
             . Path::FOLDER_SEPARATOR
-            . $this->temporaryDirectory;
+            . $this->workingDirectory;
     }
 
     public function getSourceFileName(): string
@@ -65,7 +65,7 @@ abstract class DataBuilder implements BuildTool, SerializableInfo
     {
         return $this->destination->getRelativePath()
             . Path::FOLDER_SEPARATOR
-            . $this->temporaryDirectory;
+            . $this->workingDirectory;
     }
 
     public function getDestinationFileName(): string
@@ -82,7 +82,7 @@ abstract class DataBuilder implements BuildTool, SerializableInfo
 
     public function setDirectory(string $directory): void
     {
-        $this->temporaryDirectory = $directory;
+        $this->workingDirectory = $directory;
     }
 
     public function buildFromData(array $csvData): array
