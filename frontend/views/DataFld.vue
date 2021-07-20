@@ -21,10 +21,7 @@
 <script>
 export default {
   data() {
-    return {
-      //   height: document.querySelector("tags").clientHeight + 1 + "px",
-      //   width: document.querySelector("tags").clientWidth + 1 + "px",
-    };
+    return {};
   },
   methods: {},
 };

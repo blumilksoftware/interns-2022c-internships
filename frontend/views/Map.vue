@@ -2,7 +2,8 @@
   <MglMap
     :accessToken="accessToken"
     :mapStyle="mapStyle"
-    :mapCenter="[-96, 37]"
+    :center="[0, 0]"
+    :zoom="1"
   />
 </template>
 
@@ -25,5 +26,6 @@ export default {
   created() {
     this.mapbox = Mapbox;
   },
+  methods: {},
 };
 </script>
