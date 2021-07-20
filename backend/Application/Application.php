@@ -8,9 +8,9 @@ use DI\Container;
 use Internships\FileSystem\DirectoryManager;
 use Internships\FileSystem\FileManager;
 use Internships\FileSystem\Path;
-use Internships\Services\CompanyDataBuilder;
+use Internships\Services\CompanyDataFactory;
 use Internships\Services\CsvReader;
-use Internships\Services\FacultyDataBuilder;
+use Internships\Services\FacultyDataFactory;
 use Internships\Services\UniquePathGuard;
 
 class Application

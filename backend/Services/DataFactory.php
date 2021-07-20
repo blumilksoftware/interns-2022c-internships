@@ -9,7 +9,7 @@ use Internships\Interfaces\BuildTool;
 use Internships\Interfaces\SerializableInfo;
 use Internships\Models\PathPair;
 
-abstract class DataBuilder implements BuildTool, SerializableInfo
+abstract class DataFactory implements BuildTool, SerializableInfo
 {
     protected DataValidator $dataValidator;
     protected array $fields;

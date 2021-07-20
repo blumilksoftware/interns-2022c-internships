@@ -8,7 +8,7 @@ use Internships\Models\Faculty;
 use Internships\Models\PathPair;
 use Internships\Models\ValidationOptions;
 
-class FacultyDataBuilder extends DataBuilder
+class FacultyDataFactory extends DataFactory
 {
     public function __construct(
         string $workingDirectory,
