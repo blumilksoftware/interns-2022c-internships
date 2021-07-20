@@ -12,16 +12,7 @@
       />
     </div>
     <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
-      <h1
-        class="
-          text-xs text-lg
-          font-bold
-          text-white
-          sm:text-5xl
-          lg:text-5xl
-          pl-10
-        "
-      >
+      <h1 class="text-xs font-bold text-white sm:text-5xl lg:text-5xl pl-10">
         Chcesz, aby studenci Twojej uczelni<br />
         skutecznie znajdowali praktyki?
       </h1>
