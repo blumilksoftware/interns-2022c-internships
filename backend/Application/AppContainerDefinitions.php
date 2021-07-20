@@ -1,13 +1,10 @@
 <?php
 
-use Internships\FileSystem\DirectoryManager;
-use Internships\Services\UniquePathGuard;
+declare(strict_types=1);
 
-use function DI\create;
+use Internships\FileSystem\DirectoryManager;
 
 return [
     DirectoryManager::class =>
         DI\autowire()->constructor(__DIR__ . "/../../", "/public/api/", "/resources/"),
-    UniquePathGuard::class =>
-        DI\autowire(),
 ];

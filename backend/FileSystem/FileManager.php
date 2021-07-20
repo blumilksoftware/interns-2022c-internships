@@ -5,19 +5,30 @@ declare(strict_types=1);
 namespace Internships\FileSystem;
 
 use Exception;
+use Internships\Services\UniquePathGuard;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
 class FileManager
 {
+    protected int $jsonPrintFlags = JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES;
+
     public function __construct(
-        protected DirectoryManager $directoryManager
+        protected DirectoryManager $directoryManager,
+        protected UniquePathGuard $pathGuard
     ) {
+    }
+
+    public function getDefaultJsonFlags(): int
+    {
+        return $this->jsonPrintFlags;
     }
 
     public function create(string $relativePath, string $filename = "", mixed $content = "", bool $noFile = false): void
     {
         $path = $this->directoryManager->getApiDirectoryPath($relativePath);
+        $this->pathGuard->verifyIfUnique($path . $filename);
+
         if (!$noFile) {
             file_put_contents(
                 filename: $path . $filename,
@@ -48,10 +59,14 @@ class FileManager
         } else {
             $destination = $this->directoryManager->getResourceDirectoryPath($relativeDestination, true);
         }
-        if (!$overwrite && file_exists($destination . $filename)) {
-            echo "Skipped copying " . $destination . $filename . ". File already exists." . PHP_EOL;
+
+        $fullDestinationPath = $destination . $newName;
+        $this->pathGuard->verifyIfUnique($fullDestinationPath);
+
+        if (!$overwrite && file_exists($fullDestinationPath)) {
+            echo "Skipped copying to " . $fullDestinationPath . ". File already exists." . PHP_EOL;
         } else {
-            if (!copy($origin . $filename, $destination . $newName)) {
+            if (!copy($origin . $filename, $fullDestinationPath)) {
                 throw new Exception("Couldn't copy. File " . $origin . $filename . " not found.");
             }
         }

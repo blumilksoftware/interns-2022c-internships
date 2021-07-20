@@ -9,11 +9,9 @@ use Internships\Models\ValidationOptions;
 
 class DataValidator
 {
-    protected DataSanitizer $sanitizer;
-
-    public function __construct()
-    {
-        $this->sanitizer = new DataSanitizer();
+    public function __construct(
+        protected DataSanitizer $sanitizer
+    ) {
     }
 
     public function validateField(

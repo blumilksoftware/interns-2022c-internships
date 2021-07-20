@@ -5,17 +5,17 @@ declare(strict_types=1);
 namespace Internships\Services;
 
 use Internships\Models\Faculty;
-use Internships\Models\PathPair;
 use Internships\Models\ValidationOptions;
 
 class FacultyDataFactory extends DataFactory
 {
-    public function __construct(
-        string $workingDirectory,
-        PathPair $source,
-        Pathpair $destination
-    ) {
-        parent::__construct($workingDirectory, $source, $destination);
+    public function setPaths(): void
+    {
+        $this->workingDirectory = "";
+        $this->sourcePath = "/faculties/";
+        $this->sourceName = "faculties.csv";
+        $this->destinationPath = "/faculties/";
+        $this->destinationName = "faculties.json";
     }
 
     public function getModelClassToBuild(): string

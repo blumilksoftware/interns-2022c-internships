@@ -7,19 +7,23 @@ namespace Internships\Services;
 use Internships\FileSystem\Path;
 use Internships\Interfaces\BuildTool;
 use Internships\Interfaces\SerializableInfo;
-use Internships\Models\PathPair;
 
 abstract class DataFactory implements BuildTool, SerializableInfo
 {
     protected DataValidator $dataValidator;
-    protected array $fields;
 
-    public function __construct(
-        protected string $workingDirectory,
-        protected PathPair $source,
-        protected PathPair $destination
-    ) {
-        $this->dataValidator = new DataValidator();
+    protected array $fields;
+    protected string $workingDirectory;
+
+    protected string $sourcePath;
+    protected string $sourceName;
+    protected string $destinationPath;
+    protected string $destinationName;
+
+    public function __construct(DataValidator $dataValidator)
+    {
+        $this->dataValidator = $dataValidator;
+        $this->setPaths();
         $this->defineDataFields();
     }
 
@@ -44,14 +48,14 @@ abstract class DataFactory implements BuildTool, SerializableInfo
 
     public function getSourceRelativePath(): string
     {
-        return $this->source->getRelativePath()
+        return $this->sourcePath
             . Path::FOLDER_SEPARATOR
             . $this->workingDirectory;
     }
 
     public function getSourceFileName(): string
     {
-        return $this->source->getFileName();
+        return $this->sourceName;
     }
 
     public function getSourceFilePath(): string
@@ -63,14 +67,14 @@ abstract class DataFactory implements BuildTool, SerializableInfo
 
     public function getDestinationRelativePath(): string
     {
-        return $this->destination->getRelativePath()
+        return $this->destinationPath
             . Path::FOLDER_SEPARATOR
             . $this->workingDirectory;
     }
 
     public function getDestinationFileName(): string
     {
-        return $this->destination->getFileName();
+        return $this->destinationName;
     }
 
     public function getDestinationFilePath(): string
