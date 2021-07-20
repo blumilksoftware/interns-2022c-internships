@@ -26,12 +26,12 @@ class FileManager
 
     public function create(string $relativePath, string $filename = "", mixed $content = "", bool $noFile = false): void
     {
-        $path = $this->directoryManager->getApiDirectoryPath($relativePath);
-        $this->pathGuard->verifyIfUnique($path . $filename);
+        $path = $this->directoryManager->getApiFilePath($relativePath, $filename);
+        $this->pathGuard->verifyIfUnique($path);
 
         if (!$noFile) {
             file_put_contents(
-                filename: $path . $filename,
+                filename: $path,
                 data: $content
             );
         } elseif ($filename === "") {
@@ -81,10 +81,12 @@ class FileManager
         foreach ($filePaths as $filePath) {
             $fileName = basename($filePath);
             $path = substr($filePath, 0, strlen($filePath) - strlen($fileName));
+
             $fileRelativePath = Path::FOLDER_SEPARATOR . substr($path, strlen($baseResourcePath))
                 . Path::FOLDER_SEPARATOR;
             $finalOrigin = $relativeOrigin . $fileRelativePath;
             $finalDestination = $relativeDestination . $fileRelativePath;
+
             $this->copyResource($finalOrigin, $finalDestination, $fileName, overwrite: false, toResource: true);
         }
     }
@@ -93,6 +95,7 @@ class FileManager
         string $relativeOrigin,
     ): array {
         $origin = $this->directoryManager->getResourceDirectoryPath($relativeOrigin);
+
         if (!is_dir(substr($origin, strlen($origin) - 1))) {
             throw new Exception($origin . " is not a directory.");
         }
