@@ -14,7 +14,7 @@
     <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
       <h1
         class="
-          text-xs text-lg
+          text-xs
           font-bold
           tracking-tight
           text-white
