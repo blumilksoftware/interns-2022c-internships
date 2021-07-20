@@ -19,7 +19,7 @@ export default {
 <style>
 .container {
   display: grid;
-  width: 100vw;
+  width: 100%;
   grid-template-columns: 1fr 1.7fr;
   grid-template-rows: 1fr;
   gap: 0px 0px;

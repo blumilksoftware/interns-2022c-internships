@@ -20,6 +20,7 @@
 
 .resetfilters,
 .saveasfile {
+  height: 50px;
   width: 100%;
   display: block;
   font-size: 16px;

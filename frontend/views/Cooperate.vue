@@ -16,15 +16,16 @@
         class="
           text-xs text-lg
           font-bold
-          tracking-tight
           text-white
           sm:text-5xl
-          lg:text-6xl
+          lg:text-5xl
+          pl-10
         "
       >
-        Chcesz, aby studenci Twojej uczelni skutecznie znajdowali praktyki?
+        Chcesz, aby studenci Twojej uczelni<br />
+        skutecznie znajdowali praktyki?
       </h1>
-      <p class="mt-6 text-xl text-indigo-100 max-w-3xl">
+      <p class="mt-6 text-xl text-indigo-100 max-w-3xl pl-10">
         Skontaktuj się z nami! <br />
         {{ email }}
       </p>

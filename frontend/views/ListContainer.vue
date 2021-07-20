@@ -1,24 +1,8 @@
 <template>
   <div class="wrapper">
     <searchBar class="searchBar" />
+    <FilterContent class="filterBtn" />
     <div class="datafields">
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
       <DataField class="datafield" />
       <DataField class="datafield" />
       <DataField class="datafield" />
@@ -43,11 +27,14 @@
 import Btns from "./Buttons.vue";
 import DtFld from "./DataFld.vue";
 import Search from "./searchBar.vue";
+import FilterContent from "./FilterContent.vue";
+
 export default {
   components: {
     Buttons: Btns,
     DataField: DtFld,
     searchBar: Search,
+    FilterContent: FilterContent,
   },
 };
 </script>
@@ -61,7 +48,7 @@ export default {
 }
 .buttons {
   /* align-items: flex-start; */
-  height: 7%;
+  height: 50px;
   width: 100%;
 }
 .datafields {
@@ -70,6 +57,7 @@ export default {
   overflow-x: hidden;
   justify-items: flex-start;
 }
+
 .datafield {
   width: 100%;
   background: #eaedf0;
@@ -80,6 +68,12 @@ export default {
 
 .searchBar {
   width: 90%;
-  margin: 20px auto 20px auto;
+  margin: 20px auto 10px auto;
+}
+
+.filterBtn {
+  height: auto;
+  width: 90%;
+  margin: 0 auto 20px auto;
 }
 </style>
