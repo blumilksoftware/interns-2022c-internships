@@ -82,7 +82,7 @@ class FileManager
         $this->pathGuard->verifyIfUnique($fullDestinationPath);
 
         if (!$overwrite && file_exists($fullDestinationPath)) {
-            echo "Skipped copying to " . $fullDestinationPath . ". File already exists." . PHP_EOL;
+            OutputWriter::newLineToConsole("Skipped copying to " . $fullDestinationPath . ". File already exists.");
         } else {
             if (!copy($origin . $filename, $fullDestinationPath)) {
                 throw new Exception("Couldn't copy. File " . $origin . $filename . " not found.");
