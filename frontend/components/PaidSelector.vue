@@ -69,7 +69,7 @@ export default {
   box-sizing: content-box;
   border-radius: 10px;
   background: #4f46e5;
-  height: 40px;
+  height: 42px;
   display: flex;
   align-items: center;
 }

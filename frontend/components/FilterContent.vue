@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper">
     <div class="drpDwnBtnSect">
-      <div class="headfield">
-        <CourseSelector />
-        <CitySelector />
-        <PaidSelector />
+      <div class="headfields">
+        <CourseSelector class="headfield" />
+        <CitySelector class="headfield" />
+        <PaidSelector class="headfield" />
       </div>
       <hr />
       <p class="tagTitleText"># Wybierz najważniejszą technologię z tagów</p>
@@ -28,7 +28,9 @@
         <div class="tag"><span>Security</span></div>
         <div class="tag"><span>Scala</span></div>
       </div>
-      <button class="approveFilters">Zatwierdź filtry</button>
+      <button v-on:click="dropdown" class="approveFilters">
+        Zatwierdź filtry
+      </button>
     </div>
     <div v-on:click="dropdown" class="drpDwnBtn noselect">
       <p class="drpDwmBtnText">Filtrowanie</p>
@@ -138,16 +140,18 @@ export default {
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
-.headfield {
+.headfields {
   width: 95%;
   display: flex;
   flex-direction: row;
-  align-self: flex-start;
+  /* align-self: flex-start; */
+  align-items: center;
   margin: 0 auto;
 }
-.headfield > * {
+.headfield {
   width: 33%;
   margin: 15px 9px;
+  border-radius: 5px;
 }
 hr {
   border: 1px solid #dbdbdb;
@@ -174,14 +178,24 @@ hr {
   padding: 2px 5px;
   margin: 2px 5px;
   cursor: pointer;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
 }
 .approveFilters {
-  background-color: #dbdbdb;
+  /* background-color: #dbdbdb; */
   color: #494747;
   font-size: 14px;
   width: 28%;
   margin: 0 auto 30px auto;
   padding: 5px 10px;
+  border: 1px solid #dbdbdb;
   border-radius: 10px;
+}
+.approveFilters:active {
+  border-color: #4f46e5;
 }
 </style>

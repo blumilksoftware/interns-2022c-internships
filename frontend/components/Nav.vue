@@ -5,7 +5,7 @@
         <div class="flex">
           <div class="noselect flex-shrink-0 flex items-center">
             <router-link to="/home">
-              <a class="logo" @click="goHome()">Znajdź Praktyki</a>
+              <a class="logo noselect" @click="goHome()">Znajdź Praktyki</a>
             </router-link>
           </div>
           <div class="noselect hidden sm:ml-6 sm:flex sm:space-x-8">
