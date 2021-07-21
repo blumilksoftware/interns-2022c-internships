@@ -14,5 +14,5 @@ interface BuildTool
 
     public function getModelClassToBuild(): string;
 
-    public function setPaths();
+    public function setPaths(): void;
 }
