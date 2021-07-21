@@ -46,9 +46,7 @@ class FileManager
     public function appendNewLine(string $relativePath, string $filename, string $content = ""): void
     {
         if ($filename === "") {
-            throw new Exception(
-                "Cannot append to file with no name."
-            );
+            throw new Exception("Cannot append to file with no name.");
         }
 
         $path = $this->directoryManager->getApiFilePath($relativePath, $filename);
