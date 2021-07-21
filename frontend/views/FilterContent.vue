@@ -2,13 +2,9 @@
   <div class="wrapper">
     <div class="drpDwnBtnSect">
       <div class="headfield">
-        <div class="field courseSelector">
-          <span class="noselect">Kierunek</span>
-        </div>
-        <div class="field citySelector">
-          <span class="noselect">Miasto</span>
-        </div>
-        <PaidSelector class="" />
+        <CourseSelector />
+        <CitySelector />
+        <PaidSelector />
       </div>
       <hr />
       <p class="tagTitleText"># Wybierz najważniejszą technologię z tagów</p>
@@ -41,10 +37,14 @@
 </template>
 <script>
 import PaidSelector from "./PaidSelector.vue";
+import CitySelector from "./CityFieldSelector.vue";
+import CourseSelector from "./CourseFieldSelector";
 
 export default {
   components: {
     PaidSelector: PaidSelector,
+    CitySelector: CitySelector,
+    CourseSelector: CourseSelector,
   },
 
   methods: {
@@ -70,10 +70,10 @@ export default {
   border-radius: 5px;
   border: 2px solid #d4d4d4;
   display: flex;
-  -webkit-transition: all 1s 0s ease;
+  /* -webkit-transition: all 1s 0s ease;
   -moz-transition: all 1s 0s ease;
   -o-transition: all 1s 0s ease;
-  transition: all 1s 0s ease;
+  transition: all 1s 0s ease; */
   display: flex;
   flex-direction: column;
 }
@@ -102,6 +102,7 @@ export default {
 
 .field {
   border: 2px solid #dbdbdb;
+  background: white;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -110,15 +111,24 @@ export default {
   color: #5e5e5e;
   cursor: pointer;
   position: relative;
+  z-index: 2;
 }
-/* .field::after {
+.crsSlctr::before {
   content: "";
   position: absolute;
-  width: 100%;
+  width: 103.5%;
   height: 50px;
-  top: 3px;
-  background: red;
-} */
+  top: 80%;
+  opacity: 0;
+  background: white;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom: 2px solid #dbdbdb;
+  border-left: 2px solid #dbdbdb;
+  border-right: 2px solid #dbdbdb;
+  z-index: 1;
+}
+
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
