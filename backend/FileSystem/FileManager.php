@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Internships\FileSystem;
 
 use Exception;
+use Internships\Helpers\OutputWriter;
 use Internships\Services\UniquePathGuard;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -40,6 +41,23 @@ class FileManager
                 . " No filename. Have you meant to create folder?"
             );
         }
+    }
+
+    public function appendNewLine(string $relativePath, string $filename, string $content = ""): void
+    {
+        if ($filename === "") {
+            throw new Exception(
+                "Cannot append to file with no name."
+            );
+        }
+
+        $path = $this->directoryManager->getApiFilePath($relativePath, $filename);
+
+        file_put_contents(
+            filename: $path,
+            data: OutputWriter::newLine($content),
+            flags: FILE_APPEND
+        );
     }
 
     public function copyResource(
