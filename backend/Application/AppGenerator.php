@@ -52,7 +52,7 @@ class AppGenerator
         $this->saveDataToJson($this->facultyFactory, $faculties);
         foreach ($faculties as $faculty) {
             foreach ($this->subFactories as $subFactory) {
-                OutputWriter::newLineToConsole("Processing " . $faculty->getDirectory());
+                OutputWriter::newLineToConsole("Processing  {$faculty->getDirectory()}");
                 $subFactory->setDirectory("/faculties/" . $faculty->getDirectory());
                 $data = $this->getDataFromCsv($subFactory);
                 $this->saveDataToJson($subFactory, $data);
