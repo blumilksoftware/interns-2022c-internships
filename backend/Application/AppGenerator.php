@@ -52,8 +52,8 @@ class AppGenerator
         $this->saveDataToJson($this->facultyFactory, $faculties);
         foreach ($faculties as $faculty) {
             foreach ($this->subFactories as $subFactory) {
-                OutputWriter::newLineToConsole("Processing " . $faculty->getDirectory());
-                $subFactory->setDirectory("/faculties/" . $faculty->getDirectory());
+                OutputWriter::newLineToConsole("Processing {$faculty->getDirectory()}");
+                $subFactory->setDirectory("/faculties/{$faculty->getDirectory()}");
                 $data = $this->getDataFromCsv($subFactory);
                 $this->saveDataToJson($subFactory, $data);
             }
@@ -67,11 +67,11 @@ class AppGenerator
 
         $faculties = $this->getDataFromCsv($this->facultyFactory);
 
-        $facultyTemplatePaths = $this->fileManager->getResourceFilePathsFrom($source . "/faculty-directory/");
+        $facultyTemplatePaths = $this->fileManager->getResourceFilePathsFrom("{$source}/faculty-directory/");
         foreach ($faculties as $rowNumber => $faculty) {
             if ($rowNumber > 0) {
                 $this->fileManager->copyResources(
-                    $source . "/faculty-directory/",
+                    "{$source}/faculty-directory/",
                     $destination . Path::FOLDER_SEPARATOR . $faculty->getDirectory(),
                     $facultyTemplatePaths
                 );
