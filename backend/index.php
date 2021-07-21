@@ -1,18 +1,19 @@
 <?php
 
 declare(strict_types=1);
-
 require __DIR__ . "/../vendor/autoload.php";
 
 use Internships\Application\Application;
 
-$rootDirectory = __DIR__ . "/../";
-$options = getopt("r");
+$container = require __DIR__ . "/Application/AppContainerBuilder.php";
+$application = $container->get(Application::class);
 
-$application = new Application($rootDirectory, "/public/api/", "/resources/");
+$options = getopt("r");
 
 if (array_key_exists("r", $options)) {
     $application->populate();
 } else {
     $application->build();
 }
+
+echo "Finished." . PHP_EOL;

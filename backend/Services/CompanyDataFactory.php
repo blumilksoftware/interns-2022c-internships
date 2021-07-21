@@ -6,17 +6,17 @@ namespace Internships\Services;
 
 use Internships\Interfaces\SerializableInfo;
 use Internships\Models\Company;
-use Internships\Models\PathPair;
 use Internships\Models\ValidationOptions;
 
-class CompanyDataBuilder extends DataBuilder implements SerializableInfo
+class CompanyDataFactory extends DataFactory implements SerializableInfo
 {
-    public function __construct(
-        string $workingDirectory,
-        PathPair $source,
-        Pathpair $destination
-    ) {
-        parent::__construct($workingDirectory, $source, $destination);
+    public function setPaths(): void
+    {
+        $this->workingDirectory = "";
+        $this->sourcePath = "";
+        $this->sourceName = "companies.csv";
+        $this->destinationPath = "";
+        $this->destinationName = "companies.json";
     }
 
     public function getModelClassToBuild(): string

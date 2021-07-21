@@ -13,4 +13,6 @@ interface BuildTool
     public function validate(int $id, array $entry): array;
 
     public function getModelClassToBuild(): string;
+
+    public function setPaths(): void;
 }

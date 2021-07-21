@@ -9,11 +9,9 @@ use Internships\Models\ValidationOptions;
 
 class DataValidator
 {
-    protected DataSanitizer $sanitizer;
-
-    public function __construct()
-    {
-        $this->sanitizer = new DataSanitizer();
+    public function __construct(
+        protected DataSanitizer $sanitizer
+    ) {
     }
 
     public function validateField(
@@ -35,30 +33,27 @@ class DataValidator
             );
             if ($fieldValidationOptions->isRequired() && ($fieldValue === null || $fieldValue === "")) {
                 throw new Exception(
-                    "Required field " . $fieldName . " in ID:" . $entryID
-                    . "is empty after sanitization."
+                    "Required field {$fieldName} in entry ID:{$entryID} is empty after sanitization."
                 );
             }
             $expectedCount = $fieldValidationOptions->getExpectedCount();
             if ($expectedCount >= 0) {
                 if (!is_array($sanitizedVal)) {
                     throw new Exception(
-                        "Field " . $fieldName . " in ID:" . $entryID
-                        . "is not an array."
+                        "Field {$fieldName} in entry ID:{$entryID} is not an array."
                     );
                 }
-                $count = count($sanitizedVal);
-                if ($count !== $expectedCount) {
+                $elementCount = count($sanitizedVal);
+                if ($elementCount !== $expectedCount) {
                     throw new Exception(
-                        "Field " . $fieldName . " in ID:" . $entryID
-                        . " has invalid number of elements: " . $count
-                        . ". Expected " . $expectedCount . "."
+                        "Field {$fieldName} in ID:{$entryID} has invalid number of elements: {$elementCount}.
+                        Expected {$expectedCount}."
                     );
                 }
             }
             return $sanitizedVal;
         } elseif ($fieldValidationOptions->isRequired()) {
-            throw new Exception("Required field " . $fieldName . " in ID:" . $entryID . "is missing.");
+            throw new Exception("Required field {$fieldName} in ID:{$entryID} is missing.");
         }
 
         if ($fieldValidationOptions->getArraySeparator() !== "") {
