@@ -6,6 +6,7 @@ namespace Internships\Application;
 
 use Internships\FileSystem\FileManager;
 use Internships\FileSystem\Path;
+use Internships\Helpers\OutputWriter;
 use Internships\Services\CompanyDataFactory;
 use Internships\Services\CsvReader;
 use Internships\Services\DataFactory;
@@ -51,7 +52,7 @@ class AppGenerator
         $this->saveDataToJson($this->facultyFactory, $faculties);
         foreach ($faculties as $faculty) {
             foreach ($this->subFactories as $subFactory) {
-                echo "Processing " . $faculty->getDirectory() . "." . PHP_EOL;
+                OutputWriter::newLineToConsole("Processing " . $faculty->getDirectory());
                 $subFactory->setDirectory("/faculties/" . $faculty->getDirectory());
                 $data = $this->getDataFromCsv($subFactory);
                 $this->saveDataToJson($subFactory, $data);

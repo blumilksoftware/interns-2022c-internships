@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Internships\Application;
 
+use Internships\Helpers\OutputWriter;
+
 class Application
 {
     public function __construct(
@@ -13,13 +15,13 @@ class Application
 
     public function build(): void
     {
-        echo "Building static site..." . PHP_EOL;
+        OutputWriter::newLineToConsole("Building static site...");
         $this->appGenerator->generateStaticData();
     }
 
     public function populate(): void
     {
-        echo "Generating resource files..." . PHP_EOL;
+        OutputWriter::newLineToConsole("Generating resource files...");
         $this->appGenerator->generateResourceContents();
     }
 }
