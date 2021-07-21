@@ -37,8 +37,7 @@ class FileManager
             );
         } elseif ($filename === "") {
             throw new Exception(
-                "Couldn't create file in " . $relativePath
-                . " No filename. Have you meant to create folder?"
+                "Couldn't create file in {$relativePath}. No filename. Have you meant to create folder?"
             );
         }
     }
@@ -46,9 +45,7 @@ class FileManager
     public function appendNewLine(string $relativePath, string $filename, string $content = ""): void
     {
         if ($filename === "") {
-            throw new Exception(
-                "Cannot append to file with no name."
-            );
+            throw new Exception("Cannot append to file with no name.");
         }
 
         $path = $this->directoryManager->getApiFilePath($relativePath, $filename);
@@ -82,10 +79,10 @@ class FileManager
         $this->pathGuard->verifyIfUnique($fullDestinationPath);
 
         if (!$overwrite && file_exists($fullDestinationPath)) {
-            OutputWriter::newLineToConsole("Skipped copying to " . $fullDestinationPath . ". File already exists.");
+            OutputWriter::newLineToConsole("Skipped copying to {$fullDestinationPath}. File already exists.");
         } else {
             if (!copy($origin . $filename, $fullDestinationPath)) {
-                throw new Exception("Couldn't copy. File " . $origin . $filename . " not found.");
+                throw new Exception("Couldn't copy. File {$origin}{$filename} not found.");
             }
         }
     }
@@ -115,10 +112,10 @@ class FileManager
         $origin = $this->directoryManager->getResourceDirectoryPath($relativeOrigin);
 
         if (!is_dir(substr($origin, strlen($origin) - 1))) {
-            throw new Exception($origin . " is not a directory.");
+            throw new Exception("{$origin} is not a directory.");
         }
         if (!file_exists($origin)) {
-            throw new Exception("Directory. " . $origin . " not found.");
+            throw new Exception("Directory {$origin} not found.");
         }
 
         $recursiveIteratorI = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($origin));

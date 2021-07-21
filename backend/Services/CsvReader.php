@@ -23,19 +23,20 @@ class CsvReader
         $csvRows = [];
         try {
             if (!file_exists($fullPath)) {
-                throw new Exception("File " . $fullPath . " not found");
+                throw new Exception("File {$fullPath} not found");
             }
             $csvFile = fopen($fullPath, "rb");
             if (!$csvFile) {
-                throw new Exception("File " . $fullPath . " cannot be read");
+                throw new Exception("File {$fullPath} cannot be read");
             }
+            $currentRow = -1;
             while (($row = fgetcsv($csvFile, static::CSV_READ_LENGTH, static::CSV_SEPARATOR)) !== false) {
+                $currentRow++;
                 $rowCount = count($row);
                 $fieldCount = count($fieldDefines);
                 if ($rowCount !== $fieldCount) {
                     throw new Exception(
-                        "Unexpected field count at row " . count($csvRows) + 1
-                        . "Expected " . $fieldCount . ", got " . $rowCount
+                        "Unexpected field count at row {$currentRow}. Expected {$fieldCount}, got {$rowCount}"
                     );
                 }
                 array_push($csvRows, $row);
