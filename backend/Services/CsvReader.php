@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Internships\Services;
 
 use Exception;
+use Internships\Exceptions\CouldNotReadPathException;
+use Internships\Exceptions\NotFoundPathException;
 use Internships\FileSystem\DirectoryManager;
 
 class CsvReader
@@ -21,14 +23,14 @@ class CsvReader
     {
         $fullPath = $this->directoryManager->getResourceFilePath($resourceRelativePath, $fileName);
         $csvRows = [];
+        if (!file_exists($fullPath)) {
+            throw new NotFoundPathException($fullPath);
+        }
+        $csvFile = fopen($fullPath, "rb");
+        if (!$csvFile) {
+            throw new CouldNotReadPathException($fullPath);
+        }
         try {
-            if (!file_exists($fullPath)) {
-                throw new Exception("File {$fullPath} not found");
-            }
-            $csvFile = fopen($fullPath, "rb");
-            if (!$csvFile) {
-                throw new Exception("File {$fullPath} cannot be read");
-            }
             $currentRow = -1;
             while (($row = fgetcsv($csvFile, static::CSV_READ_LENGTH, static::CSV_SEPARATOR)) !== false) {
                 $currentRow++;
@@ -41,9 +43,8 @@ class CsvReader
                 }
                 array_push($csvRows, $row);
             }
+        } finally {
             fclose($csvFile);
-        } catch (Exception $e) {
-            throw $e;
         }
         return $csvRows;
     }

@@ -4,7 +4,11 @@ declare(strict_types=1);
 
 namespace Internships\FileSystem;
 
+use DI\NotFoundException;
 use Exception;
+use Internships\Exceptions\AlreadyExistsPathException;
+use Internships\Exceptions\CouldNotReadPathException;
+use Internships\Exceptions\IsNotDirectoryPathException;
 use Internships\Helpers\OutputWriter;
 use Internships\Services\UniquePathGuard;
 use RecursiveDirectoryIterator;
@@ -79,10 +83,13 @@ class FileManager
         $this->pathGuard->verifyIfUnique($fullDestinationPath);
 
         if (!$overwrite && file_exists($fullDestinationPath)) {
-            OutputWriter::newLineToConsole("Skipped copying to {$fullDestinationPath}. File already exists.");
+            throw new AlreadyExistsPathException($fullDestinationPath);
         } else {
+            if(file_exists($origin)){
+                throw new NotFoundException($origin . $filename);
+            }
             if (!copy($origin . $filename, $fullDestinationPath)) {
-                throw new Exception("Couldn't copy. File {$origin}{$filename} not found.");
+                throw new CouldNotReadPathException("{$origin} and/or {$fullDestinationPath}");
             }
         }
     }
@@ -102,7 +109,12 @@ class FileManager
             $finalOrigin = $relativeOrigin . $fileRelativePath;
             $finalDestination = $relativeDestination . $fileRelativePath;
 
-            $this->copyResource($finalOrigin, $finalDestination, $fileName, overwrite: false, toResource: true);
+            try {
+                $this->copyResource($finalOrigin, $finalDestination, $fileName, overwrite: false, toResource: true);
+            }
+            catch(AlreadyExistsPathException $exception){
+                OutputWriter::newLineToConsole("{$exception->getMessage()} Skipping.");
+            }
         }
     }
 
@@ -112,10 +124,10 @@ class FileManager
         $origin = $this->directoryManager->getResourceDirectoryPath($relativeOrigin);
 
         if (!is_dir(substr($origin, strlen($origin) - 1))) {
-            throw new Exception("{$origin} is not a directory.");
+            throw new IsNotDirectoryPathException($origin);
         }
         if (!file_exists($origin)) {
-            throw new Exception("Directory {$origin} not found.");
+            throw new NotFoundException($origin);
         }
 
         $recursiveIteratorI = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($origin));
