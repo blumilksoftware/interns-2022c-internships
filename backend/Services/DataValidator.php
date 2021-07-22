@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Internships\Services;
 
-use Exception;
+use Internships\Exceptions\InvalidCountValidationException;
+use Internships\Exceptions\IsMissingAfterValidationException;
+use Internships\Exceptions\IsMissingValidationException;
+use Internships\Exceptions\NotAnArrayValidationException;
 use Internships\Models\ValidationOptions;
 
 class DataValidator
@@ -32,28 +35,21 @@ class DataValidator
                 $fieldValidationOptions->getMaxDecimals()
             );
             if ($fieldValidationOptions->isRequired() && ($fieldValue === null || $fieldValue === "")) {
-                throw new Exception(
-                    "Required field {$fieldName} in entry ID:{$entryID} is empty after sanitization."
-                );
+                throw new IsMissingAfterValidationException($entryID, $fieldName);
             }
             $expectedCount = $fieldValidationOptions->getExpectedCount();
             if ($expectedCount >= 0) {
                 if (!is_array($sanitizedVal)) {
-                    throw new Exception(
-                        "Field {$fieldName} in entry ID:{$entryID} is not an array."
-                    );
+                    throw new NotAnArrayValidationException($entryID, $fieldName);
                 }
                 $elementCount = count($sanitizedVal);
                 if ($elementCount !== $expectedCount) {
-                    throw new Exception(
-                        "Field {$fieldName} in ID:{$entryID} has invalid number of elements: {$elementCount}.
-                        Expected {$expectedCount}."
-                    );
+                    throw new InvalidCountValidationException($entryID, $fieldName, $expectedCount, $elementCount);
                 }
             }
             return $sanitizedVal;
         } elseif ($fieldValidationOptions->isRequired()) {
-            throw new Exception("Required field {$fieldName} in ID:{$entryID} is missing.");
+            throw new IsMissingValidationException($entryID, $fieldName);
         }
 
         if ($fieldValidationOptions->getArraySeparator() !== "") {
