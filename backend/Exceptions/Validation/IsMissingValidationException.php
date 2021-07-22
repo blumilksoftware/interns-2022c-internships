@@ -15,5 +15,4 @@ class IsMissingValidationException extends ValidationException
     {
         return static::BAD_REQUEST;
     }
-
 }
