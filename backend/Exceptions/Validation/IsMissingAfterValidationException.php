@@ -10,4 +10,9 @@ class IsMissingAfterValidationException extends ValidationException
     {
         return "Required field {$this->fieldName} in entry ID:{$this->entryID} is empty after sanitization.";
     }
+
+    protected function getStatusCode(): int
+    {
+        return static::BAD_REQUEST;
+    }
 }

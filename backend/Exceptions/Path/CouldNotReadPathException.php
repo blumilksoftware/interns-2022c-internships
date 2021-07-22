@@ -10,4 +10,9 @@ class CouldNotReadPathException extends PathException
     {
         return "{$this->fullPath} cannot be read.";
     }
+
+    protected function getStatusCode(): int
+    {
+        return static::FORBIDDEN;
+    }
 }

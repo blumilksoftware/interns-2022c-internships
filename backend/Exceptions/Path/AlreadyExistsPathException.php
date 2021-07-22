@@ -10,4 +10,9 @@ class AlreadyExistsPathException extends PathException
     {
         return "{$this->fullPath} already exists.";
     }
+
+    protected function getStatusCode(): int
+    {
+        return static::FORBIDDEN;
+    }
 }

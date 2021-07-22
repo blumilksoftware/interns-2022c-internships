@@ -23,4 +23,9 @@ class ValidationException extends SimpleMessageException
     {
         return "There was trouble validating {$this->fieldName} field in ID:{$this->entryID}";
     }
+
+    protected function getStatusCode(): int
+    {
+        return static::INTERNAL_SERVER_ERROR;
+    }
 }

@@ -10,4 +10,9 @@ class IsNotDirectoryPathException extends PathException
     {
         return "Element at path {$this->fullPath} is not a directory.";
     }
+
+    protected function getStatusCode(): int
+    {
+        return static::BAD_REQUEST;
+    }
 }

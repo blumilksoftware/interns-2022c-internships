@@ -10,4 +10,10 @@ class IsMissingValidationException extends ValidationException
     {
         return "Required field {$this->fieldName} in ID:{$this->entryID} is missing.";
     }
+
+    protected function getStatusCode(): int
+    {
+        return static::BAD_REQUEST;
+    }
+
 }

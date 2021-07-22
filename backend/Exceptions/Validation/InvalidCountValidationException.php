@@ -34,4 +34,9 @@ class InvalidCountValidationException extends ValidationException
         return "Field {$this->fieldName} in ID:{$this->entryID} has invalid number of elements: {$this->receivedCount}.
                        Expected {$this->expectedCount}.";
     }
+
+    protected function getStatusCode(): int
+    {
+        return static::RANGE_NOT_SATISFIABLE;
+    }
 }

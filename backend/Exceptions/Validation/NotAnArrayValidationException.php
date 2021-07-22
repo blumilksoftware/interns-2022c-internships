@@ -10,4 +10,9 @@ class NotAnArrayValidationException extends ValidationException
     {
         return "Field {$this->fieldName} in entry ID:{$this->entryID} is not an array.";
     }
+
+    protected function getStatusCode(): int
+    {
+        return static::IM_A_TEAPOT;
+    }
 }

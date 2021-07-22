@@ -10,4 +10,9 @@ class NotUniquePathException extends PathException
     {
         return "Path {$this->fullPath} is not unique.";
     }
+
+    protected function getStatusCode(): int
+    {
+        return static::FORBIDDEN;
+    }
 }

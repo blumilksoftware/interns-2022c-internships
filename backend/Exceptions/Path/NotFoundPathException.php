@@ -10,4 +10,9 @@ class NotFoundPathException extends PathException
     {
         return "Element at path {$this->fullPath} not found.";
     }
+
+    protected function getStatusCode(): int
+    {
+        return static::NOT_FOUND;
+    }
 }

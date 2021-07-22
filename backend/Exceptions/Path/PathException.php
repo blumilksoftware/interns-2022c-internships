@@ -21,4 +21,9 @@ class PathException extends SimpleMessageException
     {
         return "There was trouble processing path {$this->fullPath}.";
     }
+
+    protected function getStatusCode(): int
+    {
+        return static::INTERNAL_SERVER_ERROR;
+    }
 }

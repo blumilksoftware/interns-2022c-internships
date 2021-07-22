@@ -35,4 +35,9 @@ class CsvInvalidCountFileException extends FileException
         return "Csv file at {$this->fullPath} has invalid number of fields on line {$this->lineNumber}. 
         Expected {$this->expectedCount}. Got {$this->receivedCount}.";
     }
+
+    protected function getStatusCode(): int
+    {
+        return static::RANGE_NOT_SATISFIABLE;
+    }
 }

@@ -10,4 +10,9 @@ class NoNameFileException extends FileException
     {
         return "Issue at {$this->fullPath}. No file name.";
     }
+
+    protected function getStatusCode(): int
+    {
+        return static::BAD_REQUEST;
+    }
 }
