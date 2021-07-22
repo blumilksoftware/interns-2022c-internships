@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Internships\Services;
 
-use Internships\Exceptions\InvalidCountValidationException;
-use Internships\Exceptions\IsMissingAfterValidationException;
-use Internships\Exceptions\IsMissingValidationException;
-use Internships\Exceptions\NotAnArrayValidationException;
+use Internships\Exceptions\Validation\InvalidCountValidationException;
+use Internships\Exceptions\Validation\IsMissingAfterValidationException;
+use Internships\Exceptions\Validation\IsMissingValidationException;
+use Internships\Exceptions\Validation\NotAnArrayValidationException;
 use Internships\Models\ValidationOptions;
 
 class DataValidator
