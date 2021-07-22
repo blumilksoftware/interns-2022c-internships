@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Internships\Exceptions;
+namespace Internships\Exceptions\Validation;
 
-use Exception;
+use Internships\Exceptions\SimpleMessageException;
 use Throwable;
 
-class ValidationException extends Exception
+class ValidationException extends SimpleMessageException
 {
     protected int $entryID;
     protected string $fieldName;
@@ -16,8 +16,7 @@ class ValidationException extends Exception
     {
         $this->entryID = $entryID;
         $this->fieldName = $fieldName;
-        $message = $this->newExceptionMessage();
-        parent::__construct($message, $code, $previous);
+        parent::__construct($code, $previous);
     }
 
     protected function newExceptionMessage(): string

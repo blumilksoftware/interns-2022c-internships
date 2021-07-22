@@ -2,28 +2,29 @@
 
 declare(strict_types=1);
 
-namespace Internships\Exceptions;
+namespace Internships\Exceptions\File;
 
 use Throwable;
 
-class InvalidCountValidationException extends ValidationException
+class CsvInvalidCountFileException extends FileException
 {
+    protected int $lineNumber;
     protected int $expectedCount;
-    protected $receivedCount;
+    protected int $receivedCount;
 
     public function __construct(
-        int $entryID,
-        string $fieldName,
+        string $fullPath,
+        int $lineNumber,
         int $expectedCount,
         int $receivedCount,
         int $code = 0,
         Throwable $previous = null
     ) {
+        $this->lineNumber = $lineNumber;
         $this->expectedCount = $expectedCount;
         $this->receivedCount = $receivedCount;
         parent::__construct(
-            $entryID,
-            $fieldName,
+            $fullPath,
             $code,
             $previous
         );
@@ -31,7 +32,7 @@ class InvalidCountValidationException extends ValidationException
 
     protected function newExceptionMessage(): string
     {
-        return "Field {$this->fieldName} in ID:{$this->entryID} has invalid number of elements: {$this->receivedCount}.
-                       Expected {$this->expectedCount}.";
+        return "Csv file at {$this->fullPath} has invalid number of fields on line {$this->lineNumber}. 
+        Expected {$this->expectedCount}. Got {$this->receivedCount}.";
     }
 }

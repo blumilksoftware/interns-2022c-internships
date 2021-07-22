@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Internships\Exceptions;
+namespace Internships\Exceptions\Validation;
 
 class IsMissingAfterValidationException extends ValidationException
 {

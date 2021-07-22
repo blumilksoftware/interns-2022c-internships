@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types=1);
 
-namespace Internships\Exceptions;
+namespace Internships\Exceptions\Path;
 
-
-class AlreadyExistsPathException  extends PathException
+class AlreadyExistsPathException extends PathException
 {
     protected function newExceptionMessage(): string
     {
