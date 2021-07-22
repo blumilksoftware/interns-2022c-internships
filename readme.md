@@ -13,8 +13,8 @@ cp .env.example .env
 ```shell script
 docker-compose up -d
 ```
-### 3.Install frontend dependencies :
-```
+### 3. Install frontend dependencies :
+```shell script
 docker-compose exec node npm install
 ```
 
@@ -24,6 +24,12 @@ docker-compose exec php composer install
 docker-compose exec php composer populate
 docker-compose exec php composer build
 ```
+
+### 5. Run "vue-cli-service serve" in a node container
+```shell script
+docker-compose exec node npm run serve
+```
+
 Application should be available under `localhost:8027` or other port if you changed `EXTERNAL_WEBSERVER_PORT` value in `.env` file.
 
 Website for apprenticeship programme.
