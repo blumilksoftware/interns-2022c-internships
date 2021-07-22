@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Internships\FileSystem;
 
-use DI\NotFoundException;
 use Internships\Exceptions\File\NoNameFileException;
 use Internships\Exceptions\Path\AlreadyExistsPathException;
 use Internships\Exceptions\Path\CouldNotReadPathException;
 use Internships\Exceptions\Path\IsNotDirectoryPathException;
+use Internships\Exceptions\Path\NotFoundPathException;
 use Internships\Helpers\OutputWriter;
 use Internships\Services\UniquePathGuard;
 use RecursiveDirectoryIterator;
@@ -83,8 +83,8 @@ class FileManager
         if (!$overwrite && file_exists($fullDestinationPath)) {
             throw new AlreadyExistsPathException($fullDestinationPath);
         }
-        if (file_exists($origin)) {
-            throw new NotFoundException($origin . $filename);
+        if (file_exists($origin . $filename)) {
+            throw new NotFoundPathException($origin . $filename);
         }
         if (!copy($origin . $filename, $fullDestinationPath)) {
             throw new CouldNotReadPathException("{$origin} and/or {$fullDestinationPath}");
@@ -123,7 +123,7 @@ class FileManager
             throw new IsNotDirectoryPathException($origin);
         }
         if (!file_exists($origin)) {
-            throw new NotFoundException($origin);
+            throw new NotFoundPathException($origin);
         }
 
         $recursiveIteratorI = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($origin));
