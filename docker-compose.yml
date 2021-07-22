@@ -9,7 +9,7 @@ services:
     tty: true
     volumes:
       - .:/application
-      - ./environment/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./environment/nginx/${MODE}.conf:/etc/nginx/conf.d/default.conf
     ports:
       - "${EXTERNAL_WEBSERVER_PORT}:80"
 
