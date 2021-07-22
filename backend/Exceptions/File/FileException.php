@@ -10,7 +10,6 @@ use Throwable;
 class FileException extends SimpleMessageException
 {
     protected string $fullPath;
-    protected string $fileName;
 
     public function __construct(string $fullPath, int $code = 0, Throwable $previous = null)
     {
