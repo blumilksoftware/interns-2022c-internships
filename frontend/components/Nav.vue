@@ -149,7 +149,7 @@
             text-base
             font-medium
           "
-          >Information</a
+          >Informacje o praktykach</a
         >
         <a
           @click="goFiles()"
@@ -166,7 +166,7 @@
             text-base
             font-medium
           "
-          >Files</a
+          >Pliki do pobrania</a
         >
         <!-- <a
           @click="goRegu()"
@@ -199,7 +199,7 @@
             text-base
             font-medium
           "
-          >Cooperation</a
+          >Współpraca</a
         >
       </div>
     </DisclosurePanel>

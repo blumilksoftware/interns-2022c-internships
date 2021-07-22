@@ -33,3 +33,8 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+@media (max-width: 416px) and (orientation: portrait) {
+}
+</style>

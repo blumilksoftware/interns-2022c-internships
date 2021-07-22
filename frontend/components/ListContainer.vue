@@ -1,23 +1,38 @@
 <template>
   <div class="wrapper">
-    <searchBar class="searchBar" />
+    <searchBar v-if="!isMobile()" class="searchBar" />
     <FilterContent class="filterBtn" />
-    <div class="datafields">
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
+    <div v-if="!isMobile()" class="datafields">
+      <DataFieldDT class="datafield" />
+      <DataFieldDT class="datafield" />
+      <DataFieldDT class="datafield" />
+      <DataFieldDT class="datafield" />
+      <DataFieldDT class="datafield" />
+      <DataFieldDT class="datafield" />
+      <DataFieldDT class="datafield" />
+      <DataFieldDT class="datafield" />
+      <DataFieldDT class="datafield" />
+      <DataFieldDT class="datafield" />
+      <DataFieldDT class="datafield" />
+      <DataFieldDT class="datafield" />
+      <DataFieldDT class="datafield" />
+      <DataFieldDT class="datafield" />
+      <DataFieldDT class="datafield" />
+    </div>
+    <div v-else class="datafields">
+      <DataFieldMB class="datafield" />
+      <DataFieldMB class="datafield" />
+      <DataFieldMB class="datafield" />
+      <DataFieldMB class="datafield" />
+      <DataFieldMB class="datafield" />
+      <DataFieldMB class="datafield" />
+      <DataFieldMB class="datafield" />
+      <DataFieldMB class="datafield" />
+      <DataFieldMB class="datafield" />
+      <DataFieldMB class="datafield" />
+      <DataFieldMB class="datafield" />
+      <DataFieldMB class="datafield" />
+      <DataFieldMB class="datafield" />
     </div>
     <Buttons class="buttons" />
   </div>
@@ -25,16 +40,27 @@
 
 <script>
 import Btns from "./Buttons.vue";
-import DtFld from "./DataFld.vue";
+import DtFldDT from "./DataFldDesc.vue";
+import DtFldMB from "./DataFldMobile.vue";
 import Search from "./searchBar.vue";
 import FilterContent from "./FilterContent.vue";
 
 export default {
   components: {
     Buttons: Btns,
-    DataField: DtFld,
+    DataFieldDT: DtFldDT,
+    DataFieldMB: DtFldMB,
     searchBar: Search,
     FilterContent: FilterContent,
+  },
+  methods: {
+    isMobile() {
+      if (window.innerHeight > window.innerWidth) {
+        return true;
+      } else {
+        return false;
+      }
+    },
   },
 };
 </script>
@@ -44,7 +70,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: 70vh;
+  height: 90vh;
 }
 .buttons {
   /* align-items: flex-start; */
@@ -75,5 +101,13 @@ export default {
   height: auto;
   width: 90%;
   margin: 0 auto 20px auto;
+}
+@media (orientation: portrait) {
+  .wrapper {
+    width: 100vw;
+  }
+  .filterBtn {
+    margin-top: 15px;
+  }
 }
 </style>

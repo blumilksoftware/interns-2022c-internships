@@ -61,6 +61,7 @@ export default {
 .files {
   max-width: 700px;
   margin: 50px auto 100px auto;
+  padding: 0 5%;
   z-index: 3;
 }
 .regulations {
@@ -69,5 +70,21 @@ export default {
 
 .cooperate {
   z-index: 1;
+}
+
+input,
+textarea,
+button,
+select,
+a,
+p,
+i,
+img {
+  --webkit-tap-highlight-color: transparent;
+}
+@media (orientation: portrait) {
+  .maplist {
+    max-height: unset;
+  }
 }
 </style>

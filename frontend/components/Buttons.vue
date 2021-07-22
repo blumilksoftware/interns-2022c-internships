@@ -32,7 +32,7 @@
 }
 
 .saveasfile {
-  background: #908dd3;
+  background: #8da0d3;
 }
 
 .resetfilters > *,

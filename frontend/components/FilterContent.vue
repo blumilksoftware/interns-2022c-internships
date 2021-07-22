@@ -4,13 +4,15 @@
       <div class="headfields">
         <CourseSelector class="headfield" />
         <CitySelector class="headfield" />
-        <PaidSelector class="headfield" />
+        <PaidSelector class="headfield paidSelector" />
       </div>
       <hr />
-      <p class="tagTitleText"># Wybierz najważniejszą technologię z tagów</p>
-      <div class="tagsContainer">
-        <div class="tag"><span>JS</span></div>
+      <p class="tagTitleText noselect">
+        # Wybierz najważniejszą technologię z tagów
+      </p>
+      <div class="tagsContainer noselect">
         <div class="tag"><span>React</span></div>
+        <div class="tag"><span>JS</span></div>
         <div class="tag"><span>Android</span></div>
         <div class="tag"><span>PHP</span></div>
         <div class="tag"><span>HTML/CSS</span></div>
@@ -48,6 +50,11 @@ export default {
     CitySelector: CitySelector,
     CourseSelector: CourseSelector,
   },
+  data() {
+    return {
+      isActive: false,
+    };
+  },
 
   methods: {
     dropdown() {
@@ -55,6 +62,25 @@ export default {
         .querySelector(".drpDwnBtnSect")
         .classList.toggle("drpDwnBtnSectActive");
     },
+  },
+  mounted: function () {
+    const tags = document.querySelectorAll(".tag");
+    const arr = [];
+
+    for (let i = 0; i < tags.length; i++) {
+      tags[i].addEventListener("click", function () {
+        if (arr.includes(tags[i].firstElementChild.innerText)) {
+          const index = arr.indexOf(tags[i].firstElementChild.innerText);
+          if (index > -1) {
+            arr.splice(index, 1);
+          }
+        } else {
+          arr.push(tags[i].firstElementChild.innerText);
+        }
+        tags[i].classList.toggle("highlight");
+        // console.log(arr);
+      });
+    }
   },
 };
 </script>
@@ -144,7 +170,6 @@ export default {
   width: 95%;
   display: flex;
   flex-direction: row;
-  /* align-self: flex-start; */
   align-items: center;
   margin: 0 auto;
 }
@@ -197,5 +222,37 @@ hr {
 }
 .approveFilters:active {
   border-color: #4f46e5;
+}
+.highlight {
+  border-color: #4f46e5;
+  background: #f0efff;
+}
+@media (orientation: portrait) {
+  .headfields {
+    flex-direction: column;
+  }
+  .headfield {
+    width: 100%;
+  }
+  .headfield select {
+    width: 100%;
+  }
+  .paidSelector {
+    width: 100%;
+  }
+  .approveFilters {
+    font-size: 12px;
+    width: 40%;
+  }
+  .drpDwnBtn {
+    width: 95%;
+    margin: 0 auto;
+
+    /* border-radius: 0; */
+  }
+  .drpDwnBtnSect {
+    width: 95%;
+    margin: 0 auto;
+  }
 }
 </style>

@@ -26,11 +26,22 @@ export default {
   grid-template-areas: "listcontainer map";
   /* height: 600px; */
 }
+
 .listcontainer {
   grid-area: listcontainer;
+  /* max-width: 45vw; */
 }
 .map {
   grid-area: map;
   /* height: 100%; */
+}
+@media (orientation: portrait) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.7fr 1fr;
+    grid-template-areas:
+      "map"
+      "listcontainer";
+  }
 }
 </style>

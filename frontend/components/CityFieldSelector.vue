@@ -1,6 +1,12 @@
 <template>
   <div id="cities">
-    <select v-model="mychoice" name="" id="" placeholder="City">
+    <select
+      class="selector"
+      v-model="mychoice"
+      name=""
+      id=""
+      placeholder="City"
+    >
       <option :value="null" disabled hidden>Miasto</option>
       <option value="Legnica">Legnica</option>
       <option value="Wrocław">Wrocław</option>
@@ -20,3 +26,11 @@ export default {
   methods: {},
 };
 </script>
+
+<style scoped>
+@media (orientation: portrait) {
+  .selector {
+    width: 100%;
+  }
+}
+</style>

@@ -5,15 +5,18 @@
     :center="[0, 0]"
     :zoom="1"
   />
+  <searchBar v-if="isPortrait()" class="searchBarMobile" />
 </template>
 
 <script>
 import Mapbox from "mapbox-gl";
 import { MglMap } from "vue-mapbox";
+import Search from "./searchBar.vue";
 
 export default {
   components: {
     MglMap,
+    searchBar: Search,
   },
   data() {
     return {
@@ -26,6 +29,25 @@ export default {
   created() {
     this.mapbox = Mapbox;
   },
-  methods: {},
+  methods: {
+    isPortrait() {
+      if (window.innerHeight > window.innerWidth) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
 };
 </script>
+
+<style scoped>
+.searchBarMobile {
+  position: absolute;
+  top: 75px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 90vw;
+}
+</style>
