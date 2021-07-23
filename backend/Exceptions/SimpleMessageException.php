@@ -16,7 +16,7 @@ class SimpleMessageException extends Exception
     protected const NOT_FOUND = 404;
     protected const RANGE_NOT_SATISFIABLE = 416;
     protected const IM_A_TEAPOT = 418;
-    protected const INTERNAL_SERVER_ERROR = 500;
+    protected const UNPROCESSABLE_ENTITY = 422;
 
     protected function __construct(int $code = 0, Throwable $previous = null)
     {

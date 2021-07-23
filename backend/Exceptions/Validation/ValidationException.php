@@ -26,6 +26,6 @@ class ValidationException extends SimpleMessageException
 
     protected function getStatusCode(): int
     {
-        return static::INTERNAL_SERVER_ERROR;
+        return static::UNPROCESSABLE_ENTITY;
     }
 }
