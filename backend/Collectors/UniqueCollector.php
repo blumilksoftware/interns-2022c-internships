@@ -4,6 +4,7 @@
 namespace Internships\Collectors;
 
 
+use Internships\Exceptions\Collector\NotUsedException;
 use Internships\Interfaces\SerializableInfo;
 use Internships\Models\CollectedContent;
 use JsonSerializable;
@@ -34,17 +35,17 @@ abstract class UniqueCollector implements JsonSerializable, SerializableInfo
 
     public function getSourceRelativePath(): string
     {
-        // TODO: Implement getSourceRelativePath() method.
+        throw new NotUsedException();
     }
 
     public function getSourceFileName(): string
     {
-        // TODO: Implement getSourceFileName() method.
+        throw new NotUsedException();
     }
 
     public function getSourceFilePath(): string
     {
-        // TODO: Implement getSourceFilePath() method.
+        throw new NotUsedException();
     }
 
     public function getDestinationFilePath(): string
