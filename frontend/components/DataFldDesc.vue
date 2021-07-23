@@ -72,12 +72,11 @@ export default {
 }
 .companyText {
   overflow: hidden;
-  width: 160px;
+  width: 150px;
   margin-left: 0em;
   grid-area: companyName;
   position: relative;
   justify-self: start;
-  padding-left: 5px;
 }
 .companyText span {
   text-align: center;
@@ -94,7 +93,7 @@ export default {
   transition-timing-function: linear;
 }
 .companyText:hover span {
-  transform: translateX(calc(160px - 100%));
+  transform: translateX(calc(150px - 100%));
 }
 .course {
   grid-area: course;
