@@ -1,10 +1,15 @@
 <template>
   <div class="fieldContainer">
     <div class="companyIcon">
-      <img class="imgIcon" src="../assets/blumilklogo.png" alt="" />
-      <!-- logo or defaultcompanyicon.svg -->
+      <img
+        class="imgIcon"
+        src="../assets/blumilklogo.png"
+        alt="Company Logo Icon"
+      />
     </div>
-    <span class="companyName">Nazwa Bardzo Duzej Firmy</span>
+    <div class="companyText">
+      <span>Nazwa Bardzo Duzej Firmy, w sumie to nawet jeszcze większej</span>
+    </div>
     <div class="course">
       <span class="textContent">Informatyka</span>
     </div>
@@ -65,14 +70,31 @@ export default {
 .companyIcon {
   grid-area: companyLogo;
 }
-.companyName {
+.companyText {
+  overflow: hidden;
+  width: 160px;
+  margin-left: 0em;
   grid-area: companyName;
+  position: relative;
   justify-self: start;
   padding-left: 5px;
-  text-overflow: clip;
-  width: 130px;
+}
+.companyText span {
+  text-align: center;
+  display: inline-block;
   white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-transition: 2.5s;
+  -moz-transition: 2.5s;
+  transition: 2.5s;
+  transform: translateX(0);
+  -webkit-transition-timing-function: linear;
+  -moz-transition-timing-function: linear;
+  transition-timing-function: linear;
+}
+.companyText:hover span {
+  transform: translateX(calc(160px - 100%));
 }
 .course {
   grid-area: course;
@@ -104,20 +126,20 @@ export default {
 
 .textContainer .tags {
   text-align: center;
-  display: inline-block; /* important */
+  display: inline-block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  -webkit-transition: 3.3s;
-  -moz-transition: 3.3s;
-  transition: 3.3s;
-
+  -webkit-transition: 1.5s;
+  -moz-transition: 1.5s;
+  transition: 1.5s;
+  transform: translateX(0);
   -webkit-transition-timing-function: linear;
   -moz-transition-timing-function: linear;
   transition-timing-function: linear;
 }
 
 .textContainer:hover .tags {
-  margin-left: -300px;
+  transform: translateX(calc(100px - 100%));
 }
 </style>
