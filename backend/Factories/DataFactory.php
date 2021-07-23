@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Internships\Services;
+namespace Internships\Factories;
 
 use Internships\FileSystem\Path;
 use Internships\Interfaces\BuildTool;
 use Internships\Interfaces\SerializableInfo;
+use Internships\Services\DataValidator;
 
 abstract class DataFactory implements BuildTool, SerializableInfo
 {

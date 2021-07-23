@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Internships\Application;
 
+use Internships\Factories\CompanyDataFactory;
+use Internships\Factories\DataFactory;
+use Internships\Factories\FacultyDataFactory;
 use Internships\FileSystem\FileManager;
 use Internships\FileSystem\Path;
 use Internships\Helpers\OutputWriter;
-use Internships\Services\CompanyDataFactory;
 use Internships\Services\CsvReader;
-use Internships\Services\DataFactory;
-use Internships\Services\FacultyDataFactory;
 
 class AppGenerator
 {

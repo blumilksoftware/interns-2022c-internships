@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Internships\Services;
+namespace Internships\Factories;
 
 use Internships\Interfaces\SerializableInfo;
 use Internships\Models\Company;
