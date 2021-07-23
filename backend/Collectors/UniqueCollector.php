@@ -4,10 +4,11 @@
 namespace Internships\Collectors;
 
 
+use Internships\Interfaces\SerializableInfo;
 use Internships\Models\CollectedContent;
 use JsonSerializable;
 
-abstract class UniqueCollector implements JsonSerializable
+abstract class UniqueCollector implements JsonSerializable, SerializableInfo
 {
     /* @var $collectedContent CollectedContent[] */
     protected array $collectedContent;
@@ -29,5 +30,25 @@ abstract class UniqueCollector implements JsonSerializable
         $newId = $this->nextIdToAssign++;
         array_push($this->collectedContent, new CollectedContent($newId, $content));
         return $newId;
+    }
+
+    public function getSourceRelativePath(): string
+    {
+        // TODO: Implement getSourceRelativePath() method.
+    }
+
+    public function getSourceFileName(): string
+    {
+        // TODO: Implement getSourceFileName() method.
+    }
+
+    public function getSourceFilePath(): string
+    {
+        // TODO: Implement getSourceFilePath() method.
+    }
+
+    public function getDestinationFilePath(): string
+    {
+        return $this->getDestinationRelativePath() . $this->getDestinationFileName();
     }
 }
