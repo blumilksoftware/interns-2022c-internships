@@ -4,7 +4,11 @@ declare(strict_types=1);
 
 namespace Internships\FileSystem;
 
-use Exception;
+use Internships\Exceptions\File\NoNameFileException;
+use Internships\Exceptions\Path\AlreadyExistsPathException;
+use Internships\Exceptions\Path\CouldNotReadPathException;
+use Internships\Exceptions\Path\IsNotDirectoryPathException;
+use Internships\Exceptions\Path\NotFoundPathException;
 use Internships\Helpers\OutputWriter;
 use Internships\Services\UniquePathGuard;
 use RecursiveDirectoryIterator;
@@ -36,19 +40,17 @@ class FileManager
                 data: $content
             );
         } elseif ($filename === "") {
-            throw new Exception(
-                "Couldn't create file in {$relativePath}. No filename. Have you meant to create folder?"
-            );
+            throw new NoNameFileException($path);
         }
     }
 
     public function appendNewLine(string $relativePath, string $filename, string $content = ""): void
     {
-        if ($filename === "") {
-            throw new Exception("Cannot append to file with no name.");
-        }
-
         $path = $this->directoryManager->getApiFilePath($relativePath, $filename);
+
+        if ($filename === "") {
+            throw new NoNameFileException($path);
+        }
 
         file_put_contents(
             filename: $path,
@@ -79,11 +81,13 @@ class FileManager
         $this->pathGuard->verifyIfUnique($fullDestinationPath);
 
         if (!$overwrite && file_exists($fullDestinationPath)) {
-            OutputWriter::newLineToConsole("Skipped copying to {$fullDestinationPath}. File already exists.");
-        } else {
-            if (!copy($origin . $filename, $fullDestinationPath)) {
-                throw new Exception("Couldn't copy. File {$origin}{$filename} not found.");
-            }
+            throw new AlreadyExistsPathException($fullDestinationPath);
+        }
+        if (file_exists($origin . $filename)) {
+            throw new NotFoundPathException($origin . $filename);
+        }
+        if (!copy($origin . $filename, $fullDestinationPath)) {
+            throw new CouldNotReadPathException("{$origin} and/or {$fullDestinationPath}");
         }
     }
 
@@ -102,7 +106,11 @@ class FileManager
             $finalOrigin = $relativeOrigin . $fileRelativePath;
             $finalDestination = $relativeDestination . $fileRelativePath;
 
-            $this->copyResource($finalOrigin, $finalDestination, $fileName, overwrite: false, toResource: true);
+            try {
+                $this->copyResource($finalOrigin, $finalDestination, $fileName, overwrite: false, toResource: true);
+            } catch (AlreadyExistsPathException $exception) {
+                OutputWriter::newLineToConsole("{$exception->getMessage()} Skipping.");
+            }
         }
     }
 
@@ -112,10 +120,10 @@ class FileManager
         $origin = $this->directoryManager->getResourceDirectoryPath($relativeOrigin);
 
         if (!is_dir(substr($origin, strlen($origin) - 1))) {
-            throw new Exception("{$origin} is not a directory.");
+            throw new IsNotDirectoryPathException($origin);
         }
         if (!file_exists($origin)) {
-            throw new Exception("Directory {$origin} not found.");
+            throw new NotFoundPathException($origin);
         }
 
         $recursiveIteratorI = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($origin));

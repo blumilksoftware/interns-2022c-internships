@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Internships\Services;
 
-use Exception;
+use Internships\Exceptions\File\CsvInvalidCountFileException;
+use Internships\Exceptions\Path\CouldNotReadPathException;
+use Internships\Exceptions\Path\NotFoundPathException;
 use Internships\FileSystem\DirectoryManager;
 
 class CsvReader
@@ -21,29 +23,26 @@ class CsvReader
     {
         $fullPath = $this->directoryManager->getResourceFilePath($resourceRelativePath, $fileName);
         $csvRows = [];
+        if (!file_exists($fullPath)) {
+            throw new NotFoundPathException($fullPath);
+        }
+        $csvFile = fopen($fullPath, "rb");
+        if (!$csvFile) {
+            throw new CouldNotReadPathException($fullPath);
+        }
         try {
-            if (!file_exists($fullPath)) {
-                throw new Exception("File {$fullPath} not found");
-            }
-            $csvFile = fopen($fullPath, "rb");
-            if (!$csvFile) {
-                throw new Exception("File {$fullPath} cannot be read");
-            }
             $currentRow = -1;
             while (($row = fgetcsv($csvFile, static::CSV_READ_LENGTH, static::CSV_SEPARATOR)) !== false) {
                 $currentRow++;
-                $rowCount = count($row);
+                $rowFieldCount = count($row);
                 $fieldCount = count($fieldDefines);
-                if ($rowCount !== $fieldCount) {
-                    throw new Exception(
-                        "Unexpected field count at row {$currentRow}. Expected {$fieldCount}, got {$rowCount}"
-                    );
+                if ($rowFieldCount !== $fieldCount) {
+                    throw new CsvInvalidCountFileException($fullPath, $currentRow, $fieldCount, $rowFieldCount);
                 }
                 array_push($csvRows, $row);
             }
+        } finally {
             fclose($csvFile);
-        } catch (Exception $e) {
-            throw $e;
         }
         return $csvRows;
     }

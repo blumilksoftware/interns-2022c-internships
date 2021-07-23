@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Internships\Services;
 
-use Exception;
+use Internships\Exceptions\Path\NotUniquePathException;
 
 class UniquePathGuard
 {
@@ -14,7 +14,7 @@ class UniquePathGuard
     {
         foreach ($this->paths as $path) {
             if ($newPath === $path) {
-                throw new Exception("Paths of created files are not unique.");
+                throw new NotUniquePathException($newPath);
             }
         }
         array_push($this->paths, $newPath);
