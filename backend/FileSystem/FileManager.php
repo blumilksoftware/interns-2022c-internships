@@ -91,7 +91,7 @@ class FileManager
         }
     }
 
-    /* @var $filePaths string[] */
+    /** @var string[] */
     public function copyResources(
         string $relativeOrigin,
         string $relativeDestination,

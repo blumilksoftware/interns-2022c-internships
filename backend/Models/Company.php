@@ -26,8 +26,8 @@ class Company implements JsonSerializable
             $data["country"],
             $data["coordinates"],
             $data["street"],
-            $data["city"],
-            $data["zip"]
+            $data["zip"],
+            $data["city"]
         );
         $this->filterData = new FilterData($data["specialization"], $data["tags"]);
         $this->website = $data["website"];

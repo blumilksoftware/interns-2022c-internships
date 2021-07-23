@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Internships\Collectors;
 
-class SpecializationCollector extends UniqueCollector
+class CountryCollector extends UniqueCollector
 {
     public function getJsonTag(): string
     {
-        return "specialization";
+        return "country";
     }
 }

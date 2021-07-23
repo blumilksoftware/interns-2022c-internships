@@ -14,7 +14,7 @@ use Internships\Services\CsvReader;
 
 class AppGenerator
 {
-    /* @var $subFactories DataFactory[] */
+    /** @var DataFactory[] */
     protected array $subFactories;
 
     public function __construct(

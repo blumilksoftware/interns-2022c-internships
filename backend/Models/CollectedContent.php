@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Internships\Models;
-
 
 use JsonSerializable;
 
@@ -17,7 +17,7 @@ class CollectedContent implements JsonSerializable
         $this->collectedName = $collectedName;
     }
 
-    public function getId(): int
+    public function getID(): int
     {
         return $this->id;
     }
@@ -26,6 +26,7 @@ class CollectedContent implements JsonSerializable
     {
         return $this->collectedName;
     }
+
     public function jsonSerialize(): array
     {
         return [

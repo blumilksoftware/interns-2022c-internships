@@ -1,17 +1,15 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Internships\Collectors;
 
-
-use Internships\Exceptions\Collector\NotUsedException;
-use Internships\Interfaces\SerializableInfo;
 use Internships\Models\CollectedContent;
 use JsonSerializable;
 
-abstract class UniqueCollector implements JsonSerializable, SerializableInfo
+abstract class UniqueCollector implements JsonSerializable
 {
-    /* @var $collectedContent CollectedContent[] */
+    /** @var CollectedContent[] */
     protected array $collectedContent;
     protected int $nextIdToAssign;
 
@@ -21,11 +19,11 @@ abstract class UniqueCollector implements JsonSerializable, SerializableInfo
         $this->collectedContent = [];
     }
 
-    public function collectAndGetId(string $content): int
+    public function collectAndGetID(string $content): int
     {
         foreach ($this->collectedContent as $collected) {
-            if ($collected->getCollectedName() == $content) {
-                return $collected->getId();
+            if ($collected->getCollectedName() === $content) {
+                return $collected->getID();
             }
         }
         $newId = $this->nextIdToAssign++;
@@ -33,23 +31,15 @@ abstract class UniqueCollector implements JsonSerializable, SerializableInfo
         return $newId;
     }
 
-    public function getSourceRelativePath(): string
+    public function jsonSerialize()
     {
-        throw new NotUsedException();
+        return [
+            $this->collectedContent,
+        ];
     }
 
-    public function getSourceFileName(): string
+    public function getJsonTag(): string
     {
-        throw new NotUsedException();
-    }
-
-    public function getSourceFilePath(): string
-    {
-        throw new NotUsedException();
-    }
-
-    public function getDestinationFilePath(): string
-    {
-        return $this->getDestinationRelativePath() . $this->getDestinationFileName();
+        return "default";
     }
 }

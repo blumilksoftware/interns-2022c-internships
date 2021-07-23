@@ -1,25 +1,13 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Internships\Collectors;
 
-
 class CityCollector extends UniqueCollector
 {
-    public function getDestinationRelativePath(): string
+    public function getJsonTag(): string
     {
-        return "/filters/";
-    }
-
-    public function getDestinationFileName(): string
-    {
-        return "cities.json";
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [
-            "cities" => $this->collectedContent,
-        ];
+        return "city";
     }
 }

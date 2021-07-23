@@ -92,16 +92,19 @@ abstract class DataFactory implements BuildTool, SerializableInfo
 
     public function buildFromData(array $csvData): array
     {
+        $this->onBuildStart();
         $dataObjects = [];
+        $modelName = $this->getModelClassToBuild();
         foreach ($csvData as $rowNumber => $rowData) {
             if ($rowNumber > 0) {
                 $entry = array_combine(array_keys($this->fields), array_values($rowData));
                 $jsonID = $rowNumber - 1;
-                $modelName = $this->getModelClassToBuild();
-                $modelObject = new $modelName($jsonID, $this->validate($jsonID, $entry));
+                $preparedEntry = $this->processEntry($this->validate($jsonID, $entry));
+                $modelObject = new $modelName($jsonID, $preparedEntry);
                 array_push($dataObjects, $modelObject);
             }
         }
+        $this->onBuildEnd();
         return $dataObjects;
     }
 }
