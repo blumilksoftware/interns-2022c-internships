@@ -43,23 +43,7 @@
             >
               Pliki do pobrania
             </a>
-            <!-- <a
-              @click="goRegu()"
-              class="
-                border-transparent
-                text-gray-500
-                hover:border-indigo-400 hover:text-gray-700
-                inline-flex
-                items-center
-                px-1
-                pt-1
-                border-b-2
-                text-sm
-                font-medium
-              "
-            >
-              Regulamin praktyk
-            </a> -->
+
             <a
               @click="goCoop()"
               class="
@@ -168,22 +152,7 @@
           "
           >Pliki do pobrania</a
         >
-        <!-- <a
-          @click="goRegu()"
-          class="
-            border-transparent
-            text-gray-500
-            hover:bg-gray-50 hover:border-indigo-400 hover:text-gray-700
-            block
-            pl-3
-            pr-4
-            py-2
-            border-l-4
-            text-base
-            font-medium
-          "
-          >Regulations</a
-        > -->
+
         <a
           @click="goCoop()"
           class="
@@ -253,12 +222,7 @@ export default {
         block: "center",
       });
     },
-    // goRegu() {
-    //   document.getElementById("regulations").scrollIntoView({
-    //     behavior: "smooth",
-    //     block: "center",
-    //   });
-    // },
+
     goCoop() {
       document.getElementById("cooperation").scrollIntoView({
         behavior: "smooth",
@@ -286,12 +250,11 @@ export default {
 }
 
 .noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Old versions of Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 </style>
