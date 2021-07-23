@@ -8,19 +8,14 @@ use Throwable;
 
 class InvalidCountValidationException extends ValidationException
 {
-    protected int $expectedCount;
-    protected $receivedCount;
-
     public function __construct(
         int $entryID,
         string $fieldName,
-        int $expectedCount,
-        int $receivedCount,
+        protected int $expectedCount,
+        protected int $receivedCount,
         int $code = 0,
         Throwable $previous = null
     ) {
-        $this->expectedCount = $expectedCount;
-        $this->receivedCount = $receivedCount;
         parent::__construct(
             $entryID,
             $fieldName,

@@ -9,13 +9,12 @@ use Throwable;
 
 class ValidationException extends SimpleMessageException
 {
-    protected int $entryID;
-    protected string $fieldName;
-
-    public function __construct(int $entryID, string $fieldName, int $code = 0, Throwable $previous = null)
-    {
-        $this->entryID = $entryID;
-        $this->fieldName = $fieldName;
+    public function __construct(
+        protected int $entryID,
+        protected string $fieldName,
+        int $code = 0,
+        Throwable $previous = null
+    ) {
         parent::__construct($code, $previous);
     }
 

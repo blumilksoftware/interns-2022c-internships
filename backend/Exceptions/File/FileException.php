@@ -9,11 +9,11 @@ use Throwable;
 
 class FileException extends SimpleMessageException
 {
-    protected string $fullPath;
-
-    public function __construct(string $fullPath, int $code = 0, Throwable $previous = null)
-    {
-        $this->fullPath = $fullPath;
+    public function __construct(
+        protected string $fullPath,
+        int $code = 0,
+        Throwable $previous = null
+    ) {
         parent::__construct($code, $previous);
     }
 

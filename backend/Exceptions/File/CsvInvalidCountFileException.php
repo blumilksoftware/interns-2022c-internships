@@ -8,21 +8,14 @@ use Throwable;
 
 class CsvInvalidCountFileException extends FileException
 {
-    protected int $lineNumber;
-    protected int $expectedCount;
-    protected int $receivedCount;
-
     public function __construct(
         string $fullPath,
-        int $lineNumber,
-        int $expectedCount,
-        int $receivedCount,
+        protected int $lineNumber,
+        protected int $expectedCount,
+        protected int $receivedCount,
         int $code = 0,
         Throwable $previous = null
     ) {
-        $this->lineNumber = $lineNumber;
-        $this->expectedCount = $expectedCount;
-        $this->receivedCount = $receivedCount;
         parent::__construct(
             $fullPath,
             $code,
