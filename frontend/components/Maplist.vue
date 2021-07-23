@@ -16,32 +16,27 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .container {
   display: grid;
   width: 100%;
-  grid-template-columns: 1fr 1.7fr;
+  grid-template-columns: 1fr 1.4fr;
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-template-areas: "listcontainer map";
-  /* height: 600px; */
-}
 
-.listcontainer {
-  grid-area: listcontainer;
-  /* max-width: 45vw; */
-}
-.map {
-  grid-area: map;
-  /* height: 100%; */
-}
-@media (orientation: portrait) {
-  .container {
+  @media (orientation: portrait) {
     grid-template-columns: 1fr;
     grid-template-rows: 70vh auto;
     grid-template-areas:
       "map"
       "listcontainer";
+  }
+  .listcontainer {
+    grid-area: listcontainer;
+  }
+  .map {
+    grid-area: map;
   }
 }
 </style>

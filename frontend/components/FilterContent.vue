@@ -85,179 +85,146 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 * {
   margin: 0;
   box-sizing: border-box;
 }
-.drpDwnBtnSect {
-  width: 100%;
-  opacity: 0%;
-  height: 0;
-  transform: translateY(15px);
-  border-radius: 5px;
-  border: 2px solid #d4d4d4;
-  /* -webkit-transition: all 1s 0s ease;
-  -moz-transition: all 1s 0s ease;
-  -o-transition: all 1s 0s ease;
-  transition: all 1s 0s ease; */
-  display: none;
-  flex-direction: column;
-}
 
-.drpDwnBtnSectActive {
-  height: auto;
-  opacity: 1;
-  display: flex;
-}
-
-.drpDwnBtn {
-  width: 100%;
-  height: 30px;
-  background-color: #4f46e5;
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  cursor: pointer;
-}
-
-.drpDwmBtnText {
-  color: white;
-  font-family: Poppins;
-}
-.drpDwnBtn:active {
-  border: 1px solid #4f46e5;
-  background-color: #6761da;
-  /* transition: 1s ease; */
-}
-
-.field {
-  border: 2px solid #dbdbdb;
-  background: white;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #5e5e5e;
-  cursor: pointer;
-  position: relative;
-  z-index: 2;
-}
-.crsSlctr::before {
-  content: "";
-  position: absolute;
-  width: 103.5%;
-  height: 50px;
-  top: 80%;
-  opacity: 0;
-  background: white;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  border-bottom: 2px solid #dbdbdb;
-  border-left: 2px solid #dbdbdb;
-  border-right: 2px solid #dbdbdb;
-  z-index: 1;
-}
-
-.noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Old versions of Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
-}
-.headfields {
-  width: 95%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 0 auto;
-}
-.headfield {
-  width: 33%;
-  margin: 15px 9px;
-  border-radius: 5px;
-}
-hr {
-  border: 1px solid #dbdbdb;
-  width: 92%;
-  margin: 5px auto;
-}
-.tagTitleText {
-  font-size: 12px;
-  display: block;
-  width: 92%;
-  margin: 5px auto;
-}
-.tagsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  width: 94%;
-  margin: 0 auto;
-  margin-bottom: 20px;
-}
-.tag {
-  font-size: 12px;
-  color: #5e5e5e;
-  border: 1px solid #dbdbdb;
-  padding: 2px 5px;
-  margin: 2px 5px;
-  cursor: pointer;
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Old versions of Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none;
-}
-.approveFilters {
-  /* background-color: #dbdbdb; */
-  color: #494747;
-  font-size: 14px;
-  width: 28%;
-  margin: 0 auto 30px auto;
-  padding: 5px 10px;
-  border: 1px solid #dbdbdb;
-  border-radius: 10px;
-}
-.approveFilters:active {
-  border-color: #4f46e5;
-}
-.highlight {
-  border-color: #4f46e5;
-  background: #f0efff;
-}
-@media (orientation: portrait) {
-  .headfields {
+.wrapper {
+  .drpDwnBtnSect {
+    width: 100%;
+    opacity: 0%;
+    height: 0;
+    transform: translateY(15px);
+    border-radius: 5px;
+    border: 2px solid #d4d4d4;
+    display: none;
     flex-direction: column;
+
+    .headfields {
+      width: 95%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin: 0 auto;
+
+      @media (orientation: portrait) {
+        flex-direction: column;
+      }
+
+      .headfield {
+        width: 33%;
+        margin: 15px 9px;
+        border-radius: 5px;
+
+        @media (orientation: portrait) {
+          width: 100%;
+        }
+        select {
+          @media (orientation: portrait) {
+            width: 100%;
+          }
+        }
+      }
+      .paidSelector {
+        @media (orientation: portrait) {
+          width: 100%;
+        }
+      }
+    }
+    .tagTitleText {
+      font-size: 12px;
+      display: block;
+      width: 92%;
+      margin: 5px auto;
+    }
+    hr {
+      border: 1px solid #dbdbdb;
+      width: 92%;
+      margin: 5px auto;
+    }
+
+    .tagsContainer {
+      display: flex;
+      flex-wrap: wrap;
+      width: 94%;
+      margin: 0 auto;
+      margin-bottom: 20px;
+
+      .tag {
+        font-size: 12px;
+        color: #5e5e5e;
+        border: 1px solid #dbdbdb;
+        padding: 2px 5px;
+        margin: 2px 5px;
+        cursor: pointer;
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none;
+      }
+      .highlight {
+        border-color: #4f46e5;
+        background: #f0efff;
+      }
+    }
+    .approveFilters {
+      /* background-color: #dbdbdb; */
+      color: #494747;
+      font-size: 14px;
+      width: 28%;
+      margin: 0 auto 30px auto;
+      padding: 5px 10px;
+      border: 1px solid #dbdbdb;
+      border-radius: 10px;
+
+      &:active {
+        border-color: #4f46e5;
+      }
+      @media (orientation: portrait) {
+        font-size: 12px;
+        width: 40%;
+      }
+    }
   }
-  .headfield {
-    width: 100%;
-  }
-  .headfield select {
-    width: 100%;
-  }
-  .paidSelector {
-    width: 100%;
-  }
-  .approveFilters {
-    font-size: 12px;
-    width: 40%;
+  .drpDwnBtnSectActive {
+    height: auto;
+    opacity: 1;
+    display: flex;
   }
   .drpDwnBtn {
-    width: 95%;
-    margin: 0 auto;
+    width: 100%;
+    height: 30px;
+    background-color: #4f46e5;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
 
-    /* border-radius: 0; */
-  }
-  .drpDwnBtnSect {
-    width: 95%;
-    margin: 0 auto;
+    &:active {
+      border: 1px solid #4f46e5;
+      background-color: #6761da;
+    }
+    @media (orientation: portrait) {
+      width: 95%;
+      margin: 0 auto;
+    }
+
+    .drpDwmBtnText {
+      color: white;
+      font-family: Poppins;
+      text-align: center;
+
+      @media (orientation: portrait) {
+        width: 95%;
+        margin: 0 auto;
+      }
+    }
   }
 }
 </style>

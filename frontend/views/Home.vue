@@ -26,51 +26,39 @@ export default {
 };
 </script>
 
+<style lang="scss" scoped>
+.home {
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: white;
+    z-index: 1;
+  }
+  .maplist {
+    margin-top: 64px;
+    max-width: 100vw;
+    max-height: 80vh;
+    @media (orientation: portrait) {
+      max-height: unset;
+    }
+  }
+
+  .info {
+    max-width: 80%;
+    margin: 0px auto 50px auto;
+  }
+
+  .files {
+    max-width: 700px;
+    margin: 50px auto 100px auto;
+    padding: 0 5%;
+  }
+}
+</style>
+
 <style>
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: white;
-  z-index: 100;
-}
-.maplist {
-  margin-top: 64px;
-  max-width: 100vw;
-  max-height: 80vh;
-  z-index: 5;
-}
-.margin-horizontal {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.margin-vertical {
-  margin-top: 60px;
-  margin-bottom: 60px;
-}
-
-.info {
-  max-width: 80%;
-  /* margin-bottom: 50px; */
-  margin: 0px auto 50px auto;
-
-  z-index: 4;
-}
-
-.files {
-  max-width: 700px;
-  margin: 50px auto 100px auto;
-  padding: 0 5%;
-  z-index: 3;
-}
-.regulations {
-  z-index: 2;
-}
-
-.cooperate {
-  z-index: 1;
-}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
 input,
 textarea,
@@ -82,9 +70,13 @@ i,
 img {
   --webkit-tap-highlight-color: transparent;
 }
-@media (orientation: portrait) {
-  .maplist {
-    max-height: unset;
-  }
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 </style>

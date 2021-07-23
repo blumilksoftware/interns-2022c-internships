@@ -11,44 +11,39 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .btncontainer {
   display: flex;
   flex-direction: row;
   align-items: stretch;
-}
 
-.resetfilters,
-.saveasfile {
-  height: 50px;
-  width: 100%;
-  display: block;
-  font-size: 16px;
-  color: white;
-}
+  .resetfilters {
+    background: #4f46e5;
+    &:active {
+      background-color: #6761da;
+    }
+  }
 
-.resetfilters {
-  background: #4f46e5;
-}
+  .saveasfile {
+    background: #8da0d3;
+    &:active {
+      background: #94a2ce;
+    }
+  }
+  .resetfilters,
+  .saveasfile {
+    height: 50px;
+    width: 100%;
+    display: block;
+    font-size: 16px;
+    color: white;
 
-.saveasfile {
-  background: #8da0d3;
-}
-
-.resetfilters > *,
-.saveasfile > * {
-  color: white;
-}
-
-.resetfilters > i,
-.saveasfile > i {
-  padding-right: 15px;
-}
-
-.resetfilters:active {
-  background-color: #6761da;
-}
-.saveasfile:active {
-  background: #94a2ce;
+    & > * {
+      color: white;
+    }
+    & > i {
+      padding-right: 15px;
+    }
+  }
 }
 </style>

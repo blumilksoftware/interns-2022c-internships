@@ -1,6 +1,6 @@
 <template>
-  <div class="">
-    <div class="relative bg-white overflow-hidden elements">
+  <div class="wrapper">
+    <div class="relative bg-white overflow-hidden sections">
       <div class="max-w-7xl mx-auto">
         <div
           class="
@@ -170,7 +170,7 @@
       </div>
     </div>
 
-    <div class="relative bg-white elements">
+    <div class="relative bg-white sections">
       <div
         class="
           h-56
@@ -256,18 +256,18 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
-.logo {
-  font-family: Poppins;
-  font-size: 24px;
-  font-weight: 700;
-}
 
-.elements {
-  height: 50%;
-}
 .wrapper {
   height: 100vh;
+  .sections {
+    height: 50%;
+    .logo {
+      font-family: Poppins;
+      font-size: 24px;
+      font-weight: 700;
+    }
+  }
 }
 </style>

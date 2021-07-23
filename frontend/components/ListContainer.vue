@@ -65,58 +65,57 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .wrapper {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   height: 70vh;
-}
-.buttons {
-  /* align-items: flex-start; */
-  height: 50px;
-  width: 100%;
-}
-.datafields {
-  height: 93%;
-  overflow: scroll;
-  overflow-x: hidden;
-  justify-items: flex-start;
-}
-
-.datafield {
-  width: 98%;
-  background: #eaedf0;
-  margin: 8px 5px;
-  border-radius: 5px;
-  -webkit-box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.1);
-  box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.1);
-}
-.datafield:nth-child(odd) {
-  background: #f7f7f8;
-}
-
-.searchBar {
-  width: 90%;
-  margin: 20px auto 10px auto;
-}
-
-.filterBtn {
-  height: auto;
-  width: 90%;
-  margin: 0 auto 20px auto;
-}
-@media (orientation: portrait) {
-  .wrapper {
+  @media (orientation: portrait) {
     width: 100vw;
     height: auto;
   }
-  .filterBtn {
-    margin-top: 15px;
+  .searchBar {
+    width: 90%;
+    margin: 20px auto 10px auto;
   }
+
+  .filterBtn {
+    height: auto;
+    width: 90%;
+    margin: 0 auto 20px auto;
+
+    @media (orientation: portrait) {
+      margin-top: 15px;
+    }
+  }
+
   .datafields {
-    max-height: 65vh;
+    height: 93%;
+    overflow: scroll;
+    overflow-x: hidden;
+    justify-items: flex-start;
+    @media (orientation: portrait) {
+      max-height: 65vh;
+    }
+    .datafield {
+      width: 98%;
+      background: #eaedf0;
+      margin: 12px 5px;
+      border-radius: 5px;
+      -webkit-box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.1);
+      -moz-box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.1);
+      box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+    .datafield:nth-child(odd) {
+      background: #f7f7f8;
+    }
+  }
+  .buttons {
+    /* align-items: flex-start; */
+    height: 50px;
+    width: 100%;
   }
 }
 </style>

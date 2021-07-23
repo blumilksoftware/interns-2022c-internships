@@ -41,7 +41,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .searchBarMobile {
   position: absolute;
   top: 75px;
