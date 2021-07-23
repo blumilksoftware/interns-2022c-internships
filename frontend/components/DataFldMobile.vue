@@ -60,8 +60,7 @@ export default {
 }
 .companyName {
   grid-area: companyName;
-  justify-self: start;
-  padding-left: 5px;
+  justify-self: center;
   text-overflow: clip;
   width: 130px;
   white-space: nowrap;
@@ -71,34 +70,7 @@ export default {
   grid-area: course;
   display: flex;
   height: 100%;
-  /* line-height: 500%; */
-  padding: 0 10px;
-  justify-items: center;
+  justify-items: right;
   align-items: center;
-}
-
-.textContainer {
-  overflow: hidden;
-  width: 100px;
-  margin-left: 0em;
-}
-
-.textContainer .tags {
-  text-align: center;
-  display: inline-block; /* important */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-transition: 3.3s;
-  -moz-transition: 3.3s;
-  transition: 3.3s;
-
-  -webkit-transition-timing-function: linear;
-  -moz-transition-timing-function: linear;
-  transition-timing-function: linear;
-}
-
-.textContainer:hover .tags {
-  margin-left: -300px;
 }
 </style>

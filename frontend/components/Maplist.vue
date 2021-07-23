@@ -38,7 +38,7 @@ export default {
 @media (orientation: portrait) {
   .container {
     grid-template-columns: 1fr;
-    grid-template-rows: 0.7fr 1fr;
+    grid-template-rows: 70vh auto;
     grid-template-areas:
       "map"
       "listcontainer";

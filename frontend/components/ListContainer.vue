@@ -70,7 +70,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: 90vh;
+  height: 70vh;
 }
 .buttons {
   /* align-items: flex-start; */
@@ -85,8 +85,13 @@ export default {
 }
 
 .datafield {
-  width: 100%;
+  width: 98%;
   background: #eaedf0;
+  margin: 8px 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.1);
 }
 .datafield:nth-child(odd) {
   background: #f7f7f8;
@@ -105,9 +110,13 @@ export default {
 @media (orientation: portrait) {
   .wrapper {
     width: 100vw;
+    height: auto;
   }
   .filterBtn {
     margin-top: 15px;
+  }
+  .datafields {
+    max-height: 65vh;
   }
 }
 </style>

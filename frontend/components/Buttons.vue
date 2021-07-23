@@ -11,7 +11,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .btncontainer {
   display: flex;
   flex-direction: row;
@@ -43,5 +43,12 @@
 .resetfilters > i,
 .saveasfile > i {
   padding-right: 15px;
+}
+
+.resetfilters:active {
+  background-color: #6761da;
+}
+.saveasfile:active {
+  background: #94a2ce;
 }
 </style>

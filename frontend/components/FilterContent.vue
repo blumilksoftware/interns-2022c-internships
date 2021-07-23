@@ -97,18 +97,18 @@ export default {
   transform: translateY(15px);
   border-radius: 5px;
   border: 2px solid #d4d4d4;
-  display: flex;
   /* -webkit-transition: all 1s 0s ease;
   -moz-transition: all 1s 0s ease;
   -o-transition: all 1s 0s ease;
   transition: all 1s 0s ease; */
-  display: flex;
+  display: none;
   flex-direction: column;
 }
 
 .drpDwnBtnSectActive {
   height: auto;
   opacity: 1;
+  display: flex;
 }
 
 .drpDwnBtn {
@@ -126,6 +126,11 @@ export default {
 .drpDwmBtnText {
   color: white;
   font-family: Poppins;
+}
+.drpDwnBtn:active {
+  border: 1px solid #4f46e5;
+  background-color: #6761da;
+  /* transition: 1s ease; */
 }
 
 .field {
