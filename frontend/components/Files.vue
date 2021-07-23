@@ -1,12 +1,21 @@
 <template>
   <div class="wrapper">
-    <h1 class="title">Pliki do pobrania</h1>
+    <h1 class="title text-md lg:text-2xl 2xl:text-3xl">Pliki do pobrania</h1>
     <div class="flow-root mt-6" id="files">
       <ul class="-my-5 divide-y divide-gray-200">
         <li v-for="document in documents" :key="document.handle" class="py-4">
           <div class="flex items-center space-x-4">
             <div class="flex-1 min-w-0">
-              <p class="text-sm font-medium text-gray-900 truncate">
+              <p
+                class="
+                  text-sm
+                  font-medium
+                  lg:text-xl
+                  2xl:text-2xl
+                  text-gray-900
+                  truncate
+                "
+              >
                 {{ document.name }}
               </p>
             </div>
@@ -27,7 +36,8 @@
                   rounded-full
                   text-gray-700
                   bg-white
-                  hover:bg-gray-50
+                  hover:bg-gray-100
+                  xl:text-xl
                 "
               >
                 Pobierz
@@ -73,7 +83,6 @@ export default {
   .title {
     margin: 0 auto;
     font-family: Poppins;
-    font-size: 20px;
   }
   .btn {
     cursor: pointer;

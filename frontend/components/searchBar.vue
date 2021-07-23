@@ -1,8 +1,5 @@
 <template>
   <div>
-    <!-- <label for="search" class="block text-sm font-medium text-gray-700"
-      >Quick search</label
-    > -->
     <div class="mt-1 relative flex items-center">
       <input
         type="text"
