@@ -48,9 +48,9 @@ abstract class DataFactory implements BuildTool, SerializableInfo
 
     public function getSourceRelativePath(): string
     {
-        return $this->sourcePath
+        return $this->workingDirectory
             . Path::FOLDER_SEPARATOR
-            . $this->workingDirectory;
+            . $this->sourcePath;
     }
 
     public function getSourceFileName(): string
@@ -67,9 +67,9 @@ abstract class DataFactory implements BuildTool, SerializableInfo
 
     public function getDestinationRelativePath(): string
     {
-        return $this->destinationPath
+        return $this->workingDirectory
             . Path::FOLDER_SEPARATOR
-            . $this->workingDirectory;
+            . $this->destinationPath;
     }
 
     public function getDestinationFileName(): string

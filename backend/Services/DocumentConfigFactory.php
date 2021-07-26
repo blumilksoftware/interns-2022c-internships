@@ -1,15 +1,14 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Internships\Services;
-
 
 use Internships\Models\DocumentConfig;
 use Internships\Models\ValidationOptions;
 
 class DocumentConfigFactory extends DataFactory
 {
-
     public function setPaths(): void
     {
         $this->workingDirectory = "";

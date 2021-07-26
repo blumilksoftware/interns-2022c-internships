@@ -10,6 +10,7 @@ use Internships\Helpers\OutputWriter;
 use Internships\Services\CompanyDataFactory;
 use Internships\Services\CsvReader;
 use Internships\Services\DataFactory;
+use Internships\Services\DocumentConfigFactory;
 use Internships\Services\FacultyDataFactory;
 
 class AppGenerator
@@ -21,9 +22,11 @@ class AppGenerator
         protected CsvReader $csvReader,
         protected FacultyDataFactory $facultyFactory,
         CompanyDataFactory $companyDataFactory,
+        DocumentConfigFactory $documentConfigFactory,
     ) {
         $this->subFactories = [
             $companyDataFactory,
+            $documentConfigFactory,
         ];
     }
 
