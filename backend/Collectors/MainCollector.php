@@ -37,7 +37,7 @@ abstract class MainCollector
     {
         $jsonData = [];
         foreach ($this->collectors as $collector) {
-            array_push($jsonData, $collector->jsonSerialize());
+            $jsonData = array_merge($jsonData, $collector->jsonSerialize());
         }
 
         $this->fileManager->create(
