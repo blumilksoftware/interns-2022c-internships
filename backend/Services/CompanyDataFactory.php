@@ -62,6 +62,8 @@ class CompanyDataFactory extends DataFactory implements SerializableInfo
             "phoneNumber" => new ValidationOptions(),
             "isPaid" => new ValidationOptions(sanitizationFlags: SANITIZE_TO_UPPER | SANITIZE_WHITESPACE_REMOVE),
             "logoFile" => new ValidationOptions(),
+            "socialsFacebook" => new ValidationOptions(),
+            "socialsLinkedIn" => new ValidationOptions(),
         ];
     }
 }
