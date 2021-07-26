@@ -53,6 +53,9 @@ export default {
     searchBar: Search,
     FilterContent: FilterContent,
   },
+  data() {
+    return {};
+  },
   methods: {
     isMobile() {
       if (window.innerHeight > window.innerWidth) {
@@ -113,7 +116,6 @@ export default {
     }
   }
   .buttons {
-    /* align-items: flex-start; */
     height: 50px;
     width: 100%;
   }

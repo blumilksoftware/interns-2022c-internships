@@ -50,6 +50,9 @@ export default {
     CitySelector: CitySelector,
     CourseSelector: CourseSelector,
   },
+  props: {
+    reset: Boolean,
+  },
   data() {
     return {
       isActive: false,
@@ -78,9 +81,18 @@ export default {
           arr.push(tags[i].firstElementChild.innerText);
         }
         tags[i].classList.toggle("highlight");
-        // console.log(arr);
+        //console.log(arr);
       });
     }
+    this.eventBus.on("reset", (reset) => {
+      if (reset) {
+        let high = document.querySelectorAll(".highlight");
+        for (var i = 0; i < high.length; i++) {
+          high[i].classList.toggle("highlight");
+        }
+        arr.length = 0;
+      }
+    });
   },
 };
 </script>
@@ -159,11 +171,11 @@ export default {
         padding: 2px 5px;
         margin: 2px 5px;
         cursor: pointer;
-        -webkit-touch-callout: none; /* iOS Safari */
-        -webkit-user-select: none; /* Safari */
-        -khtml-user-select: none; /* Konqueror HTML */
-        -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
         user-select: none;
       }
       .highlight {
@@ -172,7 +184,6 @@ export default {
       }
     }
     .approveFilters {
-      /* background-color: #dbdbdb; */
       color: #494747;
       font-size: 14px;
       width: 28%;

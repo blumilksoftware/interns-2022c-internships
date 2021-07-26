@@ -1,6 +1,6 @@
 <template>
   <div class="btncontainer">
-    <button class="resetfilters" href="www.the100clth.pl">
+    <button class="resetfilters" @click="resetClick">
       <i class="far fa-eye"></i>
       Zresetuj filtry
     </button>
@@ -11,6 +11,20 @@
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      reset: true,
+    };
+  },
+  methods: {
+    resetClick() {
+      this.eventBus.emit("reset", this.reset);
+    },
+  },
+};
+</script>
 <style lang="scss" scoped>
 .btncontainer {
   display: flex;
