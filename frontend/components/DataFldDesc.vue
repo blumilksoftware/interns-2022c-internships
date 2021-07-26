@@ -10,7 +10,7 @@
     <div class="companyText">
       <span>Nazwa Bardzo Duzej Firmy, w sumie to nawet jeszcze większej</span>
     </div>
-    <div class="course">
+    <div class="course noselect">
       <span class="noselect">Informatyka</span>
     </div>
     <div class="tagsList textContainer noselect">
