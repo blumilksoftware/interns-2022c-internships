@@ -18,7 +18,7 @@ abstract class UniqueCollector implements JsonSerializable
         $this->clearData();
     }
 
-    public function clearData() : void
+    public function clearData(): void
     {
         $this->nextIdToAssign = 0;
         $this->collectedContent = [];
