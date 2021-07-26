@@ -23,7 +23,7 @@ class FilterMainCollector extends MainCollector
 
     public function getCountryCollector(): CountryCollector
     {
-        return $this->collectors[CountryCollector::class];
+            return $this->collectors[CountryCollector::class];
     }
 
     public function getCityCollector(): CityCollector

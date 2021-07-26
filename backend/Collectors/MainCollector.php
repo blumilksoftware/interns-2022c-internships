@@ -9,6 +9,7 @@ use Internships\FileSystem\Path;
 
 abstract class MainCollector
 {
+    /** @var string[] */
     protected array $collectorClassNames;
     protected array $collectors;
     protected string $relativeSavingPath;
@@ -17,26 +18,27 @@ abstract class MainCollector
     protected function __construct(
         protected FileManager $fileManager
     ) {
-        $this->rebuild();
+        $this->collectors = [];
+        foreach ($this->collectorClassNames as $className) {
+            array_push($this->collectors, new $className());
+        }
+
+        $this->collectors = array_combine($this->collectorClassNames, $this->collectors);
     }
 
     public function rebuild(): void
     {
-        $this->collectors = [];
-        $collectorObjects = [];
-        foreach ($this->collectorClassNames as $className) {
-            array_push($collectorObjects, new $className());
+        foreach ($this->collectors as $collector) {
+            $collector->clearData();
         }
-        $this->collectors = array_combine($this->collectorClassNames, $collectorObjects);
     }
 
     public function saveToJson(string $workingDirectory): void
     {
-        $jsonKeys = [];
+        $jsonData = [];
         foreach ($this->collectors as $collector) {
-            array_push($jsonKeys, $collector->getJsonTag());
+            array_push($jsonData, $collector->jsonSerialize());
         }
-        $jsonData = array_combine($jsonKeys, $this->collectors);
 
         $this->fileManager->create(
             relativePath: $workingDirectory . Path::FOLDER_SEPARATOR . $this->relativeSavingPath,
