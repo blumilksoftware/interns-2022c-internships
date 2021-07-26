@@ -68,14 +68,12 @@ class AppGenerator
         $faculties = $this->getDataFromCsv($this->facultyFactory);
 
         $facultyTemplatePaths = $this->fileManager->getResourceFilePathsFrom("{$source}/faculty-directory/");
-        foreach ($faculties as $rowNumber => $faculty) {
-            if ($rowNumber > 0) {
+        foreach ($faculties as $faculty) {
                 $this->fileManager->copyResources(
                     "{$source}/faculty-directory/",
                     $destination . Path::FOLDER_SEPARATOR . $faculty->getDirectory(),
                     $facultyTemplatePaths
                 );
-            }
         }
     }
 }
