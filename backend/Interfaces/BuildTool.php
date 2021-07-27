@@ -15,4 +15,10 @@ interface BuildTool
     public function getModelClassToBuild(): string;
 
     public function setPaths(): void;
+
+    public function processEntry(array $entry): array;
+
+    public function onBuildStart();
+
+    public function onBuildEnd();
 }
