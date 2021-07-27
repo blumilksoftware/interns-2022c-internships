@@ -46,7 +46,7 @@ class AppGenerator
 
     public function saveDataToJson(DataFactory $factory, array $data): void
     {
-        $this->fileManager->create(
+        $this->fileManager->createInApi(
             $factory->getDestinationRelativePath(),
             $factory->getDestinationFileName(),
             json_encode($data, $this->fileManager->getDefaultJsonFlags())
