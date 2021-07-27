@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace Internships\Application;
 
 use Internships\Helpers\OutputWriter;
+use Internships\Services\Geocoder;
 
 class Application
 {
     public function __construct(
         protected AppGenerator $appGenerator,
+        protected Geocoder $geocoder,
     ) {
     }
 
@@ -23,5 +25,11 @@ class Application
     {
         OutputWriter::newLineToConsole("Generating resource files...");
         $this->appGenerator->generateResourceContents();
+    }
+
+    public function fetch(): void
+    {
+        OutputWriter::newLineToConsole("Fetching data...");
+        $this->appGenerator->getMissingCoordinatesForCompanies();
     }
 }

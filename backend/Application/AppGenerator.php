@@ -23,7 +23,7 @@ class AppGenerator
         CompanyDataFactory $companyDataFactory,
     ) {
         $this->subFactories = [
-            $companyDataFactory,
+            "company" => $companyDataFactory,
         ];
     }
 
@@ -76,6 +76,21 @@ class AppGenerator
                     $facultyTemplatePaths
                 );
             }
+        }
+    }
+
+    public function getMissingCoordinatesForCompanies(): void
+    {
+
+        $faculties = $this->getDataFromCsv($this->facultyFactory);
+
+        foreach ($faculties as $faculty) {
+                $companies = $this->csvReader->getCSVData(
+                    resourceRelativePath: "/faculties/{$faculty->getDirectory()}",
+                    fileName: "companies.csv",
+                    fieldDefines: $this->subFactories["company"]->getFields()
+                );
+                echo "v";
         }
     }
 }
