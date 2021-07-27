@@ -123,14 +123,15 @@ class AppGenerator
                     }
                 }
             }
-
-            if ($requiresSave) {
-                $this->csvReader->saveData(
-                    resourceRelativePath: "/faculties/{$faculty->getDirectory()}",
-                    fileName: "companies.csv",
-                    data: $companies
-                );
-            }
+        }
+        if ($requiresSave) {
+            $this->csvReader->saveData(
+                resourceRelativePath: "/faculties/{$faculty->getDirectory()}",
+                fileName: "companies.csv",
+                data: $companies
+            );
+        } else {
+            OutputWriter::newLineToConsole("No coordinates were fetched.");
         }
     }
 }

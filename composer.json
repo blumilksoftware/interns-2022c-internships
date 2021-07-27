@@ -26,6 +26,9 @@
     "populate": [
       "sh -c 'cd backend && php index.php -r'"
     ],
+    "fetch": [
+      "sh -c 'cd backend && php index.php -f'"
+    ],
     "purge": [
       "rm -rf ./public/api",
       "rm -rf ./resources/faculties/*"
