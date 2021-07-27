@@ -7,7 +7,7 @@ namespace Internships\Factories;
 use Internships\Models\FetchAddress;
 use Internships\Models\ValidationOptions;
 
-class FetchAddressFactory extends DataFactory
+class FetchAddressDataFactory extends DataFactory
 {
     public function defineDataFields()
     {

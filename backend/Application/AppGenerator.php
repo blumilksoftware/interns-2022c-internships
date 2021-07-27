@@ -4,14 +4,17 @@ declare(strict_types=1);
 
 namespace Internships\Application;
 
+use Exception;
 use Internships\Factories\CompanyDataFactory;
 use Internships\Factories\DataFactory;
 use Internships\Factories\FacultyDataFactory;
-use Internships\Factories\FetchAddressFactory;
+use Internships\Factories\FetchAddressDataFactory;
 use Internships\FileSystem\FileManager;
 use Internships\FileSystem\Path;
 use Internships\Helpers\OutputWriter;
+use Internships\Models\FetchAddress;
 use Internships\Services\CsvReader;
+use Internships\Services\Geocoder;
 
 class AppGenerator
 {
@@ -21,8 +24,9 @@ class AppGenerator
     public function __construct(
         protected FileManager $fileManager,
         protected CsvReader $csvReader,
+        protected Geocoder $geocoder,
         protected FacultyDataFactory $facultyFactory,
-        protected FetchAddressFactory $fetchAddressFactory,
+        protected FetchAddressDataFactory $fetchAddressFactory,
         CompanyDataFactory $companyDataFactory,
     ) {
         $this->subFactories = [
@@ -84,17 +88,34 @@ class AppGenerator
 
     public function getMissingCoordinatesForCompanies(): void
     {
-
         $faculties = $this->getDataFromCsv($this->facultyFactory);
 
         foreach ($faculties as $faculty) {
-                $companies = $this->csvReader->getCSVData(
-                    resourceRelativePath: "/faculties/{$faculty->getDirectory()}",
-                    fileName: "companies.csv",
-                    fieldDefines: $this->subFactories["company"]->getFields()
-                );
-                $data = $this->fetchAddressFactory->buildFromData($companies);
-                echo "v";
+            $fields = $this->subFactories["company"]->getFields();
+            $companies = $this->csvReader->getCSVData(
+                resourceRelativePath: "/faculties/{$faculty->getDirectory()}",
+                fileName: "companies.csv",
+                fieldDefines: $fields
+            );
+
+            /* @var FetchAddress[] $addresses */
+            $addresses = $this->fetchAddressFactory->buildFromData($companies);
+            foreach ($addresses as $address) {
+                if ($address->getRawCoordinates() == "") {
+                    $csvRow = $address->getId() + 1;
+                    try {
+                        $rawCoordinates = $this->geocoder->coordinatesFromAddress(addressObject: $address);
+                        $companies[$csvRow]["coordinates"] = $rawCoordinates;
+                    } catch (Exception $exception) {
+                        OutputWriter::newLineToConsole($exception->getMessage());
+                        OutputWriter::newLineToConsole(
+                            "Couldn't fetch coordinates for {$companies[$csvRow]["name"]}."
+                            . " Check address or insert coordinates manually."
+                            . " Skipping..."
+                        );
+                    }
+                }
+            }
         }
     }
 }

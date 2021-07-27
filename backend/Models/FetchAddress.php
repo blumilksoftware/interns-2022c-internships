@@ -22,4 +22,34 @@ class FetchAddress
         $this->country = $data["country"];
         $this->zip = $data["zip"];
     }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getRawCoordinates(): string
+    {
+        return $this->rawCoordinates;
+    }
+
+    public function getStreet(): mixed
+    {
+        return $this->street;
+    }
+
+    public function getCity(): mixed
+    {
+        return $this->city;
+    }
+
+    public function getCountry(): mixed
+    {
+        return $this->country;
+    }
+
+    public function getZip(): mixed
+    {
+        return $this->zip;
+    }
 }

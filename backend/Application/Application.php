@@ -5,13 +5,11 @@ declare(strict_types=1);
 namespace Internships\Application;
 
 use Internships\Helpers\OutputWriter;
-use Internships\Services\Geocoder;
 
 class Application
 {
     public function __construct(
         protected AppGenerator $appGenerator,
-        protected Geocoder $geocoder,
     ) {
     }
 

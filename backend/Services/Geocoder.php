@@ -4,6 +4,7 @@
 namespace Internships\Services;
 
 use GuzzleHttp\Client;
+use Internships\Models\FetchAddress;
 
 class Geocoder
 {
@@ -14,8 +15,12 @@ class Geocoder
         $this->mapboxToken = $_ENV['MAPBOX_TOKEN'];
     }
 
-    public function coordinatesFromAddress(string $address = ""): string
+    public function coordinatesFromAddress(string $address = "", FetchAddress $addressObject = null): string
     {
+        if($addressObject){
+            $address = $this->fetchAddressToString($addressObject);
+        }
+
         $api = new Client();
         $addressUrl = urlencode($address);
 
@@ -28,5 +33,12 @@ class Geocoder
         $latitudeFirst = "{$coordinates[1]},{$coordinates[0]}";
 
         return $latitudeFirst;
+    }
+
+    public function fetchAddressToString(FetchAddress $addressObject){
+        return $addressObject->getStreet()
+            . $addressObject->getCity()
+            . $addressObject->getCountry()
+            . $addressObject->getZip();
     }
 }

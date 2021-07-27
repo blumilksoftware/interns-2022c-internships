@@ -39,6 +39,7 @@ class CsvReader
                 if ($rowFieldCount !== $fieldCount) {
                     throw new CsvInvalidCountFileException($fullPath, $currentRow, $fieldCount, $rowFieldCount);
                 }
+                $row = array_combine(array_keys($fieldDefines), $row);
                 array_push($csvRows, $row);
             }
         } finally {
