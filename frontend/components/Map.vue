@@ -36,8 +36,7 @@ export default {
   },
   mixins: [controls],
   mounted() {
-    mapboxgl.accessToken =
-      "pk.eyJ1IjoibHVrYXN6cG9kbGlwc2tpIiwiYSI6ImNrcjNiZzVwdTJqcXEyenFhcHMxYzVjN28ifQ.XWodc1OUd2t_VJoAM2QNpQ";
+    mapboxgl.accessToken = process.env.VUE_APP_MAPBOX_TOKEN;
     this.buildMap();
   },
   data() {
