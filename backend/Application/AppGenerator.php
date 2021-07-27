@@ -7,6 +7,7 @@ namespace Internships\Application;
 use Internships\Factories\CompanyDataFactory;
 use Internships\Factories\DataFactory;
 use Internships\Factories\FacultyDataFactory;
+use Internships\Factories\FetchAddressFactory;
 use Internships\FileSystem\FileManager;
 use Internships\FileSystem\Path;
 use Internships\Helpers\OutputWriter;
@@ -21,6 +22,7 @@ class AppGenerator
         protected FileManager $fileManager,
         protected CsvReader $csvReader,
         protected FacultyDataFactory $facultyFactory,
+        protected FetchAddressFactory $fetchAddressFactory,
         CompanyDataFactory $companyDataFactory,
     ) {
         $this->subFactories = [
@@ -91,6 +93,7 @@ class AppGenerator
                     fileName: "companies.csv",
                     fieldDefines: $this->subFactories["company"]->getFields()
                 );
+                $data = $this->fetchAddressFactory->buildFromData($companies);
                 echo "v";
         }
     }
