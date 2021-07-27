@@ -18,7 +18,7 @@ class SimpleMessageException extends Exception
     protected const IM_A_TEAPOT = 418;
     protected const UNPROCESSABLE_ENTITY = 422;
 
-    protected function __construct(int $code = 0, Throwable $previous = null)
+    public function __construct(int $code = 0, Throwable $previous = null)
     {
         $message = $this->newExceptionMessage();
         parent::__construct($message, $this->getStatusCode(), $previous);

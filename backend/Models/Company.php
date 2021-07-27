@@ -17,6 +17,7 @@ class Company implements JsonSerializable
     protected string $phoneNumber;
     protected string $isPaid;
     protected string $logoFile;
+    protected Socials $socialMedia;
 
     public function __construct(int $id, array $data)
     {
@@ -26,8 +27,8 @@ class Company implements JsonSerializable
             $data["country"],
             $data["coordinates"],
             $data["street"],
-            $data["city"],
-            $data["zip"]
+            $data["zip"],
+            $data["city"]
         );
         $this->filterData = new FilterData($data["specialization"], $data["tags"]);
         $this->website = $data["website"];
@@ -35,6 +36,10 @@ class Company implements JsonSerializable
         $this->phoneNumber = $data["phoneNumber"];
         $this->isPaid = $data["isPaid"];
         $this->logoFile = $data["logoFile"];
+        $this->socialMedia = new Socials(
+            $data["socialsFacebook"],
+            $data["socialsLinkedIn"]
+        );
     }
 
     public function jsonSerialize(): array
@@ -49,6 +54,7 @@ class Company implements JsonSerializable
             "phoneNumber" => $this->phoneNumber,
             "isPaid" => $this->isPaid,
             "logoFile" => $this->logoFile,
+            "socialMedia" => $this->socialMedia,
         ];
     }
 }

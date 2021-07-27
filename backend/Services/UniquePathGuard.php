@@ -8,6 +8,7 @@ use Internships\Exceptions\Path\NotUniquePathException;
 
 class UniquePathGuard
 {
+    /** @var string[] */
     protected array $paths = [];
 
     public function verifyIfUnique(string $newPath): void
