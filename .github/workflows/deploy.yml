@@ -12,9 +12,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.4
 
+      - name: Install and build fronted
+        run: |
+            npm install
+            npm run-script build
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           BRANCH: public
-          FOLDER: public
+          FOLDER: dist
           CLEAN: true
