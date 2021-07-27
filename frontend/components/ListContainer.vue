@@ -98,8 +98,10 @@ export default {
     overflow: scroll;
     overflow-x: hidden;
     justify-items: flex-start;
+    min-width: 500px;
     @media (orientation: portrait) {
       max-height: 65vh;
+      min-width: unset;
     }
     .datafield {
       width: 94%;
