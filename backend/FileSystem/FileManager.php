@@ -83,7 +83,7 @@ class FileManager
         if (!$overwrite && file_exists($fullDestinationPath)) {
             throw new AlreadyExistsPathException($fullDestinationPath);
         }
-        if (file_exists($origin . $filename)) {
+        if (!file_exists($origin . $filename)) {
             throw new NotFoundPathException($origin . $filename);
         }
         if (!copy($origin . $filename, $fullDestinationPath)) {
