@@ -8,18 +8,18 @@ use JsonSerializable;
 
 class FilterData implements JsonSerializable
 {
-    protected string $specialization;
+    protected int $specializationId;
     protected array $tags;
 
-    public function __construct(string $specialization, array $tags)
+    public function __construct(int $specialization, array $tags)
     {
-        $this->specialization = $specialization;
+        $this->specializationId = $specialization;
         $this->tags = $tags;
     }
 
-    public function getSpecialization(): string
+    public function getSpecializationId(): int
     {
-        return $this->specialization;
+        return $this->specializationId;
     }
 
     public function getTags(): array
@@ -30,7 +30,7 @@ class FilterData implements JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            "specialization" => $this->specialization,
+            "specialization" => $this->specializationId,
             "tags" => $this->tags,
         ];
     }

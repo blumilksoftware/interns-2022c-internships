@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Internships\Services;
+namespace Internships\Factories;
 
 use Internships\Models\Faculty;
 use Internships\Models\ValidationOptions;
@@ -29,5 +29,18 @@ class FacultyDataFactory extends DataFactory
             "name" => new ValidationOptions(required: true),
             "directory" => new ValidationOptions(required: true),
         ];
+    }
+
+    public function processEntry(array $entry): array
+    {
+        return $entry;
+    }
+
+    public function onBuildStart(): void
+    {
+    }
+
+    public function onBuildEnd(): void
+    {
     }
 }

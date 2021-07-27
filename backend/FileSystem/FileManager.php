@@ -92,6 +92,9 @@ class FileManager
     }
 
     public function copyResources(
+        /**
+         * @var string[] $filePaths
+         */
         string $relativeOrigin,
         string $relativeDestination,
         array $filePaths,

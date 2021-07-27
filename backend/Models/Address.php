@@ -8,19 +8,19 @@ use JsonSerializable;
 
 class Address implements JsonSerializable
 {
-    protected string $countryLocaleCode;
+    protected int $countryId;
     protected Coordinates $coordinates;
     protected string $street;
     protected string $zip;
-    protected string $cityLocaleCode;
+    protected int $cityId;
 
-    public function __construct(string $country, array $coordinates, string $street, string $zip, string $city)
+    public function __construct(int $country, array $coordinates, string $street, string $zip, int $city)
     {
-        $this->countryLocaleCode = $country;
+        $this->countryId = $country;
         $this->coordinates = new Coordinates($coordinates[0], $coordinates[1]);
         $this->street = $street;
         $this->zip = $zip;
-        $this->cityLocaleCode = $city;
+        $this->cityId = $city;
     }
 
     public function getCoordinates(): Coordinates
@@ -28,14 +28,14 @@ class Address implements JsonSerializable
         return $this->coordinates;
     }
 
-    public function getCountryLocaleCode(): string
+    public function getCountryId(): int
     {
-        return $this->countryLocaleCode;
+        return $this->countryId;
     }
 
-    public function getCityLocaleCode(): string
+    public function getCityId(): int
     {
-        return $this->cityLocaleCode;
+        return $this->cityId;
     }
 
     public function getStreet(): string
@@ -52,8 +52,8 @@ class Address implements JsonSerializable
     {
         return [
             "coordinates" => $this->coordinates,
-            "countryLocaleCode" => $this->countryLocaleCode,
-            "cityLocaleCode" => $this->cityLocaleCode,
+            "countryId" => $this->countryId,
+            "cityId" => $this->cityId,
             "street" => $this->street,
             "zip" => $this->zip,
         ];
