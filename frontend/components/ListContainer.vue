@@ -3,55 +3,55 @@
     <searchBar v-if="!isMobile()" class="searchBar" />
     <FilterContent class="filterBtn" />
     <div v-if="!isMobile()" class="datafields">
-      <DataFieldDT class="datafield" />
-      <DataFieldDT class="datafield" />
-      <DataFieldDT class="datafield" />
-      <DataFieldDT class="datafield" />
-      <DataFieldDT class="datafield" />
-      <DataFieldDT class="datafield" />
-      <DataFieldDT class="datafield" />
-      <DataFieldDT class="datafield" />
-      <DataFieldDT class="datafield" />
-      <DataFieldDT class="datafield" />
-      <DataFieldDT class="datafield" />
-      <DataFieldDT class="datafield" />
-      <DataFieldDT class="datafield" />
-      <DataFieldDT class="datafield" />
-      <DataFieldDT class="datafield" />
+      <DataFieldDesc class="datafield" />
+      <DataFieldDesc class="datafield" />
+      <DataFieldDesc class="datafield" />
+      <DataFieldDesc class="datafield" />
+      <DataFieldDesc class="datafield" />
+      <DataFieldDesc class="datafield" />
+      <DataFieldDesc class="datafield" />
+      <DataFieldDesc class="datafield" />
+      <DataFieldDesc class="datafield" />
+      <DataFieldDesc class="datafield" />
+      <DataFieldDesc class="datafield" />
+      <DataFieldDesc class="datafield" />
+      <DataFieldDesc class="datafield" />
+      <DataFieldDesc class="datafield" />
+      <DataFieldDesc class="datafield" />
     </div>
     <div v-else class="datafields">
-      <DataFieldMB class="datafield" />
-      <DataFieldMB class="datafield" />
-      <DataFieldMB class="datafield" />
-      <DataFieldMB class="datafield" />
-      <DataFieldMB class="datafield" />
-      <DataFieldMB class="datafield" />
-      <DataFieldMB class="datafield" />
-      <DataFieldMB class="datafield" />
-      <DataFieldMB class="datafield" />
-      <DataFieldMB class="datafield" />
-      <DataFieldMB class="datafield" />
-      <DataFieldMB class="datafield" />
-      <DataFieldMB class="datafield" />
+      <DataFieldMobile class="datafield" />
+      <DataFieldMobile class="datafield" />
+      <DataFieldMobile class="datafield" />
+      <DataFieldMobile class="datafield" />
+      <DataFieldMobile class="datafield" />
+      <DataFieldMobile class="datafield" />
+      <DataFieldMobile class="datafield" />
+      <DataFieldMobile class="datafield" />
+      <DataFieldMobile class="datafield" />
+      <DataFieldMobile class="datafield" />
+      <DataFieldMobile class="datafield" />
+      <DataFieldMobile class="datafield" />
+      <DataFieldMobile class="datafield" />
     </div>
     <Buttons class="buttons" />
   </div>
 </template>
 
 <script>
-import Btns from "./Buttons.vue";
-import DtFldDT from "./DataFldDesc.vue";
-import DtFldMB from "./DataFldMobile.vue";
-import Search from "./searchBar.vue";
+import Buttons from "./Buttons.vue";
+import DataFieldDesc from "./DataFldDesc.vue";
+import DataFieldMobile from "./DataFldMobile.vue";
+import SearchBar from "./searchBar.vue";
 import FilterContent from "./FilterContent.vue";
 
 export default {
   components: {
-    Buttons: Btns,
-    DataFieldDT: DtFldDT,
-    DataFieldMB: DtFldMB,
-    searchBar: Search,
-    FilterContent: FilterContent,
+    Buttons,
+    DataFieldDesc,
+    DataFieldMobile,
+    SearchBar,
+    FilterContent,
   },
   data() {
     return {};

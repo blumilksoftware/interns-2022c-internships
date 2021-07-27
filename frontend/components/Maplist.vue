@@ -11,7 +11,7 @@ import ListContainer from "./ListContainer.vue";
 export default {
   components: {
     Map: Map,
-    ListContainer: ListContainer,
+    ListContainer,
   },
 };
 </script>

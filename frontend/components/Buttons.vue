@@ -1,6 +1,6 @@
 <template>
   <div class="btncontainer">
-    <button class="resetfilters" @click="resetClick">
+    <button class="resetfilters" @click="resetButtons">
       <i class="far fa-eye"></i>
       Zresetuj filtry
     </button>
@@ -19,7 +19,7 @@ export default {
     };
   },
   methods: {
-    resetClick() {
+    resetButtons() {
       this.eventBus.emit("reset", this.reset);
     },
   },
