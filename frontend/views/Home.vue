@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import Navi from "../components/Nav.vue";
-import Coop from "../components/Cooperate.vue";
-import Info from "../components/Informations.vue";
-import Files from "../components/Files.vue";
-import Maplist from "../components/Maplist.vue";
+import Navi from "@/components/Nav.vue";
+import Coop from "@/components/Cooperate.vue";
+import Info from "@/components/Informations.vue";
+import Files from "@/components/Files.vue";
+import Maplist from "@/components/Maplist.vue";
 
 export default {
   components: {
