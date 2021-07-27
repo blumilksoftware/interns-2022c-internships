@@ -53,17 +53,4 @@ class FetchAddressDataFactory extends DataFactory
         $this->destinationPath = "";
         $this->destinationName = "companies.csv";
     }
-
-    public function processEntry(array $entry): array
-    {
-        return $entry;
-    }
-
-    public function onBuildStart()
-    {
-    }
-
-    public function onBuildEnd()
-    {
-    }
 }

@@ -89,7 +89,6 @@ class AppGenerator
     public function getMissingCoordinatesForCompanies(): void
     {
         $faculties = $this->getDataFromCsv($this->facultyFactory);
-
         foreach ($faculties as $faculty) {
             $fields = $this->subFactories["company"]->getFields();
             $companies = $this->csvReader->getCSVData(
@@ -100,9 +99,12 @@ class AppGenerator
 
             /* @var FetchAddress[] $addresses */
             $addresses = $this->fetchAddressFactory->buildFromData($companies);
+
             foreach ($addresses as $address) {
                 if ($address->getRawCoordinates() == "") {
                     $csvRow = $address->getId() + 1;
+                    OutputWriter::newLineToConsole("Trying to fetch coordinates for {$companies[$csvRow]["name"]}.");
+
                     try {
                         $rawCoordinates = $this->geocoder->coordinatesFromAddress(addressObject: $address);
                         $companies[$csvRow]["coordinates"] = $rawCoordinates;
