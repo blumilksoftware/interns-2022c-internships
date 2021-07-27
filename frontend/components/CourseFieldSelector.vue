@@ -1,6 +1,6 @@
 <template>
   <div id="courses">
-    <select class="selector" v-model="mychoice" name="Kierunek" id="">
+    <select class="selector" v-model="mychoice" name="Kierunek">
       <option :value="null" disabled hidden>Kierunek</option>
       <option value="Informatyka">Informatyka</option>
       <option value="Grafika">Grafika</option>

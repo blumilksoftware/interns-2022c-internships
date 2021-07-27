@@ -1,12 +1,6 @@
 <template>
   <div id="cities">
-    <select
-      class="selector"
-      v-model="mychoice"
-      name=""
-      id=""
-      placeholder="City"
-    >
+    <select class="selector" v-model="mychoice" placeholder="City">
       <option :value="null" disabled hidden>Miasto</option>
       <option value="Legnica">Legnica</option>
       <option value="Wrocław">Wrocław</option>

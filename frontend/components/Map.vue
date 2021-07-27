@@ -62,8 +62,6 @@ export default {
         style: "mapbox://styles/lukaszpodlipski/ckr3bjz8s0vju18mppy99hag2",
       });
       this.addControls();
-      // this.addSearch()
-      // this.buildMarkers()
     },
   },
 };

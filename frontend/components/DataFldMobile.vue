@@ -25,7 +25,7 @@ export default {
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-template-areas: "companyLogo companyName course";
-  /* text-align: center; */
+
   align-items: center;
   justify-items: center;
   font-size: 14px;
