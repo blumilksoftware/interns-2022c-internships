@@ -81,7 +81,6 @@ export default {
           arr.push(tags[i].firstElementChild.innerText);
         }
         tags[i].classList.toggle("highlight");
-        //console.log(arr);
       });
     }
     this.eventBus.on("reset", (reset) => {
