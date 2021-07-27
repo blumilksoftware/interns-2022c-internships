@@ -17,7 +17,7 @@ $options = getopt("rf");
 
 if (array_key_exists("r", $options)) {
     $application->populate();
-} elseif(array_key_exists("f", $options)) {
+} elseif (array_key_exists("f", $options)) {
     $application->fetch();
 } else {
     $application->build();

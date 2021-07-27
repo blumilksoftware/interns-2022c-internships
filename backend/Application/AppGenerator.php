@@ -13,8 +13,8 @@ use Internships\FileSystem\FileManager;
 use Internships\FileSystem\Path;
 use Internships\Helpers\OutputWriter;
 use Internships\Models\FetchAddress;
+use Internships\Services\CoordinateFetcher;
 use Internships\Services\CsvReader;
-use Internships\Services\Geocoder;
 
 class AppGenerator
 {
@@ -24,7 +24,7 @@ class AppGenerator
     public function __construct(
         protected FileManager $fileManager,
         protected CsvReader $csvReader,
-        protected Geocoder $geocoder,
+        protected CoordinateFetcher $geocoder,
         protected FacultyDataFactory $facultyFactory,
         protected FetchAddressDataFactory $fetchAddressFactory,
         CompanyDataFactory $companyDataFactory,
@@ -97,17 +97,22 @@ class AppGenerator
                 fieldDefines: $fields
             );
 
-            /* @var FetchAddress[] $addresses */
+            /** @var FetchAddress[] $addresses */
             $addresses = $this->fetchAddressFactory->buildFromData($companies);
 
+            $requiresSave = false;
+
             foreach ($addresses as $address) {
-                if ($address->getRawCoordinates() == "") {
+                if ($address->getRawCoordinates() === "") {
                     $csvRow = $address->getId() + 1;
-                    OutputWriter::newLineToConsole("Trying to fetch coordinates for {$companies[$csvRow]["name"]}.");
+                    OutputWriter::newLineToConsole(
+                        text: "Trying to fetch coordinates for {$companies[$csvRow]["name"]}."
+                    );
 
                     try {
                         $rawCoordinates = $this->geocoder->coordinatesFromAddress(addressObject: $address);
                         $companies[$csvRow]["coordinates"] = $rawCoordinates;
+                        $requiresSave = true;
                     } catch (Exception $exception) {
                         OutputWriter::newLineToConsole($exception->getMessage());
                         OutputWriter::newLineToConsole(
@@ -117,6 +122,14 @@ class AppGenerator
                         );
                     }
                 }
+            }
+
+            if ($requiresSave) {
+                $this->csvReader->saveData(
+                    resourceRelativePath: "/faculties/{$faculty->getDirectory()}",
+                    fileName: "companies.csv",
+                    data: $companies
+                );
             }
         }
     }

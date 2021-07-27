@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Internships\Models;
-
 
 class FetchAddress
 {
@@ -33,22 +33,22 @@ class FetchAddress
         return $this->rawCoordinates;
     }
 
-    public function getStreet(): mixed
+    public function getStreet(): string
     {
         return $this->street;
     }
 
-    public function getCity(): mixed
+    public function getCity(): string
     {
         return $this->city;
     }
 
-    public function getCountry(): mixed
+    public function getCountry(): string
     {
         return $this->country;
     }
 
-    public function getZip(): mixed
+    public function getZip(): string
     {
         return $this->zip;
     }

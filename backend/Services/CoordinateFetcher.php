@@ -1,23 +1,24 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Internships\Services;
 
 use GuzzleHttp\Client;
 use Internships\Models\FetchAddress;
 
-class Geocoder
+class CoordinateFetcher
 {
     protected string $mapboxToken;
 
     public function __construct()
     {
-        $this->mapboxToken = $_ENV['MAPBOX_TOKEN'];
+        $this->mapboxToken = $_ENV["MAPBOX_TOKEN"];
     }
 
     public function coordinatesFromAddress(string $address = "", FetchAddress $addressObject = null): string
     {
-        if($addressObject){
+        if ($addressObject) {
             $address = $this->fetchAddressToString($addressObject);
         }
 
@@ -35,7 +36,8 @@ class Geocoder
         return $latitudeFirst;
     }
 
-    public function fetchAddressToString(FetchAddress $addressObject){
+    public function fetchAddressToString(FetchAddress $addressObject)
+    {
         return $addressObject->getStreet()
             . $addressObject->getCity()
             . $addressObject->getCountry()

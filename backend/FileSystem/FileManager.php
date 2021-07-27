@@ -29,16 +29,12 @@ class FileManager
         return $this->jsonPrintFlags;
     }
 
-    protected function create(string $fullPath, mixed $content = ""){
-        $this->pathGuard->verifyIfUnique($fullPath);
-        file_put_contents(
-            filename: $fullPath,
-            data: $content
-        );
-    }
-
-    public function createInApi(string $relativePath, string $filename = "", mixed $content = "", bool $noFile = false): void
-    {
+    public function createInApi(
+        string $relativePath,
+        string $filename = "",
+        mixed $content = "",
+        bool $noFile = false
+    ): void {
         $path = $this->directoryManager->getApiFilePath($relativePath, $filename);
         if ($noFile && $filename === "") {
             throw new NoNameFileException($path);
@@ -47,8 +43,12 @@ class FileManager
         $this->create($path, $content);
     }
 
-    public function createInResources(string $relativePath, string $filename = "", mixed $content = "", bool $noFile = false): void
-    {
+    public function createInResources(
+        string $relativePath,
+        string $filename = "",
+        mixed $content = "",
+        bool $noFile = false
+    ): void {
         $path = $this->directoryManager->getResourceFilePath($relativePath, $filename);
         if ($noFile && $filename === "") {
             throw new NoNameFileException($path);
@@ -152,5 +152,14 @@ class FileManager
             }
         }
         return $filePaths;
+    }
+
+    protected function create(string $fullPath, mixed $content = ""): void
+    {
+        $this->pathGuard->verifyIfUnique($fullPath);
+        file_put_contents(
+            filename: $fullPath,
+            data: $content
+        );
     }
 }

@@ -1,15 +1,15 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Internships\Factories;
-
 
 use Internships\Models\FetchAddress;
 use Internships\Models\ValidationOptions;
 
 class FetchAddressDataFactory extends DataFactory
 {
-    public function defineDataFields()
+    public function defineDataFields(): void
     {
         $this->fields = [
             "name" => new ValidationOptions(required: true),
