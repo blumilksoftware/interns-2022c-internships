@@ -103,24 +103,26 @@ class AppGenerator
             $requiresSave = false;
 
             foreach ($addresses as $address) {
-                if ($address->getRawCoordinates() === "") {
-                    $csvRow = $address->getId() + 1;
-                    OutputWriter::newLineToConsole(
-                        text: "Trying to fetch coordinates for {$companies[$csvRow]["name"]}."
-                    );
+                if ($address->getRawCoordinates() !== "") {
+                    continue;
+                }
 
-                    try {
-                        $rawCoordinates = $this->geocoder->coordinatesFromAddress(addressObject: $address);
-                        $companies[$csvRow]["coordinates"] = $rawCoordinates;
-                        $requiresSave = true;
-                    } catch (Exception $exception) {
-                        OutputWriter::newLineToConsole($exception->getMessage());
-                        OutputWriter::newLineToConsole(
-                            "Couldn't fetch coordinates for {$companies[$csvRow]["name"]}."
-                            . " Check address or insert coordinates manually."
-                            . " Skipping..."
-                        );
-                    }
+                $csvRow = $address->getId() + 1;
+                OutputWriter::newLineToConsole(
+                    text: "Trying to fetch coordinates for {$companies[$csvRow]["name"]}."
+                );
+
+                try {
+                    $rawCoordinates = $this->geocoder->coordinatesFromAddress(addressObject: $address);
+                    $companies[$csvRow]["coordinates"] = $rawCoordinates;
+                    $requiresSave = true;
+                } catch (Exception $exception) {
+                    OutputWriter::newLineToConsole($exception->getMessage());
+                    OutputWriter::newLineToConsole(
+                        "Couldn't fetch coordinates for {$companies[$csvRow]["name"]}."
+                        . " Check address or insert coordinates manually."
+                        . " Skipping..."
+                    );
                 }
             }
         }
