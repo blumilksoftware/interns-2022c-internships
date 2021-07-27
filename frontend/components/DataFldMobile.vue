@@ -53,7 +53,7 @@ export default {
   }
   .course {
     background: #4e9dd7;
-
+    padding: 0 10px;
     grid-area: course;
     display: flex;
     height: 100%;

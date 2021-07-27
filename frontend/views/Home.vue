@@ -53,6 +53,9 @@ export default {
     max-width: 700px;
     margin: 50px auto 100px auto;
     padding: 0 5%;
+    @media (min-width: 2500px) {
+      max-width: 1400px;
+    }
   }
 }
 </style>
@@ -68,7 +71,7 @@ a,
 p,
 i,
 img {
-  --webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .noselect {

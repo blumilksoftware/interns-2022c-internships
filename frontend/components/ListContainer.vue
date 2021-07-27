@@ -89,7 +89,7 @@ export default {
     margin: 0 auto 20px auto;
 
     @media (orientation: portrait) {
-      margin-top: 15px;
+      margin-top: 25px;
     }
   }
 
@@ -102,14 +102,15 @@ export default {
       max-height: 65vh;
     }
     .datafield {
-      width: 98%;
+      width: 94%;
       background: #eaedf0;
-      margin: 12px 5px;
+      // margin: 12px 5px;
       border-radius: 5px;
       -webkit-box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.1);
       -moz-box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.1);
       box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.1);
       cursor: pointer;
+      margin: 12px auto;
     }
     .datafield:nth-child(odd) {
       background: #f7f7f8;
