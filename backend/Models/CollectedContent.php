@@ -20,6 +20,11 @@ class CollectedContent implements JsonSerializable
         $this->collectedName = $collectedName;
     }
 
+    public function pushMatchId(int $id): void
+    {
+        array_push($this->matchIds, $id);
+    }
+
     public function getID(): int
     {
         return $this->id;
