@@ -12,6 +12,7 @@ class ValidationOptions
     protected int $minArrayCount;
     protected int $maxArrayCount;
     protected int $maxDecimals;
+    protected int $expectedArrayCount;
 
     public function __construct(
         bool $required = false,
@@ -19,7 +20,8 @@ class ValidationOptions
         string $arraySeparator = "",
         int $minArrayCount = 0,
         int $maxArrayCount = 0,
-        int $maxDecimals = -1,
+        int $expectedArrayCount = -1,
+        int $maxDecimals = -1
     ) {
         $this->required = $required;
         $this->flags = $sanitizationFlags;
@@ -27,6 +29,7 @@ class ValidationOptions
         $this->maxDecimals = $maxDecimals;
         $this->minArrayCount = $minArrayCount;
         $this->maxArrayCount = $maxArrayCount;
+        $this->expectedArrayCount = $expectedArrayCount;
     }
 
     public function isRequired(): bool
@@ -57,5 +60,10 @@ class ValidationOptions
     public function getMaxArrayCount(): int
     {
         return $this->maxArrayCount;
+    }
+
+    public function getExpectedArrayCount(): int
+    {
+        return $this->expectedArrayCount;
     }
 }

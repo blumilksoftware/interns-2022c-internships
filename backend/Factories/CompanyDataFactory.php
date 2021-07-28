@@ -49,8 +49,7 @@ class CompanyDataFactory extends DataFactory implements SerializableInfo
                 sanitizationFlags: SANITIZE_WHITESPACE_REMOVE,
                 arraySeparator: ",",
                 maxDecimals: 6,
-                minArrayCount: 2,
-                maxArrayCount: 2
+                expectedArrayCount: 2
             ),
             "street" => new ValidationOptions(required: true),
             "zip" => new ValidationOptions(required: true),

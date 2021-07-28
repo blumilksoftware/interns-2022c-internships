@@ -40,6 +40,11 @@ class DataValidator
 
             $minArrayCount = $fieldValidationOptions->getMinArrayCount();
             $maxArrayCount = $fieldValidationOptions->getMaxArrayCount();
+            $expectedCount = $fieldValidationOptions->getExpectedArrayCount();
+            if($expectedCount > -1){
+                $minArrayCount = $maxArrayCount = $expectedCount;
+            }
+
             if ($minArrayCount > 0 || $maxArrayCount > 0) {
                 if (!is_array($sanitizedVal)) {
                     throw new NotAnArrayValidationException($entryID, $fieldName);
