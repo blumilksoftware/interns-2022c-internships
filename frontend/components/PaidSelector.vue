@@ -22,7 +22,6 @@ export default {
 
     btn2Click(e) {
       e.preventDefault();
-
       document.querySelector(".btn2").classList.add("activeBtnYes");
       document.querySelector(".buttons").classList.remove("bgColorRed");
       document.querySelector(".buttons").classList.add("bgColorGreen");

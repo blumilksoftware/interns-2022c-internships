@@ -5,8 +5,8 @@
   </div>
 </template>
 <script>
-import Map from "./Map.vue";
-import ListContainer from "./ListContainer.vue";
+import Map from "./Map";
+import ListContainer from "./ListContainer";
 
 export default {
   components: {
@@ -34,6 +34,7 @@ export default {
   }
   .listcontainer {
     grid-area: listcontainer;
+    background-color: rgb(243, 246, 248);
   }
   .map {
     grid-area: map;

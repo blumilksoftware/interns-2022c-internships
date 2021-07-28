@@ -40,8 +40,8 @@
   </div>
 </template>
 <script>
-import PaidSelector from "./PaidSelector.vue";
-import CitySelector from "./CityFieldSelector.vue";
+import PaidSelector from "./PaidSelector";
+import CitySelector from "./CityFieldSelector";
 import CourseSelector from "./CourseFieldSelector";
 
 export default {
@@ -112,6 +112,7 @@ export default {
     border: 2px solid #d4d4d4;
     display: none;
     flex-direction: column;
+    background-color: white;
 
     .headfields {
       width: 95%;
