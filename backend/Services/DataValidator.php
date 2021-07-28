@@ -41,7 +41,7 @@ class DataValidator
             $minArrayCount = $fieldValidationOptions->getMinArrayCount();
             $maxArrayCount = $fieldValidationOptions->getMaxArrayCount();
             $expectedCount = $fieldValidationOptions->getExpectedArrayCount();
-            if($expectedCount > -1){
+            if ($expectedCount > -1) {
                 $minArrayCount = $maxArrayCount = $expectedCount;
             }
 

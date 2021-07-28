@@ -28,7 +28,7 @@ class InvalidRangeValidationException extends ValidationException
     protected function newExceptionMessage(): string
     {
         return "Field {$this->fieldName} in ID:{$this->entryID} has invalid number of elements: {$this->receivedCount}."
-                       ." Expected range from {$this->minCount} to {$this->maxCount}";
+                       . " Expected range from {$this->minCount} to {$this->maxCount}";
     }
 
     protected function getStatusCode(): int
