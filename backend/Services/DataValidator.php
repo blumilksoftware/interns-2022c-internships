@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Internships\Services;
 
-use Internships\Exceptions\Validation\InvalidCountValidationException;
+use Internships\Exceptions\Validation\InvalidRangeValidationException;
 use Internships\Exceptions\Validation\IsMissingAfterValidationException;
 use Internships\Exceptions\Validation\IsMissingValidationException;
 use Internships\Exceptions\Validation\NotAnArrayValidationException;
@@ -48,7 +48,7 @@ class DataValidator
                 $elementCount = count($sanitizedVal);
                 if ($elementCount < $minArrayCount
                     || ($elementCount > $maxArrayCount && $maxArrayCount > 0)) {
-                    throw new InvalidCountValidationException(
+                    throw new InvalidRangeValidationException(
                         $entryID,
                         $fieldName,
                         $minArrayCount,

@@ -6,7 +6,7 @@ namespace Internships\Exceptions\Validation;
 
 use Throwable;
 
-class InvalidCountValidationException extends ValidationException
+class InvalidRangeValidationException extends ValidationException
 {
     public function __construct(
         int $entryID,
