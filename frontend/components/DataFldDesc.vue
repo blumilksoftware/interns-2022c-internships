@@ -3,7 +3,7 @@
     <div class="companyIcon">
       <img
         class="imgIcon"
-        src="../assets/blumilklogo.png"
+        src="../assets/images/blumilklogo.png"
         alt="Company Logo Icon"
       />
     </div>
@@ -18,7 +18,7 @@
     </div>
     <div class="city"><span>Legnica</span></div>
     <div class="payInfo">
-      <img src="../assets/paidicon.svg" alt="paidicon" />
+      <img src="../assets/images/paidicon.svg" alt="paidicon" />
     </div>
   </div>
 </template>

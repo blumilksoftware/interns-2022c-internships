@@ -39,11 +39,11 @@
 </template>
 
 <script>
-import Buttons from "./Buttons.vue";
-import DataFieldDesc from "./DataFldDesc.vue";
-import DataFieldMobile from "./DataFldMobile.vue";
-import SearchBar from "./searchBar.vue";
-import FilterContent from "./FilterContent.vue";
+import Buttons from "@/components/Buttons";
+import DataFieldDesc from "@/components/DataFldDesc";
+import DataFieldMobile from "@/components/DataFldMobile";
+import SearchBar from "@/components/searchBar";
+import FilterContent from "@/components/FilterContent";
 
 export default {
   components: {

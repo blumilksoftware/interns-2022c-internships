@@ -33,19 +33,11 @@ export default {
     btn1Click(e) {
       e.preventDefault();
       this.paidActive = false;
-      // document.querySelector(".btn1").classList.add("activeBtnNo");
-      // document.querySelector(".buttons").classList.add("bgColorRed");
-      // document.querySelector(".btn2").classList.remove("activeBtnYes");
     },
 
     btn2Click(e) {
       e.preventDefault();
       this.paidActive = true;
-
-      // document.querySelector(".btn2").classList.add("activeBtnYes");
-      // document.querySelector(".buttons").classList.remove("bgColorRed");
-      // document.querySelector(".buttons").classList.add("bgColorGreen");
-      // document.querySelector(".btn1").classList.remove("activeBtnNo");
     },
   },
 };
