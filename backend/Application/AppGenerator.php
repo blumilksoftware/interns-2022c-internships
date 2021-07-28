@@ -58,7 +58,6 @@ class AppGenerator
     public function generateStaticData(): void
     {
         /** @var Faculty[] $faculties */
-
         $faculties = $this->getDataFromCsv($this->facultyFactory);
         $this->saveDataToJson($this->facultyFactory, $faculties);
         try {
@@ -81,11 +80,10 @@ class AppGenerator
 
     public function generateResourceContents(): void
     {
-        /** @var Faculty[] $faculties */
-
         $source = "/templates/";
         $destination = "/faculties/";
 
+        /** @var Faculty[] $faculties */
         $faculties = $this->getDataFromCsv($this->facultyFactory);
 
         $facultyTemplatePaths = $this->fileManager->getResourceFilePathsFrom("{$source}/faculty-directory/");
@@ -102,12 +100,10 @@ class AppGenerator
 
     public function getMissingCoordinatesForCompanies(): void
     {
-        /** @var FetchAddress[] $addresses */
-        /** @var Faculty[] $faculties */
-
         $basePath = "/faculties/";
         $sourceFilename = "companies.csv";
 
+        /** @var Faculty[] $faculties */
         $faculties = $this->getDataFromCsv($this->facultyFactory);
         foreach ($faculties as $faculty) {
             $fields = $this->subFactories["company"]->getFields();
@@ -117,6 +113,7 @@ class AppGenerator
                 fieldDefines: $fields
             );
 
+            /** @var FetchAddress[] $addresses */
             $addresses = $this->fetchAddressFactory->buildFromData($companies);
             $requiresSave = false;
 
