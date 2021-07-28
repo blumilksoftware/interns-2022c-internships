@@ -2,59 +2,39 @@
   <div class="wrapper">
     <searchBar v-if="!isMobile()" class="searchBar" />
     <FilterContent class="filterBtn" />
-    <div v-if="!isMobile()" class="datafields">
-      <DataFieldDesc class="datafield" />
-      <DataFieldDesc class="datafield" />
-      <DataFieldDesc class="datafield" />
-      <DataFieldDesc class="datafield" />
-      <DataFieldDesc class="datafield" />
-      <DataFieldDesc class="datafield" />
-      <DataFieldDesc class="datafield" />
-      <DataFieldDesc class="datafield" />
-      <DataFieldDesc class="datafield" />
-      <DataFieldDesc class="datafield" />
-      <DataFieldDesc class="datafield" />
-      <DataFieldDesc class="datafield" />
-      <DataFieldDesc class="datafield" />
-      <DataFieldDesc class="datafield" />
-      <DataFieldDesc class="datafield" />
-    </div>
-    <div v-else class="datafields">
-      <DataFieldMobile class="datafield" />
-      <DataFieldMobile class="datafield" />
-      <DataFieldMobile class="datafield" />
-      <DataFieldMobile class="datafield" />
-      <DataFieldMobile class="datafield" />
-      <DataFieldMobile class="datafield" />
-      <DataFieldMobile class="datafield" />
-      <DataFieldMobile class="datafield" />
-      <DataFieldMobile class="datafield" />
-      <DataFieldMobile class="datafield" />
-      <DataFieldMobile class="datafield" />
-      <DataFieldMobile class="datafield" />
-      <DataFieldMobile class="datafield" />
+    <div class="datafields">
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
+      <DataField class="datafield" />
     </div>
     <Buttons class="buttons" />
   </div>
 </template>
 
 <script>
-import Buttons from "./Buttons.vue";
-import DataFieldDesc from "./DataFldDesc.vue";
-import DataFieldMobile from "./DataFldMobile.vue";
-import SearchBar from "./searchBar.vue";
-import FilterContent from "./FilterContent.vue";
+import Buttons from "./Buttons";
+import DataField from "./DataField";
+import SearchBar from "./searchBar";
+import FilterContent from "./FilterContent";
 
 export default {
   components: {
     Buttons,
-    DataFieldDesc,
-    DataFieldMobile,
+    DataField,
     SearchBar,
     FilterContent,
-  },
-  data() {
-    return {};
   },
   methods: {
     isMobile() {
@@ -105,8 +85,7 @@ export default {
     }
     .datafield {
       width: 94%;
-      background: #eaedf0;
-      // margin: 12px 5px;
+      background: white;
       border-radius: 5px;
       -webkit-box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.1);
       -moz-box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.1);
@@ -114,8 +93,22 @@ export default {
       cursor: pointer;
       margin: 12px auto;
     }
-    .datafield:nth-child(odd) {
-      background: #f7f7f8;
+    // .datafield:nth-child(odd) {
+    //   background: #f7f7f8;
+    // }
+    &::-webkit-scrollbar {
+      background-color: #fff;
+      width: 12px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #babac0;
+      border-radius: 16px;
+      border: 3px solid #fff;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #a0a0a5;
+      border: 2px solid #f4f4f4;
     }
   }
   .buttons {
