@@ -8,11 +8,14 @@ use JsonSerializable;
 
 class CollectedContent implements JsonSerializable
 {
+    /** @var int[] */
+    protected array $matchIds;
     protected int $id;
     protected string $collectedName;
 
     public function __construct(int $id, string $collectedName)
     {
+        $this->matchIds = [];
         $this->id = $id;
         $this->collectedName = $collectedName;
     }
@@ -32,6 +35,7 @@ class CollectedContent implements JsonSerializable
         return [
             "id" => $this->id,
             "name" => $this->collectedName,
+            "matchIds" => $this->matchIds,
         ];
     }
 }
