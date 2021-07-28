@@ -25,7 +25,7 @@
 
 <script>
 import Buttons from "@/components/Buttons";
-import DataField from "@/components/Datafield";
+import DataField from "@/components/DataField";
 import SearchBar from "@/components/searchBar";
 import FilterContent from "@/components/FilterContent";
 
