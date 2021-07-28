@@ -1,9 +1,20 @@
 <template>
   <div class="wrapper">
-    <div class="buttons noselect">
-      <button v-on:click="btn1Click" class="default btn1 activeBtnNo noselect">
+    <div
+      class="buttons noselect"
+      :class="[{ bgColorIndigo: !paidActive }, { bgColorGreen: paidActive }]"
+    >
+      <button
+        v-on:click="btn1Click"
+        class="defaultClass btn1 noselect"
+        :class="{ activeBtnNo: !paidActive }"
+      >
         BEZPŁATNE</button
-      ><button v-on:click="btn2Click" class="default btn2 noselect">
+      ><button
+        v-on:click="btn2Click"
+        class="defaultClass btn2 noselect"
+        :class="{ activeBtnYes: paidActive }"
+      >
         PŁATNE
       </button>
     </div>
@@ -12,20 +23,21 @@
 
 <script>
 export default {
+  data() {
+    return {
+      paidActive: false,
+    };
+  },
+
   methods: {
     btn1Click(e) {
       e.preventDefault();
-      document.querySelector(".btn1").classList.add("activeBtnNo");
-      document.querySelector(".buttons").classList.add("bgColorRed");
-      document.querySelector(".btn2").classList.remove("activeBtnYes");
+      this.paidActive = false;
     },
 
     btn2Click(e) {
       e.preventDefault();
-      document.querySelector(".btn2").classList.add("activeBtnYes");
-      document.querySelector(".buttons").classList.remove("bgColorRed");
-      document.querySelector(".buttons").classList.add("bgColorGreen");
-      document.querySelector(".btn1").classList.remove("activeBtnNo");
+      this.paidActive = true;
     },
   },
 };
@@ -46,7 +58,7 @@ export default {
     display: flex;
     align-items: center;
 
-    .default {
+    .defaultClass {
       width: 50%;
       height: 30px;
       background: none;
@@ -80,7 +92,7 @@ export default {
   .bgColorGreen {
     background: #abe19e;
   }
-  .bgColorRed {
+  .bgColorIndigo {
     background: #4f46e5;
   }
 }

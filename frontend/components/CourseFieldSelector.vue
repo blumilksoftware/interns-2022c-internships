@@ -14,7 +14,7 @@ export default {
   el: "#courses",
   data() {
     return {
-      mychoice: null,
+      myChoice: null,
     };
   },
   methods: {},

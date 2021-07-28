@@ -24,10 +24,10 @@
 </template>
 
 <script>
-import Buttons from "./Buttons";
-import DataField from "./DataField";
-import SearchBar from "./searchBar";
-import FilterContent from "./FilterContent";
+import Buttons from "@/components/Buttons";
+import DataField from "@/components/Datafield";
+import SearchBar from "@/components/searchBar";
+import FilterContent from "@/components/FilterContent";
 
 export default {
   components: {

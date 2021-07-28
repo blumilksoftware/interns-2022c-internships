@@ -87,8 +87,8 @@
               <div class="aspect-w-12 aspect-h-7 lg:aspect-none">
                 <img
                   class="rounded-lg shadow-lg object-cover object-center"
-                  src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80"
-                  alt="Whitney leaning against a railing on a downtown street"
+                  src="../assets/images/info.jpg"
+                  alt="Informational meeting"
                   width="1184"
                   height="1376"
                 />

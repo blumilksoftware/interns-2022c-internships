@@ -11,24 +11,9 @@
         # Wybierz najważniejszą technologię z tagów
       </p>
       <div class="tagsContainer noselect">
-        <div class="tag"><span>React</span></div>
-        <div class="tag"><span>JS</span></div>
-        <div class="tag"><span>Android</span></div>
-        <div class="tag"><span>PHP</span></div>
-        <div class="tag"><span>HTML/CSS</span></div>
-        <div class="tag"><span>Data Analytics</span></div>
-        <div class="tag"><span>C++</span></div>
-        <div class="tag"><span>Python</span></div>
-        <div class="tag"><span>Game Dev</span></div>
-        <div class="tag"><span>Ruby</span></div>
-        <div class="tag"><span>Java</span></div>
-        <div class="tag"><span>.Net</span></div>
-        <div class="tag"><span>Scala</span></div>
-        <div class="tag"><span>Mobile</span></div>
-        <div class="tag"><span>Testing</span></div>
-        <div class="tag"><span>DevOps</span></div>
-        <div class="tag"><span>Security</span></div>
-        <div class="tag"><span>Scala</span></div>
+        <div class="tag" v-for="tag in tags.tags" :key="tag.name">
+          <span>{{ tag.name }} </span>
+        </div>
       </div>
       <button v-on:click="dropdown" class="approveFilters">
         Zatwierdź filtry
@@ -40,9 +25,10 @@
   </div>
 </template>
 <script>
-import PaidSelector from "./PaidSelector";
-import CitySelector from "./CityFieldSelector";
-import CourseSelector from "./CourseFieldSelector";
+import PaidSelector from "@/components/PaidSelector";
+import CitySelector from "@/components/CityFieldSelector";
+import CourseSelector from "@/components/CourseFieldSelector";
+import tags from "../../resources/templates/testTags.json";
 
 export default {
   components: {
@@ -56,6 +42,7 @@ export default {
   data() {
     return {
       isActive: false,
+      tags,
     };
   },
 

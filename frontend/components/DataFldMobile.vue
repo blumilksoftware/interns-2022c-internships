@@ -1,7 +1,7 @@
 <template>
   <div class="fieldContainer">
     <div class="companyIcon">
-      <img class="imgIcon" src="../assets/blumilklogo.png" alt="" />
+      <img class="imgIcon" src="../assets/images/blumilklogo.png" alt="" />
     </div>
     <span class="companyName">Nazwa Bardzo Duzej Firmy</span>
     <div class="course noselect">
