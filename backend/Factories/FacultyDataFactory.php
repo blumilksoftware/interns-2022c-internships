@@ -31,7 +31,7 @@ class FacultyDataFactory extends DataFactory
         ];
     }
 
-    public function processEntry(array $entry): array
+    public function processEntry(int $entryId, array $entry): array
     {
         return $entry;
     }
