@@ -30,7 +30,8 @@ class CoordinateFetcher
             . "&limit=1";
 
         $response = $api->get($url);
-        $coordinates = json_decode($response->getBody()->getContents(), true)["features"][0]["geometry"]["coordinates"];
+        $content = json_decode($response->getBody()->getContents(), true);
+        $coordinates = $content["features"][0]["geometry"]["coordinates"];
         $latitudeFirst = "{$coordinates[1]},{$coordinates[0]}";
 
         return $latitudeFirst;

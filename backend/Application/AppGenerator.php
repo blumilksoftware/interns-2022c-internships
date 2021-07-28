@@ -126,6 +126,7 @@ class AppGenerator
                 }
             }
         }
+
         if ($requiresSave) {
             $this->csvReader->saveData(
                 resourceRelativePath: "/faculties/{$faculty->getDirectory()}",
