@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import Navi from "@/components/Nav.vue";
-import Coop from "@/components/Cooperate.vue";
-import Info from "@/components/Informations.vue";
+import Nav from "@/components/Nav.vue";
+import Cooperate from "@/components/Cooperate.vue";
+import Informations from "@/components/Informations.vue";
 import Files from "@/components/Files.vue";
 import Maplist from "@/components/Maplist.vue";
 
