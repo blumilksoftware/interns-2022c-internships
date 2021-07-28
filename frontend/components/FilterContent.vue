@@ -25,9 +25,9 @@
   </div>
 </template>
 <script>
-import PaidSelector from "./PaidSelector.vue";
-import CitySelector from "./CityFieldSelector.vue";
-import CourseSelector from "./CourseFieldSelector";
+import PaidSelector from "@/components/PaidSelector";
+import CitySelector from "@/components/CityFieldSelector";
+import CourseSelector from "@/components/CourseFieldSelector";
 import tags from "../../resources/templates/testTags.json";
 
 export default {
