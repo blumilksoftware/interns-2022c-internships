@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Internships\Services;
 
+use Exception;
 use GuzzleHttp\Client;
+use Internships\Helpers\OutputWriter;
 use Internships\Models\FetchAddress;
 
 class CoordinateFetcher
@@ -16,7 +18,7 @@ class CoordinateFetcher
         $this->mapboxToken = $_ENV["MAPBOX_TOKEN"];
     }
 
-    public function coordinatesFromAddress(string $address = "", FetchAddress $addressObject = null): string
+    public function coordinatesFromAddress(string &$currentCoordinates, string $address = "", FetchAddress $addressObject = null): bool
     {
         if ($addressObject) {
             $address = $this->fetchAddressToString($addressObject);
@@ -29,12 +31,19 @@ class CoordinateFetcher
             . "?access_token={$this->mapboxToken}"
             . "&limit=1";
 
-        $response = $api->get($url);
-        $content = json_decode($response->getBody()->getContents(), true);
-        $coordinates = $content["features"][0]["geometry"]["coordinates"];
-        $latitudeFirst = "{$coordinates[1]},{$coordinates[0]}";
+        try {
+            $response = $api->get($url);
+            $content = json_decode($response->getBody()->getContents(), true);
+            $coordinates = $content["features"][0]["geometry"]["coordinates"];
+        } catch (Exception $e) {
+            OutputWriter::newLineToConsole($e->getMessage());
+            OutputWriter::newLineToConsole("Could not fetch coordinates for location {$address}."
+            . "Check address or insert coordinates manually.");
+            return false;
+        }
 
-        return $latitudeFirst;
+        $currentCoordinates = "{$coordinates[1]},{$coordinates[0]}";
+        return true;
     }
 
     public function fetchAddressToString(FetchAddress $addressObject)

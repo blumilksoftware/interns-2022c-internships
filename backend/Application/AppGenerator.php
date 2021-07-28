@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Internships\Application;
 
-use Exception;
 use Internships\Exceptions\Validation\IsMissingValidationException;
 use Internships\Factories\CompanyDataFactory;
 use Internships\Factories\DataFactory;
@@ -127,18 +126,10 @@ class AppGenerator
                     text: "Trying to fetch coordinates for {$companies[$csvRow]["name"]}."
                 );
 
-                try {
-                    $rawCoordinates = $this->geocoder->coordinatesFromAddress(addressObject: $address);
-                    $companies[$csvRow]["coordinates"] = $rawCoordinates;
-                    $requiresSave = true;
-                } catch (Exception $exception) {
-                    OutputWriter::newLineToConsole($exception->getMessage());
-                    OutputWriter::newLineToConsole(
-                        "Couldn't fetch coordinates for {$companies[$csvRow]["name"]}."
-                        . " Check address or insert coordinates manually."
-                        . " Skipping..."
-                    );
-                }
+                $requiresSave = $requiresSave | $this->geocoder->coordinatesFromAddress(
+                    currentCoordinates: $companies[$csvRow]["coordinates"],
+                    addressObject: $address
+                );
             }
 
             if ($requiresSave) {
