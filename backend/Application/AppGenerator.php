@@ -57,6 +57,8 @@ class AppGenerator
 
     public function generateStaticData(): void
     {
+        /** @var Faculty[] $faculties */
+
         $faculties = $this->getDataFromCsv($this->facultyFactory);
         $this->saveDataToJson($this->facultyFactory, $faculties);
         try {
@@ -79,6 +81,8 @@ class AppGenerator
 
     public function generateResourceContents(): void
     {
+        /** @var Faculty[] $faculties */
+
         $source = "/templates/";
         $destination = "/faculties/";
 
