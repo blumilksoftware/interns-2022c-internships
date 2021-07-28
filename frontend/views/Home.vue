@@ -17,11 +17,11 @@ import Maplist from "@/components/Maplist.vue";
 
 export default {
   components: {
-    Nav: Navi,
-    Cooperate: Coop,
-    Informations: Info,
-    Files: Files,
-    Maplist: Maplist,
+    Nav,
+    Cooperate,
+    Informations,
+    Files,
+    Maplist,
   },
 };
 </script>

@@ -46,9 +46,9 @@ import CourseSelector from "./CourseFieldSelector";
 
 export default {
   components: {
-    PaidSelector: PaidSelector,
-    CitySelector: CitySelector,
-    CourseSelector: CourseSelector,
+    PaidSelector,
+    CitySelector,
+    CourseSelector,
   },
   props: {
     reset: Boolean,
@@ -83,7 +83,7 @@ export default {
         tags[i].classList.toggle("highlight");
       });
     }
-    this.eventBus.on("reset", (reset) => {
+    this.eventBus.on("reset", function (reset) {
       if (reset) {
         let high = document.querySelectorAll(".highlight");
         for (var i = 0; i < high.length; i++) {

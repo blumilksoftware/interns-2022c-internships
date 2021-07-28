@@ -261,15 +261,16 @@
 
 <script></script>
 
-<style>
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
-.logo {
-  font-family: Poppins;
-  font-size: 24px;
-  font-weight: 700;
-}
-
-.maxheight {
-  height: 50vh;
+<style lang="scss" scoped>
+.wrapper {
+  height: 100vh;
+  .sections {
+    height: 50%;
+    .logo {
+      font-family: Poppins;
+      font-size: 24px;
+      font-weight: 700;
+    }
+  }
 }
 </style>

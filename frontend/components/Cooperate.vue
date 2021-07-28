@@ -47,7 +47,7 @@
 export default {
   data() {
     return {
-      email: "wspolpraca@znajdzpraktyki.pl",
+      email: "wspolpraca@example.pl",
     };
   },
 };
