@@ -18,6 +18,11 @@ class ValidationException extends SimpleMessageException
         parent::__construct($code, $previous);
     }
 
+    public function getFieldName(): string
+    {
+        return $this->fieldName;
+    }
+
     protected function newExceptionMessage(): string
     {
         return "There was trouble validating {$this->fieldName} field in ID:{$this->entryID}";

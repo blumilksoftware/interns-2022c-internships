@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Internships\Application;
 
 use Exception;
+use Internships\Exceptions\Validation\IsMissingValidationException;
 use Internships\Factories\CompanyDataFactory;
 use Internships\Factories\DataFactory;
 use Internships\Factories\FacultyDataFactory;
@@ -12,6 +13,7 @@ use Internships\Factories\FetchAddressDataFactory;
 use Internships\FileSystem\FileManager;
 use Internships\FileSystem\Path;
 use Internships\Helpers\OutputWriter;
+use Internships\Models\Faculty;
 use Internships\Models\FetchAddress;
 use Internships\Services\CoordinateFetcher;
 use Internships\Services\CsvReader;
@@ -57,13 +59,21 @@ class AppGenerator
     {
         $faculties = $this->getDataFromCsv($this->facultyFactory);
         $this->saveDataToJson($this->facultyFactory, $faculties);
-        foreach ($faculties as $faculty) {
-            foreach ($this->subFactories as $subFactory) {
-                OutputWriter::newLineToConsole("Processing {$faculty->getDirectory()}");
-                $subFactory->setDirectory("/faculties/{$faculty->getDirectory()}");
-                $data = $this->getDataFromCsv($subFactory);
-                $this->saveDataToJson($subFactory, $data);
+        try {
+            foreach ($faculties as $faculty) {
+                foreach ($this->subFactories as $subFactory) {
+                    OutputWriter::newLineToConsole("Processing {$faculty->getDirectory()}");
+                    $subFactory->setDirectory("/faculties/{$faculty->getDirectory()}");
+                    $data = $this->getDataFromCsv($subFactory);
+                    $this->saveDataToJson($subFactory, $data);
+                }
             }
+        } catch (IsMissingValidationException $exception) {
+            OutputWriter::newLineToConsole($exception->getMessage());
+            if ($exception->getFieldName() === "coordinates") {
+                OutputWriter::newLineToConsole("Consider using 'composer fetch' to get missing entries.");
+            }
+            die();
         }
     }
 
@@ -88,18 +98,22 @@ class AppGenerator
 
     public function getMissingCoordinatesForCompanies(): void
     {
+        /** @var FetchAddress[] $addresses */
+        /** @var Faculty[] $faculties */
+
+        $basePath = "/faculties/";
+        $sourceFilename = "companies.csv";
+
         $faculties = $this->getDataFromCsv($this->facultyFactory);
         foreach ($faculties as $faculty) {
             $fields = $this->subFactories["company"]->getFields();
             $companies = $this->csvReader->getCSVData(
-                resourceRelativePath: "/faculties/{$faculty->getDirectory()}",
-                fileName: "companies.csv",
+                resourceRelativePath: $basePath . $faculty->getDirectory(),
+                fileName: $sourceFilename,
                 fieldDefines: $fields
             );
 
-            /** @var FetchAddress[] $addresses */
             $addresses = $this->fetchAddressFactory->buildFromData($companies);
-
             $requiresSave = false;
 
             foreach ($addresses as $address) {
@@ -125,16 +139,17 @@ class AppGenerator
                     );
                 }
             }
-        }
 
-        if ($requiresSave) {
-            $this->csvReader->saveData(
-                resourceRelativePath: "/faculties/{$faculty->getDirectory()}",
-                fileName: "companies.csv",
-                data: $companies
-            );
-        } else {
-            OutputWriter::newLineToConsole("No coordinates were fetched.");
+            if ($requiresSave) {
+                OutputWriter::newLineToConsole("Saving {$sourceFilename} for faculty {$faculty->getName()}.");
+                $this->csvReader->saveData(
+                    resourceRelativePath: $basePath . $faculty->getDirectory(),
+                    fileName: $sourceFilename,
+                    data: $companies
+                );
+            } else {
+                OutputWriter::newLineToConsole("No coordinates were fetched for faculty {$faculty->getName()}.");
+            }
         }
     }
 }
