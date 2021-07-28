@@ -37,14 +37,24 @@ class DataValidator
             if ($fieldValidationOptions->isRequired() && ($fieldValue === null || $fieldValue === "")) {
                 throw new IsMissingAfterValidationException($entryID, $fieldName);
             }
-            $expectedCount = $fieldValidationOptions->getExpectedCount();
-            if ($expectedCount >= 0) {
+
+            $minArrayCount = $fieldValidationOptions->getMinArrayCount();
+            $maxArrayCount = $fieldValidationOptions->getMaxArrayCount();
+            if ($minArrayCount > 0 || $maxArrayCount > 0) {
                 if (!is_array($sanitizedVal)) {
                     throw new NotAnArrayValidationException($entryID, $fieldName);
                 }
+
                 $elementCount = count($sanitizedVal);
-                if ($elementCount !== $expectedCount) {
-                    throw new InvalidCountValidationException($entryID, $fieldName, $expectedCount, $elementCount);
+                if ($elementCount < $minArrayCount
+                    || ($elementCount > $maxArrayCount && $maxArrayCount > 0)) {
+                    throw new InvalidCountValidationException(
+                        $entryID,
+                        $fieldName,
+                        $minArrayCount,
+                        $maxArrayCount,
+                        $elementCount
+                    );
                 }
             }
             return $sanitizedVal;
