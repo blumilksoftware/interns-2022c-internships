@@ -15,13 +15,15 @@ class CoordinateFetcher
 
     public function __construct(
         protected Client $api
-    )
-    {
+    ) {
         $this->mapboxToken = $_ENV["MAPBOX_TOKEN"];
     }
 
-    public function coordinatesFromAddress(string &$currentCoordinates, string $address = "", FetchAddress $addressObject = null): bool
-    {
+    public function coordinatesFromAddress(
+        string &$currentCoordinates,
+        string $address = "",
+        FetchAddress $addressObject = null
+    ): bool {
         if ($addressObject) {
             $address = $this->fetchAddressToString($addressObject);
         }
@@ -38,8 +40,10 @@ class CoordinateFetcher
             $coordinates = $content["features"][0]["geometry"]["coordinates"];
         } catch (Exception $e) {
             OutputWriter::newLineToConsole($e->getMessage());
-            OutputWriter::newLineToConsole("Could not fetch coordinates for location {$address}."
-            . "Check address or insert coordinates manually.");
+            OutputWriter::newLineToConsole(
+                "Could not fetch coordinates for location {$address}."
+                . "Check address or insert coordinates manually."
+            );
             return false;
         }
 
@@ -49,9 +53,14 @@ class CoordinateFetcher
 
     public function fetchAddressToString(FetchAddress $addressObject): string
     {
-        return implode(",", [$addressObject->getStreet(),
-            $addressObject->getCity(),
-            $addressObject->getCountry(),
-            $addressObject->getZip()]);
+        return implode(
+            separator: ",",
+            array: [
+                $addressObject->getStreet(),
+                $addressObject->getCity(),
+                $addressObject->getCountry(),
+                $addressObject->getZip(),
+            ]
+        );
     }
 }
