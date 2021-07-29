@@ -47,6 +47,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/styles/_variables";
+
 .fieldContainer {
   display: grid;
   grid-template-columns: 0.9fr 2fr 1.1fr 1.9fr;
@@ -63,7 +65,7 @@ export default {
   .companyIcon {
     grid-area: companyIcon;
     border-radius: 50%;
-    border: 2px solid grey;
+    border: 2px solid $darkGreyColor;
     height: 45px;
     width: 45px;
 
@@ -127,7 +129,7 @@ export default {
       display: flex;
       align-items: center;
       font-size: 12px;
-      color: #6a6a6a;
+      color: $darkGreyColor;
     }
 
     div img {
@@ -146,7 +148,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   .tag {
-    border: 1px solid #6a6a6a;
+    border: 1px solid $darkGreyColor;
     border-radius: 30px;
     padding: 0px 8px;
     margin: 5px 3px;

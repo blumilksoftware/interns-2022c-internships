@@ -1,6 +1,6 @@
 <template>
   <div id="cities">
-    <select class="selector" v-model="myChoice" placeholder="City">
+    <select class="selector" v-model="selectedCity" placeholder="City">
       <option :value="null" disabled hidden>Miasto</option>
       <option value="Legnica">Legnica</option>
       <option value="Wrocław">Wrocław</option>
@@ -13,15 +13,18 @@
 export default {
   data() {
     return {
-      myChoice: null,
+      selectedCity: null,
     };
   },
 };
 </script>
 
-<style scoped>
-@media (orientation: portrait) {
-  .selector {
+<style lang="scss" scoped>
+@import "../assets/styles/_variables";
+
+.selector {
+  border-color: $darkGreyColor;
+  @media (orientation: portrait) {
     width: 100%;
   }
 }

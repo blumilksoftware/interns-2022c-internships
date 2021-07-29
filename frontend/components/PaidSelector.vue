@@ -44,6 +44,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/styles/_variables";
+
 .wrapper {
   display: flex;
   flex-direction: row;
@@ -53,7 +55,7 @@ export default {
     width: 100%;
     box-sizing: content-box;
     border-radius: 10px;
-    background: #4f46e5;
+    background: $mainBlue;
     height: 42px;
     display: flex;
     align-items: center;
@@ -64,7 +66,7 @@ export default {
       background: none;
       border-radius: 6px;
       font-size: 9px;
-      color: white;
+      color: $white;
       transition: 0.1s ease-in;
     }
 
@@ -79,21 +81,21 @@ export default {
       margin-right: 5px;
     }
     .activeBtnNo {
-      background: white;
-      color: #4f46e5;
+      background: $white;
+      color: $mainBlue;
     }
 
     .activeBtnYes {
-      background: white;
-      color: #abe19e;
+      background: $white;
+      color: $softGreen;
     }
   }
 
   .bgColorGreen {
-    background: #abe19e;
+    background: $softGreen;
   }
   .bgColorIndigo {
-    background: #4f46e5;
+    background: $mainBlue;
   }
 }
 </style>

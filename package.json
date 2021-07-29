@@ -28,6 +28,7 @@
     "mitt": "^3.0.0",
     "pdfvuer": "^1.8.3",
     "postcss": "^7.0.36",
+    "sass-resources-loader": "^2.2.3",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.4",
     "vue": "^3.1.5",
     "vue-mapbox": "^0.4.1",
@@ -48,11 +49,13 @@
     "eslint": "^7.31.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-vue": "^7.14.0",
+    "fibers": "^5.0.0",
     "lint-staged": "^11.0.1",
     "node-sass": "^6.0.1",
     "prettier": "^2.3.2",
-    "sass": "^1.35.2",
+    "sass": "^1.36.0",
     "sass-loader": "^10.2.0",
+    "style-resources-loader": "^1.4.1",
     "vue-cli-plugin-tailwind": "~2.0.6",
     "webpack": "^4.46.0"
   },
@@ -61,6 +64,4 @@
     "last 2 versions",
     "not dead"
   ]
-  
-  
 }

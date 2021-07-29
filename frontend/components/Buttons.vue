@@ -26,22 +26,24 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "../assets/styles/_variables";
+
 .btncontainer {
   display: flex;
   flex-direction: row;
   align-items: stretch;
 
   .resetfilters {
-    background: #4f46e5;
+    background: $mainBlue;
     &:active {
-      background-color: #6761da;
+      background-color: $mainBlueActive;
     }
   }
 
   .saveasfile {
-    background: #8da0d3;
+    background: $softBlue;
     &:active {
-      background: #94a2ce;
+      background: $softBlueActive;
     }
   }
   .resetfilters,
@@ -50,10 +52,10 @@ export default {
     width: 100%;
     display: block;
     font-size: 16px;
-    color: white;
+    color: $white;
 
     & > * {
-      color: white;
+      color: $white;
     }
     & > i {
       padding-right: 15px;
