@@ -4,7 +4,7 @@
       <div class="companyIcon noselect">
         <img
           class="imgIcon"
-          src="../assets/blumilklogo.png"
+          src="../assets/images/blumilklogo.png"
           alt="Company Logo Icon"
         />
       </div>
@@ -16,12 +16,12 @@
       </div>
       <div class="companyInfo noselect">
         <div class="city">
-          <img src="../assets/locationIcon.svg" alt="paidicon" /><span
+          <img src="../assets/icons/locationIcon.svg" alt="locationicon" /><span
             >Legnica</span
           >
         </div>
         <div class="payInfo">
-          <img src="../assets/dollarIcon.svg" alt="paidicon" />
+          <img src="../assets/icons/dollarIcon.svg" alt="paidicon" />
           <span>Płatne</span>
         </div>
       </div>
