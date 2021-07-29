@@ -49,9 +49,9 @@ abstract class DataFactory implements BuildTool, SerializableInfo
 
     public function getSourceRelativePath(): string
     {
-        return $this->sourcePath
+        return $this->workingDirectory
             . Path::FOLDER_SEPARATOR
-            . $this->workingDirectory;
+            . $this->sourcePath;
     }
 
     public function getSourceFileName(): string
@@ -68,9 +68,9 @@ abstract class DataFactory implements BuildTool, SerializableInfo
 
     public function getDestinationRelativePath(): string
     {
-        return $this->destinationPath
+        return $this->workingDirectory
             . Path::FOLDER_SEPARATOR
-            . $this->workingDirectory;
+            . $this->destinationPath;
     }
 
     public function getDestinationFileName(): string
@@ -98,9 +98,9 @@ abstract class DataFactory implements BuildTool, SerializableInfo
         foreach ($csvData as $rowNumber => $rowData) {
             if ($rowNumber > 0) {
                 $entry = array_combine(array_keys($this->fields), array_values($rowData));
-                $jsonID = $rowNumber - 1;
-                $preparedEntry = $this->processEntry($this->validate($jsonID, $entry));
-                $modelObject = new $modelName($jsonID, $preparedEntry);
+                $jsonId = $rowNumber - 1;
+                $preparedEntry = $this->processEntry($jsonId, $this->validate($jsonId, $entry));
+                $modelObject = new $modelName($jsonId, $preparedEntry);
                 array_push($dataObjects, $modelObject);
             }
         }
@@ -108,7 +108,7 @@ abstract class DataFactory implements BuildTool, SerializableInfo
         return $dataObjects;
     }
 
-    public function processEntry(array $entry): array
+    public function processEntry(int $entryId, array $entry): array
     {
         return $entry;
     }

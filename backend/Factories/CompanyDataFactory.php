@@ -78,21 +78,22 @@ class CompanyDataFactory extends DataFactory implements SerializableInfo
         ];
     }
 
-    public function processEntry(array $entry): array
+    public function processEntry(int $entryId, array $entry): array
     {
-        $entry["country"] = $this->filterCollector->getCountryCollector()->collectAndGetID($entry["country"]);
-        $entry["city"] = $this->filterCollector->getCityCollector()->collectAndGetID($entry["city"]);
+        $entry["country"] = $this->filterCollector->getCountryCollector()->collectAndGetID($entry["country"], $entryId);
+        $entry["city"] = $this->filterCollector->getCityCollector()->collectAndGetID($entry["city"], $entryId);
 
         $entry["specialization"] = $this->filterCollector->getSpecializationCollector()->collectAndGetID(
-            $entry["specialization"]
+            $entry["specialization"],
+            $entryId
         );
 
-        $tagIDs = [];
+        $tagIds = [];
         $tagCollector = $this->filterCollector->getTagCollector();
         foreach ($entry["tags"] as $tag) {
-            array_push($tagIDs, $tagCollector->collectAndGetID($tag));
+            array_push($tagIds, $tagCollector->collectAndGetID($tag, $entryId));
         }
-        $entry["tags"] = array_unique($tagIDs, SORT_NUMERIC);
+        $entry["tags"] = array_unique($tagIds, SORT_NUMERIC);
 
         return $entry;
     }

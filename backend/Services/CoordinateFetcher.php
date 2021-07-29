@@ -13,7 +13,9 @@ class CoordinateFetcher
 {
     protected string $mapboxToken;
 
-    public function __construct(protected Client $api)
+    public function __construct(
+        protected Client $api
+    )
     {
         $this->mapboxToken = $_ENV["MAPBOX_TOKEN"];
     }

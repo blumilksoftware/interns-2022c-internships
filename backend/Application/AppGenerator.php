@@ -7,6 +7,7 @@ namespace Internships\Application;
 use Internships\Exceptions\Validation\IsMissingValidationException;
 use Internships\Factories\CompanyDataFactory;
 use Internships\Factories\DataFactory;
+use Internships\Factories\DocumentConfigFactory;
 use Internships\Factories\FacultyDataFactory;
 use Internships\Factories\FetchAddressDataFactory;
 use Internships\FileSystem\FileManager;
@@ -29,9 +30,11 @@ class AppGenerator
         protected FacultyDataFactory $facultyFactory,
         protected FetchAddressDataFactory $fetchAddressFactory,
         CompanyDataFactory $companyDataFactory,
+        DocumentConfigFactory $documentConfigFactory,
     ) {
         $this->subFactories = [
             "company" => $companyDataFactory,
+            "document" => $documentConfigFactory,
         ];
     }
 

@@ -24,15 +24,18 @@ abstract class UniqueCollector implements JsonSerializable
         $this->collectedContent = [];
     }
 
-    public function collectAndGetID(string $content): int
+    public function collectAndGetID(string $content, int $matchId): int
     {
         foreach ($this->collectedContent as $collected) {
             if ($collected->getCollectedName() === $content) {
+                $collected->pushMatchId($matchId);
                 return $collected->getID();
             }
         }
         $newId = $this->nextIdToAssign++;
-        array_push($this->collectedContent, new CollectedContent($newId, $content));
+        $collectedItem = new CollectedContent($newId, $content);
+        $collectedItem->pushMatchId($matchId);
+        array_push($this->collectedContent, $collectedItem);
         return $newId;
     }
 
