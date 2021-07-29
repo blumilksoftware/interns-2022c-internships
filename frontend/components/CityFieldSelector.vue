@@ -2,9 +2,8 @@
   <div id="cities">
     <select class="selector" v-model="myChoice" placeholder="City">
       <option :value="null" disabled hidden>Miasto</option>
-      <option value="Legnica">Legnica</option>
-      <option value="Wrocław">Wrocław</option>
-      <option value="Bogatynia">Bogatynia</option>
+      <option v-for="city in cities" :key="city">{{ city.name }}</option>
+      >
     </select>
   </div>
 </template>
@@ -14,6 +13,17 @@ export default {
   data() {
     return {
       myChoice: null,
+      cities: [
+        {
+          name: "Wrocław",
+        },
+        {
+          name: "Legnica",
+        },
+        {
+          name: "Lubin",
+        },
+      ],
     };
   },
 };
