@@ -27,7 +27,7 @@ abstract class UniqueCollector implements JsonSerializable
         $this->collectedContent = [];
     }
 
-    public function collectAndGetID(string $content, int $matchId): int
+    public function collectAndGetId(string $content, int $matchId): int
     {
         foreach ($this->collectedContent as $collected) {
             if ($collected->getCollectedName() === $content) {
