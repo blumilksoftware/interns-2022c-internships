@@ -49,8 +49,8 @@ class CoordinateFetcher
     public function fetchAddressToString(FetchAddress $addressObject)
     {
         return $addressObject->getStreet()
-            . $addressObject->getCity()
-            . $addressObject->getCountry()
-            . $addressObject->getZip();
+            . "," . $addressObject->getCity()
+            . "," . $addressObject->getCountry()
+            . "," . $addressObject->getZip();
     }
 }
