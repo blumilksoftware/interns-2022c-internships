@@ -65,7 +65,7 @@ class DataSanitizer
                     array_push($trimmedArray, $item);
                 }
             }
-            return $trimmedArray;
+            return array_filter($trimmedArray);
         }
         return $value;
     }
