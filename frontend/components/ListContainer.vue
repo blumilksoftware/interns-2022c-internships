@@ -93,9 +93,7 @@ export default {
       cursor: pointer;
       margin: 12px auto;
     }
-    // .datafield:nth-child(odd) {
-    //   background: #f7f7f8;
-    // }
+
     &::-webkit-scrollbar {
       background-color: rgb(243, 246, 248);
       width: 12px;
