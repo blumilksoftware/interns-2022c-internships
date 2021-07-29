@@ -16,7 +16,7 @@ interface BuildTool
 
     public function setPaths(): void;
 
-    public function processEntry(array $entry): array;
+    public function processEntry(int $entryId, array $entry): array;
 
     public function onBuildStart();
 

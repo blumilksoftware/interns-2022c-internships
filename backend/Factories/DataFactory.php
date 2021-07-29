@@ -98,9 +98,9 @@ abstract class DataFactory implements BuildTool, SerializableInfo
         foreach ($csvData as $rowNumber => $rowData) {
             if ($rowNumber > 0) {
                 $entry = array_combine(array_keys($this->fields), array_values($rowData));
-                $jsonID = $rowNumber - 1;
-                $preparedEntry = $this->processEntry($this->validate($jsonID, $entry));
-                $modelObject = new $modelName($jsonID, $preparedEntry);
+                $jsonId = $rowNumber - 1;
+                $preparedEntry = $this->processEntry($jsonId, $this->validate($jsonId, $entry));
+                $modelObject = new $modelName($jsonId, $preparedEntry);
                 array_push($dataObjects, $modelObject);
             }
         }
