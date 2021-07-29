@@ -145,7 +145,7 @@ export default {
 }
 .tagsContainer {
   width: 100%;
-  margin: 5px 10px 10px 15px;
+  margin: 5px 10px 10px 20px;
   padding-bottom: 5px;
   display: flex;
   flex-wrap: wrap;

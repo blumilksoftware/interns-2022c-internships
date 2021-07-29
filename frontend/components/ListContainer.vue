@@ -66,7 +66,7 @@ export default {
   .filterBtn {
     height: auto;
     width: 90%;
-    margin: 0 auto 20px auto;
+    margin: 10px auto 20px auto;
 
     @media (orientation: portrait) {
       margin-top: 25px;
@@ -97,14 +97,14 @@ export default {
     //   background: #f7f7f8;
     // }
     &::-webkit-scrollbar {
-      background-color: #fff;
+      background-color: rgb(243, 246, 248);
       width: 12px;
     }
 
     &::-webkit-scrollbar-thumb {
       background-color: #babac0;
       border-radius: 16px;
-      border: 3px solid #fff;
+      border: 3px solid rgb(243, 246, 248);
     }
     &::-webkit-scrollbar-thumb:hover {
       background-color: #a0a0a5;
