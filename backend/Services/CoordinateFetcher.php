@@ -47,11 +47,11 @@ class CoordinateFetcher
         return true;
     }
 
-    public function fetchAddressToString(FetchAddress $addressObject)
+    public function fetchAddressToString(FetchAddress $addressObject): string
     {
-        return $addressObject->getStreet()
-            . "," . $addressObject->getCity()
-            . "," . $addressObject->getCountry()
-            . "," . $addressObject->getZip();
+        return implode(",", [$addressObject->getStreet(),
+            $addressObject->getCity(),
+            $addressObject->getCountry(),
+            $addressObject->getZip()]);
     }
 }
