@@ -37,15 +37,11 @@
   </div>
 </template>
 <script>
+import { isMobile } from "../functions/functions.js";
+
 export default {
   methods: {
-    isMobile() {
-      if (window.innerHeight > window.innerWidth) {
-        return true;
-      } else {
-        return false;
-      }
-    },
+    isMobile,
   },
 };
 </script>

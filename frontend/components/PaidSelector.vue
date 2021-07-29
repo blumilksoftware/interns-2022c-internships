@@ -5,14 +5,14 @@
       :class="[{ bgColorIndigo: !paidActive }, { bgColorGreen: paidActive }]"
     >
       <button
-        v-on:click="btn1Click"
-        class="defaultClass btn1 noselect"
+        v-on:click="buttonUnpaid"
+        class="defaultClass btnUnpaid noselect"
         :class="{ activeBtnNo: !paidActive }"
       >
         BEZPŁATNE</button
       ><button
-        v-on:click="btn2Click"
-        class="defaultClass btn2 noselect"
+        v-on:click="buttonPaid"
+        class="defaultClass btnPaid noselect"
         :class="{ activeBtnYes: paidActive }"
       >
         PŁATNE
@@ -30,12 +30,12 @@ export default {
   },
 
   methods: {
-    btn1Click(e) {
+    buttonUnpaid(e) {
       e.preventDefault();
       this.paidActive = false;
     },
 
-    btn2Click(e) {
+    buttonPaid(e) {
       e.preventDefault();
       this.paidActive = true;
     },
@@ -68,12 +68,12 @@ export default {
       transition: 0.1s ease-in;
     }
 
-    .btn1 {
+    .btnUnpaid {
       border: none;
       height: 30px;
       margin-left: 5px;
     }
-    .btn2 {
+    .btnPaid {
       border: none;
       height: 30px;
       margin-right: 5px;
