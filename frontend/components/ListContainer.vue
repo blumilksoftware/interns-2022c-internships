@@ -28,6 +28,7 @@ import Buttons from "@/components/Buttons";
 import DataField from "@/components/DataField";
 import SearchBar from "@/components/searchBar";
 import FilterContent from "@/components/FilterContent";
+import { isMobile } from "../functions/functions.js";
 
 export default {
   components: {
@@ -37,13 +38,7 @@ export default {
     FilterContent,
   },
   methods: {
-    isMobile() {
-      if (window.innerHeight > window.innerWidth) {
-        return true;
-      } else {
-        return false;
-      }
-    },
+    isMobile,
   },
 };
 </script>
