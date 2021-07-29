@@ -1,5 +1,5 @@
 "Nazwa firmy","Kod","Koordynaty","Ulica","ZIP","Miejscowosc","Kierunek","Tagi","Strona","Email","Telefon","Platne","Logo","Facebook","LinkedIn"
-"Blumilk sp. z o.o.","Polska","51.208726,16.163720","Najświętszej Marii Panny 5F/5","59-220","Legnica","Informatyka","Programowanie, Web, PHP, Laravel, Vue","https://www.blumilk.pl/","hello@blumilk.pl",,"Nie","foo.png","blumilksoftware","blumilksoftware"
+"Blumilk sp. z o.o.","Polska","51.208726,16.163720","Najświętszej Marii Panny 5F/5","59-220","Legnica","Informatyka","Programowanie, Web, PHP, Laravel","https://www.blumilk.pl/","hello@blumilk.pl",,"Nie","foo.png","blumilksoftware","blumilksoftware"
 "PGE Elektrownia Turów Spółka Akcyjna","Polska","50.945669,14.908110","Młodych Energetyków 12","59-916","Bogatynia","Informatyka","IT","https://elturow.pgegiek.pl/"," elektrowniaturow.giekelt@gkpge.pl","75 773 49 00","Nie",,,
 "Zakład Energetyki Cieplnej Sp. z o.o.","Polska","51.264569,15.589230","Gałczyńskiego 51","59-700","Bolesławiec","Informatyka","IT","https://www.zec.boleslawiec.pl/","sekretariat@zec.boleslawiec.pl","75 732 08 43","Nie",,,
 "Ensila Sp. z o.o.","Polska","51.264297,15.569040","Ogrodowa 6","59-700","Bolesławiec","Informatyka","IT","https://readyconstruct.eu","office@readyconstruct.eu","730 699 100","Nie",,,
@@ -44,9 +44,9 @@
 "CCC Factory Sp. z o.o.","Polska","51.494255,16.051220","Strefowa 9","59-100","Polkowice","Informatyka","IT","http://www.ccc.eu","sekretariat@cccfactory.pl","76 843 31 00","Nie",,,
 "Hemiz-Bis Sp. z o.o.","Polska","51.282335,16.360940","Sienkiewicza 27","59-230","Prochowice","Informatyka","IT",,"pkoczyszczalnia@wp.pl","76 858 48 99","Nie",,,
 "Vivena-Natura Sp. z o.o.","Polska","51.266009,16.382390","Wrocławska 68","59-230","Prochowice","Informatyka","IT","https://vivena.pl/","biuro@vivena.pl","601 094 836","Nie",,,
-"FINGO Sp. z o.o.","Polska","51.091071,17.015310","Plac Powstańców Śląskich 7","53-329","Wrocław","Informatyka","Web, Java, PHP, .NET, Docker","https://www.fingo.pl/","biuro@fingo.pl","71 332 99 60","Nie",,,
-"Tmsolution Sp z o.o.","Polska","51.109574,17.036790","Wita Stwosza 16","11-400","Wrocław","Grafika","Reklama","https://tmsolution.pl/","biuro@tmsolution.pl","71 60 60 920","Nie",,,
-"AUCH Studio","Polska","51.125582,16.969830","Bulwar Ikara 28","54-129","Wrocław","Grafika","Reklama","https://auchstudio.pl/",,"717 845 011","Nie",,,
+"FINGO Sp. z o.o.","Polska","51.091071,17.015310","Plac Powstańców Śląskich 7","53-329","Wrocław","Informatyka","Web, Java, PHP, .NET","https://www.fingo.pl/","biuro@fingo.pl","71 332 99 60","Nie",,,
+"Tmsolution Sp z o.o.","Polska","51.109574,17.036790","Wita Stwosza 16","11-400","Wrocław","Informatyka","Reklama","https://tmsolution.pl/","biuro@tmsolution.pl","71 60 60 920","Nie",,,
+"AUCH Studio","Polska","51.125582,16.969830","Bulwar Ikara 28","54-129","Wrocław","Informatyka","Reklama","https://auchstudio.pl/",,"717 845 011","Nie",,,
 "InsERT S.A.","Polska","51.125255,16.912720","Jerzmanowska 2","54-519","Wrocław","Informatyka","Programowanie, C++, .NET","https://www.insert.com.pl/index.html",,"71 787 61 00","Nie",,,
 "ADVATECH Sp. z o.o.","Polska","51.106054,16.971170","Wrocławski Park Technologiczny-Budynek Alfa, Klecińska 123","54-413","Wrocław","Informatyka","IT","https://www.advatech.pl/","info@advatech.pl","71 772 66 00","Nie",,,
 "Etteplan Poland Sp. z o.o.","Polska","51.116657,16.996810","Legnicka 48g","54-202","Wrocław","Informatyka","IT","https://www.etteplan.com/pl/kontakt","maciej.sibinski@etteplan.com","668 181 511","Nie",,,

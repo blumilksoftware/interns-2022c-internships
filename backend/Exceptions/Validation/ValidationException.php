@@ -10,7 +10,7 @@ use Throwable;
 class ValidationException extends SimpleMessageException
 {
     public function __construct(
-        protected int $entryID,
+        protected int $entryId,
         protected string $fieldName,
         int $code = 0,
         Throwable $previous = null
@@ -20,7 +20,7 @@ class ValidationException extends SimpleMessageException
 
     protected function newExceptionMessage(): string
     {
-        return "There was trouble validating {$this->fieldName} field in ID:{$this->entryID}";
+        return "There was trouble validating {$this->fieldName} field in ID:{$this->entryId}";
     }
 
     protected function getStatusCode(): int

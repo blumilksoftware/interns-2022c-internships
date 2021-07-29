@@ -6,18 +6,19 @@ namespace Internships\Exceptions\Validation;
 
 use Throwable;
 
-class InvalidCountValidationException extends ValidationException
+class InvalidRangeValidationException extends ValidationException
 {
     public function __construct(
-        int $entryID,
+        int $entryId,
         string $fieldName,
-        protected int $expectedCount,
+        protected int $minCount,
+        protected int $maxCount,
         protected int $receivedCount,
         int $code = 0,
         Throwable $previous = null
     ) {
         parent::__construct(
-            $entryID,
+            $entryId,
             $fieldName,
             $code,
             $previous
@@ -26,8 +27,8 @@ class InvalidCountValidationException extends ValidationException
 
     protected function newExceptionMessage(): string
     {
-        return "Field {$this->fieldName} in ID:{$this->entryID} has invalid number of elements: {$this->receivedCount}.
-                       Expected {$this->expectedCount}.";
+        return "Field {$this->fieldName} in ID:{$this->entryId} has invalid number of elements: {$this->receivedCount}."
+                       . " Expected range from {$this->minCount} to {$this->maxCount}";
     }
 
     protected function getStatusCode(): int

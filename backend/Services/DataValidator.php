@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Internships\Services;
 
-use Internships\Exceptions\Validation\InvalidCountValidationException;
+use Internships\Exceptions\Validation\InvalidRangeValidationException;
 use Internships\Exceptions\Validation\IsMissingAfterValidationException;
 use Internships\Exceptions\Validation\IsMissingValidationException;
 use Internships\Exceptions\Validation\NotAnArrayValidationException;
@@ -37,14 +37,29 @@ class DataValidator
             if ($fieldValidationOptions->isRequired() && ($fieldValue === null || $fieldValue === "")) {
                 throw new IsMissingAfterValidationException($entryID, $fieldName);
             }
-            $expectedCount = $fieldValidationOptions->getExpectedCount();
-            if ($expectedCount >= 0) {
+
+            $minArrayCount = $fieldValidationOptions->getMinArrayCount();
+            $maxArrayCount = $fieldValidationOptions->getMaxArrayCount();
+            $expectedCount = $fieldValidationOptions->getExpectedArrayCount();
+            if ($expectedCount > -1) {
+                $minArrayCount = $maxArrayCount = $expectedCount;
+            }
+
+            if ($minArrayCount > 0 || $maxArrayCount > 0) {
                 if (!is_array($sanitizedVal)) {
                     throw new NotAnArrayValidationException($entryID, $fieldName);
                 }
+
                 $elementCount = count($sanitizedVal);
-                if ($elementCount !== $expectedCount) {
-                    throw new InvalidCountValidationException($entryID, $fieldName, $expectedCount, $elementCount);
+                if ($elementCount < $minArrayCount
+                    || ($elementCount > $maxArrayCount && $maxArrayCount > 0)) {
+                    throw new InvalidRangeValidationException(
+                        $entryID,
+                        $fieldName,
+                        $minArrayCount,
+                        $maxArrayCount,
+                        $elementCount
+                    );
                 }
             }
             return $sanitizedVal;
