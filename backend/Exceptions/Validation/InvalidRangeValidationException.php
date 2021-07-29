@@ -9,7 +9,7 @@ use Throwable;
 class InvalidRangeValidationException extends ValidationException
 {
     public function __construct(
-        int $entryID,
+        int $entryId,
         string $fieldName,
         protected int $minCount,
         protected int $maxCount,
@@ -18,7 +18,7 @@ class InvalidRangeValidationException extends ValidationException
         Throwable $previous = null
     ) {
         parent::__construct(
-            $entryID,
+            $entryId,
             $fieldName,
             $code,
             $previous
@@ -27,7 +27,7 @@ class InvalidRangeValidationException extends ValidationException
 
     protected function newExceptionMessage(): string
     {
-        return "Field {$this->fieldName} in ID:{$this->entryID} has invalid number of elements: {$this->receivedCount}."
+        return "Field {$this->fieldName} in ID:{$this->entryId} has invalid number of elements: {$this->receivedCount}."
                        . " Expected range from {$this->minCount} to {$this->maxCount}";
     }
 

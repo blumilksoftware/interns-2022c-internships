@@ -8,7 +8,7 @@ class NotAnArrayValidationException extends ValidationException
 {
     protected function newExceptionMessage(): string
     {
-        return "Field {$this->fieldName} in entry ID:{$this->entryID} is not an array.";
+        return "Field {$this->fieldName} in entry ID:{$this->entryId} is not an array.";
     }
 
     protected function getStatusCode(): int
