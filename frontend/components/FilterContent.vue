@@ -1,6 +1,9 @@
 <template>
   <div class="wrapper">
-    <div class="drpDwnBtnSect">
+    <div
+      class="drpDwnBtnSect"
+      :class="{ drpDwnBtnSectActive: isDropdownActive }"
+    >
       <div class="headfields">
         <CourseSelector class="headfield" />
         <CitySelector class="headfield" />
@@ -42,15 +45,14 @@ export default {
   data() {
     return {
       isActive: false,
+      isDropdownActive: false,
       tags,
     };
   },
 
   methods: {
     dropdown() {
-      document
-        .querySelector(".drpDwnBtnSect")
-        .classList.toggle("drpDwnBtnSectActive");
+      this.isDropdownActive = !this.isDropdownActive;
     },
   },
   mounted: function () {
