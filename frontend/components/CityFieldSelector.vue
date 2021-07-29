@@ -11,13 +11,11 @@
 
 <script>
 export default {
-  el: "#cities",
   data() {
     return {
       myChoice: null,
     };
   },
-  methods: {},
 };
 </script>
 

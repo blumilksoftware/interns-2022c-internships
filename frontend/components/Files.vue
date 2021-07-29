@@ -51,26 +51,24 @@
 </template>
 
 <script>
-const documents = [
-  {
-    name: "Podanie o praktyki",
-    handle: "podanie",
-  },
-  {
-    name: "Zaświadczenie",
-    handle: "zaswiad",
-  },
-  {
-    name: "Umowa",
-    handle: "umowa",
-  },
-  { name: "Regulamin", handle: "regulamin" },
-];
-
 export default {
-  setup() {
+  data() {
     return {
-      documents,
+      documents: [
+        {
+          name: "Podanie o praktyki",
+          handle: "podanie",
+        },
+        {
+          name: "Zaświadczenie",
+          handle: "zaswiad",
+        },
+        {
+          name: "Umowa",
+          handle: "umowa",
+        },
+        { name: "Regulamin", handle: "regulamin" },
+      ],
     };
   },
 };
