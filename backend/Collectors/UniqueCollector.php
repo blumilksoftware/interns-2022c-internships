@@ -31,13 +31,13 @@ abstract class UniqueCollector implements JsonSerializable
     {
         foreach ($this->collectedContent as $collected) {
             if ($collected->getCollectedName() === $content) {
-                $collected->pushMatchId($matchId);
+                $collected->pushSearchMatchId($matchId);
                 return $collected->getID();
             }
         }
         $newId = $this->lastReturnedId = $this->nextIdToAssign++;
         $collectedItem = new CollectedContent($newId, $content);
-        $collectedItem->pushMatchId($matchId);
+        $collectedItem->pushSearchMatchId($matchId);
         array_push($this->collectedContent, $collectedItem);
         return $newId;
     }

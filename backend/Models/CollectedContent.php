@@ -9,7 +9,7 @@ use JsonSerializable;
 class CollectedContent implements JsonSerializable
 {
     /** @var int[] */
-    protected array $matchIds;
+    protected array $searchMatchIds;
     /** @var int[] */
     protected array $childIds;
     protected int $id;
@@ -17,16 +17,16 @@ class CollectedContent implements JsonSerializable
 
     public function __construct(int $id, string $collectedName)
     {
-        $this->matchIds = [];
+        $this->searchMatchIds = [];
         $this->childIds = [];
         $this->id = $id;
         $this->collectedName = $collectedName;
     }
 
-    public function pushMatchId(int $id): void
+    public function pushSearchMatchId(int $id): void
     {
-        if (!in_array($id, $this->matchIds, true)) {
-            array_push($this->matchIds, $id);
+        if (!in_array($id, $this->searchMatchIds, true)) {
+            array_push($this->searchMatchIds, $id);
         }
     }
 
@@ -52,7 +52,7 @@ class CollectedContent implements JsonSerializable
         return [
             "id" => $this->id,
             "name" => $this->collectedName,
-            "matchIds" => $this->matchIds,
+            "searchMatchIds" => $this->searchMatchIds,
             "childrenIds" => $this->childIds,
         ];
     }
