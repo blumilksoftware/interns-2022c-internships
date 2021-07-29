@@ -25,14 +25,14 @@ class CollectedContent implements JsonSerializable
 
     public function pushMatchId(int $id): void
     {
-        if (!in_array($id, $this->matchIds)) {
+        if (!in_array($id, $this->matchIds, true)) {
             array_push($this->matchIds, $id);
         }
     }
 
     public function pushRelatedChildId(int $id): void
     {
-        if (!in_array($id, $this->childIds)) {
+        if (!in_array($id, $this->childIds, true)) {
             array_push($this->childIds, $id);
         }
     }

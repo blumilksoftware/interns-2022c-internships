@@ -50,7 +50,8 @@ abstract class UniqueCollector implements JsonSerializable
         return $this->lastReturnedId;
     }
 
-    public function getLastUsedElement(): CollectedContent{
+    public function getLastUsedElement(): CollectedContent
+    {
         return $this->collectedContent[$this->getLastReturnedId()];
     }
 
