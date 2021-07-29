@@ -13,7 +13,7 @@ class CoordinateFetcher
 {
     protected string $mapboxToken;
 
-    public function __construct()
+    public function __construct(protected Client $api)
     {
         $this->mapboxToken = $_ENV["MAPBOX_TOKEN"];
     }
@@ -24,7 +24,6 @@ class CoordinateFetcher
             $address = $this->fetchAddressToString($addressObject);
         }
 
-        $api = new Client();
         $addressUrl = urlencode($address);
 
         $url = "https://api.mapbox.com/geocoding/v5/mapbox.places/{$addressUrl}.json"
@@ -32,7 +31,7 @@ class CoordinateFetcher
             . "&limit=1";
 
         try {
-            $response = $api->get($url);
+            $response = $this->api->get($url);
             $content = json_decode($response->getBody()->getContents(), true);
             $coordinates = $content["features"][0]["geometry"]["coordinates"];
         } catch (Exception $e) {
