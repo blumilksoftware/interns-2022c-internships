@@ -24,10 +24,10 @@
       "sh -c 'cd backend && php index.php'"
     ],
     "populate": [
-      "sh -c 'cd backend && php index.php -r'"
+      "sh -c 'cd backend && php index.php --populate'"
     ],
     "fetch": [
-      "sh -c 'cd backend && php index.php -f'"
+      "sh -c 'cd backend && php index.php --fetch'"
     ],
     "purge": [
       "rm -rf ./public/api",

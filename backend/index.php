@@ -13,11 +13,11 @@ $dotenv->load();
 
 $container = require __DIR__ . "/Application/AppContainerBuilder.php";
 $application = $container->get(Application::class);
-$options = getopt("rf");
+$options = getopt("",["populate", "fetch"]);
 
-if (array_key_exists("r", $options)) {
+if (array_key_exists("populate", $options)) {
     $application->populate();
-} elseif (array_key_exists("f", $options)) {
+} elseif (array_key_exists("fetch", $options)) {
     $application->fetch();
 } else {
     $application->build();
