@@ -6,6 +6,7 @@ namespace Internships\Application;
 
 use Internships\Factories\CompanyDataFactory;
 use Internships\Factories\DataFactory;
+use Internships\Factories\DocumentConfigFactory;
 use Internships\Factories\FacultyDataFactory;
 use Internships\FileSystem\FileManager;
 use Internships\FileSystem\Path;
@@ -22,9 +23,11 @@ class AppGenerator
         protected CsvReader $csvReader,
         protected FacultyDataFactory $facultyFactory,
         CompanyDataFactory $companyDataFactory,
+        DocumentConfigFactory $documentConfigFactory,
     ) {
         $this->subFactories = [
             $companyDataFactory,
+            $documentConfigFactory,
         ];
     }
 
@@ -69,14 +72,12 @@ class AppGenerator
         $faculties = $this->getDataFromCsv($this->facultyFactory);
 
         $facultyTemplatePaths = $this->fileManager->getResourceFilePathsFrom("{$source}/faculty-directory/");
-        foreach ($faculties as $rowNumber => $faculty) {
-            if ($rowNumber > 0) {
-                $this->fileManager->copyResources(
-                    "{$source}/faculty-directory/",
-                    $destination . Path::FOLDER_SEPARATOR . $faculty->getDirectory(),
-                    $facultyTemplatePaths
-                );
-            }
+        foreach ($faculties as $faculty) {
+            $this->fileManager->copyResources(
+                "{$source}/faculty-directory/",
+                $destination . Path::FOLDER_SEPARATOR . $faculty->getDirectory(),
+                $facultyTemplatePaths
+            );
         }
     }
 }
