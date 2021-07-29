@@ -32,7 +32,7 @@ abstract class UniqueCollector implements JsonSerializable
         foreach ($this->collectedContent as $collected) {
             if ($collected->getCollectedName() === $content) {
                 $collected->pushSearchMatchId($matchId);
-                return $collected->getID();
+                return $collected->getId();
             }
         }
         $newId = $this->lastReturnedId = $this->nextIdToAssign++;
