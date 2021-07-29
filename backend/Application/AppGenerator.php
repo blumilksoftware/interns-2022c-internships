@@ -126,10 +126,10 @@ class AppGenerator
                     text: "Trying to fetch coordinates for {$companies[$csvRow]["name"]}."
                 );
 
-                $requiresSave = $requiresSave | $this->geocoder->coordinatesFromAddress(
+                $requiresSave = $this->geocoder->coordinatesFromAddress(
                     currentCoordinates: $companies[$csvRow]["coordinates"],
                     addressObject: $address
-                );
+                ) || $requiresSave;
             }
 
             if ($requiresSave) {
