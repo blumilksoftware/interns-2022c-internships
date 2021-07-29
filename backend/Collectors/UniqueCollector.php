@@ -6,12 +6,14 @@ namespace Internships\Collectors;
 
 use Internships\Models\CollectedContent;
 use JsonSerializable;
+use OutOfBoundsException;
 
 abstract class UniqueCollector implements JsonSerializable
 {
     /** @var CollectedContent[] */
     protected array $collectedContent;
     protected int $nextIdToAssign;
+    protected int $lastReturnedId;
 
     public function __construct()
     {
@@ -20,6 +22,7 @@ abstract class UniqueCollector implements JsonSerializable
 
     public function clearData(): void
     {
+        $this->lastReturnedId = -1;
         $this->nextIdToAssign = 0;
         $this->collectedContent = [];
     }
@@ -32,11 +35,23 @@ abstract class UniqueCollector implements JsonSerializable
                 return $collected->getID();
             }
         }
-        $newId = $this->nextIdToAssign++;
+        $newId = $this->lastReturnedId = $this->nextIdToAssign++;
         $collectedItem = new CollectedContent($newId, $content);
         $collectedItem->pushMatchId($matchId);
         array_push($this->collectedContent, $collectedItem);
         return $newId;
+    }
+
+    public function getLastReturnedId(): int
+    {
+        if ($this->lastReturnedId < 0 && $this->lastReturnedId >= count($this->collectedContent)) {
+            throw new OutOfBoundsException();
+        }
+        return $this->lastReturnedId;
+    }
+
+    public function getLastUsedElement(): CollectedContent{
+        return $this->collectedContent[$this->getLastReturnedId()];
     }
 
     public function jsonSerialize()

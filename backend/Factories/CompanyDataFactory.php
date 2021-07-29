@@ -91,8 +91,13 @@ class CompanyDataFactory extends DataFactory implements SerializableInfo
         $tagIds = [];
         $tagCollector = $this->filterCollector->getTagCollector();
         foreach ($entry["tags"] as $tag) {
+            $currentTagId = $tagCollector->collectAndGetID($tag, $entryId);
             array_push($tagIds, $tagCollector->collectAndGetID($tag, $entryId));
+            $this->filterCollector->getSpecializationCollector()
+                ->getLastUsedElement()
+                ->pushRelatedChildId($currentTagId);
         }
+
         $entry["tags"] = array_unique($tagIds, SORT_NUMERIC);
 
         return $entry;
