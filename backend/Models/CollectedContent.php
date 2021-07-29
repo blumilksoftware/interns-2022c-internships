@@ -37,7 +37,7 @@ class CollectedContent implements JsonSerializable
         }
     }
 
-    public function getID(): int
+    public function getId(): int
     {
         return $this->id;
     }
