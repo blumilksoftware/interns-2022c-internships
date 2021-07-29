@@ -1,6 +1,6 @@
 <template>
   <div id="cities">
-    <select class="selector" v-model="myChoice" placeholder="City">
+    <select class="selector" v-model="chosenCity" placeholder="City">
       <option :value="null" disabled hidden>Miasto</option>
       <option v-for="city in cities" :key="city">{{ city.name }}</option>
       >
@@ -12,7 +12,7 @@
 export default {
   data() {
     return {
-      myChoice: null,
+      chosenCity: null,
       cities: [
         {
           name: "Wrocław",
