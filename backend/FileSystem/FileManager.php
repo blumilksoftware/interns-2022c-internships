@@ -29,19 +29,32 @@ class FileManager
         return $this->jsonPrintFlags;
     }
 
-    public function create(string $relativePath, string $filename = "", mixed $content = "", bool $noFile = false): void
-    {
+    public function createInApi(
+        string $relativePath,
+        string $filename = "",
+        mixed $content = "",
+        bool $noFile = false
+    ): void {
         $path = $this->directoryManager->getApiFilePath($relativePath, $filename);
-        $this->pathGuard->verifyIfUnique($path);
-
-        if (!$noFile) {
-            file_put_contents(
-                filename: $path,
-                data: $content
-            );
-        } elseif ($filename === "") {
+        if ($noFile && $filename === "") {
             throw new NoNameFileException($path);
         }
+
+        $this->create($path, $content);
+    }
+
+    public function createInResources(
+        string $relativePath,
+        string $filename = "",
+        mixed $content = "",
+        bool $noFile = false
+    ): void {
+        $path = $this->directoryManager->getResourceFilePath($relativePath, $filename);
+        if ($noFile && $filename === "") {
+            throw new NoNameFileException($path);
+        }
+
+        $this->create($path, $content);
     }
 
     public function appendNewLine(string $relativePath, string $filename, string $content = ""): void
@@ -139,5 +152,14 @@ class FileManager
             }
         }
         return $filePaths;
+    }
+
+    protected function create(string $fullPath, mixed $content = ""): void
+    {
+        $this->pathGuard->verifyIfUnique($fullPath);
+        file_put_contents(
+            filename: $fullPath,
+            data: $content
+        );
     }
 }
