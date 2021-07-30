@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Internships\Factories\CompanyDataFactory;
 use Internships\Factories\DataFactory;
 use Internships\Factories\FacultyDataFactory;
 use Internships\FileSystem\DirectoryManager;
@@ -15,7 +16,12 @@ use PHPUnit\Framework\TestCase;
 
 class ResourcesTest extends TestCase
 {
+    protected CsvReader $csvReader;
     protected DirectoryManager $directoryManager;
+    protected FileManager $fileManager;
+
+    protected FacultyDataFactory $facultyFactory;
+    protected CompanyDataFactory $companyFactory;
 
     protected function setUp(): void
     {
@@ -24,13 +30,16 @@ class ResourcesTest extends TestCase
             relativeApiPath: "/public/api/",
             relativeResourcePath: "/resources/"
         );
+        $this->fileManager = new FileManager($this->directoryManager, new UniquePathGuard());
+        $this->csvReader = new CsvReader($this->directoryManager, $this->fileManager);
+
+        $this->facultyFactory = new FacultyDataFactory(new DataValidator(new DataSanitizer()));
     }
 
     public function testFaculties(): void
     {
-        $dataFactory = new FacultyDataFactory(new DataValidator(new DataSanitizer()));
         /** @var Faculty[] $data */
-        $faculties = $this->retrieveWithFactory("", $dataFactory);
+        $faculties = $this->retrieveWithFactory("", $this->facultyFactory);
 
         $expectedId = 0;
         /** @var Faculty $faculty */
@@ -38,7 +47,7 @@ class ResourcesTest extends TestCase
             $this->assertSame($expectedId++, $faculty->getId());
             $this->assertNotSame("", $faculty->getName());
             $this->assertNotSame("", $faculty->getDirectory());
-            $relativePath = $dataFactory->getSourceRelativePath() . $faculty->getDirectory();
+            $relativePath = $this->facultyFactory->getSourceRelativePath() . $faculty->getDirectory();
             $this->getAndCheckResourcePath(relativePath: $relativePath, fileName: "");
         }
     }
@@ -66,13 +75,8 @@ class ResourcesTest extends TestCase
         $fullPath = $this->directoryManager->getResourceFilePath($path, $filename);
         $this->assertFileExists($fullPath);
 
-        $csvReader = new CsvReader(
-            directoryManager: $this->directoryManager,
-            fileManager: new FileManager($this->directoryManager, new UniquePathGuard())
-        );
-
         $fields = $dataFactory->getFields();
-        $csvData = $csvReader->getCSVData($path, $filename, $fields);
+        $csvData = $this->csvReader->getCSVData($path, $filename, $fields);
         $this->assertIsArray($csvData[0]);
         $this->assertCount(count($fields), array_keys($csvData[0]));
 
