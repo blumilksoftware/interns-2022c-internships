@@ -30,17 +30,4 @@ class DocumentConfigFactory extends DataFactory
             "filePath" => new ValidationOptions(required: true),
         ];
     }
-
-    public function processEntry(array $entry): array
-    {
-        return $entry;
-    }
-
-    public function onBuildStart(): void
-    {
-    }
-
-    public function onBuildEnd(): void
-    {
-    }
 }

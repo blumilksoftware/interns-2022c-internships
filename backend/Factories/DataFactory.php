@@ -107,4 +107,17 @@ abstract class DataFactory implements BuildTool, SerializableInfo
         $this->onBuildEnd();
         return $dataObjects;
     }
+
+    public function processEntry(int $entryId, array $entry): array
+    {
+        return $entry;
+    }
+
+    public function onBuildStart(): void
+    {
+    }
+
+    public function onBuildEnd(): void
+    {
+    }
 }

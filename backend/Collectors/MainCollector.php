@@ -40,7 +40,7 @@ abstract class MainCollector
             $jsonData = array_merge($jsonData, $collector->jsonSerialize());
         }
 
-        $this->fileManager->create(
+        $this->fileManager->createInApi(
             relativePath: $workingDirectory . Path::FOLDER_SEPARATOR . $this->relativeSavingPath,
             filename: $this->filename,
             content: json_encode($jsonData, $this->fileManager->getDefaultJsonFlags())

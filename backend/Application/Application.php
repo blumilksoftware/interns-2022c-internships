@@ -24,4 +24,10 @@ class Application
         OutputWriter::newLineToConsole("Generating resource files...");
         $this->appGenerator->generateResourceContents();
     }
+
+    public function fetch(): void
+    {
+        OutputWriter::newLineToConsole("Fetching data...");
+        $this->appGenerator->getMissingCoordinatesForCompanies();
+    }
 }
