@@ -17,6 +17,12 @@ class DataValidator
     ) {
     }
 
+    /**
+     * @throws IsMissingValidationException
+     * @throws IsMissingAfterValidationException
+     * @throws NotAnArrayValidationException
+     * @throws InvalidRangeValidationException
+     */
     public function validateField(
         string $fieldValue,
         int $entryID,

@@ -8,6 +8,7 @@ use Internships\Exceptions\File\CsvInvalidCountFileException;
 use Internships\Exceptions\Path\CouldNotReadPathException;
 use Internships\Exceptions\Path\NotFoundPathException;
 use Internships\FileSystem\DirectoryManager;
+use Internships\FileSystem\FileManager;
 
 class CsvReader
 {
@@ -15,7 +16,8 @@ class CsvReader
     public const CSV_SEPARATOR = ",";
 
     public function __construct(
-        protected DirectoryManager $directoryManager
+        protected DirectoryManager $directoryManager,
+        protected FileManager $fileManager
     ) {
     }
 
@@ -39,11 +41,29 @@ class CsvReader
                 if ($rowFieldCount !== $fieldCount) {
                     throw new CsvInvalidCountFileException($fullPath, $currentRow, $fieldCount, $rowFieldCount);
                 }
+                $row = array_combine(array_keys($fieldDefines), $row);
                 array_push($csvRows, $row);
             }
         } finally {
             fclose($csvFile);
         }
         return $csvRows;
+    }
+
+    public function saveData(string $resourceRelativePath, string $fileName, array $data): void
+    {
+        $fullPath = $this->directoryManager->getResourceFilePath($resourceRelativePath, $fileName);
+        if (!file_exists($fullPath)) {
+            $this->fileManager->createInResources($resourceRelativePath, $fileName, "");
+        }
+
+        $csvFile = fopen($fullPath, "w");
+        try {
+            foreach ($data as $row) {
+                fputcsv($csvFile, $row);
+            }
+        } finally {
+            fclose($csvFile);
+        }
     }
 }
