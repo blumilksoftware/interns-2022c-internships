@@ -25,7 +25,7 @@ class DataValidator
      */
     public function validateField(
         string $fieldValue,
-        int $entryID,
+        int $entryId,
         string $fieldName,
         ValidationOptions $fieldValidationOptions
     ): mixed {
