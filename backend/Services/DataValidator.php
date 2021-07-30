@@ -41,7 +41,7 @@ class DataValidator
                 $fieldValidationOptions->getMaxDecimals()
             );
             if ($fieldValidationOptions->isRequired() && ($fieldValue === null || $fieldValue === "")) {
-                throw new IsMissingAfterValidationException($entryID, $fieldName);
+                throw new IsMissingAfterValidationException($entryId, $fieldName);
             }
 
             $minArrayCount = $fieldValidationOptions->getMinArrayCount();
@@ -53,14 +53,14 @@ class DataValidator
 
             if ($minArrayCount > 0 || $maxArrayCount > 0) {
                 if (!is_array($sanitizedVal)) {
-                    throw new NotAnArrayValidationException($entryID, $fieldName);
+                    throw new NotAnArrayValidationException($entryId, $fieldName);
                 }
 
                 $elementCount = count($sanitizedVal);
                 if ($elementCount < $minArrayCount
                     || ($elementCount > $maxArrayCount && $maxArrayCount > 0)) {
                     throw new InvalidRangeValidationException(
-                        $entryID,
+                        $entryId,
                         $fieldName,
                         $minArrayCount,
                         $maxArrayCount,
@@ -70,7 +70,7 @@ class DataValidator
             }
             return $sanitizedVal;
         } elseif ($fieldValidationOptions->isRequired()) {
-            throw new IsMissingValidationException($entryID, $fieldName);
+            throw new IsMissingValidationException($entryId, $fieldName);
         }
 
         if ($fieldValidationOptions->getArraySeparator() !== "") {
