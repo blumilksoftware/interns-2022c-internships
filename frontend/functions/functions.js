@@ -1,9 +1,5 @@
 function isMobile() {
-  if (window.innerHeight > window.innerWidth) {
-    return true;
-  } else {
-    return false;
-  }
+  return window.innerHeight > window.innerWidth;
 }
 
 export { isMobile };
