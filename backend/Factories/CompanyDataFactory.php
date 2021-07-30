@@ -49,7 +49,7 @@ class CompanyDataFactory extends DataFactory implements SerializableInfo
                 sanitizationFlags: SANITIZE_WHITESPACE_REMOVE,
                 arraySeparator: ",",
                 maxDecimals: 6,
-                expectedCount: 2
+                expectedArrayCount: 2
             ),
             "street" => new ValidationOptions(required: true),
             "zip" => new ValidationOptions(required: true),
@@ -66,7 +66,8 @@ class CompanyDataFactory extends DataFactory implements SerializableInfo
             "tags" => new ValidationOptions(
                 sanitizationFlags: SANITIZE_WHITESPACE_TRIM
                                    | SANITIZE_TO_LOWER,
-                arraySeparator: ","
+                arraySeparator: ",",
+                maxArrayCount: 4
             ),
             "website" => new ValidationOptions(),
             "email" => new ValidationOptions(),

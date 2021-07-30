@@ -8,7 +8,7 @@ class IsMissingAfterValidationException extends ValidationException
 {
     protected function newExceptionMessage(): string
     {
-        return "Required field {$this->fieldName} in entry ID:{$this->entryID} is empty after sanitization.";
+        return "Required field {$this->fieldName} in entry ID:{$this->entryId} is empty after sanitization.";
     }
 
     protected function getStatusCode(): int
