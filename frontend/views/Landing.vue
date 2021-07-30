@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import SelectFaculty from "@/components/selectFacultySection";
-import JoinUs from "@/components/joinUsSection";
-import StoriesSection from "@/components/storiesSection";
+import SelectFaculty from "@/components/SelectFacultySection";
+import JoinUs from "@/components/JoinUsSection";
+import StoriesSection from "@/components/StoriesSection";
 
 export default {
   components: {
