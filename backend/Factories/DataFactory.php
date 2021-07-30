@@ -16,9 +16,9 @@ abstract class DataFactory implements BuildTool, SerializableInfo
     protected array $fields;
     protected string $workingDirectory;
 
-    protected string $sourcePath;
+    protected string $baseSourcePath;
     protected string $sourceName;
-    protected string $destinationPath;
+    protected string $baseDestinationPath;
     protected string $destinationName;
 
     public function __construct(DataValidator $dataValidator)
@@ -42,6 +42,16 @@ abstract class DataFactory implements BuildTool, SerializableInfo
         return $entry;
     }
 
+    public function getBaseSourcePath(): string
+    {
+        return $this->baseSourcePath;
+    }
+
+    public function getBaseDestinationPath(): string
+    {
+        return $this->baseDestinationPath;
+    }
+
     public function getFields(): array
     {
         return $this->fields;
@@ -51,7 +61,7 @@ abstract class DataFactory implements BuildTool, SerializableInfo
     {
         return $this->workingDirectory
             . Path::FOLDER_SEPARATOR
-            . $this->sourcePath;
+            . $this->baseSourcePath;
     }
 
     public function getSourceFileName(): string
@@ -70,7 +80,7 @@ abstract class DataFactory implements BuildTool, SerializableInfo
     {
         return $this->workingDirectory
             . Path::FOLDER_SEPARATOR
-            . $this->destinationPath;
+            . $this->baseDestinationPath;
     }
 
     public function getDestinationFileName(): string

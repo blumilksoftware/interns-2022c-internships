@@ -64,9 +64,11 @@ class AppGenerator
         $this->saveDataToJson($this->facultyFactory, $faculties);
         try {
             foreach ($faculties as $faculty) {
+                OutputWriter::newLineToConsole("Processing {$faculty->getDirectory()}");
                 foreach ($this->subFactories as $subFactory) {
-                    OutputWriter::newLineToConsole("Processing {$faculty->getDirectory()}");
-                    $subFactory->setDirectory("/faculties/{$faculty->getDirectory()}");
+                    $subFactory->setDirectory(
+                        "{$this->facultyFactory->getBaseSourcePath()}{$faculty->getDirectory()}"
+                    );
                     $data = $this->getDataFromCsv($subFactory);
                     $this->saveDataToJson($subFactory, $data);
                 }
@@ -83,7 +85,7 @@ class AppGenerator
     public function generateResourceContents(): void
     {
         $source = "/templates/";
-        $destination = "/faculties/";
+        $destination = $this->facultyFactory->getBaseDestinationPath();
 
         /** @var Faculty[] $faculties */
         $faculties = $this->getDataFromCsv($this->facultyFactory);
@@ -102,8 +104,8 @@ class AppGenerator
 
     public function getMissingCoordinatesForCompanies(): void
     {
-        $basePath = "/faculties/";
-        $sourceFilename = "companies.csv";
+        $basePath = $this->facultyFactory->getBaseSourcePath();
+        $sourceFilename = $this->subFactories["company"]->getSourceFileName();
 
         /** @var Faculty[] $faculties */
         $faculties = $this->getDataFromCsv($this->facultyFactory);

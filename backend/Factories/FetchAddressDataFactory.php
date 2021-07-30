@@ -48,9 +48,9 @@ class FetchAddressDataFactory extends DataFactory
     public function setPaths(): void
     {
         $this->workingDirectory = "";
-        $this->sourcePath = "";
+        $this->baseSourcePath = "";
         $this->sourceName = "companies.csv";
-        $this->destinationPath = "";
+        $this->baseDestinationPath = "";
         $this->destinationName = "companies.csv";
     }
 }

@@ -12,9 +12,9 @@ class DocumentConfigFactory extends DataFactory
     public function setPaths(): void
     {
         $this->workingDirectory = "";
-        $this->sourcePath = "/documents/";
+        $this->baseSourcePath = "/documents/";
         $this->sourceName = "documents.csv";
-        $this->destinationPath = "/documents/";
+        $this->baseDestinationPath = "/documents/";
         $this->destinationName = "documents.json";
     }
 

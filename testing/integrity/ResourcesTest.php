@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 use Internships\Factories\DataFactory;
 use Internships\Factories\FacultyDataFactory;
@@ -11,7 +12,6 @@ use Internships\Services\DataSanitizer;
 use Internships\Services\DataValidator;
 use Internships\Services\UniquePathGuard;
 use PHPUnit\Framework\TestCase;
-
 
 class ResourcesTest extends TestCase
 {
@@ -26,7 +26,7 @@ class ResourcesTest extends TestCase
         );
     }
 
-    public function testFaculties()
+    public function testFaculties(): void
     {
         $dataFactory = new FacultyDataFactory(new DataValidator(new DataSanitizer()));
         /** @var Faculty[] $data */
@@ -35,9 +35,9 @@ class ResourcesTest extends TestCase
         $expectedId = 0;
         /** @var Faculty $faculty */
         foreach ($faculties as $faculty) {
-            $this->assertEquals($expectedId++, $faculty->getId());
-            $this->assertNotEquals("", $faculty->getName());
-            $this->assertNotEquals("", $faculty->getDirectory());
+            $this->assertSame($expectedId++, $faculty->getId());
+            $this->assertNotSame("", $faculty->getName());
+            $this->assertNotSame("", $faculty->getDirectory());
             $directoryPath = $this->getResourcePath(
                 relativePath: $dataFactory->getSourceRelativePath() . $faculty->getDirectory(),
                 fileName: ""
@@ -48,12 +48,10 @@ class ResourcesTest extends TestCase
     protected function getResourcePath(string $relativePath, string $fileName)
     {
         $path = $this->directoryManager->getResourceFilePath($relativePath, $fileName);
-        if($fileName == ""){
+        if ($fileName === "") {
             $this->assertDirectoryExists($path);
-        }
-        else{
+        } else {
             $this->assertFileExists($path);
-
         }
         return $path;
     }
@@ -62,8 +60,7 @@ class ResourcesTest extends TestCase
         string $relativeDirectory,
         DataFactory $dataFactory,
         bool $allowEmptyResult = false
-    ): array
-    {
+    ): array {
         $this->assertTrue(is_subclass_of($dataFactory, DataFactory::class));
 
         $path = $relativeDirectory . $dataFactory->getSourceRelativePath();
@@ -78,7 +75,7 @@ class ResourcesTest extends TestCase
 
         $fields = $dataFactory->getFields();
         $csvData = $csvReader->getCSVData($path, $filename, $fields);
-        $this->assertIsArray($csvData[0]);;
+        $this->assertIsArray($csvData[0]);
         $this->assertCount(count($fields), array_keys($csvData[0]));
 
         $data = $dataFactory->buildFromData($csvData);

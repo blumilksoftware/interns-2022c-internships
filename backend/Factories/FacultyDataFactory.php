@@ -12,9 +12,9 @@ class FacultyDataFactory extends DataFactory
     public function setPaths(): void
     {
         $this->workingDirectory = "";
-        $this->sourcePath = "/faculties/";
+        $this->baseSourcePath = "/faculties/";
         $this->sourceName = "faculties.csv";
-        $this->destinationPath = "/faculties/";
+        $this->baseDestinationPath = "/faculties/";
         $this->destinationName = "faculties.json";
     }
 

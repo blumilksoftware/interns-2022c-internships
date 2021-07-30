@@ -24,9 +24,9 @@ class CompanyDataFactory extends DataFactory implements SerializableInfo
     public function setPaths(): void
     {
         $this->workingDirectory = "";
-        $this->sourcePath = "";
+        $this->baseSourcePath = "";
         $this->sourceName = "companies.csv";
-        $this->destinationPath = "";
+        $this->baseDestinationPath = "";
         $this->destinationName = "companies.json";
     }
 
