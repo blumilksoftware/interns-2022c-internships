@@ -9,7 +9,8 @@
   },
   "require": {
     "php": "^8.0",
-    "php-di/php-di": "^6.3.4"
+    "php-di/php-di": "^6.3.4",
+    "phpunit/phpunit": "^9.5"
   },
   "require-dev": {
     "blumilksoftware/codestyle": "^0.4.1"
