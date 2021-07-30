@@ -38,14 +38,12 @@ class ResourcesTest extends TestCase
             $this->assertSame($expectedId++, $faculty->getId());
             $this->assertNotSame("", $faculty->getName());
             $this->assertNotSame("", $faculty->getDirectory());
-            $directoryPath = $this->getResourcePath(
-                relativePath: $dataFactory->getSourceRelativePath() . $faculty->getDirectory(),
-                fileName: ""
-            );
+            $relativePath = $dataFactory->getSourceRelativePath() . $faculty->getDirectory();
+            $this->getAndCheckResourcePath(relativePath: $relativePath, fileName: "");
         }
     }
 
-    protected function getResourcePath(string $relativePath, string $fileName)
+    protected function getAndCheckResourcePath(string $relativePath, string $fileName): string
     {
         $path = $this->directoryManager->getResourceFilePath($relativePath, $fileName);
         if ($fileName === "") {
