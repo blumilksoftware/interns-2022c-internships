@@ -44,7 +44,6 @@ import tags from "../../resources/templates/testTags.json";
 export default {
   components: {
     PaidSelector,
-
     BaseFieldSelector,
   },
   props: {
