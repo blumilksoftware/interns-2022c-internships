@@ -5,8 +5,17 @@
       :class="{ drpDwnBtnSectActive: isDropdownActive }"
     >
       <div class="headfields">
-        <CourseSelector class="headfield" />
-        <CitySelector class="headfield" />
+        <BaseFieldSelector
+          class="selector headfield"
+          :dataGiven="cityData"
+          name="Miasto"
+        ></BaseFieldSelector>
+
+        <BaseFieldSelector
+          class="selector headfield"
+          :dataGiven="courseData"
+          name="Kierunek"
+        ></BaseFieldSelector>
         <PaidSelector class="headfield paidSelector" />
       </div>
       <hr />
@@ -29,15 +38,14 @@
 </template>
 <script>
 import PaidSelector from "@/components/PaidSelector";
-import CitySelector from "@/components/CityFieldSelector";
-import CourseSelector from "@/components/CourseFieldSelector";
+import BaseFieldSelector from "@/components/BaseFieldSelector";
 import tags from "../../resources/templates/testTags.json";
 
 export default {
   components: {
     PaidSelector,
-    CitySelector,
-    CourseSelector,
+
+    BaseFieldSelector,
   },
   props: {
     reset: Boolean,
@@ -47,6 +55,28 @@ export default {
       isActive: false,
       isDropdownActive: false,
       tags,
+      cityData: [
+        {
+          name: "Wrocław",
+        },
+        {
+          name: "Legnica",
+        },
+        {
+          name: "Lubin",
+        },
+      ],
+      courseData: [
+        {
+          name: "Informatyka",
+        },
+        {
+          name: "Grafika",
+        },
+        {
+          name: "Ekonomia",
+        },
+      ],
     };
   },
 
@@ -92,6 +122,12 @@ export default {
 }
 @import "../assets/styles/_variables";
 
+.selector {
+  border-color: $darkGreyColor;
+  @media (orientation: portrait) {
+    width: 100%;
+  }
+}
 .wrapper {
   .drpDwnBtnSect {
     width: 100%;
