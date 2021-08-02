@@ -11,7 +11,7 @@ use Internships\Models\DocumentConfig;
 use Internships\Models\Faculty;
 use Internships\Services\UniquePathGuard;
 
-class ResourcesTest extends FromCsvTestCase
+class FileIntegrityTest extends FromCsvTestCase
 {
     /** @var Faculty[] */
     protected array $faculties;

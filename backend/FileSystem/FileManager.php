@@ -131,7 +131,9 @@ class FileManager
         }
     }
 
-    /** @return DirectoryIterator[]  */
+    /**
+     * @return DirectoryIterator[]
+     */
     public function getResourceFilePathsFrom(
         string $relativeOrigin,
         string $specificFilename = "",
@@ -147,7 +149,7 @@ class FileManager
 
         $recursiveIteratorI = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($origin));
 
-        /** @var DirectoryIterator[] $fileData  */
+        /** @var DirectoryIterator[] $fileData */
         $fileData = [];
         /** @var DirectoryIterator $file */
         foreach ($recursiveIteratorI as $file) {
