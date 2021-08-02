@@ -18,59 +18,78 @@ use PHPUnit\Framework\TestCase;
 
 class ResourcesTest extends TestCase
 {
+    protected bool $initialized = false;
     protected CsvReader $csvReader;
     protected DirectoryManager $directoryManager;
     protected FileManager $fileManager;
-
     protected FacultyDataFactory $facultyFactory;
-    protected CompanyDataFactory $companyFactory;
-    protected DocumentConfigFactory $documentFactory;
+    protected DataValidator $validator;
+    /** @var Faculty[] $faculties */
+    protected array $faculties;
 
     protected function setUp(): void
     {
+        if($this->initialized){
+            return;
+        }
         $this->directoryManager = new DirectoryManager(
             rootDirectoryPath: __DIR__ . "/../../",
             relativeApiPath: "/public/api/",
             relativeResourcePath: "/resources/"
         );
         $this->fileManager = new FileManager($this->directoryManager, new UniquePathGuard());
-        $this->csvReader = new CsvReader($this->directoryManager, $this->fileManager);
+        $this->validator = new DataValidator(new DataSanitizer());
+        $this->facultyFactory = new FacultyDataFactory($this->validator);
 
-        $validator = new DataValidator(new DataSanitizer());
-        $this->facultyFactory = new FacultyDataFactory($validator);
-        $this->companyFactory = new CompanyDataFactory($this->fileManager, $validator);
-        $this->documentFactory = new DocumentConfigFactory($validator);
+        $this->faculties = $this->retrieveWithFactory("", $this->facultyFactory);
+        $this->initialized = true;
     }
 
-    public function testResourceDirectoryContent(): void
-    {
-        /** @var Faculty[] $faculties */
-        $faculties = $this->retrieveWithFactory("", $this->facultyFactory);
+    public function testFacultyIntegrity(): void{
+        $pathGuard = new UniquePathGuard();
+        foreach ($this->faculties as $faculty) {
+            $facultyDirectory = $faculty->getDirectory();
+            $pathGuard->verifyIfUnique($facultyDirectory);
 
-        $expectedId = 0;
-        foreach ($faculties as $faculty) {
-            $this->assertSame($expectedId++, $faculty->getId());
             $this->assertNotSame("", $faculty->getName());
-            $this->assertNotSame("", $faculty->getDirectory());
+            $this->assertNotSame("", $facultyDirectory);
 
+            $relativePath = $this->facultyFactory->getSourceRelativePath() . $facultyDirectory;
+            $this->checkResourcePath(relativePath: $relativePath, fileName: "");
+        }
+    }
+
+    public function testCompanyFileForEachFaculty():void
+    {
+        $companyFactory = new CompanyDataFactory($this->fileManager, $this->validator);
+        foreach ($this->faculties as $faculty) {
             $relativePath = $this->facultyFactory->getSourceRelativePath() . $faculty->getDirectory();
-            $this->getAndCheckResourcePath(relativePath: $relativePath, fileName: "");
-            $this->getAndCheckResourcePath(
-                relativePath: $relativePath . $this->companyFactory->getBaseSourcePath(),
-                fileName: $this->companyFactory->getSourceFileName()
-            );
 
-            $this->getAndCheckResourcePath(
-                relativePath: $relativePath . $this->documentFactory->getBaseSourcePath(),
-                fileName: $this->documentFactory->getSourceFileName()
+            $this->checkResourcePath(relativePath: $relativePath, fileName: "");
+            $this->checkResourcePath(
+                relativePath: $relativePath . $companyFactory->getBaseSourcePath(),
+                fileName: $companyFactory->getSourceFileName()
+            );
+        }
+    }
+
+    public function testDocumentsForEachFaculty(): void
+    {
+        $documentFactory = new DocumentConfigFactory($this->validator);
+        foreach ($this->faculties as $faculty) {
+            $relativePath = $this->facultyFactory->getSourceRelativePath() . $faculty->getDirectory();
+
+            $this->checkResourcePath(
+                relativePath: $relativePath . $documentFactory->getBaseSourcePath(),
+                fileName: $documentFactory->getSourceFileName()
             );
 
             /** @var DocumentConfig[] $documentConfigData */
-            $documentConfigData = $this->retrieveWithFactory($relativePath, $this->documentFactory, true);
+            $documentConfigData = $this->retrieveWithFactory($relativePath, $documentFactory, true);
 
             foreach ($documentConfigData as $documentConfig) {
-                $documentPath = $relativePath . $this->documentFactory->getBaseSourcePath();
-                $this->getAndCheckResourcePath(
+                $documentPath = $relativePath . $documentFactory->getBaseSourcePath();
+                $this->checkResourcePath(
                     relativePath: $documentPath,
                     fileName: $documentConfig->getFilePath()
                 );
@@ -78,43 +97,61 @@ class ResourcesTest extends TestCase
         }
     }
 
-    protected function getAndCheckResourcePath(string $relativePath, string $fileName, bool $checkWrite = false): string
+    protected function checkResourcePath(string $relativePath, string $fileName, bool $checkWrite = false): void
     {
         $path = $this->directoryManager->getResourceFilePath($relativePath, $fileName);
         if ($fileName === "") {
             $this->assertDirectoryExists($path);
         } else {
             $this->assertFileExists($path);
-            if($checkWrite){
+            if ($checkWrite) {
                 $this->assertFileIsWritable($path);
             }
         }
-        return $path;
     }
 
     protected function retrieveWithFactory(
         string $relativeDirectory,
         DataFactory $dataFactory,
         bool $allowEmptyResult = false
-    ): array {
-        $this->assertTrue(is_subclass_of($dataFactory, DataFactory::class));
+    ): array
+    {
+        $factoryName = $dataFactory::class;
+        $this->assertTrue(
+            is_subclass_of($dataFactory, DataFactory::class),
+            message: "Class {$factoryName} is not a data factory."
+        );
 
         $path = $relativeDirectory . $dataFactory->getSourceRelativePath();
         $filename = $dataFactory->getSourceFileName();
-        $this->getAndCheckResourcePath($path, $filename);
+        $this->checkResourcePath($path, $filename);
 
         $fields = $dataFactory->getFields();
-        $csvData = $this->csvReader->getCSVData($path, $filename, $fields);
-        $this->assertIsArray($csvData[0]);
-        $this->assertCount(count($fields), array_keys($csvData[0]));
+        $csvReader = new CsvReader($this->directoryManager, $this->fileManager);
+        $csvData = $csvReader->getCSVData($path, $filename, $fields);
+
+        $this->assertIsArray($csvData[0], message: "Failed creation of array from CSV file.");
+        $this->assertCount(count($fields), array_keys($csvData[0]),
+            message: "{$path}{$filename} has different number of fields than {$factoryName}");
 
         $data = $dataFactory->buildFromData($csvData);
         $this->assertIsArray($data);
         if (!$allowEmptyResult) {
-            $this->assertNotEmpty($data);
+            $this->assertNotEmpty($data,
+            message: "$factoryName shouldn't return empty array for built data.");
         }
+        $expectedId = 0;
         foreach ($data as $modelObject) {
             $this->assertInstanceOf($dataFactory->getModelClassToBuild(), $modelObject);
+            $this->assertTrue(
+                method_exists($modelObject::class, 'getId'),
+                message: "Model generated by {$factoryName} has no required getId method."
+            );
+            $this->assertSame(
+                $expectedId++,
+                $modelObject->getId(),
+                message: "Factory failed assignment of identifiers"
+            );
         }
 
         return $data;
