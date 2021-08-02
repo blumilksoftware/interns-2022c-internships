@@ -50,7 +50,7 @@
               class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0"
             >
               <div class="flex items-center justify-between w-full md:w-auto">
-                <a href="#">
+                <a href="#" alt="Project logo">
                   <p class="logo">Znajdź Praktyki</p>
                 </a>
               </div>
@@ -131,6 +131,7 @@
                 <router-link
                   to="/home"
                   tag="button"
+                  alt="search"
                   class="
                     inline-flex
                     items-center
@@ -162,7 +163,7 @@
       <img
         class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
         src="../assets/images/landing_right.jpg"
-        alt=""
+        alt="Developer workstation with laptop desktop computer monitor connected"
       />
     </div>
   </div>
@@ -199,7 +200,7 @@
       <img
         class="w-full h-full object-cover"
         src="../assets/images/landing_left.jpg"
-        alt="Support team"
+        alt="Software Developers at work"
       />
     </div>
     <div class="relative max-w-7xl mx-auto px-4 py-8 sm:py-12 sm:px-6 lg:py-16">
@@ -232,6 +233,7 @@
         <router-link
           to="/home"
           tag="button"
+          alt="cooperation"
           class="
             inline-flex
             items-center
