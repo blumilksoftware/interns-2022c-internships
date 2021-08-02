@@ -8,6 +8,7 @@ use Internships\Factories\DocumentConfigFactory;
 use Internships\Factories\FacultyDataFactory;
 use Internships\FileSystem\DirectoryManager;
 use Internships\FileSystem\FileManager;
+use Internships\Models\DocumentConfig;
 use Internships\Models\Faculty;
 use Internships\Services\CsvReader;
 use Internships\Services\DataSanitizer;
@@ -41,27 +42,39 @@ class ResourcesTest extends TestCase
         $this->documentFactory = new DocumentConfigFactory($validator);
     }
 
-    public function testFaculties(): void
+    public function testResourceDirectoryContent(): void
     {
-        /** @var Faculty[] $data */
+        /** @var Faculty[] $faculties */
         $faculties = $this->retrieveWithFactory("", $this->facultyFactory);
 
         $expectedId = 0;
-        /** @var Faculty $faculty */
         foreach ($faculties as $faculty) {
             $this->assertSame($expectedId++, $faculty->getId());
             $this->assertNotSame("", $faculty->getName());
             $this->assertNotSame("", $faculty->getDirectory());
+
             $relativePath = $this->facultyFactory->getSourceRelativePath() . $faculty->getDirectory();
             $this->getAndCheckResourcePath(relativePath: $relativePath, fileName: "");
             $this->getAndCheckResourcePath(
                 relativePath: $relativePath . $this->companyFactory->getBaseSourcePath(),
                 fileName: $this->companyFactory->getSourceFileName()
             );
+
             $this->getAndCheckResourcePath(
                 relativePath: $relativePath . $this->documentFactory->getBaseSourcePath(),
                 fileName: $this->documentFactory->getSourceFileName()
             );
+
+            /** @var DocumentConfig[] $documentConfigData */
+            $documentConfigData = $this->retrieveWithFactory($relativePath, $this->documentFactory, true);
+
+            foreach ($documentConfigData as $documentConfig) {
+                $documentPath = $relativePath . $this->documentFactory->getBaseSourcePath();
+                $this->getAndCheckResourcePath(
+                    relativePath: $documentPath,
+                    fileName: $documentConfig->getFilePath()
+                );
+            }
         }
     }
 

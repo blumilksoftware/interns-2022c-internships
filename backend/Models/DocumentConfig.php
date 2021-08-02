@@ -19,6 +19,11 @@ class DocumentConfig implements JsonSerializable
         $this->filePath = $data["filePath"];
     }
 
+    public function getFilePath(): mixed
+    {
+        return $this->filePath;
+    }
+
     public function jsonSerialize(): array
     {
         return [
