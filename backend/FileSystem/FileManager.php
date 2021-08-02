@@ -107,7 +107,7 @@ class FileManager
 
     public function copyResources(
         /**
-         * @var string[] $filePaths
+         * @var DirectoryIterator[] $filePaths
          */
         string $relativeOrigin,
         string $relativeDestination,
@@ -115,8 +115,8 @@ class FileManager
     ): void {
         $baseResourcePath = $this->directoryManager->getResourceDirectoryPath($relativeOrigin);
         foreach ($filePaths as $filePath) {
-            $fileName = basename($filePath);
-            $path = substr($filePath, 0, strlen($filePath) - strlen($fileName));
+            $fileName = $filePath->getFilename();
+            $path = $filePath->getPath();
 
             $fileRelativePath = Path::FOLDER_SEPARATOR . substr($path, strlen($baseResourcePath))
                 . Path::FOLDER_SEPARATOR;
@@ -131,6 +131,7 @@ class FileManager
         }
     }
 
+    /** @return DirectoryIterator[]  */
     public function getResourceFilePathsFrom(
         string $relativeOrigin,
         string $specificFilename = "",
@@ -145,18 +146,19 @@ class FileManager
         }
 
         $recursiveIteratorI = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($origin));
-        $filePaths = [];
 
+        /** @var DirectoryIterator[] $fileData  */
+        $fileData = [];
         /** @var DirectoryIterator $file */
         foreach ($recursiveIteratorI as $file) {
             if (!$file->isDir()) {
                 if ($file->getPath()[0]
                     && ($specificFilename === "" || $specificFilename === $file->getFilename())) {
-                    array_push($filePaths, $file->getPathname());
+                    array_push($fileData, $file);
                 }
             }
         }
-        return $filePaths;
+        return $fileData;
     }
 
     protected function create(string $fullPath, mixed $content = ""): void
