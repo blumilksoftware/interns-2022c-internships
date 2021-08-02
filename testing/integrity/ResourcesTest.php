@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Internships\Factories\CompanyDataFactory;
 use Internships\Factories\DataFactory;
+use Internships\Factories\DocumentConfigFactory;
 use Internships\Factories\FacultyDataFactory;
 use Internships\FileSystem\DirectoryManager;
 use Internships\FileSystem\FileManager;
@@ -22,6 +23,7 @@ class ResourcesTest extends TestCase
 
     protected FacultyDataFactory $facultyFactory;
     protected CompanyDataFactory $companyFactory;
+    protected DocumentConfigFactory $documentFactory;
 
     protected function setUp(): void
     {
@@ -36,6 +38,7 @@ class ResourcesTest extends TestCase
         $validator = new DataValidator(new DataSanitizer());
         $this->facultyFactory = new FacultyDataFactory($validator);
         $this->companyFactory = new CompanyDataFactory($this->fileManager, $validator);
+        $this->documentFactory = new DocumentConfigFactory($validator);
     }
 
     public function testFaculties(): void
@@ -54,6 +57,10 @@ class ResourcesTest extends TestCase
             $this->getAndCheckResourcePath(
                 relativePath: $relativePath . $this->companyFactory->getBaseSourcePath(),
                 fileName: $this->companyFactory->getSourceFileName()
+            );
+            $this->getAndCheckResourcePath(
+                relativePath: $relativePath . $this->documentFactory->getBaseSourcePath(),
+                fileName: $this->documentFactory->getSourceFileName()
             );
         }
     }
