@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Internships\FileSystem;
 
+use DirectoryIterator;
 use Internships\Exceptions\File\NoNameFileException;
 use Internships\Exceptions\Path\AlreadyExistsPathException;
 use Internships\Exceptions\Path\CouldNotReadPathException;
@@ -132,6 +133,7 @@ class FileManager
 
     public function getResourceFilePathsFrom(
         string $relativeOrigin,
+        string $specificFilename = "",
     ): array {
         $origin = $this->directoryManager->getResourceDirectoryPath($relativeOrigin);
 
@@ -144,9 +146,12 @@ class FileManager
 
         $recursiveIteratorI = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($origin));
         $filePaths = [];
+
+        /** @var DirectoryIterator $file */
         foreach ($recursiveIteratorI as $file) {
             if (!$file->isDir()) {
-                if ($file->getPath()[0]) {
+                if ($file->getPath()[0]
+                    && ($specificFilename === "" || $specificFilename === $file->getFilename())) {
                     array_push($filePaths, $file->getPathname());
                 }
             }

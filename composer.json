@@ -4,7 +4,8 @@
   "type": "project",
   "autoload": {
     "psr-4": {
-      "Internships\\": "backend/"
+      "Internships\\": "backend/",
+      "Internships\\Testing\\": "testing/"
     }
   },
   "require": {
