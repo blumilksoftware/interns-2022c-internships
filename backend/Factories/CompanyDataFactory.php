@@ -104,8 +104,10 @@ class CompanyDataFactory extends DataFactory implements SerializableInfo
         $this->filterCollector->rebuild();
     }
 
-    public function onBuildEnd(): void
+    public function onBuildEnd(bool $serialize = false): void
     {
-        $this->filterCollector->saveToJson($this->workingDirectory);
+        if($serialize) {
+            $this->filterCollector->saveToJson($this->workingDirectory);
+        }
     }
 }

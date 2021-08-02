@@ -45,7 +45,7 @@ class AppGenerator
             $factory->getSourceFileName(),
             $factory->getFields()
         );
-        return $factory->buildFromData($facultyCsvData);
+        return $factory->buildFromData($facultyCsvData, serializeSubData: true);
     }
 
     public function saveDataToJson(DataFactory $factory, array $data): void

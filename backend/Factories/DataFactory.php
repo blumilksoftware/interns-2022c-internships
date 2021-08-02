@@ -100,7 +100,7 @@ abstract class DataFactory implements BuildTool, SerializableInfo
         $this->workingDirectory = $directory;
     }
 
-    public function buildFromData(array $csvData): array
+    public function buildFromData(array $csvData, bool $serializeSubData = false): array
     {
         $this->onBuildStart();
         $dataObjects = [];
@@ -114,7 +114,7 @@ abstract class DataFactory implements BuildTool, SerializableInfo
                 array_push($dataObjects, $modelObject);
             }
         }
-        $this->onBuildEnd();
+        $this->onBuildEnd($serializeSubData);
         return $dataObjects;
     }
 
@@ -127,7 +127,7 @@ abstract class DataFactory implements BuildTool, SerializableInfo
     {
     }
 
-    public function onBuildEnd(): void
+    public function onBuildEnd(bool $serialize = false): void
     {
     }
 }
