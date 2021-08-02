@@ -50,7 +50,7 @@
               class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0"
             >
               <div class="flex items-center justify-between w-full md:w-auto">
-                <a href="#" alt="Project logo">
+                <a href="#" title="Project logo">
                   <p class="logo">Znajdź Praktyki</p>
                 </a>
               </div>
@@ -131,7 +131,7 @@
                 <router-link
                   to="/home"
                   tag="button"
-                  alt="search"
+                  title="search"
                   class="
                     inline-flex
                     items-center
@@ -233,7 +233,7 @@
         <router-link
           to="/home"
           tag="button"
-          alt="cooperation"
+          title="cooperation"
           class="
             inline-flex
             items-center
