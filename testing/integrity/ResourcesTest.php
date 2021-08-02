@@ -33,7 +33,9 @@ class ResourcesTest extends TestCase
         $this->fileManager = new FileManager($this->directoryManager, new UniquePathGuard());
         $this->csvReader = new CsvReader($this->directoryManager, $this->fileManager);
 
-        $this->facultyFactory = new FacultyDataFactory(new DataValidator(new DataSanitizer()));
+        $validator = new DataValidator(new DataSanitizer());
+        $this->facultyFactory = new FacultyDataFactory($validator);
+        $this->companyFactory = new CompanyDataFactory($this->fileManager, $validator);
     }
 
     public function testFaculties(): void
@@ -49,16 +51,23 @@ class ResourcesTest extends TestCase
             $this->assertNotSame("", $faculty->getDirectory());
             $relativePath = $this->facultyFactory->getSourceRelativePath() . $faculty->getDirectory();
             $this->getAndCheckResourcePath(relativePath: $relativePath, fileName: "");
+            $this->getAndCheckResourcePath(
+                relativePath: $relativePath . $this->companyFactory->getBaseSourcePath(),
+                fileName: $this->companyFactory->getSourceFileName()
+            );
         }
     }
 
-    protected function getAndCheckResourcePath(string $relativePath, string $fileName): string
+    protected function getAndCheckResourcePath(string $relativePath, string $fileName, bool $checkWrite = false): string
     {
         $path = $this->directoryManager->getResourceFilePath($relativePath, $fileName);
         if ($fileName === "") {
             $this->assertDirectoryExists($path);
         } else {
             $this->assertFileExists($path);
+            if($checkWrite){
+                $this->assertFileIsWritable($path);
+            }
         }
         return $path;
     }
@@ -72,8 +81,7 @@ class ResourcesTest extends TestCase
 
         $path = $relativeDirectory . $dataFactory->getSourceRelativePath();
         $filename = $dataFactory->getSourceFileName();
-        $fullPath = $this->directoryManager->getResourceFilePath($path, $filename);
-        $this->assertFileExists($fullPath);
+        $this->getAndCheckResourcePath($path, $filename);
 
         $fields = $dataFactory->getFields();
         $csvData = $this->csvReader->getCSVData($path, $filename, $fields);
