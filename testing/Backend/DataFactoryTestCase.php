@@ -20,6 +20,7 @@ class DataFactoryTestCase extends TestCase
     protected DataFactory $dataFactory;
     protected string $fixtureFileName;
     protected bool $factoryCanReturnEmptyArray;
+    protected bool $modelMustBeSerializable = true;
 
     public function testIfClassIsDataFactory(): void
     {
@@ -65,6 +66,9 @@ class DataFactoryTestCase extends TestCase
 
     public function testIfModelIsJsonSerializable(): void
     {
+        if (!$this->modelMustBeSerializable) {
+            $this->markTestSkipped("Special case of factory creating non-serializable object: {$this->factoryClassName}");
+        }
         $modelName = $this->expectedModelClassName;
         $implementations = class_implements($modelName);
         $this->assertTrue(
@@ -78,7 +82,6 @@ class DataFactoryTestCase extends TestCase
         $modelName = $this->expectedModelClassName;
         $methods = [
             "getId",
-            "jsonSerialize",
         ];
         foreach ($methods as $method) {
             $this->assertTrue(
