@@ -47,7 +47,7 @@ class FileIntegrityTest extends FromCsvTestCase
         }
     }
 
-    public function testCompanyFileForEachFaculty(): void
+    public function testIfCompanyFileExistsPerFaculty(): void
     {
         $companyFactory = new CompanyDataFactory($this->fileManager, $this->validator);
         foreach ($this->faculties as $faculty) {
@@ -61,7 +61,7 @@ class FileIntegrityTest extends FromCsvTestCase
         }
     }
 
-    public function testDocumentsForEachFaculty(): void
+    public function testIfDocumentFileExistsPerFaculty(): void
     {
         $documentFactory = new DocumentConfigFactory($this->validator);
         foreach ($this->faculties as $faculty) {

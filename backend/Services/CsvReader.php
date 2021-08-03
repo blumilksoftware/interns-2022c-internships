@@ -21,6 +21,9 @@ class CsvReader
     ) {
     }
 
+    /**
+     * @throws CsvInvalidCountFileException
+     */
     public function getCSVData(string $resourceRelativePath, string $fileName, array $fieldDefines): array
     {
         $fullPath = $this->directoryManager->getResourceFilePath($resourceRelativePath, $fileName);

@@ -14,14 +14,18 @@ class CompaniesIntegrityTest extends FromCsvTestCase
 
     /** @var Company[][] */
     protected array $companiesFromFiles;
-    protected bool $alreadyRetrieved = false;
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->companiesFromFiles = [];
         $this->companyFactory = new CompanyDataFactory($this->fileManager, $this->validator);
+
         $files = $this->fileManager->getResourceFilePathsFrom("", $this->companyFactory->getSourceFileName());
+        $this->assertNotEmpty(
+            $files,
+            message: "Couldn't find any files related to companies."
+        );
         $baseResourcePath = $this->directoryManager->getResourceDirectoryPath("");
 
         foreach ($files as $file) {
@@ -43,12 +47,14 @@ class CompaniesIntegrityTest extends FromCsvTestCase
         foreach ($this->companiesFromFiles as $companies) {
             foreach ($companies as $rowNumber => $company) {
                 $csvOffset = $rowNumber+1;
-                $semiSanitizedText = preg_match('/^\s*$/', $company->getName());
+                $semiSanitizedText = preg_replace('/\s+/', "", $company->getName());
                 $fileKey = key($companies);
-                self::assertNotSame(
+
+                $this->assertNotSame(
                     "",
                     $semiSanitizedText,
-                    message: "Sanitization for Company Name at {$csvOffset} in {$fileKey} failed."
+                    message: "Validation for Company Name at {$csvOffset} in {$fileKey} failed."
+                    . " Name should contain non-whitespace characters."
                 );
             }
         }
