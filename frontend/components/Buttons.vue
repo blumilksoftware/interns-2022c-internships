@@ -1,18 +1,29 @@
 <template>
   <div class="btncontainer">
-    <button class="resetfilters" @click="resetButtons">
-      <i class="far fa-eye"></i>
+    <BaseButton
+      class="resetfilters"
+      @click="resetButtons"
+      :hasIcon="true"
+      icon="far fa-eye"
+    >
       Zresetuj filtry
-    </button>
-    <button class="saveasfile" href="www.the100clth.pl">
-      <i class="fas fa-cloud-download-alt"></i>
-      Zapisz do pliku
-    </button>
+    </BaseButton>
+    <BaseButton
+      class="saveasfile"
+      :hasIcon="true"
+      icon="fas fa-cloud-download-alt"
+      >Zapisz do pliku</BaseButton
+    >
   </div>
 </template>
 
 <script>
+import BaseButton from "@/components/BaseButton";
+
 export default {
+  components: {
+    BaseButton,
+  },
   data() {
     return {
       reset: true,
