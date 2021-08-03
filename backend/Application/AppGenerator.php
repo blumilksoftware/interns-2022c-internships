@@ -38,6 +38,9 @@ class AppGenerator
         ];
     }
 
+    /**
+     * @throws IsMissingValidationException
+     */
     public function getDataFromCsv(DataFactory $factory): array
     {
         $facultyCsvData = $this->csvReader->getCSVData(

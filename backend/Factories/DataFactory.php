@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Internships\Factories;
 
+use Internships\Exceptions\Validation\IsMissingValidationException;
 use Internships\FileSystem\Path;
 use Internships\Interfaces\BuildTool;
 use Internships\Interfaces\SerializableInfo;
@@ -90,6 +91,9 @@ abstract class DataFactory implements BuildTool, SerializableInfo
         $this->workingDirectory = $directory;
     }
 
+    /**
+     * @throws IsMissingValidationException
+     */
     public function buildFromData(array $csvData): array
     {
         $this->onBuildStart();
