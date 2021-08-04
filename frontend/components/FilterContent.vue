@@ -23,7 +23,17 @@
         # Wybierz najważniejszą technologię z tagów
       </p>
       <div class="tagsContainer noselect">
-        <div class="tag" v-for="tag in tags.tags" :key="tag.name">
+        <div
+          class="tag"
+          v-for="tag in tags.tags"
+          :key="tag.name"
+          :class="{ highlight: activeTags.includes(tag.name) }"
+          @click="
+            activeTags.includes(tag.name)
+              ? activeTags.splice(activeTags.indexOf(tag.name), 1)
+              : activeTags.push(tag.name)
+          "
+        >
           <span>{{ tag.name }} </span>
         </div>
       </div>
@@ -54,6 +64,7 @@ export default {
       isActive: false,
       isDropdownActive: false,
       tags,
+      activeTags: [],
       cityData: [
         {
           name: "Wrocław",
@@ -85,29 +96,12 @@ export default {
     },
   },
   mounted: function () {
-    const tags = document.querySelectorAll(".tag");
-    const arr = [];
-
-    for (let i = 0; i < tags.length; i++) {
-      tags[i].addEventListener("click", function () {
-        if (arr.includes(tags[i].firstElementChild.innerText)) {
-          const index = arr.indexOf(tags[i].firstElementChild.innerText);
-          if (index > -1) {
-            arr.splice(index, 1);
-          }
-        } else {
-          arr.push(tags[i].firstElementChild.innerText);
-        }
-        tags[i].classList.toggle("highlight");
-      });
-    }
     this.eventBus.on("reset", function (reset) {
       if (reset) {
         let high = document.querySelectorAll(".highlight");
         for (var i = 0; i < high.length; i++) {
           high[i].classList.toggle("highlight");
         }
-        arr.length = 0;
       }
     });
   },
