@@ -46,7 +46,6 @@ jobs:
           echo "::set-output name=dir::$(npm config get cache)"
 
       - name: Restore npm cache
-        id: node-cache-restore
         uses: actions/cache@v2
         with:
           path: ${{ steps.npm-cache.outputs.dir }}
@@ -59,8 +58,7 @@ jobs:
         run: composer install --prefer-dist --no-progress
 
       - name: Install frontend dependencies
-        if: steps.node-cache-restore.outputs.cache-hit != 'true'
-        run: npm install
+        run: npm ci
 
       - name: Lint js codebase
         run: npm run lint
