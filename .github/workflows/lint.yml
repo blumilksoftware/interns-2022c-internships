@@ -26,6 +26,7 @@ jobs:
           echo "::set-output name=dir::$(composer config cache-files-dir)"
 
       - name: Restore composer cache
+        id: composer-cache-restore
         uses: actions/cache@v2
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
@@ -45,6 +46,7 @@ jobs:
           echo "::set-output name=dir::$(npm config get cache)"
 
       - name: Restore npm cache
+        id: node-cache-restore
         uses: actions/cache@v2
         with:
           path: ${{ steps.npm-cache.outputs.dir }}
@@ -53,9 +55,11 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install backend dependencies
+        if: steps.composer-cache-restore.outputs.cache-hit != 'true'
         run: composer install --prefer-dist --no-progress
 
       - name: Install frontend dependencies
+        if: steps.node-cache-restore.outputs.cache-hit != 'true'
         run: npm install
 
       - name: Lint js codebase
