@@ -25,6 +25,7 @@ jobs:
         run: "echo \"::set-output name=directory::$(composer config cache-dir)\""
 
       - name: Cache dependencies installed with composer
+        id: cache-composer
         uses: actions/cache@v2
         with:
           path: "${{ steps.determined-composer-cache.outputs.directory }}"
@@ -32,6 +33,7 @@ jobs:
           restore-keys: "php-${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-"
 
       - name: Cache node modules
+        id: cache-node
         uses: actions/cache@v2
         env:
           cache-name: cache-node-modules
@@ -44,9 +46,11 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install backend dependencies
+        if: steps.cache-composer.outputs.cache-hit != 'true'
         run: composer install --prefer-dist --no-progress
 
       - name: Install frontend dependencies
+        if: steps.cache-node.outputs.cache-hit != 'true'
         run: npm install
 
       - name: Lint js codebase
