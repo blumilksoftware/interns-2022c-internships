@@ -17,7 +17,7 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v2.3.4
 
-      - name: Validate composer
+      - name: Validate composer config
         run: composer validate
 
       - name: Get Composer Cache Directory
