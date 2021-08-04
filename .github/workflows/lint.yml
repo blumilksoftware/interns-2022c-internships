@@ -17,15 +17,15 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v2.3.4
 
-      - name: "Validate composer.json and composer.lock"
-        run: "composer validate"
+      - name: Validate composer.json and composer.lock
+        run: composer validate
 
-      - name: "Determine composer cache directory"
-        id: "determined-composer-cache"
+      - name: Determine composer cache directory
+        id: determined-composer-cache
         run: "echo \"::set-output name=directory::$(composer config cache-dir)\""
 
-      - name: "Cache dependencies installed with composer"
-        uses: "actions/cache@v2.0.0"
+      - name: Cache dependencies installed with composer
+        uses: actions/cache@v2
         with:
           path: "${{ steps.determined-composer-cache.outputs.directory }}"
           key: "php-${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-${{ hashFiles('composer.lock') }}"
