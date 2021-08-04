@@ -18,20 +18,20 @@
       />
     </div>
     <div id="map" class="w-full h-full"></div>
-    <searchBar v-if="isPortrait()" class="searchBarMobile" />
+    <SearchBar v-if="isPortrait()" class="searchBarMobile" />
   </div>
 </template>
 
 <script>
 import mapboxgl from "mapbox-gl";
 
-import Search from "./searchBar.vue";
+import SearchBar from "@/components/SearchBar";
 import { LocationMarkerIcon } from "@heroicons/vue/outline";
 
 export default {
   components: {
     LocationMarkerIcon,
-    searchBar: Search,
+    SearchBar,
   },
   mounted() {
     mapboxgl.accessToken = process.env.VUE_APP_MAPBOX_TOKEN;

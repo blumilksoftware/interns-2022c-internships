@@ -26,7 +26,7 @@
 <script>
 import Buttons from "@/components/Buttons";
 import DataField from "@/components/DataField";
-import SearchBar from "@/components/searchBar";
+import SearchBar from "@/components/SearchBar";
 import FilterContent from "@/components/FilterContent";
 import { isMobile } from "../functions/functions.js";
 
