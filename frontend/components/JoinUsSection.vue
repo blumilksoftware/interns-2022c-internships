@@ -31,7 +31,7 @@
       <img
         class="w-full h-full object-cover"
         src="../assets/images/landing_left.jpg"
-        alt="Support team"
+        alt="Software Developers at work"
       />
     </div>
     <div class="relative max-w-7xl mx-auto px-4 py-8 sm:py-12 sm:px-6 lg:py-16">
@@ -64,6 +64,7 @@
         <router-link
           to="/home"
           tag="button"
+          title="Cooperation"
           class="
             inline-flex
             items-center

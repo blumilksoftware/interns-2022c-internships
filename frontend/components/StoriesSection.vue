@@ -41,12 +41,16 @@
           class="flex flex-col rounded-lg shadow-lg overflow-hidden"
         >
           <div class="flex-shrink-0">
-            <img class="h-48 w-full object-cover" :src="post.imageUrl" alt="" />
+            <img
+              class="h-48 w-full object-cover"
+              :src="post.imageUrl"
+              alt="Internship participant"
+            />
           </div>
           <div class="flex-1 bg-white p-6 flex flex-col justify-between">
             <div class="flex-1">
               <p class="text-sm font-medium text-indigo-600">
-                <a :href="post.category.href" class="hover:underline">
+                <a class="hover:underline">
                   {{ post.category.name }}
                 </a>
               </p>
@@ -71,7 +75,7 @@ const posts = [
   {
     title: "Zdobyłem masę doświadczenia",
     href: "#",
-    category: { name: "Informatyka", href: "#" },
+    category: { name: "Informatyka" },
     description:
       "Znalazłem praktykodawce, w świetnym software house i muszę przyznać, że nigdy w tak krótkim czasie nie nauczyłem się tak wielu rzeczy. W dodatku dzięki filtrom i tagom mogłem idealnie dopasować swoje umiejętności - które mocno rozwinąłem.",
     imageUrl:
@@ -80,7 +84,7 @@ const posts = [
   {
     title: "Nauczyłam się pracy w drużynie",
     href: "#",
-    category: { name: "Grafika", href: "#" },
+    category: { name: "Grafika" },
     description:
       "Dużo wiedzy, praca w zespole, nowe spojrzenie na to jak wygląda praca komercyjna to tylko niektóre z plusów moich praktyk. Dzięki mapce znalazłam praktykodawce po sąsiedzku i jestem bardzo zadowolona.",
     imageUrl:
@@ -89,7 +93,7 @@ const posts = [
   {
     title: "Próbna wersja przyszłej pracy",
     href: "#",
-    category: { name: "Administracja", href: "#" },
+    category: { name: "Administracja" },
     description:
       "Studiuję administrację i chciałbym w przyszłości pracować w urzędzie. Dzięki Znajdź Praktyki okazało się, że nie muszę jeździć do miasta, tylko mogę odbywać praktyki w okolicznym urzędzie gminy. Było to dla mnie doświadczenie przyszłej pracy w skali makro, z którego mnóstwo wyniosłem.",
     imageUrl:
