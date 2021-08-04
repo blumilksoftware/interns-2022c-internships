@@ -20,17 +20,18 @@ jobs:
       - name: Validate composer.json and composer.lock
         run: composer validate
 
-      - name: Determine composer cache directory
-        id: determined-composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: |
+          echo "::set-output name=dir::$(composer config cache-files-dir)"
 
-      - name: Cache dependencies installed with composer
+      - name: Restore composer cache
         uses: actions/cache@v2
         with:
-          path: ${{ steps.determined-composer-cache.outputs.directory }}
+          path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
-              ${{ runner.os }}-composer-
+            ${{ runner.os }}-composer-
 
       - name: Set up node
         uses: actions/setup-node@v2
