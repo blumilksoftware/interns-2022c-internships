@@ -26,7 +26,6 @@ jobs:
           echo "::set-output name=dir::$(composer config cache-files-dir)"
 
       - name: Restore composer cache
-        id: composer-cache-restore
         uses: actions/cache@v2
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
@@ -54,7 +53,6 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install backend dependencies
-        if: steps.composer-cache-restore.outputs.cache-hit != 'true'
         run: composer install --prefer-dist --no-progress
 
       - name: Install frontend dependencies
