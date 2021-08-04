@@ -3,7 +3,6 @@ import App from "@/App.vue";
 import router from "@/router";
 import store from "@/store";
 import "@/assets/tailwind.css";
-import "leaflet/dist/leaflet.css";
 import mitt from "mitt";
 import "@/assets/styles/main.css";
 
