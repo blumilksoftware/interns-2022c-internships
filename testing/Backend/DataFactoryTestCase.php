@@ -67,7 +67,7 @@ class DataFactoryTestCase extends TestCase
     public function testIfModelIsJsonSerializable(): void
     {
         if (!$this->modelMustBeSerializable) {
-            $this->markTestSkipped("Special case of factory creating non-serializable object: {$this->factoryClassName}");
+            return;
         }
         $modelName = $this->expectedModelClassName;
         $implementations = class_implements($modelName);

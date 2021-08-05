@@ -11,7 +11,7 @@ use Internships\Models\DocumentConfig;
 use Internships\Models\Faculty;
 use Internships\Services\UniquePathGuard;
 
-class FileIntegrityTest extends FromCsvTestCase
+class FacultyResourcesFactoryTest extends CsvFactoryTestCase
 {
     /** @var Faculty[] */
     protected array $faculties;
@@ -21,7 +21,6 @@ class FileIntegrityTest extends FromCsvTestCase
         parent::setUp();
 
         $this->facultyFactory = new FacultyDataFactory($this->validator);
-        $this->faculties = $this->retrieveWithFactory("", $this->facultyFactory);
     }
 
     public function testFacultyIntegrity(): void
@@ -73,7 +72,7 @@ class FileIntegrityTest extends FromCsvTestCase
             );
 
             /** @var DocumentConfig[] $documentConfigData */
-            $documentConfigData = $this->retrieveWithFactory($relativePath, $documentFactory, true);
+            //$documentConfigData = $this->retrieveWithFactory($relativePath, $documentFactory, true);
 
             foreach ($documentConfigData as $documentConfig) {
                 $documentPath = $relativePath . $documentFactory->getBaseSourcePath();
