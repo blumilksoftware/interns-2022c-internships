@@ -29,13 +29,13 @@ abstract class DataFactory implements BuildTool, SerializableInfo
         $this->defineDataFields();
     }
 
-    public function validate(int $entryID, array $entry): array
+    public function validate(int $entryId, array $entry): array
     {
         foreach (array_keys($this->fields) as $fieldName) {
             $fieldOptions = $this->fields[$fieldName];
             $entry[$fieldName] = $this->dataValidator->validateField(
                 fieldValue: $entry[$fieldName],
-                entryID: $entryID,
+                entryId: $entryId,
                 fieldName: $fieldName,
                 fieldValidationOptions: $fieldOptions
             );
