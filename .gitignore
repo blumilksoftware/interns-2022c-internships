@@ -20,7 +20,3 @@ vendor
 *.njsproj
 *.sln
 *.sw?
-
-public/*
-public/api/
-!public/.gitkeep
