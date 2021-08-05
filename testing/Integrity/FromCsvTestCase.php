@@ -26,7 +26,7 @@ class FromCsvTestCase extends TestCase
     {
         $this->directoryManager = new DirectoryManager(
             rootDirectoryPath: __DIR__ . "/../../",
-            relativeApiPath: "/public/api/",
+            relativeApiPath: "/dist/api/",
             relativeResourcePath: "/resources/"
         );
         $this->fileManager = new FileManager($this->directoryManager, new UniquePathGuard());

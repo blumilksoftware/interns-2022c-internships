@@ -22,7 +22,7 @@
   },
   "scripts": {
     "build": [
-      "rm -rf ./public/api",
+      "rm -rf ./dist/api",
       "sh -c 'cd backend && php index.php'"
     ],
     "populate": [
@@ -32,7 +32,7 @@
       "sh -c 'cd backend && php index.php --fetch'"
     ],
     "purge": [
-      "rm -rf ./public/api",
+      "rm -rf ./dist/api",
       "rm -rf ./resources/faculties/*"
     ],
     "ecs": "./vendor/bin/ecs check --clear-cache",
