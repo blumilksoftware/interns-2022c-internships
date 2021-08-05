@@ -16,8 +16,8 @@ jobs:
         env:
           VUE_APP_MAPBOX_TOKEN: "${{ secrets.VUE_APP_MAPBOX_TOKEN }}"
         run: |
-            npm install
-            npm run-script build
+          npm install
+          npm run-script build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.4
