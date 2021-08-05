@@ -51,7 +51,7 @@
             >
               <div class="flex items-center justify-between w-full md:w-auto">
                 <a href="#">
-                  <p class="logo">Znajdź Praktyki</p>
+                  <p class="logo" title="Project logo">Znajdź Praktyki</p>
                 </a>
               </div>
             </div>
@@ -131,6 +131,7 @@
                 <router-link
                   to="/home"
                   tag="button"
+                  title="home"
                   class="
                     inline-flex
                     items-center
@@ -162,7 +163,7 @@
       <img
         class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
         src="../assets/images/landing_right.jpg"
-        alt=""
+        alt="Developer workstation with laptop desktop computer monitor connected"
       />
     </div>
   </div>

@@ -4,6 +4,7 @@
       <img
         class="w-full h-full object-cover"
         src="../assets/images/cooperate.jpg"
+        alt="People discussing about the project"
       />
       <div
         class="absolute inset-0 bg-indigo-400 mix-blend-multiply"
