@@ -8,19 +8,42 @@ use Internships\Factories\DataFactory;
 use Internships\FileSystem\DirectoryManager;
 use Internships\FileSystem\FileManager;
 use Internships\Services\CsvReader;
+use Internships\Services\DataSanitizer;
+use Internships\Services\DataValidator;
+use Internships\Services\UniquePathGuard;
 use JsonSerializable;
 use PHPUnit\Framework\TestCase;
 
-class DataFactoryTestCase extends TestCase
+abstract class DataFactoryTestCase extends TestCase
 {
+    protected static ?DirectoryManager $directoryManager;
+    protected static ?FileManager $fileManager;
+    protected static ?DataValidator $validator;
+    protected static ?DataFactory $dataFactory;
+
     protected string $factoryClassName;
     protected string $expectedModelClassName;
-    protected DirectoryManager $directoryManager;
-    protected FileManager $fileManager;
-    protected DataFactory $dataFactory;
-    protected string $fixtureFileName;
     protected bool $factoryCanReturnEmptyArray;
-    protected bool $modelMustBeSerializable = true;
+    protected bool $modelMustBeSerializable;
+
+    public static function setUpBeforeClass(): void
+    {
+        static::$directoryManager = new DirectoryManager(
+            rootDirectoryPath: __DIR__ . "/../",
+            relativeApiPath: "/Fixtures/api/",
+            relativeResourcePath: "/Fixtures/resources/"
+        );
+        static::$validator = new DataValidator(new DataSanitizer());
+        static::$fileManager = new FileManager(static::$directoryManager, new UniquePathGuard());
+    }
+
+    public static function tearDownAfterClass(): void
+    {
+        static::$directoryManager = null;
+        static::$validator = null;
+        static::$fileManager = null;
+        static::$dataFactory = null;
+    }
 
     public function testIfClassIsDataFactory(): void
     {
@@ -32,7 +55,7 @@ class DataFactoryTestCase extends TestCase
 
     public function testIfFactoryDefinesFields(): void
     {
-        $fields = $this->dataFactory->getFields();
+        $fields = static::$dataFactory->getFields();
         $this->assertNotEmpty(
             $fields,
             message: "{$this->factoryClassName} should define at least one field."
@@ -44,29 +67,10 @@ class DataFactoryTestCase extends TestCase
         );
     }
 
-    public function testFixtureFileIntegrity(): void
-    {
-        $sourceFileName = $this->fixtureFileName;
-
-        $pathToFixture = $this->directoryManager->getResourceFilePath("", $sourceFileName);
-        $this->assertFileExists(
-            $pathToFixture,
-            message: "Cannot build data from a non-existent file."
-        );
-
-        $csvReader = new CsvReader($this->directoryManager, $this->fileManager);
-        $csvData = $csvReader->getCSVData("", $sourceFileName, $this->dataFactory->getFields());
-
-        $this->assertCount(
-            count($this->dataFactory->getFields()),
-            array_keys($csvData[0]),
-            message: "{$sourceFileName} has different number of fields from {$this->factoryClassName}"
-        );
-    }
-
     public function testIfModelIsJsonSerializable(): void
     {
         if (!$this->modelMustBeSerializable) {
+            $this->assertNotTrue($this->modelMustBeSerializable);
             return;
         }
         $modelName = $this->expectedModelClassName;
@@ -91,23 +95,44 @@ class DataFactoryTestCase extends TestCase
         }
     }
 
+    public function testFixtureFileIntegrity(): void
+    {
+        $sourceFileName = static::$dataFactory->getSourceFileName();
+        $pathToFixture = static::$directoryManager->getResourceFilePath("", $sourceFileName);
+        $this->assertFileExists(
+            $pathToFixture,
+            message: "Cannot build data from a non-existent file."
+        );
+
+        $csvReader = new CsvReader(static::$directoryManager, static::$fileManager);
+        $csvData = $csvReader->getCSVData("", $sourceFileName, static::$dataFactory->getFields());
+
+        $this->assertCount(
+            count(static::$dataFactory->getFields()),
+            array_keys($csvData[0]),
+            message: "{$sourceFileName} has different number of fields from {$this->factoryClassName}"
+        );
+    }
+
     public function testIfFactoryBuildsCorrectly(): void
     {
-        $factory = $this->dataFactory;
         $factoryName = $this->factoryClassName;
-        $sourceFileName = $this->fixtureFileName;
-        $allowEmpty = $this->factoryCanReturnEmptyArray;
 
-        $csvReader = new CsvReader($this->directoryManager, $this->fileManager);
-        $csvData = $csvReader->getCSVData("", $sourceFileName, $this->dataFactory->getFields());
+        $csvReader = new CsvReader(static::$directoryManager, static::$fileManager);
+        $csvData = $csvReader->getCSVData(
+            resourceRelativePath: "",
+            fileName: static::$dataFactory->getSourceFileName(),
+            fieldDefines: static::$dataFactory->getFields()
+        );
 
-        $data = $factory->buildFromData($csvData, false);
+        $data = static::$dataFactory->buildFromData($csvData, false);
+
         $this->assertIsArray(
             $data,
             message: "{$factoryName} should return an array on build."
         );
 
-        if (!$allowEmpty) {
+        if (!$this->factoryCanReturnEmptyArray) {
             $this->assertNotEmpty(
                 $data,
                 message: "{$factoryName} shouldn't return an empty array for built data."
@@ -115,17 +140,18 @@ class DataFactoryTestCase extends TestCase
         }
 
         $expectedId = 0;
+        $modelName = static::$dataFactory->getModelClassToBuild();
         foreach ($data as $modelObject) {
             $this->assertInstanceOf(
-                $this->dataFactory->getModelClassToBuild(),
+                $modelName,
                 $modelObject,
-                message: "{$factoryName} failed to create model on build."
+                message: "{$factoryName} failed to create {$modelName} on build."
             );
 
             $this->assertSame(
                 $expectedId++,
                 $modelObject->getId(),
-                message: "{$factoryName} failed assignment of identifiers."
+                message: "{$factoryName} failed assignment of identifiers on build."
             );
         }
     }
