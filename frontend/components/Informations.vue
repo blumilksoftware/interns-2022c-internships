@@ -88,7 +88,7 @@
                 <img
                   class="rounded-lg shadow-lg object-cover object-center"
                   src="../assets/images/info.jpg"
-                  alt="Informational meeting"
+                  alt="Informational meeting with developers team"
                   width="1184"
                   height="1376"
                 />

@@ -5,8 +5,17 @@
       :class="{ drpDwnBtnSectActive: isDropdownActive }"
     >
       <div class="headfields">
-        <CourseSelector class="headfield" />
-        <CitySelector class="headfield" />
+        <BaseFieldSelector
+          class="selector headfield"
+          :dataGiven="cityData"
+          name="Miasto"
+        ></BaseFieldSelector>
+
+        <BaseFieldSelector
+          class="selector headfield"
+          :dataGiven="courseData"
+          name="Kierunek"
+        ></BaseFieldSelector>
         <PaidSelector class="headfield paidSelector" />
       </div>
       <hr />
@@ -14,7 +23,17 @@
         # Wybierz najważniejszą technologię z tagów
       </p>
       <div class="tagsContainer noselect">
-        <div class="tag" v-for="tag in tags.tags" :key="tag.name">
+        <div
+          class="tag"
+          v-for="tag in tags.tags"
+          :key="tag.name"
+          :class="{ highlight: activeTags.includes(tag.name) }"
+          @click="
+            activeTags.includes(tag.name)
+              ? activeTags.splice(activeTags.indexOf(tag.name), 1)
+              : activeTags.push(tag.name)
+          "
+        >
           <span>{{ tag.name }} </span>
         </div>
       </div>
@@ -29,15 +48,13 @@
 </template>
 <script>
 import PaidSelector from "@/components/PaidSelector";
-import CitySelector from "@/components/CityFieldSelector";
-import CourseSelector from "@/components/CourseFieldSelector";
+import BaseFieldSelector from "@/components/BaseFieldSelector";
 import tags from "../../resources/templates/testTags.json";
 
 export default {
   components: {
     PaidSelector,
-    CitySelector,
-    CourseSelector,
+    BaseFieldSelector,
   },
   props: {
     reset: Boolean,
@@ -47,6 +64,29 @@ export default {
       isActive: false,
       isDropdownActive: false,
       tags,
+      activeTags: [],
+      cityData: [
+        {
+          name: "Wrocław",
+        },
+        {
+          name: "Legnica",
+        },
+        {
+          name: "Lubin",
+        },
+      ],
+      courseData: [
+        {
+          name: "Informatyka",
+        },
+        {
+          name: "Grafika",
+        },
+        {
+          name: "Ekonomia",
+        },
+      ],
     };
   },
 
@@ -56,29 +96,12 @@ export default {
     },
   },
   mounted: function () {
-    const tags = document.querySelectorAll(".tag");
-    const arr = [];
-
-    for (let i = 0; i < tags.length; i++) {
-      tags[i].addEventListener("click", function () {
-        if (arr.includes(tags[i].firstElementChild.innerText)) {
-          const index = arr.indexOf(tags[i].firstElementChild.innerText);
-          if (index > -1) {
-            arr.splice(index, 1);
-          }
-        } else {
-          arr.push(tags[i].firstElementChild.innerText);
-        }
-        tags[i].classList.toggle("highlight");
-      });
-    }
     this.eventBus.on("reset", function (reset) {
       if (reset) {
         let high = document.querySelectorAll(".highlight");
         for (var i = 0; i < high.length; i++) {
           high[i].classList.toggle("highlight");
         }
-        arr.length = 0;
       }
     });
   },
@@ -92,6 +115,12 @@ export default {
 }
 @import "../assets/styles/_variables";
 
+.selector {
+  border-color: $darkGreyColor;
+  @media (orientation: portrait) {
+    width: 100%;
+  }
+}
 .wrapper {
   .drpDwnBtnSect {
     width: 100%;

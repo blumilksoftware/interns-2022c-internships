@@ -81,10 +81,10 @@ class CompanyDataFactory extends DataFactory implements SerializableInfo
 
     public function processEntry(int $entryId, array $entry): array
     {
-        $entry["country"] = $this->filterCollector->getCountryCollector()->collectAndGetID($entry["country"], $entryId);
-        $entry["city"] = $this->filterCollector->getCityCollector()->collectAndGetID($entry["city"], $entryId);
+        $entry["country"] = $this->filterCollector->getCountryCollector()->collectAndGetId($entry["country"], $entryId);
+        $entry["city"] = $this->filterCollector->getCityCollector()->collectAndGetId($entry["city"], $entryId);
 
-        $entry["specialization"] = $this->filterCollector->getSpecializationCollector()->collectAndGetID(
+        $entry["specialization"] = $this->filterCollector->getSpecializationCollector()->collectAndGetId(
             $entry["specialization"],
             $entryId
         );
@@ -92,8 +92,13 @@ class CompanyDataFactory extends DataFactory implements SerializableInfo
         $tagIds = [];
         $tagCollector = $this->filterCollector->getTagCollector();
         foreach ($entry["tags"] as $tag) {
-            array_push($tagIds, $tagCollector->collectAndGetID($tag, $entryId));
+            $currentTagId = $tagCollector->collectAndGetId($tag, $entryId);
+            array_push($tagIds, $tagCollector->collectAndGetId($tag, $entryId));
+            $this->filterCollector->getSpecializationCollector()
+                ->getLastUsedElement()
+                ->pushRelatedChildId($currentTagId);
         }
+
         $entry["tags"] = array_unique($tagIds, SORT_NUMERIC);
 
         return $entry;
