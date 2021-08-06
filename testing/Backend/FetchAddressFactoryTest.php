@@ -12,7 +12,7 @@ class FetchAddressFactoryTest extends DataFactoryTestCase
     public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
-        FetchAddressFactoryTest::$dataFactory = new FetchAddressDataFactory(static::$validator);
+        self::$dataFactory = new FetchAddressDataFactory(static::$validator);
     }
 
     protected function setUp(): void

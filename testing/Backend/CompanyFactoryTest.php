@@ -12,7 +12,7 @@ class CompanyFactoryTest extends DataFactoryTestCase
     public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
-        CompanyFactoryTest::$dataFactory = new CompanyDataFactory(static::$fileManager, static::$validator);
+        self::$dataFactory = new CompanyDataFactory(static::$fileManager, static::$validator);
     }
 
     protected function setUp(): void

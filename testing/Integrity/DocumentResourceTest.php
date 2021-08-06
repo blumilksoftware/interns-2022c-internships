@@ -13,13 +13,13 @@ class DocumentResourceTest extends CsvFactoryTestCase
     public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
-        DocumentResourceTest::$dataFactory = new DocumentConfigFactory(static::$validator);
+        self::$dataFactory = new DocumentConfigFactory(static::$validator);
     }
 
     public static function tearDownAfterClass(): void
     {
         parent::tearDownAfterClass();
-        DocumentResourceTest::$dataFactory = null;
+        self::$dataFactory = null;
     }
 
     public function testIfMentionedDocumentsExist(): void

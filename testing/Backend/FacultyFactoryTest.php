@@ -12,7 +12,7 @@ class FacultyFactoryTest extends DataFactoryTestCase
     public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
-        FacultyFactoryTest::$dataFactory = new FacultyDataFactory(static::$validator);
+        self::$dataFactory = new FacultyDataFactory(static::$validator);
     }
 
     protected function setUp(): void
