@@ -58,6 +58,7 @@ export default {
         container: "map",
         style: process.env.VUE_APP_MAPBOX_STYLE_URL,
       });
+      this.map.addControl(new mapboxgl.NavigationControl());
     },
   },
 };
