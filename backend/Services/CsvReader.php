@@ -50,20 +50,21 @@ class CsvReader
                 }
                 $row = array_combine(array_keys($fieldDefines), $row);
                 array_push($csvRows, $row);
-                if($fieldRowOnly){
+                if ($fieldRowOnly) {
                     break;
                 }
             }
         } finally {
             fclose($csvFile);
         }
-        if($currentRow < 0){
+        if ($currentRow < 0) {
             throw new NoFieldRowCsvException($fullPath);
         }
         return $csvRows;
     }
 
-    public function getFieldRow(string $resourceRelativePath, string $fileName, array $fieldDefines){
+    public function getFieldRow(string $resourceRelativePath, string $fileName, array $fieldDefines)
+    {
         return $this->getCSVData($resourceRelativePath, $fileName, $fieldDefines, fieldRowOnly: true)[0];
     }
 
