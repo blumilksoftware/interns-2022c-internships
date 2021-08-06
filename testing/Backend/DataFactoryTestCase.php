@@ -105,11 +105,11 @@ abstract class DataFactoryTestCase extends TestCase
         );
 
         $csvReader = new CsvReader(static::$directoryManager, static::$fileManager);
-        $csvData = $csvReader->getCSVData("", $sourceFileName, static::$dataFactory->getFields());
+        $csvFields = $csvReader->getFieldRow("", $sourceFileName, static::$dataFactory->getFields());
 
         $this->assertCount(
             count(static::$dataFactory->getFields()),
-            array_keys($csvData[0]),
+            array_keys($csvFields),
             message: "{$sourceFileName} has different number of fields from {$this->factoryClassName}"
         );
     }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Internships\Services;
 
 use Internships\Exceptions\File\CsvInvalidCountFileException;
+use Internships\Exceptions\File\NoFieldRowCsvException;
 use Internships\Exceptions\Path\CouldNotReadPathException;
 use Internships\Exceptions\Path\NotFoundPathException;
 use Internships\FileSystem\DirectoryManager;
@@ -23,8 +24,11 @@ class CsvReader
 
     /**
      * @throws CsvInvalidCountFileException
+     * @throws NotFoundPathException
+     * @throws CouldNotReadPathException
+     * @throws NoFieldRowCsvException
      */
-    public function getCSVData(string $resourceRelativePath, string $fileName, array $fieldDefines): array
+    public function getCSVData(string $resourceRelativePath, string $fileName, array $fieldDefines, bool $fieldRowOnly = false): array
     {
         $fullPath = $this->directoryManager->getResourceFilePath($resourceRelativePath, $fileName);
         $csvRows = [];
@@ -35,8 +39,8 @@ class CsvReader
         if (!$csvFile) {
             throw new CouldNotReadPathException($fullPath);
         }
+        $currentRow = -1;
         try {
-            $currentRow = -1;
             while (($row = fgetcsv($csvFile, static::CSV_READ_LENGTH, static::CSV_SEPARATOR)) !== false) {
                 $currentRow++;
                 $rowFieldCount = count($row);
@@ -46,11 +50,21 @@ class CsvReader
                 }
                 $row = array_combine(array_keys($fieldDefines), $row);
                 array_push($csvRows, $row);
+                if($fieldRowOnly){
+                    break;
+                }
             }
         } finally {
             fclose($csvFile);
         }
+        if($currentRow < 0){
+            throw new NoFieldRowCsvException($fullPath);
+        }
         return $csvRows;
+    }
+
+    public function getFieldRow(string $resourceRelativePath, string $fileName, array $fieldDefines){
+        return $this->getCSVData($resourceRelativePath, $fileName, $fieldDefines, fieldRowOnly: true)[0];
     }
 
     public function saveData(string $resourceRelativePath, string $fileName, array $data): void
