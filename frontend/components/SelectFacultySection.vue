@@ -102,7 +102,7 @@
             >
               <div class="rounded-md shadow">
                 <div>
-                  <select
+                  <!-- <select
                     id="department"
                     name="Wydział"
                     class="
@@ -121,10 +121,27 @@
                       rounded-md
                     "
                   >
-                    <option selected="">Wydział Informatyki</option>
-                    <option>Wydział Grafiki</option>
-                    <option>Wydział Gier Komputerowych</option>
-                  </select>
+                    
+                  </select> -->
+                  <BaseFieldSelector
+                    class="
+                      mt-1
+                      block
+                      w-full
+                      pl-3
+                      pr-10
+                      py-2
+                      text-base
+                      border-gray-300
+                      focus:outline-none
+                      focus:ring-indigo-500
+                      focus:border-indigo-500
+                      sm:text-sm
+                      rounded-md
+                    "
+                    :dataGiven="faculties"
+                    name="Wybierz wydział"
+                  ></BaseFieldSelector>
                 </div>
               </div>
               <div class="mt-3 sm:mt-0 sm:ml-3">
@@ -168,7 +185,30 @@
     </div>
   </div>
 </template>
+<script>
+import api from "../api";
+import { useRouter } from "vue-router";
+import { onMounted, ref } from "vue";
+import BaseFieldSelector from "@/components/BaseFieldSelector";
 
+export default {
+  components: { BaseFieldSelector },
+  setup() {
+    const router = useRouter();
+    const faculties = ref([]);
+
+    onMounted(() => {
+      api.fetch(router, "faculties/faculties", (data) => {
+        faculties.value = Object.values(data);
+      });
+    });
+
+    return {
+      faculties,
+    };
+  },
+};
+</script>
 <style lang="scss" scoped>
 .logo {
   font-family: Poppins;

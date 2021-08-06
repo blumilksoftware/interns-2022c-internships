@@ -13,5 +13,4 @@ module.exports = {
     port: 8080,
     disableHostCheck: true,
   },
-  publicPath: process.env.NODE_ENV === "production" ? "/internships/" : "/",
 };
