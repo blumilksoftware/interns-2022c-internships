@@ -10,9 +10,16 @@ use Internships\Models\DocumentConfig;
 
 class DocumentResourceTest extends CsvFactoryTestCase
 {
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        static::$dataFactory = new DocumentConfigFactory(static::$validator);
+        parent::setUpBeforeClass();
+        DocumentResourceTest::$dataFactory = new DocumentConfigFactory(static::$validator);
+    }
+
+    public static function tearDownAfterClass(): void
+    {
+        parent::tearDownAfterClass();
+        DocumentResourceTest::$dataFactory = null;
     }
 
     public function testIfMentionedDocumentsExist(): void

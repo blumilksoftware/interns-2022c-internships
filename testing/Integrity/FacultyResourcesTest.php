@@ -17,12 +17,13 @@ class FacultyResourcesTest extends CsvFactoryTestCase
     public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
-        static::$dataFactory = new FacultyDataFactory(static::$validator);
+        FacultyResourcesTest::$dataFactory = new FacultyDataFactory(static::$validator);
     }
 
     public static function tearDownAfterClass(): void
     {
         parent::tearDownAfterClass();
+        FacultyResourcesTest::$dataFactory = null;
         static::$faculties = null;
     }
 

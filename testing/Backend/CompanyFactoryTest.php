@@ -9,14 +9,17 @@ use Internships\Models\Company;
 
 class CompanyFactoryTest extends DataFactoryTestCase
 {
-    protected string $factoryClassName = CompanyDataFactory::class;
-    protected string $expectedModelClassName = Company::class;
-    protected bool $factoryCanReturnEmptyArray = true;
-    protected bool $modelMustBeSerializable = true;
-
     public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
-        static::$dataFactory = new CompanyDataFactory(static::$fileManager, static::$validator);
+        CompanyFactoryTest::$dataFactory = new CompanyDataFactory(static::$fileManager, static::$validator);
+    }
+
+    protected function setUp(): void
+    {
+        $this->factoryClassName = CompanyDataFactory::class;
+        $this->expectedModelClassName = Company::class;
+        $this->factoryCanReturnEmptyArray = true;
+        $this->modelMustBeSerializable = true;
     }
 }

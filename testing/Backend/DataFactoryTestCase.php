@@ -70,7 +70,7 @@ abstract class DataFactoryTestCase extends TestCase
     public function testIfModelIsJsonSerializable(): void
     {
         if (!$this->modelMustBeSerializable) {
-            $this->assertNotTrue($this->modelMustBeSerializable);
+            $this->expectNotToPerformAssertions();
             return;
         }
         $modelName = $this->expectedModelClassName;

@@ -11,6 +11,12 @@ class CompaniesResourceTest extends CsvFactoryTestCase
     public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
-        static::$dataFactory = new CompanyDataFactory(static::$fileManager, static::$validator);
+        CompaniesResourceTest::$dataFactory = new CompanyDataFactory(static::$fileManager, static::$validator);
+    }
+
+    public static function tearDownAfterClass(): void
+    {
+        parent::tearDownAfterClass();
+        CompaniesResourceTest::$dataFactory = null;
     }
 }
