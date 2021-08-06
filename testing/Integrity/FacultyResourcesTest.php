@@ -13,7 +13,6 @@ class FacultyResourcesTest extends CsvFactoryTestCase
 {
     /** @var Faculty[] */
     protected static ?array $faculties;
-    protected static ?bool $alreadyRetrieved = false;
 
     public static function setUpBeforeClass(): void
     {
@@ -25,12 +24,11 @@ class FacultyResourcesTest extends CsvFactoryTestCase
     {
         parent::tearDownAfterClass();
         static::$faculties = null;
-        static::$alreadyRetrieved = null;
     }
 
     protected function setUp(): void
     {
-        if (static::$alreadyRetrieved) {
+        if (isset($faculties)) {
             return;
         }
 
@@ -38,7 +36,6 @@ class FacultyResourcesTest extends CsvFactoryTestCase
             static::$dataFactory->getBaseSourcePath(),
             static::$dataFactory->getSourceFileName()
         );
-        static::$alreadyRetrieved = true;
     }
 
     public function testFacultyDataDirectory(): void

@@ -22,18 +22,19 @@ abstract class CsvFactoryTestCase extends GenericResourceTestCase
     public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
-        static::$fileManager = new FileManager(static::$directoryManager, new UniquePathGuard());
+        if (isset(static::$fileManager,
+            CsvFactoryTestCase::$validator,
+            CsvFactoryTestCase::$csvReader)) {
+            return;
+        }
+        static::$fileManager = new FileManager(GenericResourceTestCase::$directoryManager, new UniquePathGuard());
         static::$validator = new DataValidator(new DataSanitizer());
-        static::$csvReader = new CsvReader(static::$directoryManager, static::$fileManager);
+        static::$csvReader = new CsvReader(GenericResourceTestCase::$directoryManager, CsvFactoryTestCase::$fileManager);
     }
 
     public static function tearDownAfterClass(): void
     {
         parent::tearDownAfterClass();
-        static::$fileManager = null;
-        static::$validator = null;
-        static::$csvReader = null;
-        static::$dataFactory = null;
     }
 
     public function testIfRelatedFilesExist(): void
