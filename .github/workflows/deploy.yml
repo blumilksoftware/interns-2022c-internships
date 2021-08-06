@@ -15,6 +15,9 @@ jobs:
       - name: Install and build frontend
         env:
           VUE_APP_MAPBOX_TOKEN: "${{ secrets.VUE_APP_MAPBOX_TOKEN }}"
+          VUE_APP_MAPBOX_STYLE_URL: "${{ secrets.VUE_APP_MAPBOX_STYLE_URL }}"
+          MAPBOX_TOKEN: "${{ secrets.VUE_APP_MAPBOX_TOKEN }}"
+
         run: |
           npm install
           npm run-script build
