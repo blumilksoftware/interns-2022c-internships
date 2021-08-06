@@ -12,10 +12,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.4
 
-      - name: Install and build fronted
+      - name: Install and build frontend
+        env:
+          VUE_APP_MAPBOX_TOKEN: "${{ secrets.VUE_APP_MAPBOX_TOKEN }}"
+          VUE_APP_MAPBOX_STYLE_URL: "${{ secrets.VUE_APP_MAPBOX_STYLE_URL }}"
+          MAPBOX_TOKEN: "${{ secrets.VUE_APP_MAPBOX_TOKEN }}"
+
         run: |
-            npm install
-            npm run-script build
+          npm install
+          npm run-script build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.4
