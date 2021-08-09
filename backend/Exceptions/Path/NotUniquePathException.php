@@ -8,7 +8,7 @@ class NotUniquePathException extends PathException
 {
     protected function newExceptionMessage(): string
     {
-        return "PathResolver {$this->fullPath} is not unique.";
+        return "Path {$this->fullPath} is not unique.";
     }
 
     protected function getStatusCode(): int
