@@ -18,12 +18,12 @@ class CompanyDataFactory extends DataFactory
     public function __construct(FileManager $fileManager, DataValidator $dataValidator)
     {
         parent::__construct($dataValidator);
-        $this->filterCollector = new FilterMainCollector($fileManager, $this->pathIdentity);
+        $this->filterCollector = new FilterMainCollector($fileManager, $this->relativePathIdentity);
     }
 
     public function setPaths(): void
     {
-        $this->pathIdentity = new RelativePathIdentity(
+        $this->relativePathIdentity = new RelativePathIdentity(
             sourceName: "companies.csv",
             destinationName: "companies.json"
         );

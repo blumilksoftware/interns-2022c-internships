@@ -90,11 +90,13 @@ class AppGenerator
     {
         /** @var Faculty[] $faculties */
         $faculties = $this->getDataFromCsv($this->facultyFactory);
+        $facultyTemplatePaths = $this->fileManager->getResourceFilePathsFrom(
+            relativeOrigin: "/templates/faculty-directory/"
+        );
 
-        $facultyTemplatePaths = $this->fileManager->getResourceFilePathsFrom("/templates/faculty-directory/");
         foreach ($faculties as $rowNumber => $faculty) {
             $relativePathIdentity = $this->facultyFactory->getRelativePathIdentity();
-            $relativePathIdentity->setChangingPathPart($faculty->getDirectory());
+            $relativePathIdentity->setChangingPath($faculty->getDirectory());
             if ($rowNumber > 0) {
                 $this->fileManager->copyResources($facultyTemplatePaths, $relativePathIdentity);
             }
@@ -106,10 +108,11 @@ class AppGenerator
         /** @var Faculty[] $faculties */
         $faculties = $this->getDataFromCsv($this->facultyFactory);
         foreach ($faculties as $faculty) {
-            $this->facultyFactory->changeDirectory($faculty->getDirectory());
             $fetchFactory = $this->fetchAddressFactory;
+            $this->facultyFactory->changeDirectory($faculty->getDirectory());
             $fetchFactory->getRelativePathIdentity()
                 ->setParentIdentity($this->facultyFactory->getRelativePathIdentity());
+
             $companyPathIdentity = $fetchFactory->getRelativePathIdentity();
             $fields = $fetchFactory->getFields();
 
@@ -119,7 +122,7 @@ class AppGenerator
             );
 
             /** @var FetchAddress[] $addresses */
-            $addresses = $this->fetchAddressFactory->buildFromData($companies);
+            $addresses = $fetchFactory->buildFromData($companies);
             $requiresSave = false;
 
             foreach ($addresses as $address) {
@@ -133,20 +136,24 @@ class AppGenerator
                 );
 
                 $requiresSave = $this->geocoder->coordinatesFromAddress(
-                    currentCoordinates: $companies[$csvRow]["coordinates"],
-                    addressObject: $address
-                ) || $requiresSave;
+                        currentCoordinates: $companies[$csvRow]["coordinates"],
+                        addressObject: $address
+                    ) || $requiresSave;
             }
 
             if ($requiresSave) {
-                OutputWriter::newLineToConsole("Saving {$companyPathIdentity->getSourceName()}"
-                                               . " for faculty {$faculty->getName()}.");
+                OutputWriter::newLineToConsole(
+                    text: "Saving {$companyPathIdentity->getSourceName()}"
+                          . " for faculty {$faculty->getName()}."
+                );
                 $this->csvReader->saveData(
                     relativePathIdentity: $companyPathIdentity,
                     data: $companies
                 );
             } else {
-                OutputWriter::newLineToConsole("No coordinates were fetched for faculty {$faculty->getName()}.");
+                OutputWriter::newLineToConsole(
+                    text: "No coordinates were fetched for faculty {$faculty->getName()}."
+                );
             }
         }
     }

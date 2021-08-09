@@ -13,7 +13,7 @@ class FetchAddressDataFactory extends DataFactory
     public function setPaths(): void
     {
         $this->workingDirectory = "";
-        $this->pathIdentity = new RelativePathIdentity(
+        $this->relativePathIdentity = new RelativePathIdentity(
             sourceName: "companies.csv",
             destinationName: "companies.csv"
         );

@@ -20,7 +20,7 @@ class RelativePathIdentity extends PathIdentity
     ) {
         $this->leftBasePath = $leftBasePath;
         $this->rightBasePath = $rightBasePath;
-        $this->setChangingPathPart($relativeChangingPath);
+        $this->setChangingPath($relativeChangingPath);
         $this->setSourceName($sourceName);
         $this->setDestinationName($destinationName);
     }
@@ -36,10 +36,12 @@ class RelativePathIdentity extends PathIdentity
 
     public function getRelativePath(): string
     {
-        return PathResolver::normalizeDirectorySeparators($this->getParentPath()
-            . $this->leftBasePath
-            . $this->relativeChangingPath
-            . $this->rightBasePath);
+        return PathResolver::normalizeDirectorySeparators(
+            path: $this->getParentPath()
+                  . $this->leftBasePath
+                  . $this->relativeChangingPath
+                  . $this->rightBasePath
+        );
     }
 
     public function setParentIdentity(self $parentPathIdentity): void
@@ -47,7 +49,7 @@ class RelativePathIdentity extends PathIdentity
         $this->parentPath = $parentPathIdentity;
     }
 
-    public function setChangingPathPart(string $relativeChangingPath): void
+    public function setChangingPath(string $relativeChangingPath): void
     {
         $this->relativeChangingPath = PathResolver::addSeparatorsToDirectory($relativeChangingPath);
     }

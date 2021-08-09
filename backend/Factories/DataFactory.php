@@ -11,14 +11,13 @@ use Internships\Services\DataValidator;
 
 abstract class DataFactory implements BuildTool
 {
-    protected DataValidator $dataValidator;
-
     protected array $fields;
-    protected RelativePathIdentity $pathIdentity;
+    protected RelativePathIdentity $relativePathIdentity;
 
-    public function __construct(DataValidator $dataValidator)
+    public function __construct(
+        protected DataValidator $dataValidator
+    )
     {
-        $this->dataValidator = $dataValidator;
         $this->setPaths();
         $this->defineDataFields();
     }
@@ -39,7 +38,7 @@ abstract class DataFactory implements BuildTool
 
     public function getRelativePathIdentity(): RelativePathIdentity
     {
-        return $this->pathIdentity;
+        return $this->relativePathIdentity;
     }
 
     public function getFields(): array
@@ -49,7 +48,7 @@ abstract class DataFactory implements BuildTool
 
     public function changeDirectory(string $directory): void
     {
-        $this->getRelativePathIdentity()->setChangingPathPart($directory);
+        $this->getRelativePathIdentity()->setChangingPath($directory);
     }
 
     /**

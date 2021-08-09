@@ -12,7 +12,8 @@ use Internships\Services\DataValidator;
 
 class DocumentConfigFactory extends DataFactory
 {
-    protected array $documentsToCopyPaths = [];
+    /** @var RelativePathIdentity[] */
+    protected array $documentPathIdentities = [];
 
     public function __construct(
         protected FileManager $fileManager,
@@ -24,7 +25,7 @@ class DocumentConfigFactory extends DataFactory
     public function setPaths(): void
     {
         $this->workingDirectory = "";
-        $this->pathIdentity = new RelativePathIdentity(
+        $this->relativePathIdentity = new RelativePathIdentity(
             rightBasePath: "/documents/",
             sourceName: "documents.csv",
             destinationName: "documents.json"
@@ -46,16 +47,23 @@ class DocumentConfigFactory extends DataFactory
 
     public function processEntry(int $entryId, array $entry): array
     {
-        $path = $this->getRelativePathIdentity()->getRelativePath() . $entry["filePath"];
-        array_push($this->documentsToCopyPaths, $path);
+        $filePath = $entry["filePath"];
+        $fileName = basename($filePath);
+        $relativeDocumentIdentity = new RelativePathIdentity(
+            relativeChangingPath: substr($filePath, strlen($fileName)),
+            sourceName: $fileName,
+            destinationName: $fileName
+        );
+        $relativeDocumentIdentity->setParentIdentity($this->getRelativePathIdentity());
+        array_push($this->documentPathIdentities, $relativeDocumentIdentity);
         return $entry;
     }
 
     public function onBuildEnd(): void
     {
-        // foreach ($this->documentsToCopyPaths as $documentPath) {
-            //$this->fileManager->getResourceFilePathsFrom($documentPath);
-        //}
-      //  $this->documentsToCopyPaths = [];
+        foreach ($this->documentPathIdentities as $documentIdentity) {
+            $this->fileManager->copyResource($documentIdentity);
+        }
+        $this->documentPathIdentities = [];
     }
 }

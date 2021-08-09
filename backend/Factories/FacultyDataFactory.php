@@ -12,7 +12,7 @@ class FacultyDataFactory extends DataFactory
 {
     public function setPaths(): void
     {
-        $this->pathIdentity = new RelativePathIdentity(
+        $this->relativePathIdentity = new RelativePathIdentity(
             leftBasePath: "/faculties/",
             sourceName: "faculties.csv",
             destinationName: "faculties.json"
