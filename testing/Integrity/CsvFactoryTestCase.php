@@ -62,7 +62,7 @@ abstract class CsvFactoryTestCase extends GenericResourceTestCase
 
         $this->checkResourcePath($resourcePath, $filename);
         $fields = static::$dataFactory->getFields();
-        $csvData = static::$csvReader->getCSVData($resourcePath, $filename, $fields);
+        $csvData = static::$csvReader->getCsvData($resourcePath, $filename, $fields);
 
         $this->assertCount(
             count($fields),

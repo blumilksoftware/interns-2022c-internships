@@ -119,7 +119,7 @@ abstract class DataFactoryTestCase extends TestCase
         $factoryName = $this->factoryClassName;
 
         $csvReader = new CsvReader(static::$directoryManager, static::$fileManager);
-        $csvData = $csvReader->getCSVData(
+        $csvData = $csvReader->getCsvData(
             resourceRelativePath: "",
             fileName: static::$dataFactory->getSourceFileName(),
             fieldDefines: static::$dataFactory->getFields()

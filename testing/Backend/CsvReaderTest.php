@@ -45,24 +45,24 @@ class CsvReaderTest extends TestCase
     public function testThrowNoFieldException(): void
     {
         $this->expectException(NoFieldRowCsvException::class);
-        static::$csvReader->getCSVData("", "empty.csv", []);
+        static::$csvReader->getCsvData("", "empty.csv", []);
     }
 
     public function testThrowInvalidFieldCount(): void
     {
         $this->expectException(CsvInvalidCountFileException::class);
-        static::$csvReader->getCSVData("", "faculties.csv", []);
+        static::$csvReader->getCsvData("", "faculties.csv", []);
     }
 
     public function testThrowFileNotFound(): void
     {
         $this->expectException(NotFoundPathException::class);
-        static::$csvReader->getCSVData("", "invalid.not.present", []);
+        static::$csvReader->getCsvData("", "invalid.not.present", []);
     }
 
     public function testCsvFileReading(): void
     {
-        $data = static::$csvReader->getCSVData("", "faculties.csv", ["name", "directory"]);
+        $data = static::$csvReader->getCsvData("", "faculties.csv", ["name", "directory"]);
         $this->assertCount(3, $data, "Fixture file faculties.csv should have specified number of rows.");
 
         $expectedRows = [
@@ -75,20 +75,20 @@ class CsvReaderTest extends TestCase
 
     public function testSaveNotAltersDataWithoutChanges(): void
     {
-        $dataOnFirstRead = static::$csvReader->getCSVData("", "initial.csv", ["", ""]);
+        $dataOnFirstRead = static::$csvReader->getCsvData("", "initial.csv", ["", ""]);
         static::$csvReader->saveData("", "save.csv", $dataOnFirstRead);
-        $dataAfterSave = static::$csvReader->getCSVData("", "save.csv", ["", ""]);
+        $dataAfterSave = static::$csvReader->getCsvData("", "save.csv", ["", ""]);
         $this->assertSame($dataOnFirstRead, $dataAfterSave, "Saving csv without changes should result in the same array.");
     }
 
     public function testSaveAltersDataWithChanges(): void
     {
         $newValueInFile = "SavedField";
-        $dataOnFirstRead = static::$csvReader->getCSVData("", "initial.csv", ["", ""]);
+        $dataOnFirstRead = static::$csvReader->getCsvData("", "initial.csv", ["", ""]);
         $dataOnFirstReadAltered = $dataOnFirstRead;
         $dataOnFirstReadAltered[0][0] = $newValueInFile;
         static::$csvReader->saveData("", "save.csv", $dataOnFirstReadAltered);
-        $dataAfterSave = static::$csvReader->getCSVData("", "save.csv", ["", ""]);
+        $dataAfterSave = static::$csvReader->getCsvData("", "save.csv", ["", ""]);
         $this->assertNotSame($dataOnFirstRead, $dataAfterSave, "CsvReader hasn't modified any data.");
         $this->assertNotSame($newValueInFile, $dataAfterSave[0], "CsvReader hasn't modified data in expected way.");
     }

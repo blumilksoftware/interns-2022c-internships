@@ -43,7 +43,7 @@ class AppGenerator
      */
     public function getDataFromCsv(DataFactory $factory): array
     {
-        $facultyCsvData = $this->csvReader->getCSVData(
+        $facultyCsvData = $this->csvReader->getCsvData(
             $factory->getSourceRelativePath(),
             $factory->getSourceFileName(),
             $factory->getFields()
@@ -114,7 +114,7 @@ class AppGenerator
         $faculties = $this->getDataFromCsv($this->facultyFactory);
         foreach ($faculties as $faculty) {
             $fields = $this->subFactories["company"]->getFields();
-            $companies = $this->csvReader->getCSVData(
+            $companies = $this->csvReader->getCsvData(
                 resourceRelativePath: $basePath . $faculty->getDirectory(),
                 fileName: $sourceFilename,
                 fieldDefines: $fields

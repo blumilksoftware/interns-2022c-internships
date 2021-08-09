@@ -65,7 +65,7 @@ class CsvReader
 
     public function getFieldRow(string $resourceRelativePath, string $fileName, array $fieldDefines)
     {
-        return $this->getCSVData($resourceRelativePath, $fileName, $fieldDefines, fieldRowOnly: true)[0];
+        return $this->getCsvData($resourceRelativePath, $fileName, $fieldDefines, fieldRowOnly: true)[0];
     }
 
     public function saveData(string $resourceRelativePath, string $fileName, array $data): void
