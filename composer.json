@@ -4,7 +4,8 @@
   "type": "project",
   "autoload": {
     "psr-4": {
-      "Internships\\": "backend/"
+      "Internships\\": "backend/",
+      "Internships\\Testing\\": "testing/"
     }
   },
   "require": {
@@ -33,7 +34,7 @@
       "rm -rf ./dist/api",
       "rm -rf ./resources/faculties/*"
     ],
-    "test backend": "./vendor/bin/phpunit testing/Backend",
+    "test backend": "./vendor/bin/phpunit testing --filter Backend",
     "ecs": "./vendor/bin/ecs check --clear-cache",
     "ecsf": "./vendor/bin/ecs check --clear-cache --fix"
   }

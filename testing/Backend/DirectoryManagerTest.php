@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+namespace Internships\Testing\Backend;
 
 use Internships\FileSystem\DirectoryManager;
 use Internships\FileSystem\RelativePathIdentity;
@@ -14,7 +17,8 @@ class DirectoryManagerTest extends TestCase
         static::$directoryManager = new DirectoryManager(
             rootDirectoryPath: __DIR__ . "/../",
             relativeApiPath: "/Fixtures/api/",
-            relativeResourcePath: "/Fixtures/resources/");
+            relativeResourcePath: "/Fixtures/resources/"
+        );
     }
 
     public static function tearDownAfterClass(): void
@@ -22,7 +26,7 @@ class DirectoryManagerTest extends TestCase
         static::$directoryManager = null;
     }
 
-    public function testIfRootPathsAreValid()
+    public function testIfRootPathsAreValid(): void
     {
         $fullApiPath = static::$directoryManager->getApiPath();
         $fullResourcePath = static::$directoryManager->getResourcePath();
@@ -36,7 +40,7 @@ class DirectoryManagerTest extends TestCase
         );
     }
 
-    public function testRelativePathSanitization()
+    public function testRelativePathSanitization(): void
     {
         $relativePathIdentity = new RelativePathIdentity(
             leftBasePath: "leftPath",
@@ -60,7 +64,7 @@ class DirectoryManagerTest extends TestCase
         );
     }
 
-    public function testFullPathIdentityPaths()
+    public function testFullPathIdentityPaths(): void
     {
         $relativePathIdentity = new RelativePathIdentity(
             sourceName: "sourceFile.csv",
@@ -94,7 +98,7 @@ class DirectoryManagerTest extends TestCase
         );
     }
 
-    public function testResourceDestinationFullPath()
+    public function testResourceDestinationFullPath(): void
     {
         $relativePathIdentity = new RelativePathIdentity(
             leftBasePath: "/leftPath/",
@@ -127,7 +131,7 @@ class DirectoryManagerTest extends TestCase
         );
     }
 
-    public function testIfMissingParentReturnsEmptyString()
+    public function testIfMissingParentReturnsEmptyString(): void
     {
         $relativePathIdentity = new RelativePathIdentity();
         $this->assertSame(
@@ -136,7 +140,7 @@ class DirectoryManagerTest extends TestCase
         );
     }
 
-    public function testIfPathIdentityAppendsParent()
+    public function testIfPathIdentityAppendsParent(): void
     {
         $relativePathIdentity = new RelativePathIdentity(
             relativeChangingPath: "/child/",
