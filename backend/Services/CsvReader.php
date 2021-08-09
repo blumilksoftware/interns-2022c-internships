@@ -28,7 +28,7 @@ class CsvReader
      * @throws CouldNotReadPathException
      * @throws NoFieldRowCsvException
      */
-    public function getCSVData(string $resourceRelativePath, string $fileName, array $fieldDefines, bool $fieldRowOnly = false): array
+    public function getCsvData(string $resourceRelativePath, string $fileName, array $fieldDefines, bool $fieldRowOnly = false): array
     {
         $fullPath = $this->directoryManager->getResourceFilePath($resourceRelativePath, $fileName);
         $csvRows = [];
