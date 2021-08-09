@@ -53,7 +53,7 @@ class DocumentConfigFactory extends DataFactory
 
     public function onBuildEnd(): void
     {
-       // foreach ($this->documentsToCopyPaths as $documentPath) {
+        // foreach ($this->documentsToCopyPaths as $documentPath) {
             //$this->fileManager->getResourceFilePathsFrom($documentPath);
         //}
       //  $this->documentsToCopyPaths = [];

@@ -80,7 +80,7 @@ class DirectoryManagerTest extends TestCase
                           $fullIdentity->getFullDestinationPath());
     }
 
-    public function testIfNoParentReturnsEmptyString(){
+    public function testIfMissingParentReturnsEmptyString(){
         $relativePathIdentity = new RelativePathIdentity();
         $this->assertSame("", $relativePathIdentity->getParentPath());
     }
@@ -89,8 +89,8 @@ class DirectoryManagerTest extends TestCase
         $parentRelativeIdentity = new RelativePathIdentity(relativeChangingPath: "/parent/");
         $relativePathIdentity = new RelativePathIdentity(
             relativeChangingPath: "/child/",
-            sourceName: "/sourceFile.csv",
-            destinationName: "destinationFile.json//");
+            sourceName: "sourceFile.csv",
+            destinationName: "destinationFile.json");
         $relativePathIdentity->setParentIdentity($parentRelativeIdentity);
 
         $this->assertSame("/parent/child/", $relativePathIdentity->getRelativePath());

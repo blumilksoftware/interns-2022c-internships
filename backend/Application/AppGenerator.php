@@ -107,8 +107,11 @@ class AppGenerator
         $faculties = $this->getDataFromCsv($this->facultyFactory);
         foreach ($faculties as $faculty) {
             $this->facultyFactory->changeDirectory($faculty->getDirectory());
-            $companyPathIdentity = $this->subFactories["company"]->getRelativePathIdentity();
-            $fields = $this->subFactories["company"]->getFields();
+            $fetchFactory = $this->fetchAddressFactory;
+            $fetchFactory->getRelativePathIdentity()
+                ->setParentIdentity($this->facultyFactory->getRelativePathIdentity());
+            $companyPathIdentity = $fetchFactory->getRelativePathIdentity();
+            $fields = $fetchFactory->getFields();
 
             $companies = $this->csvReader->getCsvData(
                 relativePathIdentity: $companyPathIdentity,
