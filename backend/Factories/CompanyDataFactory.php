@@ -6,28 +6,27 @@ namespace Internships\Factories;
 
 use Internships\Collectors\FilterMainCollector;
 use Internships\FileSystem\FileManager;
-use Internships\Interfaces\SerializableInfo;
+use Internships\FileSystem\RelativePathIdentity;
 use Internships\Models\Company;
 use Internships\Models\ValidationOptions;
 use Internships\Services\DataValidator;
 
-class CompanyDataFactory extends DataFactory implements SerializableInfo
+class CompanyDataFactory extends DataFactory
 {
     protected FilterMainCollector $filterCollector;
 
     public function __construct(FileManager $fileManager, DataValidator $dataValidator)
     {
-        $this->filterCollector = new FilterMainCollector($fileManager);
         parent::__construct($dataValidator);
+        $this->filterCollector = new FilterMainCollector($fileManager, $this->pathIdentity);
     }
 
     public function setPaths(): void
     {
-        $this->workingDirectory = "";
-        $this->sourcePath = "";
-        $this->sourceName = "companies.csv";
-        $this->destinationPath = "";
-        $this->destinationName = "companies.json";
+        $this->pathIdentity = new RelativePathIdentity(
+            sourceName: "companies.csv",
+            destinationName: "companies.json"
+        );
     }
 
     public function getModelClassToBuild(): string
@@ -111,6 +110,6 @@ class CompanyDataFactory extends DataFactory implements SerializableInfo
 
     public function onBuildEnd(): void
     {
-        $this->filterCollector->saveToJson($this->workingDirectory);
+        $this->filterCollector->saveToJson();
     }
 }

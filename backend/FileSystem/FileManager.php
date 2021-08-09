@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Internships\FileSystem;
 
+use DirectoryIterator;
 use Internships\Exceptions\File\NoNameFileException;
 use Internships\Exceptions\Path\AlreadyExistsPathException;
 use Internships\Exceptions\Path\CouldNotReadPathException;
@@ -29,111 +30,87 @@ class FileManager
         return $this->jsonPrintFlags;
     }
 
-    public function createInApi(
-        string $relativePath,
-        string $filename = "",
+    public function create(
+        RelativePathIdentity $relativePathIdentity,
         mixed $content = "",
-        bool $noFile = false
+        bool $toResource = false
     ): void {
-        $path = $this->directoryManager->getApiFilePath($relativePath, $filename);
-        if ($noFile && $filename === "") {
-            throw new NoNameFileException($path);
+        $fullPathIdentity = $this->directoryManager->getFullPathIdentity($relativePathIdentity, $toResource);
+        if ($relativePathIdentity->getDestinationName() === "") {
+            throw new NoNameFileException($fullPathIdentity->getFullDestinationPath());
         }
+        $fullDestinationFilePath = $fullPathIdentity->getFullDestinationFilePath();
 
-        $this->create($path, $content);
+        $this->pathGuard->verifyIfUnique($fullDestinationFilePath);
+        file_put_contents(
+            filename: $fullDestinationFilePath,
+            data: $content
+        );
     }
 
-    public function createInResources(
-        string $relativePath,
-        string $filename = "",
-        mixed $content = "",
-        bool $noFile = false
-    ): void {
-        $path = $this->directoryManager->getResourceFilePath($relativePath, $filename);
-        if ($noFile && $filename === "") {
-            throw new NoNameFileException($path);
-        }
-
-        $this->create($path, $content);
-    }
-
-    public function appendNewLine(string $relativePath, string $filename, string $content = ""): void
+    public function appendNewLine(RelativePathIdentity $relativePathIdentity, string $content = "", bool $toResource = false): void
     {
-        $path = $this->directoryManager->getApiFilePath($relativePath, $filename);
-
-        if ($filename === "") {
-            throw new NoNameFileException($path);
+        $fullPathIdentity = $this->directoryManager->getFullPathIdentity($relativePathIdentity, $toResource);
+        if ($relativePathIdentity->getDestinationName() === "") {
+            throw new NoNameFileException($fullPathIdentity->getFullDestinationPath());
         }
+        $fullDestinationFilePath = $fullPathIdentity->getFullDestinationFilePath();
 
         file_put_contents(
-            filename: $path,
+            filename: $fullDestinationFilePath,
             data: OutputWriter::newLine($content),
             flags: FILE_APPEND
         );
     }
 
     public function copyResource(
-        string $relativeOrigin,
-        string $relativeDestination,
-        string $filename,
-        string $newName = null,
+        RelativePathIdentity $relativePathIdentity,
         bool $overwrite = true,
         bool $toResource = false,
     ): void {
-        if ($newName === null) {
-            $newName = $filename;
-        }
-        $origin = $this->directoryManager->getResourceDirectoryPath($relativeOrigin);
-        if (!$toResource) {
-            $destination = $this->directoryManager->getApiDirectoryPath($relativeDestination);
-        } else {
-            $destination = $this->directoryManager->getResourceDirectoryPath($relativeDestination, true);
-        }
+        $fullPathIdentity = $this->directoryManager->getFullPathIdentity($relativePathIdentity, $toResource);
+        $fullSourceFilePath = $fullPathIdentity->getFullSourceFilePath();
+        $fullDestinationFilePath = $fullPathIdentity->getFullDestinationFilePath();
 
-        $fullDestinationPath = $destination . $newName;
-        $this->pathGuard->verifyIfUnique($fullDestinationPath);
-
-        if (!$overwrite && file_exists($fullDestinationPath)) {
-            throw new AlreadyExistsPathException($fullDestinationPath);
+        if (!$overwrite && file_exists($fullDestinationFilePath)) {
+            throw new AlreadyExistsPathException($fullDestinationFilePath);
         }
-        if (!file_exists($origin . $filename)) {
-            throw new NotFoundPathException($origin . $filename);
+        if (!file_exists($fullSourceFilePath)) {
+            throw new NotFoundPathException($fullSourceFilePath);
         }
-        if (!copy($origin . $filename, $fullDestinationPath)) {
-            throw new CouldNotReadPathException("{$origin} and/or {$fullDestinationPath}");
+        if (!copy($fullSourceFilePath, $fullDestinationFilePath)) {
+            throw new CouldNotReadPathException("{$fullSourceFilePath} and/or {$fullDestinationFilePath}");
         }
     }
 
     public function copyResources(
         /**
-         * @var string[] $filePaths
+         * @var RelativePathIdentity[] $fileIdentities
          */
-        string $relativeOrigin,
-        string $relativeDestination,
-        array $filePaths,
+        array $fileIdentities,
+        RelativePathIdentity $parent,
+        bool $overwrite = false,
+        bool $toResource = true
     ): void {
-        $baseResourcePath = $this->directoryManager->getResourceDirectoryPath($relativeOrigin);
-        foreach ($filePaths as $filePath) {
-            $fileName = basename($filePath);
-            $path = substr($filePath, 0, strlen($filePath) - strlen($fileName));
-
-            $fileRelativePath = Path::FOLDER_SEPARATOR . substr($path, strlen($baseResourcePath))
-                . Path::FOLDER_SEPARATOR;
-            $finalOrigin = $relativeOrigin . $fileRelativePath;
-            $finalDestination = $relativeDestination . $fileRelativePath;
-
+        foreach ($fileIdentities as $filePath) {
+            $filePath->setParentIdentity($parent);
             try {
-                $this->copyResource($finalOrigin, $finalDestination, $fileName, overwrite: false, toResource: true);
+                $this->copyResource($filePath, $overwrite, $toResource);
             } catch (AlreadyExistsPathException $exception) {
                 OutputWriter::newLineToConsole("{$exception->getMessage()} Skipping.");
             }
         }
     }
 
+    /**
+     * @return RelativePathIdentity
+     */
     public function getResourceFilePathsFrom(
         string $relativeOrigin,
     ): array {
-        $origin = $this->directoryManager->getResourceDirectoryPath($relativeOrigin);
+        $partialPathIdentity = new RelativePathIdentity(relativeChangingPath: $relativeOrigin);
+        $fullPathIdentity = $this->directoryManager->getFullPathIdentity($partialPathIdentity, true);
+        $origin = $fullPathIdentity->getFullSourcePath();
 
         if (!is_dir(substr($origin, strlen($origin) - 1))) {
             throw new IsNotDirectoryPathException($origin);
@@ -144,22 +121,19 @@ class FileManager
 
         $recursiveIteratorI = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($origin));
         $filePaths = [];
+        /** @var DirectoryIterator $file */
         foreach ($recursiveIteratorI as $file) {
             if (!$file->isDir()) {
-                if ($file->getPath()[0]) {
-                    array_push($filePaths, $file->getPathname());
+                if (isset($file->getPath()[0])) {
+                    $relativePath = substr($file->getPath(), strlen($origin));
+                    $pathIdentity = new RelativePathIdentity(
+                        sourceName: $file->getFilename(),
+                        relativeChangingPath: $relativePath
+                    );
+                    array_push($filePaths, $pathIdentity);
                 }
             }
         }
         return $filePaths;
-    }
-
-    protected function create(string $fullPath, mixed $content = ""): void
-    {
-        $this->pathGuard->verifyIfUnique($fullPath);
-        file_put_contents(
-            filename: $fullPath,
-            data: $content
-        );
     }
 }

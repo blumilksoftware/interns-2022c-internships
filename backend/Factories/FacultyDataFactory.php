@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Internships\Factories;
 
+use Internships\FileSystem\RelativePathIdentity;
 use Internships\Models\Faculty;
 use Internships\Models\ValidationOptions;
 
@@ -11,11 +12,11 @@ class FacultyDataFactory extends DataFactory
 {
     public function setPaths(): void
     {
-        $this->workingDirectory = "";
-        $this->sourcePath = "/faculties/";
-        $this->sourceName = "faculties.csv";
-        $this->destinationPath = "/faculties/";
-        $this->destinationName = "faculties.json";
+        $this->pathIdentity = new RelativePathIdentity(
+            leftBasePath: "/faculties/",
+            sourceName: "faculties.csv",
+            destinationName: "faculties.json"
+        );
     }
 
     public function getModelClassToBuild(): string
