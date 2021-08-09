@@ -103,7 +103,7 @@ class FileManager
     }
 
     /**
-     * @return RelativePathIdentity
+     * @return RelativePathIdentity[]
      */
     public function getResourceFilePathsFrom(
         string $relativeOrigin,
