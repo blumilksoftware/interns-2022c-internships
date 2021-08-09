@@ -33,6 +33,7 @@
       "rm -rf ./dist/api",
       "rm -rf ./resources/faculties/*"
     ],
+    "test backend": "./vendor/bin/phpunit testing/Backend",
     "ecs": "./vendor/bin/ecs check --clear-cache",
     "ecsf": "./vendor/bin/ecs check --clear-cache --fix"
   }

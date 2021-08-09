@@ -136,9 +136,9 @@ class AppGenerator
                 );
 
                 $requiresSave = $this->geocoder->coordinatesFromAddress(
-                        currentCoordinates: $companies[$csvRow]["coordinates"],
-                        addressObject: $address
-                    ) || $requiresSave;
+                    currentCoordinates: $companies[$csvRow]["coordinates"],
+                    addressObject: $address
+                ) || $requiresSave;
             }
 
             if ($requiresSave) {

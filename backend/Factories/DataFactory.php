@@ -16,8 +16,7 @@ abstract class DataFactory implements BuildTool
 
     public function __construct(
         protected DataValidator $dataValidator
-    )
-    {
+    ) {
         $this->setPaths();
         $this->defineDataFields();
     }
