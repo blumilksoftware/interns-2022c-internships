@@ -6,10 +6,14 @@ namespace Internships\Exceptions;
 
 use ECSPrefix20210517\Nette\NotImplementedException;
 use Exception;
+use Internships\CommandLine\ColorCode;
+use Internships\Helpers\OutputParser;
 use Throwable;
 
 class SimpleMessageException extends Exception
 {
+    use OutputParser;
+
     protected const BAD_REQUEST = 400;
     protected const METHOD_NOT_ALLOWED = 405;
     protected const FORBIDDEN = 403;
@@ -18,10 +22,26 @@ class SimpleMessageException extends Exception
     protected const IM_A_TEAPOT = 418;
     protected const UNPROCESSABLE_ENTITY = 422;
 
+    protected string $noStyleMessage;
+
     public function __construct(int $code = 0, Throwable $previous = null)
     {
-        $message = $this->newExceptionMessage();
+        $this->noStyleMessage = $this->newExceptionMessage();
+        $message = static::separateLine(
+            static::colorize(
+                colorCode: ColorCode::get(
+                    textColor: ColorCode::TEXT_BLACK,
+                    backgroundColor: ColorCode::BACKGROUND_RED
+                ),
+                message: $this->noStyleMessage
+            )
+        );
         parent::__construct($message, $this->getStatusCode(), $previous);
+    }
+
+    public function getNoStyleMessage(): mixed
+    {
+        return $this->noStyleMessage;
     }
 
     protected function newExceptionMessage(): string

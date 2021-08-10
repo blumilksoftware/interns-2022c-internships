@@ -7,6 +7,7 @@ $root = __DIR__ . "/../";
 
 use Dotenv\Dotenv;
 use Internships\Application\Application;
+use Internships\CommandLine\ConsoleWriter;
 
 $dotenv = Dotenv::createImmutable($root);
 $dotenv->load();
@@ -23,4 +24,4 @@ if (array_key_exists("populate", $options)) {
     $application->build();
 }
 
-echo "Finished." . PHP_EOL;
+ConsoleWriter::success("Finished.");

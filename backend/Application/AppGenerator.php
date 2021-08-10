@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Internships\Application;
 
+use Internships\CommandLine\ConsoleWriter;
 use Internships\Exceptions\Validation\IsMissingValidationException;
 use Internships\Factories\CompanyDataFactory;
 use Internships\Factories\DataFactory;
@@ -12,7 +13,6 @@ use Internships\Factories\FacultyDataFactory;
 use Internships\Factories\FetchAddressDataFactory;
 use Internships\FileSystem\FileManager;
 use Internships\FileSystem\Path;
-use Internships\Helpers\OutputWriter;
 use Internships\Models\Faculty;
 use Internships\Models\FetchAddress;
 use Internships\Services\CoordinateFetcher;
@@ -68,16 +68,16 @@ class AppGenerator
         try {
             foreach ($faculties as $faculty) {
                 foreach ($this->subFactories as $subFactory) {
-                    OutputWriter::newLineToConsole("Processing {$faculty->getDirectory()}");
+                    ConsoleWriter::print("Processing {$faculty->getDirectory()}.");
                     $subFactory->setDirectory("/faculties/{$faculty->getDirectory()}");
                     $data = $this->getDataFromCsv($subFactory);
                     $this->saveDataToJson($subFactory, $data);
                 }
             }
         } catch (IsMissingValidationException $exception) {
-            OutputWriter::newLineToConsole($exception->getMessage());
+            ConsoleWriter::print($exception->getMessage());
             if ($exception->getFieldName() === "coordinates") {
-                OutputWriter::newLineToConsole("Consider using 'composer fetch' to get missing entries.");
+                ConsoleWriter::warn("Consider using 'composer fetch' to get missing entries.");
             }
             die();
         }
@@ -128,8 +128,8 @@ class AppGenerator
                 }
 
                 $csvRow = $address->getId() + 1;
-                OutputWriter::newLineToConsole(
-                    text: "Trying to fetch coordinates for {$companies[$csvRow]["name"]}."
+                ConsoleWriter::print(
+                    message: "Trying to fetch coordinates for {$companies[$csvRow]["name"]}."
                 );
 
                 $requiresSave = $this->geocoder->coordinatesFromAddress(
@@ -139,14 +139,14 @@ class AppGenerator
             }
 
             if ($requiresSave) {
-                OutputWriter::newLineToConsole("Saving {$sourceFilename} for faculty {$faculty->getName()}.");
                 $this->csvReader->saveData(
                     resourceRelativePath: $basePath . $faculty->getDirectory(),
                     fileName: $sourceFilename,
                     data: $companies
                 );
+                ConsoleWriter::success("Saved {$sourceFilename} for faculty {$faculty->getName()}.");
             } else {
-                OutputWriter::newLineToConsole("No coordinates were fetched for faculty {$faculty->getName()}.");
+                ConsoleWriter::print("No coordinates were fetched for faculty {$faculty->getName()}.");
             }
         }
     }

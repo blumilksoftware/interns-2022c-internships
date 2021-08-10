@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Internships\FileSystem;
 
+use Internships\CommandLine\ConsoleWriter;
 use Internships\Exceptions\File\NoNameFileException;
 use Internships\Exceptions\Path\AlreadyExistsPathException;
 use Internships\Exceptions\Path\CouldNotReadPathException;
 use Internships\Exceptions\Path\IsNotDirectoryPathException;
 use Internships\Exceptions\Path\NotFoundPathException;
-use Internships\Helpers\OutputWriter;
+use Internships\Helpers\OutputParser;
 use Internships\Services\UniquePathGuard;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -67,7 +68,7 @@ class FileManager
 
         file_put_contents(
             filename: $path,
-            data: OutputWriter::newLine($content),
+            data: OutputParser::endLine($content),
             flags: FILE_APPEND
         );
     }
@@ -125,7 +126,8 @@ class FileManager
             try {
                 $this->copyResource($finalOrigin, $finalDestination, $fileName, overwrite: false, toResource: true);
             } catch (AlreadyExistsPathException $exception) {
-                OutputWriter::newLineToConsole("{$exception->getMessage()} Skipping.");
+                ConsoleWriter::warn($exception->getNoStyleMessage(), newLine: false);
+                ConsoleWriter::print(" Skipping.");
             }
         }
     }
