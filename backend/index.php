@@ -8,20 +8,19 @@ $root = __DIR__ . "/../";
 use Dotenv\Dotenv;
 use Internships\Application\Application;
 use Internships\CommandLine\ConsoleWriter;
+use Internships\CommandLine\OptionManager;
 
 $dotenv = Dotenv::createImmutable($root);
 $dotenv->load();
 
 $container = require __DIR__ . "/Application/AppContainerBuilder.php";
 $application = $container->get(Application::class);
-$options = getopt(short_options: "", long_options: ["populate", "fetch"]);
 
-if (array_key_exists("populate", $options)) {
-    $application->populate();
-} elseif (array_key_exists("fetch", $options)) {
-    $application->fetch();
-} else {
-    $application->build();
+$optionManager = new OptionManager();
+$options = getopt(short_options: "", long_options: $optionManager->getCommands());
+
+$applicationMethod = "";
+if ($optionManager->getApplicationOption($options, $applicationMethod)) {
+    $application->{$applicationMethod}();
+    ConsoleWriter::success("Finished.");
 }
-
-ConsoleWriter::success("Finished.");

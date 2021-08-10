@@ -19,21 +19,30 @@
     "blumilksoftware/codestyle": "^0.4.3"
   },
   "scripts": {
-    "build": [
-      "rm -rf ./dist/api",
-      "sh -c 'cd backend && php index.php'"
+    "intern": [
+      "@intern-help"
     ],
-    "populate": [
+    "intern-help": [
+      "sh -c 'cd backend && php index.php --help --composer'"
+    ],
+    "intern-build": [
+      "rm -rf ./dist/api",
+      "sh -c 'cd backend && php index.php --build'"
+    ],
+    "intern-populate": [
       "sh -c 'cd backend && php index.php --populate'"
     ],
-    "fetch": [
+    "intern-fetch": [
       "sh -c 'cd backend && php index.php --fetch'"
     ],
-    "purge": [
+    "intern-purge": [
       "rm -rf ./dist/api",
       "rm -rf ./resources/faculties/*"
     ],
     "ecs": "./vendor/bin/ecs check --clear-cache",
     "ecsf": "./vendor/bin/ecs check --clear-cache --fix"
+  },
+  "scripts-descriptions": {
+    "intern-help": "Prints help for application."
   }
 }
