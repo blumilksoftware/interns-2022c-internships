@@ -23,7 +23,7 @@ class OptionManager
             new FetchCommand(),
         ];
         $keys = [];
-        foreach($appCommands as $command){
+        foreach ($appCommands as $command) {
             array_push($keys, $command->getName());
         }
         $this->applicationCommands = array_combine($keys, $appCommands);
@@ -70,7 +70,7 @@ class OptionManager
     {
         ConsoleWriter::success("Welcome to the Internship's help.");
         ConsoleWriter::print("You can use commandline options to manage and convert resources using php scripts.");
-        if($useComposerSyntax){
+        if ($useComposerSyntax) {
             ConsoleWriter::warn("It seems you are using composer script. Custom prefix was included in options.");
         }
         ConsoleWriter::print("");
@@ -81,7 +81,7 @@ class OptionManager
         foreach ($this->applicationCommands as $appCommand) {
             if ($appCommand->isAllowed(printReason: false)) {
                 $length = strlen($appCommand->getName());
-                if($useComposerSyntax){
+                if ($useComposerSyntax) {
                     $length+= strlen("intern-");
                 }
                 if ($longestNameLength < $length) {
@@ -92,7 +92,7 @@ class OptionManager
         }
         foreach ($allowedCommands as $command) {
             $prettyPrintWrap = $command->getName();
-            if($useComposerSyntax){
+            if ($useComposerSyntax) {
                 $prettyPrintWrap = "intern-" . $prettyPrintWrap;
             }
             $prettyPrintWrap = str_pad(

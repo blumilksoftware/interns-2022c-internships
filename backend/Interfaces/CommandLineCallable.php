@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Internships\Interfaces;
 
-
 interface CommandLineCallable
 {
     public function getName(): string;
 
-     /** @return string[] */
+    /**
+     * @return string[]
+     */
     public function getAllowedEnvironment(): array;
 
     public function isAllowed(): bool;
