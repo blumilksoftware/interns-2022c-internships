@@ -9,44 +9,47 @@ class DirectoryManager
     protected const DIRECTORY_PERMISSIONS = 0777;
     protected const RECURSIVE_CREATION = true;
 
-    protected Path $apiPath;
-    protected Path $resourcePath;
+    protected PathResolver $apiPath;
+    protected PathResolver $resourcePath;
 
     public function __construct(
         string $rootDirectoryPath,
         string $relativeApiPath,
         string $relativeResourcePath
     ) {
-        $rootManager = new Path($rootDirectoryPath);
-        $this->apiPath = new Path($rootManager->getFull($relativeApiPath));
-        $this->resourcePath = new Path($rootManager->getFull($relativeResourcePath));
+        $rootPath = new PathResolver($rootDirectoryPath);
+        $this->apiPath = new PathResolver($rootPath->getFull($relativeApiPath));
+        $this->resourcePath = new PathResolver($rootPath->getFull($relativeResourcePath));
     }
 
-    public function getApiDirectoryPath(string $relativePath): string
+    public function getApiPath(): string
     {
-        $directoryPath = $this->apiPath->getFull($relativePath);
-        if (!file_exists($directoryPath)) {
-            mkdir($directoryPath, static::DIRECTORY_PERMISSIONS, static::RECURSIVE_CREATION);
+        return $this->apiPath->getFull(relativePath:"");
+    }
+
+    public function getResourcePath(): string
+    {
+        return $this->resourcePath->getFull(relativePath:"");
+    }
+
+    public function getFullPathIdentity(RelativePathIdentity $relativeIdentity, bool $destinationToResource = false)
+    {
+        $destinationPathResolver = $this->apiPath;
+        if ($destinationToResource) {
+            $relativeIdentity = clone $relativeIdentity;
+            $relativeIdentity->setDestinationName($relativeIdentity->getSourceName());
+            $destinationPathResolver = $this->resourcePath;
         }
-        return $directoryPath;
-    }
-
-    public function getApiFilePath(string $relativePath, string $fileName): string
-    {
-        return $this->getApiDirectoryPath($relativePath) . $fileName;
-    }
-
-    public function getResourceDirectoryPath(string $relativePath, bool $createOnMissing = false): string
-    {
-        $directoryPath = $this->resourcePath->getFull($relativePath);
-        if (!file_exists($directoryPath) && $createOnMissing) {
-            mkdir($directoryPath, static::DIRECTORY_PERMISSIONS, static::RECURSIVE_CREATION);
+        $destinationPath = $destinationPathResolver->getFull($relativeIdentity->getRelativePath());
+        if (!file_exists($destinationPath)) {
+            mkdir($destinationPath, static::DIRECTORY_PERMISSIONS, static::RECURSIVE_CREATION);
         }
-        return $directoryPath;
-    }
 
-    public function getResourceFilePath(string $relativePath, string $fileName): string
-    {
-        return $this->getResourceDirectoryPath($relativePath) . $fileName;
+        return new FullPathIdentity(
+            fullSourcePath: $this->resourcePath->getFull($relativeIdentity->getRelativePath()),
+            fullDestinationPath: $destinationPath,
+            sourceName: $relativeIdentity->getSourceName(),
+            destinationName: $relativeIdentity->getDestinationName()
+        );
     }
 }
