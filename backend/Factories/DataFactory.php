@@ -53,7 +53,7 @@ abstract class DataFactory implements BuildTool
     /**
      * @throws IsMissingValidationException
      */
-    public function buildFromData(array $csvData): array
+    public function buildFromData(array $csvData, bool $serializeSubData = false): array
     {
         $this->onBuildStart();
         $dataObjects = [];
@@ -67,7 +67,7 @@ abstract class DataFactory implements BuildTool
                 array_push($dataObjects, $modelObject);
             }
         }
-        $this->onBuildEnd();
+        $this->onBuildEnd($serializeSubData);
         return $dataObjects;
     }
 
@@ -80,7 +80,7 @@ abstract class DataFactory implements BuildTool
     {
     }
 
-    public function onBuildEnd(): void
+    public function onBuildEnd(bool $serialize = false): void
     {
     }
 }

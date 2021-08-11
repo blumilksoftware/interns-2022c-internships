@@ -59,11 +59,13 @@ class DocumentConfigFactory extends DataFactory
         return $entry;
     }
 
-    public function onBuildEnd(): void
+    public function onBuildEnd(bool $serializeSubData = true): void
     {
-        foreach ($this->documentPathIdentities as $documentIdentity) {
-            $this->fileManager->copyResource($documentIdentity);
+        if ($serializeSubData) {
+            foreach ($this->documentPathIdentities as $documentIdentity) {
+                $this->fileManager->copyResource($documentIdentity);
+            }
+            $this->documentPathIdentities = [];
         }
-        $this->documentPathIdentities = [];
     }
 }

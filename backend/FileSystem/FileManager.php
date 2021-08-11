@@ -107,6 +107,7 @@ class FileManager
      */
     public function getResourceFilePathsFrom(
         string $relativeOrigin,
+        string $specificFileName = ""
     ): array {
         $partialPathIdentity = new RelativePathIdentity(relativeChangingPath: $relativeOrigin);
         $fullPathIdentity = $this->directoryManager->getFullPathIdentity($partialPathIdentity, true);
@@ -120,17 +121,20 @@ class FileManager
         }
 
         $recursiveIteratorI = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($origin));
+
         $filePaths = [];
         /** @var DirectoryIterator $file */
         foreach ($recursiveIteratorI as $file) {
             if (!$file->isDir()) {
                 if (isset($file->getPath()[0])) {
-                    $relativePath = substr($file->getPath(), strlen($origin));
-                    $pathIdentity = new RelativePathIdentity(
-                        sourceName: $file->getFilename(),
-                        relativeChangingPath: $relativePath
-                    );
-                    array_push($filePaths, $pathIdentity);
+                    if ($specificFileName==="" || $specificFileName === $file->getFilename()) {
+                        $relativePath = substr($file->getPath(), strlen($origin));
+                        $pathIdentity = new RelativePathIdentity(
+                            sourceName: $file->getFilename(),
+                            relativeChangingPath: $relativePath
+                        );
+                        array_push($filePaths, $pathIdentity);
+                    }
                 }
             }
         }

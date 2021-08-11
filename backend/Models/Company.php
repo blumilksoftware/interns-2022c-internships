@@ -42,6 +42,16 @@ class Company implements JsonSerializable
         );
     }
 
+    public function getName(): mixed
+    {
+        return $this->name;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
     public function jsonSerialize(): array
     {
         return [
