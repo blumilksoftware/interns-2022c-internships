@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Internships\CommandLine\Commands;
 
-use Internships\Interfaces\ApplicationCallable;
-
-class BuildCommand extends CommandBase implements ApplicationCallable
+class BuildCommand extends ApplicationCommand
 {
     public function getAllowedEnvironment(): array
     {

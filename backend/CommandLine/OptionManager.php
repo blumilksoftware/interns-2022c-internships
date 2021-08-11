@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace Internships\CommandLine;
 
+use Internships\CommandLine\Commands\ApplicationCommand;
 use Internships\CommandLine\Commands\BuildCommand;
-use Internships\CommandLine\Commands\CommandBase;
 use Internships\CommandLine\Commands\FetchCommand;
 use Internships\CommandLine\Commands\PopulateCommand;
 
 class OptionManager
 {
-    /** @var CommandBase[] */
+    /** @var ApplicationCommand[] */
     protected array $applicationCommands;
 
     public function __construct()
     {
-        /** @var CommandBase[] $appCommands */
+        /** @var ApplicationCommand[] $appCommands */
         $appCommands = [
             new BuildCommand(),
             new PopulateCommand(),
@@ -76,7 +76,7 @@ class OptionManager
         ConsoleWriter::print("");
         ConsoleWriter::info("Options for Internship's Static API:");
         $longestNameLength = 0;
-        /** @var CommandBase[] $allowedCommands */
+        /** @var ApplicationCommand[] $allowedCommands */
         $allowedCommands = [];
         foreach ($this->applicationCommands as $appCommand) {
             if ($appCommand->isAllowed(printReason: false)) {

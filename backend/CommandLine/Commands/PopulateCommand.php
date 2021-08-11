@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Internships\CommandLine\Commands;
 
-use Internships\Interfaces\ApplicationCallable;
-
-class PopulateCommand extends CommandBase implements ApplicationCallable
+class PopulateCommand extends ApplicationCommand
 {
     public function getAllowedEnvironment(): array
     {

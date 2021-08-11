@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Internships\CommandLine\Commands;
 
-use Internships\Interfaces\ApplicationCallable;
-
-class FetchCommand extends CommandBase implements ApplicationCallable
+class FetchCommand extends ApplicationCommand
 {
     public function getAllowedEnvironment(): array
     {
