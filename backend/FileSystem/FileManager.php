@@ -98,8 +98,8 @@ class FileManager
             try {
                 $this->copyResource($filePath, $overwrite, $toResource);
             } catch (AlreadyExistsPathException $exception) {
-                ConsoleWriter::warn($exception->getNoStyleMessage(), newLine: false);
-                ConsoleWriter::print(" Skipping.");
+                ConsoleWriter::print($exception->getNoStyleMessage(), printNewLine: false);
+                ConsoleWriter::warn("Skipping.");
             }
         }
     }

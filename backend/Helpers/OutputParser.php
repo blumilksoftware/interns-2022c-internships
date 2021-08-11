@@ -20,9 +20,4 @@ trait OutputParser
     {
         return PHP_EOL . $text;
     }
-
-    protected static function colorize(string $colorCode, string $message): string
-    {
-        return "\033[{$colorCode}m" . $message . "\033[0m";
-    }
 }

@@ -22,10 +22,10 @@ class ConsoleWriter
     public static function error(string $message = "", bool $newLine = true): void
     {
         static::print(
-            static::colorize(
-                colorCode: ColorCode::get(
-                    textColor: ColorCode::TEXT_BLACK,
-                    backgroundColor: ColorCode::BACKGROUND_RED
+            ColorText::colorize(
+                escapeColor: ColorText::getEscapedColor(
+                    textColor: ColorText::TEXT_BLACK,
+                    backgroundColor: ColorText::BACKGROUND_RED
                 ),
                 message: $message
             ),
@@ -36,10 +36,10 @@ class ConsoleWriter
     public static function info(string $message = "", bool $newLine = true): void
     {
         static::print(
-            static::colorize(
-                colorCode: ColorCode::get(
-                    textColor: ColorCode::TEXT_BLACK,
-                    backgroundColor: ColorCode::BACKGROUND_BLUE
+            ColorText::colorize(
+                escapeColor: ColorText::getEscapedColor(
+                    textColor: ColorText::TEXT_BLACK,
+                    backgroundColor: ColorText::BACKGROUND_BLUE
                 ),
                 message: $message
             ),
@@ -50,8 +50,8 @@ class ConsoleWriter
     public static function warn(string $message = "", bool $newLine = true): void
     {
         static::print(
-            static::colorize(
-                colorCode: ColorCode::get(backgroundColor: ColorCode::BACKGROUND_YELLOW),
+            ColorText::colorize(
+                escapeColor: ColorText::getEscapedColor(backgroundColor: ColorText::BACKGROUND_YELLOW),
                 message: $message
             ),
             printNewLine: $newLine
@@ -61,10 +61,10 @@ class ConsoleWriter
     public static function success(string $message = "", bool $newLine = true): void
     {
         static::print(
-            static::colorize(
-                colorCode: ColorCode::get(
-                    textColor: ColorCode::TEXT_BLACK,
-                    backgroundColor: ColorCode::BACKGROUND_GREEN
+            ColorText::colorize(
+                escapeColor: ColorText::getEscapedColor(
+                    textColor: ColorText::TEXT_BLACK,
+                    backgroundColor: ColorText::BACKGROUND_GREEN
                 ),
                 message: $message
             ),

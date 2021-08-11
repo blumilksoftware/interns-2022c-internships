@@ -13,6 +13,7 @@ class OptionManager
 {
     /** @var ApplicationCommand[] */
     protected array $applicationCommands;
+    protected string $composerPrefix = "intern_";
 
     public function __construct()
     {
@@ -68,13 +69,22 @@ class OptionManager
 
     protected function printHelpForAllowed(bool $useComposerSyntax): void
     {
-        ConsoleWriter::success("Welcome to the Internship's help.");
-        ConsoleWriter::print("You can use commandline options to manage and convert resources using php scripts.");
-        if ($useComposerSyntax) {
-            ConsoleWriter::warn("It seems you are using composer script. Custom prefix was included in options.");
-        }
         ConsoleWriter::print("");
+        ConsoleWriter::success("Welcome to the Internship's help.");
+        ConsoleWriter::print("");
+
+        ConsoleWriter::print("You can use commandline options to manage and convert resources using php scripts.");
+        $redReminderText = ColorText::colorize(
+            escapeColor: ColorText::getEscapedColor(ColorText::TEXT_RED),
+            message: "Remember:"
+        );
+        ConsoleWriter::print("{$redReminderText} Static API cannot be build with incomplete data set.");
+        ConsoleWriter::print("");
+
         ConsoleWriter::info("Options for Internship's Static API:");
+        if ($useComposerSyntax) {
+            ConsoleWriter::warn("(It seems you are using composer script. Custom prefix was included in options.)");
+        }
         $longestNameLength = 0;
         /** @var ApplicationCommand[] $allowedCommands */
         $allowedCommands = [];
@@ -82,7 +92,7 @@ class OptionManager
             if ($appCommand->isAllowed(printReason: false)) {
                 $length = strlen($appCommand->getName());
                 if ($useComposerSyntax) {
-                    $length+= strlen("intern-");
+                    $length += strlen($this->composerPrefix);
                 }
                 if ($longestNameLength < $length) {
                     $longestNameLength = $length;
@@ -93,14 +103,19 @@ class OptionManager
         foreach ($allowedCommands as $command) {
             $prettyPrintWrap = $command->getName();
             if ($useComposerSyntax) {
-                $prettyPrintWrap = "intern-" . $prettyPrintWrap;
+                $prettyPrintWrap = $this->composerPrefix . $prettyPrintWrap;
             }
             $prettyPrintWrap = str_pad(
                 string: $prettyPrintWrap,
                 length: $longestNameLength,
                 pad_type: STR_PAD_LEFT
             );
+            $prettyPrintWrap = ColorText::colorize(
+                escapeColor: ColorText::getEscapedColor(ColorText::TEXT_GREEN),
+                message: $prettyPrintWrap
+            );
             ConsoleWriter::print(message: "\t{$prettyPrintWrap}" . "\t\t {$command->getDescription()}");
         }
+        ConsoleWriter::print("");
     }
 }
