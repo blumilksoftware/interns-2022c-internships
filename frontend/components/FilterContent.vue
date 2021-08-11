@@ -89,22 +89,6 @@ export default {
       dropdown,
     };
   },
-
-  // methods: {
-  //   dropdown() {
-  //     this.isDropdownActive = !this.isDropdownActive;
-  //   },
-  // },
-  // mounted: function () {
-  //   this.eventBus.on("reset", function (reset) {
-  //     if (reset) {
-  //       let high = document.querySelectorAll(".highlight");
-  //       for (var i = 0; i < high.length; i++) {
-  //         high[i].classList.toggle("highlight");
-  //       }
-  //     }
-  //   });
-  // },
 };
 </script>
 

@@ -3,21 +3,13 @@
     <searchBar v-if="!isMobile()" class="searchBar" />
     <FilterContent class="filterBtn" />
     <div class="datafields">
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
+      <DataField
+        class="datafield"
+        v-for="company in companies"
+        :key="company.id"
+        :companyName="company.name"
+        :location="company.location"
+      />
     </div>
     <Buttons class="buttons" />
   </div>
@@ -29,6 +21,9 @@ import DataField from "@/components/DataField";
 import SearchBar from "@/components/SearchBar";
 import FilterContent from "@/components/FilterContent";
 import { isMobile } from "../functions/functions.js";
+import api from "../api";
+import { useRouter } from "vue-router";
+import { onMounted, ref } from "vue";
 
 export default {
   components: {
@@ -37,8 +32,16 @@ export default {
     SearchBar,
     FilterContent,
   },
-  methods: {
-    isMobile,
+  setup() {
+    const router = useRouter();
+    const companies = ref([]);
+
+    onMounted(() => {
+      api.fetch(router, "faculties/wydzial-techniczny/companies", (data) => {
+        companies.value = data;
+      });
+    });
+    return { companies, isMobile };
   },
 };
 </script>

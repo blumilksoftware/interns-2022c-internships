@@ -33,16 +33,6 @@ export default {
     }
     return { resetButtons };
   },
-  // data() {
-  //   return {
-  //     reset: true,
-  //   };
-  // },
-  // methods: {
-  //   resetButtons() {
-  //     this.eventBus.emit("reset", this.reset);
-  //   },
-  // },
 };
 </script>
 <style lang="scss" scoped>
