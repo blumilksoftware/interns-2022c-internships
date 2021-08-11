@@ -7,13 +7,12 @@
       <div class="headfields">
         <BaseFieldSelector
           class="selector headfield"
-          :dataGiven="cityData"
+          :dataGiven="filters.city"
           name="Miasto"
         ></BaseFieldSelector>
-
         <BaseFieldSelector
           class="selector headfield"
-          :dataGiven="courseData"
+          :dataGiven="filters.specialization"
           name="Kierunek"
         ></BaseFieldSelector>
         <PaidSelector class="headfield paidSelector" />
@@ -25,13 +24,13 @@
       <div class="tagsContainer noselect">
         <div
           class="tag"
-          v-for="tag in tags.tags"
-          :key="tag.name"
-          :class="{ highlight: activeTags.includes(tag.name) }"
+          v-for="tag in filters.tags"
+          :key="tag.id"
+          :class="{ highlight: activeTags.includes(tag.id) }"
           @click="
-            activeTags.includes(tag.name)
-              ? activeTags.splice(activeTags.indexOf(tag.name), 1)
-              : activeTags.push(tag.name)
+            activeTags.includes(tag.id)
+              ? activeTags.splice(activeTags.indexOf(tag.id), 1)
+              : activeTags.push(tag.id)
           "
         >
           <span>{{ tag.name }} </span>
@@ -49,62 +48,63 @@
 <script>
 import PaidSelector from "@/components/PaidSelector";
 import BaseFieldSelector from "@/components/BaseFieldSelector";
-import tags from "../../resources/templates/testTags.json";
+import api from "../api";
+import { useRouter } from "vue-router";
+import { onMounted, ref, inject } from "vue";
 
 export default {
   components: {
     PaidSelector,
     BaseFieldSelector,
   },
-  props: {
-    reset: Boolean,
-  },
-  data() {
+  setup() {
+    const router = useRouter();
+    let isActive = ref(false);
+    let isDropdownActive = ref(false);
+    const filters = ref({});
+    const activeTags = ref([]);
+    const eventBus = inject("eventBus");
+
+    function dropdown() {
+      isDropdownActive.value = !isDropdownActive.value;
+    }
+    onMounted(() => {
+      eventBus.on("reset", function (reset) {
+        if (reset) {
+          let high = document.querySelectorAll(".highlight");
+          for (var i = 0; i < high.length; i++) {
+            high[i].classList.toggle("highlight");
+          }
+        }
+      });
+      api.fetch(router, "faculties/wydzial-techniczny/filters", (data) => {
+        filters.value = data;
+      });
+    });
     return {
-      isActive: false,
-      isDropdownActive: false,
-      tags,
-      activeTags: [],
-      cityData: [
-        {
-          name: "Wrocław",
-        },
-        {
-          name: "Legnica",
-        },
-        {
-          name: "Lubin",
-        },
-      ],
-      courseData: [
-        {
-          name: "Informatyka",
-        },
-        {
-          name: "Grafika",
-        },
-        {
-          name: "Ekonomia",
-        },
-      ],
+      isActive,
+      isDropdownActive,
+      filters,
+      activeTags,
+      dropdown,
     };
   },
 
-  methods: {
-    dropdown() {
-      this.isDropdownActive = !this.isDropdownActive;
-    },
-  },
-  mounted: function () {
-    this.eventBus.on("reset", function (reset) {
-      if (reset) {
-        let high = document.querySelectorAll(".highlight");
-        for (var i = 0; i < high.length; i++) {
-          high[i].classList.toggle("highlight");
-        }
-      }
-    });
-  },
+  // methods: {
+  //   dropdown() {
+  //     this.isDropdownActive = !this.isDropdownActive;
+  //   },
+  // },
+  // mounted: function () {
+  //   this.eventBus.on("reset", function (reset) {
+  //     if (reset) {
+  //       let high = document.querySelectorAll(".highlight");
+  //       for (var i = 0; i < high.length; i++) {
+  //         high[i].classList.toggle("highlight");
+  //       }
+  //     }
+  //   });
+  // },
 };
 </script>
 

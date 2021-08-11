@@ -9,6 +9,5 @@ import "@/assets/styles/main.css";
 const eventBus = mitt();
 const app = createApp(App);
 
-app.config.globalProperties.eventBus = eventBus;
-
+app.provide("eventBus", eventBus);
 app.use(store).use(router).mount("#app");

@@ -119,6 +119,7 @@
                       rounded-md
                     "
                     :dataGiven="faculties"
+                    :valueChosen="faculties.directory"
                     name="Wybierz wydział"
                   ></BaseFieldSelector>
                 </div>

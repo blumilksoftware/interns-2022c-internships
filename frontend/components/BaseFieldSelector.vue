@@ -1,7 +1,14 @@
 <template>
   <select>
     <option value="" selected disabled hidden>{{ name }}</option>
-    <option v-for="data in dataGiven" :key="data">{{ data.name }}</option>
+    <option
+      v-for="data in dataGiven"
+      :key="data"
+      :value="valueChosen"
+      @change="$emit('valueChosen', $event.target.value)"
+    >
+      {{ data.name }}
+    </option>
   </select>
 </template>
 
@@ -15,6 +22,9 @@ export default {
     dataGiven: {
       type: Array,
       required: true,
+    },
+    valueChosen: {
+      type: String,
     },
   },
 };

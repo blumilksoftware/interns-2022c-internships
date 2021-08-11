@@ -19,21 +19,30 @@
 
 <script>
 import BaseButton from "@/components/BaseButton";
-
+import { ref, inject } from "vue";
 export default {
   components: {
     BaseButton,
   },
-  data() {
-    return {
-      reset: true,
-    };
+  setup() {
+    const reset = ref(true);
+    const eventBus = inject("eventBus");
+
+    function resetButtons() {
+      eventBus.emit("reset", reset.value);
+    }
+    return { resetButtons };
   },
-  methods: {
-    resetButtons() {
-      this.eventBus.emit("reset", this.reset);
-    },
-  },
+  // data() {
+  //   return {
+  //     reset: true,
+  //   };
+  // },
+  // methods: {
+  //   resetButtons() {
+  //     this.eventBus.emit("reset", this.reset);
+  //   },
+  // },
 };
 </script>
 <style lang="scss" scoped>
