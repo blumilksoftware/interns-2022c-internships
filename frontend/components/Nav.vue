@@ -4,13 +4,29 @@
       <div class="flex justify-between h-16">
         <div class="flex">
           <div class="noselect flex-shrink-0 flex items-center">
-            <router-link to="/home">
-              <a class="logo noselect" title="Home" @click="goHome()"
-                >Znajdź Praktyki</a
-              >
+            <router-link to="/">
+              <a class="logo noselect" title="Home">Znajdź Praktyki</a>
             </router-link>
           </div>
           <div class="noselect hidden sm:ml-6 sm:flex sm:space-x-8">
+            <a
+              @click="goMap()"
+              title="Map"
+              class="
+                border-transparent
+                text-gray-500
+                hover:border-indigo-400 hover:text-gray-700
+                inline-flex
+                items-center
+                px-1
+                pt-1
+                border-b-2
+                text-sm
+                font-medium
+              "
+            >
+              Mapa firm
+            </a>
             <a
               @click="goInfo()"
               title="Infomation"
@@ -29,6 +45,7 @@
             >
               Informacje o praktykach
             </a>
+
             <a
               @click="goFiles()"
               title="Files to download"
@@ -125,6 +142,24 @@
     <DisclosurePanel class="sm:hidden">
       <div class="pt-2 pb-3 space-y-1">
         <a
+          @click="goMap()"
+          title="Map"
+          class="
+            border-transparent
+            text-gray-500
+            hover:border-indigo-400 hover:text-gray-700
+            inline-flex
+            items-center
+            px-1
+            pt-1
+            border-b-2
+            text-sm
+            font-medium
+          "
+        >
+          Mapa firm
+        </a>
+        <a
           @click="goInfo()"
           title="Information"
           class="
@@ -212,7 +247,7 @@ export default {
     };
   },
   methods: {
-    goHome() {
+    goMap() {
       window.scrollTo({
         top: 0,
         left: 0,
