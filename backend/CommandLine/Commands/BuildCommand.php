@@ -26,12 +26,13 @@ class BuildCommand extends ApplicationCommand
 
     public function getDescription(): string
     {
-        return "Builds static data from resource files. ";
+        return "Builds static data from resource files.";
     }
 
     public function getExtendedDescription(): string
     {
         return $this->getDescription()
+            . "Requires correct data set to complete correctly. "
             . "This option should build into webpage distribution folder. ";
     }
 
