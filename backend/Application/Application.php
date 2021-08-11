@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Internships\Application;
 
-use Internships\Helpers\OutputWriter;
+use Internships\CommandLine\ConsoleWriter;
 
 class Application
 {
@@ -15,19 +15,19 @@ class Application
 
     public function build(): void
     {
-        OutputWriter::newLineToConsole("Building static site...");
+        ConsoleWriter::info("Building static site...");
         $this->appGenerator->generateStaticData();
     }
 
     public function populate(): void
     {
-        OutputWriter::newLineToConsole("Generating resource files...");
+        ConsoleWriter::info("Generating resource files...");
         $this->appGenerator->generateResourceContents();
     }
 
     public function fetch(): void
     {
-        OutputWriter::newLineToConsole("Fetching data...");
+        ConsoleWriter::info("Fetching data...");
         $this->appGenerator->getMissingCoordinatesForCompanies();
     }
 }

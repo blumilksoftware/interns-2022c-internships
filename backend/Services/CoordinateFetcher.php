@@ -6,7 +6,7 @@ namespace Internships\Services;
 
 use Exception;
 use GuzzleHttp\Client;
-use Internships\Helpers\OutputWriter;
+use Internships\CommandLine\ConsoleWriter;
 use Internships\Models\FetchAddress;
 
 class CoordinateFetcher
@@ -39,8 +39,8 @@ class CoordinateFetcher
             $content = json_decode($response->getBody()->getContents(), true);
             $coordinates = $content["features"][0]["geometry"]["coordinates"];
         } catch (Exception $e) {
-            OutputWriter::newLineToConsole($e->getMessage());
-            OutputWriter::newLineToConsole(
+            ConsoleWriter::warn($e->getMessage());
+            ConsoleWriter::warn(
                 "Could not fetch coordinates for location {$address}."
                 . "Check address or insert coordinates manually."
             );
