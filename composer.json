@@ -35,8 +35,9 @@
       "rm -rf ./dist/api",
       "rm -rf ./resources/faculties/*"
     ],
+    "test-backend": "./vendor/bin/phpunit testing --filter Backend",
+    "test-resources": "./vendor/bin/phpunit testing --filter Integrity",
     "ecs": "./vendor/bin/ecs check --clear-cache",
-    "ecsf": "./vendor/bin/ecs check --clear-cache --fix",
-    "test resources": "./vendor/bin/phpunit testing --filter Integrity"
+    "ecsf": "./vendor/bin/ecs check --clear-cache --fix"
   }
 }

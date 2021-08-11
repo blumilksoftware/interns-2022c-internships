@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Internships\Testing\Integrity;
 
 use Internships\Factories\CompanyDataFactory;
+use Internships\Factories\DataFactory;
 use Internships\Factories\DocumentConfigFactory;
 use Internships\Factories\FacultyDataFactory;
 use Internships\Models\Faculty;
@@ -33,18 +34,17 @@ class FacultyResourcesTest extends CsvFactoryTestCase
             return;
         }
 
-        static::$faculties = $this->retrieveWithFactory(
-            static::$dataFactory->getBaseSourcePath(),
-            static::$dataFactory->getSourceFileName()
-        );
+        static::$faculties = $this->retrieveWithFactory(static::$dataFactory->getRelativePathIdentity());
     }
 
     public function testFacultyDataDirectory(): void
     {
+        $fullIdentity = static::$directoryManager->getFullPathIdentity(static::$dataFactory->getRelativePathIdentity());
+        $mainFacultyPath = $fullIdentity->getFullSourcePath();
         foreach (static::$faculties as $faculty) {
             $facultyDirectory = $faculty->getDirectory();
-            $relativePath = static::$dataFactory->getSourceRelativePath() . $facultyDirectory;
-            $this->checkResourcePath(relativePath: $relativePath, fileName: "");
+            $path = $mainFacultyPath . $facultyDirectory;
+            $this->assertDirectoryExists($path);
         }
     }
 
@@ -52,17 +52,18 @@ class FacultyResourcesTest extends CsvFactoryTestCase
     {
         $subFactories = [
             new CompanyDataFactory(static::$fileManager, static::$validator),
-            new DocumentConfigFactory(static::$validator),
+            new DocumentConfigFactory(static::$fileManager, static::$validator),
         ];
 
+        $facultyRelativePathIdentity = static::$dataFactory->getRelativePathIdentity();
+        /** @var DataFactory $subFactory */
         foreach ($subFactories as $subFactory) {
             foreach (static::$faculties as $faculty) {
-                $relativePath = static::$dataFactory->getSourceRelativePath() . $faculty->getDirectory();
+                $relativeSubIdentity = $subFactory->getRelativePathIdentity();
+                $relativeSubIdentity->setParentIdentity($facultyRelativePathIdentity);
+                $relativeSubIdentity->setChangingPath($faculty->getDirectory());
 
-                $this->checkResourcePath(
-                    relativePath: $relativePath . $subFactory->getBaseSourcePath(),
-                    fileName: $subFactory->getSourceFileName()
-                );
+                $this->checkResourcePath($relativeSubIdentity);
             }
         }
     }

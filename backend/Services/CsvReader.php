@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace Internships\Services;
 
 use Internships\Exceptions\File\CsvInvalidCountFileException;
+use Internships\Exceptions\File\FileException;
 use Internships\Exceptions\File\NoFieldRowCsvException;
 use Internships\Exceptions\Path\CouldNotReadPathException;
 use Internships\Exceptions\Path\NotFoundPathException;
 use Internships\FileSystem\DirectoryManager;
 use Internships\FileSystem\FileManager;
+use Internships\FileSystem\RelativePathIdentity;
 
 class CsvReader
 {
@@ -28,9 +30,10 @@ class CsvReader
      * @throws CouldNotReadPathException
      * @throws NoFieldRowCsvException
      */
-    public function getCsvData(string $resourceRelativePath, string $fileName, array $fieldDefines, bool $fieldRowOnly = false): array
+    public function getCsvData(RelativePathIdentity $relativePathIdentity, array $fieldDefines, bool $fieldRowOnly = false): array
     {
-        $fullPath = $this->directoryManager->getResourceFilePath($resourceRelativePath, $fileName);
+        $fullPathIdentity = $this->directoryManager->getFullPathIdentity($relativePathIdentity, true);
+        $fullPath = $fullPathIdentity->getFullDestinationFilePath();
         $csvRows = [];
         if (!file_exists($fullPath)) {
             throw new NotFoundPathException($fullPath);
@@ -63,19 +66,24 @@ class CsvReader
         return $csvRows;
     }
 
-    public function getFieldRow(string $resourceRelativePath, string $fileName, array $fieldDefines)
+    public function getFieldRow(RelativePathIdentity $relativePathIdentity, array $fieldDefines)
     {
-        return $this->getCsvData($resourceRelativePath, $fileName, $fieldDefines, fieldRowOnly: true)[0];
+        return $this->getCsvData($relativePathIdentity, $fieldDefines, fieldRowOnly: true)[0];
     }
 
-    public function saveData(string $resourceRelativePath, string $fileName, array $data): void
+    public function saveData(RelativePathIdentity $relativePathIdentity, array $data): void
     {
-        $fullPath = $this->directoryManager->getResourceFilePath($resourceRelativePath, $fileName);
+        $fullPathIdentity = $this->directoryManager->getFullPathIdentity($relativePathIdentity, true);
+        $fullPath = $fullPathIdentity->getFullDestinationFilePath();
         if (!file_exists($fullPath)) {
-            $this->fileManager->createInResources($resourceRelativePath, $fileName, "");
+            $this->fileManager->create($relativePathIdentity);
         }
 
         $csvFile = fopen($fullPath, "w");
+        if (!$csvFile) {
+            throw new FileException($fullPath);
+        }
+
         try {
             foreach ($data as $row) {
                 fputcsv($csvFile, $row);

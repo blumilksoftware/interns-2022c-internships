@@ -5,26 +5,18 @@ declare(strict_types=1);
 namespace Internships\Factories;
 
 use Internships\Exceptions\Validation\IsMissingValidationException;
-use Internships\FileSystem\Path;
+use Internships\FileSystem\RelativePathIdentity;
 use Internships\Interfaces\BuildTool;
-use Internships\Interfaces\SerializableInfo;
 use Internships\Services\DataValidator;
 
-abstract class DataFactory implements BuildTool, SerializableInfo
+abstract class DataFactory implements BuildTool
 {
-    protected DataValidator $dataValidator;
-
     protected array $fields;
-    protected string $workingDirectory;
+    protected RelativePathIdentity $relativePathIdentity;
 
-    protected string $baseSourcePath;
-    protected string $sourceName;
-    protected string $baseDestinationPath;
-    protected string $destinationName;
-
-    public function __construct(DataValidator $dataValidator)
-    {
-        $this->dataValidator = $dataValidator;
+    public function __construct(
+        protected DataValidator $dataValidator
+    ) {
         $this->setPaths();
         $this->defineDataFields();
     }
@@ -43,14 +35,9 @@ abstract class DataFactory implements BuildTool, SerializableInfo
         return $entry;
     }
 
-    public function getBaseSourcePath(): string
+    public function getRelativePathIdentity(): RelativePathIdentity
     {
-        return $this->baseSourcePath;
-    }
-
-    public function getBaseDestinationPath(): string
-    {
-        return $this->baseDestinationPath;
+        return $this->relativePathIdentity;
     }
 
     public function getFields(): array
@@ -58,47 +45,9 @@ abstract class DataFactory implements BuildTool, SerializableInfo
         return $this->fields;
     }
 
-    public function getSourceRelativePath(): string
+    public function changeDirectory(string $directory): void
     {
-        return $this->workingDirectory
-            . Path::FOLDER_SEPARATOR
-            . $this->baseSourcePath;
-    }
-
-    public function getSourceFileName(): string
-    {
-        return $this->sourceName;
-    }
-
-    public function getSourceFilePath(): string
-    {
-        return $this->getSourceRelativePath()
-            . Path::FOLDER_SEPARATOR
-            . $this->getSourceFileName();
-    }
-
-    public function getDestinationRelativePath(): string
-    {
-        return $this->workingDirectory
-            . Path::FOLDER_SEPARATOR
-            . $this->baseDestinationPath;
-    }
-
-    public function getDestinationFileName(): string
-    {
-        return $this->destinationName;
-    }
-
-    public function getDestinationFilePath(): string
-    {
-        return $this->getDestinationRelativePath()
-            . Path::FOLDER_SEPARATOR
-            . $this->getDestinationFileName();
-    }
-
-    public function setDirectory(string $directory): void
-    {
-        $this->workingDirectory = $directory;
+        $this->getRelativePathIdentity()->setChangingPath($directory);
     }
 
     /**

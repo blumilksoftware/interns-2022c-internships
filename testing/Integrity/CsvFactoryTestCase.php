@@ -6,7 +6,7 @@ namespace Internships\Testing\Integrity;
 
 use Internships\Factories\DataFactory;
 use Internships\FileSystem\FileManager;
-use Internships\FileSystem\Path;
+use Internships\FileSystem\RelativePathIdentity;
 use Internships\Services\CsvReader;
 use Internships\Services\DataSanitizer;
 use Internships\Services\DataValidator;
@@ -38,7 +38,10 @@ abstract class CsvFactoryTestCase extends GenericResourceTestCase
     public function testIfRelatedFilesExist(): void
     {
         $factoryName = static::$dataFactory::class;
-        $files = static::$fileManager->getResourceFilePathsFrom("", static::$dataFactory->getSourceFileName());
+        $files = static::$fileManager->getResourceFilePathsFrom(
+            relativeOrigin: "",
+            specificFileName: static::$dataFactory->getRelativePathIdentity()->getSourceName()
+        );
         $this->assertNotEmpty(
             $files,
             message: "Couldn't find any files related to {$factoryName}."
@@ -47,27 +50,28 @@ abstract class CsvFactoryTestCase extends GenericResourceTestCase
 
     public function testRetrievalForAllRelatedFiles(): void
     {
-        $files = static::$fileManager->getResourceFilePathsFrom("", static::$dataFactory->getSourceFileName());
-        $baseResourcePath = static::$directoryManager->getResourceDirectoryPath("");
+        $files = static::$fileManager->getResourceFilePathsFrom(
+            relativeOrigin: "",
+            specificFileName: static::$dataFactory->getRelativePathIdentity()->getSourceName()
+        );
         foreach ($files as $file) {
-            $fileRelativePath = Path::FOLDER_SEPARATOR . substr($file->getPath(), strlen($baseResourcePath))
-                . Path::FOLDER_SEPARATOR;
-            $this->retrieveWithFactory($fileRelativePath, $file->getFilename());
+            $this->retrieveWithFactory($file);
         }
     }
 
-    protected function retrieveWithFactory(string $resourcePath, string $filename): array
+    protected function retrieveWithFactory(RelativePathIdentity $pathIdentity): array
     {
         $factoryName = static::$dataFactory::class;
 
-        $this->checkResourcePath($resourcePath, $filename);
+        $this->checkResourcePath($pathIdentity);
         $fields = static::$dataFactory->getFields();
-        $csvData = static::$csvReader->getCsvData($resourcePath, $filename, $fields);
+        $csvData = static::$csvReader->getCsvData($pathIdentity, $fields);
 
+        $fullIdentity = static::$directoryManager->getFullPathIdentity($pathIdentity);
         $this->assertCount(
             count($fields),
             array_keys($csvData[0]),
-            message: "{$resourcePath}{$filename} has different number of fields than {$factoryName}"
+            message: "{$fullIdentity->getFullSourceFilePath()} has different number of fields than {$factoryName}"
         );
 
         return static::$dataFactory->buildFromData($csvData, false);

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Internships\Testing\Integrity;
 
 use Internships\FileSystem\DirectoryManager;
+use Internships\FileSystem\RelativePathIdentity;
 use PHPUnit\Framework\TestCase;
 
 abstract class GenericResourceTestCase extends TestCase
@@ -25,15 +26,15 @@ abstract class GenericResourceTestCase extends TestCase
         static::$directoryManager = null;
     }
 
-    protected function checkResourcePath(string $relativePath, string $fileName, bool $checkWrite = false): void
+    protected function checkResourcePath(RelativePathIdentity $relativePathIdentity, bool $checkWrite = false): void
     {
-        $path = static::$directoryManager->getResourceFilePath($relativePath, $fileName);
-        if ($fileName === "") {
-            $this->assertDirectoryExists($path);
+        $fullIdentity = static::$directoryManager->getFullPathIdentity($relativePathIdentity);
+        if ($fullIdentity->getSourceName() === "") {
+            $this->assertDirectoryExists($fullIdentity->getFullSourcePath());
         } else {
-            $this->assertFileExists($path);
+            $this->assertFileExists($fullIdentity->getFullSourceFilePath());
             if ($checkWrite) {
-                $this->assertFileIsWritable($path);
+                $this->assertFileIsWritable($fullIdentity->getFullSourceFilePath());
             }
         }
     }

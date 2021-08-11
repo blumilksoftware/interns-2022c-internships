@@ -97,20 +97,23 @@ abstract class DataFactoryTestCase extends TestCase
 
     public function testFixtureFileIntegrity(): void
     {
-        $sourceFileName = static::$dataFactory->getSourceFileName();
-        $pathToFixture = static::$directoryManager->getResourceFilePath("", $sourceFileName);
+        $relativePathIdentity = static::$dataFactory->getRelativePathIdentity();
+        $fullIdentity = static::$directoryManager->getFullPathIdentity($relativePathIdentity, destinationToResource: true);
         $this->assertFileExists(
-            $pathToFixture,
+            $fullIdentity->getFullDestinationPath(),
             message: "Cannot build data from a non-existent file."
         );
 
         $csvReader = new CsvReader(static::$directoryManager, static::$fileManager);
-        $csvFields = $csvReader->getFieldRow("", $sourceFileName, static::$dataFactory->getFields());
+        $csvFields = $csvReader->getFieldRow(
+            relativePathIdentity: static::$dataFactory->getRelativePathIdentity(),
+            fieldDefines: static::$dataFactory->getFields()
+        );
 
         $this->assertCount(
             count(static::$dataFactory->getFields()),
             array_keys($csvFields),
-            message: "{$sourceFileName} has different number of fields from {$this->factoryClassName}"
+            message: "{$fullIdentity->getFullSourceFilePath()} has different number of fields from {$this->factoryClassName}"
         );
     }
 
@@ -120,8 +123,7 @@ abstract class DataFactoryTestCase extends TestCase
 
         $csvReader = new CsvReader(static::$directoryManager, static::$fileManager);
         $csvData = $csvReader->getCsvData(
-            resourceRelativePath: "",
-            fileName: static::$dataFactory->getSourceFileName(),
+            relativePathIdentity: static::$dataFactory->getRelativePathIdentity(),
             fieldDefines: static::$dataFactory->getFields()
         );
 

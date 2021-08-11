@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Internships\Testing\Integrity;
 
 use Internships\Factories\DocumentConfigFactory;
-use Internships\FileSystem\Path;
 use Internships\Models\DocumentConfig;
 
 class DocumentResourceTest extends CsvFactoryTestCase
@@ -13,7 +12,7 @@ class DocumentResourceTest extends CsvFactoryTestCase
     public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
-        self::$dataFactory = new DocumentConfigFactory(static::$validator);
+        self::$dataFactory = new DocumentConfigFactory(static::$fileManager, static::$validator);
     }
 
     public static function tearDownAfterClass(): void
@@ -24,21 +23,17 @@ class DocumentResourceTest extends CsvFactoryTestCase
 
     public function testIfMentionedDocumentsExist(): void
     {
-        $files = static::$fileManager->getResourceFilePathsFrom("", static::$dataFactory->getSourceFileName());
-        $baseResourcePath = static::$directoryManager->getResourceDirectoryPath("");
+        $relativePath = static::$dataFactory->getRelativePathIdentity();
+        $files = static::$fileManager->getResourceFilePathsFrom("", $relativePath->getSourceName());
 
+        $resourcePath = static::$directoryManager->getResourcePath();
         foreach ($files as $file) {
-            $fileRelativePath = Path::FOLDER_SEPARATOR . substr($file->getPath(), strlen($baseResourcePath))
-                . Path::FOLDER_SEPARATOR;
-
+            $fileParentPath = $resourcePath . $file->getRelativePath();
             /** @var DocumentConfig[] $documentConfigData */
-            $documentConfigData = $this->retrieveWithFactory($fileRelativePath, static::$dataFactory->getSourceFileName());
+            $documentConfigData = $this->retrieveWithFactory($file);
 
             foreach ($documentConfigData as $documentConfig) {
-                $this->checkResourcePath(
-                    relativePath: $fileRelativePath,
-                    fileName: $documentConfig->getFilePath()
-                );
+                $this->assertFileExists($fileParentPath . $documentConfig->getFilePath());
             }
         }
     }

@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace Internships\Collectors;
 
 use Internships\FileSystem\FileManager;
+use Internships\FileSystem\RelativePathIdentity;
 
 class FilterMainCollector extends MainCollector
 {
-    public function __construct(FileManager $fileManager)
+    public function __construct(FileManager $fileManager, RelativePathIdentity $parentPathIdentity)
     {
         $this->collectorClassNames = [
             CountryCollector::class,
@@ -16,9 +17,8 @@ class FilterMainCollector extends MainCollector
             SpecializationCollector::class,
             TagCollector::class,
         ];
-        $this->relativeSavingPath = "";
-        $this->filename = "filters.json";
-        parent::__construct($fileManager);
+        $this->pathIdentity = new RelativePathIdentity(destinationName:"filters.json");
+        parent::__construct($fileManager, $parentPathIdentity);
     }
 
     public function getCountryCollector(): CountryCollector

@@ -4,11 +4,21 @@ declare(strict_types=1);
 
 namespace Internships\Factories;
 
+use Internships\FileSystem\RelativePathIdentity;
 use Internships\Models\FetchAddress;
 use Internships\Models\ValidationOptions;
 
 class FetchAddressDataFactory extends DataFactory
 {
+    public function setPaths(): void
+    {
+        $this->workingDirectory = "";
+        $this->relativePathIdentity = new RelativePathIdentity(
+            sourceName: "companies.csv",
+            destinationName: "companies.csv"
+        );
+    }
+
     public function defineDataFields(): void
     {
         $this->fields = [
@@ -43,14 +53,5 @@ class FetchAddressDataFactory extends DataFactory
     public function getModelClassToBuild(): string
     {
         return FetchAddress::class;
-    }
-
-    public function setPaths(): void
-    {
-        $this->workingDirectory = "";
-        $this->baseSourcePath = "";
-        $this->sourceName = "companies.csv";
-        $this->baseDestinationPath = "";
-        $this->destinationName = "companies.csv";
     }
 }
