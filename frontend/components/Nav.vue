@@ -4,8 +4,8 @@
       <div class="flex justify-between h-16">
         <div class="flex">
           <div class="noselect flex-shrink-0 flex items-center">
-            <router-link to="/">
-              <a class="logo noselect" title="Home">Znajdź Praktyki</a>
+            <router-link to="/" class="logo noselect" title="Home">
+              Znajdź Praktyki
             </router-link>
           </div>
           <div class="noselect hidden sm:ml-6 sm:flex sm:space-x-8">
