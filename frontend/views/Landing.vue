@@ -17,6 +17,9 @@ export default {
     JoinUs,
     StoriesSection,
   },
+  mounted() {
+    window.scrollTo(0, 0);
+  },
 };
 </script>
 
