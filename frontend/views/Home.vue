@@ -23,6 +23,9 @@ export default {
     Files,
     Maplist,
   },
+  mounted() {
+    window.scrollTo(0, 0);
+  },
 };
 </script>
 
