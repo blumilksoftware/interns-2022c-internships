@@ -3,8 +3,31 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "App",
+  computed: {
+    ...mapGetters([
+      "getCompanies",
+      "getFilters",
+      "getFaculties",
+      "getDocuments",
+    ]),
+  },
+  methods: {
+    ...mapActions([
+      "setCompanies",
+      "setFilters",
+      "setFaculties",
+      "setDocuments",
+    ]),
+  },
+  mounted() {
+    this.setCompanies();
+    this.setFilters();
+    this.setFaculties();
+    this.setDocuments();
+  },
 };
 </script>
 <style>

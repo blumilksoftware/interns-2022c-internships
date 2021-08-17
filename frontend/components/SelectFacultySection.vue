@@ -166,25 +166,17 @@
   </div>
 </template>
 <script>
-import api from "../api";
-import { useRouter } from "vue-router";
-import { onMounted, ref } from "vue";
+import { useStore } from "vuex";
+import { computed } from "vue";
 import BaseFieldSelector from "@/components/BaseFieldSelector";
 
 export default {
   components: { BaseFieldSelector },
   setup() {
-    const router = useRouter();
-    const faculties = ref([]);
-
-    onMounted(() => {
-      api.fetch(router, "faculties/faculties", (data) => {
-        faculties.value = Object.values(data);
-      });
-    });
+    const store = useStore();
 
     return {
-      faculties,
+      faculties: computed(() => store.getters.getFaculties),
     };
   },
 };

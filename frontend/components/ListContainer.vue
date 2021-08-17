@@ -21,9 +21,8 @@ import DataField from "@/components/DataField";
 import SearchBar from "@/components/SearchBar";
 import FilterContent from "@/components/FilterContent";
 import { isMobile } from "../functions/functions.js";
-import api from "../api";
-import { useRouter } from "vue-router";
-import { onMounted, ref } from "vue";
+import { useStore } from "vuex";
+import { computed } from "vue";
 
 export default {
   components: {
@@ -33,15 +32,9 @@ export default {
     FilterContent,
   },
   setup() {
-    const router = useRouter();
-    const companies = ref([]);
+    const store = useStore();
 
-    onMounted(() => {
-      api.fetch(router, "faculties/wydzial-techniczny/companies", (data) => {
-        companies.value = data;
-      });
-    });
-    return { companies, isMobile };
+    return { companies: computed(() => store.getters.getCompanies), isMobile };
   },
 };
 </script>
