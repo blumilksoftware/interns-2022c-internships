@@ -3,4 +3,5 @@ export default {
   getFilters: (state) => state.filters,
   getFaculties: (state) => state.faculties,
   getDocuments: (state) => state.documents,
+  getTags: (state) => state.tags,
 };

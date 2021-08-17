@@ -12,4 +12,7 @@ export default {
   [types.SET_DOCUMENTS](state, documents) {
     state.documents = documents;
   },
+  [types.SET_TAGS](state, tags) {
+    state.tags = tags;
+  },
 };

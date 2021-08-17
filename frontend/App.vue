@@ -12,6 +12,7 @@ export default {
       "getFilters",
       "getFaculties",
       "getDocuments",
+      "getTags",
     ]),
   },
   methods: {
@@ -20,6 +21,7 @@ export default {
       "setFilters",
       "setFaculties",
       "setDocuments",
+      "setTags",
     ]),
   },
   mounted() {
@@ -27,6 +29,7 @@ export default {
     this.setFilters();
     this.setFaculties();
     this.setDocuments();
+    this.setTags();
   },
 };
 </script>

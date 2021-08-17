@@ -48,9 +48,8 @@
 <script>
 import PaidSelector from "@/components/PaidSelector";
 import BaseFieldSelector from "@/components/BaseFieldSelector";
-import api from "../api";
-import { useRouter } from "vue-router";
-import { onMounted, ref, inject } from "vue";
+import { onMounted, ref, inject, computed } from "vue";
+import { useStore } from "vuex";
 
 export default {
   components: {
@@ -58,10 +57,9 @@ export default {
     BaseFieldSelector,
   },
   setup() {
-    const router = useRouter();
+    const store = useStore();
     let isActive = ref(false);
     let isDropdownActive = ref(false);
-    const filters = ref({});
     const activeTags = ref([]);
     const eventBus = inject("eventBus");
 
@@ -77,14 +75,11 @@ export default {
           }
         }
       });
-      api.fetch(router, "faculties/wydzial-techniczny/filters", (data) => {
-        filters.value = data;
-      });
     });
     return {
+      filters: computed(() => store.getters.getFilters),
       isActive,
       isDropdownActive,
-      filters,
       activeTags,
       dropdown,
     };
