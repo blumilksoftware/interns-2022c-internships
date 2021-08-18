@@ -24,7 +24,6 @@
     "dotenv": "^10.0.0",
     "glob-parent": "^6.0.0",
     "mapbox-gl": "^2.4.0",
-    "mitt": "^3.0.0",
     "postcss": "^7.0.36",
     "sass-resources-loader": "^2.2.3",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.4",

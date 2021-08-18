@@ -4,4 +4,5 @@ export default {
   faculties: [],
   documents: [],
   tags: [],
+  activeTags: [],
 };

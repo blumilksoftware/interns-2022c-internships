@@ -19,17 +19,16 @@
 
 <script>
 import BaseButton from "@/components/BaseButton";
-import { ref, inject } from "vue";
+import { useStore } from "vuex";
 export default {
   components: {
     BaseButton,
   },
   setup() {
-    const reset = ref(true);
-    const eventBus = inject("eventBus");
+    const store = useStore();
 
     function resetButtons() {
-      eventBus.emit("reset", reset.value);
+      store.commit("RESET_ACTIVE_TAGS");
     }
     return { resetButtons };
   },

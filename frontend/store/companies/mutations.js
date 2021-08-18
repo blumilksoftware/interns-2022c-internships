@@ -15,4 +15,12 @@ export default {
   [types.SET_TAGS](state, tags) {
     state.tags = tags;
   },
+  [types.MANAGE_ACTIVE_TAGS](state, tag) {
+    state.activeTags.includes(tag)
+      ? state.activeTags.splice(state.activeTags.indexOf(tag), 1)
+      : state.activeTags.push(tag);
+  },
+  [types.RESET_ACTIVE_TAGS](state) {
+    state.activeTags = [];
+  },
 };

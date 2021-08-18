@@ -27,11 +27,7 @@
           v-for="tag in filters.tags"
           :key="tag.id"
           :class="{ highlight: activeTags.includes(tag.id) }"
-          @click="
-            activeTags.includes(tag.id)
-              ? activeTags.splice(activeTags.indexOf(tag.id), 1)
-              : activeTags.push(tag.id)
-          "
+          @click="manageActive(tag.id)"
         >
           <span>{{ tag.name }} </span>
         </div>
@@ -48,7 +44,7 @@
 <script>
 import PaidSelector from "@/components/PaidSelector";
 import BaseFieldSelector from "@/components/BaseFieldSelector";
-import { onMounted, ref, inject, computed } from "vue";
+import { ref, computed } from "vue";
 import { useStore } from "vuex";
 
 export default {
@@ -60,28 +56,21 @@ export default {
     const store = useStore();
     let isActive = ref(false);
     let isDropdownActive = ref(false);
-    const activeTags = ref([]);
-    const eventBus = inject("eventBus");
 
+    function manageActive(tag) {
+      store.commit("MANAGE_ACTIVE_TAGS", tag);
+    }
     function dropdown() {
       isDropdownActive.value = !isDropdownActive.value;
     }
-    onMounted(() => {
-      eventBus.on("reset", function (reset) {
-        if (reset) {
-          let high = document.querySelectorAll(".highlight");
-          for (var i = 0; i < high.length; i++) {
-            high[i].classList.toggle("highlight");
-          }
-        }
-      });
-    });
+
     return {
       filters: computed(() => store.getters.getFilters),
       isActive,
       isDropdownActive,
-      activeTags,
+      activeTags: computed(() => store.getters.getActiveTags),
       dropdown,
+      manageActive,
     };
   },
 };
