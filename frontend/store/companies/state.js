@@ -5,4 +5,5 @@ export default {
   documents: [],
   tags: [],
   activeTags: [],
+  companiesMerged: [],
 };

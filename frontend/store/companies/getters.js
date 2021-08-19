@@ -5,4 +5,5 @@ export default {
   getDocuments: (state) => state.documents,
   getTags: (state) => state.tags,
   getActiveTags: (state) => state.activeTags,
+  getCompaniesMerged: (state) => state.companiesMerged,
 };

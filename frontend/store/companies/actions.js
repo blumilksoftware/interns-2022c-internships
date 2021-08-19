@@ -1,15 +1,15 @@
 import types from "./mutation-types";
 
 export default {
-  setCompanies({ commit }) {
-    fetch("/api/faculties/wydzial-techniczny/companies.json")
+  async setCompanies({ commit }) {
+    await fetch("/api/faculties/wydzial-techniczny/companies.json")
       .then((data) => data.json())
       .then((data) => {
         commit(types.SET_COMPANIES, data);
       });
   },
-  setFilters({ commit }) {
-    fetch("/api/faculties/wydzial-techniczny/filters.json")
+  async setFilters({ commit }) {
+    await fetch("/api/faculties/wydzial-techniczny/filters.json")
       .then((data) => data.json())
       .then((data) => {
         commit(types.SET_FILTERS, data);
@@ -35,5 +35,12 @@ export default {
       .then((data) => {
         commit(types.SET_TAGS, data.tags);
       });
+  },
+  async setCompaniesMerged({ getters, dispatch }) {
+    await dispatch("setCompanies");
+    await dispatch("setFilters");
+    let companies = getters.getCompanies;
+    let filters = getters.getFilters;
+    console.log("merged", companies, filters);
   },
 };

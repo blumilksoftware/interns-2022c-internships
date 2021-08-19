@@ -22,6 +22,7 @@ export default {
       "setFaculties",
       "setDocuments",
       "setTags",
+      "setCompaniesMerged",
     ]),
   },
   mounted() {
@@ -30,6 +31,7 @@ export default {
     this.setFaculties();
     this.setDocuments();
     this.setTags();
+    this.setCompaniesMerged();
   },
 };
 </script>
