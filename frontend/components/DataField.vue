@@ -27,9 +27,7 @@
       </div>
     </div>
     <div v-if="!isMobile()" class="tagsContainer">
-      <span class="tag" v-for="tag in dataGiven" :key="tag">{{
-        tag.name
-      }}</span>
+      <span class="tag" v-for="tag in companyTags" :key="tag">{{ tag }}</span>
     </div>
   </div>
 </template>
@@ -50,8 +48,8 @@ export default {
       type: String,
       required: true,
     },
-    dataGiven: {
-      type: Object,
+    companyTags: {
+      type: Array,
     },
   },
   methods: {

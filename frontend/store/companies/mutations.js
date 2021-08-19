@@ -23,4 +23,7 @@ export default {
   [types.RESET_ACTIVE_TAGS](state) {
     state.activeTags = [];
   },
+  [types.SET_COMPANIES_MERGED](state, companiesMerged) {
+    state.companiesMerged = companiesMerged;
+  },
 };

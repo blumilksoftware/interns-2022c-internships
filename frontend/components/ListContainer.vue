@@ -8,7 +8,9 @@
         v-for="company in companies"
         :key="company.id"
         :companyName="company.name"
-        :location="company.location"
+        :course="company.filterData.specializationName"
+        :location="company.address.cityName"
+        :companyTags="company.filterData.tags"
       />
     </div>
     <Buttons class="buttons" />
@@ -34,7 +36,10 @@ export default {
   setup() {
     const store = useStore();
 
-    return { companies: computed(() => store.getters.getCompanies), isMobile };
+    return {
+      companies: computed(() => store.getters.getCompaniesMerged),
+      isMobile,
+    };
   },
 };
 </script>
