@@ -20,24 +20,22 @@ export default {
       }
     );
   },
-  async fetchFaculties({ commit }) {
-    await fetchData("/api/faculties/faculties.json").then((data) => {
+  fetchFaculties({ commit }) {
+    fetchData("/api/faculties/faculties.json").then((data) => {
       commit(types.SET_FACULTIES, data);
     });
   },
-  async fetchDocuments({ commit }) {
-    await fetchData(
+  fetchDocuments({ commit }) {
+    fetchData(
       "/api/faculties/wydzial-techniczny/documents/documents.json"
     ).then((data) => {
       commit(types.SET_DOCUMENTS, data);
     });
   },
-  async fetchTags({ commit }) {
-    await fetchData("/api/faculties/wydzial-techniczny/filters.json").then(
-      (data) => {
-        commit(types.SET_TAGS, data.tags);
-      }
-    );
+  fetchTags({ commit }) {
+    fetchData("/api/faculties/wydzial-techniczny/filters.json").then((data) => {
+      commit(types.SET_TAGS, data.tags);
+    });
   },
   async fetchCompaniesMerged({ getters, dispatch, commit }) {
     await dispatch("fetchCompanies");
