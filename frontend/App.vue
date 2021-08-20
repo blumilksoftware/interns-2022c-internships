@@ -3,35 +3,26 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
 export default {
   name: "App",
-  computed: {
-    ...mapGetters([
-      "getCompanies",
-      "getFilters",
-      "getFaculties",
-      "getDocuments",
-      "getTags",
-    ]),
-  },
   methods: {
     ...mapActions([
-      "setCompanies",
-      "setFilters",
-      "setFaculties",
-      "setDocuments",
-      "setTags",
-      "setCompaniesMerged",
+      "fetchCompanies",
+      "fetchFilters",
+      "fetchFaculties",
+      "fetchDocuments",
+      "fetchTags",
+      "fetchCompaniesMerged",
     ]),
   },
   mounted() {
-    this.setCompanies();
-    this.setFilters();
-    this.setFaculties();
-    this.setDocuments();
-    this.setTags();
-    this.setCompaniesMerged();
+    this.fetchCompanies();
+    this.fetchFilters();
+    this.fetchFaculties();
+    this.fetchDocuments();
+    this.fetchTags();
+    this.fetchCompaniesMerged();
   },
 };
 </script>
