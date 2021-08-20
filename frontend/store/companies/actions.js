@@ -1,41 +1,32 @@
 import types from "./mutation-types";
-
-export const fetchData = async (url) => {
-  const response = await fetch(url);
-  return response.json();
-};
+import { fetchData } from "../../functions/functions";
 
 export default {
   async fetchCompanies({ commit }) {
-    await fetchData("/api/faculties/wydzial-techniczny/companies.json").then(
-      (data) => {
-        commit(types.SET_COMPANIES, data);
-      }
+    const data = await fetchData(
+      "/api/faculties/wydzial-techniczny/companies.json"
     );
+    commit(types.SET_COMPANIES, data);
   },
   async fetchFilters({ commit }) {
-    await fetchData("/api/faculties/wydzial-techniczny/filters.json").then(
-      (data) => {
-        commit(types.SET_FILTERS, data);
-      }
+    const data = await fetchData(
+      "/api/faculties/wydzial-techniczny/filters.json"
     );
+    commit(types.SET_FILTERS, data);
   },
   fetchFaculties({ commit }) {
-    fetchData("/api/faculties/faculties.json").then((data) => {
-      commit(types.SET_FACULTIES, data);
-    });
+    const data = fetchData("/api/faculties/faculties.json");
+    commit(types.SET_FACULTIES, data);
   },
   fetchDocuments({ commit }) {
-    fetchData(
+    const data = fetchData(
       "/api/faculties/wydzial-techniczny/documents/documents.json"
-    ).then((data) => {
-      commit(types.SET_DOCUMENTS, data);
-    });
+    );
+    commit(types.SET_DOCUMENTS, data);
   },
   fetchTags({ commit }) {
-    fetchData("/api/faculties/wydzial-techniczny/filters.json").then((data) => {
-      commit(types.SET_TAGS, data.tags);
-    });
+    const data = fetchData("/api/faculties/wydzial-techniczny/filters.json");
+    commit(types.SET_TAGS, data.tags);
   },
   async fetchCompaniesMerged({ getters, dispatch, commit }) {
     await dispatch("fetchCompanies");
