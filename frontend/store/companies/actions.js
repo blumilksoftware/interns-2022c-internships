@@ -14,18 +14,20 @@ export default {
     );
     commit(types.SET_FILTERS, data);
   },
-  fetchFaculties({ commit }) {
-    const data = fetchData("/api/faculties/faculties.json");
+  async fetchFaculties({ commit }) {
+    const data = await fetchData("/api/faculties/faculties.json");
     commit(types.SET_FACULTIES, data);
   },
-  fetchDocuments({ commit }) {
-    const data = fetchData(
+  async fetchDocuments({ commit }) {
+    const data = await fetchData(
       "/api/faculties/wydzial-techniczny/documents/documents.json"
     );
     commit(types.SET_DOCUMENTS, data);
   },
-  fetchTags({ commit }) {
-    const data = fetchData("/api/faculties/wydzial-techniczny/filters.json");
+  async fetchTags({ commit }) {
+    const data = await fetchData(
+      "/api/faculties/wydzial-techniczny/filters.json"
+    );
     commit(types.SET_TAGS, data.tags);
   },
   async fetchCompaniesMerged({ getters, dispatch, commit }) {
