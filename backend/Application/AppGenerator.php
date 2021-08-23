@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Internships\Application;
 
+use Internships\CommandLine\ConsoleWriter;
 use Internships\Exceptions\Validation\IsMissingValidationException;
 use Internships\Factories\CompanyDataFactory;
 use Internships\Factories\DataFactory;
@@ -11,8 +12,6 @@ use Internships\Factories\DocumentConfigFactory;
 use Internships\Factories\FacultyDataFactory;
 use Internships\Factories\FetchAddressDataFactory;
 use Internships\FileSystem\FileManager;
-use Internships\FileSystem\Path;
-use Internships\Helpers\OutputWriter;
 use Internships\Models\Faculty;
 use Internships\Models\FetchAddress;
 use Internships\Services\CoordinateFetcher;
@@ -36,6 +35,11 @@ class AppGenerator
             "company" => $companyDataFactory,
             "document" => $documentConfigFactory,
         ];
+
+        foreach ($this->subFactories as $subFactory) {
+            $subFactory->getRelativePathIdentity()
+                ->setParentIdentity($facultyFactory->getRelativePathIdentity());
+        }
     }
 
     /**
@@ -43,20 +47,19 @@ class AppGenerator
      */
     public function getDataFromCsv(DataFactory $factory): array
     {
-        $facultyCsvData = $this->csvReader->getCSVData(
-            $factory->getSourceRelativePath(),
-            $factory->getSourceFileName(),
+        $facultyCsvData = $this->csvReader->getCsvData(
+            $factory->getRelativePathIdentity(),
             $factory->getFields()
         );
-        return $factory->buildFromData($facultyCsvData);
+        return $factory->buildFromData($facultyCsvData, serializeSubData: true);
     }
 
     public function saveDataToJson(DataFactory $factory, array $data): void
     {
-        $this->fileManager->createInApi(
-            $factory->getDestinationRelativePath(),
-            $factory->getDestinationFileName(),
-            json_encode($data, $this->fileManager->getDefaultJsonFlags())
+        $this->fileManager->create(
+            relativePathIdentity: $factory->getRelativePathIdentity(),
+            content: json_encode($data, $this->fileManager->getDefaultJsonFlags()),
+            toResource: false
         );
     }
 
@@ -67,17 +70,17 @@ class AppGenerator
         $this->saveDataToJson($this->facultyFactory, $faculties);
         try {
             foreach ($faculties as $faculty) {
+                ConsoleWriter::print("Processing {$faculty->getDirectory()}");
+                $this->facultyFactory->changeDirectory($faculty->getDirectory());
                 foreach ($this->subFactories as $subFactory) {
-                    OutputWriter::newLineToConsole("Processing {$faculty->getDirectory()}");
-                    $subFactory->setDirectory("/faculties/{$faculty->getDirectory()}");
                     $data = $this->getDataFromCsv($subFactory);
                     $this->saveDataToJson($subFactory, $data);
                 }
             }
         } catch (IsMissingValidationException $exception) {
-            OutputWriter::newLineToConsole($exception->getMessage());
+            ConsoleWriter::print($exception->getMessage());
             if ($exception->getFieldName() === "coordinates") {
-                OutputWriter::newLineToConsole("Consider using 'composer fetch' to get missing entries.");
+                ConsoleWriter::warn("Consider using 'composer fetch' to get missing entries.");
             }
             die();
         }
@@ -85,41 +88,41 @@ class AppGenerator
 
     public function generateResourceContents(): void
     {
-        $source = "/templates/";
-        $destination = "/faculties/";
-
         /** @var Faculty[] $faculties */
         $faculties = $this->getDataFromCsv($this->facultyFactory);
+        $facultyTemplatePaths = $this->fileManager->getResourceFilePathsFrom(
+            relativeOrigin: "/templates/faculty-directory/"
+        );
 
-        $facultyTemplatePaths = $this->fileManager->getResourceFilePathsFrom("{$source}/faculty-directory/");
         foreach ($faculties as $rowNumber => $faculty) {
+            $relativePathIdentity = $this->facultyFactory->getRelativePathIdentity();
+            $relativePathIdentity->setChangingPath($faculty->getDirectory());
             if ($rowNumber > 0) {
-                $this->fileManager->copyResources(
-                    "{$source}/faculty-directory/",
-                    $destination . Path::FOLDER_SEPARATOR . $faculty->getDirectory(),
-                    $facultyTemplatePaths
-                );
+                $this->fileManager->copyResources($facultyTemplatePaths, $relativePathIdentity);
             }
         }
     }
 
     public function getMissingCoordinatesForCompanies(): void
     {
-        $basePath = "/faculties/";
-        $sourceFilename = "companies.csv";
-
         /** @var Faculty[] $faculties */
         $faculties = $this->getDataFromCsv($this->facultyFactory);
         foreach ($faculties as $faculty) {
-            $fields = $this->subFactories["company"]->getFields();
-            $companies = $this->csvReader->getCSVData(
-                resourceRelativePath: $basePath . $faculty->getDirectory(),
-                fileName: $sourceFilename,
+            $fetchFactory = $this->fetchAddressFactory;
+            $this->facultyFactory->changeDirectory($faculty->getDirectory());
+            $fetchFactory->getRelativePathIdentity()
+                ->setParentIdentity($this->facultyFactory->getRelativePathIdentity());
+
+            $companyPathIdentity = $fetchFactory->getRelativePathIdentity();
+            $fields = $fetchFactory->getFields();
+
+            $companies = $this->csvReader->getCsvData(
+                relativePathIdentity: $companyPathIdentity,
                 fieldDefines: $fields
             );
 
             /** @var FetchAddress[] $addresses */
-            $addresses = $this->fetchAddressFactory->buildFromData($companies);
+            $addresses = $fetchFactory->buildFromData($companies);
             $requiresSave = false;
 
             foreach ($addresses as $address) {
@@ -128,8 +131,8 @@ class AppGenerator
                 }
 
                 $csvRow = $address->getId() + 1;
-                OutputWriter::newLineToConsole(
-                    text: "Trying to fetch coordinates for {$companies[$csvRow]["name"]}."
+                ConsoleWriter::print(
+                    message: "Trying to fetch coordinates for {$companies[$csvRow]["name"]}."
                 );
 
                 $requiresSave = $this->geocoder->coordinatesFromAddress(
@@ -139,14 +142,13 @@ class AppGenerator
             }
 
             if ($requiresSave) {
-                OutputWriter::newLineToConsole("Saving {$sourceFilename} for faculty {$faculty->getName()}.");
                 $this->csvReader->saveData(
-                    resourceRelativePath: $basePath . $faculty->getDirectory(),
-                    fileName: $sourceFilename,
+                    relativePathIdentity: $companyPathIdentity,
                     data: $companies
                 );
+                ConsoleWriter::success("Saved {$companyPathIdentity->getSourceName()} for faculty {$faculty->getName()}.");
             } else {
-                OutputWriter::newLineToConsole("No coordinates were fetched for faculty {$faculty->getName()}.");
+                ConsoleWriter::print("No coordinates were fetched for faculty {$faculty->getName()}.");
             }
         }
     }

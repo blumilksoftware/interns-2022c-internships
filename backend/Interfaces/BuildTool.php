@@ -8,7 +8,7 @@ interface BuildTool
 {
     public function defineDataFields();
 
-    public function buildFromData(array $csvData): array;
+    public function buildFromData(array $csvData, bool $serializeSubData = false): array;
 
     public function validate(int $id, array $entry): array;
 

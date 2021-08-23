@@ -1,0 +1,4 @@
+"Company name","Country","Coordinates","Street","ZIP","City","Course","Tags","Website","Email","Phone","IsPaid","Logo","Facebook","LinkedIn"
+"TestCompany1","Poland","51.208726,16.163720","Najświętszej Marii Panny 5F/5","59-220","Legnica","Information Technology","PHP, Laravel","https://www.example.com/","hello@example.com",,"No",,,
+"MyCompany2","Poland","15.208726,25.163720","UnknownStreet","00-000","Unknown","Information Technology","C++, C#","https://www.example.com/","hello@example.com",,"Yes",,,
+"MyCompany3","Germany","15.208726,55.163720","UnknownStreet","00-000","Unknown","Graphic Design","Web, Design","https://www.example.com/","hello@example.com",,"Yes",,,

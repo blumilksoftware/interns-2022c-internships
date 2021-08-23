@@ -19,7 +19,7 @@ class FileException extends SimpleMessageException
 
     protected function newExceptionMessage(): string
     {
-        return "There was trouble processing file at {$this->fullPath}.";
+        return "There was trouble processing file at {$this->fullPath}. Does it have necessary permissions?";
     }
 
     protected function getStatusCode(): int

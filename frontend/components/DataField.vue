@@ -8,7 +8,7 @@
           alt="Company Logo Icon"
         />
       </div>
-      <div class="companyName noselect" text>
+      <div class="companyName noselect">
         <span>{{ companyName }}</span>
       </div>
       <div class="course noselect">
