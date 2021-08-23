@@ -19,20 +19,18 @@
 
 <script>
 import BaseButton from "@/components/BaseButton";
-
+import { useStore } from "vuex";
 export default {
   components: {
     BaseButton,
   },
-  data() {
-    return {
-      reset: true,
-    };
-  },
-  methods: {
-    resetButtons() {
-      this.eventBus.emit("reset", this.reset);
-    },
+  setup() {
+    const store = useStore();
+
+    function resetButtons() {
+      store.commit("RESET_ACTIVE_TAGS");
+    }
+    return { resetButtons };
   },
 };
 </script>

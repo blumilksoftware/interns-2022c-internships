@@ -3,7 +3,7 @@
     <h1 class="title text-md lg:text-2xl 2xl:text-3xl">Pliki do pobrania</h1>
     <div class="flow-root mt-6" id="files">
       <ul class="-my-5 divide-y divide-gray-200">
-        <li v-for="document in documents" :key="document.handle" class="py-4">
+        <li v-for="document in documents" :key="document.id" class="py-4">
           <div class="flex items-center space-x-4">
             <div class="flex-1 min-w-0">
               <p
@@ -16,11 +16,12 @@
                   truncate
                 "
               >
-                {{ document.name }}
+                {{ document.displayedName }}
               </p>
             </div>
             <div>
               <a
+                title="download file"
                 class="
                   noselect
                   btn
@@ -51,25 +52,13 @@
 </template>
 
 <script>
+import { useStore } from "vuex";
+import { computed } from "vue";
 export default {
-  data() {
-    return {
-      documents: [
-        {
-          name: "Podanie o praktyki",
-          handle: "podanie",
-        },
-        {
-          name: "Zaświadczenie",
-          handle: "zaswiad",
-        },
-        {
-          name: "Umowa",
-          handle: "umowa",
-        },
-        { name: "Regulamin", handle: "regulamin" },
-      ],
-    };
+  setup() {
+    const store = useStore();
+
+    return { documents: computed(() => store.getters.getDocuments) };
   },
 };
 </script>

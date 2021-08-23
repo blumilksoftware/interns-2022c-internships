@@ -2,4 +2,9 @@ function isMobile() {
   return window.innerHeight > window.innerWidth;
 }
 
-export { isMobile };
+const fetchData = async (url) => {
+  const response = await fetch(url);
+  return response.json();
+};
+
+export { isMobile, fetchData };

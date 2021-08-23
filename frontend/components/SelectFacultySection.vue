@@ -102,9 +102,7 @@
             >
               <div class="rounded-md shadow">
                 <div>
-                  <select
-                    id="department"
-                    name="Wydział"
+                  <BaseFieldSelector
                     class="
                       mt-1
                       block
@@ -120,11 +118,10 @@
                       sm:text-sm
                       rounded-md
                     "
-                  >
-                    <option selected="">Wydział Informatyki</option>
-                    <option>Wydział Grafiki</option>
-                    <option>Wydział Gier Komputerowych</option>
-                  </select>
+                    :dataGiven="faculties"
+                    :valueChosen="faculties.directory"
+                    name="Wybierz wydział"
+                  ></BaseFieldSelector>
                 </div>
               </div>
               <div class="mt-3 sm:mt-0 sm:ml-3">
@@ -168,7 +165,22 @@
     </div>
   </div>
 </template>
+<script>
+import { useStore } from "vuex";
+import { computed } from "vue";
+import BaseFieldSelector from "@/components/BaseFieldSelector";
 
+export default {
+  components: { BaseFieldSelector },
+  setup() {
+    const store = useStore();
+
+    return {
+      faculties: computed(() => store.getters.getFaculties),
+    };
+  },
+};
+</script>
 <style lang="scss" scoped>
 .logo {
   font-family: Poppins;

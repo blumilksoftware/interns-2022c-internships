@@ -3,21 +3,15 @@
     <searchBar v-if="!isMobile()" class="searchBar" />
     <FilterContent class="filterBtn" />
     <div class="datafields">
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
-      <DataField class="datafield" />
+      <DataField
+        class="datafield"
+        v-for="company in companies"
+        :key="company.id"
+        :companyName="company.name"
+        :course="company.filterData.specializationName"
+        :location="company.address.cityName"
+        :companyTags="company.filterData.tags"
+      />
     </div>
     <Buttons class="buttons" />
   </div>
@@ -29,6 +23,8 @@ import DataField from "@/components/DataField";
 import SearchBar from "@/components/SearchBar";
 import FilterContent from "@/components/FilterContent";
 import { isMobile } from "../functions/functions.js";
+import { useStore } from "vuex";
+import { computed } from "vue";
 
 export default {
   components: {
@@ -37,8 +33,13 @@ export default {
     SearchBar,
     FilterContent,
   },
-  methods: {
-    isMobile,
+  setup() {
+    const store = useStore();
+
+    return {
+      companies: computed(() => store.getters.getCompaniesMerged),
+      isMobile,
+    };
   },
 };
 </script>

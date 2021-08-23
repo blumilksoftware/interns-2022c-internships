@@ -9,15 +9,15 @@
         />
       </div>
       <div class="companyName noselect">
-        <span>Nazwa Bardzo Duzej Firmy, w sumie to nawet jeszcze większej</span>
+        <span>{{ companyName }}</span>
       </div>
       <div class="course noselect">
-        <span>Informatyka</span>
+        <span>{{ course }}</span>
       </div>
       <div class="companyInfo noselect">
         <div class="city">
           <img src="../assets/icons/locationIcon.svg" alt="locationicon" /><span
-            >Legnica</span
+            >{{ location }}</span
           >
         </div>
         <div class="payInfo">
@@ -27,12 +27,7 @@
       </div>
     </div>
     <div v-if="!isMobile()" class="tagsContainer">
-      <span class="tag">.Net</span>
-      <span class="tag">C#</span>
-      <span class="tag">Azure</span>
-      <span class="tag">JavaScript</span>
-      <span class="tag">PHP</span>
-      <span class="tag">Java</span>
+      <span class="tag" v-for="tag in companyTags" :key="tag">{{ tag }}</span>
     </div>
   </div>
 </template>
@@ -40,6 +35,23 @@
 import { isMobile } from "../functions/functions.js";
 
 export default {
+  props: {
+    companyName: {
+      type: String,
+      required: true,
+    },
+    course: {
+      type: String,
+      required: true,
+    },
+    location: {
+      type: String,
+      required: true,
+    },
+    companyTags: {
+      type: Array,
+    },
+  },
   methods: {
     isMobile,
   },

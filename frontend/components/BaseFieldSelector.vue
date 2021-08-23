@@ -1,7 +1,9 @@
 <template>
   <select>
     <option value="" selected disabled hidden>{{ name }}</option>
-    <option v-for="data in dataGiven" :key="data">{{ data.name }}</option>
+    <option v-for="data in dataGiven" :key="data" :value="valueChosen">
+      {{ data.name }}
+    </option>
   </select>
 </template>
 
