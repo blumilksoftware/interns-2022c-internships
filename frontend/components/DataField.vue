@@ -8,7 +8,7 @@
           alt="Company Logo Icon"
         />
       </div>
-      <div class="companyName noselect">
+      <div class="companyName noselect" text>
         <span>{{ companyName }}</span>
       </div>
       <div class="course noselect">
@@ -95,21 +95,19 @@ export default {
     justify-self: start;
     align-self: end;
     font-size: 16px;
-    display: flex;
+    display: inline-block;
+    overflow: hidden;
 
     span {
-      text-align: center;
+      min-width: 100%;
       display: inline-block;
       white-space: nowrap;
-      overflow: hidden;
       text-overflow: ellipsis;
-      -webkit-transition: 2.5s;
-      -moz-transition: 2.5s;
-      transition: 2.5s;
       transform: translateX(0);
-      -webkit-transition-timing-function: linear;
-      -moz-transition-timing-function: linear;
-      transition-timing-function: linear;
+      transition: 3s;
+      &:hover {
+        transform: translateX(calc(160px - 100%));
+      }
     }
   }
   .course {
@@ -120,17 +118,6 @@ export default {
     justify-self: end;
     align-items: center;
     font-size: 16px;
-  }
-  .textContainer {
-    overflow: hidden;
-    width: 220px;
-    margin-left: 0em;
-    text-overflow: ellipsis;
-    &:hover {
-      .tags {
-        transform: translateX(calc(100px - 100%));
-      }
-    }
   }
   .companyInfo {
     grid-area: companyInfo;
