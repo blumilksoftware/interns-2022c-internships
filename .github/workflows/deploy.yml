@@ -22,6 +22,12 @@ jobs:
           npm install
           npm run-script build
 
+      - name: Install and build backend
+        run: |
+          composer install
+          composer populate
+          composer build
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
