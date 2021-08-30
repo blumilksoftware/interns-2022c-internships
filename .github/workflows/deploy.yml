@@ -25,8 +25,8 @@ jobs:
       - name: Install and build backend
         run: |
           composer install
-          composer populate
-          composer build
+          composer intern-populate
+          composer intern-build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.4
