@@ -16,13 +16,22 @@ jobs:
         env:
           VUE_APP_MAPBOX_TOKEN: "${{ secrets.VUE_APP_MAPBOX_TOKEN }}"
           VUE_APP_MAPBOX_STYLE_URL: "${{ secrets.VUE_APP_MAPBOX_STYLE_URL }}"
-          MAPBOX_TOKEN: "${{ secrets.VUE_APP_MAPBOX_TOKEN }}"
 
         run: |
           npm install
           npm run-script build
 
       - name: Install and build backend
+        env:
+          MAPBOX_TOKEN: "${{ secrets.VUE_APP_MAPBOX_TOKEN }}"
+          CURRENT_UID: 1000
+          XDEBUG_HOST: 172.17.0.1
+          XDEBUG_PORT: 9003
+          XDEBUG_INSTALL: true
+          XDEBUG_START_WITH_REQUEST: yes
+          XDEBUG_MODE: debug
+          XDEBUG_LOG_LEVEL: 0
+          COMMANDLINE_MODE: local
         run: |
           composer install
           composer intern-populate
