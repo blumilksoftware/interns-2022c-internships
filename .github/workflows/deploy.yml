@@ -23,7 +23,6 @@ jobs:
 
       - name: Install and build backend
         env:
-          MAPBOX_TOKEN: "${{ secrets.VUE_APP_MAPBOX_TOKEN }}"
           CURRENT_UID: 1000
           XDEBUG_HOST: 172.17.0.1
           XDEBUG_PORT: 9003
@@ -31,9 +30,11 @@ jobs:
           XDEBUG_START_WITH_REQUEST: yes
           XDEBUG_MODE: debug
           XDEBUG_LOG_LEVEL: 0
-          COMMANDLINE_MODE: local
+
         run: |
           composer install
+          echo 'MAPBOX_TOKEN="${{ secrets.VUE_APP_MAPBOX_TOKEN }}"' > .env
+          echo 'COMMANDLINE_MODE=deploy' > .env
           composer intern-populate
           composer intern-build
 
