@@ -34,7 +34,7 @@ jobs:
         run: |
           composer install
           echo 'MAPBOX_TOKEN="${{ secrets.VUE_APP_MAPBOX_TOKEN }}"' > .env
-          echo 'COMMANDLINE_MODE=deploy' > .env
+          echo 'COMMANDLINE_MODE=deploy' >> .env
           composer intern-populate
           composer intern-build
 
