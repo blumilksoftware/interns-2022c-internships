@@ -43,8 +43,8 @@
     ],
     "test-backend": "./vendor/bin/phpunit testing --filter Backend",
     "test-resources": "./vendor/bin/phpunit testing --filter Integrity",
-    "ecs": "./vendor/bin/ecs check --clear-cache",
-    "ecsf": "./vendor/bin/ecs check --clear-cache --fix"
+    "cs": "./vendor/bin/php-cs-fixer fix --dry-run --diff --config codestyle.php",
+    "csf": "./vendor/bin/php-cs-fixer fix --diff --config codestyle.php"
   },
   "scripts-descriptions": {
     "intern-help": "Prints help for application."
