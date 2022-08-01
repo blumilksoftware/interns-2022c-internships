@@ -18,7 +18,7 @@
     "phpunit/phpunit": "^9.5"
   },
   "require-dev": {
-    "blumilksoftware/codestyle": "^0.4.3"
+    "blumilksoftware/codestyle": "^1.0"
   },
   "scripts": {
     "intern": [
