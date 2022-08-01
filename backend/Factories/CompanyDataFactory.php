@@ -25,7 +25,7 @@ class CompanyDataFactory extends DataFactory
     {
         $this->relativePathIdentity = new RelativePathIdentity(
             sourceName: "companies.csv",
-            destinationName: "companies.json"
+            destinationName: "companies.json",
         );
     }
 
@@ -48,25 +48,25 @@ class CompanyDataFactory extends DataFactory
                 sanitizationFlags: SANITIZE_WHITESPACE_REMOVE,
                 arraySeparator: ",",
                 maxDecimals: 6,
-                expectedArrayCount: 2
+                expectedArrayCount: 2,
             ),
             "street" => new ValidationOptions(required: true),
             "zip" => new ValidationOptions(required: true),
             "city" => new ValidationOptions(
                 required: true,
                 sanitizationFlags: SANITIZE_WHITESPACE_TRIM
-                          | SANITIZE_CAPITALIZE_WORDS
+                          | SANITIZE_CAPITALIZE_WORDS,
             ),
             "specialization" => new ValidationOptions(
                 required: true,
                 sanitizationFlags: SANITIZE_WHITESPACE_TRIM
-                          | SANITIZE_CAPITALIZE_WORDS
+                          | SANITIZE_CAPITALIZE_WORDS,
             ),
             "tags" => new ValidationOptions(
                 sanitizationFlags: SANITIZE_WHITESPACE_TRIM
                                    | SANITIZE_TO_LOWER,
                 arraySeparator: ",",
-                maxArrayCount: 4
+                maxArrayCount: 4,
             ),
             "website" => new ValidationOptions(),
             "email" => new ValidationOptions(),
@@ -85,7 +85,7 @@ class CompanyDataFactory extends DataFactory
 
         $entry["specialization"] = $this->filterCollector->getSpecializationCollector()->collectAndGetId(
             $entry["specialization"],
-            $entryId
+            $entryId,
         );
 
         $tagIds = [];

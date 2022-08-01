@@ -10,8 +10,9 @@ use OutOfBoundsException;
 
 abstract class UniqueCollector implements JsonSerializable
 {
-    /** @var CollectedContent[] */
+    /** @var array<CollectedContent> */
     protected array $collectedContent;
+
     protected int $nextIdToAssign;
     protected int $lastReturnedId;
 

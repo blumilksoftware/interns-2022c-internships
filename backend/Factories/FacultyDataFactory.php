@@ -15,7 +15,7 @@ class FacultyDataFactory extends DataFactory
         $this->relativePathIdentity = new RelativePathIdentity(
             leftBasePath: "/faculties/",
             sourceName: "faculties.csv",
-            destinationName: "faculties.json"
+            destinationName: "faculties.json",
         );
     }
 

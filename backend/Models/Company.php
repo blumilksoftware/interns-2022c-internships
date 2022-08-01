@@ -8,7 +8,6 @@ use JsonSerializable;
 
 class Company implements JsonSerializable
 {
-    protected int $id;
     protected string $name;
     protected Address $address;
     protected FilterData $filterData;
@@ -19,16 +18,17 @@ class Company implements JsonSerializable
     protected string $logoFile;
     protected Socials $socialMedia;
 
-    public function __construct(int $id, array $data)
-    {
-        $this->id = $id;
+    public function __construct(
+        protected int $id,
+        array $data,
+    ) {
         $this->name = $data["name"];
         $this->address = new Address(
             $data["country"],
             $data["coordinates"],
             $data["street"],
             $data["zip"],
-            $data["city"]
+            $data["city"],
         );
         $this->filterData = new FilterData($data["specialization"], $data["tags"]);
         $this->website = $data["website"];
@@ -38,7 +38,7 @@ class Company implements JsonSerializable
         $this->logoFile = $data["logoFile"];
         $this->socialMedia = new Socials(
             $data["socialsFacebook"],
-            $data["socialsLinkedIn"]
+            $data["socialsLinkedIn"],
         );
     }
 

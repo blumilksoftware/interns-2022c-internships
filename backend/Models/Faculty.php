@@ -8,13 +8,13 @@ use JsonSerializable;
 
 class Faculty implements JsonSerializable
 {
-    protected int $id;
     protected string $name;
     protected string $directory;
 
-    public function __construct(int $id, array $data)
-    {
-        $this->id = $id;
+    public function __construct(
+        protected int $id,
+        array $data,
+    ) {
         $this->name = $data["name"];
         $this->directory = $data["directory"];
     }

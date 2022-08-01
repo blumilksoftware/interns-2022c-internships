@@ -8,14 +8,10 @@ use JsonSerializable;
 
 class Coordinates implements JsonSerializable
 {
-    protected float $latitude;
-    protected float $longitude;
-
-    public function __construct(float $latitude, float $longitude)
-    {
-        $this->latitude = $latitude;
-        $this->longitude = $longitude;
-    }
+    public function __construct(
+        protected float $latitude,
+        protected float $longitude,
+    ) {}
 
     public function getLatitude(): float
     {

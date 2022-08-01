@@ -15,7 +15,7 @@ abstract class DataFactory implements BuildTool
     protected RelativePathIdentity $relativePathIdentity;
 
     public function __construct(
-        protected DataValidator $dataValidator
+        protected DataValidator $dataValidator,
     ) {
         $this->setPaths();
         $this->defineDataFields();
@@ -29,7 +29,7 @@ abstract class DataFactory implements BuildTool
                 fieldValue: $entry[$fieldName],
                 entryId: $entryId,
                 fieldName: $fieldName,
-                fieldValidationOptions: $fieldOptions
+                fieldValidationOptions: $fieldOptions,
             );
         }
         return $entry;

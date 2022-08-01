@@ -11,13 +11,14 @@ use Internships\CommandLine\Commands\PopulateCommand;
 
 class OptionManager
 {
-    /** @var ApplicationCommand[] */
+    /** @var array<ApplicationCommand> */
     protected array $applicationCommands;
+
     protected string $composerPrefix = "intern_";
 
     public function __construct()
     {
-        /** @var ApplicationCommand[] $appCommands */
+        /** @var array<ApplicationCommand> $appCommands */
         $appCommands = [
             new BuildCommand(),
             new PopulateCommand(),
@@ -76,7 +77,7 @@ class OptionManager
         ConsoleWriter::print("You can use commandline options to manage and convert resources using php scripts.");
         $redReminderText = ColorText::colorize(
             escapeColor: ColorText::getEscapedColor(ColorText::TEXT_RED),
-            message: "Remember:"
+            message: "Remember:",
         );
         ConsoleWriter::print("{$redReminderText} Static API cannot be build with incomplete data set.");
         ConsoleWriter::print("");
@@ -86,7 +87,7 @@ class OptionManager
             ConsoleWriter::warn("(It seems you are using composer script. Custom prefix was included in options.)");
         }
         $longestNameLength = 0;
-        /** @var ApplicationCommand[] $allowedCommands */
+        /** @var array<ApplicationCommand> $allowedCommands */
         $allowedCommands = [];
         foreach ($this->applicationCommands as $appCommand) {
             if ($appCommand->isAllowed(printReason: false)) {
@@ -108,11 +109,11 @@ class OptionManager
             $prettyPrintWrap = str_pad(
                 string: $prettyPrintWrap,
                 length: $longestNameLength,
-                pad_type: STR_PAD_LEFT
+                pad_type: STR_PAD_LEFT,
             );
             $prettyPrintWrap = ColorText::colorize(
                 escapeColor: ColorText::getEscapedColor(ColorText::TEXT_GREEN),
-                message: $prettyPrintWrap
+                message: $prettyPrintWrap,
             );
             ConsoleWriter::print(message: "\t{$prettyPrintWrap}" . "\t\t {$command->getDescription()}");
         }

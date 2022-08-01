@@ -6,19 +6,15 @@ namespace Internships\FileSystem;
 
 class FullPathIdentity extends PathIdentity
 {
-    protected string $fullSourcePath;
-    protected string $fullDestinationPath;
     protected string $fullSourceFilePath;
     protected string $fullDestinationFilePath;
 
     public function __construct(
-        string $fullSourcePath = "",
-        string $fullDestinationPath  = "",
-        string $sourceName  = "",
-        string $destinationName  = ""
+        protected string $fullSourcePath = "",
+        protected string $fullDestinationPath = "",
+        string $sourceName = "",
+        string $destinationName = "",
     ) {
-        $this->fullSourcePath = $fullSourcePath;
-        $this->fullDestinationPath = $fullDestinationPath;
         $this->sourceName = PathResolver::trimFileName($sourceName);
         $this->destinationName = PathResolver::trimFileName($destinationName);
         $this->fullSourceFilePath = PathResolver::normalizeDirectorySeparators(

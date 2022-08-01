@@ -12,7 +12,7 @@ use Internships\Models\Faculty;
 
 class FacultyResourcesTest extends CsvFactoryTestCase
 {
-    /** @var Faculty[] */
+    /** @var array<Faculty> */
     protected static ?array $faculties;
 
     public static function setUpBeforeClass(): void

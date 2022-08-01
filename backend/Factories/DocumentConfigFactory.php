@@ -12,12 +12,12 @@ use Internships\Services\DataValidator;
 
 class DocumentConfigFactory extends DataFactory
 {
-    /** @var RelativePathIdentity[] */
+    /** @var array<RelativePathIdentity> */
     protected array $documentPathIdentities = [];
 
     public function __construct(
         protected FileManager $fileManager,
-        DataValidator $dataValidator
+        DataValidator $dataValidator,
     ) {
         parent::__construct($dataValidator);
     }
@@ -28,7 +28,7 @@ class DocumentConfigFactory extends DataFactory
         $this->relativePathIdentity = new RelativePathIdentity(
             rightBasePath: "/documents/",
             sourceName: "documents.csv",
-            destinationName: "documents.json"
+            destinationName: "documents.json",
         );
     }
 
@@ -52,7 +52,7 @@ class DocumentConfigFactory extends DataFactory
         $relativeDocumentIdentity = new RelativePathIdentity(
             relativeChangingPath: substr($filePath, strlen($fileName)),
             sourceName: $fileName,
-            destinationName: $fileName
+            destinationName: $fileName,
         );
         $relativeDocumentIdentity->setParentIdentity($this->getRelativePathIdentity());
         array_push($this->documentPathIdentities, $relativeDocumentIdentity);

@@ -15,7 +15,7 @@ class DirectoryManager
     public function __construct(
         string $rootDirectoryPath,
         string $relativeApiPath,
-        string $relativeResourcePath
+        string $relativeResourcePath,
     ) {
         $rootPath = new PathResolver($rootDirectoryPath);
         $this->apiPath = new PathResolver($rootPath->getFull($relativeApiPath));
@@ -49,7 +49,7 @@ class DirectoryManager
             fullSourcePath: $this->resourcePath->getFull($relativeIdentity->getRelativePath()),
             fullDestinationPath: $destinationPath,
             sourceName: $relativeIdentity->getSourceName(),
-            destinationName: $relativeIdentity->getDestinationName()
+            destinationName: $relativeIdentity->getDestinationName(),
         );
     }
 }

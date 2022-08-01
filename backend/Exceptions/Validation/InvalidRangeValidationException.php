@@ -15,13 +15,13 @@ class InvalidRangeValidationException extends ValidationException
         protected int $maxCount,
         protected int $receivedCount,
         int $code = 0,
-        Throwable $previous = null
+        ?Throwable $previous = null,
     ) {
         parent::__construct(
             $entryId,
             $fieldName,
             $code,
-            $previous
+            $previous,
         );
     }
 

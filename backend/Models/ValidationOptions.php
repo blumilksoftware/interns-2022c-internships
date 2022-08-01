@@ -6,31 +6,15 @@ namespace Internships\Models;
 
 class ValidationOptions
 {
-    protected bool $required;
-    protected int $flags;
-    protected string $arraySeparator;
-    protected int $minArrayCount;
-    protected int $maxArrayCount;
-    protected int $maxDecimals;
-    protected int $expectedArrayCount;
-
     public function __construct(
-        bool $required = false,
-        int $sanitizationFlags = SANITIZE_WHITESPACE_TRIM,
-        string $arraySeparator = "",
-        int $minArrayCount = 0,
-        int $maxArrayCount = 0,
-        int $expectedArrayCount = -1,
-        int $maxDecimals = -1
-    ) {
-        $this->required = $required;
-        $this->flags = $sanitizationFlags;
-        $this->arraySeparator = $arraySeparator;
-        $this->maxDecimals = $maxDecimals;
-        $this->minArrayCount = $minArrayCount;
-        $this->maxArrayCount = $maxArrayCount;
-        $this->expectedArrayCount = $expectedArrayCount;
-    }
+        protected bool $required = false,
+        protected int $sanitizationFlags = SANITIZE_WHITESPACE_TRIM,
+        protected string $arraySeparator = "",
+        protected int $minArrayCount = 0,
+        protected int $maxArrayCount = 0,
+        protected int $expectedArrayCount = -1,
+        protected int $maxDecimals = -1,
+    ) {}
 
     public function isRequired(): bool
     {
@@ -39,7 +23,7 @@ class ValidationOptions
 
     public function getFlags(): int
     {
-        return $this->flags;
+        return $this->sanitizationFlags;
     }
 
     public function getArraySeparator(): string

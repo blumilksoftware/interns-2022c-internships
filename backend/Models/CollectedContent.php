@@ -8,19 +8,18 @@ use JsonSerializable;
 
 class CollectedContent implements JsonSerializable
 {
-    /** @var int[] */
+    /** @var array<int> */
     protected array $searchMatchIds;
-    /** @var int[] */
-    protected array $childIds;
-    protected int $id;
-    protected string $collectedName;
 
-    public function __construct(int $id, string $collectedName)
-    {
+    /** @var array<int> */
+    protected array $childIds;
+
+    public function __construct(
+        protected int $id,
+        protected string $collectedName,
+    ) {
         $this->searchMatchIds = [];
         $this->childIds = [];
-        $this->id = $id;
-        $this->collectedName = $collectedName;
     }
 
     public function pushSearchMatchId(int $id): void
