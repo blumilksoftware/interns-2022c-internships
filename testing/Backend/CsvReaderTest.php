@@ -28,7 +28,7 @@ class CsvReaderTest extends TestCase
         static::$directoryManager = new DirectoryManager(
             rootDirectoryPath: __DIR__ . "/../",
             relativeApiPath: "/Fixtures/api/",
-            relativeResourcePath: "/Fixtures/resources/"
+            relativeResourcePath: "/Fixtures/resources/",
         );
         static::$validator = new DataValidator(new DataSanitizer());
         static::$fileManager = new FileManager(static::$directoryManager, new UniquePathGuard());
@@ -47,7 +47,7 @@ class CsvReaderTest extends TestCase
     {
         $relativePathIdentity = new RelativePathIdentity(
             sourceName: "sourceFile.csv",
-            destinationName: "sourceFile.csv"
+            destinationName: "sourceFile.csv",
         );
         $this->expectException(NoFieldRowCsvException::class);
         static::$csvReader->getCsvData($relativePathIdentity, []);
@@ -58,7 +58,7 @@ class CsvReaderTest extends TestCase
         $relativePathIdentity = new RelativePathIdentity(
             relativeChangingPath: "/faculties/",
             sourceName: "faculties.csv",
-            destinationName: "faculties.csv"
+            destinationName: "faculties.csv",
         );
         $this->expectException(CsvInvalidCountFileException::class);
         static::$csvReader->getCsvData($relativePathIdentity, []);
@@ -68,7 +68,7 @@ class CsvReaderTest extends TestCase
     {
         $relativePathIdentity = new RelativePathIdentity(
             sourceName: "invalid.not.present",
-            destinationName: "invalid.not.present"
+            destinationName: "invalid.not.present",
         );
 
         $this->expectException(NotFoundPathException::class);
@@ -80,7 +80,7 @@ class CsvReaderTest extends TestCase
         $relativePathIdentity = new RelativePathIdentity(
             relativeChangingPath: "/faculties/",
             sourceName: "faculties.csv",
-            destinationName: "faculties.csv"
+            destinationName: "faculties.csv",
         );
         $data = static::$csvReader->getCsvData($relativePathIdentity, ["name", "directory"]);
         $this->assertCount(3, $data, "Fixture file faculties.csv should have specified number of rows.");
@@ -97,11 +97,11 @@ class CsvReaderTest extends TestCase
     {
         $initialFilePathIdentity = new RelativePathIdentity(
             sourceName: "initial.csv",
-            destinationName: "initial.csv"
+            destinationName: "initial.csv",
         );
         $savePathIdentity = new RelativePathIdentity(
             sourceName: "save.csv",
-            destinationName: "save.csv"
+            destinationName: "save.csv",
         );
 
         $dataOnFirstRead = static::$csvReader->getCsvData($initialFilePathIdentity, ["", ""]);
@@ -114,11 +114,11 @@ class CsvReaderTest extends TestCase
     {
         $initialFilePathIdentity = new RelativePathIdentity(
             sourceName: "initial.csv",
-            destinationName: "initial.csv"
+            destinationName: "initial.csv",
         );
         $savePathIdentity = new RelativePathIdentity(
             sourceName: "save.csv",
-            destinationName: "save.csv"
+            destinationName: "save.csv",
         );
 
         $newValueInFile = "SavedField";

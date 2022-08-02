@@ -9,14 +9,15 @@ use Internships\FileSystem\RelativePathIdentity;
 
 abstract class MainCollector
 {
-    /** @var string[] */
+    /** @var array<string> */
     protected array $collectorClassNames;
+
     protected array $collectors;
     protected RelativePathIdentity $pathIdentity;
 
     protected function __construct(
         protected FileManager $fileManager,
-        RelativePathIdentity $parentIdentity
+        RelativePathIdentity $parentIdentity,
     ) {
         $this->pathIdentity->setParentIdentity($parentIdentity);
         $this->collectors = [];
@@ -43,7 +44,7 @@ abstract class MainCollector
 
         $this->fileManager->create(
             relativePathIdentity: $this->pathIdentity,
-            content: json_encode($jsonData, $this->fileManager->getDefaultJsonFlags())
+            content: json_encode($jsonData, $this->fileManager->getDefaultJsonFlags()),
         );
     }
 }

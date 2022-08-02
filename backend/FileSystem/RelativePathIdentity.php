@@ -7,19 +7,15 @@ namespace Internships\FileSystem;
 class RelativePathIdentity extends PathIdentity
 {
     protected RelativePathIdentity $parentPath;
-    protected string $leftBasePath;
-    protected string $rightBasePath;
     protected string $relativeChangingPath;
 
     public function __construct(
-        string $leftBasePath = "",
-        string $rightBasePath = "",
+        protected string $leftBasePath = "",
+        protected string $rightBasePath = "",
         string $relativeChangingPath = "",
         string $sourceName = "",
-        string $destinationName = ""
+        string $destinationName = "",
     ) {
-        $this->leftBasePath = $leftBasePath;
-        $this->rightBasePath = $rightBasePath;
         $this->setChangingPath($relativeChangingPath);
         $this->setSourceName($sourceName);
         $this->setDestinationName($destinationName);
@@ -40,7 +36,7 @@ class RelativePathIdentity extends PathIdentity
             path: $this->getParentPath()
                   . $this->leftBasePath
                   . $this->relativeChangingPath
-                  . $this->rightBasePath
+                  . $this->rightBasePath,
         );
     }
 

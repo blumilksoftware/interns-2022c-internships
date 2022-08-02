@@ -40,11 +40,11 @@ abstract class CsvFactoryTestCase extends GenericResourceTestCase
         $factoryName = static::$dataFactory::class;
         $files = static::$fileManager->getResourceFilePathsFrom(
             relativeOrigin: "",
-            specificFileName: static::$dataFactory->getRelativePathIdentity()->getSourceName()
+            specificFileName: static::$dataFactory->getRelativePathIdentity()->getSourceName(),
         );
         $this->assertNotEmpty(
             $files,
-            message: "Couldn't find any files related to {$factoryName}."
+            message: "Couldn't find any files related to {$factoryName}.",
         );
     }
 
@@ -52,7 +52,7 @@ abstract class CsvFactoryTestCase extends GenericResourceTestCase
     {
         $files = static::$fileManager->getResourceFilePathsFrom(
             relativeOrigin: "",
-            specificFileName: static::$dataFactory->getRelativePathIdentity()->getSourceName()
+            specificFileName: static::$dataFactory->getRelativePathIdentity()->getSourceName(),
         );
         foreach ($files as $file) {
             $this->retrieveWithFactory($file);
@@ -71,7 +71,7 @@ abstract class CsvFactoryTestCase extends GenericResourceTestCase
         $this->assertCount(
             count($fields),
             array_keys($csvData[0]),
-            message: "{$fullIdentity->getFullSourceFilePath()} has different number of fields than {$factoryName}"
+            message: "{$fullIdentity->getFullSourceFilePath()} has different number of fields than {$factoryName}",
         );
 
         return static::$dataFactory->buildFromData($csvData, false);

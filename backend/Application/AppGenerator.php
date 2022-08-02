@@ -19,7 +19,7 @@ use Internships\Services\CsvReader;
 
 class AppGenerator
 {
-    /** @var DataFactory[] */
+    /** @var array<DataFactory> */
     protected array $subFactories;
 
     public function __construct(
@@ -49,7 +49,7 @@ class AppGenerator
     {
         $facultyCsvData = $this->csvReader->getCsvData(
             $factory->getRelativePathIdentity(),
-            $factory->getFields()
+            $factory->getFields(),
         );
         return $factory->buildFromData($facultyCsvData, serializeSubData: true);
     }
@@ -59,13 +59,13 @@ class AppGenerator
         $this->fileManager->create(
             relativePathIdentity: $factory->getRelativePathIdentity(),
             content: json_encode($data, $this->fileManager->getDefaultJsonFlags()),
-            toResource: false
+            toResource: false,
         );
     }
 
     public function generateStaticData(): void
     {
-        /** @var Faculty[] $faculties */
+        /** @var array<Faculty> $faculties */
         $faculties = $this->getDataFromCsv($this->facultyFactory);
         $this->saveDataToJson($this->facultyFactory, $faculties);
         try {
@@ -88,10 +88,10 @@ class AppGenerator
 
     public function generateResourceContents(): void
     {
-        /** @var Faculty[] $faculties */
+        /** @var array<Faculty> $faculties */
         $faculties = $this->getDataFromCsv($this->facultyFactory);
         $facultyTemplatePaths = $this->fileManager->getResourceFilePathsFrom(
-            relativeOrigin: "/templates/faculty-directory/"
+            relativeOrigin: "/templates/faculty-directory/",
         );
 
         foreach ($faculties as $rowNumber => $faculty) {
@@ -105,7 +105,7 @@ class AppGenerator
 
     public function getMissingCoordinatesForCompanies(): void
     {
-        /** @var Faculty[] $faculties */
+        /** @var array<Faculty> $faculties */
         $faculties = $this->getDataFromCsv($this->facultyFactory);
         foreach ($faculties as $faculty) {
             $fetchFactory = $this->fetchAddressFactory;
@@ -118,10 +118,10 @@ class AppGenerator
 
             $companies = $this->csvReader->getCsvData(
                 relativePathIdentity: $companyPathIdentity,
-                fieldDefines: $fields
+                fieldDefines: $fields,
             );
 
-            /** @var FetchAddress[] $addresses */
+            /** @var array<FetchAddress> $addresses */
             $addresses = $fetchFactory->buildFromData($companies);
             $requiresSave = false;
 
@@ -132,19 +132,19 @@ class AppGenerator
 
                 $csvRow = $address->getId() + 1;
                 ConsoleWriter::print(
-                    message: "Trying to fetch coordinates for {$companies[$csvRow]["name"]}."
+                    message: "Trying to fetch coordinates for {$companies[$csvRow]["name"]}.",
                 );
 
                 $requiresSave = $this->geocoder->coordinatesFromAddress(
                     currentCoordinates: $companies[$csvRow]["coordinates"],
-                    addressObject: $address
+                    addressObject: $address,
                 ) || $requiresSave;
             }
 
             if ($requiresSave) {
                 $this->csvReader->saveData(
                     relativePathIdentity: $companyPathIdentity,
-                    data: $companies
+                    data: $companies,
                 );
                 ConsoleWriter::success("Saved {$companyPathIdentity->getSourceName()} for faculty {$faculty->getName()}.");
             } else {

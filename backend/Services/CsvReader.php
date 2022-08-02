@@ -20,9 +20,8 @@ class CsvReader
 
     public function __construct(
         protected DirectoryManager $directoryManager,
-        protected FileManager $fileManager
-    ) {
-    }
+        protected FileManager $fileManager,
+    ) {}
 
     /**
      * @throws CsvInvalidCountFileException

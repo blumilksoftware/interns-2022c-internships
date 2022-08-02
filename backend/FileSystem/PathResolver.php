@@ -9,9 +9,8 @@ class PathResolver
     public const FOLDER_SEPARATOR = "/";
 
     public function __construct(
-        protected string $root
-    ) {
-    }
+        protected string $root,
+    ) {}
 
     public function getFull($relativePath): string
     {
@@ -24,7 +23,7 @@ class PathResolver
         $path = preg_replace(
             pattern: "#/+#",
             replacement: static::FOLDER_SEPARATOR,
-            subject: static::FOLDER_SEPARATOR . $path . static::FOLDER_SEPARATOR
+            subject: static::FOLDER_SEPARATOR . $path . static::FOLDER_SEPARATOR,
         );
         if ($isFile) {
             $path = static::trimPathOfFile($path);

@@ -13,7 +13,7 @@ class ValidationException extends SimpleMessageException
         protected int $entryId,
         protected string $fieldName,
         int $code = 0,
-        Throwable $previous = null
+        ?Throwable $previous = null,
     ) {
         parent::__construct($code, $previous);
     }

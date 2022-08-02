@@ -10,7 +10,6 @@ class ColorText
     public const TEXT_WHITE = "1;37";
     public const TEXT_RED = "31";
     public const TEXT_GREEN = "32";
-
     public const BACKGROUND_NONE = "";
     public const BACKGROUND_RED = "41;";
     public const BACKGROUND_GREEN = "42;";
@@ -24,7 +23,7 @@ class ColorText
 
     public static function getEscapedColor(
         string $textColor = self::TEXT_WHITE,
-        string $backgroundColor = self::BACKGROUND_NONE
+        string $backgroundColor = self::BACKGROUND_NONE,
     ): string {
         return $backgroundColor
             . $textColor;

@@ -10,8 +10,7 @@ class Application
 {
     public function __construct(
         protected AppGenerator $appGenerator,
-    ) {
-    }
+    ) {}
 
     public function build(): void
     {

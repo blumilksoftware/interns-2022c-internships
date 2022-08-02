@@ -25,11 +25,11 @@ class ConsoleWriter
             ColorText::colorize(
                 escapeColor: ColorText::getEscapedColor(
                     textColor: ColorText::TEXT_BLACK,
-                    backgroundColor: ColorText::BACKGROUND_RED
+                    backgroundColor: ColorText::BACKGROUND_RED,
                 ),
-                message: $message
+                message: $message,
             ),
-            printNewLine: $newLine
+            printNewLine: $newLine,
         );
     }
 
@@ -39,11 +39,11 @@ class ConsoleWriter
             ColorText::colorize(
                 escapeColor: ColorText::getEscapedColor(
                     textColor: ColorText::TEXT_BLACK,
-                    backgroundColor: ColorText::BACKGROUND_BLUE
+                    backgroundColor: ColorText::BACKGROUND_BLUE,
                 ),
-                message: $message
+                message: $message,
             ),
-            printNewLine: $newLine
+            printNewLine: $newLine,
         );
     }
 
@@ -52,9 +52,9 @@ class ConsoleWriter
         static::print(
             ColorText::colorize(
                 escapeColor: ColorText::getEscapedColor(backgroundColor: ColorText::BACKGROUND_YELLOW),
-                message: $message
+                message: $message,
             ),
-            printNewLine: $newLine
+            printNewLine: $newLine,
         );
     }
 
@@ -64,11 +64,11 @@ class ConsoleWriter
             ColorText::colorize(
                 escapeColor: ColorText::getEscapedColor(
                     textColor: ColorText::TEXT_BLACK,
-                    backgroundColor: ColorText::BACKGROUND_GREEN
+                    backgroundColor: ColorText::BACKGROUND_GREEN,
                 ),
-                message: $message
+                message: $message,
             ),
-            printNewLine: $newLine
+            printNewLine: $newLine,
         );
     }
 }

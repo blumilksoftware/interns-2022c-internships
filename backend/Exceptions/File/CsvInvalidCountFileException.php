@@ -14,12 +14,12 @@ class CsvInvalidCountFileException extends FileException
         protected int $expectedCount,
         protected int $receivedCount,
         int $code = 0,
-        Throwable $previous = null
+        ?Throwable $previous = null,
     ) {
         parent::__construct(
             $fullPath,
             $code,
-            $previous
+            $previous,
         );
     }
 

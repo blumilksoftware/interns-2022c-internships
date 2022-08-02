@@ -8,13 +8,13 @@ use JsonSerializable;
 
 class DocumentConfig implements JsonSerializable
 {
-    protected int $id;
     protected string $displayedName;
     protected string $filePath;
 
-    public function __construct(int $id, array $data)
-    {
-        $this->id = $id;
+    public function __construct(
+        protected int $id,
+        array $data,
+    ) {
         $this->displayedName = $data["displayedName"];
         $this->filePath = $data["filePath"];
     }

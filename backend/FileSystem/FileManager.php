@@ -22,9 +22,8 @@ class FileManager
 
     public function __construct(
         protected DirectoryManager $directoryManager,
-        protected UniquePathGuard $pathGuard
-    ) {
-    }
+        protected UniquePathGuard $pathGuard,
+    ) {}
 
     public function getDefaultJsonFlags(): int
     {
@@ -34,7 +33,7 @@ class FileManager
     public function create(
         RelativePathIdentity $relativePathIdentity,
         mixed $content = "",
-        bool $toResource = false
+        bool $toResource = false,
     ): void {
         $fullPathIdentity = $this->directoryManager->getFullPathIdentity($relativePathIdentity, $toResource);
         if ($relativePathIdentity->getDestinationName() === "") {
@@ -45,7 +44,7 @@ class FileManager
         $this->pathGuard->verifyIfUnique($fullDestinationFilePath);
         file_put_contents(
             filename: $fullDestinationFilePath,
-            data: $content
+            data: $content,
         );
     }
 
@@ -60,7 +59,7 @@ class FileManager
         file_put_contents(
             filename: $fullDestinationFilePath,
             data: OutputParser::endLine($content),
-            flags: FILE_APPEND
+            flags: FILE_APPEND,
         );
     }
 
@@ -85,13 +84,10 @@ class FileManager
     }
 
     public function copyResources(
-        /**
-         * @var RelativePathIdentity[] $fileIdentities
-         */
         array $fileIdentities,
         RelativePathIdentity $parent,
         bool $overwrite = false,
-        bool $toResource = true
+        bool $toResource = true,
     ): void {
         foreach ($fileIdentities as $filePath) {
             $filePath->setParentIdentity($parent);
@@ -105,11 +101,11 @@ class FileManager
     }
 
     /**
-     * @return RelativePathIdentity[]
+     * @return array<RelativePathIdentity>
      */
     public function getResourceFilePathsFrom(
         string $relativeOrigin,
-        string $specificFileName = ""
+        string $specificFileName = "",
     ): array {
         $partialPathIdentity = new RelativePathIdentity(relativeChangingPath: $relativeOrigin);
         $fullPathIdentity = $this->directoryManager->getFullPathIdentity($partialPathIdentity, true);
@@ -129,11 +125,11 @@ class FileManager
         foreach ($recursiveIteratorI as $file) {
             if (!$file->isDir()) {
                 if (isset($file->getPath()[0])) {
-                    if ($specificFileName==="" || $specificFileName === $file->getFilename()) {
+                    if ($specificFileName === "" || $specificFileName === $file->getFilename()) {
                         $relativePath = substr($file->getPath(), strlen($origin));
                         $pathIdentity = new RelativePathIdentity(
                             sourceName: $file->getFilename(),
-                            relativeChangingPath: $relativePath
+                            relativeChangingPath: $relativePath,
                         );
                         array_push($filePaths, $pathIdentity);
                     }

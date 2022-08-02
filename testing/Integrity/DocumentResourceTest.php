@@ -29,7 +29,7 @@ class DocumentResourceTest extends CsvFactoryTestCase
         $resourcePath = static::$directoryManager->getResourcePath();
         foreach ($files as $file) {
             $fileParentPath = $resourcePath . $file->getRelativePath();
-            /** @var DocumentConfig[] $documentConfigData */
+            /** @var array<DocumentConfig> $documentConfigData */
             $documentConfigData = $this->retrieveWithFactory($file);
 
             foreach ($documentConfigData as $documentConfig) {

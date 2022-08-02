@@ -13,9 +13,8 @@ use Internships\Models\ValidationOptions;
 class DataValidator
 {
     public function __construct(
-        protected DataSanitizer $sanitizer
-    ) {
-    }
+        protected DataSanitizer $sanitizer,
+    ) {}
 
     /**
      * @throws IsMissingValidationException
@@ -27,7 +26,7 @@ class DataValidator
         string $fieldValue,
         int $entryId,
         string $fieldName,
-        ValidationOptions $fieldValidationOptions
+        ValidationOptions $fieldValidationOptions,
     ): mixed {
         if ($fieldValidationOptions === null) {
             return $fieldValue;
@@ -38,7 +37,7 @@ class DataValidator
                 $fieldValue,
                 $fieldValidationOptions->getFlags(),
                 $fieldValidationOptions->getArraySeparator(),
-                $fieldValidationOptions->getMaxDecimals()
+                $fieldValidationOptions->getMaxDecimals(),
             );
             if ($fieldValidationOptions->isRequired() && ($fieldValue === null || $fieldValue === "")) {
                 throw new IsMissingAfterValidationException($entryId, $fieldName);
@@ -64,7 +63,7 @@ class DataValidator
                         $fieldName,
                         $minArrayCount,
                         $maxArrayCount,
-                        $elementCount
+                        $elementCount,
                     );
                 }
             }

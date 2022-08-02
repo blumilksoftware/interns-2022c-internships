@@ -12,7 +12,7 @@ class PathException extends SimpleMessageException
     public function __construct(
         protected string $fullPath,
         int $code = 0,
-        Throwable $previous = null
+        ?Throwable $previous = null,
     ) {
         parent::__construct($code, $previous);
     }

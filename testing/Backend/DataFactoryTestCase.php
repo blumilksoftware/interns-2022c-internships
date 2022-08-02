@@ -20,7 +20,6 @@ abstract class DataFactoryTestCase extends TestCase
     protected static ?FileManager $fileManager;
     protected static ?DataValidator $validator;
     protected static ?DataFactory $dataFactory;
-
     protected string $factoryClassName;
     protected string $expectedModelClassName;
     protected bool $factoryCanReturnEmptyArray;
@@ -31,7 +30,7 @@ abstract class DataFactoryTestCase extends TestCase
         static::$directoryManager = new DirectoryManager(
             rootDirectoryPath: __DIR__ . "/../",
             relativeApiPath: "/Fixtures/api/",
-            relativeResourcePath: "/Fixtures/resources/"
+            relativeResourcePath: "/Fixtures/resources/",
         );
         static::$validator = new DataValidator(new DataSanitizer());
         static::$fileManager = new FileManager(static::$directoryManager, new UniquePathGuard());
@@ -49,7 +48,7 @@ abstract class DataFactoryTestCase extends TestCase
     {
         $this->assertTrue(
             is_subclass_of($this->factoryClassName, DataFactory::class),
-            message: "Class {$this->factoryClassName} is not a data factory."
+            message: "Class {$this->factoryClassName} is not a data factory.",
         );
     }
 
@@ -58,12 +57,12 @@ abstract class DataFactoryTestCase extends TestCase
         $fields = static::$dataFactory->getFields();
         $this->assertNotEmpty(
             $fields,
-            message: "{$this->factoryClassName} should define at least one field."
+            message: "{$this->factoryClassName} should define at least one field.",
         );
 
         $this->assertNotTrue(
             key_exists("id", $fields),
-            message: "{$this->factoryClassName}: id shouldn't be defined within factory fields."
+            message: "{$this->factoryClassName}: id shouldn't be defined within factory fields.",
         );
     }
 
@@ -77,7 +76,7 @@ abstract class DataFactoryTestCase extends TestCase
         $implementations = class_implements($modelName);
         $this->assertTrue(
             isset($implementations[JsonSerializable::class]),
-            message: "Model {$modelName} is not JsonSerializable."
+            message: "Model {$modelName} is not JsonSerializable.",
         );
     }
 
@@ -90,7 +89,7 @@ abstract class DataFactoryTestCase extends TestCase
         foreach ($methods as $method) {
             $this->assertTrue(
                 method_exists($modelName, $method),
-                message: "Model {$modelName} has no required {$method} method."
+                message: "Model {$modelName} has no required {$method} method.",
             );
         }
     }
@@ -101,19 +100,19 @@ abstract class DataFactoryTestCase extends TestCase
         $fullIdentity = static::$directoryManager->getFullPathIdentity($relativePathIdentity, destinationToResource: true);
         $this->assertFileExists(
             $fullIdentity->getFullDestinationPath(),
-            message: "Cannot build data from a non-existent file."
+            message: "Cannot build data from a non-existent file.",
         );
 
         $csvReader = new CsvReader(static::$directoryManager, static::$fileManager);
         $csvFields = $csvReader->getFieldRow(
             relativePathIdentity: static::$dataFactory->getRelativePathIdentity(),
-            fieldDefines: static::$dataFactory->getFields()
+            fieldDefines: static::$dataFactory->getFields(),
         );
 
         $this->assertCount(
             count(static::$dataFactory->getFields()),
             array_keys($csvFields),
-            message: "{$fullIdentity->getFullSourceFilePath()} has different number of fields from {$this->factoryClassName}"
+            message: "{$fullIdentity->getFullSourceFilePath()} has different number of fields from {$this->factoryClassName}",
         );
     }
 
@@ -124,20 +123,20 @@ abstract class DataFactoryTestCase extends TestCase
         $csvReader = new CsvReader(static::$directoryManager, static::$fileManager);
         $csvData = $csvReader->getCsvData(
             relativePathIdentity: static::$dataFactory->getRelativePathIdentity(),
-            fieldDefines: static::$dataFactory->getFields()
+            fieldDefines: static::$dataFactory->getFields(),
         );
 
         $data = static::$dataFactory->buildFromData($csvData, false);
 
         $this->assertIsArray(
             $data,
-            message: "{$factoryName} should return an array on build."
+            message: "{$factoryName} should return an array on build.",
         );
 
         if (!$this->factoryCanReturnEmptyArray) {
             $this->assertNotEmpty(
                 $data,
-                message: "{$factoryName} shouldn't return an empty array for built data."
+                message: "{$factoryName} shouldn't return an empty array for built data.",
             );
         }
 
@@ -147,13 +146,13 @@ abstract class DataFactoryTestCase extends TestCase
             $this->assertInstanceOf(
                 $modelName,
                 $modelObject,
-                message: "{$factoryName} failed to create {$modelName} on build."
+                message: "{$factoryName} failed to create {$modelName} on build.",
             );
 
             $this->assertSame(
                 $expectedId++,
                 $modelObject->getId(),
-                message: "{$factoryName} failed assignment of identifiers on build."
+                message: "{$factoryName} failed assignment of identifiers on build.",
             );
         }
     }

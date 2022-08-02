@@ -17,7 +17,7 @@ abstract class GenericResourceTestCase extends TestCase
         static::$directoryManager = new DirectoryManager(
             rootDirectoryPath: __DIR__ . "/../../",
             relativeApiPath: "/dist/api/",
-            relativeResourcePath: "/resources/"
+            relativeResourcePath: "/resources/",
         );
     }
 

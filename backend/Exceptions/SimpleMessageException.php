@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Internships\Exceptions;
 
-use ECSPrefix20210517\Nette\NotImplementedException;
 use Exception;
 use Internships\CommandLine\ColorText;
 use Internships\Helpers\OutputParser;
@@ -24,17 +23,17 @@ class SimpleMessageException extends Exception
 
     protected string $noStyleMessage;
 
-    public function __construct(int $code = 0, Throwable $previous = null)
+    public function __construct(int $code = 0, ?Throwable $previous = null)
     {
         $this->noStyleMessage = $this->newExceptionMessage();
         $message = static::separateLine(
             ColorText::colorize(
                 escapeColor: ColorText::getEscapedColor(
                     textColor: ColorText::TEXT_BLACK,
-                    backgroundColor: ColorText::BACKGROUND_RED
+                    backgroundColor: ColorText::BACKGROUND_RED,
                 ),
-                message: $this->noStyleMessage
-            ) . " "
+                message: $this->noStyleMessage,
+            ) . " ",
         );
         parent::__construct($message, $this->getStatusCode(), $previous);
     }
@@ -46,7 +45,7 @@ class SimpleMessageException extends Exception
 
     protected function newExceptionMessage(): string
     {
-        throw new NotImplementedException("Exception definition is invalid. ", static::METHOD_NOT_ALLOWED);
+        throw new Exception("Exception definition is invalid. ", static::METHOD_NOT_ALLOWED);
     }
 
     protected function getStatusCode(): int

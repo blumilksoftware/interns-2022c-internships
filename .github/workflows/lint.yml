@@ -52,14 +52,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Install backend dependencies
-        run: composer install --prefer-dist --no-progress
-
       - name: Install frontend dependencies
         run: npm ci
+
+      - name: Install backend dependencies
+        run: composer install --prefer-dist --no-progress
 
       - name: Lint js codebase
         run: npm run lint
 
       - name: Run php code style checker
-        run: composer ecs
+        run: composer cs

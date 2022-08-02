@@ -14,7 +14,7 @@ class CoordinateFetcher
     protected string $mapboxToken;
 
     public function __construct(
-        protected Client $api
+        protected Client $api,
     ) {
         $this->mapboxToken = $_ENV["MAPBOX_TOKEN"];
     }
@@ -22,7 +22,7 @@ class CoordinateFetcher
     public function coordinatesFromAddress(
         string &$currentCoordinates,
         string $address = "",
-        FetchAddress $addressObject = null
+        ?FetchAddress $addressObject = null,
     ): bool {
         if ($addressObject) {
             $address = $this->fetchAddressToString($addressObject);
@@ -42,7 +42,7 @@ class CoordinateFetcher
             ConsoleWriter::warn($e->getMessage());
             ConsoleWriter::warn(
                 "Could not fetch coordinates for location {$address}."
-                . "Check address or insert coordinates manually."
+                . "Check address or insert coordinates manually.",
             );
             return false;
         }
@@ -60,7 +60,7 @@ class CoordinateFetcher
                 $addressObject->getCity(),
                 $addressObject->getCountry(),
                 $addressObject->getZip(),
-            ]
+            ],
         );
     }
 }

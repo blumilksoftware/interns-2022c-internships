@@ -15,7 +15,7 @@ class FetchAddressDataFactory extends DataFactory
         $this->workingDirectory = "";
         $this->relativePathIdentity = new RelativePathIdentity(
             sourceName: "companies.csv",
-            destinationName: "companies.csv"
+            destinationName: "companies.csv",
         );
     }
 
@@ -36,7 +36,7 @@ class FetchAddressDataFactory extends DataFactory
             "city" => new ValidationOptions(
                 required: true,
                 sanitizationFlags: SANITIZE_WHITESPACE_TRIM
-                          | SANITIZE_CAPITALIZE_WORDS
+                          | SANITIZE_CAPITALIZE_WORDS,
             ),
             "specialization" => new ValidationOptions(),
             "tags" => new ValidationOptions(),

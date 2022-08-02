@@ -9,7 +9,7 @@ interface CommandLineCallable
     public function getName(): string;
 
     /**
-     * @return string[]
+     * @return array<string>
      */
     public function getAllowedEnvironment(): array;
 

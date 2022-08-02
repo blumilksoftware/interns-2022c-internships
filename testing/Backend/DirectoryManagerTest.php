@@ -17,7 +17,7 @@ class DirectoryManagerTest extends TestCase
         static::$directoryManager = new DirectoryManager(
             rootDirectoryPath: __DIR__ . "/../",
             relativeApiPath: "/Fixtures/api/",
-            relativeResourcePath: "/Fixtures/resources/"
+            relativeResourcePath: "/Fixtures/resources/",
         );
     }
 
@@ -32,11 +32,11 @@ class DirectoryManagerTest extends TestCase
         $fullResourcePath = static::$directoryManager->getResourcePath();
         $this->assertSame(
             expected: "/application/testing/Backend/../Fixtures/api/",
-            actual: $fullApiPath
+            actual: $fullApiPath,
         );
         $this->assertSame(
             expected: "/application/testing/Backend/../Fixtures/resources/",
-            actual: $fullResourcePath
+            actual: $fullResourcePath,
         );
     }
 
@@ -47,20 +47,20 @@ class DirectoryManagerTest extends TestCase
             relativeChangingPath: "middlePath///",
             rightBasePath: "///rightPath///",
             sourceName: "/sourceFile.csv",
-            destinationName: "destinationFile.json//"
+            destinationName: "destinationFile.json//",
         );
 
         $this->assertSame(
             expected: "/leftPath/middlePath/rightPath/",
-            actual: $relativePathIdentity->getRelativePath()
+            actual: $relativePathIdentity->getRelativePath(),
         );
         $this->assertSame(
             expected: "sourceFile.csv",
-            actual: $relativePathIdentity->getSourceName()
+            actual: $relativePathIdentity->getSourceName(),
         );
         $this->assertSame(
             expected: "destinationFile.json",
-            actual: $relativePathIdentity->getDestinationName()
+            actual: $relativePathIdentity->getDestinationName(),
         );
     }
 
@@ -68,33 +68,33 @@ class DirectoryManagerTest extends TestCase
     {
         $relativePathIdentity = new RelativePathIdentity(
             sourceName: "sourceFile.csv",
-            destinationName: "destinationFile.json"
+            destinationName: "destinationFile.json",
         );
         $fullIdentity = static::$directoryManager->getFullPathIdentity($relativePathIdentity);
 
         $this->assertSame(
             expected: "/application/testing/Backend/../Fixtures/api/",
-            actual: $fullIdentity->getFullDestinationPath()
+            actual: $fullIdentity->getFullDestinationPath(),
         );
         $this->assertSame(
             expected: "/application/testing/Backend/../Fixtures/resources/",
-            actual: $fullIdentity->getFullSourcePath()
+            actual: $fullIdentity->getFullSourcePath(),
         );
         $this->assertSame(
             expected: "sourceFile.csv",
-            actual: $fullIdentity->getSourceName()
+            actual: $fullIdentity->getSourceName(),
         );
         $this->assertSame(
             expected: "destinationFile.json",
-            actual: $fullIdentity->getDestinationName()
+            actual: $fullIdentity->getDestinationName(),
         );
         $this->assertSame(
             expected: "/application/testing/Backend/../Fixtures/resources/sourceFile.csv",
-            actual: $fullIdentity->getFullSourceFilePath()
+            actual: $fullIdentity->getFullSourceFilePath(),
         );
         $this->assertSame(
             expected: "/application/testing/Backend/../Fixtures/api/destinationFile.json",
-            actual: $fullIdentity->getFullDestinationFilePath()
+            actual: $fullIdentity->getFullDestinationFilePath(),
         );
     }
 
@@ -105,29 +105,29 @@ class DirectoryManagerTest extends TestCase
             relativeChangingPath: "/middlePath/",
             rightBasePath: "/rightPath/",
             sourceName: "sourceFile.csv",
-            destinationName: "destinationFile.json"
+            destinationName: "destinationFile.json",
         );
 
         $fullIdentity = static::$directoryManager->getFullPathIdentity(
             $relativePathIdentity,
-            destinationToResource: true
+            destinationToResource: true,
         );
 
         $this->assertSame(
             expected: $fullIdentity->getSourceName(),
-            actual: $fullIdentity->getDestinationName()
+            actual: $fullIdentity->getDestinationName(),
         );
         $this->assertSame(
             expected: "sourceFile.csv",
-            actual: $fullIdentity->getDestinationName()
+            actual: $fullIdentity->getDestinationName(),
         );
         $this->assertSame(
             expected: $fullIdentity->getFullSourcePath(),
-            actual: $fullIdentity->getFullDestinationPath()
+            actual: $fullIdentity->getFullDestinationPath(),
         );
         $this->assertSame(
             expected: "/application/testing/Backend/../Fixtures/resources/leftPath/middlePath/rightPath/",
-            actual: $fullIdentity->getFullDestinationPath()
+            actual: $fullIdentity->getFullDestinationPath(),
         );
     }
 
@@ -136,7 +136,7 @@ class DirectoryManagerTest extends TestCase
         $relativePathIdentity = new RelativePathIdentity();
         $this->assertSame(
             expected: "",
-            actual: $relativePathIdentity->getParentPath()
+            actual: $relativePathIdentity->getParentPath(),
         );
     }
 
@@ -145,16 +145,16 @@ class DirectoryManagerTest extends TestCase
         $relativePathIdentity = new RelativePathIdentity(
             relativeChangingPath: "/child/",
             sourceName: "sourceFile.csv",
-            destinationName: "destinationFile.json"
+            destinationName: "destinationFile.json",
         );
 
         $relativePathIdentity->setParentIdentity(
-            new RelativePathIdentity(relativeChangingPath: "/parent/")
+            new RelativePathIdentity(relativeChangingPath: "/parent/"),
         );
 
         $this->assertSame(
             expected: "/parent/child/",
-            actual: $relativePathIdentity->getRelativePath()
+            actual: $relativePathIdentity->getRelativePath(),
         );
     }
 }

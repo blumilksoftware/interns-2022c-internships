@@ -20,34 +20,34 @@ class DataSanitizer
         string $value,
         int $flags = SANITIZE_WHITESPACE_TRIM,
         string $arraySeparator = "",
-        int $maxDecimals = -1
+        int $maxDecimals = -1,
     ): mixed {
-        if ($flags & SANITIZE_NO_ACCENTS) {
+        if ($flags&SANITIZE_NO_ACCENTS) {
             $value = normalizer_normalize($value);
         }
 
-        if ($flags & SANITIZE_WHITESPACE_REMOVE) {
+        if ($flags&SANITIZE_WHITESPACE_REMOVE) {
             $value = preg_replace("/\s+/", "", $value);
         } else {
-            if ($flags & SANITIZE_WHITESPACE_TO_DASH) {
+            if ($flags&SANITIZE_WHITESPACE_TO_DASH) {
                 $value = preg_replace("/\s+/", "-", $value);
             } else {
-                if ($flags & SANITIZE_WHITESPACE_TRIM) {
+                if ($flags&SANITIZE_WHITESPACE_TRIM) {
                     $value = trim(preg_replace("/\s+/", " ", $value));
                 }
             }
         }
 
-        if ($flags & SANITIZE_TO_LOWER) {
+        if ($flags&SANITIZE_TO_LOWER) {
             $value = strtolower($value);
         } else {
-            if ($flags & SANITIZE_TO_UPPER) {
+            if ($flags&SANITIZE_TO_UPPER) {
                 $value = strtoupper($value);
             } else {
-                if ($flags & SANITIZE_CAPITALIZE_FIRST) {
+                if ($flags&SANITIZE_CAPITALIZE_FIRST) {
                     $value = ucfirst($value);
                 } else {
-                    if ($flags & SANITIZE_CAPITALIZE_WORDS) {
+                    if ($flags&SANITIZE_CAPITALIZE_WORDS) {
                         $value = ucwords($value);
                     }
                 }
