@@ -34,7 +34,7 @@ export default {
     SearchBar,
   },
   mounted() {
-    mapboxgl.accessToken = process.env.VUE_APP_MAPBOX_TOKEN;
+    mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
     this.buildMap();
   },
   data() {
@@ -47,16 +47,12 @@ export default {
 
   methods: {
     isPortrait() {
-      if (window.innerHeight > window.innerWidth) {
-        return true;
-      } else {
-        return false;
-      }
+      return window.innerHeight > window.innerWidth;
     },
     buildMap() {
       this.map = new mapboxgl.Map({
         container: "map",
-        style: process.env.VUE_APP_MAPBOX_STYLE_URL,
+        style: import.meta.env.VITE_MAPBOX_STYLE_URL,
       });
       this.map.addControl(new mapboxgl.NavigationControl());
     },
