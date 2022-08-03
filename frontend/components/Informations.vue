@@ -2,46 +2,19 @@
   <div class="bg-white overflow-hidden" id="info">
     <div class="relative max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
       <div
-        class="
-          hidden
-          lg:block
-          bg-gray-50
-          absolute
-          top-0
-          bottom-0
-          left-3/4
-          w-screen
-        "
+        class="hidden lg:block bg-gray-50 absolute top-0 bottom-0 left-3/4 w-screen"
       />
       <div
-        class="
-          mx-auto
-          text-base
-          max-w-prose
-          lg:grid lg:grid-cols-2 lg:gap-8 lg:max-w-none
-        "
+        class="mx-auto text-base max-w-prose lg:grid lg:grid-cols-2 lg:gap-8 lg:max-w-none"
       >
         <div>
           <h2
-            class="
-              text-base text-indigo-600
-              font-semibold
-              tracking-wide
-              uppercase
-            "
+            class="text-base text-indigo-600 font-semibold tracking-wide uppercase"
           >
             /pwsz legnica
           </h2>
           <h3
-            class="
-              mt-2
-              text-3xl
-              leading-8
-              font-extrabold
-              tracking-tight
-              text-gray-900
-              sm:text-4xl
-            "
+            class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl"
           >
             Informacje o praktykach
           </h3>
@@ -104,13 +77,7 @@
             </p>
           </div>
           <div
-            class="
-              mt-5
-              prose prose-indigo
-              text-gray-500
-              mx-auto
-              lg:max-w-none lg:row-start-1 lg:col-start-1
-            "
+            class="mt-5 prose prose-indigo text-gray-500 mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1"
           >
             <p>
               Sollicitudin tristique eros erat odio sed vitae, consequat turpis

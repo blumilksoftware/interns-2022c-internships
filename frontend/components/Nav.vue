@@ -12,36 +12,14 @@
             <a
               @click="goMap()"
               title="Map"
-              class="
-                border-transparent
-                text-gray-500
-                hover:border-indigo-400 hover:text-gray-700
-                inline-flex
-                items-center
-                px-1
-                pt-1
-                border-b-2
-                text-sm
-                font-medium
-              "
+              class="border-transparent text-gray-500 hover:border-indigo-400 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
             >
               Mapa firm
             </a>
             <a
               @click="goInfo()"
               title="Infomation"
-              class="
-                border-transparent
-                text-gray-500
-                hover:border-indigo-400 hover:text-gray-700
-                inline-flex
-                items-center
-                px-1
-                pt-1
-                border-b-2
-                text-sm
-                font-medium
-              "
+              class="border-transparent text-gray-500 hover:border-indigo-400 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
             >
               Informacje o praktykach
             </a>
@@ -49,18 +27,7 @@
             <a
               @click="goFiles()"
               title="Files to download"
-              class="
-                border-transparent
-                text-gray-500
-                hover:border-indigo-400 hover:text-gray-700
-                inline-flex
-                items-center
-                px-1
-                pt-1
-                border-b-2
-                text-sm
-                font-medium
-              "
+              class="border-transparent text-gray-500 hover:border-indigo-400 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
             >
               Pliki do pobrania
             </a>
@@ -68,18 +35,7 @@
             <a
               @click="goCoop()"
               title="Cooperation"
-              class="
-                border-transparent
-                text-gray-500
-                hover:border-indigo-400 hover:text-gray-700
-                inline-flex
-                items-center
-                px-1
-                pt-1
-                border-b-2
-                text-sm
-                font-medium
-              "
+              class="border-transparent text-gray-500 hover:border-indigo-400 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
             >
               Współpraca
             </a>
@@ -89,17 +45,7 @@
           <Menu as="div" class="ml-3 relative">
             <div>
               <MenuButton
-                class="
-                  d
-                  bg-white
-                  rounded-full
-                  flex
-                  text-sm
-                  focus:outline-none
-                  focus:ring-2
-                  focus:ring-offset-2
-                  focus:ring-indigo-500
-                "
+                class="d bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 <span class="sr-only noselect">Open user menu</span>
               </MenuButton>
@@ -117,19 +63,7 @@
         </div>
         <div class="-mr-2 flex items-center sm:hidden">
           <DisclosureButton
-            class="
-              inline-flex
-              items-center
-              justify-center
-              p-2
-              rounded-md
-              text-gray-400
-              hover:text-gray-500 hover:bg-gray-100
-              focus:outline-none
-              focus:ring-2
-              focus:ring-inset
-              focus:ring-indigo-500
-            "
+            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
           >
             <span class="sr-only noselect">Open main menu</span>
             <MenuIcon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
@@ -144,73 +78,27 @@
         <a
           @click="goMap()"
           title="Map"
-          class="
-            border-transparent
-            text-gray-500
-            hover:border-indigo-400 hover:text-gray-700
-            inline-flex
-            items-center
-            px-1
-            pt-1
-            border-b-2
-            text-sm
-            font-medium
-          "
+          class="border-transparent text-gray-500 hover:border-indigo-400 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
         >
           Mapa firm
         </a>
         <a
           @click="goInfo()"
           title="Information"
-          class="
-            noselect
-            text-gray-500
-            hover:bg-gray-50 hover:border-indigo-400 hover:text-gray-700
-            block
-            pl-3
-            pr-4
-            py-2
-            border-l-4
-            text-base
-            font-medium
-          "
+          class="noselect text-gray-500 hover:bg-gray-50 hover:border-indigo-400 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
           >Informacje o praktykach</a
         >
         <a
           @click="goFiles()"
           title="Files to download"
-          class="
-            noselect
-            border-transparent
-            text-gray-500
-            hover:bg-gray-50 hover:border-indigo-400 hover:text-gray-700
-            block
-            pl-3
-            pr-4
-            py-2
-            border-l-4
-            text-base
-            font-medium
-          "
+          class="noselect border-transparent text-gray-500 hover:bg-gray-50 hover:border-indigo-400 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
           >Pliki do pobrania</a
         >
 
         <a
           @click="goCoop()"
           title="Cooperation"
-          class="
-            noselect
-            border-transparent
-            text-gray-500
-            hover:bg-gray-50 hover:border-indigo-400 hover:text-gray-700
-            block
-            pl-3
-            pr-4
-            py-2
-            border-l-4
-            text-base
-            font-medium
-          "
+          class="noselect border-transparent text-gray-500 hover:bg-gray-50 hover:border-indigo-400 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
           >Współpraca</a
         >
       </div>

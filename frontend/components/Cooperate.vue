@@ -13,29 +13,13 @@
     </div>
     <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
       <h1
-        class="
-          text-3xl
-          font-bold
-          text-white
-          sm:text-5xl
-          3xl:text-5xl
-          pl-6
-          sm:pl-10
-        "
+        class="text-3xl font-bold text-white sm:text-5xl 3xl:text-5xl pl-6 sm:pl-10"
       >
         Chcesz, aby studenci Twojej uczelni<br />
         skutecznie znajdowali praktyki?
       </h1>
       <p
-        class="
-          mt-6
-          text-xl text-indigo-100
-          lg:text-3xl
-          max-w-5xl
-          3xl:text-4xl
-          pl-6
-          sm:pl-10
-        "
+        class="mt-6 text-xl text-indigo-100 lg:text-3xl max-w-5xl 3xl:text-4xl pl-6 sm:pl-10"
       >
         Skontaktuj się z nami! <br />
         {{ email }}

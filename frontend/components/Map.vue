@@ -2,15 +2,7 @@
   <div>
     <div
       v-if="loading"
-      class="
-        flex
-        justify-center
-        items-center
-        w-full
-        h-full
-        bg-gray-300
-        text-gray-400
-      "
+      class="flex justify-center items-center w-full h-full bg-gray-300 text-gray-400"
     >
       <location-marker-icon
         class="h-36 w-36 animate-pulse"

@@ -6,8 +6,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "./node_modules/.bin/eslint frontend/js --ext .js,.vue",
-    "lintf": "./node_modules/.bin/eslint frontend/js --ext .js,.vue --fix"
+    "lint": "./node_modules/.bin/eslint frontend --ext .js,.vue",
+    "lintf": "./node_modules/.bin/eslint frontend --ext .js,.vue --fix"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.3",

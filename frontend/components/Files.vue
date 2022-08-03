@@ -7,14 +7,7 @@
           <div class="flex items-center space-x-4">
             <div class="flex-1 min-w-0">
               <p
-                class="
-                  text-sm
-                  font-medium
-                  lg:text-xl
-                  2xl:text-2xl
-                  text-gray-900
-                  truncate
-                "
+                class="text-sm font-medium lg:text-xl 2xl:text-2xl text-gray-900 truncate"
               >
                 {{ document.displayedName }}
               </p>
@@ -22,24 +15,7 @@
             <div>
               <a
                 title="download file"
-                class="
-                  noselect
-                  btn
-                  inline-flex
-                  items-center
-                  shadow-sm
-                  px-2.5
-                  py-0.5
-                  border border-gray-300
-                  text-sm
-                  leading-5
-                  font-medium
-                  rounded-full
-                  text-gray-700
-                  bg-white
-                  hover:bg-gray-100
-                  xl:text-xl
-                "
+                class="noselect btn inline-flex items-center shadow-sm px-2.5 py-0.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-100 xl:text-xl"
               >
                 Pobierz
               </a>
