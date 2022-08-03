@@ -8,9 +8,7 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
 {
-    /**
-     * @var array<int, class-string|string>
-     */
+    /** @var array<int, class-string|string> */
     protected $middleware = [
         // \Internships\Http\Middleware\TrustHosts::class,
         \Internships\Http\Middleware\TrustProxies::class,
@@ -21,9 +19,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
     ];
 
-    /**
-     * @var array<string, array<int, class-string|string>>
-     */
+    /** @var array<string, array<int, class-string|string>> */
     protected $middlewareGroups = [
         "web" => [
             \Internships\Http\Middleware\EncryptCookies::class,
@@ -41,9 +37,7 @@ class Kernel extends HttpKernel
         ],
     ];
 
-    /**
-     * @var array<string, class-string|string>
-     */
+    /** @var array<string, class-string|string> */
     protected $routeMiddleware = [
         "auth" => \Internships\Http\Middleware\Authenticate::class,
         "auth.basic" => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
