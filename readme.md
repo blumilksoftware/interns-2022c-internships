@@ -31,6 +31,12 @@ docker-compose exec php composer intern-populate
 docker-compose exec php composer intern-build
 ```
 
+### 5. Generate Application Key:
+
+```shell script
+docker-compose exec php php artisan key:generate
+```
+
 Application should be available under `localhost:8027` or other port if you changed `EXTERNAL_WEBSERVER_PORT` value in `.env` file.
 
 ## Additional information
