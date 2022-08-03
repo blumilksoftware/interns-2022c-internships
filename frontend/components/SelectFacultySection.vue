@@ -168,7 +168,7 @@
 <script>
 import { useStore } from "vuex";
 import { computed } from "vue";
-import BaseFieldSelector from "@/components/BaseFieldSelector";
+import BaseFieldSelector from "@/components/BaseFieldSelector.vue";
 
 export default {
   components: { BaseFieldSelector },

@@ -1,6 +1,10 @@
 .DS_Store
 node_modules
 /dist
+/public/storage
+/public/js/
+/public/css/
+/public/build/
 
 .env
 .env.local

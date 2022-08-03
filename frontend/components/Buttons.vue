@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import BaseButton from "@/components/BaseButton";
+import BaseButton from "@/components/BaseButton.vue";
 import { useStore } from "vuex";
 export default {
   components: {

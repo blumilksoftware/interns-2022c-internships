@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import SelectFaculty from "@/components/SelectFacultySection";
-import JoinUs from "@/components/JoinUsSection";
-import StoriesSection from "@/components/StoriesSection";
+import SelectFaculty from "@/components/SelectFacultySection.vue";
+import JoinUs from "@/components/JoinUsSection.vue";
+import StoriesSection from "@/components/StoriesSection.vue";
 
 export default {
   components: {

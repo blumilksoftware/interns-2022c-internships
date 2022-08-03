@@ -5,8 +5,8 @@
   </div>
 </template>
 <script>
-import Map from "./Map";
-import ListContainer from "./ListContainer";
+import Map from "./Map.vue";
+import ListContainer from "./ListContainer.vue";
 
 export default {
   components: {

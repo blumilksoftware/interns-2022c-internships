@@ -42,8 +42,8 @@
   </div>
 </template>
 <script>
-import PaidSelector from "@/components/PaidSelector";
-import BaseFieldSelector from "@/components/BaseFieldSelector";
+import PaidSelector from "@/components/PaidSelector.vue";
+import BaseFieldSelector from "@/components/BaseFieldSelector.vue";
 import { ref, computed } from "vue";
 import { useStore } from "vuex";
 

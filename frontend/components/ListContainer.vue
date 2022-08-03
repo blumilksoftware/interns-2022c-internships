@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import Buttons from "@/components/Buttons";
-import DataField from "@/components/DataField";
-import SearchBar from "@/components/SearchBar";
-import FilterContent from "@/components/FilterContent";
+import Buttons from "@/components/Buttons.vue";
+import DataField from "@/components/DataField.vue";
+import SearchBar from "@/components/SearchBar.vue";
+import FilterContent from "@/components/FilterContent.vue";
 import { isMobile } from "../functions/functions.js";
 import { useStore } from "vuex";
 import { computed } from "vue";

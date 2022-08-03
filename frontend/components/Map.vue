@@ -25,7 +25,7 @@
 <script>
 import mapboxgl from "mapbox-gl";
 
-import SearchBar from "@/components/SearchBar";
+import SearchBar from "@/components/SearchBar.vue";
 import { LocationMarkerIcon } from "@heroicons/vue/outline";
 
 export default {
