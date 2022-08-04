@@ -44,7 +44,7 @@ abstract class MainCollector
 
         $this->fileManager->create(
             relativePathIdentity: $this->pathIdentity,
-            content: json_encode($jsonData, $this->fileManager->getDefaultJsonFlags()),
+            content: json_encode($jsonData, $this->fileManager->getDefaultJsonFlags()) . "\n",
         );
     }
 }

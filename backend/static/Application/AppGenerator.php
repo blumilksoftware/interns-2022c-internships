@@ -54,12 +54,11 @@ class AppGenerator
         return $factory->buildFromData($facultyCsvData, serializeSubData: true);
     }
 
-    public function saveDataToJson(DataFactory $factory, array $data): void
+    public function saveFactoryDataToJson(DataFactory $factory, array $data): void
     {
         $this->fileManager->create(
             relativePathIdentity: $factory->getRelativePathIdentity(),
-            content: json_encode($data, $this->fileManager->getDefaultJsonFlags()),
-            toResource: false,
+            content: json_encode($data, $this->fileManager->getDefaultJsonFlags()) . "\n",
         );
     }
 
@@ -67,14 +66,14 @@ class AppGenerator
     {
         /** @var array<Faculty> $faculties */
         $faculties = $this->getDataFromCsv($this->facultyFactory);
-        $this->saveDataToJson($this->facultyFactory, $faculties);
+        $this->saveFactoryDataToJson($this->facultyFactory, $faculties);
         try {
             foreach ($faculties as $faculty) {
                 ConsoleWriter::print("Processing {$faculty->getDirectory()}");
                 $this->facultyFactory->changeDirectory($faculty->getDirectory());
                 foreach ($this->subFactories as $subFactory) {
                     $data = $this->getDataFromCsv($subFactory);
-                    $this->saveDataToJson($subFactory, $data);
+                    $this->saveFactoryDataToJson($subFactory, $data);
                 }
             }
         } catch (IsMissingValidationException $exception) {
