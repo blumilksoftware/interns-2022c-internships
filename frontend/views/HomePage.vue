@@ -1,27 +1,27 @@
 <template>
   <div class="home">
-    <Nav class="sticky" />
-    <Maplist class="maplist" />
-    <informations class="info" />
-    <Files class="files" />
-    <Cooperate class="cooperate" />
+    <NavigationBar class="sticky" />
+    <MapList class="maplist" />
+    <InformationBar class="info" />
+    <FileDownloadBar class="files" />
+    <CooperateBar class="cooperate" />
   </div>
 </template>
 
 <script>
-import Nav from "@/components/Nav.vue";
-import Cooperate from "@/components/Cooperate.vue";
-import Informations from "@/components/Informations.vue";
-import Files from "@/components/Files.vue";
-import Maplist from "@/components/Maplist.vue";
+import NavigationBar from "@/components/NavigationBar.vue";
+import CooperateBar from "@/components/CooperateBar.vue";
+import InformationBar from "@/components/InformationBar.vue";
+import FileDownloadBar from "@/components/FileDownloadBar.vue";
+import MapList from "@/components/MapList.vue";
 
 export default {
   components: {
-    Nav,
-    Cooperate,
-    Informations,
-    Files,
-    Maplist,
+    NavigationBar,
+    CooperateBar,
+    InformationBar,
+    FileDownloadBar,
+    MapList,
   },
   mounted() {
     window.scrollTo(0, 0);
@@ -29,7 +29,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="pcss" scoped>
 .home {
   .sticky {
     position: fixed;

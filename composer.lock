@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7838792e653a458f548bb18bb01a4cbc",
+    "content-hash": "327f35a779d48dc5cd8728adf36efaa8",
     "packages": [
         {
             "name": "azuyalabs/yasumi",
@@ -762,68 +762,6 @@
             "time": "2020-10-16T08:27:54+00:00"
         },
         {
-            "name": "firebase/php-jwt",
-            "version": "v6.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/firebase/php-jwt.git",
-                "reference": "018dfc4e1da92ad8a1b90adc4893f476a3b41cb8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/018dfc4e1da92ad8a1b90adc4893f476a3b41cb8",
-                "reference": "018dfc4e1da92ad8a1b90adc4893f476a3b41cb8",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1||^8.0"
-            },
-            "require-dev": {
-                "guzzlehttp/guzzle": "^6.5||^7.4",
-                "phpspec/prophecy-phpunit": "^1.1",
-                "phpunit/phpunit": "^7.5||^9.5",
-                "psr/cache": "^1.0||^2.0",
-                "psr/http-client": "^1.0",
-                "psr/http-factory": "^1.0"
-            },
-            "suggest": {
-                "paragonie/sodium_compat": "Support EdDSA (Ed25519) signatures when libsodium is not present"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Firebase\\JWT\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Neuman Vong",
-                    "email": "neuman+pear@twilio.com",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Anant Narayanan",
-                    "email": "anant@php.net",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
-            "homepage": "https://github.com/firebase/php-jwt",
-            "keywords": [
-                "jwt",
-                "php"
-            ],
-            "support": {
-                "issues": "https://github.com/firebase/php-jwt/issues",
-                "source": "https://github.com/firebase/php-jwt/tree/v6.3.0"
-            },
-            "time": "2022-07-15T16:48:45+00:00"
-        },
-        {
             "name": "fruitcake/laravel-cors",
             "version": "v3.0.0",
             "source": {
@@ -1096,178 +1034,6 @@
                 "source": "https://github.com/geocoder-php/mapbox-provider/tree/1.4.0"
             },
             "time": "2022-07-30T12:09:30+00:00"
-        },
-        {
-            "name": "google/apiclient",
-            "version": "v2.12.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/googleapis/google-api-php-client.git",
-                "reference": "f92aa126903a9e2da5bd41a280d9633cb249e79e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client/zipball/f92aa126903a9e2da5bd41a280d9633cb249e79e",
-                "reference": "f92aa126903a9e2da5bd41a280d9633cb249e79e",
-                "shasum": ""
-            },
-            "require": {
-                "firebase/php-jwt": "~2.0||~3.0||~4.0||~5.0||~6.0",
-                "google/apiclient-services": "~0.200",
-                "google/auth": "^1.10",
-                "guzzlehttp/guzzle": "~5.3.3||~6.0||~7.0",
-                "guzzlehttp/psr7": "^1.8.4||^2.2.1",
-                "monolog/monolog": "^1.17||^2.0||^3.0",
-                "php": "^5.6|^7.0|^8.0",
-                "phpseclib/phpseclib": "~2.0||^3.0.2"
-            },
-            "require-dev": {
-                "cache/filesystem-adapter": "^0.3.2|^1.1",
-                "composer/composer": "^1.10.22",
-                "phpcompatibility/php-compatibility": "^9.2",
-                "phpspec/prophecy-phpunit": "^1.1||^2.0",
-                "phpunit/phpunit": "^5.7.21 || ^6.0 || ^7.0 || ^8.0 || ^9.0",
-                "squizlabs/php_codesniffer": "^3.0",
-                "symfony/css-selector": "~2.1",
-                "symfony/dom-crawler": "~2.1",
-                "yoast/phpunit-polyfills": "^1.0"
-            },
-            "suggest": {
-                "cache/filesystem-adapter": "For caching certs and tokens (using Google\\Client::setCache)"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-main": "2.x-dev"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/aliases.php"
-                ],
-                "psr-4": {
-                    "Google\\": "src/"
-                },
-                "classmap": [
-                    "src/aliases.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "description": "Client library for Google APIs",
-            "homepage": "http://developers.google.com/api-client-library/php",
-            "keywords": [
-                "google"
-            ],
-            "support": {
-                "issues": "https://github.com/googleapis/google-api-php-client/issues",
-                "source": "https://github.com/googleapis/google-api-php-client/tree/v2.12.6"
-            },
-            "time": "2022-06-06T20:00:19+00:00"
-        },
-        {
-            "name": "google/apiclient-services",
-            "version": "v0.260.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "8c519ddfd2458fda02dc10d10b142973e578516a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/8c519ddfd2458fda02dc10d10b142973e578516a",
-                "reference": "8c519ddfd2458fda02dc10d10b142973e578516a",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.6"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^5.7||^8.5.13"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "autoload.php"
-                ],
-                "psr-4": {
-                    "Google\\Service\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "description": "Client library for Google APIs",
-            "homepage": "http://developers.google.com/api-client-library/php",
-            "keywords": [
-                "google"
-            ],
-            "support": {
-                "issues": "https://github.com/googleapis/google-api-php-client-services/issues",
-                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.260.0"
-            },
-            "time": "2022-07-31T00:58:12+00:00"
-        },
-        {
-            "name": "google/auth",
-            "version": "v1.21.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/googleapis/google-auth-library-php.git",
-                "reference": "aa3b9ca29258ac6347ce3c8937a2418c5d78f840"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-auth-library-php/zipball/aa3b9ca29258ac6347ce3c8937a2418c5d78f840",
-                "reference": "aa3b9ca29258ac6347ce3c8937a2418c5d78f840",
-                "shasum": ""
-            },
-            "require": {
-                "firebase/php-jwt": "^5.5||^6.0",
-                "guzzlehttp/guzzle": "^6.2.1|^7.0",
-                "guzzlehttp/psr7": "^1.7|^2.0",
-                "php": "^7.1||^8.0",
-                "psr/cache": "^1.0|^2.0|^3.0",
-                "psr/http-message": "^1.0"
-            },
-            "require-dev": {
-                "guzzlehttp/promises": "0.1.1|^1.3",
-                "kelvinmo/simplejwt": "^0.2.5|^0.5.1",
-                "phpseclib/phpseclib": "^2.0.31",
-                "phpspec/prophecy-phpunit": "^1.1",
-                "phpunit/phpunit": "^7.5||^8.5",
-                "sebastian/comparator": ">=1.2.3",
-                "squizlabs/php_codesniffer": "^3.5"
-            },
-            "suggest": {
-                "phpseclib/phpseclib": "May be used in place of OpenSSL for signing strings or for token management. Please require version ^2."
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Google\\Auth\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "description": "Google Auth Library for PHP",
-            "homepage": "http://github.com/google/google-auth-library-php",
-            "keywords": [
-                "Authentication",
-                "google",
-                "oauth2"
-            ],
-            "support": {
-                "docs": "https://googleapis.github.io/google-auth-library-php/main/",
-                "issues": "https://github.com/googleapis/google-auth-library-php/issues",
-                "source": "https://github.com/googleapis/google-auth-library-php/tree/v1.21.1"
-            },
-            "time": "2022-05-16T19:34:15+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -1724,90 +1490,6 @@
             "time": "2022-06-27T23:21:15+00:00"
         },
         {
-            "name": "intervention/image",
-            "version": "2.7.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Intervention/image.git",
-                "reference": "04be355f8d6734c826045d02a1079ad658322dad"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/image/zipball/04be355f8d6734c826045d02a1079ad658322dad",
-                "reference": "04be355f8d6734c826045d02a1079ad658322dad",
-                "shasum": ""
-            },
-            "require": {
-                "ext-fileinfo": "*",
-                "guzzlehttp/psr7": "~1.1 || ^2.0",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "~0.9.2",
-                "phpunit/phpunit": "^4.8 || ^5.7 || ^7.5.15"
-            },
-            "suggest": {
-                "ext-gd": "to use GD library based image processing.",
-                "ext-imagick": "to use Imagick based image processing.",
-                "intervention/imagecache": "Caching extension for the Intervention Image library"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.4-dev"
-                },
-                "laravel": {
-                    "providers": [
-                        "Intervention\\Image\\ImageServiceProvider"
-                    ],
-                    "aliases": {
-                        "Image": "Intervention\\Image\\Facades\\Image"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Intervention\\Image\\": "src/Intervention/Image"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Oliver Vogel",
-                    "email": "oliver@intervention.io",
-                    "homepage": "https://intervention.io/"
-                }
-            ],
-            "description": "Image handling and manipulation library with support for Laravel integration",
-            "homepage": "http://image.intervention.io/",
-            "keywords": [
-                "gd",
-                "image",
-                "imagick",
-                "laravel",
-                "thumbnail",
-                "watermark"
-            ],
-            "support": {
-                "issues": "https://github.com/Intervention/image/issues",
-                "source": "https://github.com/Intervention/image/tree/2.7.2"
-            },
-            "funding": [
-                {
-                    "url": "https://paypal.me/interventionio",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/Intervention",
-                    "type": "github"
-                }
-            ],
-            "time": "2022-05-21T17:30:32+00:00"
-        },
-        {
             "name": "laminas/laminas-escaper",
             "version": "2.10.0",
             "source": {
@@ -1871,16 +1553,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v9.22.1",
+            "version": "v9.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "b3b3dd43b9899f23df6d1d3e5390bd4662947a46"
+                "reference": "c4eea9060d847b5c93957b203caa8f57544a76ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/b3b3dd43b9899f23df6d1d3e5390bd4662947a46",
-                "reference": "b3b3dd43b9899f23df6d1d3e5390bd4662947a46",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/c4eea9060d847b5c93957b203caa8f57544a76ab",
+                "reference": "c4eea9060d847b5c93957b203caa8f57544a76ab",
                 "shasum": ""
             },
             "require": {
@@ -1901,7 +1583,7 @@
                 "psr/log": "^1.0|^2.0|^3.0",
                 "psr/simple-cache": "^1.0|^2.0|^3.0",
                 "ramsey/uuid": "^4.2.2",
-                "symfony/console": "^6.0",
+                "symfony/console": "^6.0.3",
                 "symfony/error-handler": "^6.0",
                 "symfony/finder": "^6.0",
                 "symfony/http-foundation": "^6.0",
@@ -2047,76 +1729,20 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-07-26T16:16:33+00:00"
-        },
-        {
-            "name": "laravel/helpers",
-            "version": "v1.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/helpers.git",
-                "reference": "c28b0ccd799d58564c41a62395ac9511a1e72931"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/helpers/zipball/c28b0ccd799d58564c41a62395ac9511a1e72931",
-                "reference": "c28b0ccd799d58564c41a62395ac9511a1e72931",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "~5.8.0|^6.0|^7.0|^8.0|^9.0",
-                "php": "^7.1.3|^8.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^7.0|^8.0|^9.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.x-dev"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylor@laravel.com"
-                },
-                {
-                    "name": "Dries Vints",
-                    "email": "dries@laravel.com"
-                }
-            ],
-            "description": "Provides backwards compatibility for helpers in the latest Laravel release.",
-            "keywords": [
-                "helpers",
-                "laravel"
-            ],
-            "support": {
-                "source": "https://github.com/laravel/helpers/tree/v1.5.0"
-            },
-            "time": "2022-01-12T15:58:51+00:00"
+            "time": "2022-08-02T14:24:44+00:00"
         },
         {
             "name": "laravel/sanctum",
-            "version": "v3.0.0",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sanctum.git",
-                "reference": "fae52063ea7fb1d916baba787918c40fd3d8ab62"
+                "reference": "b71e80a3a8e8029e2ec8c1aa814b999609ce16dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sanctum/zipball/fae52063ea7fb1d916baba787918c40fd3d8ab62",
-                "reference": "fae52063ea7fb1d916baba787918c40fd3d8ab62",
+                "url": "https://api.github.com/repos/laravel/sanctum/zipball/b71e80a3a8e8029e2ec8c1aa814b999609ce16dc",
+                "reference": "b71e80a3a8e8029e2ec8c1aa814b999609ce16dc",
                 "shasum": ""
             },
             "require": {
@@ -2168,7 +1794,7 @@
                 "issues": "https://github.com/laravel/sanctum/issues",
                 "source": "https://github.com/laravel/sanctum"
             },
-            "time": "2022-07-25T13:44:55+00:00"
+            "time": "2022-07-29T21:33:30+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -2433,169 +2059,6 @@
                 "source": "https://github.com/laravel/tinker/tree/v2.7.2"
             },
             "time": "2022-03-23T12:38:24+00:00"
-        },
-        {
-            "name": "lasserafn/php-initial-avatar-generator",
-            "version": "4.2.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/LasseRafn/php-initial-avatar-generator.git",
-                "reference": "49d0b10cc8819af831e0f6fb1056a7d5ed9512d0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/LasseRafn/php-initial-avatar-generator/zipball/49d0b10cc8819af831e0f6fb1056a7d5ed9512d0",
-                "reference": "49d0b10cc8819af831e0f6fb1056a7d5ed9512d0",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "intervention/image": "^2.3",
-                "lasserafn/php-initials": "^3.0",
-                "lasserafn/php-string-script-language": "^0.3.0",
-                "meyfa/php-svg": "^0.9.0",
-                "overtrue/pinyin": "^4.0",
-                "php": "^7.0|^7.1|^7.2|^7.3|^7.4|^8.0"
-            },
-            "require-dev": {
-                "doctrine/instantiator": "1.0.*",
-                "phpunit/phpunit": "^6.5",
-                "satooshi/php-coveralls": "^1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "LasseRafn\\InitialAvatarGenerator\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Lasse Rafn",
-                    "email": "lasserafn@gmail.com"
-                }
-            ],
-            "description": "A package to generate avatars with initials for PHP",
-            "keywords": [
-                "Initials",
-                "avatar",
-                "image",
-                "svg"
-            ],
-            "support": {
-                "issues": "https://github.com/LasseRafn/php-initial-avatar-generator/issues",
-                "source": "https://github.com/LasseRafn/php-initial-avatar-generator/tree/4.2.1"
-            },
-            "funding": [
-                {
-                    "url": "https://opencollective.com/ui-avatars",
-                    "type": "open_collective"
-                }
-            ],
-            "time": "2020-12-24T13:12:12+00:00"
-        },
-        {
-            "name": "lasserafn/php-initials",
-            "version": "3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/LasseRafn/php-initials.git",
-                "reference": "d287e1542687390eb68de779949bc0adc49e2d52"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/LasseRafn/php-initials/zipball/d287e1542687390eb68de779949bc0adc49e2d52",
-                "reference": "d287e1542687390eb68de779949bc0adc49e2d52",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.6|^7.0|^7.1|^8.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^5.7",
-                "satooshi/php-coveralls": "^1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "LasseRafn\\Initials\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Lasse Rafn",
-                    "email": "lasserafn@gmail.com"
-                }
-            ],
-            "description": "A package to generate initials in PHP",
-            "keywords": [
-                "Initials",
-                "php"
-            ],
-            "support": {
-                "issues": "https://github.com/LasseRafn/php-initials/issues",
-                "source": "https://github.com/LasseRafn/php-initials/tree/3.1"
-            },
-            "time": "2020-12-24T12:25:51+00:00"
-        },
-        {
-            "name": "lasserafn/php-string-script-language",
-            "version": "0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/LasseRafn/php-string-script-language.git",
-                "reference": "49a09d4a5e38c1e59a2656ac05b601d615c7cddb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/LasseRafn/php-string-script-language/zipball/49a09d4a5e38c1e59a2656ac05b601d615c7cddb",
-                "reference": "49a09d4a5e38c1e59a2656ac05b601d615c7cddb",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.6|^7.0|^7.1|^8.0"
-            },
-            "require-dev": {
-                "doctrine/instantiator": "1.0.5",
-                "phpunit/phpunit": "^5.6",
-                "phpunit/phpunit-mock-objects": "3.2.4",
-                "satooshi/php-coveralls": "^1.0",
-                "sebastian/exporter": "^1.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "LasseRafn\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Lasse Rafn",
-                    "email": "lasserafn@gmail.com"
-                }
-            ],
-            "description": "Detect language/encoding of a string in PHP",
-            "keywords": [
-                "language",
-                "php",
-                "string"
-            ],
-            "support": {
-                "issues": "https://github.com/LasseRafn/php-string-script-language/issues",
-                "source": "https://github.com/LasseRafn/php-string-script-language/tree/0.3"
-            },
-            "time": "2020-12-24T12:43:59+00:00"
         },
         {
             "name": "league/commonmark",
@@ -3335,56 +2798,6 @@
             "time": "2021-07-01T14:25:37+00:00"
         },
         {
-            "name": "meyfa/php-svg",
-            "version": "v0.9.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/meyfa/php-svg.git",
-                "reference": "34401edef1f724898f468f71b85505fbcc8351bb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/meyfa/php-svg/zipball/34401edef1f724898f468f71b85505fbcc8351bb",
-                "reference": "34401edef1f724898f468f71b85505fbcc8351bb",
-                "shasum": ""
-            },
-            "require": {
-                "ext-gd": "*",
-                "ext-simplexml": "*",
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "meyfa/phpunit-assert-gd": "^1.1",
-                "phpunit/phpunit": "^4.8"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SVG\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabian Meyer",
-                    "homepage": "http://meyfa.net"
-                }
-            ],
-            "description": "Read, edit, write, and render SVG files with PHP",
-            "homepage": "https://github.com/meyfa/php-svg",
-            "keywords": [
-                "svg"
-            ],
-            "support": {
-                "issues": "https://github.com/meyfa/php-svg/issues",
-                "source": "https://github.com/meyfa/php-svg/tree/v0.9.1"
-            },
-            "time": "2019-07-30T18:41:25+00:00"
-        },
-        {
             "name": "monolog/monolog",
             "version": "2.8.0",
             "source": {
@@ -3936,196 +3349,6 @@
                 }
             ],
             "time": "2022-08-01T11:03:24+00:00"
-        },
-        {
-            "name": "overtrue/pinyin",
-            "version": "4.0.8",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/overtrue/pinyin.git",
-                "reference": "04bdb4d33d50e8fb1aa5a824064c5151c4b15dc2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/pinyin/zipball/04bdb4d33d50e8fb1aa5a824064c5151c4b15dc2",
-                "reference": "04bdb4d33d50e8fb1aa5a824064c5151c4b15dc2",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1"
-            },
-            "require-dev": {
-                "brainmaestro/composer-git-hooks": "^2.7",
-                "friendsofphp/php-cs-fixer": "^2.16",
-                "phpunit/phpunit": "~8.0"
-            },
-            "type": "library",
-            "extra": {
-                "hooks": {
-                    "pre-commit": [
-                        "composer test",
-                        "composer fix-style"
-                    ],
-                    "pre-push": [
-                        "composer test",
-                        "composer check-style"
-                    ]
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/const.php"
-                ],
-                "psr-4": {
-                    "Overtrue\\Pinyin\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "overtrue",
-                    "email": "anzhengchao@gmail.com",
-                    "homepage": "http://github.com/overtrue"
-                }
-            ],
-            "description": "Chinese to pinyin translator.",
-            "homepage": "https://github.com/overtrue/pinyin",
-            "keywords": [
-                "Chinese",
-                "Pinyin",
-                "cn2pinyin"
-            ],
-            "support": {
-                "issues": "https://github.com/overtrue/pinyin/issues",
-                "source": "https://github.com/overtrue/pinyin/tree/4.0.8"
-            },
-            "funding": [
-                {
-                    "url": "https://www.patreon.com/overtrue",
-                    "type": "patreon"
-                }
-            ],
-            "time": "2021-07-19T03:43:32+00:00"
-        },
-        {
-            "name": "paragonie/constant_time_encoding",
-            "version": "v2.6.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/paragonie/constant_time_encoding.git",
-                "reference": "58c3f47f650c94ec05a151692652a868995d2938"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/constant_time_encoding/zipball/58c3f47f650c94ec05a151692652a868995d2938",
-                "reference": "58c3f47f650c94ec05a151692652a868995d2938",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7|^8"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^6|^7|^8|^9",
-                "vimeo/psalm": "^1|^2|^3|^4"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "ParagonIE\\ConstantTime\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Paragon Initiative Enterprises",
-                    "email": "security@paragonie.com",
-                    "homepage": "https://paragonie.com",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Steve 'Sc00bz' Thomas",
-                    "email": "steve@tobtu.com",
-                    "homepage": "https://www.tobtu.com",
-                    "role": "Original Developer"
-                }
-            ],
-            "description": "Constant-time Implementations of RFC 4648 Encoding (Base-64, Base-32, Base-16)",
-            "keywords": [
-                "base16",
-                "base32",
-                "base32_decode",
-                "base32_encode",
-                "base64",
-                "base64_decode",
-                "base64_encode",
-                "bin2hex",
-                "encoding",
-                "hex",
-                "hex2bin",
-                "rfc4648"
-            ],
-            "support": {
-                "email": "info@paragonie.com",
-                "issues": "https://github.com/paragonie/constant_time_encoding/issues",
-                "source": "https://github.com/paragonie/constant_time_encoding"
-            },
-            "time": "2022-06-14T06:56:20+00:00"
-        },
-        {
-            "name": "paragonie/random_compat",
-            "version": "v9.99.100",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "996434e5492cb4c3edcb9168db6fbb1359ef965a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/996434e5492cb4c3edcb9168db6fbb1359ef965a",
-                "reference": "996434e5492cb4c3edcb9168db6fbb1359ef965a",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">= 7"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.*|5.*",
-                "vimeo/psalm": "^1"
-            },
-            "suggest": {
-                "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Paragon Initiative Enterprises",
-                    "email": "security@paragonie.com",
-                    "homepage": "https://paragonie.com"
-                }
-            ],
-            "description": "PHP 5.x polyfill for random_bytes() and random_int() from PHP 7",
-            "keywords": [
-                "csprng",
-                "polyfill",
-                "pseudorandom",
-                "random"
-            ],
-            "support": {
-                "email": "info@paragonie.com",
-                "issues": "https://github.com/paragonie/random_compat/issues",
-                "source": "https://github.com/paragonie/random_compat"
-            },
-            "time": "2020-10-15T08:29:30+00:00"
         },
         {
             "name": "phenx/php-font-lib",
@@ -4984,164 +4207,6 @@
             "time": "2022-07-30T15:51:26+00:00"
         },
         {
-            "name": "phpseclib/phpseclib",
-            "version": "3.0.14",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "2f0b7af658cbea265cbb4a791d6c29a6613f98ef"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/2f0b7af658cbea265cbb4a791d6c29a6613f98ef",
-                "reference": "2f0b7af658cbea265cbb4a791d6c29a6613f98ef",
-                "shasum": ""
-            },
-            "require": {
-                "paragonie/constant_time_encoding": "^1|^2",
-                "paragonie/random_compat": "^1.4|^2.0|^9.99.99",
-                "php": ">=5.6.1"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "*"
-            },
-            "suggest": {
-                "ext-gmp": "Install the GMP (GNU Multiple Precision) extension in order to speed up arbitrary precision integer arithmetic operations.",
-                "ext-libsodium": "SSH2/SFTP can make use of some algorithms provided by the libsodium-php extension.",
-                "ext-mcrypt": "Install the Mcrypt extension in order to speed up a few other cryptographic operations.",
-                "ext-openssl": "Install the OpenSSL extension in order to speed up a wide variety of cryptographic operations."
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "phpseclib/bootstrap.php"
-                ],
-                "psr-4": {
-                    "phpseclib3\\": "phpseclib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jim Wigginton",
-                    "email": "terrafrost@php.net",
-                    "role": "Lead Developer"
-                },
-                {
-                    "name": "Patrick Monnerat",
-                    "email": "pm@datasphere.ch",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Andreas Fischer",
-                    "email": "bantu@phpbb.com",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Hans-Jürgen Petrich",
-                    "email": "petrich@tronic-media.com",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Graham Campbell",
-                    "email": "graham@alt-three.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "PHP Secure Communications Library - Pure-PHP implementations of RSA, AES, SSH2, SFTP, X.509 etc.",
-            "homepage": "http://phpseclib.sourceforge.net",
-            "keywords": [
-                "BigInteger",
-                "aes",
-                "asn.1",
-                "asn1",
-                "blowfish",
-                "crypto",
-                "cryptography",
-                "encryption",
-                "rsa",
-                "security",
-                "sftp",
-                "signature",
-                "signing",
-                "ssh",
-                "twofish",
-                "x.509",
-                "x509"
-            ],
-            "support": {
-                "issues": "https://github.com/phpseclib/phpseclib/issues",
-                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.14"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/terrafrost",
-                    "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/phpseclib",
-                    "type": "patreon"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/phpseclib/phpseclib",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2022-04-04T05:15:45+00:00"
-        },
-        {
-            "name": "psr/cache",
-            "version": "3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/cache.git",
-                "reference": "aa5030cfa5405eccfdcb1083ce040c2cb8d253bf"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/cache/zipball/aa5030cfa5405eccfdcb1083ce040c2cb8d253bf",
-                "reference": "aa5030cfa5405eccfdcb1083ce040c2cb8d253bf",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.0.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psr\\Cache\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "https://www.php-fig.org/"
-                }
-            ],
-            "description": "Common interface for caching libraries",
-            "keywords": [
-                "cache",
-                "psr",
-                "psr-6"
-            ],
-            "support": {
-                "source": "https://github.com/php-fig/cache/tree/3.0.0"
-            },
-            "time": "2021-02-03T23:26:27+00:00"
-        },
-        {
             "name": "psr/container",
             "version": "1.1.2",
             "source": {
@@ -5577,70 +4642,6 @@
             "time": "2022-07-28T14:25:11+00:00"
         },
         {
-            "name": "rackbeat/laravel-ui-avatars",
-            "version": "1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Rackbeat/laravel-ui-avatars.git",
-                "reference": "aab0a601ceb1b8d236407e8c62a358c68920a12d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Rackbeat/laravel-ui-avatars/zipball/aab0a601ceb1b8d236407e8c62a358c68920a12d",
-                "reference": "aab0a601ceb1b8d236407e8c62a358c68920a12d",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "~5.5|~5.6|~5.7|~5.8|~5.9|~6.0|^7.0|^8.0|^9.0",
-                "lasserafn/php-initial-avatar-generator": "^4.0",
-                "php": ">=7.1"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^7.0",
-                "satooshi/php-coveralls": "^1.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Rackbeat\\UIAvatars\\UIAvatarsServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Rackbeat\\UIAvatars\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Lasse Rafn",
-                    "email": "lasserafn@gmail.com"
-                },
-                {
-                    "name": "Rackbeat",
-                    "email": "open-source@rackbeat.com"
-                }
-            ],
-            "description": "Official Laravel wrapper around ui-avatars.com and LasseRafn/php-initial-avatar-generator",
-            "keywords": [
-                "Initials",
-                "avatars",
-                "laravel",
-                "php",
-                "ui-avatars"
-            ],
-            "support": {
-                "issues": "https://github.com/Rackbeat/laravel-ui-avatars/issues",
-                "source": "https://github.com/Rackbeat/laravel-ui-avatars/tree/1.0"
-            },
-            "time": "2022-02-14T16:36:21+00:00"
-        },
-        {
             "name": "ralouphie/getallheaders",
             "version": "3.0.3",
             "source": {
@@ -5911,81 +4912,6 @@
             "time": "2021-12-11T13:40:54+00:00"
         },
         {
-            "name": "spatie/laravel-google-calendar",
-            "version": "3.5.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/laravel-google-calendar.git",
-                "reference": "113dba30c70705790ba1ae1e726307d2dc1d12c6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-google-calendar/zipball/113dba30c70705790ba1ae1e726307d2dc1d12c6",
-                "reference": "113dba30c70705790ba1ae1e726307d2dc1d12c6",
-                "shasum": ""
-            },
-            "require": {
-                "google/apiclient": "^2.2",
-                "illuminate/support": "^6.0|^7.0|^8.0|^9.0",
-                "nesbot/carbon": "^2.0",
-                "php": "^7.2|^8.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.3.3|^1.4",
-                "orchestra/testbench": "^4.0|^5.0|^6.0|^7.0",
-                "phpunit/phpunit": "^8.4|^9.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Spatie\\GoogleCalendar\\GoogleCalendarServiceProvider"
-                    ],
-                    "aliases": {
-                        "GoogleCalendar": "Spatie\\GoogleCalendar\\GoogleCalendarFacade"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\GoogleCalendar\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Manage events on a Google Calendar",
-            "homepage": "https://github.com/spatie/laravel-google-calendar",
-            "keywords": [
-                "calendar",
-                "event",
-                "google",
-                "laravel-google-calendar",
-                "schedule",
-                "spatie"
-            ],
-            "support": {
-                "issues": "https://github.com/spatie/laravel-google-calendar/issues",
-                "source": "https://github.com/spatie/laravel-google-calendar/tree/3.5.1"
-            },
-            "funding": [
-                {
-                    "url": "https://spatie.be/open-source/support-us",
-                    "type": "custom"
-                }
-            ],
-            "time": "2022-03-18T07:43:44+00:00"
-        },
-        {
             "name": "spatie/laravel-model-states",
             "version": "2.4.2",
             "source": {
@@ -6117,71 +5043,6 @@
                 }
             ],
             "time": "2022-06-28T14:29:26+00:00"
-        },
-        {
-            "name": "spatie/laravel-slack-slash-command",
-            "version": "1.11.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/laravel-slack-slash-command.git",
-                "reference": "8e507653054ff08581b28d6ddf5bb4ce8c2e2335"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-slack-slash-command/zipball/8e507653054ff08581b28d6ddf5bb4ce8c2e2335",
-                "reference": "8e507653054ff08581b28d6ddf5bb4ce8c2e2335",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/guzzle": "^7.0",
-                "illuminate/config": "~5.8.0|^6.0|^7.0|^8.0|^9.0",
-                "illuminate/queue": "~5.8.0|^6.0|^7.0|^8.0|^9.0",
-                "illuminate/routing": "~5.8.0|^6.0|^7.0|^8.0|^9.0",
-                "illuminate/support": "~5.8.0|^6.0|^7.0|^8.0|^9.0",
-                "laravel/helpers": "^1.0",
-                "php": "^7.3|^8.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.0",
-                "orchestra/testbench": "~3.8.0|^4.0|^5.0|^6.0|^7.0",
-                "phpunit/phpunit": "^9.2"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Spatie\\SlashCommand\\SlashCommandServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\SlashCommand\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Make a Laravel app respond to a slash command from Slack",
-            "homepage": "https://github.com/spatie/laravel-slack-slash-command",
-            "keywords": [
-                "laravel-slack",
-                "spatie"
-            ],
-            "support": {
-                "issues": "https://github.com/spatie/laravel-slack-slash-command/issues",
-                "source": "https://github.com/spatie/laravel-slack-slash-command/tree/1.11.3"
-            },
-            "time": "2022-02-09T07:58:01+00:00"
         },
         {
             "name": "symfony/console",
@@ -10514,6 +9375,55 @@
                 }
             ],
             "time": "2022-06-19T12:14:25+00:00"
+        },
+        {
+            "name": "psr/cache",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/cache.git",
+                "reference": "aa5030cfa5405eccfdcb1083ce040c2cb8d253bf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/cache/zipball/aa5030cfa5405eccfdcb1083ce040c2cb8d253bf",
+                "reference": "aa5030cfa5405eccfdcb1083ce040c2cb8d253bf",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Cache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "https://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for caching libraries",
+            "keywords": [
+                "cache",
+                "psr",
+                "psr-6"
+            ],
+            "support": {
+                "source": "https://github.com/php-fig/cache/tree/3.0.0"
+            },
+            "time": "2021-02-03T23:26:27+00:00"
         },
         {
             "name": "sebastian/cli-parser",

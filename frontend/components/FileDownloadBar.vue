@@ -39,14 +39,16 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="pcss" scoped>
 .wrapper {
   display: flex;
   flex-direction: column;
+
   .title {
     margin: 0 auto;
     font-family: Poppins;
   }
+
   .btn {
     cursor: pointer;
   }

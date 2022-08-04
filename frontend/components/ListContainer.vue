@@ -13,12 +13,12 @@
         :companyTags="company.filterData.tags"
       />
     </div>
-    <Buttons class="buttons" />
+    <ButtonGeneric class="buttons" />
   </div>
 </template>
 
 <script>
-import Buttons from "@/components/Buttons.vue";
+import ButtonGeneric from "@/components/ButtonGeneric.vue";
 import DataField from "@/components/DataField.vue";
 import SearchBar from "@/components/SearchBar.vue";
 import FilterContent from "@/components/FilterContent.vue";
@@ -28,7 +28,7 @@ import { computed } from "vue";
 
 export default {
   components: {
-    Buttons,
+    ButtonGeneric,
     DataField,
     SearchBar,
     FilterContent,
@@ -44,7 +44,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="pcss" scoped>
 .wrapper {
   display: flex;
   flex-direction: column;

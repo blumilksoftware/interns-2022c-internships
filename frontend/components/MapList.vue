@@ -1,22 +1,22 @@
 <template>
   <div class="container">
     <ListContainer class="listcontainer" />
-    <Map class="map" />
+    <MapDisplay class="map" />
   </div>
 </template>
 <script>
-import Map from "./Map.vue";
+import MapDisplay from "./MapDisplay.vue";
 import ListContainer from "./ListContainer.vue";
 
 export default {
   components: {
-    Map: Map,
+    MapDisplay,
     ListContainer,
   },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="pcss" scoped>
 .container {
   display: grid;
   width: 100%;

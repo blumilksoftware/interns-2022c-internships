@@ -1,5 +1,5 @@
 <template>
-  <Disclosure as="nav" class="bg-white shadow" v-slot="{ open }">
+  <Disclosure as="nav" class="bg-white shadow">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16">
         <div class="flex">
@@ -41,35 +41,6 @@
             </a>
           </div>
         </div>
-        <div class="hidden sm:ml-6 sm:flex sm:items-center">
-          <Menu as="div" class="ml-3 relative">
-            <div>
-              <MenuButton
-                class="d bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                <span class="sr-only noselect">Open user menu</span>
-              </MenuButton>
-            </div>
-            <transition
-              enter-active-class="transition ease-out duration-200"
-              enter-from-class="transform opacity-0 scale-95"
-              enter-to-class="transform opacity-100 scale-100"
-              leave-active-class="transition ease-in duration-75"
-              leave-from-class="transform opacity-100 scale-100"
-              leave-to-class="transform opacity-0 scale-95"
-            >
-            </transition>
-          </Menu>
-        </div>
-        <div class="-mr-2 flex items-center sm:hidden">
-          <DisclosureButton
-            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-          >
-            <span class="sr-only noselect">Open main menu</span>
-            <MenuIcon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
-            <XIcon v-else class="block h-6 w-6" aria-hidden="true" />
-          </DisclosureButton>
-        </div>
       </div>
     </div>
 
@@ -108,24 +79,12 @@
 
 <script>
 import { ref } from "vue";
-import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-  Menu,
-  MenuButton,
-} from "@headlessui/vue";
-import { MenuIcon, XIcon } from "@heroicons/vue/outline";
+import { Disclosure, DisclosurePanel } from "@headlessui/vue";
 
 export default {
   components: {
     Disclosure,
-    DisclosureButton,
     DisclosurePanel,
-    Menu,
-    MenuButton,
-    MenuIcon,
-    XIcon,
   },
   setup() {
     const open = ref(false);
@@ -163,7 +122,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="pcss" scoped>
 .logo {
   font-family: Poppins;
   font-size: 20px;

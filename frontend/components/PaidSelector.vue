@@ -43,7 +43,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="pcss" scoped>
 .wrapper {
   display: flex;
   flex-direction: row;

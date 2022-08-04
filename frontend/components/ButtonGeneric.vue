@@ -12,7 +12,8 @@
       class="saveasfile"
       :hasIcon="true"
       icon="fas fa-cloud-download-alt"
-      >Zapisz do pliku</BaseButton
+    >
+      Zapisz do pliku</BaseButton
     >
   </div>
 </template>
@@ -34,20 +35,20 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="pcss" scoped>
 .btncontainer {
   display: flex;
   flex-direction: row;
   align-items: stretch;
 
-  .resetfilters {
+  & .resetfilters {
     background: var(--mainBlue);
     &:active {
       background-color: var(--mainBlueActive);
     }
   }
 
-  .saveasfile {
+  & .saveasfile {
     background: var(--softBlue);
     &:active {
       background: var(--softBlueActive);

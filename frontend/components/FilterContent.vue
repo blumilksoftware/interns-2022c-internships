@@ -76,7 +76,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="pcss" scoped>
 * {
   margin: 0;
   box-sizing: border-box;

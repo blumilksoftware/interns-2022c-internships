@@ -64,7 +64,6 @@
               <div class="mt-3 sm:mt-0 sm:ml-3">
                 <router-link
                   to="/home"
-                  tag="button"
                   title="home"
                   class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-500 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
@@ -101,7 +100,7 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="pcss" scoped>
 .logo {
   font-family: Poppins;
   font-size: 24px;

@@ -58,7 +58,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="pcss" scoped>
 .fieldContainer {
   display: grid;
   grid-template-columns: 0.9fr 2fr 1.1fr 1.9fr;
