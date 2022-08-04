@@ -45,8 +45,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/styles/_variables";
-
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -83,7 +81,7 @@ export default {
     }
     .datafield {
       width: 94%;
-      background: $white;
+      background: var(--white);
       border-radius: 5px;
       -webkit-box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.1);
       -moz-box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.1);

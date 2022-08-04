@@ -164,8 +164,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/styles/_variables";
-
 .logo {
   font-family: Poppins;
   font-size: 20px;
@@ -173,7 +171,7 @@ export default {
   margin-right: 30px;
 }
 .bg-white {
-  background-color: $white;
+  background-color: var(--white);
 }
 
 .max-w-7xl {

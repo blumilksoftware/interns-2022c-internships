@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --white: #fff;
+    --black: #000000bb;
+    --lightGreyColor: #d4d4d4;
+    --mediumDarkGreyColor: #aeadad;
+    --darkGreyColor: grey;
+    --mainBlue: #4f46e5;
+    --mainBlueActive: #6761da;
+    --softBlue: #8da0d3;
+    --softBlueActive: #94a2ce;
+    --softGreen: #abe19e;
+}

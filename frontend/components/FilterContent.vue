@@ -81,10 +81,9 @@ export default {
   margin: 0;
   box-sizing: border-box;
 }
-@import "../assets/styles/_variables";
 
 .selector {
-  border-color: $darkGreyColor;
+  border-color: var(--darkGreyColor);
   @media (orientation: portrait) {
     width: 100%;
   }
@@ -96,10 +95,10 @@ export default {
     height: 0;
     transform: translateY(15px);
     border-radius: 5px;
-    border: 2px solid $lightGreyColor;
+    border: 2px solid var(--lightGreyColor);
     display: none;
     flex-direction: column;
-    background-color: $white;
+    background-color: var(--white);
 
     .headfields {
       width: 95%;
@@ -139,7 +138,7 @@ export default {
       margin: 5px auto;
     }
     hr {
-      border: 1px solid $lightGreyColor;
+      border: 1px solid var(--lightGreyColor);
       width: 92%;
       margin: 5px auto;
     }
@@ -153,8 +152,8 @@ export default {
 
       .tag {
         font-size: 12px;
-        color: $mediumDarkGreyColor;
-        border: 1px solid $mediumDarkGreyColor;
+        color: var(--mediumDarkGreyColor);
+        border: 1px solid var(--mediumDarkGreyColor);
         padding: 2px 5px;
         margin: 2px 5px;
         cursor: pointer;
@@ -166,21 +165,21 @@ export default {
         user-select: none;
       }
       .highlight {
-        border-color: $mainBlue;
+        border-color: var(--mainBlue);
         background: #f0efff;
       }
     }
     .approveFilters {
-      color: $black;
+      color: var(--black);
       font-size: 14px;
       width: 28%;
       margin: 0 auto 30px auto;
       padding: 5px 10px;
-      border: 1px solid $mediumDarkGreyColor;
+      border: 1px solid var(--mediumDarkGreyColor);
       border-radius: 10px;
 
       &:active {
-        border-color: $mainBlue;
+        border-color: var(--mainBlue);
       }
       @media (orientation: portrait) {
         font-size: 12px;
@@ -196,7 +195,7 @@ export default {
   .drpDwnBtn {
     width: 100%;
     height: 30px;
-    background-color: $mainBlue;
+    background-color: var(--mainBlue);
     border-radius: 20px;
     display: flex;
     justify-content: center;
@@ -205,8 +204,8 @@ export default {
     cursor: pointer;
 
     &:active {
-      border: 1px solid $mainBlue;
-      background-color: $mainBlueActive;
+      border: 1px solid var(--mainBlue);
+      background-color: var(--mainBlueActive);
     }
     @media (orientation: portrait) {
       width: 95%;
@@ -214,7 +213,7 @@ export default {
     }
 
     .drpDwmBtnText {
-      color: $white;
+      color: var(--white);
       font-family: Poppins;
       text-align: center;
 

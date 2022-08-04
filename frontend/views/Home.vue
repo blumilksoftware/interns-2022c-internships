@@ -30,14 +30,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/styles/_variables";
-
 .home {
   .sticky {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: $white;
+    background-color: var(--white);
     z-index: 1;
   }
   .maplist {
