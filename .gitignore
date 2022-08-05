@@ -5,6 +5,7 @@ node_modules
 /public/js/
 /public/css/
 /public/build/
+/public/hot
 
 .env
 .env.local

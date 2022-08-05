@@ -10,15 +10,16 @@ Website for apprenticeship programme.
 cp .env.example .env
 ```
 
-### 2. Run containers:
+### 2. Build and run containers:
 
 ```shell script
+docker-compose build --no-cache --pull
 docker-compose up -d
 ```
 
 ### 3.Install frontend dependencies and build frontend:
 
-```
+```shell script
 docker-compose exec node npm install
 docker-compose exec node npm run build
 ```
@@ -37,7 +38,7 @@ docker-compose exec php composer intern-build
 docker-compose exec php php artisan key:generate
 ```
 
-Application should be available under `localhost:8027` or other port if you changed `EXTERNAL_WEBSERVER_PORT` value in `.env` file.
+Application should be available under `localhost` or other port if you changed `EXTERNAL_WEBSERVER_PORT` value in `.env` file.
 
 ## Additional information
 
