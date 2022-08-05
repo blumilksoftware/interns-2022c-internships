@@ -11,7 +11,7 @@ export default ({ mode }) => {
         },
         resolve: {
             alias: {
-                '@': './frontend',
+                '@': '/frontend',
             },
         },
         plugins: [
