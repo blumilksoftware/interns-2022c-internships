@@ -105,4 +105,3 @@ volumes:
     name: intern-mysql-data
   intern-redis-data:
     name: intern-redis-data
-    
