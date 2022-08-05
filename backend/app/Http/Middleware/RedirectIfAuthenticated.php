@@ -11,14 +11,7 @@ use Internships\Providers\RouteServiceProvider;
 
 class RedirectIfAuthenticated
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  string|null  ...$guards
-     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
-     */
-    public function handle(Request $request, Closure $next, ...$guards)
+    public function handle(Request $request, Closure $next, string|null ...$guards): \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
     {
         $guards = empty($guards) ? [null] : $guards;
 
