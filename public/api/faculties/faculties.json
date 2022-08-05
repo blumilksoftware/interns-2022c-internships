@@ -1,0 +1,17 @@
+[
+    {
+        "id": 0,
+        "name": "Wydział Nauk Technicznych i Ekonomicznych",
+        "directory": "wydzial-techniczny"
+    },
+    {
+        "id": 1,
+        "name": "Wydział Nauk Społecznych i Humanistycznych",
+        "directory": "wydzial-humanistyczny"
+    },
+    {
+        "id": 2,
+        "name": "Wydział Nauk o Zdrowiu i Kulturze Fizycznej",
+        "directory": "wydzial-zdrowie-kultura"
+    }
+]

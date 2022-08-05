@@ -13,22 +13,22 @@
         :companyTags="company.filterData.tags"
       />
     </div>
-    <Buttons class="buttons" />
+    <ButtonGeneric class="buttons" />
   </div>
 </template>
 
 <script>
-import Buttons from "@/components/Buttons";
-import DataField from "@/components/DataField";
-import SearchBar from "@/components/SearchBar";
-import FilterContent from "@/components/FilterContent";
+import ButtonGeneric from "@/components/ButtonGeneric.vue";
+import DataField from "@/components/DataField.vue";
+import SearchBar from "@/components/SearchBar.vue";
+import FilterContent from "@/components/FilterContent.vue";
 import { isMobile } from "../functions/functions.js";
 import { useStore } from "vuex";
 import { computed } from "vue";
 
 export default {
   components: {
-    Buttons,
+    ButtonGeneric,
     DataField,
     SearchBar,
     FilterContent,
@@ -44,9 +44,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-@import "../assets/styles/_variables";
-
+<style lang="pcss" scoped>
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -83,7 +81,7 @@ export default {
     }
     .datafield {
       width: 94%;
-      background: $white;
+      background: var(--white);
       border-radius: 5px;
       -webkit-box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.1);
       -moz-box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.1);
