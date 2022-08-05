@@ -1,0 +1,90 @@
+{
+  "frontend/assets/images/cooperate.jpg": {
+    "file": "assets/cooperate.54063929.jpg",
+    "src": "frontend/assets/images/cooperate.jpg"
+  },
+  "frontend/assets/images/info.jpg": {
+    "file": "assets/info.0ac5b63b.jpg",
+    "src": "frontend/assets/images/info.jpg"
+  },
+  "frontend/assets/images/landing_right.jpg": {
+    "file": "assets/landing_right.67e118d6.jpg",
+    "src": "frontend/assets/images/landing_right.jpg"
+  },
+  "frontend/assets/images/blumilklogo.png": {
+    "file": "assets/blumilklogo.74508f95.png",
+    "src": "frontend/assets/images/blumilklogo.png"
+  },
+  "frontend/assets/icons/dollarIcon.svg": {
+    "file": "assets/dollarIcon.e508d750.svg",
+    "src": "frontend/assets/icons/dollarIcon.svg"
+  },
+  "frontend/assets/icons/locationIcon.svg": {
+    "file": "assets/locationIcon.6d2ff7b8.svg",
+    "src": "frontend/assets/icons/locationIcon.svg"
+  },
+  "frontend/js/app.js": {
+    "file": "assets/app.467b9e82.js",
+    "src": "frontend/js/app.js",
+    "isEntry": true,
+    "dynamicImports": [
+      "frontend/views/LandingPage.vue",
+      "frontend/views/HomePage.vue"
+    ],
+    "css": [
+      "assets/app.a3ce9307.css"
+    ]
+  },
+  "frontend/views/LandingPage.vue": {
+    "file": "assets/LandingPage.e3e874e4.js",
+    "src": "frontend/views/LandingPage.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "frontend/js/app.js",
+      "_BaseFieldSelector.23871ca3.js"
+    ],
+    "css": [
+      "assets/LandingPage.40054a03.css"
+    ],
+    "assets": [
+      "assets/landing_right.67e118d6.jpg"
+    ]
+  },
+  "_BaseFieldSelector.23871ca3.js": {
+    "file": "assets/BaseFieldSelector.23871ca3.js",
+    "imports": [
+      "frontend/js/app.js"
+    ]
+  },
+  "frontend/views/HomePage.vue": {
+    "file": "assets/HomePage.51023ae6.js",
+    "src": "frontend/views/HomePage.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "frontend/js/app.js",
+      "_BaseFieldSelector.23871ca3.js"
+    ],
+    "css": [
+      "assets/HomePage.e36eb7d6.css"
+    ],
+    "assets": [
+      "assets/cooperate.54063929.jpg",
+      "assets/info.0ac5b63b.jpg",
+      "assets/blumilklogo.74508f95.png",
+      "assets/locationIcon.6d2ff7b8.svg",
+      "assets/dollarIcon.e508d750.svg"
+    ]
+  },
+  "frontend/views/LandingPage.css": {
+    "file": "assets/LandingPage.40054a03.css",
+    "src": "frontend/views/LandingPage.css"
+  },
+  "frontend/views/HomePage.css": {
+    "file": "assets/HomePage.e36eb7d6.css",
+    "src": "frontend/views/HomePage.css"
+  },
+  "frontend/js/app.css": {
+    "file": "assets/app.a3ce9307.css",
+    "src": "frontend/js/app.css"
+  }
+}
