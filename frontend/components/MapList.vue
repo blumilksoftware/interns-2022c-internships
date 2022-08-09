@@ -20,14 +20,14 @@ export default {
 .container {
   display: grid;
   width: 100%;
-  grid-template-columns: 0.66fr 1.6fr;
+  grid-template-columns: 0.8fr 1.5fr;
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-template-areas: "listcontainer map";
 
   @media (orientation: portrait) {
     grid-template-columns: 1fr;
-    grid-template-rows: 70vh auto;
+    grid-template-rows: 75vh auto;
     grid-template-areas:
       "map"
       "listcontainer";

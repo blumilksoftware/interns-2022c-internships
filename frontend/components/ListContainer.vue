@@ -41,7 +41,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: 100vh;
+  height: 97vh;
   @media (orientation: portrait) {
     width: 100vw;
     height: 60vh;
