@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <searchBar class="searchBar" />
+    <SearchBar class="searchBar" />
     <div class="datafields">
       <DataField
         class="datafield bg-gray-50"
@@ -46,6 +46,7 @@ export default {
     width: 100vw;
     height: 60vh;
   }
+  
   .searchBar {
     position: flex;
     width: 90%;
