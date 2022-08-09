@@ -16,6 +16,6 @@
         </kbd>
       </div>
     </div>
-    <div class="bg-slate-500"> </div>
+    <div class="bg-slate-500"></div>
   </div>
 </template>

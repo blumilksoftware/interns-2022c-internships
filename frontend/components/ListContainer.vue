@@ -1,6 +1,7 @@
 <template>
   <div class="wrapper">
-    <searchBar class="searchBar" />    <div class="datafields">
+    <searchBar class="searchBar" />
+    <div class="datafields">
       <DataField
         class="datafield bg-gray-50"
         v-for="company in companies"

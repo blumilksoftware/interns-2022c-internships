@@ -2,7 +2,8 @@
   <div>
     <div
       v-if="loading"
-      class="flex justify-center items-center w-full h-full bg-gray-300 text-gray-400">
+      class="flex justify-center items-center w-full h-full bg-gray-300 text-gray-400"
+    >
       <location-marker-icon
         class="h-36 w-36 animate-pulse"
         aria-hidden="true"
@@ -16,13 +17,11 @@
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-import SearchBar from "@/components/SearchBar.vue";
 import { LocationMarkerIcon } from "@heroicons/vue/outline";
 
 export default {
   components: {
     LocationMarkerIcon,
-    SearchBar,
   },
   mounted() {
     mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;

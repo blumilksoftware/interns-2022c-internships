@@ -14,18 +14,19 @@
       <div class="companyInfo text-zinc-700">
         <div class="city">
           <img src="../assets/icons/locationIcon.svg" alt="locationicon" /><span
-            >{{ course }}</span>
+            >{{ course }}</span
+          >
         </div>
         <div class="city">
           <img src="../assets/icons/locationIcon.svg" alt="locationicon" /><span
-            >{{ location }}</span>
+            >{{ location }}</span
+          >
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-
 export default {
   props: {
     companyName: {
@@ -43,7 +44,7 @@ export default {
   },
 };
 </script>
-  
+
 <style lang="pcss" scoped>
 .fieldContainer {
   display: grid;
