@@ -3,14 +3,15 @@
 @tailwind utilities;
 
 :root {
-    --white: #fff;
+    ---background-light: #cad2d369;
+    --Primary-light-color: #eaeaff;
     --black: #000000bb;
-    --lightGreyColor: #d4d4d4;
+    --HeadBar: ##262424;
     --mediumDarkGreyColor: #aeadad;
-    --darkGreyColor: grey;
-    --mainBlue: #4f46e5;
-    --mainBlueActive: #6761da;
-    --softBlue: #8da0d3;
-    --softBlueActive: #94a2ce;
+    --darkGreyColor: #8a8a8a;
+    --mainBlue: #0000009e;
+    --mainBlueActive: #1a1a1a;
+    --softBlue: #d3d3d3d5;
+    --softBlueActive: #4e4e4e4f;
     --softGreen: #abe19e;
 }

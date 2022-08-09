@@ -2,15 +2,13 @@
   <div>
     <div
       v-if="loading"
-      class="flex justify-center items-center w-full h-full bg-gray-300 text-gray-400"
-    >
+      class="flex justify-center items-center w-full h-full bg-gray-300 text-gray-400">
       <location-marker-icon
         class="h-36 w-36 animate-pulse"
         aria-hidden="true"
       />
     </div>
     <div id="map" class="w-full h-full"></div>
-    <SearchBar v-if="isPortrait()" class="searchBarMobile" />
   </div>
 </template>
 
@@ -39,9 +37,6 @@ export default {
   },
 
   methods: {
-    isPortrait() {
-      return window.innerHeight > window.innerWidth;
-    },
     buildMap() {
       this.map = new mapboxgl.Map({
         container: "map",
@@ -54,14 +49,6 @@ export default {
 </script>
 
 <style lang="pcss" scoped>
-.searchBarMobile {
-  position: absolute;
-  top: 75px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  width: 90vw;
-}
 .map-marker-popup > div:not(:first-child) {
   padding: 4px 8px;
 }

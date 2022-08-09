@@ -8,6 +8,9 @@ export default ({ mode }) => {
         server: {
             host: process.env.VITE_HOST,
             port: process.env.VITE_PORT,
+            hmr: {
+                host: 'localhost',
+            },
         },
         resolve: {
             alias: {
@@ -19,7 +22,10 @@ export default ({ mode }) => {
                 input: [
                     'frontend/js/app.js',
                 ],
-                refresh: true,
+                refresh: [
+                    'frontend/views/*',
+                    'frontend/components/*',
+                ],
             }),
             vue({
                 template: {

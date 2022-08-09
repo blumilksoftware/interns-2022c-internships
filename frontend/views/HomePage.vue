@@ -2,25 +2,16 @@
   <div class="home">
     <NavigationBar class="sticky" />
     <MapList class="maplist" />
-    <InformationBar class="info" />
-    <FileDownloadBar class="files" />
-    <CooperateBar class="cooperate" />
   </div>
 </template>
 
 <script>
 import NavigationBar from "@/components/NavigationBar.vue";
-import CooperateBar from "@/components/CooperateBar.vue";
-import InformationBar from "@/components/InformationBar.vue";
-import FileDownloadBar from "@/components/FileDownloadBar.vue";
 import MapList from "@/components/MapList.vue";
 
 export default {
   components: {
     NavigationBar,
-    CooperateBar,
-    InformationBar,
-    FileDownloadBar,
     MapList,
   },
   mounted() {
@@ -32,38 +23,21 @@ export default {
 <style lang="pcss" scoped>
 .home {
   .sticky {
-    position: fixed;
+    position: ;
     top: 0;
     width: 100%;
-    background-color: var(--white);
-    z-index: 1;
+    z-index: 2;
   }
   .maplist {
-    margin-top: 64px;
+    position: fixed;
     max-width: 100vw;
-    max-height: 80vh;
+    max-height: 100%;
     @media (orientation: portrait) {
-      max-height: unset;
+      max-height: 65%;
     }
   }
 
-  .info {
-    max-width: 80%;
-    margin: 0px auto 50px auto;
-  }
-
-  .files {
-    max-width: 700px;
-    margin: 50px auto 100px auto;
-    padding: 0 5%;
-    @media (min-width: 2500px) {
-      max-width: 1400px;
-    }
-  }
 }
-</style>
-
-<style>
 input,
 textarea,
 button,
