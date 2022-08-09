@@ -4,17 +4,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-    ---background-light: #cad2d369;
-    --Primary-light-color: #eaeaff;
-    --black: #000000bb;
-    --HeadBar: ##262424;
-    --mediumDarkGreyColor: #aeadad;
-    --darkGreyColor: #8a8a8a;
-    --mainBlue: #0000009e;
-    --mainBlueActive: #1a1a1a;
-    --softBlue: #d3d3d3d5;
-    --softBlueActive: #4e4e4e4f;
-    --softGreen: #abe19e;
-}

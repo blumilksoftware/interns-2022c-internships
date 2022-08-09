@@ -44,7 +44,7 @@ export default {
   height: 100vh;
   @media (orientation: portrait) {
     width: 100vw;
-    height: 60;
+    height: 60vh;
   }
   .searchBar {
     position: flex;
