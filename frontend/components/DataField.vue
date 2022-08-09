@@ -1,32 +1,31 @@
 <template>
   <div>
     <div class="fieldContainer">
-      <div class="companyIcon border-2 rounded-md border-zinc-600">
+      <div class="companyIcon border-2 rounded-md border-zinc-400">
         <img
           class="imgIcon"
           src="../assets/images/blumilklogo.png"
           alt="Company Logo Icon"
         />
       </div>
-      <div class="companyName text-zinc-900">
+      <div class="companyName text-zinc-900 pl-2" >
         <span>{{ companyName }}</span>
       </div>
-      <div class="companyInfo text-zinc-700">
+      <div class="companyInfo text-zinc-700 pl-2">
         <div class="city">
           <img src="../assets/icons/locationIcon.svg" alt="locationicon" /><span
-            >{{ course }}</span
-          >
+            >{{ course }}</span>
         </div>
         <div class="city">
           <img src="../assets/icons/locationIcon.svg" alt="locationicon" /><span
-            >{{ location }}</span
-          >
+            >{{ location }}</span>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+
 export default {
   props: {
     companyName: {
@@ -44,7 +43,7 @@ export default {
   },
 };
 </script>
-
+  
 <style lang="pcss" scoped>
 .fieldContainer {
   display: grid;
@@ -66,7 +65,6 @@ export default {
 
     .imgIcon {
       padding: 1px;
-      border-radius: 50%;
     }
   }
 

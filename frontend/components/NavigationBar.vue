@@ -18,12 +18,10 @@
             <img
               class="block lg:hidden h-10 w-auto"
               src="../assets/images/navbar_logo.svg"
-              alt="Workflow"
             />
             <img
               class="hidden lg:block h-10 w-auto"
               src="../assets/images/navbar_logo.svg"
-              alt="Workflow"
             />
           </div>
           <div class="hidden sm:block sm:ml-6">
