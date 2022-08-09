@@ -79,7 +79,7 @@ import { MenuIcon, XIcon } from "@heroicons/vue/outline";
 
 const navigation = [
   { name: "Znajdz Praktyki", href: "#", current: true },
-  { name: "Dodaj swoja firme", href: "#", current: false },
+  { name: "Dodaj swoją firmę", href: "#", current: false },
+  { name: "Logowanie", href: "#", current: false },
 ];
-const login = [{ name: "Logowanie", href: "#", current: false }];
 </script>
