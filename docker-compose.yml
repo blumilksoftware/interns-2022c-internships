@@ -73,7 +73,6 @@ services:
       - intern-dev
     ports:
       - ${EXTERNAL_NODE_PORT:-5173}:${EXTERNAL_NODE_PORT:-5173}
-      - ${VITE_PORT:-3000}:${VITE_PORT:-3000}
     restart: unless-stopped
 
   mailhog:
