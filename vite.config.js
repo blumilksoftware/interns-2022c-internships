@@ -19,7 +19,12 @@ export default ({ mode }) => {
                 input: [
                     'frontend/js/app.js',
                 ],
-                refresh: true,
+                refresh: [
+                    'frontend/**',
+                    'frontend/views/**',
+                    'frontend/components/**',
+                    'frontend/assets/**',
+                ],
             }),
             vue({
                 template: {
