@@ -46,7 +46,7 @@ export default {
     width: 100vw;
     height: 60vh;
   }
-  
+
   .searchBar {
     position: flex;
     width: 90%;
