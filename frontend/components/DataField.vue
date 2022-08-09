@@ -41,11 +41,9 @@ export default {
       required: true,
     },
   },
-  methods: {
-  },
 };
 </script>
-
+  
 <style lang="pcss" scoped>
 .fieldContainer {
   display: grid;

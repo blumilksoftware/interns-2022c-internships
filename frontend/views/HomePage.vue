@@ -23,7 +23,6 @@ export default {
 <style lang="pcss" scoped>
 .home {
   .sticky {
-    position: ;
     top: 0;
     width: 100%;
     z-index: 2;
@@ -36,8 +35,8 @@ export default {
       max-height: 65%;
     }
   }
-
 }
+
 input,
 textarea,
 button,
