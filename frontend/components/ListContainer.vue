@@ -1,9 +1,11 @@
 <template>
-  <div class="wrapper">
-    <SearchBar class="searchBar" />
-    <div class="datafields">
+  <div class="wrapper flex-col justify-end h-screen flex-wrap">
+    <SearchBar class="searchBar flex-col w-full my-auto" />
+    <div
+      class="datafields flex-initial h-i overflow-scroll overflow-x-hidden justify-items-start max-w-full"
+    >
       <DataField
-        class="datafield bg-gray-50"
+        class="datafield bg-gray-50 w-full rounded shadow cursor-pointer my-3 scrollbar-thumb:bg-zinc-500 scrollbar-track:rounded"
         v-for="company in companies"
         :key="company.id"
         :companyName="company.name"
@@ -35,62 +37,3 @@ export default {
   },
 };
 </script>
-
-<style lang="pcss" scoped>
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  height: 97vh;
-  @media (orientation: portrait) {
-    width: 100vw;
-    height: 60vh;
-  }
-
-  .searchBar {
-    position: flex;
-    width: 90%;
-    margin: auto auto auto auto;
-  }
-
-  .datafields {
-    height: 93%;
-    overflow: scroll;
-    overflow-x: hidden;
-    justify-items: flex-start;
-    min-width: 500px;
-    @media (orientation: portrait) {
-      max-height: 65vh;
-      min-width: unset;
-    }
-    .datafield {
-      width: 94%;
-      border-radius: 5px;
-      -webkit-box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.1);
-      -moz-box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.1);
-      box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.1);
-      cursor: pointer;
-      margin: 12px auto;
-    }
-
-    &::-webkit-scrollbar {
-      background-color: rgb(243, 246, 248);
-      width: 12px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: #babac0;
-      border-radius: 16px;
-      border: 3px solid rgb(243, 246, 248);
-    }
-    &::-webkit-scrollbar-thumb:hover {
-      background-color: #a0a0a5;
-      border: 2px solid #f4f4f4;
-    }
-  }
-  .buttons {
-    height: 50px;
-    width: 100%;
-  }
-}
-</style>

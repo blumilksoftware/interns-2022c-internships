@@ -26,18 +26,3 @@ export default {
   },
 };
 </script>
-<style>
-html::-webkit-scrollbar {
-  width: 12px;
-  background-color: #808080;
-}
-
-html::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #babac0;
-}
-html::-webkit-scrollbar-thumb:hover {
-  background-color: #a0a0a5;
-}
-</style>

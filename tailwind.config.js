@@ -4,6 +4,9 @@ module.exports = {
   content: ["./frontend/**/*.{vue,html}"],
   theme: {
     extend: {
+      height:{
+        'i': '95%',
+      },
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
       },
@@ -14,7 +17,6 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
   },
   plugins: [
     require("@tailwindcss/forms"),

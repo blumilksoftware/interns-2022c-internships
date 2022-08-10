@@ -1,9 +1,6 @@
 <template>
   <div>
-    <div
-      v-if="loading"
-      class="flex justify-center items-center w-full h-full bg-gray-300 text-gray-400"
-    >
+    <div v-if="loading" class="w-full h-full bg-gray-300 text-gray-400">
       <location-marker-icon
         class="h-36 w-36 animate-pulse"
         aria-hidden="true"
@@ -46,14 +43,3 @@ export default {
   },
 };
 </script>
-
-<style lang="pcss" scoped>
-.map-marker-popup > div:not(:first-child) {
-  padding: 4px 8px;
-}
-#map-controls {
-  i {
-    margin: auto;
-  }
-}
-</style>
