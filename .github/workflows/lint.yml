@@ -56,7 +56,7 @@ jobs:
         run: npm ci
 
       - name: Install backend dependencies
-        run: composer install --prefer-dist --no-progress
+        run: composer install --prefer-dist --no-progress --working-dir=./backend
 
       - name: Lint js codebase
         run: npm run lint
