@@ -29,7 +29,7 @@ export default {
 <style>
 html::-webkit-scrollbar {
   width: 12px;
-  background-color: var(--softBlue);
+  background-color: #808080;
 }
 
 html::-webkit-scrollbar-thumb {
