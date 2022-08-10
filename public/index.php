@@ -11,7 +11,7 @@ if (file_exists(__DIR__ . "/../backend/storage/framework/maintenance.php")) {
     require __DIR__ . "/../backend/storage/framework/maintenance.php";
 }
 
-require __DIR__ . "/../vendor/autoload.php";
+require __DIR__ . "/../backend/vendor/autoload.php";
 
 $app = require_once __DIR__ . "/../backend/bootstrap/app.php";
 

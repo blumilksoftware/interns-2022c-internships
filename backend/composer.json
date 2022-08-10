@@ -5,15 +5,15 @@
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "InternshipsStatic\\": "backend/static/",
-      "Internships\\": "backend/app/",
-      "Database\\Factories\\": "backend/database/factories/",
-      "Database\\Seeders\\": "backend/database/seeders/"
+      "InternshipsStatic\\": "static/",
+      "Internships\\": "app/",
+      "Database\\Factories\\": "database/factories/",
+      "Database\\Seeders\\": "database/seeders/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\": "backend/tests/"
+      "Tests\\": "tests/"
     }
   },
   "require": {
@@ -53,25 +53,25 @@
       "@intern-help"
     ],
     "intern-help": [
-      "sh -c 'cd backend/static && php index.php --help --composer'"
+      "sh -c 'cd static && php index.php --help --composer'"
     ],
     "intern-build": [
-      "rm -rf ./public/api",
-      "sh -c 'cd backend/static && php index.php --build'"
+      "rm -rf ../public/api",
+      "sh -c 'cd static && php index.php --build'"
     ],
     "intern-populate": [
-      "sh -c 'cd backend/static && php index.php --populate'"
+      "sh -c 'cd static && php index.php --populate'"
     ],
     "intern-fetch": [
-      "sh -c 'cd backend/static && php index.php --fetch'"
+      "sh -c 'cd static && php index.php --fetch'"
     ],
     "intern-purge": [
-      "rm -rf ./public/api"
+      "rm -rf ../public/api"
     ],
-    "test-backend": "./vendor/bin/phpunit testing --filter Backend",
-    "test-resources": "./vendor/bin/phpunit testing --filter Integrity",
-    "cs": "./vendor/bin/php-cs-fixer fix --dry-run --diff --config codestyle.php",
-    "csf": "./vendor/bin/php-cs-fixer fix --diff --config codestyle.php",
+    "test-backend": "vendor/bin/phpunit testing --filter Backend",
+    "test-resources": "vendor/bin/phpunit testing --filter Integrity",
+    "cs": "vendor/bin/php-cs-fixer fix --dry-run --diff --config codestyle.php",
+    "csf": "vendor/bin/php-cs-fixer fix --diff --config codestyle.php",
     "test": "@php artisan test",
     "fresh": "@php artisan migrate:fresh",
     "fresh:demo": [
@@ -96,7 +96,7 @@
   },
   "config": {
     "optimize-autoloader": true,
-    "preferred-install": "public",
+    "preferred-install": "dist",
     "sort-packages": true
   },
   "minimum-stability": "dev",
