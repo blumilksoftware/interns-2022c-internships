@@ -10,7 +10,6 @@
       />
     </div>
     <div id="map" class="w-full h-full"></div>
-    <SearchBar v-if="isPortrait()" class="searchBarMobile" />
   </div>
 </template>
 
@@ -18,13 +17,11 @@
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-import SearchBar from "@/components/SearchBar.vue";
 import { LocationMarkerIcon } from "@heroicons/vue/outline";
 
 export default {
   components: {
     LocationMarkerIcon,
-    SearchBar,
   },
   mounted() {
     mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
@@ -39,9 +36,6 @@ export default {
   },
 
   methods: {
-    isPortrait() {
-      return window.innerHeight > window.innerWidth;
-    },
     buildMap() {
       this.map = new mapboxgl.Map({
         container: "map",
@@ -54,14 +48,6 @@ export default {
 </script>
 
 <style lang="pcss" scoped>
-.searchBarMobile {
-  position: absolute;
-  top: 75px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  width: 90vw;
-}
 .map-marker-popup > div:not(:first-child) {
   padding: 4px 8px;
 }

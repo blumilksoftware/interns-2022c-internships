@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <ListContainer class="listcontainer" />
+    <ListContainer class="listcontainer bg-gray-100" />
     <MapDisplay class="map" />
   </div>
 </template>
@@ -20,21 +20,20 @@ export default {
 .container {
   display: grid;
   width: 100%;
-  grid-template-columns: 1fr 1.4fr;
+  grid-template-columns: 0.8fr 1.5fr;
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-template-areas: "listcontainer map";
 
   @media (orientation: portrait) {
     grid-template-columns: 1fr;
-    grid-template-rows: 70vh auto;
+    grid-template-rows: 75vh auto;
     grid-template-areas:
       "map"
       "listcontainer";
   }
   .listcontainer {
     grid-area: listcontainer;
-    background-color: rgb(243, 246, 248);
   }
   .map {
     grid-area: map;

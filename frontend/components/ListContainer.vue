@@ -1,10 +1,9 @@
 <template>
   <div class="wrapper">
-    <searchBar v-if="!isMobile()" class="searchBar" />
-    <FilterContent class="filterBtn" />
+    <SearchBar class="searchBar" />
     <div class="datafields">
       <DataField
-        class="datafield"
+        class="datafield bg-gray-50"
         v-for="company in companies"
         :key="company.id"
         :companyName="company.name"
@@ -13,32 +12,25 @@
         :companyTags="company.filterData.tags"
       />
     </div>
-    <ButtonGeneric class="buttons" />
   </div>
 </template>
 
 <script>
-import ButtonGeneric from "@/components/ButtonGeneric.vue";
 import DataField from "@/components/DataField.vue";
 import SearchBar from "@/components/SearchBar.vue";
-import FilterContent from "@/components/FilterContent.vue";
-import { isMobile } from "../functions/functions.js";
 import { useStore } from "vuex";
 import { computed } from "vue";
 
 export default {
   components: {
-    ButtonGeneric,
     DataField,
     SearchBar,
-    FilterContent,
   },
   setup() {
     const store = useStore();
 
     return {
       companies: computed(() => store.getters.getCompaniesMerged),
-      isMobile,
     };
   },
 };
@@ -49,24 +41,16 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: 70vh;
+  height: 97vh;
   @media (orientation: portrait) {
     width: 100vw;
-    height: auto;
+    height: 60vh;
   }
+
   .searchBar {
+    position: flex;
     width: 90%;
-    margin: 20px auto 10px auto;
-  }
-
-  .filterBtn {
-    height: auto;
-    width: 90%;
-    margin: 10px auto 20px auto;
-
-    @media (orientation: portrait) {
-      margin-top: 25px;
-    }
+    margin: auto auto auto auto;
   }
 
   .datafields {
@@ -81,7 +65,6 @@ export default {
     }
     .datafield {
       width: 94%;
-      background: var(--white);
       border-radius: 5px;
       -webkit-box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.1);
       -moz-box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.1);
