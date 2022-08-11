@@ -19,6 +19,7 @@ pnpm-debug.log*
 
 .composer
 .idea
+jsconfig.json
 .vscode
 vendor
 *.suo

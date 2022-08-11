@@ -6,7 +6,7 @@ use Blumilk\Codestyle\Config;
 use Blumilk\Codestyle\Configuration\Defaults\Paths;
 
 $config = new Config(
-    paths: new Paths("backend/app", "backend/static", "backend/testing", "backend/tests")
+    paths: new Paths("app", "static", "tests", "database", "routes")
 );
 
 return $config->config();
