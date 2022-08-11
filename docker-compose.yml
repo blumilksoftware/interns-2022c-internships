@@ -47,7 +47,7 @@ services:
     networks:
       - intern-dev
     ports:
-      - ${DOCKER_DEV_DB_EXTERNAL_PORT:-5432}:${DOCKER_DEV_DB_EXTERNAL_PORT:-5432}
+      - ${DOCKER_DEV_DB_EXTERNAL_PORT:-3306}:3306
     restart: unless-stopped
 
   redis:
