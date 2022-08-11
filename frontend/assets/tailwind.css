@@ -13,84 +13,42 @@
     height: 12px;
   }
   
-  /* Track */
   ::-webkit-scrollbar-track {
     border-radius: 100vh;
     background: rgb(243 244 246);
   }
   
-  /* Handle */
   ::-webkit-scrollbar-thumb {
     background: #65688c;
     border-radius: 100vh;
   }
   
-  /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: #171c58;
   }
 
-.wrapper {
-  @media (orientation: portrait) {
-    width: 100vw;
-    height: 60vh;
+  .map-marker-popup > div:not(:first-child) {
+    padding: 4px 8px;
   }
-}
-.datafields {
-  @media (orientation: portrait) {
-    max-height: 65vh;
-    min-width: unset;
-  } 
-}
-.container {
-  display: grid;
-  width: 100%;
-  grid-template-columns: 0.8fr 1.5fr;
-  grid-template-rows: 1fr;
-  gap: 0px 0px;
-  grid-template-areas: "listcontainer map";
 
-  @media (orientation: portrait) {
-    grid-template-columns: 1fr;
-    grid-template-rows: 60vh auto;
-    grid-template-areas:
-      "map"
-      "listcontainer";
+  #map-controls {
+    i {
+      margin: auto;
+    }
   }
-  .listcontainer {
-    grid-area: listcontainer;
-  }
-  .map {
-    grid-area: map;
-  }
-}
-.maplist {
-  position: fixed;
-  max-width: 100vw;
-  max-height: 100%;
-  @media (orientation: portrait) {
-    max-height: 65%;
-  }
-}
-.map-marker-popup > div:not(:first-child) {
-  padding: 4px 8px;
-}
-#map-controls {
-  i {
-    margin: auto;
-  }
-}
-html::-webkit-scrollbar {
-  width: 12px;
-  background-color: #808080;
-}
 
-html::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #babac0;
-}
-html::-webkit-scrollbar-thumb:hover {
-  background-color: #a0a0a5;
-}
+  html::-webkit-scrollbar {
+    width: 12px;
+    background-color: #808080;
+  }
+
+  html::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #babac0;
+  }
+
+  html::-webkit-scrollbar-thumb:hover {
+    background-color: #a0a0a5;
+  }
 }

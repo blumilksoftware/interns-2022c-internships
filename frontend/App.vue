@@ -1,28 +1,17 @@
 <template>
+<div class="relative min-h-full flex flex-col">
+  <NavigationBar/>
   <router-view />
+</div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import NavigationBar from "@/components/NavigationBar.vue";
+
 export default {
   name: "App",
-  methods: {
-    ...mapActions([
-      "fetchCompanies",
-      "fetchFilters",
-      "fetchFaculties",
-      "fetchDocuments",
-      "fetchTags",
-      "fetchCompaniesMerged",
-    ]),
-  },
-  mounted() {
-    this.fetchCompanies();
-    this.fetchFilters();
-    this.fetchFaculties();
-    this.fetchDocuments();
-    this.fetchTags();
-    this.fetchCompaniesMerged();
-  },
+  components: {
+    NavigationBar,
+},
 };
 </script>

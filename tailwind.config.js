@@ -5,14 +5,14 @@ module.exports = {
   theme: {
     extend: {
       height:{
-        'i': '95%',
+        'i': '94%',
       },
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
       },
       colors: {
         'primary': '#171c58',
-        'secondary': '#eaeaff',
+        'secondary': '#34375c',
            },
     },
   },

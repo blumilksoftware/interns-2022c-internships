@@ -1,19 +1,14 @@
 <template>
-  <div class="home">
-    <NavigationBar />
-    <MapList class="maplist fixed" />
-  </div>
+  <CompanyBrowser />
 </template>
 
 <script>
-import NavigationBar from "@/components/NavigationBar.vue";
-import MapList from "@/components/MapList.vue";
+import CompanyBrowser from "@/components/CompanyBrowser.vue"
 
 export default {
   components: {
-    NavigationBar,
-    MapList,
-  },
+    CompanyBrowser
+    },
   mounted() {
     window.scrollTo(0, 0);
   },
