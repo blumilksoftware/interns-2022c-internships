@@ -6,6 +6,6 @@
     @vite('frontend/js/app.js')
 </head>
 <body class="h-screen mt-0">
-    <div id="app" class="h-full"></div>
+    <div id="app" class="h-full overflow-hidden"></div>
 </body>
 </html>

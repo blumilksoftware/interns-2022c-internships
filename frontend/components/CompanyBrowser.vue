@@ -3,17 +3,17 @@
     
 
     <!-- 3 column wrapper -->
-    <div class="flex-grow w-full mx-0 lg:flex sm:flex-col lg:flex-row">
+    <div class="flex-col flex-grow w-full mx-0 flex md:flex-row-reverse flex-none" >
       <!-- Left sidebar & main wrapper -->
-      <div class="flex-1 min-w-0 bg-white xl:flex">
+      <div class="flex-1 bg-white w-full">
 
         <!-- Projects List -->
-        <div class="bg-white lg:min-w-0 lg:flex-1">
+        <div class="bg-white w-screen h-2/3 md:w-2/4">
             test
         </div>
       </div>
       <!-- Activity feed -->
-      <div class="bg-gray-50 pr-4 sm:pr-6 lg:pr-8 lg:flex-shrink-0 lg:border-l lg:border-gray-200 xl:pr-0">
+      <div class="bg-gray-50 pr-4 sm:pr-6 lg:pr-8 lg:flex-shrink-0 lg:border-l lg:border-gray-200 xl:pr-0 w-screen md:w-1/3">
         <div class="pl-6 lg:w-80">
           <div class="pt-6 pb-2">
             <h2 class="text-sm font-semibold">Activity</h2>
