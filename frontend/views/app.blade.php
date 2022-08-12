@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html class="h-screen bg-gray-100">
+<html class="h-full bg-gray-100">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
     @vite('js/app.js')
 </head>
-<body class="h-screen mt-0">
+<body class="h-full mt-0">
     <div id="app" class="h-full overflow-hidden"></div>
 </body>
 </html>
