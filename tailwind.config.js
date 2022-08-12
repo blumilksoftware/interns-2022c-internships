@@ -4,9 +4,6 @@ module.exports = {
   content: ["./frontend/**/*.{vue,html}"],
   theme: {
     extend: {
-      height:{
-        'i': '94%',
-      },
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
       },
