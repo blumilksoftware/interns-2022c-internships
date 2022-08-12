@@ -3,11 +3,10 @@ import laravel from 'laravel-vite-plugin'
 import vue from '@vitejs/plugin-vue'
 
 export default ({ mode }) => {
-    process.env = { ...process.env, ...loadEnv(mode, process.cwd() + "/..") }
+    process.env = { ...process.env, ...loadEnv(mode, process.cwd())}
     return defineConfig({
-        envDir: "../",
         build: {
-            outDir: '../public/build/'
+            outDir: process.env.VITE_PUBLIC_DIRECTORY_PATH + '/build/'
         },
         server: {
             host: process.env.VITE_HOST,
@@ -32,7 +31,7 @@ export default ({ mode }) => {
                 refresh: [
                     './views/**'
                 ],
-                publicDirectory: '../public',
+                publicDirectory: process.env.VITE_PUBLIC_DIRECTORY_PATH,
             }),
             vue({
                 template: {

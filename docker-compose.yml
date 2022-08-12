@@ -64,6 +64,8 @@ services:
   node:
     image: node:18.7.0-alpine3.16
     container_name: intern-node
+    env_file:
+      - .env
     working_dir: /application/frontend
     tty: true
     user: ${CURRENT_UID}
