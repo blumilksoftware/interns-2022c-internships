@@ -13,6 +13,7 @@ $application = new Illuminate\Foundation\Application(
     dirname(__DIR__),
 );
 
+$application->useEnvironmentPath(dirname(__DIR__, 2));
 $application->useStoragePath(dirname(__DIR__) . "/storage");
 $application->useLangPath(dirname(__DIR__, 2) . "/lang");
 $application->useDatabasePath(dirname(__DIR__) . "/database");
