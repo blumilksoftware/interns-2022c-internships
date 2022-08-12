@@ -53,13 +53,13 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install frontend dependencies
-        run: npm ci
+        run: npm --prefix ./frontend ci
 
       - name: Install backend dependencies
         run: composer install --prefer-dist --no-progress --working-dir=./backend
 
       - name: Lint js codebase
-        run: npm run lint
+        run: npm --prefix ./frontend run lint
 
       - name: Run php code style checker
         run: composer cs --working-dir=./backend

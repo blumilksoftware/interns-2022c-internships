@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-    @vite('frontend/js/app.js')
+    @vite('js/app.js')
 </head>
 <body class="h-screen mt-0">
     <div id="app" class="h-full"></div>

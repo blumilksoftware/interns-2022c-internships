@@ -1,7 +1,7 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  content: ["./frontend/**/*.{vue,html}"],
+  content: ["./**/*.{vue,html}"],
   theme: {
     extend: {
       fontFamily: {
@@ -10,7 +10,7 @@ module.exports = {
       colors: {
         'primary': '#171c58',
         'secondary': '#34375c',
-           },
+      },
     },
   },
   variants: {

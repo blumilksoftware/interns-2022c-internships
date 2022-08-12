@@ -3,8 +3,12 @@ import laravel from 'laravel-vite-plugin'
 import vue from '@vitejs/plugin-vue'
 
 export default ({ mode }) => {
-    process.env = { ...process.env, ...loadEnv(mode, process.cwd()) }
+    process.env = { ...process.env, ...loadEnv(mode, process.cwd() + "/..") }
     return defineConfig({
+        envDir: "../",
+        build: {
+            outDir: '../public/build/'
+        },
         server: {
             host: process.env.VITE_HOST,
             port: process.env.VITE_PORT,
@@ -17,17 +21,18 @@ export default ({ mode }) => {
         },
         resolve: {
             alias: {
-                '@': '/frontend',
+                '@': '',
             },
         },
         plugins: [
             laravel({
                 input: [
-                    'frontend/js/app.js',
+                    './js/app.js',
                 ],
                 refresh: [
-                    'frontend/views/**'
-                ]
+                    './views/**'
+                ],
+                publicDirectory: '../public',
             }),
             vue({
                 template: {
