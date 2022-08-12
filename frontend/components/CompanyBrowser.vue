@@ -9,7 +9,7 @@
 
         <!-- Projects List -->
         <div class="bg-white lg:min-w-0 lg:flex-1">
-            dupa
+            test
         </div>
       </div>
       <!-- Activity feed -->
