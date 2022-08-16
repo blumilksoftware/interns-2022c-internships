@@ -5,7 +5,6 @@
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "InternshipsStatic\\": "static/",
       "Internships\\": "app/",
       "Database\\Factories\\": "database/factories/",
       "Database\\Seeders\\": "database/seeders/"
