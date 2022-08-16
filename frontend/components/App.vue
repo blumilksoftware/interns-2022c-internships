@@ -1,8 +1,8 @@
 <template>
-<div class="relative min-h-full flex flex-col">
-  <NavigationBar/>
-  <router-view />
-</div>
+  <div class="h-full flex flex-col transition-all">
+    <NavigationBar />
+    <router-view />
+  </div>
 </template>
 
 <script>
@@ -12,6 +12,6 @@ export default {
   name: "App",
   components: {
     NavigationBar,
-},
+  },
 };
 </script>

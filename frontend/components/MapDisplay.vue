@@ -1,5 +1,11 @@
 <template>
-  <div id="map" class="map w-full h-full overflow-hidden"></div>
+  <div
+    v-if="loading"
+    class="flex justify-center items-center w-full h-full bg-gray-300 text-gray-400"
+  >
+    <location-marker-icon class="h-36 w-36 animate-pulse" aria-hidden="true" />
+  </div>
+  <div id="map" class="relative w-full h-full overflow-hidden"></div>
 </template>
 
 <script>
@@ -13,7 +19,6 @@ export default {
     LocationMarkerIcon,
   },
   mounted() {
-    mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
     this.buildMap();
   },
   data() {
@@ -27,9 +32,12 @@ export default {
   methods: {
     buildMap() {
       this.map = new mapboxgl.Map({
+        accessToken: import.meta.env.VITE_MAPBOX_TOKEN,
+        minzoom: 5,
         container: "map",
         style: import.meta.env.VITE_MAPBOX_STYLE_URL,
       });
+
       this.map.addControl(new mapboxgl.NavigationControl());
     },
   },

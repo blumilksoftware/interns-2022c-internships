@@ -8,13 +8,12 @@ module.exports = {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        'primary': '#171c58',
-        'secondary': '#34375c',
+        primary: "#171c58",
+        secondary: "#34375c",
       },
     },
   },
-  variants: {
-  },
+  variants: {},
   plugins: [
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
