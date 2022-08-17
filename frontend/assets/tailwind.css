@@ -27,16 +27,6 @@
     background: #171c58;
   }
 
-  .map-marker-popup > div:not(:first-child) {
-    padding: 4px 8px;
-  }
-
-  #map-controls {
-    i {
-      margin: auto;
-    }
-  }
-
   html::-webkit-scrollbar {
     width: 12px;
     background-color: #808080;
