@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Internships\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
