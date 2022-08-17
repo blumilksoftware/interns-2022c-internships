@@ -34,8 +34,9 @@ export default {
       this.map = new mapboxgl.Map({
         accessToken: import.meta.env.VITE_MAPBOX_TOKEN,
         minzoom: 5,
+        type: "symbol",
         container: "map",
-        style: import.meta.env.VITE_MAPBOX_STYLE_URL,
+        style: import.meta.env.VITE_MAPBOX_STYLE_URL + "?optimize=true",
       });
 
       this.map.addControl(new mapboxgl.NavigationControl());
