@@ -36,7 +36,7 @@ export default {
         minzoom: 5,
         type: "symbol",
         container: "map",
-        style: import.meta.env.VITE_MAPBOX_STYLE_URL + "?optimize=true",
+        style: "mapbox://styles/mapbox/light-v10?optimize=true",
       });
 
       this.map.addControl(new mapboxgl.NavigationControl());
