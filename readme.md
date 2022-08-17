@@ -24,12 +24,10 @@ docker-compose exec node npm install
 docker-compose exec node npm run build
 ```
 
-### 4. Install backend dependencies and build static API endpoints:
+### 4. Install backend dependencies
 
 ```shell script
 docker-compose exec php composer install
-docker-compose exec php composer intern-populate
-docker-compose exec php composer intern-build
 ```
 
 ### 5. Generate Application Key:
@@ -43,18 +41,3 @@ docker-compose exec php php artisan key:generate
 docker-compose exec node npm run dev
 ```
 Application should be available under `localhost` or other port if you changed `EXTERNAL_WEBSERVER_PORT` value in `.env` file.
-
-## Additional information
-
-### Backend
-
-Static API comes with help command, describing all available script options.
-You can access it with:
-
-```shell script
-docker-compose exec php composer intern
-```
-
-Not all options are available for each environment. Set `COMMANDLINE_MODE` environment variable to `deploy` for deployment, and `local` for development.
-
-It's recommended to run `populate` command for new faculties defined in `faculties.csv` to generate missing required files. It does not overwrite existing data.
