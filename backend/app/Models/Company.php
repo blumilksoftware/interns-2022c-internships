@@ -29,13 +29,19 @@ class Company extends Model
         return $this->belongsTo(ContactDetails::class);
     }
 
-    public function submission(): HasOne
-    {
-        return $this->hasOne(Submission::class);
-    }
-
     public function specializations(): BelongsToMany
     {
         return $this->belongsToMany(Specialization::class);
     }
+
+    public function submissionOriginal(): HasOne
+    {
+        return $this->hasOne(Submission::class, 'company_id');
+    }
+
+    public function submissionEdited(): HasOne
+    {
+        return $this->hasOne(Submission::class, 'edited_company_id');
+    }
+
 }

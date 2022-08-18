@@ -14,6 +14,12 @@ class Submission extends Model
 
     public function company(): BelongsTo
     {
-        return $this->belongsTo(Company::class);
+        return $this->belongsTo(Company::class, 'company_id');
     }
+
+    public function companyEdited(): BelongsTo
+    {
+        return $this->belongsTo(Company::class, 'edited_company_id');
+    }
+
 }

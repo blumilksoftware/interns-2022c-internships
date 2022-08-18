@@ -11,9 +11,9 @@ return new class() extends Migration {
     {
         Schema::create("submissions", function (Blueprint $table): void {
             $table->id();
-            $table->foreignId("company_id")->constrained("companies");
-            $table->foreignId("edited_company_id")->nullable()->constrained("companies");
-            $table->string("comment");
+            $table->foreignId("company_id")->unique()->constrained("companies");
+            $table->foreignId("company_edited_id")->nullable()->unique()->constrained("companies");
+            $table->string("comment")->nullable();
             $table->timestamps();
         });
     }
