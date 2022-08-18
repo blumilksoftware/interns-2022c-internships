@@ -1,16 +1,11 @@
 <template>
-  <div>
-    <div
-      v-if="loading"
-      class="flex justify-center items-center w-full h-full bg-gray-300 text-gray-400"
-    >
-      <location-marker-icon
-        class="h-36 w-36 animate-pulse"
-        aria-hidden="true"
-      />
-    </div>
-    <div id="map" class="w-full h-full"></div>
+  <div
+    v-if="loading"
+    class="flex justify-center items-center w-full h-full bg-gray-300 text-gray-400"
+  >
+    <location-marker-icon class="h-36 w-36 animate-pulse" aria-hidden="true" />
   </div>
+  <div v-show="!loading" id="map" class="w-full h-full overflow-hidden"></div>
 </template>
 
 <script>
@@ -24,13 +19,12 @@ export default {
     LocationMarkerIcon,
   },
   mounted() {
-    mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
     this.buildMap();
   },
   data() {
     return {
-      loading: false,
-      map: null,
+      loading: true,
+      map: this.map,
       filtered: [],
     };
   },
@@ -38,22 +32,24 @@ export default {
   methods: {
     buildMap() {
       this.map = new mapboxgl.Map({
+        accessToken: import.meta.env.VITE_MAPBOX_TOKEN,
+        minzoom: 5,
+        type: "symbol",
         container: "map",
-        style: import.meta.env.VITE_MAPBOX_STYLE_URL,
+        style: "mapbox://styles/mapbox/light-v10?optimize=true",
       });
+
       this.map.addControl(new mapboxgl.NavigationControl());
+
+      this.map.on("load", () => {
+        this.loading = false;
+        this.map.resize();
+      });
+
+      this.map.on("idle", () => {
+        this.map.resize();
+      });
     },
   },
 };
 </script>
-
-<style lang="pcss" scoped>
-.map-marker-popup > div:not(:first-child) {
-  padding: 4px 8px;
-}
-#map-controls {
-  i {
-    margin: auto;
-  }
-}
-</style>

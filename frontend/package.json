@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "lint": "./node_modules/.bin/eslint frontend --ext .js,.vue",
-    "lintf": "./node_modules/.bin/eslint frontend --ext .js,.vue --fix"
+    "dev": "./node_modules/.bin/vite",
+    "build": "./node_modules/.bin/vite build --emptyOutDir",
+    "preview": "./node_modules/.bin/vite preview",
+    "lint": "./node_modules/.bin/eslint . --ext .js,.vue",
+    "lintf": "./node_modules/.bin/eslint . --ext .js,.vue --fix"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.1.2",
