@@ -3,6 +3,5 @@
 </template>
 
 <script setup>
-import CompanyBrowser from '@/components/CompanyBrowser.vue';
-
+import CompanyBrowser from "@/components/CompanyBrowser.vue";
 </script>
