@@ -5,7 +5,7 @@
   >
     <location-marker-icon class="h-36 w-36 animate-pulse" aria-hidden="true" />
   </div>
-  <div id="map" class="relative w-full h-full overflow-hidden"></div>
+  <div v-show="!loading" id="map" class="w-full h-full overflow-hidden"></div>
 </template>
 
 <script>
@@ -23,8 +23,8 @@ export default {
   },
   data() {
     return {
-      loading: false,
-      map: null,
+      loading: true,
+      map: this.map,
       filtered: [],
     };
   },
@@ -40,6 +40,15 @@ export default {
       });
 
       this.map.addControl(new mapboxgl.NavigationControl());
+
+      this.map.on("load", () => {
+        this.loading = false;
+        this.map.resize();
+      });
+
+      this.map.on("idle", () => {
+        this.map.resize();
+      });
     },
   },
 };

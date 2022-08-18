@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full flex flex-col transition-all">
+  <div class="h-full flex flex-col">
     <NavigationBar />
     <router-view />
   </div>
