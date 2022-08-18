@@ -4,19 +4,19 @@
   >
     <table class="min-w-full divide-y divide-gray-300">
       <tbody class="divide-y divide-gray-200 bg-white overflow-hidden py-5">
-        <tr v-for="comapny in companies" :key="comapny.email">
+        <tr v-for="company in companies" :key="company.email">
           <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
             <div class="flex items-center">
               <div class="h-10 w-10 flex-shrink-0">
                 <img
                   class="h-10 w-10 rounded-full"
-                  :src="comapny.image"
+                  :src="company.image"
                   alt=""
                 />
               </div>
               <div class="ml-4">
-                <div class="font-medium text-gray-900">{{ comapny.name }}</div>
-                <div class="text-gray-500">{{ comapny.email }}</div>
+                <div class="font-medium text-gray-900">{{ company.name }}</div>
+                <div class="text-gray-500">{{ company.email }}</div>
               </div>
             </div>
           </td>
