@@ -37,7 +37,7 @@
                   class="flex text-sm text-gray-50 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-50"
                 >
                   <div class="flex-shrink-0">
-                    <UserIcon class="h-8 w-8 rounded-full" />
+                    <UserIcon class="h-6 w-6 rounded-full" />
                   </div>
                 </MenuButton>
               </div>
