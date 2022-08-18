@@ -39,14 +39,13 @@ class LocationFetcher
         return $this;
     }
 
-
     public function get(): Collection
     {
         return collect($this->receivedData->get("features"))->map(function (array $item) {
-           return [
-               "place_name" => $item["place_name"],
-               "coordinates" => $item["center"],
-           ];
+            return [
+                "place_name" => $item["place_name"],
+                "coordinates" => $item["center"],
+            ];
         });
     }
 
