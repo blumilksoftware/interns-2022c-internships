@@ -5,13 +5,9 @@
         <div class="flex items-center">
           <div class="flex-shrink-0">
             <img
-              class="block lg:hidden h-8 w-auto"
+              class="block h-8 w-auto"
               src="@/assets/images/navbar_logo.svg"
               alt="Workflow"
-            />
-            <img
-              class="hidden lg:block h-8 w-auto"
-              src="@/assets/images/navbar_logo.svg"
             />
           </div>
           <div class="hidden sm:block sm:ml-6">
