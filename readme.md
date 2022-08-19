@@ -9,7 +9,7 @@ Project contains modified default configuration and is structured as follows:
 ### 1. Run setup script:
 The script will ask you to input a MapBox public key, which will be written into an .env file as VITE_MAPBOX_TOKEN:
 ```shell script
-sh setup.sh
+bash setup.sh
 ```
 Or you can do provided steps in the file manually.
 Remember to add VITE_MAPBOX_TOKEN key in .env.
