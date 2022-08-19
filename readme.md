@@ -28,4 +28,8 @@ Before committing changes, it is recommended to run code style and lint checkers
 docker-compose exec php composer run csf
 docker-compose exec node npm run lintf
 ```
-You can remove `f` at the end of these commands if you don't want to fix issues.
+You can remove `f` at the end of these commands if you don't want to fix issues:
+```shell script
+docker-compose exec php composer run cs
+docker-compose exec node npm run lint
+```
