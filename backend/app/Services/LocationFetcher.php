@@ -39,7 +39,7 @@ class LocationFetcher
         return $this;
     }
 
-    public function get(): Collection
+    public function getLocations(): Collection
     {
         return collect($this->receivedData->get("features"))->map(function (array $item) {
             return [

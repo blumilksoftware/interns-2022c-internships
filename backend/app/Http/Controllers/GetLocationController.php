@@ -14,6 +14,6 @@ class GetLocationController extends Controller
     {
         return (new LocationFetcher())
             ->query($request->address)
-            ->get();
+            ->getLocations();
     }
 }

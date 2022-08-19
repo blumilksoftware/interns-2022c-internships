@@ -15,7 +15,7 @@ Artisan::command("locate", function (string $address): void {
     $this->comment(
         (new LocationFetcher())
             ->query($address)
-            ->get()
+            ->getLocations()
             ->toJson(JSON_PRETTY_PRINT),
     );
 })->addArgument("address", InputArgument::REQUIRED, "Address of location.")
