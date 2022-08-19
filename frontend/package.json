@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.1.2",
+    "@growthbunker/vueflags": "^0.1.14",
     "@headlessui/vue": "^1.6.7",
     "@heroicons/vue": "^1.0.6",
     "@intlify/unplugin-vue-i18n": "^0.5.0",

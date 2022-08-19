@@ -6,6 +6,7 @@
     },
     "CompanyBrowser":{
         "companies-list": "Companies list",
-        "found-companies": "Found companies"
+        "found-companies": "Found companies",
+        "search": "Search"
     }
 }

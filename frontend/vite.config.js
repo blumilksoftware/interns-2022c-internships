@@ -39,7 +39,7 @@ export default ({ mode }) => {
         },
       }),
       VueI18nPlugin({
-        include: './assets/lang/**'
+        include: "./assets/lang/**",
       }),
     ],
   });

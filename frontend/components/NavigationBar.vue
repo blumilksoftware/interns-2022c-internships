@@ -15,12 +15,12 @@
               <a
                 href="#"
                 class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
-                >Mapa</a
-              >
+                >{{ $t("NavigationBar.map") }}
+              </a>
               <a
                 href="#"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >Dodaj firmę</a
+                >{{ $t("NavigationBar.add-company") }}</a
               >
             </div>
           </div>
@@ -56,16 +56,18 @@
                         active ? 'bg-gray-100' : '',
                         'block px-4 py-2 text-sm text-gray-700',
                       ]"
-                      >Zaloguj</a
+                      >{{ $t("NavigationBar.sign-in") }}</a
                     >
                   </MenuItem>
                 </MenuItems>
               </transition>
             </Menu>
             <div class="flex items-center">
+              <LanguageSwitch class="flex pl-5" />
               <div class="flex pl-5">
                 <a
                   href="https://github.com/blumilksoftware/internships"
+                  target="_blank"
                   class="bg-gray-800 p-1 rounded-full text-gray-400 focus:outline-none focus:ring-2 focus:ring-white"
                 >
                   <span class="sr-only">View code</span>
@@ -76,6 +78,7 @@
           </div>
         </div>
         <div class="-mr-2 flex sm:hidden">
+          <LanguageSwitch class="flex pr-3" />
           <DisclosureButton
             class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
           >
@@ -92,14 +95,14 @@
           as="a"
           href="#"
           class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
-          >Mapa</DisclosureButton
+          >{{ $t("NavigationBar.map") }}</DisclosureButton
         >
         <DisclosureButton
           as="a"
           href="#"
           class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
         >
-          Dodaj firmę
+          {{ $t("NavigationBar.add-company") }}
         </DisclosureButton>
       </div>
       <div class="pt-4 pb-3 border-t border-gray-700">
@@ -110,7 +113,7 @@
             href="#"
             class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
           >
-            Zaloguj</DisclosureButton
+            {{ $t("NavigationBar.sign-in") }}</DisclosureButton
           >
         </div>
       </div>
@@ -129,4 +132,5 @@ import {
   MenuItems,
 } from "@headlessui/vue";
 import { UserIcon, MenuIcon, XIcon, CodeIcon } from "@heroicons/vue/outline";
+import LanguageSwitch from "@/components/LanguageSwitch.vue";
 </script>

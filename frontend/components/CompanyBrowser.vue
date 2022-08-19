@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import MapDisplay from "@/components/MapDisplay.vue";
-import CompanyList from "@/components/CompanyList.vue";
-import CompanyListHeader from "@/components/CompanyListHeader.vue";
+import MapDisplay from "@/MapDisplay.vue";
+import CompanyList from "@/CompanyList.vue";
+import CompanyListHeader from "@/CompanyListHeader.vue";
 </script>
