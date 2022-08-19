@@ -1,43 +1,31 @@
 # internships
 
 Website for apprenticeship programme.
+# Architecture
+Project contains modified default configuration and is structured as follows:
+* `backend` stores configuration for php composer and Laravel application and other php related stuff;
+* `frontend` is for node's npm, vite, vue and lint configuration - it also contains assets used in webpage;
 
-## Usage & Development
-
-### 1. Create `.env` file based on `.env.example`:
-
+## Setup and Run
+### 1. Run setup script:
+The script will ask you to input a MapBox public key, which will be written into an .env file:
 ```shell script
-cp .env.example .env
+sh setup.sh
 ```
+Or you can do provided steps in the file manually.
 
-### 2. Build and run containers:
-
-```shell script
-docker-compose build --no-cache --pull
-docker-compose up -d
-```
-
-### 3.Install frontend dependencies and build frontend:
-
-```shell script
-docker-compose exec node npm install
-docker-compose exec node npm run build
-```
-
-### 4. Install backend dependencies
-
-```shell script
-docker-compose exec php composer install
-```
-
-### 5. Generate Application Key:
-
-```shell script
-docker-compose exec php php artisan key:generate
-```
-
-### 6. Run development environment:
+### 2. Run development environment:
+To develop application in local environment:
 ```shell script
 docker-compose exec node npm run dev
 ```
-Application should be available under `localhost` or other port if you changed `EXTERNAL_WEBSERVER_PORT` value in `.env` file.
+Application should be available under `localhost:80` or other port if you changed `EXTERNAL_WEBSERVER_PORT` value in `.env` file.
+
+## Development
+### Codestyle
+Before committing changes, it is recommended to run codestyle and lint checkers:
+```shell script
+docker-compose exec php composer run csf
+docker-compose exec node npm run lintf
+```
+You can remove `f` at the end of these commands, if you don't want to fix issues.
