@@ -19,7 +19,7 @@ class LocationFetcher
 
     public function __construct()
     {
-        $this->mapboxToken = env("MAPBOX_TOKEN");
+        $this->mapboxToken = env("VITE_MAPBOX_TOKEN");
         $this->request = Http::withUserAgent(env("APP_NAME", "Internships"));
     }
 
@@ -41,12 +41,13 @@ class LocationFetcher
 
     public function getLocations(): Collection
     {
-        return collect($this->receivedData->get("features"))->map(function (array $item) {
-            return [
-                "place_name" => $item["place_name"],
-                "coordinates" => $item["center"],
-            ];
-        });
+        return collect($this->receivedData->get("features"))
+            ->map(function (array $item): array {
+                return [
+                    "place_name" => $item["place_name"],
+                    "coordinates" => $item["center"],
+                ];
+            });
     }
 
     public function getMessage(): string
