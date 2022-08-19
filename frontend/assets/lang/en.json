@@ -1,0 +1,11 @@
+{
+    "NavigationBar":{
+        "map": "Map",
+        "add-company": "Add company",
+        "sign-in": "Sign in"
+    },
+    "CompanyBrowser":{
+        "companies-list": "Companies list",
+        "found-companies": "Found companies"
+    }
+}
