@@ -15,8 +15,6 @@ use Internships\Models\User;
 
 class CompanyFactory extends Factory
 {
-    protected $model = Company::class;
-
     public function definition(): array
     {
         return [
