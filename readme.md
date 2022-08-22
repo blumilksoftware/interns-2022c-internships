@@ -1,60 +1,34 @@
 # internships
-
 Website for apprenticeship programme.
+# Architecture
+The project contains a modified default configuration and is structured as follows:
+* `backend` stores configuration for Composer and Laravel application and other PHP related stuff;
+* `frontend` is for Node.js npm, Vite, Vue.js and lint configuration - it also contains assets used in the webpage;
 
-## Usage & Development
-
-### 1. Create `.env` file based on `.env.example`:
-
+## Setup and Run
+### 1. Run setup script:
 ```shell script
-cp .env.example .env
+sh setup.sh
 ```
+Or you can do provided steps in the file manually.
+Remember to add VITE_MAPBOX_TOKEN key in .env.
 
-### 2. Build and run containers:
-
-```shell script
-docker-compose build --no-cache --pull
-docker-compose up -d
-```
-
-### 3.Install frontend dependencies and build frontend:
-
-```shell script
-docker-compose exec node npm install
-docker-compose exec node npm run build
-```
-
-### 4. Install backend dependencies and build static API endpoints:
-
-```shell script
-docker-compose exec php composer install
-docker-compose exec php composer intern-populate
-docker-compose exec php composer intern-build
-```
-
-### 5. Generate Application Key:
-
-```shell script
-docker-compose exec php php artisan key:generate
-```
-
-### 6. Run development environment:
+### 2. Run development environment:
+To develop the application in a local environment:
 ```shell script
 docker-compose exec node npm run dev
 ```
-Application should be available under `localhost` or other port if you changed `EXTERNAL_WEBSERVER_PORT` value in `.env` file.
+The application should be available under `localhost:80` or another port if you changed `EXTERNAL_WEBSERVER_PORT` value in the `.env` file.
 
-## Additional information
-
-### Backend
-
-Static API comes with help command, describing all available script options.
-You can access it with:
-
+## Development
+### Codestyle
+Before committing changes, it is recommended to run code style and lint checkers:
 ```shell script
-docker-compose exec php composer intern
+docker-compose exec php composer run csf
+docker-compose exec node npm run lintf
 ```
-
-Not all options are available for each environment. Set `COMMANDLINE_MODE` environment variable to `deploy` for deployment, and `local` for development.
-
-It's recommended to run `populate` command for new faculties defined in `faculties.csv` to generate missing required files. It does not overwrite existing data.
+You can remove `f` at the end of these commands if you don't want to fix issues:
+```shell script
+docker-compose exec php composer run cs
+docker-compose exec node npm run lint
+```
