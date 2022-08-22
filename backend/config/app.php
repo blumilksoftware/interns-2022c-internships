@@ -8,6 +8,7 @@ return [
     'debug' => (bool) env('APP_DEBUG', false),
     'url' => env('APP_URL', 'http://localhost'),
     'asset_url' => env('ASSET_URL'),
+    'public_url' => env('VITE_PUBLIC_DIRECTORY_PATH'),
     'timezone' => 'UTC',
     'locale' => 'en',
     'fallback_locale' => 'en',
