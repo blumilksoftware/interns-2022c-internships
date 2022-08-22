@@ -10,7 +10,7 @@ class AppServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->app->bind("path.public", fn() => base_path() . '/' . config("app.public_url"));
+        $this->app->bind("path.public", fn() => base_path() . "/" . config("app.public_url"));
     }
 
     public function boot(): void
