@@ -23,6 +23,8 @@ services:
       args:
         INSTALL_XDEBUG: ${DOCKER_INSTALL_XDEBUG:-false}
     container_name: intern-php
+    env_file:
+      - .env
     working_dir: /application/backend
     user: ${CURRENT_UID:-1000}
     volumes:
@@ -64,7 +66,9 @@ services:
   node:
     image: node:18.7.0-alpine3.16
     container_name: intern-node
-    working_dir: /application
+    env_file:
+      - .env
+    working_dir: /application/frontend
     tty: true
     user: ${CURRENT_UID}
     volumes:

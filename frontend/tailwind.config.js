@@ -1,21 +1,19 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  content: ["./frontend/**/*.{vue,html}"],
+  content: ["./**/*.{vue,html}"],
   theme: {
     extend: {
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        'primary': '#171c58',
-        'secondary': '#eaeaff',
-           },
+        primary: "#171c58",
+        secondary: "#34375c",
+      },
     },
   },
-  variants: {
-    extend: {},
-  },
+  variants: {},
   plugins: [
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
