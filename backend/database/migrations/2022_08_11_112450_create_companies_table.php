@@ -14,7 +14,7 @@ return new class() extends Migration {
         Schema::create("companies", function (Blueprint $table): void {
             $table->id();
             $table->string("name");
-            $table->string("description");
+            $table->text("description");
             $table->foreignIdFor(User::class)->constrained();
             $table->json("address");
             $table->string("logo")->nullable();

@@ -11,20 +11,8 @@ enum Role: string
     case Company = "company";
     case Banned = "banned";
 
-    public function label(): string
+    public static function toArray(): array
     {
-        return __($this->value);
-    }
-
-    public static function casesToSelect(): array
-    {
-        $cases = collect(Role::cases());
-
-        return $cases->map(
-            fn(Role $enum): array => [
-                "label" => $enum->label(),
-                "value" => $enum->value,
-            ],
-        )->toArray();
+        return collect(self::cases())->toArray();
     }
 }
