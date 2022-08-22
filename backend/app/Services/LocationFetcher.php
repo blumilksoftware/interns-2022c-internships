@@ -11,23 +11,19 @@ use Illuminate\Support\Facades\Log;
 
 class LocationFetcher
 {
-    protected const API_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
-
     protected string $mapboxToken;
     protected PendingRequest $request;
     protected Collection $receivedData;
 
     public function __construct()
     {
-        $this->mapboxToken = env("VITE_MAPBOX_TOKEN");
-        $this->request = Http::withUserAgent(env("APP_NAME", "Internships"));
+        $this->mapboxToken = config("services.mapbox.token_public");
+        $this->request = Http::withUserAgent(config("app.name"));
     }
 
     public function query(string $address): self
     {
-        $addressAsUrl = urlencode($address);
-
-        $response = $this->request->get(self::API_URL . $addressAsUrl . ".json", [
+        $response = $this->request->get(config("services.mapbox.geocode_url") . urlencode($address) . ".json", [
             "access_token" => $this->mapboxToken,
         ]);
 
