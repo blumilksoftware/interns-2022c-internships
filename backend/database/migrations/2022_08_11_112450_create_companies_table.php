@@ -5,8 +5,6 @@ declare(strict_types=1);
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Internships\Models\Address;
-use Internships\Models\ContactDetails;
 use Internships\Models\User;
 
 return new class() extends Migration {
@@ -17,9 +15,9 @@ return new class() extends Migration {
             $table->string("name");
             $table->string("description");
             $table->foreignIdFor(User::class)->constrained();
-            $table->foreignIdFor(Address::class)->constrained();
+            $table->json("address");
             $table->string("logo")->nullable();
-            $table->foreignIdFor(ContactDetails::class)->constrained()->cascadeOnDelete();
+            $table->json("contact_details");
             $table->boolean("is_visible");
             $table->boolean("has_signed_papers");
             $table->timestamps();

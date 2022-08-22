@@ -12,14 +12,13 @@ class Submission extends Model
 {
     use HasFactory;
 
-    public function company(): BelongsTo
+    public function companyOriginal(): BelongsTo
     {
-        return $this->belongsTo(Company::class, 'company_id');
+        return $this->belongsTo(Company::class, "company_original_id");
     }
 
     public function companyEdited(): BelongsTo
     {
-        return $this->belongsTo(Company::class, 'edited_company_id');
+        return $this->belongsTo(Company::class, "company_edited_id");
     }
-
 }
