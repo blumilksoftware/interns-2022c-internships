@@ -8,7 +8,6 @@ use Database\Factories\Embeddable\AddressDefines;
 use Database\Factories\Embeddable\ContactDetailsDefines;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Internships\Enums\CompanyStatus;
-use Internships\Models\Company;
 use Internships\Models\Embeddable\Address;
 use Internships\Models\Embeddable\ContactDetails;
 use Internships\Models\User;
