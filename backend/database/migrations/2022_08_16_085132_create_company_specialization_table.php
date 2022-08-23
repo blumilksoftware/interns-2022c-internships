@@ -13,9 +13,8 @@ return new class() extends Migration {
     {
         Schema::create("company_specialization", function (Blueprint $table): void {
             $table->id();
-            $table->foreignIdFor(Company::class)->constrained();
-            $table->foreignIdFor(Specialization::class)->constrained();
-            $table->timestamps();
+            $table->foreignIdFor(Company::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Specialization::class)->constrained()->cascadeOnDelete();
         });
     }
 

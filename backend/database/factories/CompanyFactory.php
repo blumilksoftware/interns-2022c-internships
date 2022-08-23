@@ -11,6 +11,7 @@ use Internships\Enums\CompanyStatus;
 use Internships\Models\Company;
 use Internships\Models\Embeddable\Address;
 use Internships\Models\Embeddable\ContactDetails;
+use Internships\Models\Specialization;
 use Internships\Models\Submission;
 use Internships\Models\User;
 
@@ -41,6 +42,9 @@ class CompanyFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (Company $company): void {
+            $company->specializations()
+                ->sync(Specialization::all()->random(rand(1, 5)));
+
             if ($company->status === CompanyStatus::PendingNew) {
                 Submission::factory([
                     "company_original_id" => $company->id,
