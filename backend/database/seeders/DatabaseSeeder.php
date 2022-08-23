@@ -12,8 +12,10 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        User::factory(20)
-            ->has(Company::factory()->count(3), 'companies')
-            ->create();
+        for ($i = 0; $i < 15; $i++) {
+            User::factory(5)
+                ->has(Company::factory()->count(rand(1, 2)))
+                ->create();
+        }
     }
 }

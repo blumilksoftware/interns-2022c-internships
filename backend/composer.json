@@ -38,6 +38,7 @@
     "phpoffice/phpword": "^0.18.3",
     "spatie/data-transfer-object": "^3.8",
     "spatie/laravel-model-states": "^2.1",
+    "symfony/yaml": "^6.1",
     "vlucas/phpdotenv": "^v5.3.0"
   },
   "require-dev": {
