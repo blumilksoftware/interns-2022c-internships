@@ -7,6 +7,13 @@
     "CompanyBrowser":{
         "companies-list": "Lista firm",
         "found-companies": "Znaleziono",
-        "search": "Search"
+        "search": "Wyszukaj",
+        "filter": "Filtry"
+    },
+    "Comboboxes":{
+        "combobox-city": "Wybierz miasto",
+        "combobox-field": "Wybierz kierunek",
+        "combobox-specialization": "Wybierz specjalizacje"
+
     }
 }
