@@ -13,7 +13,7 @@ return new class() extends Migration {
             $table->id();
             $table->foreignId("company_original_id")->unique()->constrained("companies");
             $table->foreignId("company_edited_id")->nullable()->unique()->constrained("companies");
-            $table->string("comment")->nullable();
+            $table->text("comment")->nullable();
             $table->timestamps();
         });
     }
