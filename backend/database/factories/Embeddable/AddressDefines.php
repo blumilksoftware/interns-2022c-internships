@@ -12,7 +12,7 @@ class AddressDefines
     {
         return [
             "country" => fake()->country(),
-            "voivodeship" => fake()->word(),
+            "voivodeship" => ucfirst(fake()->word()),
             "city" => fake()->city(),
             "street" => fake()->streetName(),
             "postal_code" => fake()->postcode(),
