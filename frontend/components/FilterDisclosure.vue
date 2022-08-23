@@ -6,7 +6,7 @@
           class="flex w-full justify-center rounded-lg bg-slate-100 px-4 py-2 text-left text-sm font-medium text-slate-900 hover:bg-slate-200 focus:outline-none focus-visible:ring focus-visible:ring-slate-500 focus-visible:ring-opacity-75"
         >
           <span> {{ $t("CompanyBrowser.filter") }} </span>
-          <ChevronUpIcon
+          <ChevronDownIcon
             :class="open ? 'rotate-180 transform' : ''"
             class="h-5 w-5 text-slate-500"
           />
@@ -25,8 +25,8 @@
 
 <script setup>
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
-import { ChevronUpIcon } from '@heroicons/vue/solid'
-import FilterCombobox from '@/components/FilterCombobox.vue';
+import { ChevronDownIcon } from '@heroicons/vue/solid'
+import FilterCombobox from '@/components/Combobox.vue';
 const cities = [
     'Wrocław',
     'Legnica' 
