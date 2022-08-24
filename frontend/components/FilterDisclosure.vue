@@ -12,12 +12,12 @@
           />
         </DisclosureButton>
         <DisclosurePanel class="px-4 pt-4 pb-2 text-sm text-slate-500">
-            <FilterCombobox
-              :placeholder="$t('Comboboxes.combobox-city')"
-              :items="cities"
-              :id="'cities-${index}'"
-            />
-            <div class="flex gap-x-2 mt-1">
+          <FilterCombobox
+            :placeholder="$t('Comboboxes.combobox-city')"
+            :items="cities"
+            :id="'cities-${index}'"
+          />
+          <div class="flex gap-x-2 mt-1">
             <FilterCombobox
               :placeholder="$t('Comboboxes.combobox-department')"
               :items="studyfields"
@@ -25,7 +25,7 @@
             />
             <FilterCombobox
               :placeholder="$t('Comboboxes.combobox-field')"
-              :items="studyfields"
+              :items="depreparments"
               :id="'studyfields-${index}'"
             />
             <FilterCombobox
@@ -45,7 +45,8 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
 import { ChevronDownIcon } from "@heroicons/vue/solid";
 import FilterCombobox from "@/components/ComboBox.vue";
 
-const cities = ["Wrocław", "Legnica"];
-const specialization = ["PAM", "GK"];
-const studyfields = ["Informatyka", "Pielegniarstwo"];
+const cities = ["City", "Other city"];
+const specialization = ["A specialization", "Other specialization"];
+const studyfields = ["Some studyfields", "Other studyfields"];
+const depreparments = ["Some depertment", "Other department"];
 </script>

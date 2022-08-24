@@ -1,7 +1,6 @@
 <template>
   <Combobox as="div" nullable v-model="SelectedItem">
     <div class="relative">
-      
       <ComboboxInput
         :placeholder="props.placeholder"
         :id="id"
