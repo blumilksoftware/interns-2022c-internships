@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
         ])->create();
 
         User::factory(50)
-            ->has(Company::factory(rand(1, 3)))
+            ->has(Company::factory(rand(min: 1, max: 3)))
             ->create();
     }
 }
