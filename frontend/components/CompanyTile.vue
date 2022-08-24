@@ -48,7 +48,7 @@
             >
               <DialogPanel class="pointer-events-auto w-screen max-w-md">
                 <div
-                  class="flex h-full flex-col overflow-y-scroll bg-gray-50 py-6 shadow-xl"
+                  class="flex h-screen flex-col overflow-y-scroll bg-gray-50 py-6 shadow-xl"
                 >
                   <div class="px-4 sm:px-6">
                     <div class="flex items-start justify-between">
