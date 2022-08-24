@@ -13,6 +13,7 @@
     "Comboboxes":{
         "combobox-city": "Wybierz miasto",
         "combobox-field": "Wybierz kierunek",
+        "combobox-department": "Wybierz wydział",
         "combobox-specialization": "Wybierz specjalizacje"
 
     }

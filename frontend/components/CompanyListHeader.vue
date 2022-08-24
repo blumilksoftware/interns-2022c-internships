@@ -5,7 +5,7 @@
     <h3 class="flex justify-center text-lg leading-6 font-medium text-gray-900">
       {{ $t("CompanyBrowser.companies-list") }}
     </h3>
-    <p class="mt-1 max-w-4xl text-sm text-gray-500">
+    <p class="mt-1 flex justify-center max-w-4xl text-sm text-gray-500">
       {{ $t("CompanyBrowser.found-companies") }} : 0
     </p>
   </div>

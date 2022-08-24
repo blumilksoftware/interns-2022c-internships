@@ -12,10 +12,27 @@
           />
         </DisclosureButton>
         <DisclosurePanel class="px-4 pt-4 pb-2 text-sm text-slate-500">
-          <div class="flex">
-          <FilterCombobox :label="$t('Comboboxes.combobox-city')" :items= cities :id="'cities-${index}'"/>
-          <FilterCombobox  :label="$t('Comboboxes.combobox-field')" :items= studyfields :id="'studyfields-${index}'"/>
-          <FilterCombobox  :label="$t('Comboboxes.combobox-specialization')" :items= specialization :id="'specialization-${index}'"/>
+            <FilterCombobox
+              :placeholder="$t('Comboboxes.combobox-city')"
+              :items="cities"
+              :id="'cities-${index}'"
+            />
+            <div class="flex gap-x-2 mt-1">
+            <FilterCombobox
+              :placeholder="$t('Comboboxes.combobox-department')"
+              :items="studyfields"
+              :id="'studyfields-${index}'"
+            />
+            <FilterCombobox
+              :placeholder="$t('Comboboxes.combobox-field')"
+              :items="studyfields"
+              :id="'studyfields-${index}'"
+            />
+            <FilterCombobox
+              :placeholder="$t('Comboboxes.combobox-specialization')"
+              :items="specialization"
+              :id="'specialization-${index}'"
+            />
           </div>
         </DisclosurePanel>
       </Disclosure>
@@ -24,19 +41,11 @@
 </template>
 
 <script setup>
-import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
-import { ChevronDownIcon } from '@heroicons/vue/solid'
-import FilterCombobox from '@/components/Combobox.vue';
-const cities = [
-    'Wrocław',
-    'Legnica' 
-] 
-const specialization = [
-    'PAM',
-    'GK' 
-] 
-const studyfields = [
-    'Informatyka',
-    'Pielegniarstwo' 
-] 
+import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
+import { ChevronDownIcon } from "@heroicons/vue/solid";
+import FilterCombobox from "@/components/ComboBox.vue";
+
+const cities = ["Wrocław", "Legnica"];
+const specialization = ["PAM", "GK"];
+const studyfields = ["Informatyka", "Pielegniarstwo"];
 </script>

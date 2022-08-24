@@ -2,44 +2,116 @@
   <div
     class="shadow ring-1 ring-black ring-opacity-5 md:rounded-lg overflow-x-hidden overflow-y-scroll"
   >
-    <table class="min-w-full divide-y divide-gray-300">
-      <tbody class="divide-y divide-gray-200 bg-white overflow-hidden py-5">
-        <tr v-for="company in companies" :key="company.email">
-          <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
-            <div class="flex items-center">
-              <div class="h-10 w-10 flex-shrink-0">
-                <img
-                  class="h-10 w-10 rounded-full"
-                  :src="company.image"
-                  alt=""
-                />
-              </div>
-              <div class="ml-4">
-                <div class="font-medium text-gray-900">{{ company.name }}</div>
-                <div class="text-gray-500">{{ company.email }}</div>
-              </div>
-            </div>
-          </td>
-          <td>
-            <ChevronRightIcon
-              class="h-5 w-5 text-gray-400"
-              aria-hidden="true"
-            />
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="mb-1" v-for="company in companies" :key="company.id"  >
+<CompanyTile
+  :id= "company.id"
+  :name= "company.name"
+  :email= "company.email"
+  :image= "company.image" 
+  :description= "company.description"
+  />
+  </div>
   </div>
 </template>
 
 <script setup>
-import { ChevronRightIcon } from "@heroicons/vue/solid";
 import PlaceholderImage from "@/assets/images/blumilklogo.png";
+import CompanyTile from "./CompanyTile.vue";
+import { ref } from "vue";
+
+const open = ref(false);
 const companies = [
   {
+    id: "1",
     name: "Some Company",
     email: "some.company@example.com",
     image: PlaceholderImage,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat nisi vitae tortor accumsan, ac maximus leo elementum. Praesent vestibulum dapibus eros at vestibulum. Fusce ut neque velit. Proin pharetra dui sit amet magna eleifend mattis. Nunc eget tortor vitae arcu condimentum rutrum. Sed molestie est justo, nec placerat purus pharetra nec. Morbi interdum elementum dignissim. Mauris eleifend pellentesque ligula quis faucibus. Suspendisse sit amet sodales risus, sit amet gravida est. Vivamus ac pharetra eros. Mauris nisi justo, semper quis libero id, tincidunt maximus nisi. Nullam cursus tempus orci eget rhoncus. Praesent elementum pretium purus, eget dictum magna porttitor quis. Suspendisse ac commodo risus. Praesent non ullamcorper massa, sit amet pellentesque augue.",
+  },
+   {
+    id: "2",
+    name: "Some Company",
+    email: "some.company@example.com",
+    image: PlaceholderImage,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat nisi vitae tortor accumsan, ac maximus leo elementum. Praesent vestibulum dapibus eros at vestibulum. Fusce ut neque velit. Proin pharetra dui sit amet magna eleifend mattis. Nunc eget tortor vitae arcu condimentum rutrum. Sed molestie est justo, nec placerat purus pharetra nec. Morbi interdum elementum dignissim. Mauris eleifend pellentesque ligula quis faucibus. Suspendisse sit amet sodales risus, sit amet gravida est. Vivamus ac pharetra eros. Mauris nisi justo, semper quis libero id, tincidunt maximus nisi. Nullam cursus tempus orci eget rhoncus. Praesent elementum pretium purus, eget dictum magna porttitor quis. Suspendisse ac commodo risus. Praesent non ullamcorper massa, sit amet pellentesque augue.",
+  },
+    {
+    id: "1",
+    name: "Some Company",
+    email: "some.company@example.com",
+    image: PlaceholderImage,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat nisi vitae tortor accumsan, ac maximus leo elementum. Praesent vestibulum dapibus eros at vestibulum. Fusce ut neque velit. Proin pharetra dui sit amet magna eleifend mattis. Nunc eget tortor vitae arcu condimentum rutrum. Sed molestie est justo, nec placerat purus pharetra nec. Morbi interdum elementum dignissim. Mauris eleifend pellentesque ligula quis faucibus. Suspendisse sit amet sodales risus, sit amet gravida est. Vivamus ac pharetra eros. Mauris nisi justo, semper quis libero id, tincidunt maximus nisi. Nullam cursus tempus orci eget rhoncus. Praesent elementum pretium purus, eget dictum magna porttitor quis. Suspendisse ac commodo risus. Praesent non ullamcorper massa, sit amet pellentesque augue.",
+  },
+   {
+    id: "2",
+    name: "Some Company",
+    email: "some.company@example.com",
+    image: PlaceholderImage,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat nisi vitae tortor accumsan, ac maximus leo elementum. Praesent vestibulum dapibus eros at vestibulum. Fusce ut neque velit. Proin pharetra dui sit amet magna eleifend mattis. Nunc eget tortor vitae arcu condimentum rutrum. Sed molestie est justo, nec placerat purus pharetra nec. Morbi interdum elementum dignissim. Mauris eleifend pellentesque ligula quis faucibus. Suspendisse sit amet sodales risus, sit amet gravida est. Vivamus ac pharetra eros. Mauris nisi justo, semper quis libero id, tincidunt maximus nisi. Nullam cursus tempus orci eget rhoncus. Praesent elementum pretium purus, eget dictum magna porttitor quis. Suspendisse ac commodo risus. Praesent non ullamcorper massa, sit amet pellentesque augue.",
+  },  {
+    id: "1",
+    name: "Some Company",
+    email: "some.company@example.com",
+    image: PlaceholderImage,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat nisi vitae tortor accumsan, ac maximus leo elementum. Praesent vestibulum dapibus eros at vestibulum. Fusce ut neque velit. Proin pharetra dui sit amet magna eleifend mattis. Nunc eget tortor vitae arcu condimentum rutrum. Sed molestie est justo, nec placerat purus pharetra nec. Morbi interdum elementum dignissim. Mauris eleifend pellentesque ligula quis faucibus. Suspendisse sit amet sodales risus, sit amet gravida est. Vivamus ac pharetra eros. Mauris nisi justo, semper quis libero id, tincidunt maximus nisi. Nullam cursus tempus orci eget rhoncus. Praesent elementum pretium purus, eget dictum magna porttitor quis. Suspendisse ac commodo risus. Praesent non ullamcorper massa, sit amet pellentesque augue.",
+  },
+   {
+    id: "2",
+    name: "Some Company",
+    email: "some.company@example.com",
+    image: PlaceholderImage,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat nisi vitae tortor accumsan, ac maximus leo elementum. Praesent vestibulum dapibus eros at vestibulum. Fusce ut neque velit. Proin pharetra dui sit amet magna eleifend mattis. Nunc eget tortor vitae arcu condimentum rutrum. Sed molestie est justo, nec placerat purus pharetra nec. Morbi interdum elementum dignissim. Mauris eleifend pellentesque ligula quis faucibus. Suspendisse sit amet sodales risus, sit amet gravida est. Vivamus ac pharetra eros. Mauris nisi justo, semper quis libero id, tincidunt maximus nisi. Nullam cursus tempus orci eget rhoncus. Praesent elementum pretium purus, eget dictum magna porttitor quis. Suspendisse ac commodo risus. Praesent non ullamcorper massa, sit amet pellentesque augue.",
+  },  {
+    id: "1",
+    name: "Some Company",
+    email: "some.company@example.com",
+    image: PlaceholderImage,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat nisi vitae tortor accumsan, ac maximus leo elementum. Praesent vestibulum dapibus eros at vestibulum. Fusce ut neque velit. Proin pharetra dui sit amet magna eleifend mattis. Nunc eget tortor vitae arcu condimentum rutrum. Sed molestie est justo, nec placerat purus pharetra nec. Morbi interdum elementum dignissim. Mauris eleifend pellentesque ligula quis faucibus. Suspendisse sit amet sodales risus, sit amet gravida est. Vivamus ac pharetra eros. Mauris nisi justo, semper quis libero id, tincidunt maximus nisi. Nullam cursus tempus orci eget rhoncus. Praesent elementum pretium purus, eget dictum magna porttitor quis. Suspendisse ac commodo risus. Praesent non ullamcorper massa, sit amet pellentesque augue.",
+  },
+   {
+    id: "2",
+    name: "Some Company",
+    email: "some.company@example.com",
+    image: PlaceholderImage,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat nisi vitae tortor accumsan, ac maximus leo elementum. Praesent vestibulum dapibus eros at vestibulum. Fusce ut neque velit. Proin pharetra dui sit amet magna eleifend mattis. Nunc eget tortor vitae arcu condimentum rutrum. Sed molestie est justo, nec placerat purus pharetra nec. Morbi interdum elementum dignissim. Mauris eleifend pellentesque ligula quis faucibus. Suspendisse sit amet sodales risus, sit amet gravida est. Vivamus ac pharetra eros. Mauris nisi justo, semper quis libero id, tincidunt maximus nisi. Nullam cursus tempus orci eget rhoncus. Praesent elementum pretium purus, eget dictum magna porttitor quis. Suspendisse ac commodo risus. Praesent non ullamcorper massa, sit amet pellentesque augue.",
+  },  {
+    id: "1",
+    name: "Some Company",
+    email: "some.company@example.com",
+    image: PlaceholderImage,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat nisi vitae tortor accumsan, ac maximus leo elementum. Praesent vestibulum dapibus eros at vestibulum. Fusce ut neque velit. Proin pharetra dui sit amet magna eleifend mattis. Nunc eget tortor vitae arcu condimentum rutrum. Sed molestie est justo, nec placerat purus pharetra nec. Morbi interdum elementum dignissim. Mauris eleifend pellentesque ligula quis faucibus. Suspendisse sit amet sodales risus, sit amet gravida est. Vivamus ac pharetra eros. Mauris nisi justo, semper quis libero id, tincidunt maximus nisi. Nullam cursus tempus orci eget rhoncus. Praesent elementum pretium purus, eget dictum magna porttitor quis. Suspendisse ac commodo risus. Praesent non ullamcorper massa, sit amet pellentesque augue.",
+  },
+   {
+    id: "2",
+    name: "Some Company",
+    email: "some.company@example.com",
+    image: PlaceholderImage,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat nisi vitae tortor accumsan, ac maximus leo elementum. Praesent vestibulum dapibus eros at vestibulum. Fusce ut neque velit. Proin pharetra dui sit amet magna eleifend mattis. Nunc eget tortor vitae arcu condimentum rutrum. Sed molestie est justo, nec placerat purus pharetra nec. Morbi interdum elementum dignissim. Mauris eleifend pellentesque ligula quis faucibus. Suspendisse sit amet sodales risus, sit amet gravida est. Vivamus ac pharetra eros. Mauris nisi justo, semper quis libero id, tincidunt maximus nisi. Nullam cursus tempus orci eget rhoncus. Praesent elementum pretium purus, eget dictum magna porttitor quis. Suspendisse ac commodo risus. Praesent non ullamcorper massa, sit amet pellentesque augue.",
+  },  {
+    id: "1",
+    name: "Some Company",
+    email: "some.company@example.com",
+    image: PlaceholderImage,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat nisi vitae tortor accumsan, ac maximus leo elementum. Praesent vestibulum dapibus eros at vestibulum. Fusce ut neque velit. Proin pharetra dui sit amet magna eleifend mattis. Nunc eget tortor vitae arcu condimentum rutrum. Sed molestie est justo, nec placerat purus pharetra nec. Morbi interdum elementum dignissim. Mauris eleifend pellentesque ligula quis faucibus. Suspendisse sit amet sodales risus, sit amet gravida est. Vivamus ac pharetra eros. Mauris nisi justo, semper quis libero id, tincidunt maximus nisi. Nullam cursus tempus orci eget rhoncus. Praesent elementum pretium purus, eget dictum magna porttitor quis. Suspendisse ac commodo risus. Praesent non ullamcorper massa, sit amet pellentesque augue.",
+  },
+   {
+    id: "2",
+    name: "Some Company",
+    email: "some.company@example.com",
+    image: PlaceholderImage,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat nisi vitae tortor accumsan, ac maximus leo elementum. Praesent vestibulum dapibus eros at vestibulum. Fusce ut neque velit. Proin pharetra dui sit amet magna eleifend mattis. Nunc eget tortor vitae arcu condimentum rutrum. Sed molestie est justo, nec placerat purus pharetra nec. Morbi interdum elementum dignissim. Mauris eleifend pellentesque ligula quis faucibus. Suspendisse sit amet sodales risus, sit amet gravida est. Vivamus ac pharetra eros. Mauris nisi justo, semper quis libero id, tincidunt maximus nisi. Nullam cursus tempus orci eget rhoncus. Praesent elementum pretium purus, eget dictum magna porttitor quis. Suspendisse ac commodo risus. Praesent non ullamcorper massa, sit amet pellentesque augue.",
   },
 ];
 </script>

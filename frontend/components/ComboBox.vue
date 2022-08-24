@@ -1,19 +1,16 @@
-
 <template>
-  <Combobox
-    as="div"
-    nullable
-    v-model="SelectedItem"
-  >
-  <ComboboxLabel class="block text-sm font-medium text-gray-700"> {{props.label}} </ComboboxLabel>
+  <Combobox as="div" nullable v-model="SelectedItem">
     <div class="relative">
+      
       <ComboboxInput
+        :placeholder="props.placeholder"
         :id="id"
-        class="w-full h-12 rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-blumilk-500 focus:outline-none focus:ring-1 focus:ring-blumilk-500 sm:text-sm"
+        class="w-full text-ellipsis hover:text-clip overflow-hidden h-12 rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500 sm:text-sm"
         @change="query = $event.target.value"
-        
       />
-      <ComboboxButton class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
+      <ComboboxButton
+        class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none"
+      >
         <SelectorIcon class="h-5 w-5 text-gray-400" />
       </ComboboxButton>
 
@@ -28,14 +25,22 @@
           :value="item"
           as="template"
         >
-          <li :class="['relative cursor-default select-none py-2 pl-3 pr-9', active ? 'bg-blumilk-600 text-black' : 'text-gray-900']">
+          <li
+            :class="[
+              'relative cursor-default select-none py-2 pl-3 pr-9',
+              active ? 'bg-gray-200 text-black' : 'text-gray-900',
+            ]"
+          >
             <span :class="['block truncate', selected && 'font-semibold']">
               {{ item }}
             </span>
 
             <span
               v-if="selected"
-              :class="['absolute inset-y-0 right-0 flex items-center pr-4', active ? 'text-black' : 'text-blumilk-600']"
+              :class="[
+                'absolute inset-y-0 right-0 flex items-center pr-4',
+                active ? 'text-black' : 'text-gray-600',
+              ]"
             >
               <CheckIcon class="h-5 w-5" />
             </span>
@@ -47,28 +52,28 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
-import { CheckIcon, SelectorIcon } from '@heroicons/vue/solid'
+import { computed, ref } from "vue";
+import { CheckIcon, SelectorIcon } from "@heroicons/vue/solid";
 import {
   Combobox,
   ComboboxButton,
   ComboboxInput,
   ComboboxOption,
   ComboboxOptions,
-} from '@headlessui/vue'
+} from "@headlessui/vue";
+
 const props = defineProps({
   items: Array,
   id: String,
-  label: String,
-})
-function name(){
-
-}
-const query = ref('')
-const SelectedItem = ref()
+  placeholder: String,
+});
+const query = ref("");
+const SelectedItem = ref();
 const filteredItems = computed(() =>
-  query.value === ''
+  query.value === ""
     ? props.items
-    : props.items.filter((item) => item.toLowerCase().includes(query.value.toLowerCase())),
-)
+    : props.items.filter((item) =>
+        item.toLowerCase().includes(query.value.toLowerCase())
+      )
+);
 </script>
