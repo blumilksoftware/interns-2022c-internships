@@ -8,7 +8,7 @@ use JessArcher\CastableDataTransferObject\CastableDataTransferObject;
 
 class ContactDetails extends CastableDataTransferObject
 {
-    public string $email;
-    public string $phone_number;
-    public string $website_url;
+    public readonly string $email;
+    public readonly string $phone_number;
+    public readonly string $website_url;
 }

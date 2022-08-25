@@ -8,10 +8,10 @@ use JessArcher\CastableDataTransferObject\CastableDataTransferObject;
 
 class Address extends CastableDataTransferObject
 {
-    public string $country;
-    public string $voivodeship;
-    public string $city;
-    public string $street;
-    public string $postal_code;
-    public Coordinates $coordinates;
+    public readonly string $country;
+    public readonly string $voivodeship;
+    public readonly string $city;
+    public readonly string $street;
+    public readonly string $postal_code;
+    public readonly Coordinates $coordinates;
 }

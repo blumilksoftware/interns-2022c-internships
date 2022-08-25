@@ -25,21 +25,21 @@ class CompanyFactory extends Factory
             "user_id" => User::factory(),
             "address" => new Address(AddressDefines::definition()),
             "contact_details" => new ContactDetails(ContactDetailsDefines::definition()),
-            "status" => fake()->randomElement(CompanyStatus::toArray()),
+            "status" => fake()->randomElement(CompanyStatus::cases()),
             "has_signed_papers" => fake()->boolean(),
         ];
     }
 
     public function status(CompanyStatus $companyStatus): static
     {
-        return $this->state(function (array $attributes) use ($companyStatus) {
+        return $this->state(function (array $attributes) use ($companyStatus): array {
             return [
                 "status" => $companyStatus,
             ];
         });
     }
 
-    public function configure()
+    public function configure(): static
     {
         return $this->afterCreating(function (Company $company): void {
             $company->specializations()

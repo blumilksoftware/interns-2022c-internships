@@ -8,6 +8,6 @@ use JessArcher\CastableDataTransferObject\CastableDataTransferObject;
 
 class Coordinates extends CastableDataTransferObject
 {
-    public float $latitude;
-    public float $longitude;
+    public readonly float $latitude;
+    public readonly float $longitude;
 }

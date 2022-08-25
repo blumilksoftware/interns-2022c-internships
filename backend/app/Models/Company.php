@@ -8,9 +8,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Internships\Enums\CompanyStatus;
 use Internships\Models\Embeddable\Address;
 use Internships\Models\Embeddable\ContactDetails;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $description
+ * @property User $user
+ * @property Address $address
+ * @property string $logo
+ * @property ContactDetails $contact_details
+ * @property CompanyStatus $status
+ * @property bool $has_signed_papers
+ */
 class Company extends Model
 {
     use HasFactory;

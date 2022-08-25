@@ -10,9 +10,4 @@ enum Role: string
     case Moderator = "moderator";
     case Company = "company";
     case Banned = "banned";
-
-    public static function toArray(): array
-    {
-        return collect(self::cases())->toArray();
-    }
 }

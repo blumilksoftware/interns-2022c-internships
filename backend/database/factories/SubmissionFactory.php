@@ -9,7 +9,7 @@ use Internships\Models\Company;
 
 class SubmissionFactory extends Factory
 {
-    public function definition()
+    public function definition(): array
     {
         return [
             "company_original_id" => Company::factory(),
