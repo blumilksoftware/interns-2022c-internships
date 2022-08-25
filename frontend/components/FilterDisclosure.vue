@@ -15,7 +15,6 @@
           <FilterCombobox
             :placeholder="$t('Comboboxes.ComboboxCity')"
             :items="cities"
-            :id="'cities-${index}'"
           />
           <div class="flex gap-x-2 mt-1">
             <FilterCombobox
