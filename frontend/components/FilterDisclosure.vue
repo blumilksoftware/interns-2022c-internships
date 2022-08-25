@@ -48,5 +48,5 @@ import FilterCombobox from "@/components/ComboBox.vue";
 const cities = ["City", "Other city"];
 const specialization = ["A specialization", "Other specialization"];
 const studyfields = ["Some studyfields", "Other studyfields"];
-const depreparments = ["Some depertment", "Other department"];
+const departments = ["Some department", "Other department"];
 </script>
