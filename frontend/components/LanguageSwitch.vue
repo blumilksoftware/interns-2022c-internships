@@ -17,14 +17,5 @@
 </template>
 
 <script setup>
-const locales = [
-  {
-    name: "Polski",
-    lang: "pl",
-  },
-  {
-    name: "English",
-    lang: "en",
-  },
-];
+import locales from "@/assets/lang/index.js";
 </script>

@@ -1,19 +1,19 @@
 {
     "NavigationBar":{
-        "map": "Mapa",
-        "add-company": "Dodaj firmę",
-        "sign-in": "Zaloguj"
+        "Map": "Mapa",
+        "AddCompany": "Dodaj firmę",
+        "SignIn": "Zaloguj"
     },
     "CompanyBrowser":{
-        "companies-list": "Lista firm",
-        "found-companies": "Znaleziono",
-        "search": "Wyszukaj",
-        "filter": "Filtry"
+        "CompaniesList": "Lista firm",
+        "FoundCompanies": "Znaleziono",
+        "Search": "Wyszukaj",
+        "Filter": "Filtry"
     },
     "Comboboxes":{
-        "combobox-city": "Wybierz miasto",
-        "combobox-field": "Wybierz kierunek",
-        "combobox-department": "Wybierz wydział",
-        "combobox-specialization": "Wybierz specjalizację"
+        "ComboboxCity": "Wybierz miasto",
+        "ComboboxField": "Wybierz kierunek",
+        "ComboboxDepartment": "Wybierz wydział",
+        "ComboboxSpecialization": "Wybierz specjalizację"
     }
 }

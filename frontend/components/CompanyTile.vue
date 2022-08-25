@@ -96,7 +96,6 @@ import { XIcon } from "@heroicons/vue/outline";
 
 const open = ref(false);
 const props = defineProps({
-  id: String,
   name: String,
   email: String,
   image: String,

@@ -1,19 +1,19 @@
 {
     "NavigationBar":{
-        "map": "Map",
-        "add-company": "Add company",
-        "sign-in": "Sign in"
+        "Map": "Map",
+        "AddCompany": "Add company",
+        "SignIn": "Sign in"
     },
     "CompanyBrowser":{
-        "companies-list": "Companies list",
-        "found-companies": "Found companies",
-        "search": "Search",
-        "filter": "Filters"
+        "CompaniesList": "Companies list",
+        "FoundCompanies": "Found companies",
+        "Search": "Search",
+        "Filter": "Filters"
     },
     "Comboboxes":{
-        "combobox-city": "Choose city",
-        "combobox-field": "Choose field of study",
-        "combobox-department": "Choose department",
-        "combobox-specialization": "Choose specialization"
+        "ComboboxCity": "Choose city",
+        "ComboboxField": "Choose field of study",
+        "ComboboxDepartment": "Choose department",
+        "ComboboxSpecialization": "Choose specialization"
     }
 }

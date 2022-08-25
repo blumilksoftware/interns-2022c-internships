@@ -15,12 +15,12 @@
               <a
                 href="#"
                 class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
-                >{{ $t("NavigationBar.map") }}
+                >{{ $t("NavigationBar.Map") }}
               </a>
               <a
                 href="#"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >{{ $t("NavigationBar.add-company") }}</a
+                >{{ $t("NavigationBar.AddCompany") }}</a
               >
             </div>
           </div>
@@ -56,7 +56,7 @@
                         active ? 'bg-gray-100' : '',
                         'block px-4 py-2 text-sm text-gray-700',
                       ]"
-                      >{{ $t("NavigationBar.sign-in") }}</a
+                      >{{ $t("NavigationBar.SignIn") }}</a
                     >
                   </MenuItem>
                 </MenuItems>
@@ -95,14 +95,14 @@
           as="a"
           href="#"
           class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
-          >{{ $t("NavigationBar.map") }}</DisclosureButton
+          >{{ $t("NavigationBar.Map") }}</DisclosureButton
         >
         <DisclosureButton
           as="a"
           href="#"
           class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
         >
-          {{ $t("NavigationBar.add-company") }}
+          {{ $t("NavigationBar.AddCompany") }}
         </DisclosureButton>
       </div>
       <div class="pt-4 pb-3 border-t border-gray-700">
@@ -113,7 +113,7 @@
             href="#"
             class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
           >
-            {{ $t("NavigationBar.sign-in") }}</DisclosureButton
+            {{ $t("NavigationBar.SignIn") }}</DisclosureButton
           >
         </div>
       </div>

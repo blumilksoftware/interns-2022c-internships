@@ -4,7 +4,6 @@
   >
     <div class="mb-1" v-for="company in companies" :key="company.id">
       <CompanyTile
-        :id="company.id"
         :name="company.name"
         :email="company.email"
         :image="company.image"
@@ -36,7 +35,7 @@ const companies = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat nisi vitae tortor accumsan, ac maximus leo elementum. Praesent vestibulum dapibus eros at vestibulum. Fusce ut neque velit. Proin pharetra dui sit amet magna eleifend mattis. Nunc eget tortor vitae arcu condimentum rutrum. Sed molestie est justo, nec placerat purus pharetra nec. Morbi interdum elementum dignissim. Mauris eleifend pellentesque ligula quis faucibus. Suspendisse sit amet sodales risus, sit amet gravida est. Vivamus ac pharetra eros. Mauris nisi justo, semper quis libero id, tincidunt maximus nisi. Nullam cursus tempus orci eget rhoncus. Praesent elementum pretium purus, eget dictum magna porttitor quis. Suspendisse ac commodo risus. Praesent non ullamcorper massa, sit amet pellentesque augue.",
   },
   {
-    id: "1",
+    id: "3",
     name: "Some Company",
     email: "some.company@example.com",
     image: PlaceholderImage,
@@ -44,7 +43,7 @@ const companies = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat nisi vitae tortor accumsan, ac maximus leo elementum. Praesent vestibulum dapibus eros at vestibulum. Fusce ut neque velit. Proin pharetra dui sit amet magna eleifend mattis. Nunc eget tortor vitae arcu condimentum rutrum. Sed molestie est justo, nec placerat purus pharetra nec. Morbi interdum elementum dignissim. Mauris eleifend pellentesque ligula quis faucibus. Suspendisse sit amet sodales risus, sit amet gravida est. Vivamus ac pharetra eros. Mauris nisi justo, semper quis libero id, tincidunt maximus nisi. Nullam cursus tempus orci eget rhoncus. Praesent elementum pretium purus, eget dictum magna porttitor quis. Suspendisse ac commodo risus. Praesent non ullamcorper massa, sit amet pellentesque augue.",
   },
   {
-    id: "2",
+    id: "4",
     name: "Some Company",
     email: "some.company@example.com",
     image: PlaceholderImage,
@@ -52,7 +51,7 @@ const companies = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat nisi vitae tortor accumsan, ac maximus leo elementum. Praesent vestibulum dapibus eros at vestibulum. Fusce ut neque velit. Proin pharetra dui sit amet magna eleifend mattis. Nunc eget tortor vitae arcu condimentum rutrum. Sed molestie est justo, nec placerat purus pharetra nec. Morbi interdum elementum dignissim. Mauris eleifend pellentesque ligula quis faucibus. Suspendisse sit amet sodales risus, sit amet gravida est. Vivamus ac pharetra eros. Mauris nisi justo, semper quis libero id, tincidunt maximus nisi. Nullam cursus tempus orci eget rhoncus. Praesent elementum pretium purus, eget dictum magna porttitor quis. Suspendisse ac commodo risus. Praesent non ullamcorper massa, sit amet pellentesque augue.",
   },
   {
-    id: "1",
+    id: "5",
     name: "Some Company",
     email: "some.company@example.com",
     image: PlaceholderImage,
@@ -60,7 +59,7 @@ const companies = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat nisi vitae tortor accumsan, ac maximus leo elementum. Praesent vestibulum dapibus eros at vestibulum. Fusce ut neque velit. Proin pharetra dui sit amet magna eleifend mattis. Nunc eget tortor vitae arcu condimentum rutrum. Sed molestie est justo, nec placerat purus pharetra nec. Morbi interdum elementum dignissim. Mauris eleifend pellentesque ligula quis faucibus. Suspendisse sit amet sodales risus, sit amet gravida est. Vivamus ac pharetra eros. Mauris nisi justo, semper quis libero id, tincidunt maximus nisi. Nullam cursus tempus orci eget rhoncus. Praesent elementum pretium purus, eget dictum magna porttitor quis. Suspendisse ac commodo risus. Praesent non ullamcorper massa, sit amet pellentesque augue.",
   },
   {
-    id: "2",
+    id: "6",
     name: "Some Company",
     email: "some.company@example.com",
     image: PlaceholderImage,
@@ -68,47 +67,7 @@ const companies = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat nisi vitae tortor accumsan, ac maximus leo elementum. Praesent vestibulum dapibus eros at vestibulum. Fusce ut neque velit. Proin pharetra dui sit amet magna eleifend mattis. Nunc eget tortor vitae arcu condimentum rutrum. Sed molestie est justo, nec placerat purus pharetra nec. Morbi interdum elementum dignissim. Mauris eleifend pellentesque ligula quis faucibus. Suspendisse sit amet sodales risus, sit amet gravida est. Vivamus ac pharetra eros. Mauris nisi justo, semper quis libero id, tincidunt maximus nisi. Nullam cursus tempus orci eget rhoncus. Praesent elementum pretium purus, eget dictum magna porttitor quis. Suspendisse ac commodo risus. Praesent non ullamcorper massa, sit amet pellentesque augue.",
   },
   {
-    id: "1",
-    name: "Some Company",
-    email: "some.company@example.com",
-    image: PlaceholderImage,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat nisi vitae tortor accumsan, ac maximus leo elementum. Praesent vestibulum dapibus eros at vestibulum. Fusce ut neque velit. Proin pharetra dui sit amet magna eleifend mattis. Nunc eget tortor vitae arcu condimentum rutrum. Sed molestie est justo, nec placerat purus pharetra nec. Morbi interdum elementum dignissim. Mauris eleifend pellentesque ligula quis faucibus. Suspendisse sit amet sodales risus, sit amet gravida est. Vivamus ac pharetra eros. Mauris nisi justo, semper quis libero id, tincidunt maximus nisi. Nullam cursus tempus orci eget rhoncus. Praesent elementum pretium purus, eget dictum magna porttitor quis. Suspendisse ac commodo risus. Praesent non ullamcorper massa, sit amet pellentesque augue.",
-  },
-  {
-    id: "2",
-    name: "Some Company",
-    email: "some.company@example.com",
-    image: PlaceholderImage,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat nisi vitae tortor accumsan, ac maximus leo elementum. Praesent vestibulum dapibus eros at vestibulum. Fusce ut neque velit. Proin pharetra dui sit amet magna eleifend mattis. Nunc eget tortor vitae arcu condimentum rutrum. Sed molestie est justo, nec placerat purus pharetra nec. Morbi interdum elementum dignissim. Mauris eleifend pellentesque ligula quis faucibus. Suspendisse sit amet sodales risus, sit amet gravida est. Vivamus ac pharetra eros. Mauris nisi justo, semper quis libero id, tincidunt maximus nisi. Nullam cursus tempus orci eget rhoncus. Praesent elementum pretium purus, eget dictum magna porttitor quis. Suspendisse ac commodo risus. Praesent non ullamcorper massa, sit amet pellentesque augue.",
-  },
-  {
-    id: "1",
-    name: "Some Company",
-    email: "some.company@example.com",
-    image: PlaceholderImage,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat nisi vitae tortor accumsan, ac maximus leo elementum. Praesent vestibulum dapibus eros at vestibulum. Fusce ut neque velit. Proin pharetra dui sit amet magna eleifend mattis. Nunc eget tortor vitae arcu condimentum rutrum. Sed molestie est justo, nec placerat purus pharetra nec. Morbi interdum elementum dignissim. Mauris eleifend pellentesque ligula quis faucibus. Suspendisse sit amet sodales risus, sit amet gravida est. Vivamus ac pharetra eros. Mauris nisi justo, semper quis libero id, tincidunt maximus nisi. Nullam cursus tempus orci eget rhoncus. Praesent elementum pretium purus, eget dictum magna porttitor quis. Suspendisse ac commodo risus. Praesent non ullamcorper massa, sit amet pellentesque augue.",
-  },
-  {
-    id: "2",
-    name: "Some Company",
-    email: "some.company@example.com",
-    image: PlaceholderImage,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat nisi vitae tortor accumsan, ac maximus leo elementum. Praesent vestibulum dapibus eros at vestibulum. Fusce ut neque velit. Proin pharetra dui sit amet magna eleifend mattis. Nunc eget tortor vitae arcu condimentum rutrum. Sed molestie est justo, nec placerat purus pharetra nec. Morbi interdum elementum dignissim. Mauris eleifend pellentesque ligula quis faucibus. Suspendisse sit amet sodales risus, sit amet gravida est. Vivamus ac pharetra eros. Mauris nisi justo, semper quis libero id, tincidunt maximus nisi. Nullam cursus tempus orci eget rhoncus. Praesent elementum pretium purus, eget dictum magna porttitor quis. Suspendisse ac commodo risus. Praesent non ullamcorper massa, sit amet pellentesque augue.",
-  },
-  {
-    id: "1",
-    name: "Some Company",
-    email: "some.company@example.com",
-    image: PlaceholderImage,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat nisi vitae tortor accumsan, ac maximus leo elementum. Praesent vestibulum dapibus eros at vestibulum. Fusce ut neque velit. Proin pharetra dui sit amet magna eleifend mattis. Nunc eget tortor vitae arcu condimentum rutrum. Sed molestie est justo, nec placerat purus pharetra nec. Morbi interdum elementum dignissim. Mauris eleifend pellentesque ligula quis faucibus. Suspendisse sit amet sodales risus, sit amet gravida est. Vivamus ac pharetra eros. Mauris nisi justo, semper quis libero id, tincidunt maximus nisi. Nullam cursus tempus orci eget rhoncus. Praesent elementum pretium purus, eget dictum magna porttitor quis. Suspendisse ac commodo risus. Praesent non ullamcorper massa, sit amet pellentesque augue.",
-  },
-  {
-    id: "2",
+    id: "7",
     name: "Some Company",
     email: "some.company@example.com",
     image: PlaceholderImage,
