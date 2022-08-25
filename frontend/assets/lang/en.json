@@ -1,8 +1,7 @@
 {
     "NavigationBar":{
         "Map": "Map",
-        "AddCompany": "Add company",
-        "SignIn": "Sign in"
+        "AddCompany": "Add company"
     },
     "CompanyBrowser":{
         "CompaniesList": "Companies list",
@@ -15,5 +14,43 @@
         "ComboboxField": "Choose field of study",
         "ComboboxDepartment": "Choose department",
         "ComboboxSpecialization": "Choose specialization"
+    },
+    "SignIn":{
+        "Header": "Sign in to your account",
+        "Remember": "Remember me",
+        "ForgotPassword": "Forgot your password?"
+    },
+    "Registration":{
+        "Header": "User Registration",
+        "FirstName": "First Name",
+        "LastName": "Last Name",
+        "Password": "Password"
+    },
+    "AddCompany": {
+        "Header": "Company add request",
+        "HeaderInfo": "After filling up the form, your request will be send to moderator, where will be verify. ",
+        "CompanyName": "Comapany name",
+        "Description": "Description",
+        "DescriptionInfo": "Write about your company to help students with decision.",
+        "StreetAddress": "Street address",
+        "City": "City",
+        "Voivodeship": "Voivodeship",
+        "PostalCode": "Postal code"
+    },
+    "ForgotPassword":{
+        "Header": "Please fill email, we will send you a link to reset your password, probably",
+        "ResetButton": "Send reset link"
+    },
+    "Buttons":{
+        "SignInButton": "Sign in",
+        "ChangeButton": "Change",
+        "CancelButton": "Cancel",
+        "RequestButton": "Request",
+        "RegistrationButton": "Register"
+    },
+    "CommonLabels":{
+        "Email": "Email address",
+        "Password": "Password",
+        "County": "County"
     }
 }

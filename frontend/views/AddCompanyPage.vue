@@ -1,7 +1,7 @@
 <template>
- <AddCompany />
+  <AddCompany />
 </template>
 
 <script setup>
-import AddCompany from '@/components/AddCompanyForm.vue';
+import AddCompany from "@/components/AddCompanyForm.vue";
 </script>

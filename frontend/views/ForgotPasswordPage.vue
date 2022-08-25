@@ -1,7 +1,7 @@
 <template>
-    <ForgotPassword />
+  <ForgotPassword />
 </template>
 
 <script setup>
-import ForgotPassword from '@/components/ForgotPassword.vue';
+import ForgotPassword from "@/components/ForgotPassword.vue";
 </script>
