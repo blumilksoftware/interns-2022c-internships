@@ -27,7 +27,7 @@
             />
             <FilterCombobox
               :placeholder="$t('Comboboxes.ComboboxSpecialization')"
-              :items="departmentNames"
+              :items="specializations"
             />
           </div>
         </DisclosurePanel>
@@ -46,7 +46,7 @@ const cities = ["City", "Other city"];
 const specialization = ["A specialization", "Other specialization"];
 
 const props = defineProps({
-  departments: Object
+  departments: Object,
 });
 
 const departmentNames = computed({
@@ -57,13 +57,19 @@ const departmentNames = computed({
 
 const studyFields = computed({
   get() {
-    return props.departments.map(item => item.studyFields);
+    let fieldsPerDepartment = props.departments.map(field => field.studyFields);
+    return [].concat.apply([], fieldsPerDepartment)
+        .map(item => item.name);
   },
 });
 
 const specializations = computed({
   get() {
-    return props.departments.map(item => item.name)
+    let fieldsPerDepartment = props.departments.map(item => item.studyFields);
+    let fields = [].concat.apply([], fieldsPerDepartment);
+    let specializationsPerField = fields.map(item => item.specializations);
+    return [].concat.apply([], specializationsPerField)
+        .map(item => item.name);
   },
 });
 </script>

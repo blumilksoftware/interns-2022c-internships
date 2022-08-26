@@ -11,7 +11,7 @@
       <CompanyListHeader :companies="companies" />
       <Filter :departments="departments.data" />
       <CompanyList class="h-full" :companies="companies.data" />
-      <pagination class="mt-6 mb-0 sticky" :links="companies.links" />
+      <Pagination class="mt-6 mb-0 sticky" :links="companies.links" />
     </div>
   </div>
 </template>
@@ -25,6 +25,7 @@ import Filter from "./Components/FilterDisclosure.vue";
 
 defineProps({
   companies: Object,
+  cities: Object,
   departments: Object,
 });
 </script>

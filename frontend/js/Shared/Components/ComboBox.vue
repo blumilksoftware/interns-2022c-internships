@@ -65,9 +65,12 @@ const props = defineProps({
   items: Array,
   id: String,
   placeholder: String,
+  modelValue: String,
 });
-let query = ref("");
+
 const SelectedItem = ref();
+let query = ref("");
+
 const filteredItems = computed(() =>
   query.value === ""
     ? props.items

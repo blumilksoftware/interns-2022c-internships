@@ -15,11 +15,14 @@ class CompanyBrowserController extends Controller
 {
     public function index(Request $request): Response
     {
+        $cities = Company::where("status", CompanyStatus::Verified)
+            ->get("address->city");
         $companies = Company::where("status", CompanyStatus::Verified)->paginate(15);
 
         return inertia("CompanyBrowser/Index", [
                 "companies" => $companies,
                 "departments" => DepartmentResource::collection(Department::all()),
+                "cities" => $cities,
             ]
         );
     }
