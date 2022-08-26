@@ -23,7 +23,7 @@
     "Registration":{
         "Header": "User Registration",
         "FirstName": "First Name",
-        "LastName": "Last Name",
+        "LastName": "Last name",
         "Password": "Password"
     },
     "AddCompany": {
