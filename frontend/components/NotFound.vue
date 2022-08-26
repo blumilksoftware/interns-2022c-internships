@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-gray-50 min-h-full px-4 py-16 sm:px-5 sm:py-20 md:grid md:place-items-center"
+    class="max-h-full px-4 py-16 sm:px-5 sm:py-20 md:grid my-auto md:place-items-center"
   >
     <div class="max-w-max mx-auto">
       <main class="sm:flex">
@@ -10,7 +10,7 @@
           404
         </p>
         <div class="sm:ml-6">
-          <div class="sm:border-l sm:border-gray-200 sm:pl-6">
+          <div class="sm:border-l sm:border-gray-300 sm:pl-6">
             <h1
               class="text-4xl font-bold text-gray-900 tracking-tight sm:text-5xl sm:tracking-tight"
             >

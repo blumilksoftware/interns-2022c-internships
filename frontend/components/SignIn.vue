@@ -41,7 +41,6 @@
             />
           </div>
         </div>
-
         <div class="flex items-center justify-between">
           <div class="flex items-center">
             <input
@@ -54,7 +53,6 @@
               {{ $t("SignIn.Remember") }}
             </label>
           </div>
-
           <div class="text-sm">
             <a
               href="#/forgotpassword"
@@ -64,7 +62,6 @@
             </a>
           </div>
         </div>
-
         <div>
           <button
             type="submit"
