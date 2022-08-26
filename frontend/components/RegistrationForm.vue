@@ -24,6 +24,7 @@
           </label>
           <div class="mt-1 sm:mt-0 sm:col-span-2">
             <input
+              required
               type="text"
               name="first-name"
               id="first-name"
@@ -44,6 +45,7 @@
           </label>
           <div class="mt-1 sm:mt-0 sm:col-span-2">
             <input
+              required
               type="text"
               name="last-name"
               id="last-name"
@@ -64,6 +66,7 @@
           </label>
           <div class="mt-1 sm:mt-0 sm:col-span-2">
             <input
+              required
               id="email"
               name="email"
               type="email"
@@ -84,6 +87,7 @@
           </label>
           <div class="mt-1 sm:mt-0 sm:col-span-2">
             <input
+              required
               id="password"
               name="password"
               type="password"
@@ -100,7 +104,7 @@
             for="country"
             class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
           >
-            {{ $t("CommonLabels.County") }}
+            {{ $t("CommonLabels.Country") }}
           </label>
           <div class="mt-1 sm:mt-0 sm:col-span-2">
             <select
@@ -131,7 +135,7 @@
           type="submit"
           class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
         >
-          {{ $t("Buttons.RegisterButton") }}
+          {{ $t("Buttons.RegistrationButton") }}
         </button>
       </div>
     </div>

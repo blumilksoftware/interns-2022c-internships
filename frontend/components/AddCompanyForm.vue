@@ -29,6 +29,7 @@
             <div class="mt-1 sm:mt-0 sm:col-span-2">
               <div class="max-w-lg flex rounded-md shadow-sm">
                 <input
+                  required
                   type="text"
                   name="username"
                   id="username"
@@ -86,7 +87,7 @@
                   type="button"
                   class="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                 >
-                  {{ $t("AddCompany.ChangeButton") }}
+                  {{ $t("Buttons.ChangeButton") }}
                 </button>
               </div>
             </div>
@@ -129,6 +130,7 @@
           </label>
           <div class="mt-1 sm:mt-0 sm:col-span-2">
             <input
+              required
               type="text"
               name="street-address"
               id="street-address"
@@ -149,6 +151,7 @@
           </label>
           <div class="mt-1 sm:mt-0 sm:col-span-2">
             <input
+              required
               type="text"
               name="city"
               id="city"
@@ -169,6 +172,7 @@
           </label>
           <div class="mt-1 sm:mt-0 sm:col-span-2">
             <input
+              required
               type="text"
               name="region"
               id="region"
@@ -189,6 +193,7 @@
           </label>
           <div class="mt-1 sm:mt-0 sm:col-span-2">
             <input
+              required
               type="text"
               name="postal-code"
               id="postal-code"

@@ -51,6 +51,6 @@
     "CommonLabels":{
         "Email": "Email address",
         "Password": "Password",
-        "County": "County"
+        "Country": "Country"
     }
 }

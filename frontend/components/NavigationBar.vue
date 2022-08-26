@@ -56,7 +56,7 @@
                         active ? 'bg-gray-100' : '',
                         'block px-4 py-2 text-sm text-gray-700',
                       ]"
-                      >{{ $t("Buttons.SignIn") }}</a
+                      >{{ $t("Buttons.SignInButton") }}</a
                     >
                   </MenuItem>
                 </MenuItems>
@@ -113,7 +113,7 @@
             href="#/signin"
             class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
           >
-            {{ $t("Buttons.SignIn") }}</DisclosureButton
+            {{ $t("Buttons.SignInButton") }}</DisclosureButton
           >
         </div>
       </div>

@@ -17,15 +17,14 @@
         "ComboboxSpecialization": "Wybierz specjalizację"
     },
     "SignIn":{
-        "Header": "Sign in to your account",
-        "Remember": "Remember me",
-        "ForgotPassword": "Forgot your password?"
+        "Header": "Zaloguj się na swoje konto",
+        "Remember": "Zapamiętaj mnie",
+        "ForgotPassword": "Nie pamiętasz hasła?"
     },
     "Registration":{
-        "Header": "User Registration",
-        "FirstName": "First Name",
-        "LastName": "Last Name",
-        "Password": "Password"
+        "Header": "Rejstracja",
+        "FirstName": "Imię",
+        "LastName": "Nazwisko"
     },
     "AddCompany": {
         "Header": "Zgłoś swoja firmę",
@@ -47,12 +46,12 @@
         "ChangeButton": "Zmień",
         "CancelButton": "Zakończ",
         "RequestButton": "Zgłoś",
-        "RegistrationButton": "Zarejstruj"
+        "RegistrationButton": "Zarejestruj się"
     },
     "CommonLabels":{
         "Email": "Adres email",
         "Password": "Hasło",
-        "County": "Kraj"
+        "Country": "Kraj"
     }
     
 }
