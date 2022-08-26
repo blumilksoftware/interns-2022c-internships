@@ -38,7 +38,7 @@
         "PostalCode": "Postal code"
     },
     "ForgotPassword":{
-        "Header": "Please fill email, we will send you a link to reset your password, probably",
+        "Header": "Please fill email, we will send you a link to reset your password",
         "ResetButton": "Send reset link"
     },
     "Buttons":{
