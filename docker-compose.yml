@@ -23,8 +23,6 @@ services:
       args:
         INSTALL_XDEBUG: ${DOCKER_INSTALL_XDEBUG:-false}
     container_name: intern-php
-    env_file:
-      - .env
     working_dir: /application/backend
     user: ${CURRENT_UID:-1000}
     volumes:
@@ -49,7 +47,7 @@ services:
     networks:
       - intern-dev
     ports:
-      - ${DOCKER_DEV_DB_EXTERNAL_PORT:-5432}:${DOCKER_DEV_DB_EXTERNAL_PORT:-5432}
+      - ${DOCKER_DEV_DB_EXTERNAL_PORT:-3306}:3306
     restart: unless-stopped
 
   redis:

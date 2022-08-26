@@ -14,9 +14,9 @@
             <div class="flex space-x-4">
               <a
                 href="#"
-                class="hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium"
-                >{{ $t("NavigationBar.Map") }}
-              </a>
+                class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                >{{ $t("NavigationBar.Map") }}</a
+              >
               <a
                 href="#/addcompany"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -56,7 +56,7 @@
                         active ? 'bg-gray-100' : '',
                         'block px-4 py-2 text-sm text-gray-700',
                       ]"
-                      >{{ $t("Buttons.SignInButton") }}</a
+                     >{{ $t("Buttons.SignInButton") }}</a
                     >
                   </MenuItem>
                 </MenuItems>
