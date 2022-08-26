@@ -56,7 +56,7 @@
     },
     "PageNotFound":{
         "Header": "Nie odnaleziono strony :C",
-        "Description": "Sprawdź link i spóbuj ponownie"
+        "Description": "Sprawdź link i spróbuj ponownie."
     }
     
 }
