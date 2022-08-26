@@ -39,7 +39,6 @@
               </div>
             </div>
           </div>
-
           <div
             class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
           >
@@ -69,9 +68,9 @@
               Logo
             </label>
             <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <div class="flex items-center">
+              <div class="flex justify-center items-center">
                 <span
-                  class="h-10 w-10 rounded-full overflow-hidden bg-gray-100"
+                  class="h-14 w-14 rounded-lg overflow-hidden bg-gray-100"
                 >
                   <svg
                     class="h-full w-full text-gray-300"
@@ -94,7 +93,28 @@
           </div>
         </div>
       </div>
-
+      <div
+            class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
+          >
+            <label
+              for="email"
+              class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+            >
+               {{ $t("CommonLabels.Email") }}
+            </label>
+            <div class="mt-1 sm:mt-0 sm:col-span-2">
+              <div class="max-w-lg flex rounded-md shadow-sm">
+                <input
+                  required
+                  type="text"
+                  name="email"
+                  id="email"
+                  autocomplete="email"
+                  class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
+                />
+              </div>
+            </div>
+          </div>
       <div class="pt-2 space-y-6 sm:pt-2 sm:space-y-5">
         <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-5">
           <label
@@ -108,7 +128,7 @@
               id="country"
               name="country"
               autocomplete="country-name"
-              class="max-w-lg block focus:ring-primary focus:border-primary w-full shadow-sm sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
+              class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
             >
               <option>Poland</option>
               <option>Other country</option>
@@ -135,7 +155,7 @@
               name="street-address"
               id="street-address"
               autocomplete="street-address"
-              class="block max-w-lg w-full shadow-sm focus:ring-primary focus:border-primary sm:text-sm border-gray-300 rounded-md"
+              class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
             />
           </div>
         </div>
@@ -156,7 +176,7 @@
               name="city"
               id="city"
               autocomplete="address-level2"
-              class="max-w-lg block w-full shadow-sm focus:ring-primary focus:border-primary sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
+              class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
             />
           </div>
         </div>
@@ -177,7 +197,7 @@
               name="region"
               id="region"
               autocomplete="address-level1"
-              class="max-w-lg block w-full shadow-sm focus:ring-primary focus:border-primary sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
+              class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
             />
           </div>
         </div>
@@ -198,7 +218,7 @@
               name="postal-code"
               id="postal-code"
               autocomplete="postal-code"
-              class="max-w-lg block w-full shadow-sm focus:ring-primary focus:border-primary sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
+              class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
             />
           </div>
         </div>
