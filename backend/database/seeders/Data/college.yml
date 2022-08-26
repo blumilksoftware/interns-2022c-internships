@@ -1,0 +1,100 @@
+departments:
+  - name: "Wydział Nauk Społecznych i Humanistycznych"
+    fields_of_study:
+      - name: "Administracja"
+        specializations:
+          - "Menadżer w administracji publicznej"
+          - "Administracja i prawo w biznesie"
+      - name: "Bezpieczeństwo wewnętrzne"
+        specializations:
+          - "Administrowanie i zarządzanie w sferze bezpieczeństwa wewnętrznego"
+          - "Służby mundurowe w bezpieczeństwie"
+      - name: "Filologia"
+        specializations:
+          - "Filologia angielska"
+      - name: "Pedagogika"
+        specializations:
+          - "Pedagogika opiekuńczo-wychowawcza z terapią pedagogiczną"
+          - "Pedagogika resocjalizacyjna z socjoterapią"
+      - name: "Prawo"
+        specializations:
+          - "Kadry i płace"
+          - "Kryminalistyka"
+          - "Negocjacje w biznesie"
+          - "Prawne podstawy procesu inwestycyjnego"
+          - "Prawne podstawy zarządzania kryzysowego"
+          - "Prawno-ekonomiczne aspekty projektów"
+          - "Prawo karne skarbowe"
+          - "Prawo gospodarcze Unii Europejskiej"
+          - "Prawo Internetu"
+          - "Sporządzanie pism procesowych i opinii prawnych"
+          - "Zamówienia publiczne"
+  - name: "Wydział Nauk Technicznych i Ekonomicznych"
+    fields_of_study:
+      - name: "Finanse"
+        specializations:
+          - "Rachunkowość i podatki"
+          - "Finanse podmiotów gospodarczych"
+      - name: "Zarządzanie"
+        specializations:
+          - "Zarządzanie przedsiębiorstwem"
+          - "Zarządzanie zasobami ludzkimi"
+          - "Lean management"
+      - name: "Energetyka"
+        specializations:
+          - "Eksploatacja maszyn, urządzeń i systemów energetycznych"
+          - "Energetyka źródeł odnawialnych i zarządzanie energią"
+      - name: "Logistyka i Transport"
+        specializations:
+          - "Inżynieria systemów logistycznych i transportowych"
+          - "Inżynieria transportu kolejowego"
+          - "Organizacja i zarządzanie w transporcie kolejowym"
+          - "Zarządzanie produkcją i dystrybucją"
+          - "Zarządzanie i inżynieria systemów logistycznych i transportowych"
+      - name: "Informatyka"
+        specializations:
+          - "Systemy i sieci komputerowe"
+          - "Grafika komputerowa"
+          - "Programowanie aplikacji mobilnych i internetowych"
+          - "Bezpieczeństwo systemów informatycznych"
+      - name: "Zarządzanie i inżynieria produkcji"
+        specializations:
+          - "Inżynieria mechaniczna"
+          - "Systemy i procesy przemysłowe"
+          - "Inżynieria motoryzacyjna"
+          - "Inżynieria usług logistycznych"
+          - "Logistyka i zarządzanie produkcją"
+          - "Zarządzanie energią i inżynieria energetyczna"
+  - name: "Wydział Nauk o Zdrowiu i Kulturze Fizycznej"
+    fields_of_study:
+      - name: "Coaching zdrowego stylu życia"
+        specializations:
+          - "Psychoterapia"
+          - "Marketing sportowy"
+          - "Life coaching"
+          - "Turystyka"
+          - "Anatomia, fizjologia człowieka"
+          - "Zarządzanie w sporcie"
+      - name: "Dietetyka"
+        specializations:
+          - "Dietetyka kliniczna"
+          - "Poradnictwo żywieniowe i dietetyka w gastronomii"
+      - name: "Fizjoterapia"
+        specializations:
+          - "Fizjoterapia"
+      - name: "Pielęgniarstwo"
+        specializations:
+          - "Pielęgniarstwo operacyjne"
+          - "Dydaktyka medyczna"
+          - "Kardiologia"
+          - "Zarządzanie w pielęgniarstwie"
+      - name: "Zdrowie publiczne"
+        specializations:
+          - "Organizacja ratownictwa medycznego i zarządzanie kryzysowe"
+          - "Promocja zdrowia"
+      - name: "Ratownictwo medyczne"
+        specializations:
+          - "Ratownictwo medyczne"
+      - name: "Położnictwo"
+        specializations:
+          - "Położnictwo"
