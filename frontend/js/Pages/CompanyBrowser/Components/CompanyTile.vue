@@ -11,13 +11,13 @@
               <div class="flex items-center">
                 <div class="flex-shrink-0">
                   <img
-                    class="h-20 w-20 rounded-lg border-2"
+                    class="h-12 w-auto sm:h-20 sm:w-20 rounded-lg border-2"
                     :src="PlaceholderImage"
                     alt=""
                   />
                 </div>
                 <div class="ml-4">
-                  <div class="font-medium text-lg text-gray-900">
+                  <div class="font-medium text-md sm:text-lg text-gray-900">
                     {{ props.name }}
                   </div>
                   <div class="text-gray-500">{{ props.city }}</div>
@@ -30,24 +30,24 @@
     </div>
   </div>
   <TransitionRoot as="template" :show="open">
-    <Dialog as="div" class="relative z-10" @close="open = false">
+    <Dialog as="div" class="relative z-30" @close="open = false">
       <div class="fixed inset-0" />
 
       <div class="fixed inset-0 overflow-hidden">
-        <div class="absolute inset-0 inset-y-12 overflow-hidden">
+        <div class="absolute inset-0 inset-y-1/2 sm:inset-y-12 overflow-hidden">
           <div
-            class="pointer-events-none fixed inset-y-12 right-0 flex max-w-full pl-10"
+            class="pointer-events-none fixed sm:inset-y-12 left-0 mx-auto flex max-w-screen pr-10"
           >
             <TransitionChild
               as="template"
               enter="transform transition ease-in-out duration-500 sm:duration-700"
-              enter-from="translate-x-full"
-              enter-to="translate-x-0"
+              enter-from="translate-y-full"
+              enter-to="sm:translate-y-50 sm:translate-y-0"
               leave="transform transition ease-in-out duration-500 sm:duration-700"
-              leave-from="translate-x-0"
-              leave-to="translate-x-full"
+              leave-from="translate-y-0"
+              leave-to="translate-y-full"
             >
-              <DialogPanel class="pointer-events-auto w-screen max-w-md">
+              <DialogPanel class="pointer-events-auto w-screen sm:max-w-xl">
                 <div
                   class="flex h-screen flex-col overflow-y-scroll bg-gray-50 py-6 shadow-xl"
                 >
