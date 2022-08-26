@@ -28,7 +28,7 @@
     },
     "AddCompany": {
         "Header": "Company add request",
-        "HeaderInfo": "After filling up the form, your request will be send to moderator, where will be verify. ",
+        "HeaderInfo": "After filling up the form, your request will be send to moderator, where will be verified.",
         "CompanyName": "Comapany name",
         "Description": "Description",
         "DescriptionInfo": "Write about your company to help students with decision.",
