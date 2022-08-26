@@ -38,7 +38,7 @@
         "PostalCode": "Kod pocztowy"
     },
     "ForgotPassword":{
-        "Header": "Podaj adres email, na którym założyłeś konto, wyślemy link resetujacy hasło",
+        "Header": "Podaj adres e-mail, na którym zostało założone konto, wyślemy link resetujący hasło",
         "ResetButton": "Wyślij link"
     },
     "Buttons":{
