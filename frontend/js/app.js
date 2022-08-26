@@ -20,8 +20,8 @@ const i18n = createI18n({
 createInertiaApp({
   resolve: (name) => {
     const page = resolvePageComponent(
-        `./Pages/${name}.vue`,
-        import.meta.glob("./Pages/**/*.vue")
+      `./Pages/${name}.vue`,
+      import.meta.glob("./Pages/**/*.vue")
     );
 
     page.then((module) => {
@@ -32,10 +32,9 @@ createInertiaApp({
   },
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
-        .component("InertiaLink", InertiaLink)
-        .use(plugin)
-        .use(i18n)
-        .mount(el);
+      .component("InertiaLink", InertiaLink)
+      .use(plugin)
+      .use(i18n)
+      .mount(el);
   },
 });
-

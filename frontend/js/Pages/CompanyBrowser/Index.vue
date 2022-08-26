@@ -8,8 +8,9 @@
     <div
       class="flex flex-col bg-gray-50 w-full md:h-full h-1/2 md:w-3/5 lg:w-3/5 xl:w-2/5 sm:h-full"
     >
-      <CompanyListHeader />
-      <CompanyList />
+      <CompanyListHeader :companies="companies" />
+      <CompanyList :companies="companies.data" />
+      <pagination class="mt-6 mb-auto" :links="companies.links" />
     </div>
   </div>
 </template>
@@ -18,4 +19,9 @@
 import MapDisplay from "./Components/MapDisplay.vue";
 import CompanyList from "./Components/CompanyList.vue";
 import CompanyListHeader from "./Components/CompanyListHeader.vue";
+import Pagination from "@/js/Shared/Components/PaginationList.vue";
+
+defineProps({
+  companies: Object,
+});
 </script>

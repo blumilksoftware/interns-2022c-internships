@@ -15,5 +15,9 @@
         "ComboboxField": "Choose field of study",
         "ComboboxDepartment": "Choose department",
         "ComboboxSpecialization": "Choose specialization"
+    },
+    "pagination":{
+        "next": "Next",
+        "previous": "Previous"
     }
 }

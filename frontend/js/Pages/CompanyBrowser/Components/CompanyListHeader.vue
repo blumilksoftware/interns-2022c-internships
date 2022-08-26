@@ -6,7 +6,7 @@
       {{ $t("CompanyBrowser.CompaniesList") }}
     </h3>
     <p class="mt-1 flex justify-center max-w-4xl text-sm text-gray-500">
-      {{ $t("CompanyBrowser.FoundCompanies") }} : 0
+      {{ $t("CompanyBrowser.FoundCompanies") }} : {{ companies.total }}
     </p>
   </div>
   <div class="w-full">
@@ -34,4 +34,8 @@
 <script setup>
 import { SearchIcon } from "@heroicons/vue/solid";
 import Filter from "./FilterDisclosure.vue";
+
+defineProps({
+  companies: Object,
+});
 </script>

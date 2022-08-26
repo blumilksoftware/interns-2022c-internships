@@ -15,5 +15,9 @@
         "ComboboxField": "Wybierz kierunek",
         "ComboboxDepartment": "Wybierz wydział",
         "ComboboxSpecialization": "Wybierz specjalizację"
+    },
+    "pagination":{
+        "next": "Następny",
+        "previous": "Poprzedni"
     }
 }

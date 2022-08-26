@@ -4,27 +4,29 @@
     @click="open = true"
   >
     <div class="px-2 py-3 sm:p-2">
-      <tbody class="divide-y divide-gray-200 bg-white overflow-hidden py-5">
-        <tr>
-          <td class="whitespace-nowrap py-4 pl-1 pr-3 text-sm sm:pl-1">
-            <div class="flex items-center">
-              <div class="flex-shrink-0">
-                <img
-                  class="h-20 w-20 rounded-lg border-2"
-                  :src="props.image"
-                  alt=""
-                />
-              </div>
-              <div class="ml-4">
-                <div class="font-medium text-lg text-gray-900">
-                  {{ props.name }}
+      <table>
+        <tbody class="divide-y divide-gray-200 bg-white overflow-hidden py-5">
+          <tr>
+            <td class="whitespace-nowrap py-4 pl-1 pr-3 text-sm sm:pl-1">
+              <div class="flex items-center">
+                <div class="flex-shrink-0">
+                  <img
+                    class="h-20 w-20 rounded-lg border-2"
+                    :src="PlaceholderImage"
+                    alt=""
+                  />
                 </div>
-                <div class="text-gray-500">{{ props.email }}</div>
+                <div class="ml-4">
+                  <div class="font-medium text-lg text-gray-900">
+                    {{ props.name }}
+                  </div>
+                  <div class="text-gray-500">{{ props.city }}</div>
+                </div>
               </div>
-            </div>
-          </td>
-        </tr>
-      </tbody>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
   <TransitionRoot as="template" :show="open">
@@ -93,11 +95,12 @@ import {
   TransitionRoot,
 } from "@headlessui/vue";
 import { XIcon } from "@heroicons/vue/outline";
+import PlaceholderImage from "@/assets/images/blumilklogo.png";
 
 const open = ref(false);
 const props = defineProps({
   name: String,
-  email: String,
+  city: String,
   image: String,
   description: String,
 });
