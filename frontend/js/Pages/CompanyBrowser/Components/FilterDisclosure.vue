@@ -18,16 +18,16 @@
           />
           <div class="flex gap-x-2 mt-1">
             <FilterCombobox
-              :placeholder="$t('Comboboxes.ComboboxField')"
-              :items="studyfields"
+                :placeholder="$t('Comboboxes.ComboboxDepartment')"
+                :items="departmentNames"
             />
             <FilterCombobox
-              :placeholder="$t('Comboboxes.ComboboxDepartment')"
-              :items="departments"
+              :placeholder="$t('Comboboxes.ComboboxField')"
+              :items="studyFields"
             />
             <FilterCombobox
               :placeholder="$t('Comboboxes.ComboboxSpecialization')"
-              :items="specialization"
+              :items="departmentNames"
             />
           </div>
         </DisclosurePanel>
@@ -40,9 +40,30 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
 import { ChevronDownIcon } from "@heroicons/vue/solid";
 import FilterCombobox from "@/js/Shared/Components/ComboBox.vue";
+import { computed } from "vue";
 
 const cities = ["City", "Other city"];
 const specialization = ["A specialization", "Other specialization"];
-const studyfields = ["Some studyfields", "Other studyfields"];
-const departments = ["Some department", "Other department"];
+
+const props = defineProps({
+  departments: Object
+});
+
+const departmentNames = computed({
+  get() {
+    return props.departments.map(item => item.name)
+  },
+});
+
+const studyFields = computed({
+  get() {
+    return props.departments.map(item => item.studyFields);
+  },
+});
+
+const specializations = computed({
+  get() {
+    return props.departments.map(item => item.name)
+  },
+});
 </script>

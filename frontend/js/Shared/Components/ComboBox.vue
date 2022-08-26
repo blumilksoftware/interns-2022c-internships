@@ -15,7 +15,7 @@
 
       <ComboboxOptions
         v-if="filteredItems.length"
-        class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+        class="absolute z-10 mt-1 max-h-60 w-fit overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
       >
         <ComboboxOption
           v-for="item in filteredItems"
@@ -66,7 +66,7 @@ const props = defineProps({
   id: String,
   placeholder: String,
 });
-const query = ref("");
+let query = ref("");
 const SelectedItem = ref();
 const filteredItems = computed(() =>
   query.value === ""

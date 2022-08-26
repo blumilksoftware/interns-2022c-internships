@@ -27,13 +27,11 @@
         type="search"
       />
     </div>
-    <Filter />
   </div>
 </template>
 
 <script setup>
 import { SearchIcon } from "@heroicons/vue/solid";
-import Filter from "./FilterDisclosure.vue";
 
 defineProps({
   companies: Object,

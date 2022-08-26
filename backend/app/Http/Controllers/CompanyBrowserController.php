@@ -7,7 +7,9 @@ namespace Internships\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Response;
 use Internships\Enums\CompanyStatus;
+use Internships\Http\Resources\DepartmentResource;
 use Internships\Models\Company;
+use Internships\Models\Department;
 
 class CompanyBrowserController extends Controller
 {
@@ -15,6 +17,10 @@ class CompanyBrowserController extends Controller
     {
         $companies = Company::where("status", CompanyStatus::Verified)->paginate(15);
 
-        return inertia("CompanyBrowser/Index", ["companies" => $companies]);
+        return inertia("CompanyBrowser/Index", [
+                "companies" => $companies,
+                "departments" => DepartmentResource::collection(Department::all()),
+            ]
+        );
     }
 }
