@@ -132,5 +132,5 @@ import {
   MenuItems,
 } from "@headlessui/vue";
 import { UserIcon, MenuIcon, XIcon, CodeIcon } from "@heroicons/vue/outline";
-import LanguageSwitch from "@/components/LanguageSwitch.vue";
+import LanguageSwitch from "./LanguageSwitch.vue";
 </script>

@@ -39,7 +39,7 @@
 <script setup>
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
 import { ChevronDownIcon } from "@heroicons/vue/solid";
-import FilterCombobox from "@/components/ComboBox.vue";
+import FilterCombobox from "@/js/Shared/Components/ComboBox.vue";
 
 const cities = ["City", "Other city"];
 const specialization = ["A specialization", "Other specialization"];

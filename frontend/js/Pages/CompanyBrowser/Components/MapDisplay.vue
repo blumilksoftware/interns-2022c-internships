@@ -11,7 +11,6 @@
 <script>
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-
 import { LocationMarkerIcon } from "@heroicons/vue/outline";
 
 export default {

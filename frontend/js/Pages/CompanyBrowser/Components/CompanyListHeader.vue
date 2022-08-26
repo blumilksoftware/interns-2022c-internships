@@ -33,5 +33,5 @@
 
 <script setup>
 import { SearchIcon } from "@heroicons/vue/solid";
-import Filter from "@/components/FilterDisclosure.vue";
+import Filter from "./FilterDisclosure.vue";
 </script>
