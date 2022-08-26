@@ -55,7 +55,7 @@
         "Country": "Kraj"
     },
     "PageNotFound":{
-        "Header": "Nie odnaleziono strony :C",
+        "Header": "Nie odnaleziono strony",
         "Description": "Sprawdź link i spróbuj ponownie."
     }
     
