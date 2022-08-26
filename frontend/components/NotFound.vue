@@ -14,10 +14,10 @@
             <h1
               class="text-4xl font-bold text-gray-900 tracking-tight sm:text-5xl sm:tracking-tight"
             >
-              {{$t("PageNotFound.Header")}}
+              {{ $t("PageNotFound.Header") }}
             </h1>
             <p class="mt-1 text-base text-gray-500">
-              {{$t("PageNotFound.Description")}}
+              {{ $t("PageNotFound.Description") }}
             </p>
           </div>
           <div
@@ -27,7 +27,7 @@
               href="#"
               class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
             >
-              {{$t("Buttons.GoHomeButton")}}
+              {{ $t("Buttons.GoHomeButton") }}
             </a>
           </div>
         </div>

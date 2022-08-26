@@ -69,9 +69,7 @@
             </label>
             <div class="mt-1 sm:mt-0 sm:col-span-2">
               <div class="flex justify-center items-center">
-                <span
-                  class="h-14 w-14 rounded-lg overflow-hidden bg-gray-100"
-                >
+                <span class="h-14 w-14 rounded-lg overflow-hidden bg-gray-100">
                   <svg
                     class="h-full w-full text-gray-300"
                     fill="currentColor"
@@ -94,27 +92,27 @@
         </div>
       </div>
       <div
-            class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-          >
-            <label
-              for="email"
-              class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-            >
-               {{ $t("CommonLabels.Email") }}
-            </label>
-            <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <div class="max-w-lg flex rounded-md shadow-sm">
-                <input
-                  required
-                  type="text"
-                  name="email"
-                  id="email"
-                  autocomplete="email"
-                  class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
-                />
-              </div>
-            </div>
+        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
+      >
+        <label
+          for="email"
+          class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+        >
+          {{ $t("CommonLabels.Email") }}
+        </label>
+        <div class="mt-1 sm:mt-0 sm:col-span-2">
+          <div class="max-w-lg flex rounded-md shadow-sm">
+            <input
+              required
+              type="text"
+              name="email"
+              id="email"
+              autocomplete="email"
+              class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
+            />
           </div>
+        </div>
+      </div>
       <div class="pt-2 space-y-6 sm:pt-2 sm:space-y-5">
         <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-5">
           <label
