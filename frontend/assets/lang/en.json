@@ -46,11 +46,16 @@
         "ChangeButton": "Change",
         "CancelButton": "Cancel",
         "RequestButton": "Request",
-        "RegistrationButton": "Register"
+        "RegistrationButton": "Register",
+        "GoHomeButton": "Go back home"
     },
     "CommonLabels":{
         "Email": "Email address",
         "Password": "Password",
         "Country": "Country"
+    },
+    "PageNotFound":{
+        "Header": "Page not found :C",
+        "Description": "Please check the URL in the address bar and try again"
     }
 }

@@ -46,12 +46,17 @@
         "ChangeButton": "Zmień",
         "CancelButton": "Zakończ",
         "RequestButton": "Zgłoś",
-        "RegistrationButton": "Zarejestruj się"
+        "RegistrationButton": "Zarejestruj się",
+        "GoHomeButton": "Wróć na stronę główną"
     },
     "CommonLabels":{
         "Email": "Adres email",
         "Password": "Hasło",
         "Country": "Kraj"
+    },
+    "PageNotFound":{
+        "Header": "Nie odnaleziono strony :C",
+        "Description": "Sprawdź link i spóbuj ponownie"
     }
     
 }
