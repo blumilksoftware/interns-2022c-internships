@@ -14,11 +14,11 @@
             <div class="flex space-x-4">
               <a
                 href="#"
-                class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
-                >{{ $t("NavigationBar.Map") }}
-              </a>
+                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >{{ $t("NavigationBar.Map") }}</a
+              >
               <a
-                href="#"
+                href="#/addcompany"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >{{ $t("NavigationBar.AddCompany") }}</a
               >
@@ -37,7 +37,6 @@
                   </div>
                 </MenuButton>
               </div>
-
               <transition
                 enter-active-class="transition ease-out duration-100"
                 enter-from-class="transform opacity-0 scale-95"
@@ -51,12 +50,12 @@
                 >
                   <MenuItem v-slot="{ active }">
                     <a
-                      href="#"
+                      href="#/signin"
                       :class="[
                         active ? 'bg-gray-100' : '',
                         'block px-4 py-2 text-sm text-gray-700',
                       ]"
-                      >{{ $t("NavigationBar.SignIn") }}</a
+                      >{{ $t("Buttons.SignInButton") }}</a
                     >
                   </MenuItem>
                 </MenuItems>
@@ -94,12 +93,12 @@
         <DisclosureButton
           as="a"
           href="#"
-          class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >{{ $t("NavigationBar.Map") }}</DisclosureButton
         >
         <DisclosureButton
           as="a"
-          href="#"
+          href="#/addcompany"
           class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
         >
           {{ $t("NavigationBar.AddCompany") }}
@@ -110,10 +109,10 @@
         <div class="mt-3 px-2 space-y-1">
           <DisclosureButton
             as="a"
-            href="#"
+            href="#/signin"
             class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
           >
-            {{ $t("NavigationBar.SignIn") }}</DisclosureButton
+            {{ $t("Buttons.SignInButton") }}</DisclosureButton
           >
         </div>
       </div>

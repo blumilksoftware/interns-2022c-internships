@@ -33,7 +33,6 @@
             <span :class="['block truncate', selected && 'font-semibold']">
               {{ item }}
             </span>
-
             <span
               v-if="selected"
               :class="[

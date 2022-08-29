@@ -18,5 +18,47 @@
     "pagination":{
         "next": "Następny",
         "previous": "Poprzedni"
+    },
+    "SignIn":{
+        "Header": "Logowanie",
+        "Remember": "Zapamiętaj mnie",
+        "ForgotPassword": "Nie pamiętasz hasła?"
+    },
+    "Registration":{
+        "Header": "Rejestracja",
+        "FirstName": "Imię",
+        "LastName": "Nazwisko"
+    },
+    "AddCompany": {
+        "Header": "Zgłoś swoja firmę",
+        "HeaderInfo": "Po wypełnieniu formularza, Twoje zgłoszenie zostanie przekazane moderatorowi do weryfikacji.",
+        "CompanyName": "Nazwa firmy",
+        "Description": "Opis",
+        "DescriptionInfo": "Napisz coś o swojej firmie, aby ułatwić studentom wybór.",
+        "StreetAddress": "Ulica",
+        "City": "Miasto",
+        "Voivodeship": "Województwo",
+        "PostalCode": "Kod pocztowy"
+    },
+    "ForgotPassword":{
+        "Header": "Podaj adres e-mail, na którym zostało założone konto, wyślemy link resetujący hasło",
+        "ResetButton": "Wyślij link"
+    },
+    "Buttons":{
+        "SignInButton": "Zaloguj",
+        "ChangeButton": "Zmień",
+        "CancelButton": "Zakończ",
+        "RequestButton": "Zgłoś",
+        "RegistrationButton": "Zarejestruj się",
+        "GoHomeButton": "Wróć na stronę główną"
+    },
+    "CommonLabels":{
+        "Email": "Adres e-mail",
+        "Password": "Hasło",
+        "Country": "Kraj"
+    },
+    "PageNotFound":{
+        "Header": "Nie odnaleziono strony",
+        "Description": "Sprawdź link i spróbuj ponownie."
     }
 }

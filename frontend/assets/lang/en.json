@@ -1,8 +1,7 @@
 {
     "NavigationBar":{
         "Map": "Map",
-        "AddCompany": "Add company",
-        "SignIn": "Sign in"
+        "AddCompany": "Add company"
     },
     "CompanyBrowser":{
         "CompaniesList": "Companies list",
@@ -18,5 +17,48 @@
     "pagination":{
         "next": "Next",
         "previous": "Previous"
+    },
+    "SignIn":{
+        "Header": "Sign in",
+        "Remember": "Remember me",
+        "ForgotPassword": "Forgot your password?"
+    },
+    "Registration":{
+        "Header": "User Registration",
+        "FirstName": "First name",
+        "LastName": "Last name",
+        "Password": "Password"
+    },
+    "AddCompany": {
+        "Header": "Company add request",
+        "HeaderInfo": "After filling up the form, your request will be send to moderator, where will be verified.",
+        "CompanyName": "Company name",
+        "Description": "Description",
+        "DescriptionInfo": "Write about your company to help students with the decision.",
+        "StreetAddress": "Street address",
+        "City": "City",
+        "Voivodeship": "Voivodeship",
+        "PostalCode": "Postal code"
+    },
+    "ForgotPassword":{
+        "Header": "Please fill email, we will send you a link to reset your password",
+        "ResetButton": "Send reset link"
+    },
+    "Buttons":{
+        "SignInButton": "Sign in",
+        "ChangeButton": "Change",
+        "CancelButton": "Cancel",
+        "RequestButton": "Request",
+        "RegistrationButton": "Register",
+        "GoHomeButton": "Go back home"
+    },
+    "CommonLabels":{
+        "Email": "Email address",
+        "Password": "Password",
+        "Country": "Country"
+    },
+    "PageNotFound":{
+        "Header": "Page not found",
+        "Description": "Please check the URL in the address bar and try again."
     }
 }
