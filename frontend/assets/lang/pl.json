@@ -22,7 +22,7 @@
         "ForgotPassword": "Nie pamiętasz hasła?"
     },
     "Registration":{
-        "Header": "Rejstracja",
+        "Header": "Rejestracja",
         "FirstName": "Imię",
         "LastName": "Nazwisko"
     },
