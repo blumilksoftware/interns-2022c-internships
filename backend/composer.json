@@ -29,7 +29,8 @@
     "laravel/tinker": "^2.7.2",
     "spatie/data-transfer-object": "^3.8",
     "spatie/laravel-model-states": "^2.1",
-    "symfony/yaml": "^6.1"
+    "symfony/yaml": "^6.1",
+    "tightenco/ziggy": "^1.4"
   },
   "require-dev": {
     "blumilksoftware/codestyle": "^1.3",
