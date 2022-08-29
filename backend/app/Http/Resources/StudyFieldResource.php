@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Internships\Http\Resources;
 
 use Illuminate\Contracts\Support\Arrayable;
@@ -11,12 +13,12 @@ class StudyFieldResource extends JsonResource
     /**
      * @param  \Illuminate\Http\Request  $request
      */
-    public function toArray($request) : array|Arrayable|JsonSerializable
+    public function toArray($request): array|Arrayable|JsonSerializable
     {
         return [
             "id" => $this->id,
-            "name" => $this->name,
-            "specializations" => SpecializationResource::collection($this->specializations),
+            "label" => $this->name,
+            "children" => SpecializationResource::collection($this->specializations),
         ];
     }
 }

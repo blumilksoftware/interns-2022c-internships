@@ -17,10 +17,12 @@ class CompanyBrowserController extends Controller
     {
         $companies = Company::where("status", CompanyStatus::Verified)->paginate(15);
 
-        return inertia("CompanyBrowser/Index", [
+        return inertia(
+            "CompanyBrowser/Index",
+            [
                 "companies" => $companies,
                 "departments" => DepartmentResource::collection(Department::all()),
-            ]
+            ],
         );
     }
 }

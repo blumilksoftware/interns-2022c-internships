@@ -4,7 +4,7 @@
       <ComboboxInput
         :placeholder="props.placeholder"
         :id="id"
-        class="w-full text-ellipsis hover:text-clip overflow-hidden h-12 rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500 sm:text-sm"
+        class="w-full text-ellipsis hover:text-clip overflow-hidden h-10 rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500 sm:text-sm"
         @change="query = $event.target.value"
       />
       <ComboboxButton

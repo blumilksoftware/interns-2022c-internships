@@ -9,7 +9,6 @@
       {{ $t("CompanyBrowser.FoundCompanies") }} : {{ companies.total }}
     </p>
   </div>
-  
 </template>
 
 <script setup>

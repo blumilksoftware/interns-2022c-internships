@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Internships\Http\Resources;
 
 use Illuminate\Contracts\Support\Arrayable;
@@ -15,8 +17,8 @@ class DepartmentResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            'name' => $this->name,
-            "studyFields" => StudyFieldResource::collection($this->studyFields),
+            "label" => $this->name,
+            "children" => StudyFieldResource::collection($this->studyFields),
         ];
     }
 }
