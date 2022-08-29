@@ -14,7 +14,7 @@
             <div class="flex space-x-4">
               <a
                 href="#"
-                class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >{{ $t("NavigationBar.Map") }}</a
               >
               <a
@@ -93,7 +93,7 @@
         <DisclosureButton
           as="a"
           href="#"
-          class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >{{ $t("NavigationBar.Map") }}</DisclosureButton
         >
         <DisclosureButton
