@@ -15,4 +15,11 @@ class UserController extends Controller
             "User/Login",
         );
     }
+
+    public function register(Request $request): Response
+    {
+        return inertia(
+            "User/Register",
+        );
+    }
 }

@@ -12,3 +12,4 @@ Route::get("/", [CompanyBrowserController::class, "index"]);
 Route::get("/company/create", [CompanyController::class, "create"]);
 
 Route::get("/login", [UserController::class, "login"]);
+Route::get("/register", [UserController::class, "register"]);

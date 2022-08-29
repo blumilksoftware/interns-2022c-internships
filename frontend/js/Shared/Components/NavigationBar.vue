@@ -64,14 +64,14 @@
             <div class="flex items-center">
               <LanguageSwitch class="flex pl-5" />
               <div class="flex pl-5">
-                <InertiaLink
+                <a
                   href="https://github.com/blumilksoftware/internships"
                   target="_blank"
                   class="bg-gray-800 p-1 rounded-full text-gray-400 focus:outline-none focus:ring-2 focus:ring-white"
                 >
                   <span class="sr-only">View code</span>
                   <CodeIcon class="h-6 w-6" aria-hidden="true" />
-                </InertiaLink>
+                </a>
               </div>
             </div>
           </div>

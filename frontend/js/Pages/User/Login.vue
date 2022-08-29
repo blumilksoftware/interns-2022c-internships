@@ -54,12 +54,12 @@
             </label>
           </div>
           <div class="text-sm">
-            <a
+            <InertiaLink
               href="/reset"
               class="font-medium text-primary hover:text-primary"
             >
               {{ $t("SignIn.ForgotPassword") }}
-            </a>
+            </InertiaLink>
           </div>
         </div>
         <div>
@@ -71,14 +71,14 @@
           </button>
         </div>
       </form>
-      <a href="/register">
+      <InertiaLink href="/register">
         <button
           type="submit"
           class="group mt-2 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-800 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
         >
           {{ $t("Buttons.RegistrationButton") }}
         </button>
-      </a>
+      </InertiaLink>
     </div>
   </div>
 </template>
