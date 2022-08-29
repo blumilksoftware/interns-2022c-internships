@@ -8,11 +8,9 @@
         "FoundCompanies": "Found companies",
         "Search": "Search"
     },
-    "Comboboxes":{
-        "ComboboxCity": "Choose city",
-        "ComboboxField": "Choose field of study",
-        "ComboboxDepartment": "Choose department",
-        "ComboboxSpecialization": "Choose specialization"
+    "TreeSelects":{
+        "TreeSelectCity": "Choose city",
+        "TreeSelectSpecialization": "Choose specialization"
     },
     "pagination":{
         "next": "Next",

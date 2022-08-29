@@ -32,19 +32,21 @@
             </div>
           </div>
           <Treeselect
-            :options="departments"
+            class="mt-2"
+            :options="cities"
             :multiple="false"
             :show-count="true"
             :disable-branch-nodes="true"
-            placeholder="Wybierz specjalizację..."
+            :placeholder="$t('TreeSelects.TreeSelectCity')"
             v-model="value"
           />
           <Treeselect
-            :options="departments"
+            class="mt-2"
+            :options="props.departments"
             :multiple="false"
             :show-count="true"
             :disable-branch-nodes="true"
-            placeholder="Wybierz specjalizację..."
+            :placeholder="$t('TreeSelects.TreeSelectSpecialization')"
             v-model="value"
           />
         </DisclosurePanel>
@@ -59,7 +61,9 @@ import { ChevronDownIcon, SearchIcon } from "@heroicons/vue/solid";
 import Treeselect from "vue3-treeselect";
 import "vue3-treeselect/dist/vue3-treeselect.css";
 
-defineProps({
+const cities = ["City", "Other city"];
+
+const props = defineProps({
   departments: Object,
 });
 </script>
