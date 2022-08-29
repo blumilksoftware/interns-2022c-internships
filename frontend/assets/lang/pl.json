@@ -28,7 +28,7 @@
     },
     "AddCompany": {
         "Header": "Zgłoś swoja firmę",
-        "HeaderInfo": "Po wypełnieniu formularza, twoje zgłoszenie zostanie przekazane moderatorowi do weryfikacji. ",
+        "HeaderInfo": "Po wypełnieniu formularza, Twoje zgłoszenie zostanie przekazane moderatorowi do weryfikacji.",
         "CompanyName": "Nazwa firmy",
         "Description": "Opis",
         "DescriptionInfo": "Napisz coś o swojej firmie aby ułatwić studentom wybór.",
