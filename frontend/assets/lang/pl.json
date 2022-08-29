@@ -7,8 +7,7 @@
     "CompanyBrowser":{
         "CompaniesList": "Lista firm",
         "FoundCompanies": "Znaleziono",
-        "Search": "Wyszukaj",
-        "Filter": "Filtry"
+        "Search": "Wyszukaj"
     },
     "Comboboxes":{
         "ComboboxCity": "Wybierz miasto",
