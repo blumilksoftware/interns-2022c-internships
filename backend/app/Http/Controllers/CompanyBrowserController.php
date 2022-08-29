@@ -16,12 +16,23 @@ class CompanyBrowserController extends Controller
     public function index(Request $request): Response
     {
         $companies = Company::where("status", CompanyStatus::Verified)->paginate(15);
+        $cities = [
+            [
+                "id" => 0,
+                "label" => "Legnica",
+            ],
+            [
+                "id" => 1,
+                "label" => "Bogatynia",
+            ]
+        ];
 
         return inertia(
             "CompanyBrowser/Index",
             [
                 "companies" => $companies,
                 "departments" => DepartmentResource::collection(Department::all()),
+                "cities" => $cities,
             ],
         );
     }
