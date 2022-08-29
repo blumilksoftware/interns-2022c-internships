@@ -24,7 +24,7 @@ class CompanyBrowserController extends Controller
             [
                 "id" => 1,
                 "label" => "Bogatynia",
-            ]
+            ],
         ];
 
         return inertia(
