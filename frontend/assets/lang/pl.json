@@ -17,7 +17,7 @@
         "ComboboxSpecialization": "Wybierz specjalizację"
     },
     "SignIn":{
-        "Header": "Zaloguj się na swoje konto",
+        "Header": "Logowanie",
         "Remember": "Zapamiętaj mnie",
         "ForgotPassword": "Nie pamiętasz hasła?"
     },

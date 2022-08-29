@@ -16,7 +16,7 @@
         "ComboboxSpecialization": "Choose specialization"
     },
     "SignIn":{
-        "Header": "Sign in to your account",
+        "Header": "Sign in",
         "Remember": "Remember me",
         "ForgotPassword": "Forgot your password?"
     },
