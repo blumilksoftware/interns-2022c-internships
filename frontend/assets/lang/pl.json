@@ -9,11 +9,9 @@
         "FoundCompanies": "Znaleziono",
         "Search": "Wyszukaj"
     },
-    "Comboboxes":{
-        "ComboboxCity": "Wybierz miasto",
-        "ComboboxField": "Wybierz kierunek",
-        "ComboboxDepartment": "Wybierz wydział",
-        "ComboboxSpecialization": "Wybierz specjalizację"
+    "TreeSelects":{
+        "TreeSelectCity": "Wybierz miasto",
+        "TreeSelectSpecialization": "Wybierz specjalizację"
     },
     "pagination":{
         "next": "Następny",
