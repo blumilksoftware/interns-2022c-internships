@@ -56,6 +56,6 @@
     },
     "PageNotFound":{
         "Header": "Page not found",
-        "Description": "Please check the URL in the address bar and try again"
+        "Description": "Please check the URL in the address bar and try again."
     }
 }
