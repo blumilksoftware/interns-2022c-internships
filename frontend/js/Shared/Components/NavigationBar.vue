@@ -12,15 +12,15 @@
           </div>
           <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4">
-              <a
-                href="#"
+              <InertiaLink
+                href="/"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >{{ $t("NavigationBar.Map") }}</a
+                >{{ $t("NavigationBar.Map") }}</InertiaLink
               >
-              <a
-                href="#/addcompany"
+              <InertiaLink
+                href="/company/create"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >{{ $t("NavigationBar.AddCompany") }}</a
+                >{{ $t("NavigationBar.AddCompany") }}</InertiaLink
               >
             </div>
           </div>
@@ -49,13 +49,13 @@
                   class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                 >
                   <MenuItem v-slot="{ active }">
-                    <a
-                      href="#/signin"
+                    <InertiaLink
+                      href="/login"
                       :class="[
                         active ? 'bg-gray-100' : '',
                         'block px-4 py-2 text-sm text-gray-700',
                       ]"
-                      >{{ $t("Buttons.SignInButton") }}</a
+                      >{{ $t("Buttons.SignInButton") }}</InertiaLink
                     >
                   </MenuItem>
                 </MenuItems>
@@ -64,14 +64,14 @@
             <div class="flex items-center">
               <LanguageSwitch class="flex pl-5" />
               <div class="flex pl-5">
-                <a
+                <InertiaLink
                   href="https://github.com/blumilksoftware/internships"
                   target="_blank"
                   class="bg-gray-800 p-1 rounded-full text-gray-400 focus:outline-none focus:ring-2 focus:ring-white"
                 >
                   <span class="sr-only">View code</span>
                   <CodeIcon class="h-6 w-6" aria-hidden="true" />
-                </a>
+                </InertiaLink>
               </div>
             </div>
           </div>
@@ -92,13 +92,13 @@
       <div class="px-2 pt-2 pb-3 space-y-1">
         <DisclosureButton
           as="a"
-          href="#"
+          href="/"
           class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >{{ $t("NavigationBar.Map") }}</DisclosureButton
         >
         <DisclosureButton
           as="a"
-          href="#/addcompany"
+          href="/company/create"
           class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
         >
           {{ $t("NavigationBar.AddCompany") }}

@@ -32,12 +32,12 @@
             </div>
           </div>
           <Treeselect
-              :options="departments"
-              :multiple="false"
-              :show-count="true"
-              :disable-branch-nodes="true"
-              placeholder="Wybierz specjalizację..."
-              v-model="value"
+            :options="departments"
+            :multiple="false"
+            :show-count="true"
+            :disable-branch-nodes="true"
+            placeholder="Wybierz specjalizację..."
+            v-model="value"
           />
           <Treeselect
             :options="departments"
@@ -59,9 +59,7 @@ import { ChevronDownIcon, SearchIcon } from "@heroicons/vue/solid";
 import Treeselect from "vue3-treeselect";
 import "vue3-treeselect/dist/vue3-treeselect.css";
 
-const cities = ["City", "Other city"];
-
-const props = defineProps({
+defineProps({
   departments: Object,
 });
 </script>
