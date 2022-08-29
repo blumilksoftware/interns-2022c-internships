@@ -58,7 +58,7 @@
               href="#/forgotpassword"
               class="font-medium text-primary hover:text-primary"
             >
-              {{ $t("SignIn.ForgotPassword") }}?
+              {{ $t("SignIn.ForgotPassword") }}
             </a>
           </div>
         </div>
