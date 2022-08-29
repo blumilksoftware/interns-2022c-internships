@@ -1,54 +1,34 @@
 <template>
-  <div
-    v-if="loading"
-    class="flex justify-center items-center w-full h-full bg-gray-300 text-gray-400"
-  >
-    <location-marker-icon class="h-36 w-36 animate-pulse" aria-hidden="true" />
-  </div>
-  <div v-show="!loading" id="map" class="w-full h-full overflow-hidden"></div>
+  <VMap class="h-full w-full" :options="state.map" @loaded="onMapLoaded">
+  </VMap>
 </template>
 
-<script>
-import mapboxgl from "mapbox-gl";
+<script setup>
 import "mapbox-gl/dist/mapbox-gl.css";
-import { LocationMarkerIcon } from "@heroicons/vue/outline";
+import "v-mapbox/dist/v-mapbox.css";
+import { VMap } from "v-mapbox";
+import mapboxgl from "mapbox-gl";
+import { reactive } from "vue";
 
-export default {
-  components: {
-    LocationMarkerIcon,
+const state = reactive({
+  map: {
+    accessToken: import.meta.env.VITE_MAPBOX_TOKEN,
+    style: "mapbox://styles/mapbox/light-v10?optimize=true",
+    center: [16.1472681, 51.2048546],
+    zoom: 5,
+    maxZoom: 20,
+    crossSourceCollisions: false,
+    failIfMajorPerformanceCaveat: false,
+    attributionControl: false,
+    preserveDrawingBuffer: true,
+    hash: false,
+    minPitch: 0,
+    maxPitch: 60,
   },
-  mounted() {
-    this.buildMap();
-  },
-  data() {
-    return {
-      loading: true,
-      map: this.map,
-      filtered: [],
-    };
-  },
+});
 
-  methods: {
-    buildMap() {
-      this.map = new mapboxgl.Map({
-        accessToken: import.meta.env.VITE_MAPBOX_TOKEN,
-        minzoom: 5,
-        type: "symbol",
-        container: "map",
-        style: "mapbox://styles/mapbox/light-v10?optimize=true",
-      });
-
-      this.map.addControl(new mapboxgl.NavigationControl());
-
-      this.map.on("load", () => {
-        this.loading = false;
-        this.map.resize();
-      });
-
-      this.map.on("idle", () => {
-        this.map.resize();
-      });
-    },
-  },
-};
+function onMapLoaded(map) {
+  map.addControl(new mapboxgl.NavigationControl());
+  map.addControl(new mapboxgl.FullscreenControl());
+}
 </script>
