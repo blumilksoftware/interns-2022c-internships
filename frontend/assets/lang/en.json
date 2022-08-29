@@ -55,7 +55,7 @@
         "Country": "Country"
     },
     "PageNotFound":{
-        "Header": "Page not found :C",
+        "Header": "Page not found",
         "Description": "Please check the URL in the address bar and try again"
     }
 }
