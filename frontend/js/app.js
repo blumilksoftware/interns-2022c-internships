@@ -8,7 +8,7 @@ import { createI18n } from "vue-i18n";
 import App from "@/js/Shared/Layout/App.vue";
 import "@/assets/tailwind.css";
 import messages from "@intlify/unplugin-vue-i18n/messages";
-import { ZiggyVue } from '../../backend/vendor/tightenco/ziggy/dist/vue.m';
+import { ZiggyVue } from "../../backend/vendor/tightenco/ziggy/dist/vue.m";
 
 const i18n = createI18n({
   legacy: false,
@@ -38,7 +38,7 @@ createInertiaApp({
       .component("Pagination", Pagination)
       .use(plugin)
       .use(i18n)
-        .use(ZiggyVue)
+      .use(ZiggyVue)
       .mount(el);
   },
 });
