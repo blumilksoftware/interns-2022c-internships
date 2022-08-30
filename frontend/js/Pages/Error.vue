@@ -7,31 +7,37 @@
         <p
           class="text-4xl tracking-tight font-bold text-primary sm:text-5xl sm:tracking-tight"
         >
-          404
+          {{ $t("Error.Header") }} {{ props.status }}
         </p>
         <div class="sm:ml-6">
           <div class="sm:border-l sm:border-gray-300 sm:pl-6">
             <h1
               class="text-4xl font-bold text-gray-900 tracking-tight sm:text-5xl sm:tracking-tight"
             >
-              {{ $t("PageNotFound.Header") }}
+              {{ $t("Error.Name-" + props.status) }}
             </h1>
             <p class="mt-1 text-base text-gray-500">
-              {{ $t("PageNotFound.Description") }}
+              {{ $t("Error.Description-" + props.status) }}
             </p>
           </div>
           <div
             class="mt-10 flex space-x-3 sm:border-l sm:border-transparent sm:pl-6"
           >
-            <a
-              href="#"
-              class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+            <InertiaLink
+              href="/"
+              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
             >
               {{ $t("Buttons.GoHomeButton") }}
-            </a>
+            </InertiaLink>
           </div>
         </div>
       </main>
     </div>
   </div>
 </template>
+
+<script setup>
+const props = defineProps({
+  status: Number,
+});
+</script>

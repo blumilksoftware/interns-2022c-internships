@@ -6,6 +6,9 @@
 @tailwind utilities;
 
 @layer utilities{
+  #app {
+    @apply h-full;
+  }
 
   ::-webkit-scrollbar {
     width: 5px;

@@ -6,7 +6,7 @@ use Illuminate\Contracts\Console\Kernel as ConsoleKernelContract;
 use Illuminate\Contracts\Debug\ExceptionHandler as HandlerContract;
 use Illuminate\Contracts\Http\Kernel as HttpKernelContract;
 use Internships\Console\Kernel as ConsoleKernel;
-use Internships\Exceptions\Handler as ExceptionHandler;
+use Internships\Exceptions\ExceptionHandler;
 use Internships\Http\Kernel as HttpKernel;
 
 $application = new Illuminate\Foundation\Application(

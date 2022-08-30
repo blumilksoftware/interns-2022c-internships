@@ -7,14 +7,15 @@
     "CompanyBrowser":{
         "CompaniesList": "Lista firm",
         "FoundCompanies": "Znaleziono",
-        "Search": "Wyszukaj",
-        "Filter": "Filtry"
+        "Search": "Wyszukaj"
     },
-    "Comboboxes":{
-        "ComboboxCity": "Wybierz miasto",
-        "ComboboxField": "Wybierz kierunek",
-        "ComboboxDepartment": "Wybierz wydział",
-        "ComboboxSpecialization": "Wybierz specjalizację"
+    "TreeSelects":{
+        "TreeSelectCity": "Wybierz miasto",
+        "TreeSelectSpecialization": "Wybierz specjalizację"
+    },
+    "pagination":{
+        "next": "Następna",
+        "previous": "Poprzednia"
     },
     "SignIn":{
         "Header": "Logowanie",
@@ -54,8 +55,21 @@
         "Password": "Hasło",
         "Country": "Kraj"
     },
-    "PageNotFound":{
-        "Header": "Nie odnaleziono strony",
-        "Description": "Sprawdź link i spróbuj ponownie."
+    "Error":{
+        "Header": "Błąd",
+        "Name-401": "Nieautoryzowano",
+        "Description-401": "Nie możesz tego zrobić.",
+        "Name-403": "Odmowa dostępu",
+        "Description-403": "Nie możesz tego zrobić.",
+        "Name-404": "Nie znaleziono",
+        "Description-404": "Nie znaleziono strony.",
+        "Name-419": "Sesja wygasła",
+        "Description-419": "Twoja sesja wygasła. Odśwież i spróbuj ponownie.",
+        "Name-429": "Za dużo zapytań",
+        "Description-429": "Proszę spróbować ponownie za minutę.",
+        "Name-500": "Wewnętrzny błąd serwera",
+        "Description-500": "Coś jest nie tak po naszej stronie.",
+        "Name-503": "Serwis niedostępny",
+        "Description-503": "Nie można uzyskać dostępu do serwisu."
     }
 }

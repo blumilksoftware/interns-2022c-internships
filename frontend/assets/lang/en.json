@@ -6,14 +6,15 @@
     "CompanyBrowser":{
         "CompaniesList": "Companies list",
         "FoundCompanies": "Found companies",
-        "Search": "Search",
-        "Filter": "Filters"
+        "Search": "Search"
     },
-    "Comboboxes":{
-        "ComboboxCity": "Choose city",
-        "ComboboxField": "Choose field of study",
-        "ComboboxDepartment": "Choose department",
-        "ComboboxSpecialization": "Choose specialization"
+    "TreeSelects":{
+        "TreeSelectCity": "Choose city",
+        "TreeSelectSpecialization": "Choose specialization"
+    },
+    "pagination":{
+        "next": "Next",
+        "previous": "Previous"
     },
     "SignIn":{
         "Header": "Sign in",
@@ -54,8 +55,21 @@
         "Password": "Password",
         "Country": "Country"
     },
-    "PageNotFound":{
-        "Header": "Page not found",
-        "Description": "Please check the URL in the address bar and try again."
+    "Error":{
+        "Header": "Error",
+        "Name-401": "Unauthorized",
+        "Description-401": "You cannot do that.",
+        "Name-403": "Forbidden",
+        "Description-403": "You cannot do that.",
+        "Name-404": "Not Found",
+        "Description-404": "Could not find the requested page.",
+        "Name-419": "Session Expired",
+        "Description-419": "Sorry, your session has expired. Please, refresh and try again.",
+        "Name-429": "Too Many Requests",
+        "Description-429": "Please, try again in a moment.",
+        "Name-500": "Internal Server Error",
+        "Description-500": "Something is wrong on our end.",
+        "Name-503": "Service Unavailable",
+        "Description-503": "Can't access service at this time."
     }
 }

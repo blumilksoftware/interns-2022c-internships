@@ -27,7 +27,7 @@ export default ({ mode }) => {
     plugins: [
       laravel({
         input: ["./js/app.js"],
-        refresh: ["./views/**"],
+        refresh: ["./views/**/*", "./js/**/*", "./assets/**/*"],
         publicDirectory: process.env.VITE_PUBLIC_DIRECTORY_PATH,
       }),
       vue({
