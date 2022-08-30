@@ -175,7 +175,7 @@
         </button>
       </div>
       <main class="flex-1">
-        <CompaniesListAdmin />
+        <CompaniesListAdmin :companies="companies"/>
       </main>
     </div>
   </div>
@@ -196,6 +196,8 @@ const navigation = [
   { name: "Companies", href: "#", icon: HomeIcon },
   { name: "Users", href: "#", icon: UsersIcon },
 ];
-
+defineProps({
+  companies: Object,
+});
 const sidebarOpen = ref(false);
 </script>
