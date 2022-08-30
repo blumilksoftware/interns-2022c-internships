@@ -13,3 +13,4 @@ Route::get("/company/create", [CompanyController::class, "create"]);
 
 Route::get("/login", [UserController::class, "login"]);
 Route::get("/register", [UserController::class, "register"]);
+Route::get("/adminpanel",[AdminPanelController::class, "adminpanel"]);

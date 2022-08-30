@@ -58,6 +58,16 @@
                       >{{ $t("Buttons.SignInButton") }}</InertiaLink
                     >
                   </MenuItem>
+                  <MenuItem v-slot="{ active }">
+                    <InertiaLink
+                      href="/adminpanel"
+                      :class="[
+                        active ? 'bg-gray-100' : '',
+                        'block px-4 py-2 text-sm text-gray-700',
+                      ]"
+                      >Admin panel</InertiaLink
+                    >
+                  </MenuItem>
                 </MenuItems>
               </transition>
             </Menu>
