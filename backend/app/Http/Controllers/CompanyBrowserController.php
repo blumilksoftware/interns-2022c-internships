@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Internships\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Inertia\Response;
 use Internships\Enums\CompanyStatus;
 use Internships\Http\Resources\CityResource;
