@@ -7,6 +7,7 @@
     @vite('js/app.js')
 </head>
 <body class="h-full mt-0">
+    @routes
     @inertia
 </body>
 </html>
