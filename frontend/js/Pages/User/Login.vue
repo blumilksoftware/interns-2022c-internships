@@ -55,7 +55,7 @@
           </div>
           <div class="text-sm">
             <InertiaLink
-              href="/reset"
+              href="/password/reset"
               class="font-medium text-primary hover:text-primary"
             >
               {{ $t("SignIn.ForgotPassword") }}
