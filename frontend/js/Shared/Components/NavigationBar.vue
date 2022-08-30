@@ -48,14 +48,24 @@
                 <MenuItems
                   class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                 >
-                  <MenuItem v-slot="{ active }">
+                  <MenuItem v-if="!$page.props.auth.user" v-slot="{ active }">
                     <InertiaLink
-                      href="/login"
+                        :href="route('login')"
                       :class="[
                         active ? 'bg-gray-100' : '',
                         'block px-4 py-2 text-sm text-gray-700',
                       ]"
                       >{{ $t("Buttons.SignInButton") }}</InertiaLink
+                    >
+                  </MenuItem>
+                  <MenuItem v-if="$page.props.auth.user" v-slot="{ active }">
+                    <InertiaLink
+                        :href="route('logout')"
+                        :class="[
+                        active ? 'bg-gray-100' : '',
+                        'block px-4 py-2 text-sm text-gray-700',
+                      ]"
+                    >{{ $t("Buttons.LogoutButton") }}</InertiaLink
                     >
                   </MenuItem>
                 </MenuItems>
@@ -108,11 +118,20 @@
         <div class="flex items-center px-5"></div>
         <div class="mt-3 px-2 space-y-1">
           <DisclosureButton
+              v-if="!$page.props.auth.user"
             as="a"
-            href="#/signin"
+              :href="route('login')"
             class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
           >
             {{ $t("Buttons.SignInButton") }}</DisclosureButton
+          >
+          <DisclosureButton
+              v-if="$page.props.auth.user"
+              as="a"
+              :href="route('logout')"
+              class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+          >
+            {{ $t("Buttons.LogoutButton") }}</DisclosureButton
           >
         </div>
       </div>

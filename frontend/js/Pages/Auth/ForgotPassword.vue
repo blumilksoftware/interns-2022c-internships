@@ -17,11 +17,13 @@
       </div>
 
       <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
-        {{ status }}
+        {{ $t(status) }}
+      </div>
+      <div v-if="errors.email" class="mb-4 font-medium text-sm text-red-600">
+        {{ $t(errors.email) }}
       </div>
 
       <form class="mt-8 space-y-6" @submit.prevent="submit">
-        <input type="hidden" name="remember" value="true" />
         <div class="rounded-md shadow-sm -space-y-px">
           <div>
             <label for="email-address" class="sr-only">{{
@@ -37,6 +39,7 @@
                 class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
                 :placeholder="$t('CommonLabels.Email')"
             />
+            <InputError class="mt-2" :message="form.errors.email" />
           </div>
         </div>
         <div>
@@ -69,6 +72,7 @@ import { Head, useForm } from '@inertiajs/inertia-vue3';
 
 defineProps({
   status: String,
+  errors: String,
 });
 
 const form = useForm({

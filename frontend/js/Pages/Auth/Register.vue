@@ -1,11 +1,5 @@
 <template>
   <form @submit.prevent="submit" class="space-y-8 divide-y divide-gray-200 mx-auto mt-11">
-    <InputError class="mt-2" :message="form.errors.first_name" />
-    <InputError class="mt-2" :message="form.errors.last_name" />
-    <InputError class="mt-2" :message="form.errors.email" />
-    <InputError class="mt-2" :message="form.errors.password" />
-    <InputError class="mt-2" :message="form.errors.password_confirmation" />
-
     <div class="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
       <div>
         <h3
@@ -34,7 +28,9 @@
                 autocomplete="given-name"
                 class="max-w-lg block w-full shadow-sm focus:ring-primary focus:border-primary sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
             />
+            <InputError class="mt-2" :message="form.errors.first_name" />
           </div>
+
         </div>
         <div
             class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
@@ -55,7 +51,9 @@
                 autocomplete="family-name"
                 class="max-w-lg block w-full shadow-sm focus:ring-primary focus:border-primary sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
             />
+            <InputError class="mt-2" :message="form.errors.last_name" />
           </div>
+
         </div>
         <div
             class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
@@ -76,7 +74,9 @@
                 autocomplete="email"
                 class="block max-w-lg w-full shadow-sm focus:ring-primary focus:border-primary sm:text-sm border-gray-300 rounded-md"
             />
+            <InputError class="mt-2" :message="form.errors.email" />
           </div>
+
         </div>
         <div
             class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
@@ -97,7 +97,9 @@
                 autocomplete="password"
                 class="block max-w-lg w-full shadow-sm focus:ring-primary focus:border-primary sm:text-sm border-gray-300 rounded-md"
             />
+            <InputError class="mt-2" :message="form.errors.password" />
           </div>
+
         </div>
         <div
             class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
@@ -106,7 +108,7 @@
               for="password_confirmation"
               class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
           >
-            {{ $t("CommonLabels.Password") }}
+            {{ $t("CommonLabels.PasswordConfirm") }}
           </label>
           <div class="mt-1 sm:mt-0 sm:col-span-2">
             <input
@@ -118,7 +120,9 @@
                 autocomplete="password"
                 class="block max-w-lg w-full shadow-sm focus:ring-primary focus:border-primary sm:text-sm border-gray-300 rounded-md"
             />
+            <InputError class="mt-2" :message="form.errors.password_confirmation" />
           </div>
+
         </div>
       </div>
     </div>

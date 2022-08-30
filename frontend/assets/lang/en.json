@@ -71,5 +71,23 @@
         "Description-500": "Something is wrong on our end.",
         "Name-503": "Service Unavailable",
         "Description-503": "Can't access service at this time."
+    },
+    "validation": {
+        "unique": "The specified email address is already in the database.",
+        "min": {
+            "string": "The entered password is too short."
+        },
+        "max": {
+            "string": "The entered password is too long."
+        },
+        "confirmed": "The entered passwords differ."
+    },
+    "auth": {
+        "failed": "Wrong email address or password entered."
+    },
+    "passwords": {
+        "sent": "A password reset link was sent to the email address you entered.",
+        "throttled": "Password reset attempt too often. Please try again in a moment.",
+        "user": "The specified email address does not exist in our database."
     }
 }
