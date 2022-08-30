@@ -59,7 +59,7 @@
     },
     "error":{
         "header": "Błąd",
-        "name_401": "Nieautoryzowano",
+        "name_401": "Wymagana autoryzacja",
         "description_401": "Nie możesz tego zrobić.",
         "name_403": "Odmowa dostępu",
         "description_403": "Nie możesz tego zrobić.",

@@ -99,6 +99,7 @@
 import { useForm } from "@inertiajs/inertia-vue3";
 import InputError from "@/js/Shared/Components/InputError.vue";
 import Checkbox from "@/js/Shared/Components/Checkbox.vue";
+import route from "ziggy";
 
 defineProps({
   canResetPassword: Boolean,

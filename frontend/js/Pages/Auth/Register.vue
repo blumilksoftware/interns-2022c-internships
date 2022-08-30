@@ -153,6 +153,7 @@
 <script setup>
 import { useForm } from "@inertiajs/inertia-vue3";
 import InputError from "@/js/Shared/Components/InputError.vue";
+import route from "ziggy";
 
 const form = useForm({
   first_name: "",
