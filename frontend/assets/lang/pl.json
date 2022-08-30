@@ -14,8 +14,8 @@
         "TreeSelectSpecialization": "Wybierz specjalizację"
     },
     "pagination":{
-        "next": "Następny",
-        "previous": "Poprzedni"
+        "next": "Następna",
+        "previous": "Poprzednia"
     },
     "SignIn":{
         "Header": "Logowanie",
