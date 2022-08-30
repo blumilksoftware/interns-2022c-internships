@@ -33,7 +33,7 @@
           </div>
           <Treeselect
             class="mt-2"
-            :options="cities"
+            :options="props.cities"
             :multiple="false"
             :show-count="true"
             :disable-branch-nodes="true"
@@ -44,9 +44,9 @@
             class="mt-2"
             :options="props.departments"
             :multiple="false"
-            :show-count="true"
             :disable-branch-nodes="true"
             :placeholder="$t('TreeSelects.TreeSelectSpecialization')"
+            search-nested
             v-model="specializationSelect"
           />
         </DisclosurePanel>
@@ -64,5 +64,6 @@ import "vue3-treeselect/dist/vue3-treeselect.css";
 const props = defineProps({
   departments: Object,
   cities: Object,
+  loadOptions: Object,
 });
 </script>
