@@ -43,7 +43,4 @@
   html::-webkit-scrollbar-thumb:hover {
     background-color: #a0a0a5;
   }
-  label.vue-treeselect__label {
-    color: pink;
-  }
 }
