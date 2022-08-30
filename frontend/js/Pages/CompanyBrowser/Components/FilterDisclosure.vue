@@ -58,8 +58,8 @@
 <script setup>
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
 import { ChevronDownIcon, SearchIcon } from "@heroicons/vue/solid";
-import Treeselect from "vue3-treeselect";
-import "vue3-treeselect/dist/vue3-treeselect.css";
+import Treeselect from "@tkmam1x/vue3-treeselect";
+import "@tkmam1x/vue3-treeselect/dist/vue3-treeselect.css";
 
 const props = defineProps({
   departments: Array,
