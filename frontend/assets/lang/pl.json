@@ -1,78 +1,78 @@
 {
-    "NavigationBar":{
-        "Map": "Mapa",
-        "AddCompany": "Dodaj firmę",
-        "SignIn": "Zaloguj"
+    "navigation_bar":{
+        "map": "Mapa",
+        "add_company": "Dodaj firmę",
+        "sign_in": "Zaloguj"
     },
-    "CompanyBrowser":{
-        "CompaniesList": "Lista firm",
-        "FoundCompanies": "Znaleziono",
-        "Search": "Wyszukaj"
+    "company_browser":{
+        "companies_list": "Lista firm",
+        "found_companies": "Znaleziono",
+        "search": "Wyszukaj"
     },
-    "TreeSelects":{
-        "TreeSelectCity": "Wybierz miasto",
-        "TreeSelectSpecialization": "Wybierz specjalizację"
+    "tree_selects":{
+        "tree_select_city": "Wybierz miasto",
+        "tree_select_specialization": "Wybierz specjalizację"
     },
     "pagination":{
         "next": "Następna",
         "previous": "Poprzednia"
     },
-    "SignIn":{
-        "Header": "Logowanie",
-        "Remember": "Zapamiętaj mnie",
-        "ForgotPassword": "Nie pamiętasz hasła?"
+    "sign_in":{
+        "header": "Logowanie",
+        "remember": "Zapamiętaj mnie",
+        "forgot_password": "Nie pamiętasz hasła?"
     },
-    "Registration":{
-        "Header": "Rejestracja",
-        "FirstName": "Imię",
-        "LastName": "Nazwisko"
+    "registration":{
+        "header": "Rejestracja",
+        "first_name": "Imię",
+        "last_name": "Nazwisko"
     },
-    "AddCompany": {
-        "Header": "Zgłoś swoja firmę",
-        "HeaderInfo": "Po wypełnieniu formularza, Twoje zgłoszenie zostanie przekazane moderatorowi do weryfikacji.",
-        "CompanyName": "Nazwa firmy",
-        "Description": "Opis",
-        "DescriptionInfo": "Napisz coś o swojej firmie, aby ułatwić studentom wybór.",
-        "StreetAddress": "Ulica",
-        "City": "Miasto",
-        "Voivodeship": "Województwo",
-        "PostalCode": "Kod pocztowy"
+    "add_company": {
+        "header": "Zgłoś swoja firmę",
+        "header_info": "Po wypełnieniu formularza, Twoje zgłoszenie zostanie przekazane moderatorowi do weryfikacji.",
+        "company_name": "Nazwa firmy",
+        "description": "Opis",
+        "description_info": "Napisz coś o swojej firmie, aby ułatwić studentom wybór.",
+        "street_address": "Ulica",
+        "city": "Miasto",
+        "voivodeship": "Województwo",
+        "postal_code": "Kod pocztowy"
     },
-    "ForgotPassword":{
-        "Header": "Podaj adres e-mail, na którym zostało założone konto, wyślemy link resetujący hasło",
-        "ResetButton": "Wyślij link"
+    "forgot_password":{
+        "header": "Podaj adres e-mail, na którym zostało założone konto, wyślemy link resetujący hasło",
+        "reset_button": "Wyślij link"
     },
-    "Buttons":{
-        "SignInButton": "Zaloguj",
-        "LogoutButton": "Wyloguj",
-        "ChangeButton": "Zmień",
-        "CancelButton": "Zakończ",
-        "RequestButton": "Zgłoś",
-        "RegistrationButton": "Zarejestruj się",
-        "GoHomeButton": "Wróć na stronę główną"
+    "buttons":{
+        "sign_in_button": "Zaloguj",
+        "logout_button": "Wyloguj",
+        "change_button": "Zmień",
+        "cancel_button": "Zakończ",
+        "request_button": "Zgłoś",
+        "registration_button": "Zarejestruj się",
+        "go_home_button": "Wróć na stronę główną"
     },
-    "CommonLabels":{
-        "Email": "Adres e-mail",
-        "Password": "Hasło",
-        "PasswordConfirm": "Potwierdź hasło",
-        "Country": "Kraj"
+    "common_labels":{
+        "email": "Adres e-mail",
+        "password": "Hasło",
+        "password_confirm": "Potwierdź hasło",
+        "country": "Kraj"
     },
-    "Error":{
-        "Header": "Błąd",
-        "Name-401": "Nieautoryzowano",
-        "Description-401": "Nie możesz tego zrobić.",
-        "Name-403": "Odmowa dostępu",
-        "Description-403": "Nie możesz tego zrobić.",
-        "Name-404": "Nie znaleziono",
-        "Description-404": "Nie znaleziono strony.",
-        "Name-419": "Sesja wygasła",
-        "Description-419": "Twoja sesja wygasła. Odśwież i spróbuj ponownie.",
-        "Name-429": "Za dużo zapytań",
-        "Description-429": "Proszę spróbować ponownie za minutę.",
-        "Name-500": "Wewnętrzny błąd serwera",
-        "Description-500": "Coś jest nie tak po naszej stronie.",
-        "Name-503": "Serwis niedostępny",
-        "Description-503": "Nie można uzyskać dostępu do serwisu."
+    "error":{
+        "header": "Błąd",
+        "name_401": "Nieautoryzowano",
+        "description_401": "Nie możesz tego zrobić.",
+        "name_403": "Odmowa dostępu",
+        "description_403": "Nie możesz tego zrobić.",
+        "name_404": "Nie znaleziono",
+        "description_404": "Nie znaleziono strony.",
+        "name_419": "Sesja wygasła",
+        "description_419": "Twoja sesja wygasła. Odśwież i spróbuj ponownie.",
+        "name_429": "Za dużo zapytań",
+        "description_429": "Proszę spróbować ponownie za minutę.",
+        "name_500": "Wewnętrzny błąd serwera",
+        "description_500": "Coś jest nie tak po naszej stronie.",
+        "name_503": "Serwis niedostępny",
+        "description_503": "Nie można uzyskać dostępu do serwisu."
     },
     "validation": {
         "unique": "Podany adres e-mail znajduje się już w bazie.",

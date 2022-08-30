@@ -15,12 +15,12 @@
               <InertiaLink
                 href="/"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >{{ $t("NavigationBar.Map") }}</InertiaLink
+                >{{ $t("navigation_bar.map") }}</InertiaLink
               >
               <InertiaLink
                 href="/company/create"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >{{ $t("NavigationBar.AddCompany") }}</InertiaLink
+                >{{ $t("navigation_bar.add_company") }}</InertiaLink
               >
             </div>
           </div>
@@ -55,7 +55,7 @@
                         active ? 'bg-gray-100' : '',
                         'block px-4 py-2 text-sm text-gray-700',
                       ]"
-                      >{{ $t("Buttons.SignInButton") }}</InertiaLink
+                      >{{ $t("buttons.sign_in_button") }}</InertiaLink
                     >
                   </MenuItem>
                   <MenuItem v-if="$page.props.auth.user" v-slot="{ active }">
@@ -65,7 +65,7 @@
                         active ? 'bg-gray-100' : '',
                         'block px-4 py-2 text-sm text-gray-700',
                       ]"
-                      >{{ $t("Buttons.LogoutButton") }}</InertiaLink
+                      >{{ $t("buttons.logout_button") }}</InertiaLink
                     >
                   </MenuItem>
                 </MenuItems>
@@ -104,14 +104,14 @@
           as="a"
           href="/"
           class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-          >{{ $t("NavigationBar.Map") }}</DisclosureButton
+          >{{ $t("navigation_bar.map") }}</DisclosureButton
         >
         <DisclosureButton
           as="a"
           href="/company/create"
           class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
         >
-          {{ $t("NavigationBar.AddCompany") }}
+          {{ $t("navigation_bar.add_company") }}
         </DisclosureButton>
       </div>
       <div class="pt-4 pb-3 border-t border-gray-700">
@@ -123,7 +123,7 @@
             :href="route('login')"
             class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
           >
-            {{ $t("Buttons.SignInButton") }}</DisclosureButton
+            {{ $t("buttons.sign_in_button") }}</DisclosureButton
           >
           <DisclosureButton
             v-if="$page.props.auth.user"
@@ -131,7 +131,7 @@
             :href="route('logout')"
             class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
           >
-            {{ $t("Buttons.LogoutButton") }}</DisclosureButton
+            {{ $t("buttons.logout_button") }}</DisclosureButton
           >
         </div>
       </div>

@@ -1,78 +1,77 @@
 {
-    "NavigationBar":{
-        "Map": "Map",
-        "AddCompany": "Add company"
+    "navigation_bar":{
+        "map": "Map",
+        "add_company": "Add company"
     },
-    "CompanyBrowser":{
-        "CompaniesList": "Companies list",
-        "FoundCompanies": "Found companies",
-        "Search": "Search"
+    "company_browser":{
+        "companies_list": "Companies list",
+        "found_companies": "Found companies",
+        "search": "Search"
     },
-    "TreeSelects":{
-        "TreeSelectCity": "Choose city",
-        "TreeSelectSpecialization": "Choose specialization"
+    "tree_selects":{
+        "tree_select_city": "Choose city",
+        "tree_select_specialization": "Choose specialization"
     },
     "pagination":{
         "next": "Next",
         "previous": "Previous"
     },
-    "SignIn":{
-        "Header": "Sign in",
-        "Remember": "Remember me",
-        "ForgotPassword": "Forgot your password?"
+    "sign_in":{
+        "header": "Sign in",
+        "remember": "Remember me",
+        "forgot_password": "Forgot your password?"
     },
-    "Registration":{
-        "Header": "User Registration",
-        "FirstName": "First name",
-        "LastName": "Last name",
-        "Password": "Password"
+    "registration":{
+        "header": "User Registration",
+        "first_name": "First name",
+        "last_name": "Last name"
     },
-    "AddCompany": {
-        "Header": "Company add request",
-        "HeaderInfo": "After filling up the form, your request will be send to moderator, where will be verified.",
-        "CompanyName": "Company name",
-        "Description": "Description",
-        "DescriptionInfo": "Write about your company to help students with the decision.",
-        "StreetAddress": "Street address",
-        "City": "City",
-        "Voivodeship": "Voivodeship",
-        "PostalCode": "Postal code"
+    "add_company": {
+        "header": "Company add request",
+        "header_info": "After filling up the form, your request will be send to moderator, where will be verified.",
+        "company_name": "Company name",
+        "description": "Description",
+        "description_info": "Write about your company to help students with the decision.",
+        "street_address": "Street address",
+        "city": "City",
+        "voivodeship": "Voivodeship",
+        "postal_code": "Postal code"
     },
-    "ForgotPassword":{
-        "Header": "Please fill email, we will send you a link to reset your password",
-        "ResetButton": "Send reset link"
+    "forgot_password":{
+        "header": "Please fill email, we will send you a link to reset your password",
+        "reset_button": "Send reset link"
     },
-    "Buttons":{
-        "SignInButton": "Sign in",
-        "LogoutButton": "Logout",
-        "ChangeButton": "Change",
-        "CancelButton": "Cancel",
-        "RequestButton": "Request",
-        "RegistrationButton": "Register",
-        "GoHomeButton": "Go back home"
+    "buttons":{
+        "sign_in_button": "Sign in",
+        "logout_button": "Logout",
+        "change_button": "Change",
+        "cancel_button": "Cancel",
+        "request_button": "Request",
+        "registration_button": "Register",
+        "go_home_button": "Go back home"
     },
-    "CommonLabels":{
-        "Email": "Email address",
-        "Password": "Password",
-        "PasswordConfirm": "Confirm password",
-        "Country": "Country"
+    "common_labels":{
+        "email": "Email address",
+        "password": "Password",
+        "password_confirm": "Confirm password",
+        "country": "Country"
     },
-    "Error":{
-        "Header": "Error",
-        "Name-401": "Unauthorized",
-        "Description-401": "You cannot do that.",
-        "Name-403": "Forbidden",
-        "Description-403": "You cannot do that.",
-        "Name-404": "Not Found",
-        "Description-404": "Could not find the requested page.",
-        "Name-419": "Session Expired",
-        "Description-419": "Sorry, your session has expired. Please, refresh and try again.",
-        "Name-429": "Too Many Requests",
-        "Description-429": "Please, try again in a moment.",
-        "Name-500": "Internal Server Error",
-        "Description-500": "Something is wrong on our end.",
-        "Name-503": "Service Unavailable",
-        "Description-503": "Can't access service at this time."
+    "error":{
+        "header": "Error",
+        "name_401": "Unauthorized",
+        "description_401": "You cannot do that.",
+        "name_403": "Forbidden",
+        "description_403": "You cannot do that.",
+        "name_404": "Not Found",
+        "description_404": "Could not find the requested page.",
+        "name_419": "Session Expired",
+        "description_419": "Sorry, your session has expired. Please, refresh and try again.",
+        "name_429": "Too Many Requests",
+        "description_429": "Please, try again in a moment.",
+        "name_500": "Internal Server Error",
+        "description_500": "Something is wrong on our end.",
+        "name_503": "Service Unavailable",
+        "description_503": "Can't access service at this time."
     },
     "validation": {
         "unique": "Specified email address is already in the database.",

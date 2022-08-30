@@ -5,7 +5,7 @@
         <DisclosureButton
           class="flex w-full justify-center rounded-lg bg-slate-100 px-4 py-2 text-left text-sm font-medium text-slate-900 hover:bg-slate-200 focus:outline-none focus-visible:ring focus-visible:ring-slate-500 focus-visible:ring-opacity-75"
         >
-          <span> {{ $t("CompanyBrowser.Search") }} </span>
+          <span> {{ $t("company_browser.search") }} </span>
           <ChevronDownIcon
             :class="open ? 'rotate-180 transform' : ''"
             class="h-5 w-5 text-slate-500"
@@ -14,7 +14,7 @@
         <DisclosurePanel class="px-4 pt-4 pb-2 text-sm text-slate-500">
           <div class="w-full">
             <label for="search" class="sr-only"
-              >{{ $t("CompanyBrowser.Search") }}
+              >{{ $t("company_browser.search") }}
             </label>
             <div class="relative">
               <div
@@ -26,7 +26,7 @@
                 id="search"
                 name="search"
                 class="block w-full bg-white border border-gray-300 rounded-md py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:outline-none focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-slate-400 focus:border-slate-500 sm:text-sm"
-                :placeholder="$t('CompanyBrowser.Search')"
+                :placeholder="$t('company_browser.search')"
                 type="search"
               />
             </div>
@@ -37,7 +37,7 @@
             :multiple="false"
             :show-count="true"
             :disable-branch-nodes="true"
-            :placeholder="$t('TreeSelects.TreeSelectCity')"
+            :placeholder="$t('tree_selects.tree_select_city')"
             v-model="citySelect"
           />
           <Treeselect
@@ -45,7 +45,7 @@
             :options="props.departments"
             :multiple="false"
             :disable-branch-nodes="true"
-            :placeholder="$t('TreeSelects.TreeSelectSpecialization')"
+            :placeholder="$t('tree_selects.tree_select_specialization')"
             search-nested
             v-model="specializationSelect"
           />

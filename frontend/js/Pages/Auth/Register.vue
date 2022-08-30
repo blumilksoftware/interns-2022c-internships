@@ -8,7 +8,7 @@
         <h3
           class="text-lg leading-6 font-medium text-gray-900 flex justify-center"
         >
-          {{ $t("Registration.Header") }}
+          {{ $t("registration.header") }}
         </h3>
       </div>
       <div class="space-y-6 sm:space-y-5">
@@ -19,7 +19,7 @@
             for="first_name"
             class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
           >
-            {{ $t("Registration.FirstName") }}
+            {{ $t("registration.first_name") }}
           </label>
           <div class="mt-1 sm:mt-0 sm:col-span-2">
             <input
@@ -41,7 +41,7 @@
             for="last_name"
             class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
           >
-            {{ $t("Registration.LastName") }}
+            {{ $t("registration.last_name") }}
           </label>
           <div class="mt-1 sm:mt-0 sm:col-span-2">
             <input
@@ -63,7 +63,7 @@
             for="email"
             class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
           >
-            {{ $t("CommonLabels.Email") }}
+            {{ $t("common_labels.email") }}
           </label>
           <div class="mt-1 sm:mt-0 sm:col-span-2">
             <input
@@ -85,7 +85,7 @@
             for="password"
             class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
           >
-            {{ $t("CommonLabels.Password") }}
+            {{ $t("common_labels.password") }}
           </label>
           <div class="mt-1 sm:mt-0 sm:col-span-2">
             <input
@@ -107,7 +107,7 @@
             for="password_confirmation"
             class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
           >
-            {{ $t("CommonLabels.PasswordConfirm") }}
+            {{ $t("common_labels.password_confirm") }}
           </label>
           <div class="mt-1 sm:mt-0 sm:col-span-2">
             <input
@@ -134,7 +134,7 @@
             type="button"
             class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
           >
-            {{ $t("Buttons.CancelButton") }}
+            {{ $t("buttons.cancel_button") }}
           </button>
         </InertiaLink>
         <button
@@ -143,7 +143,7 @@
           :disabled="form.processing"
           class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
         >
-          {{ $t("Buttons.RegistrationButton") }}
+          {{ $t("buttons.registration_button") }}
         </button>
       </div>
     </div>
