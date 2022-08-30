@@ -62,8 +62,7 @@ import Treeselect from "vue3-treeselect";
 import "vue3-treeselect/dist/vue3-treeselect.css";
 
 const props = defineProps({
-  departments: Object,
-  cities: Object,
-  loadOptions: Object,
+  departments: Array,
+  cities: Array,
 });
 </script>

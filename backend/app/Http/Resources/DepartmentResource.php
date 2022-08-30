@@ -16,7 +16,7 @@ class DepartmentResource extends JsonResource
     public function toArray($request): array|Arrayable|JsonSerializable
     {
         return [
-            "id" => $this->id,
+            "id" => $this->name,
             "label" => $this->name,
             "children" => StudyFieldResource::collection($this->studyFields),
         ];

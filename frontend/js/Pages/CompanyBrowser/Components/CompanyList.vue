@@ -18,6 +18,6 @@ import PlaceholderImage from "@/assets/images/blumilklogo.png";
 import CompanyTile from "./CompanyTile.vue";
 
 defineProps({
-  companies: Object,
+  companies: Array,
 });
 </script>
