@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Internships\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Inertia\Response;
 use Internships\Enums\CompanyStatus;
 use Internships\Http\Resources\CityResource;
@@ -25,7 +24,7 @@ class CompanyBrowserController extends Controller
             [
                 "markers" => CompanyMarkerResource::collection($companies->get()),
                 "cities" => CityResource::collection($companies->get()),
-                "companies" => $companies->paginate(15),
+                "companies" => $companies->paginate(config("app.pagination", 15)),
                 "departments" => DepartmentResource::collection(Department::all()),
             ],
         );
