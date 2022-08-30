@@ -18,7 +18,8 @@ class CompanyMarkerResource extends JsonResource
         return [
             "id" => $this->id,
             "label" => $this->name,
-            "address" => $this->address,
+            "coordinates" => [$this->address->coordinates->longitude, $this->address->coordinates->latitude],
+            "location" => $this->address->city . ", " . $this->address->country,
         ];
     }
 }
