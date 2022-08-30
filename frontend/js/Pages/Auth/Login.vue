@@ -98,7 +98,7 @@
 </template>
 
 <script setup>
-import { Head, useForm } from '@inertiajs/inertia-vue3';
+import { useForm } from '@inertiajs/inertia-vue3';
 import InputError from '@/js/Shared/Components/InputError.vue';
 import Checkbox from '@/js/Shared/Components/Checkbox.vue';
 

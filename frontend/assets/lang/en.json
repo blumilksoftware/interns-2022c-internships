@@ -44,6 +44,7 @@
     },
     "Buttons":{
         "SignInButton": "Sign in",
+        "LogoutButton": "Logout",
         "ChangeButton": "Change",
         "CancelButton": "Cancel",
         "RequestButton": "Request",
@@ -53,6 +54,7 @@
     "CommonLabels":{
         "Email": "Email address",
         "Password": "Password",
+        "PasswordConfirm": "Confirm password",
         "Country": "Country"
     },
     "Error":{
@@ -73,14 +75,14 @@
         "Description-503": "Can't access service at this time."
     },
     "validation": {
-        "unique": "The specified email address is already in the database.",
+        "unique": "Specified email address is already in the database.",
         "min": {
-            "string": "The entered password is too short."
+            "string": "Entered password is too short."
         },
         "max": {
-            "string": "The entered password is too long."
+            "string": "Entered password is too long."
         },
-        "confirmed": "The entered passwords differ."
+        "confirmed": "Entered passwords differ."
     },
     "auth": {
         "failed": "Wrong email address or password entered."

@@ -26,7 +26,7 @@
                 id="first_name"
                 v-model="form.first_name"
                 autocomplete="given-name"
-                class="max-w-lg block w-full shadow-sm focus:ring-primary focus:border-primary sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
+                class="block max-w-lg w-80 shadow-sm focus:ring-primary focus:border-primary sm:text-sm border-gray-300 rounded-md"
             />
             <InputError class="mt-2" :message="form.errors.first_name" />
           </div>
@@ -49,7 +49,7 @@
                 id="last_name"
                 v-model="form.last_name"
                 autocomplete="family-name"
-                class="max-w-lg block w-full shadow-sm focus:ring-primary focus:border-primary sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
+                class="block max-w-lg w-80 shadow-sm focus:ring-primary focus:border-primary sm:text-sm border-gray-300 rounded-md"
             />
             <InputError class="mt-2" :message="form.errors.last_name" />
           </div>
@@ -72,7 +72,7 @@
                 type="email"
                 v-model="form.email"
                 autocomplete="email"
-                class="block max-w-lg w-full shadow-sm focus:ring-primary focus:border-primary sm:text-sm border-gray-300 rounded-md"
+                class="block max-w-lg w-80 shadow-sm focus:ring-primary focus:border-primary sm:text-sm border-gray-300 rounded-md"
             />
             <InputError class="mt-2" :message="form.errors.email" />
           </div>
@@ -95,7 +95,7 @@
                 type="password"
                 v-model="form.password"
                 autocomplete="password"
-                class="block max-w-lg w-full shadow-sm focus:ring-primary focus:border-primary sm:text-sm border-gray-300 rounded-md"
+                class="block max-w-lg w-80 shadow-sm focus:ring-primary focus:border-primary sm:text-sm border-gray-300 rounded-md"
             />
             <InputError class="mt-2" :message="form.errors.password" />
           </div>
@@ -118,7 +118,7 @@
                 type="password"
                 v-model="form.password_confirmation"
                 autocomplete="password"
-                class="block max-w-lg w-full shadow-sm focus:ring-primary focus:border-primary sm:text-sm border-gray-300 rounded-md"
+                class="block max-w-lg w-80 shadow-sm focus:ring-primary focus:border-primary sm:text-sm border-gray-300 rounded-md"
             />
             <InputError class="mt-2" :message="form.errors.password_confirmation" />
           </div>
@@ -152,7 +152,7 @@
 </template>
 
 <script setup>
-import { Head, useForm } from '@inertiajs/inertia-vue3';
+import { useForm } from '@inertiajs/inertia-vue3';
 import InputError from '@/js/Shared/Components/InputError.vue';
 
 const form = useForm({

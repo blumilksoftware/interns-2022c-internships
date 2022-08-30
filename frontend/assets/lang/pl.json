@@ -44,6 +44,7 @@
     },
     "Buttons":{
         "SignInButton": "Zaloguj",
+        "LogoutButton": "Wyloguj",
         "ChangeButton": "Zmień",
         "CancelButton": "Zakończ",
         "RequestButton": "Zgłoś",
@@ -53,6 +54,7 @@
     "CommonLabels":{
         "Email": "Adres e-mail",
         "Password": "Hasło",
+        "PasswordConfirm": "Potwierdź hasło",
         "Country": "Kraj"
     },
     "Error":{
