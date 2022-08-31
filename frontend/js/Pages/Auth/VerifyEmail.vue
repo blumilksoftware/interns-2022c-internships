@@ -10,7 +10,7 @@
           alt="Workflow"
         />
         <h2
-          class="mt-6 text-center text-xl tracking-tight font-bold text-gray-900"
+          class="mt-6 text-center text-lg tracking-tight font-bold text-gray-900"
         >
           {{ $t("verify_email.header") }}
         </h2>
