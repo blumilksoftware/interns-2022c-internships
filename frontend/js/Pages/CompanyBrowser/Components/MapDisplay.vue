@@ -34,8 +34,6 @@ const state = reactive({
   },
 });
 
-const markers = reactive([]);
-
 function onMapLoaded(map) {
   map.addControl(new mapboxgl.NavigationControl());
   map.addControl(new mapboxgl.FullscreenControl());
@@ -43,7 +41,7 @@ function onMapLoaded(map) {
   map.touchZoomRotate.disableRotation();
 
   props.markers.forEach(function (marker) {
-    markers.push(createMarker(marker, map));
+    createMarker(marker, map);
   });
 }
 </script>
