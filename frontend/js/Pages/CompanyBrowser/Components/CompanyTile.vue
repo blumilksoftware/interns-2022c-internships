@@ -12,15 +12,17 @@
                 <div class="flex-shrink-0">
                   <img
                     class="h-12 w-auto sm:h-20 sm:w-20 rounded-lg border-2"
-                    :src="PlaceholderImage"
+                    :src="'/storage/images/' + company.logo"
                     alt=""
                   />
                 </div>
                 <div class="ml-4">
                   <div class="font-medium text-md sm:text-lg text-gray-900">
-                    {{ props.name }}
+                    {{ company.name }}
                   </div>
-                  <div class="text-gray-500">{{ props.city }}</div>
+                  <div class="text-gray-500">
+                    {{ company.location.shortName }}
+                  </div>
                 </div>
               </div>
             </td>
@@ -55,11 +57,11 @@
                     <div class="flex items-start justify-between">
                       <img
                         class="h-16 w-16 rounded-lg border-2"
-                        :src="props.image"
+                        :src="'/storage/images/' + company.logo"
                         alt=""
                       />
                       <DialogTitle class="text-lg font-medium text-gray-900">
-                        {{ props.name }}</DialogTitle
+                        {{ company.name }}</DialogTitle
                       >
                       <div class="ml-3 flex h-7 items-center">
                         <button
@@ -74,7 +76,7 @@
                     </div>
                   </div>
                   <div class="relative mt-6 flex-1 px-4 sm:px-6">
-                    {{ props.description }}
+                    {{ company.description }}
                   </div>
                 </div>
               </DialogPanel>
@@ -95,13 +97,9 @@ import {
   TransitionRoot,
 } from "@headlessui/vue";
 import { XIcon } from "@heroicons/vue/outline";
-import PlaceholderImage from "@/assets/images/blumilklogo.png";
 
 const open = ref(false);
-const props = defineProps({
-  name: String,
-  city: String,
-  image: String,
-  description: String,
+defineProps({
+  company: Object,
 });
 </script>

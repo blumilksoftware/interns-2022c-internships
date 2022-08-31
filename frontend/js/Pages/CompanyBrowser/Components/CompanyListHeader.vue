@@ -6,13 +6,13 @@
       {{ $t("CompanyBrowser.CompaniesList") }}
     </h3>
     <p class="mt-1 flex justify-center max-w-4xl text-sm text-gray-500">
-      {{ $t("CompanyBrowser.FoundCompanies") }} : {{ companies.total }}
+      {{ $t("CompanyBrowser.FoundCompanies") }} : {{ total }}
     </p>
   </div>
 </template>
 
 <script setup>
 defineProps({
-  companies: Object,
+  total: Number,
 });
 </script>

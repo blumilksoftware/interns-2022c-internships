@@ -9,6 +9,7 @@ use Inertia\Response;
 use Internships\Enums\CompanyStatus;
 use Internships\Http\Resources\CityResource;
 use Internships\Http\Resources\CompanyMarkerResource;
+use Internships\Http\Resources\CompanyResource;
 use Internships\Http\Resources\DepartmentResource;
 use Internships\Models\Company;
 use Internships\Models\Department;
@@ -24,7 +25,7 @@ class CompanyBrowserController extends Controller
             [
                 "markers" => CompanyMarkerResource::collection($companies->get()),
                 "cities" => CityResource::collection($companies->get()),
-                "companies" => $companies->paginate(config("app.pagination", 15)),
+                "companies" => CompanyResource::collection($companies->paginate(config("app.pagination", 15))),
                 "departments" => DepartmentResource::collection(Department::all()),
             ],
         );

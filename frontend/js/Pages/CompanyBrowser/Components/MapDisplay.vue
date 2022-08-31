@@ -8,7 +8,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import "v-mapbox/dist/v-mapbox.css";
 import { VMap } from "v-mapbox";
 import mapboxgl from "mapbox-gl";
-import LocationIcon from "@/assets/icons/locationIcon.svg";
+import { createMarker } from "./CompanyMarker.js";
 
 import { reactive } from "vue";
 
@@ -34,38 +34,14 @@ const state = reactive({
   },
 });
 
-function popupHTML(marker) {
-  return "<b>" + marker.label + "</b>,<br>" + marker.location;
-}
-
-function createMarker(marker, map) {
-  const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(popupHTML(marker));
-
-  let el = document.createElement("img");
-  el.className = "marker";
-  el.src = LocationIcon;
-  el.style.height = "20px";
-  el.style.width = "20px";
-
-  el.addEventListener("click", function () {
-    map.flyTo({
-      center: marker.coordinates,
-      zoom: 15,
-    });
-  });
-
-  return new mapboxgl.Marker(el)
-    .setLngLat(marker.coordinates)
-    .setPopup(popup)
-    .addTo(map);
-}
+const markers = reactive([]);
 
 function onMapLoaded(map) {
   map.addControl(new mapboxgl.NavigationControl());
   map.addControl(new mapboxgl.FullscreenControl());
 
   props.markers.forEach(function (marker) {
-    createMarker(marker, map);
+    markers.push(createMarker(marker, map));
   });
 }
 </script>

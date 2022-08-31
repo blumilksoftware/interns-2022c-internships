@@ -1,2 +1,5 @@
 *
 !.gitignore
+!.gitkeep
+/images
+/logo
