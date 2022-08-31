@@ -38,8 +38,10 @@
         "postal_code": "Postal code"
     },
     "forgot_password":{
-        "header": "Please fill email, we will send you a link to reset your password",
-        "reset_button": "Send reset link"
+        "header": "Please fill email, we will send you a link to change your password",
+        "reset_button": "Send reset link",
+        "reset_confirm_header": "Please enter new password twice to change it",
+        "reset_confirm_button": "Change password"
     },
     "buttons":{
         "sign_in_button": "Sign in",
@@ -89,6 +91,8 @@
     "passwords": {
         "sent": "A password reset link was sent to the email address you entered.",
         "throttled": "Password reset attempt too often. Please try again in a moment.",
-        "user": "The specified email address does not exist in our database."
+        "user": "The specified email address does not exist in our database.",
+        "reset": "Your password has been changed.",
+        "token": "Token to change the password has expired, please create a new request."
     }
 }

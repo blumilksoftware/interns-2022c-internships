@@ -39,8 +39,10 @@
         "postal_code": "Kod pocztowy"
     },
     "forgot_password":{
-        "header": "Podaj adres e-mail, na którym zostało założone konto, wyślemy link resetujący hasło",
-        "reset_button": "Wyślij link"
+        "header": "Podaj adres e-mail, na którym zostało założone konto, wyślemy link zmieniający hasło",
+        "reset_button": "Wyślij link",
+        "reset_confirm_header": "Wprowadź nowe hasło dwa razy, aby je zmienić",
+        "reset_confirm_button": "Zmień hasło"
     },
     "buttons":{
         "sign_in_button": "Zaloguj",
@@ -90,6 +92,8 @@
     "passwords": {
         "sent": "Link resetujący hasło został wysłany na podany adres e-mail.",
         "throttled": "Zbyt częsta próba resetowania hasła. Prosimy spróbować za chwilę.",
-        "user": "Brak podanego adresu e-mail w bazie."
+        "user": "Brak podanego adresu e-mail w bazie.",
+        "reset": "Twoje hasło zostało zmienione.",
+        "token": "Token do zmiany hasła wygasł, prosimy utworzyć nowe żądanie."
     }
 }
