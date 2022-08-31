@@ -2,7 +2,8 @@
     "navigation_bar":{
         "map": "Mapa",
         "add_company": "Dodaj firmę",
-        "sign_in": "Zaloguj"
+        "sign_in": "Zaloguj",
+        "logged_as": "Zalogowany jako"
     },
     "company_browser":{
         "companies_list": "Lista firm",

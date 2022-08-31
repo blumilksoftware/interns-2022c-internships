@@ -1,7 +1,8 @@
 {
     "navigation_bar":{
         "map": "Map",
-        "add_company": "Add company"
+        "add_company": "Add company",
+        "logged_as": "Logged as"
     },
     "company_browser":{
         "companies_list": "Companies list",

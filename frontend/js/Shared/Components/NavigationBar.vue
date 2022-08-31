@@ -42,6 +42,13 @@ import route from "ziggy";
         </div>
         <div class="hidden sm:ml-6 sm:block">
           <div class="flex items-center">
+            <p
+              v-if="$page.props.auth.user"
+              class="text-gray-300 text-sm font-medium"
+            >
+              {{ $t("navigation_bar.logged_as") }}:
+              {{ $page.props.auth.user.full_name }}
+            </p>
             <Menu as="div" class="ml-3 relative">
               <div>
                 <MenuButton
@@ -140,6 +147,14 @@ import route from "ziggy";
           >
             {{ $t("buttons.sign_in_button") }}</DisclosureButton
           >
+          <p
+            v-if="$page.props.auth.user"
+            class="px-3 py-2 text-gray-300 text-base font-medium"
+          >
+            {{ $t("navigation_bar.logged_as") }}:
+            {{ $page.props.auth.user.first_name }}
+            {{ $page.props.auth.user.last_name }}
+          </p>
           <DisclosureButton
             v-if="$page.props.auth.user"
             as="a"
