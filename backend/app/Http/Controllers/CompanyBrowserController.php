@@ -7,6 +7,8 @@ namespace Internships\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Response;
 use Internships\Enums\CompanyStatus;
+use Internships\Http\Resources\CityResource;
+use Internships\Http\Resources\CompanyMarkerResource;
 use Internships\Http\Resources\DepartmentResource;
 use Internships\Models\Company;
 use Internships\Models\Department;
@@ -15,24 +17,15 @@ class CompanyBrowserController extends Controller
 {
     public function index(Request $request): Response
     {
-        $companies = Company::where("status", CompanyStatus::Verified)->paginate(15);
-        $cities = [
-            [
-                "id" => 0,
-                "label" => "Legnica",
-            ],
-            [
-                "id" => 1,
-                "label" => "Bogatynia",
-            ],
-        ];
+        $companies = Company::where("status", CompanyStatus::Verified);
 
         return inertia(
             "CompanyBrowser/Index",
             [
-                "companies" => $companies,
+                "markers" => CompanyMarkerResource::collection($companies->get()),
+                "cities" => CityResource::collection($companies->get()),
+                "companies" => $companies->paginate(config("app.pagination", 15)),
                 "departments" => DepartmentResource::collection(Department::all()),
-                "cities" => $cities,
             ],
         );
     }

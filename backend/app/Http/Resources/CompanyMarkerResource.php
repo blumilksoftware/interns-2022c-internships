@@ -8,7 +8,7 @@ use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Resources\Json\JsonResource;
 use JsonSerializable;
 
-class StudyFieldResource extends JsonResource
+class CompanyMarkerResource extends JsonResource
 {
     /**
      * @param  \Illuminate\Http\Request  $request
@@ -16,9 +16,9 @@ class StudyFieldResource extends JsonResource
     public function toArray($request): array|Arrayable|JsonSerializable
     {
         return [
-            "id" => $this->name,
+            "id" => $this->id,
             "label" => $this->name,
-            "children" => SpecializationResource::collection($this->specializations),
+            "address" => $this->address,
         ];
     }
 }

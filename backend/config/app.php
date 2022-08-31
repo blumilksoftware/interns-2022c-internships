@@ -49,5 +49,5 @@ return [
     ],
     'aliases' => Facade::defaultAliases()->merge([
     ])->toArray(),
-
+    'pagination' => 15,
 ];
