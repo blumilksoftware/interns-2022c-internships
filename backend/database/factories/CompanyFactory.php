@@ -24,6 +24,7 @@ class CompanyFactory extends Factory
             "description" => fake()->sentence(100),
             "user_id" => User::factory(),
             "address" => new Address(AddressDefines::definition()),
+            "logo" => fake()->image('public/storage/images/logo', 200, 200),
             "contact_details" => new ContactDetails(ContactDetailsDefines::definition()),
             "status" => fake()->randomElement(CompanyStatus::cases()),
             "has_signed_papers" => fake()->boolean(),

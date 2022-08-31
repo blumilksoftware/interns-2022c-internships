@@ -21,6 +21,7 @@ import MapDisplay from "./Components/MapDisplay.vue";
 import CompanyList from "./Components/CompanyList.vue";
 import CompanyListHeader from "./Components/CompanyListHeader.vue";
 import Filter from "./Components/FilterDisclosure.vue";
+import Pagination from "@/js/Shared/Components/PaginationList.vue";
 
 defineProps({
   companies: Object,
