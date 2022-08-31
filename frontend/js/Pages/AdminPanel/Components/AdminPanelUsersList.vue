@@ -1,20 +1,13 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
+
 <template>
-  <div class="px-4 sm:px-6 lg:px-8 mt-1">
-    <div class="sm:flex sm:items-center">
-      <div class="sm:flex-auto">
-        <h1 class="text-3xl font-semibold text-gray-900">Companies</h1>
+  <div class="px-4 sm:px-5 w-4/5 lg:px-8 mt-1 h-full">
+    <div class="md:flex md:items-center">
+      <div class="md:flex-auto">
+        <h1 class="text-3xl hidden md:flex justify-center font-semibold text-gray-900">Users</h1>
       </div>
     </div>
-    <Treeselect
-            class="mt-2 w-1/2 flex justify-center"
-            :options="stauses"
-            :multiple="false"
-            :show-count="true"
-            :disable-branch-nodes="true"
-            placeholder="Choose company status"
-            v-model="StatusSelect"
-          />
+    <div class="md:mt-2 w-fit flex item-center">
+    </div>
     <div class="mt-4 flex flex-col">
       <div class="-my-4 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -24,65 +17,34 @@
             <table class="min-w-full divide-y divide-gray-300">
               <thead class="bg-gray-50">
                 <tr>
-                  <th
-                    scope="col"
-                    class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
-                  >
-                    Name
-                  </th>
-                  <th
-                    scope="col"
-                    class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                  >
-                    City
-                  </th>
-                  <th
-                    scope="col"
-                    class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                  >
-                    Status
-                  </th>
-                  <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                    <span class="sr-only">Edit</span>
-                  </th>
+                  <th scope="col" class="py-3.5 pl-1 pr-2 text-center text-sm font-semibold text-gray-900 sm:pl-6">Name</th>
+            <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900 lg:table-cell">Companies</th>
                   <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
                     <span class="sr-only">Remove</span>
                   </th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white">
-                <tr v-for="company in companies" :key="company.email">
-                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
-                    <div class="flex items-center">
-                      <div class="h-10 w-10 flex-shrink-0">
-                        <img
-                          class="h-10 w-10 rounded-full"
-                          :src="company.image"
-                          alt=""
-                        />
-                      </div>
-                      <div class="ml-4">
-                        <div class="font-medium text-gray-900">
-                          {{ company.name }}
+                <tr v-for="user in users" :key="user.email">
+                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                    <div class="text-center">
+                        <div class="font-medium text-center text-gray-900">
+                          {{ user.name }}
                         </div>
-                        <div class="text-gray-500">{{ company.email }}</div>
-                      </div>
+                        <div class="text-gray-500">{{ user.email }}</div>
                     </div>
                   </td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                    <div class="text-gray-900">{{ company.city }}</div>
-                  </td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <td class="text-center whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">
                     <span
-                      class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800"
-                      >Active</span
+                      class=" text-center inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-blue-800"
+                      >{{user.companies}}</span
                     >
                   </td>
                   <td
                     class="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6"
                   >
                     <a href="#" class="text-indigo-600 hover:text-indigo-900"
-                      >Edit<span class="sr-only">, {{ company.name }}</span></a
+                      >More<span class="sr-only">, {{ user.name }}</span></a
                     >
                   </td>
                   <td
@@ -92,7 +54,7 @@
                       @click="PopAlert = true"
                       class="text-red-600 hover:text-red-900 cursor-pointer"
                     >
-                      Remove<span class="sr-only">, {{ company.name }}</span>
+                      Remove<span class="sr-only">, {{ user.name }}</span>
                     </div>
                   </td>
                 </tr>
@@ -147,13 +109,12 @@
                     <DialogTitle
                       as="h3"
                       class="text-lg font-medium leading-6 text-gray-900"
-                      >Remove company</DialogTitle
+                      >Warrning</DialogTitle
                     >
                     <div class="mt-2">
                       <p class="text-sm text-gray-500">
-                        Are you sure you want to remove this company? All of
-                        company data will be permanently removed from our
-                        servers forever. This action cannot be undone.
+                        Are you sure you want to remove this data? All this
+                        data will be permanently removed forever. This action cannot be undone.
                       </p>
                     </div>
                   </div>
@@ -195,15 +156,30 @@ import {
   TransitionRoot,
 } from "@headlessui/vue";
 import { ExclamationIcon } from "@heroicons/vue/solid"
-import Treeselect from "vue3-treeselect";
-import "vue3-treeselect/dist/vue3-treeselect.css";
-const PopAlert = ref(false);
-const companies = [
+const PopAlert =ref(false)
+const users = [
   {
-    name: "Example Company",
-    city: "Some City",
-    email: "example.company@example.com",
-    image: PlaceholderImage,
+    name: "Example user",
+    email: "example.user@example.com",
+    companies: "1",
+    
   },
-];
+  {
+    name: "Example user",
+    email: "example.user@example.com",
+    companies: "2",
+  },{
+    name: "Example user",
+    email: "example.user@example.com",
+    companies: "3",
+  },{
+    name: "Example user",
+    email: "example.user@example.com",
+    companies: "1",
+  },{
+    name: "Example user",
+    email: "example.user@example.com",
+    companies: "1",
+  },
+]
 </script>
