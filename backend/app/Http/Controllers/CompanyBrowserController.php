@@ -18,7 +18,7 @@ class CompanyBrowserController extends Controller
 {
     public function index(Request $request): Response
     {
-        $companies = Company::where("status", CompanyStatus::Verified);
+        $companies = Company::where("status", CompanyStatus::Verified)->orderBy("has_signed_papers", "desc");
 
         return inertia(
             "CompanyBrowser/Index",

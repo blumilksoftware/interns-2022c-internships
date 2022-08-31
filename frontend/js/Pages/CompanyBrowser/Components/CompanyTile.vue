@@ -23,6 +23,13 @@
                   <div class="text-gray-500">
                     {{ company.location.shortName }}
                   </div>
+                  <div class="mt-2" v-if="company.has_signed_papers">
+                    <span
+                      class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-800"
+                    >
+                      {{ $t("company_browser.has_signed_papers_badge_name") }}
+                    </span>
+                  </div>
                 </div>
               </div>
             </td>
