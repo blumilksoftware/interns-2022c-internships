@@ -45,6 +45,7 @@
                 id="password"
                 name="password"
                 type="password"
+                minlength="8"
                 v-model="form.password"
                 autocomplete="new_password"
                 required
@@ -61,6 +62,7 @@
                 id="password_confirmation"
                 name="password_confirmation"
                 type="password"
+                minlength="8"
                 v-model="form.password_confirmation"
                 autocomplete="new_password"
                 required
