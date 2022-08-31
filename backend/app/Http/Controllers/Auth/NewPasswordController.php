@@ -10,11 +10,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
-use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
 use Internships\Http\Controllers\Controller;
+use Internships\Http\Requests\Auth\NewPasswordRequest;
 
 class NewPasswordController extends Controller
 {
@@ -29,14 +29,8 @@ class NewPasswordController extends Controller
     /**
      * @throws ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(NewPasswordRequest $request): RedirectResponse
     {
-        $request->validate([
-            "token" => "required",
-            "email" => "required|email",
-            "password" => ["required", "confirmed", Rules\Password::defaults()],
-        ]);
-
         $status = Password::reset(
             $request->only("email", "password", "password_confirmation", "token"),
             function ($user) use ($request): void {

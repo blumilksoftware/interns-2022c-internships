@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Internships\Http\Controllers\Auth;
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
 use Internships\Http\Controllers\Controller;
+use Internships\Http\Requests\Auth\PasswordResetLinkRequest;
 
 class PasswordResetLinkController extends Controller
 {
@@ -24,12 +24,8 @@ class PasswordResetLinkController extends Controller
     /**
      * @throws ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(PasswordResetLinkRequest $request): RedirectResponse
     {
-        $request->validate([
-            "email" => "required|email",
-        ]);
-
         $status = Password::sendResetLink(
             $request->only("email"),
         );
