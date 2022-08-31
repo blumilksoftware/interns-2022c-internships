@@ -54,7 +54,7 @@
               </TransitionChild>
               <div class="h-0 flex-1 overflow-y-auto pt-5 pb-4">
                 <nav class="mt-5 space-y-1 px-2">
-                  <a
+                  <InertiaLink
                     v-for="item in navigation"
                     :key="item.name"
                     :href="item.href"
@@ -76,7 +76,7 @@
                       aria-hidden="true"
                     />
                     {{ item.name }}
-                  </a>
+                  </InertiaLink>
                 </nav>
               </div>
             </DialogPanel>
@@ -91,7 +91,7 @@
         class="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white"
       >
           <nav class="mt-5 flex-1 space-y-1 bg-white px-2">
-            <a
+            <InertiaLink
               v-for="item in navigation"
               :key="item.name"
               :href="item.href"
@@ -113,7 +113,7 @@
                 aria-hidden="true"
               />
               {{ item.name }}
-            </a>
+            </InertiaLink>
           </nav>
         </div>
       </div>
