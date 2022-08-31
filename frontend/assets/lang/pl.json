@@ -44,6 +44,11 @@
         "reset_confirm_header": "Wprowadź nowe hasło dwa razy, aby je zmienić",
         "reset_confirm_button": "Zmień hasło"
     },
+    "verify_email": {
+        "header": "Przed zgłoszeniem firmy, należy potwierdzić rejestrację, klikając w link wysłany na adres e-mail użyty podczas rejestracji konta.",
+        "email_sent": "Nowy link weryfikacyjny został wysłany na Twój adres e-mail.",
+        "resend_email_button": "Wyślij ponownie link weryfikacyjny"
+    },
     "buttons":{
         "sign_in_button": "Zaloguj",
         "logout_button": "Wyloguj",

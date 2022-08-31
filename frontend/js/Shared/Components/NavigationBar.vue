@@ -13,12 +13,12 @@
           <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4">
               <InertiaLink
-                href="/"
+                :href="route('index')"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >{{ $t("navigation_bar.map") }}</InertiaLink
               >
               <InertiaLink
-                href="/company/create"
+                :href="route('create-company')"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >{{ $t("navigation_bar.add_company") }}</InertiaLink
               >
@@ -102,13 +102,13 @@
       <div class="px-2 pt-2 pb-3 space-y-1">
         <DisclosureButton
           as="a"
-          href="/"
+          :href="route('index')"
           class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >{{ $t("navigation_bar.map") }}</DisclosureButton
         >
         <DisclosureButton
           as="a"
-          href="/company/create"
+          :href="route('create-company')"
           class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
         >
           {{ $t("navigation_bar.add_company") }}
@@ -151,4 +151,5 @@ import {
 } from "@headlessui/vue";
 import { UserIcon, MenuIcon, XIcon, CodeIcon } from "@heroicons/vue/outline";
 import LanguageSwitch from "./LanguageSwitch.vue";
+import route from "ziggy";
 </script>

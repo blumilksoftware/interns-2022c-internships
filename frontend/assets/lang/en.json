@@ -43,6 +43,11 @@
         "reset_confirm_header": "Please enter new password twice to change it",
         "reset_confirm_button": "Change password"
     },
+    "verify_email": {
+        "header": "Before submitting your company, confirm your registration by clicking the link sent to the email address used during account registration.",
+        "email_sent": "A new verification link has been sent to your email address.",
+        "resend_email_button": "Resend verification link"
+    },
     "buttons":{
         "sign_in_button": "Sign in",
         "logout_button": "Logout",
