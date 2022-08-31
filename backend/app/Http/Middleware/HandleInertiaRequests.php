@@ -7,6 +7,7 @@ namespace Internships\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use Internships\Enums\Permission;
 use Internships\Http\Resources\UserResource;
 use Tightenco\Ziggy\Ziggy;
 
@@ -33,6 +34,10 @@ class HandleInertiaRequests extends Middleware
 
         return fn(): array => [
             "user" => $user ? new UserResource($user) : null,
+            "can" => [
+                Permission::ManageCompanies->value => $user ? $user->can(Permission::ManageCompanies->value) : false,
+                Permission::ManageUsers->value => $user ? $user->can(Permission::ManageUsers->value) : false,
+            ],
         ];
     }
 
