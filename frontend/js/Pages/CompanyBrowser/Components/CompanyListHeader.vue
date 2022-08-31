@@ -1,3 +1,9 @@
+<script setup>
+defineProps({
+  companies: Object,
+});
+</script>
+
 <template>
   <div
     class="px-2 py-1 pt-4 pb-5 rounded-lg border-b bg-gray-50 border-gray-200 hidden sm:block"
@@ -10,9 +16,3 @@
     </p>
   </div>
 </template>
-
-<script setup>
-defineProps({
-  companies: Object,
-});
-</script>

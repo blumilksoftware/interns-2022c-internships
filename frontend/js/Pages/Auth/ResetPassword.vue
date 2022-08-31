@@ -1,3 +1,27 @@
+<script setup>
+import { useForm } from "@inertiajs/inertia-vue3";
+import InputError from "@/js/Shared/Components/InputError.vue";
+import route from "ziggy";
+
+const props = defineProps({
+  email: String,
+  token: String,
+});
+
+const form = useForm({
+  token: props.token,
+  email: props.email,
+  password: "",
+  password_confirmation: "",
+});
+
+const submit = () => {
+  form.post(route("password.update"), {
+    onFinish: () => form.reset("password", "password_confirmation"),
+  });
+};
+</script>
+
 <template>
   <div
     class="max-h-full flex items-center justify-center pt-16 mt-10 px-4 sm:px-6 lg:px-8"
@@ -85,27 +109,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { useForm } from "@inertiajs/inertia-vue3";
-import InputError from "@/js/Shared/Components/InputError.vue";
-import route from "ziggy";
-
-const props = defineProps({
-  email: String,
-  token: String,
-});
-
-const form = useForm({
-  token: props.token,
-  email: props.email,
-  password: "",
-  password_confirmation: "",
-});
-
-const submit = () => {
-  form.post(route("password.update"), {
-    onFinish: () => form.reset("password", "password_confirmation"),
-  });
-};
-</script>

@@ -1,3 +1,24 @@
+<script setup>
+import { useForm } from "@inertiajs/inertia-vue3";
+import InputError from "@/js/Shared/Components/InputError.vue";
+import route from "ziggy";
+
+const form = useForm({
+  first_name: "",
+  last_name: "",
+  email: "",
+  password: "",
+  password_confirmation: "",
+  terms: false,
+});
+
+const submit = () => {
+  form.post(route("register"), {
+    onFinish: () => form.reset("password", "password_confirmation"),
+  });
+};
+</script>
+
 <template>
   <form
     @submit.prevent="submit"
@@ -151,24 +172,3 @@
     </div>
   </form>
 </template>
-
-<script setup>
-import { useForm } from "@inertiajs/inertia-vue3";
-import InputError from "@/js/Shared/Components/InputError.vue";
-import route from "ziggy";
-
-const form = useForm({
-  first_name: "",
-  last_name: "",
-  email: "",
-  password: "",
-  password_confirmation: "",
-  terms: false,
-});
-
-const submit = () => {
-  form.post(route("register"), {
-    onFinish: () => form.reset("password", "password_confirmation"),
-  });
-};
-</script>

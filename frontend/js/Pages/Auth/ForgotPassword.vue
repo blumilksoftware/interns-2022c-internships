@@ -1,3 +1,22 @@
+<script setup>
+import { useForm } from "@inertiajs/inertia-vue3";
+import InputError from "@/js/Shared/Components/InputError.vue";
+import route from "ziggy";
+
+defineProps({
+  status: String,
+  errors: String,
+});
+
+const form = useForm({
+  email: "",
+});
+
+const submit = () => {
+  form.post(route("password.email"));
+};
+</script>
+
 <template>
   <div
     class="max-h-full flex items-center justify-center pt-16 mt-10 px-4 sm:px-6 lg:px-8"
@@ -61,22 +80,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { useForm } from "@inertiajs/inertia-vue3";
-import InputError from "@/js/Shared/Components/InputError.vue";
-import route from "ziggy";
-
-defineProps({
-  status: String,
-  errors: String,
-});
-
-const form = useForm({
-  email: "",
-});
-
-const submit = () => {
-  form.post(route("password.email"));
-};
-</script>

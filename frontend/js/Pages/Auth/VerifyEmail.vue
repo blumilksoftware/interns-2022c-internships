@@ -1,3 +1,23 @@
+<script setup>
+import { computed } from "vue";
+import { useForm } from "@inertiajs/inertia-vue3";
+import route from "ziggy";
+
+const props = defineProps({
+  status: String,
+});
+
+const form = useForm();
+
+const submit = () => {
+  form.post(route("verification.send"));
+};
+
+const verificationLinkSent = computed(
+  () => props.status === "verification-link-sent"
+);
+</script>
+
 <template>
   <div
     class="max-h-full flex items-center justify-center pt-16 mt-10 px-4 sm:px-6 lg:px-8"
@@ -44,23 +64,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { computed } from "vue";
-import { useForm } from "@inertiajs/inertia-vue3";
-import route from "ziggy";
-
-const props = defineProps({
-  status: String,
-});
-
-const form = useForm();
-
-const submit = () => {
-  form.post(route("verification.send"));
-};
-
-const verificationLinkSent = computed(
-  () => props.status === "verification-link-sent"
-);
-</script>

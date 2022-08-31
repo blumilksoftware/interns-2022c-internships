@@ -1,3 +1,15 @@
+<script setup>
+import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
+import { ChevronDownIcon, SearchIcon } from "@heroicons/vue/solid";
+import Treeselect from "vue3-treeselect";
+import "vue3-treeselect/dist/vue3-treeselect.css";
+
+const props = defineProps({
+  departments: Array,
+  cities: Array,
+});
+</script>
+
 <template>
   <div class="w-full px-4 py-1">
     <div class="w-full rounded-2xl">
@@ -54,15 +66,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
-import { ChevronDownIcon, SearchIcon } from "@heroicons/vue/solid";
-import Treeselect from "vue3-treeselect";
-import "vue3-treeselect/dist/vue3-treeselect.css";
-
-const props = defineProps({
-  departments: Array,
-  cities: Array,
-});
-</script>

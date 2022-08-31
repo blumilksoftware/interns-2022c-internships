@@ -1,3 +1,16 @@
+<script setup>
+import MapDisplay from "./Components/MapDisplay.vue";
+import CompanyList from "./Components/CompanyList.vue";
+import CompanyListHeader from "./Components/CompanyListHeader.vue";
+import Filter from "./Components/FilterDisclosure.vue";
+
+defineProps({
+  companies: Object,
+  cities: Object,
+  departments: Object,
+});
+</script>
+
 <template>
   <div
     class="flex-col w-full mx-0 flex sm:flex-row-reverse h-full overflow-hidden"
@@ -15,16 +28,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import MapDisplay from "./Components/MapDisplay.vue";
-import CompanyList from "./Components/CompanyList.vue";
-import CompanyListHeader from "./Components/CompanyListHeader.vue";
-import Filter from "./Components/FilterDisclosure.vue";
-
-defineProps({
-  companies: Object,
-  cities: Object,
-  departments: Object,
-});
-</script>

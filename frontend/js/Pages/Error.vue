@@ -1,3 +1,11 @@
+<script setup>
+import route from "ziggy";
+
+const props = defineProps({
+  status: Number,
+});
+</script>
+
 <template>
   <div
     class="max-h-full px-4 py-16 sm:px-5 sm:py-20 md:grid my-auto md:place-items-center"
@@ -35,11 +43,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import route from "ziggy";
-
-const props = defineProps({
-  status: Number,
-});
-</script>
