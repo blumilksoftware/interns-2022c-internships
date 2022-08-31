@@ -83,10 +83,10 @@
     "validation": {
         "unique": "Specified email address is already in the database.",
         "min": {
-            "string": "Entered password is too short."
+            "string": "Entered text is too short."
         },
         "max": {
-            "string": "Entered password is too long."
+            "string": "Entered text is too long."
         },
         "confirmed": "Entered passwords differ."
     },

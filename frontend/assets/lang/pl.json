@@ -84,10 +84,10 @@
     "validation": {
         "unique": "Podany adres e-mail znajduje się już w bazie.",
         "min": {
-            "string": "Wprowadzone hasło jest za krótkie."
+            "string": "Wprowadzony tekst jest za krótki."
         },
         "max": {
-            "string": "Wprowadzone hasło jest za długie."
+            "string": "Wprowadzony tekst jest za długi."
         },
         "confirmed": "Wprowadzone hasła się różnią."
     },
