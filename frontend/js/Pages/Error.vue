@@ -24,7 +24,7 @@
             class="mt-10 flex space-x-3 sm:border-l sm:border-transparent sm:pl-6"
           >
             <InertiaLink
-              href="/"
+              :href="route('index')"
               className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
             >
               {{ $t("buttons.go_home_button") }}
@@ -37,6 +37,8 @@
 </template>
 
 <script setup>
+import route from "ziggy";
+
 const props = defineProps({
   status: Number,
 });
