@@ -27,7 +27,7 @@ function onCompanySelect(value) {
 
 function onFiltersSelected(searchSelect, citySelect, specializationSelect) {
   Inertia.get(
-      route(route().current()),
+    route(route().current()),
     {
       searchbox: searchSelect.value,
       city: citySelect.value,
