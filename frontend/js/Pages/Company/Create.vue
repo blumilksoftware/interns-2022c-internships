@@ -12,15 +12,15 @@ const form = useForm({
   name: null,
   description: null,
   address: {
-    city: null,
     street: null,
+    postal_code: null,
+    city: null,
+    voivodeship: null,
     country: null,
     coordinates: {
       latitude: "1",
       longitude: "1",
     },
-    voivodeship: null,
-    postal_code: null,
   },
   contact_details: {
     email: null,

@@ -64,13 +64,13 @@ class CompanyController extends Controller
         $address = collect($request->address)->except(["coordinates"]);
 
         $fetchedLocation = (new LocationFetcher())
-            ->query($address->toJson())
+            ->query($address->implode(", "))
             ->getLocations()
             ->first();
 
         $coordinates = new Coordinates([
-            "latitude" => $fetchedLocation["coordinates"][0],
-            "longitude" => $fetchedLocation["coordinates"][1],
+            "latitude" => $fetchedLocation["coordinates"][1],
+            "longitude" => $fetchedLocation["coordinates"][0],
         ]);
 
         $company = Company::query()->create($request->data($coordinates));
