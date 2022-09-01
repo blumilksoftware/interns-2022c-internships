@@ -8,21 +8,30 @@ import Pagination from "@/js/Shared/Components/PaginationList.vue";
 import { ref } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 
-defineProps({
+const props = defineProps({
   filters: Object,
   companies: Object,
   cities: Object,
   departments: Object,
   markers: Object,
+  selectedCompany: Object,
 });
 
-let showDetail = false;
-
+const showDetail = ref(false);
 const mapComponent = ref();
 
 function onCompanySelect(value) {
-  showDetail = true;
+  Inertia.get('/company/' + value.toString(), {
+      },
+  {
+    preserveState: true,
+    replace: true,
+    only: ["selectedCompany"],
+  })
+
   mapComponent.value.goTo(value);
+  showDetail.value = true;
+
 }
 
 function onFiltersSelected(searchSelect, citySelect, specializationSelect) {

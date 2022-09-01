@@ -8,4 +8,6 @@ use Internships\Http\Controllers\CompanyController;
 
 require __DIR__ . "/auth.php";
 Route::get("/", [CompanyBrowserController::class, "index"])->name("index");
+
 Route::get("/company/create", [CompanyController::class, "create"])->middleware(["auth", "verified"])->name("create-company");
+Route::get("/company/{id}", [CompanyBrowserController::class, "show"])->name("index.show");
