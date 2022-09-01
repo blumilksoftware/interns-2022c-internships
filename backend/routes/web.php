@@ -12,7 +12,7 @@ use Internships\Http\Controllers\AdminUsersController;
 
 require __DIR__ . "/auth.php";
 Route::get("/", [CompanyBrowserController::class, "index"])->name("index");
-Route::get("/company/create", [CompanyController::class, "create"])->middleware(["auth", "verified"])->name("create-company");
-Route::get("/admin",[AdminPanelController::class, "index"]);
+Route::get("/company/create", [CompanyController::class, "create"])->middleware(["auth"])->name("create-company");
+Route::get("/admin",[AdminPanelController::class, "index"])->middleware(["auth"])->name("admin");
 Route::get("/admin/companies",[AdminCompaniesController::class, "companies"]);
 Route::get("/admin/users",[AdminUsersController::class, "users"]);

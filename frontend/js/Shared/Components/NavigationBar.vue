@@ -83,6 +83,16 @@ import route from "ziggy";
                       >{{ $t("buttons.logout_button") }}</InertiaLink
                     >
                   </MenuItem>
+                  <MenuItem v-if="$page.props.auth.user" v-slot="{ active }">
+                    <InertiaLink
+                      :href="route('admin')"
+                      :class="[
+                        active ? 'bg-gray-100' : '',
+                        'block px-4 py-2 text-sm text-gray-700',
+                      ]"
+                      >Admin panel</InertiaLink
+                    >
+                  </MenuItem>
                 </MenuItems>
               </transition>
             </Menu>
@@ -148,6 +158,13 @@ import route from "ziggy";
           >
             {{ $t("buttons.logout_button") }}</DisclosureButton
           >
+          <DisclosureButton
+          as="a"
+          :href="route('admin')"
+          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        >
+          Admin panel
+        </DisclosureButton>
         </div>
       </div>
     </DisclosurePanel>
