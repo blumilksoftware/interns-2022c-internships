@@ -1,8 +1,3 @@
-<template>
-  <VMap class="h-full w-full" :options="state.map" @loaded="onMapLoaded">
-  </VMap>
-</template>
-
 <script setup>
 import "mapbox-gl/dist/mapbox-gl.css";
 import "v-mapbox/dist/v-mapbox.css";
@@ -104,3 +99,8 @@ function onMapLoaded(createdMap) {
   loadMarkers();
 }
 </script>
+
+<template>
+  <VMap class="h-full w-full" :options="state.map" @loaded="onMapLoaded">
+  </VMap>
+</template>

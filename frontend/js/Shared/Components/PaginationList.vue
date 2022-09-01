@@ -1,3 +1,23 @@
+<script setup>
+import { computed } from "vue";
+
+const props = defineProps({
+  links: Array,
+});
+
+const previous = computed({
+  get() {
+    return props.links[0];
+  },
+});
+
+const next = computed({
+  get() {
+    return props.links[props.links.length - 1];
+  },
+});
+</script>
+
 <template>
   <div v-if="links.length > 3">
     <div class="flex flex-column w-full mb-auto">
@@ -21,23 +41,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { computed } from "vue";
-
-const props = defineProps({
-  links: Array,
-});
-
-const previous = computed({
-  get() {
-    return props.links[0];
-  },
-});
-
-const next = computed({
-  get() {
-    return props.links[props.links.length - 1];
-  },
-});
-</script>

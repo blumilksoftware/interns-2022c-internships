@@ -1,3 +1,42 @@
+<script setup>
+import MapDisplay from "./Components/MapDisplay.vue";
+import CompanyList from "./Components/CompanyList.vue";
+import CompanyListHeader from "./Components/CompanyListHeader.vue";
+import Filter from "./Components/FilterDisclosure.vue";
+import Pagination from "@/js/Shared/Components/PaginationList.vue";
+import { ref } from "vue";
+import { Inertia } from "@inertiajs/inertia";
+
+defineProps({
+  filters: Object,
+  companies: Object,
+  cities: Object,
+  departments: Object,
+  markers: Object,
+});
+
+const mapComponent = ref();
+function onCompanySelect(value) {
+  mapComponent.value.goTo(value);
+}
+
+function onFiltersSelected(searchSelect, citySelect, specializationSelect) {
+  Inertia.get(
+      "/",
+      {
+        searchbox: searchSelect.value,
+        city: citySelect.value,
+        specialization: specializationSelect.value,
+      },
+      {
+        preserveState: true,
+        replace: true,
+        only: ["markers", "companies"],
+      }
+  );
+}
+</script>
+
 <template>
   <div
     class="flex-col w-full mx-0 flex sm:flex-row-reverse h-full overflow-hidden"
@@ -28,42 +67,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import MapDisplay from "./Components/MapDisplay.vue";
-import CompanyList from "./Components/CompanyList.vue";
-import CompanyListHeader from "./Components/CompanyListHeader.vue";
-import Filter from "./Components/FilterDisclosure.vue";
-import Pagination from "@/js/Shared/Components/PaginationList.vue";
-import { ref } from "vue";
-import { Inertia } from "@inertiajs/inertia";
-
-defineProps({
-  filters: Object,
-  companies: Object,
-  cities: Object,
-  departments: Object,
-  markers: Object,
-});
-
-const mapComponent = ref();
-function onCompanySelect(value) {
-  mapComponent.value.goTo(value);
-}
-
-function onFiltersSelected(searchSelect, citySelect, specializationSelect) {
-  Inertia.get(
-    "/",
-    {
-      searchbox: searchSelect.value,
-      city: citySelect.value,
-      specialization: specializationSelect.value,
-    },
-    {
-      preserveState: true,
-      replace: true,
-      only: ["markers", "companies"],
-    }
-  );
-}
-</script>

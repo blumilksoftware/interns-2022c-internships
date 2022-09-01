@@ -1,3 +1,26 @@
+<script setup>
+import { ref } from "vue";
+import {
+  Dialog,
+  DialogPanel,
+  DialogTitle,
+  TransitionChild,
+  TransitionRoot,
+} from "@headlessui/vue";
+import { XIcon } from "@heroicons/vue/outline";
+
+const open = ref(false);
+
+const props = defineProps({
+  company: Object,
+});
+
+const emit = defineEmits(["selectedCompany"]);
+function onCompanySelect() {
+  emit("selectedCompany", props.company.id);
+}
+</script>
+
 <template>
   <div
     class="bg-white overflow-hidden shadow rounded-lg cursor-pointer"
@@ -101,25 +124,3 @@
     </Dialog>
   </TransitionRoot>
 </template>
-<script setup>
-import { ref } from "vue";
-import {
-  Dialog,
-  DialogPanel,
-  DialogTitle,
-  TransitionChild,
-  TransitionRoot,
-} from "@headlessui/vue";
-import { XIcon } from "@heroicons/vue/outline";
-
-const open = ref(false);
-
-const props = defineProps({
-  company: Object,
-});
-
-const emit = defineEmits(["selectedCompany"]);
-function onCompanySelect() {
-  emit("selectedCompany", props.company.id);
-}
-</script>
