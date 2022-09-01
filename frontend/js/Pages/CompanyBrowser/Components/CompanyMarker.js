@@ -19,6 +19,7 @@ export function createMarker(marker, map) {
       center: marker.location.coordinates,
       zoom: 15,
     });
+    console.log("Clicked marker with id: ", marker.id);
   });
 
   let mapMarker = new mapboxgl.Marker(markerElement)

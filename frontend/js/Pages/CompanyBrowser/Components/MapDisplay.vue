@@ -9,7 +9,6 @@ import "v-mapbox/dist/v-mapbox.css";
 import { VMap } from "v-mapbox";
 import mapboxgl from "mapbox-gl";
 import { createMarker } from "./CompanyMarker.js";
-
 import { reactive } from "vue";
 
 const props = defineProps({
@@ -34,14 +33,22 @@ const state = reactive({
   },
 });
 
+function loadMarkers(map) {
+  props.markers.forEach(function (marker) {
+    createMarker(marker, map);
+  });
+}
+
 function onMapLoaded(map) {
   map.addControl(new mapboxgl.NavigationControl());
   map.addControl(new mapboxgl.FullscreenControl());
   map.dragRotate.disable();
   map.touchZoomRotate.disableRotation();
 
-  props.markers.forEach(function (marker) {
-    createMarker(marker, map);
+  map.on("idle", function () {
+    map.resize();
   });
+
+  loadMarkers(map);
 }
 </script>

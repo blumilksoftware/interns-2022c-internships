@@ -21,6 +21,7 @@ class CompanyResource extends JsonResource
             "owner_id" => $this->user_id,
             "name" => $this->name,
             "logo" => $this->logo,
+            "status" => $this->status,
             "description" => $this->description,
             "location" => new LocationResource($this->address),
             "contact_details" => $this->contact_details,
