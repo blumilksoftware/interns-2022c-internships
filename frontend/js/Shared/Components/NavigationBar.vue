@@ -1,3 +1,18 @@
+<script setup>
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+} from "@headlessui/vue";
+import { UserIcon, MenuIcon, XIcon, CodeIcon } from "@heroicons/vue/outline";
+import LanguageSwitch from "./LanguageSwitch.vue";
+import route from "ziggy";
+</script>
+
 <template>
   <Disclosure as="nav" class="bg-primary z-50" v-slot="{ open }">
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
@@ -13,14 +28,14 @@
           <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4">
               <InertiaLink
-                href="/"
+                :href="route('index')"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >{{ $t("NavigationBar.Map") }}</InertiaLink
+                >{{ $t("navigation_bar.map") }}</InertiaLink
               >
               <InertiaLink
-                href="/company/create"
+                :href="route('create-company')"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >{{ $t("NavigationBar.AddCompany") }}</InertiaLink
+                >{{ $t("navigation_bar.add_company") }}</InertiaLink
               >
             </div>
           </div>
@@ -48,14 +63,24 @@
                 <MenuItems
                   class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                 >
-                  <MenuItem v-slot="{ active }">
+                  <MenuItem v-if="!$page.props.auth.user" v-slot="{ active }">
                     <InertiaLink
-                      href="/login"
+                      :href="route('login')"
                       :class="[
                         active ? 'bg-gray-100' : '',
                         'block px-4 py-2 text-sm text-gray-700',
                       ]"
-                      >{{ $t("Buttons.SignInButton") }}</InertiaLink
+                      >{{ $t("buttons.sign_in_button") }}</InertiaLink
+                    >
+                  </MenuItem>
+                  <MenuItem v-if="$page.props.auth.user" v-slot="{ active }">
+                    <InertiaLink
+                      :href="route('logout')"
+                      :class="[
+                        active ? 'bg-gray-100' : '',
+                        'block px-4 py-2 text-sm text-gray-700',
+                      ]"
+                      >{{ $t("buttons.logout_button") }}</InertiaLink
                     >
                   </MenuItem>
                 </MenuItems>
@@ -92,44 +117,39 @@
       <div class="px-2 pt-2 pb-3 space-y-1">
         <DisclosureButton
           as="a"
-          href="/"
+          :href="route('index')"
           class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-          >{{ $t("NavigationBar.Map") }}</DisclosureButton
+          >{{ $t("navigation_bar.map") }}</DisclosureButton
         >
         <DisclosureButton
           as="a"
-          href="/company/create"
+          :href="route('create-company')"
           class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
         >
-          {{ $t("NavigationBar.AddCompany") }}
+          {{ $t("navigation_bar.add_company") }}
         </DisclosureButton>
       </div>
       <div class="pt-4 pb-3 border-t border-gray-700">
         <div class="flex items-center px-5"></div>
         <div class="mt-3 px-2 space-y-1">
           <DisclosureButton
+            v-if="!$page.props.auth.user"
             as="a"
-            href="#/signin"
+            :href="route('login')"
             class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
           >
-            {{ $t("Buttons.SignInButton") }}</DisclosureButton
+            {{ $t("buttons.sign_in_button") }}</DisclosureButton
+          >
+          <DisclosureButton
+            v-if="$page.props.auth.user"
+            as="a"
+            :href="route('logout')"
+            class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+          >
+            {{ $t("buttons.logout_button") }}</DisclosureButton
           >
         </div>
       </div>
     </DisclosurePanel>
   </Disclosure>
 </template>
-
-<script setup>
-import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
-} from "@headlessui/vue";
-import { UserIcon, MenuIcon, XIcon, CodeIcon } from "@heroicons/vue/outline";
-import LanguageSwitch from "./LanguageSwitch.vue";
-</script>

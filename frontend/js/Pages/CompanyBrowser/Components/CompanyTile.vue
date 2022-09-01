@@ -1,3 +1,24 @@
+<script setup>
+import { ref } from "vue";
+import {
+  Dialog,
+  DialogPanel,
+  DialogTitle,
+  TransitionChild,
+  TransitionRoot,
+} from "@headlessui/vue";
+import { XIcon } from "@heroicons/vue/outline";
+import PlaceholderImage from "@/assets/images/blumilklogo.png";
+
+const open = ref(false);
+const props = defineProps({
+  name: String,
+  city: String,
+  image: String,
+  description: String,
+});
+</script>
+
 <template>
   <div
     class="bg-white overflow-hidden shadow rounded-lg cursor-pointer"
@@ -85,23 +106,3 @@
     </Dialog>
   </TransitionRoot>
 </template>
-<script setup>
-import { ref } from "vue";
-import {
-  Dialog,
-  DialogPanel,
-  DialogTitle,
-  TransitionChild,
-  TransitionRoot,
-} from "@headlessui/vue";
-import { XIcon } from "@heroicons/vue/outline";
-import PlaceholderImage from "@/assets/images/blumilklogo.png";
-
-const open = ref(false);
-const props = defineProps({
-  name: String,
-  city: String,
-  image: String,
-  description: String,
-});
-</script>

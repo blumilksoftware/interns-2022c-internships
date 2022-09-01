@@ -80,7 +80,7 @@ defineProps({
                   type="button"
                   class="ml-5 bg-white py-2 px-3 border border-slate-500 my-auto rounded-md shadow-sm text-sm leading-4 font-medium text-slate-700 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary"
                 >
-                  {{ $t("Buttons.ChangeButton") }}
+                  {{ $t("buttons.change_button") }}
                 </button>
               </div>
               
