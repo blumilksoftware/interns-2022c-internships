@@ -22,17 +22,17 @@ function onCompanySelect(value) {
 
 function onFiltersSelected(searchSelect, citySelect, specializationSelect) {
   Inertia.get(
-      "/",
-      {
-        searchbox: searchSelect.value,
-        city: citySelect.value,
-        specialization: specializationSelect.value,
-      },
-      {
-        preserveState: true,
-        replace: true,
-        only: ["markers", "companies"],
-      }
+      route("index"),
+    {
+      searchbox: searchSelect.value,
+      city: citySelect.value,
+      specialization: specializationSelect.value,
+    },
+    {
+      preserveState: true,
+      replace: true,
+      only: ["markers", "companies"],
+    }
   );
 }
 </script>
