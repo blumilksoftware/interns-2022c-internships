@@ -3,7 +3,8 @@
         "map": "Mapa",
         "add_company": "Dodaj firmę",
         "sign_in": "Zaloguj",
-        "logged_as": "Zalogowany jako"
+        "logged_as": "Zalogowany jako",
+        "manage_companies": "Zarządzaj firmami"
     },
     "company_browser":{
         "companies_list": "Lista firm",

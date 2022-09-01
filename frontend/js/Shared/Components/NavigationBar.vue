@@ -33,7 +33,13 @@ import route from "ziggy";
                 >{{ $t("navigation_bar.map") }}</InertiaLink
               >
               <InertiaLink
-                :href="route('create-company')"
+                  v-if="$page.props.auth.user"
+                  :href="route('company-index')"
+                  class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >{{ $t("navigation_bar.manage_companies") }}</InertiaLink
+              >
+              <InertiaLink
+                :href="route('company-create')"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >{{ $t("navigation_bar.add_company") }}</InertiaLink
               >
@@ -129,8 +135,16 @@ import route from "ziggy";
           >{{ $t("navigation_bar.map") }}</DisclosureButton
         >
         <DisclosureButton
+            v-if="$page.props.auth.user"
+            as="a"
+            :href="route('company-index')"
+            class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        >
+          {{ $t("navigation_bar.manage_companies") }}</DisclosureButton
+        >
+        <DisclosureButton
           as="a"
-          :href="route('create-company')"
+          :href="route('company-create')"
           class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
         >
           {{ $t("navigation_bar.add_company") }}

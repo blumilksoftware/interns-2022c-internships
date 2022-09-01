@@ -1,5 +1,6 @@
 <script setup>
 import { useForm } from "@inertiajs/inertia-vue3";
+import InputError from "@/js/Shared/Components/InputError.vue";
 import route from "ziggy";
 
 const props = defineProps({
@@ -29,7 +30,7 @@ const form = useForm({
 });
 
 const submit = () => {
-  form.post(route("store-company"), {
+  form.post(route("company-store"), {
     onFinish: () => form.reset(),
   });
 };
@@ -73,6 +74,7 @@ const submit = () => {
                   autocomplete="username"
                   class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
                 />
+                <InputError class="mt-2" :message="form.errors.name" />
               </div>
             </div>
           </div>
@@ -93,6 +95,7 @@ const submit = () => {
                 rows="3"
                 class="max-w-lg shadow-sm block w-full focus:ring-primary focus:border-primary sm:text-sm border border-gray-300 rounded-md"
               />
+              <InputError class="mt-2" :message="form.errors.description" />
               <p class="mt-2 text-sm text-gray-500">
                 {{ $t("add_company.description_info") }}
               </p>
@@ -149,6 +152,7 @@ const submit = () => {
               autocomplete="email"
               class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
             />
+            <InputError class="mt-2" :message="form.errors.contact_details" />
           </div>
         </div>
       </div>
@@ -258,6 +262,7 @@ const submit = () => {
               autocomplete="postal-code"
               class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
             />
+            <InputError class="mt-2" :message="form.errors.address" />
           </div>
         </div>
       </div>
