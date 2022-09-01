@@ -25,6 +25,7 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             "auth" => $this->getAuthData($request),
             "ziggy" => $this->getZiggyData($request),
+            "flash" => $this->getFlashData($request),
         ]);
     }
 
@@ -48,5 +49,14 @@ class HandleInertiaRequests extends Middleware
                 "location" => $request->url(),
             ]);
         };
+    }
+
+    protected function getFlashData(Request $request): Closure
+    {
+        return fn(): array => [
+            "success" => $request->session()->get("success"),
+            "error" => $request->session()->get("error"),
+            "info" => $request->session()->get("info"),
+        ];
     }
 }

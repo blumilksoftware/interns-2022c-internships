@@ -39,6 +39,7 @@
     "vite": "^3.0.4",
     "vue": "^3.2.37",
     "vue-i18n": "^9.2.2",
+    "vue-toastification": "^2.0.0-rc.5",
     "vuex": "^4.0.2"
   },
   "devDependencies": {

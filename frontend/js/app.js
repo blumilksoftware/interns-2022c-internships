@@ -8,6 +8,7 @@ import App from "@/js/Shared/Layout/App.vue";
 import "@/assets/tailwind.css";
 import messages from "@intlify/unplugin-vue-i18n/messages";
 import { ZiggyVue } from "ziggy-vue";
+import Toast from "vue-toastification";
 
 const i18n = createI18n({
   legacy: false,
@@ -37,6 +38,12 @@ createInertiaApp({
       .use(plugin)
       .use(i18n)
       .use(ZiggyVue)
+      .use(Toast, {
+        position: "bottom-right",
+        maxToast: 5,
+        timeout: 3000,
+        pauseOnFocusLoss: false,
+      })
       .mount(el);
   },
 });

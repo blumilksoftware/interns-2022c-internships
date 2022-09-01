@@ -62,7 +62,7 @@ class CompanyController extends Controller
 
         return redirect()
             ->route("company-index")
-            ->with("success", __(":name", [
+            ->with("success", __("Company :name request created", [
                 "name" => $company->name,
             ]));
     }
