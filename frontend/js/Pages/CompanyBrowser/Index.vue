@@ -5,7 +5,7 @@ import CompanyList from "./Components/CompanyList.vue";
 import CompanyListHeader from "./Components/CompanyListHeader.vue";
 import Filter from "./Components/FilterDisclosure.vue";
 import Pagination from "@/js/Shared/Components/PaginationList.vue";
-import { ref } from "vue";
+import {ref, watch} from "vue";
 import { Inertia } from "@inertiajs/inertia";
 
 const props = defineProps({
@@ -30,9 +30,19 @@ function onCompanySelect(value) {
   })
 
   mapComponent.value.goTo(value);
-  showDetail.value = true;
-
 }
+
+function onDetailClose() {
+  showDetail.value = false;
+}
+
+watch(
+    () => props.selectedCompany,
+    () => {
+      showDetail.value = true;
+    },
+    { deep: true }
+);
 
 function onFiltersSelected(searchSelect, citySelect, specializationSelect) {
   Inertia.get(
@@ -81,7 +91,7 @@ function onFiltersSelected(searchSelect, citySelect, specializationSelect) {
         <Pagination class="mt-6 mb-0 sticky" :links="companies.meta.links" />
       </template>
       <template v-else>
-        <CompanyInfoBox class="h-full" />
+        <CompanyInfoBox @close="onDetailClose" :company="selectedCompany.data" class="h-full" />
       </template>
     </div>
   </div>

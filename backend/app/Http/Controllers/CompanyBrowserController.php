@@ -11,6 +11,7 @@ use Internships\Enums\CompanyStatus;
 use Internships\Http\Resources\CityResource;
 use Internships\Http\Resources\CompanyMarkerResource;
 use Internships\Http\Resources\CompanyResource;
+use Internships\Http\Resources\CompanySummaryResource;
 use Internships\Http\Resources\DepartmentResource;
 use Internships\Models\Company;
 use Internships\Models\Department;
@@ -38,7 +39,7 @@ class CompanyBrowserController extends Controller
             [
                 "markers" => CompanyMarkerResource::collection($companiesFiltered->get()),
                 "cities" => CityResource::collection($verifiedCompanies),
-                "companies" => CompanyResource::collection($companiesFiltered->paginate(config("app.pagination", 15))
+                "companies" => CompanySummaryResource::collection($companiesFiltered->paginate(config("app.pagination", 15))
                     ->withQueryString()),
                 "departments" => DepartmentResource::collection(Department::all()),
                 "filters" => Request::all(["searchbox", "city", "specialization"]),
@@ -48,6 +49,7 @@ class CompanyBrowserController extends Controller
 
     public function show($id): Response
     {
-        return $this->index()->with('selectedCompany', Company::query()->where('id', $id)->get());
+        return $this->index()->with('selectedCompany',
+            new CompanyResource(Company::query()->where('id', $id)->first()));
     }
 }

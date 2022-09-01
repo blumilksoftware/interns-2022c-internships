@@ -53,7 +53,6 @@ function toggleMarkers() {
   });
 
   props.markers.forEach(function (marker) {
-    console.log(marker);
     let match = loadedMarkers.find((item) => item.id === marker.id);
 
     if (match !== null) {
