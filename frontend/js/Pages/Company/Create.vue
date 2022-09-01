@@ -1,77 +1,73 @@
-<template>
-  <form
-    class="space-y-8 divide-y divide-gray-200 mx-auto mt-3"
-    action="#"
-    method="POST"
-  >
-    <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
-      <div>
-        <div>
-          <h3
-            class="flex justify-center text-lg leading-6 font-medium text-gray-900"
-          >
-            {{ $t("AddCompany.Header") }}
-          </h3>
-          <p class="flex justify-center mt-1 max-w-2xl text-sm text-gray-500">
-            {{ $t("AddCompany.HeaderInfo") }}
-          </p>
-        </div>
-        <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
-          <div
-            class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-          >
-            <label
-              for="username"
-              class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-            >
-              {{ $t("AddCompany.CompanyName") }}
-            </label>
-            <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <div class="max-w-lg flex rounded-md shadow-sm">
-                <input
-                  required
-                  type="text"
-                  name="username"
-                  id="username"
-                  autocomplete="username"
-                  class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
-                />
-              </div>
-            </div>
-          </div>
-          <div
-            class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-          >
-            <label
-              for="description"
-              class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-            >
-              {{ $t("AddCompany.Description") }}
-            </label>
-            <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <textarea
-                id="description"
-                name="description"
-                rows="3"
-                class="max-w-lg shadow-sm block w-full focus:ring-primary focus:border-primary sm:text-sm border border-gray-300 rounded-md"
-              />
-              <p class="mt-2 text-sm text-gray-500">
-                {{ $t("AddCompany.DescriptionInfo") }}
-              </p>
-            </div>
-          </div>
+<script setup>
+import Treeselect from "vue3-treeselect";
+import "vue3-treeselect/dist/vue3-treeselect.css";
 
-          <div
-            class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-gray-200 sm:pt-5"
-          >
-            <label for="photo" class="block text-sm font-medium text-gray-700">
+defineProps({
+  departments: Object,
+});
+</script>
+
+<template>
+  <div class="flex items-center justify-center p-5">
+  <div class="mx-auto w-full max-w-5xl p-6 bg-white">
+    <form method="POST">
+      <div class="mb-2">
+        <label
+          for="name"
+          class="mb-3 block text-base font-medium text-secondary"
+        >
+        {{ $t("AddCompany.CompanyName") }}
+        </label>
+        <input
+        required
+          type="text"
+          name="name"
+          id="name"
+          class="w-full rounded-md border border-slate-300 bg-white py-3 px-6 text-base font-medium text-slate-500 outline-none focus:border-secondary focus:shadow-md"
+        />
+      </div>
+      <div class="mb-2">
+        <label
+          for="email"
+          class="mb-3 block text-base font-medium text-secondary"
+        >
+        {{ $t("CommonLabels.Email") }}
+        </label>
+        <input
+        required
+          type="email"
+          name="email"
+          id="email"
+          class="w-full rounded-md border border-slate-300 bg-white py-3 px-6 text-base font-medium text-slate-500 outline-none focus:border-secondary focus:shadow-md"
+        />
+      </div>
+      <div class="mb-2">
+        <label
+          for="weburl"
+          class="mb-3 block text-base font-medium text-secondary"
+        >
+        Webpage URL
+        </label>
+        <input
+        required
+          type="weburl"
+          name="weburl"
+          id="weburl"
+          class="w-full rounded-md border border-slate-300 bg-white py-3 px-6 text-base font-medium text-slate-500 outline-none focus:border-secondary focus:shadow-md"
+        />
+      </div>
+      <div class="flex flex-initial"> <label for="photo" class="block text-base font-medium text-secondary">
               Logo
             </label>
-            <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <div class="flex justify-center items-center">
-                <span class="h-14 w-14 rounded-lg overflow-hidden bg-gray-100">
+      <label for="photo" class="px-2 m-auto flex-none block text-base font-medium text-secondary">
+              Choose targeted specializations
+            </label></div>
+     
+<div class="flex flex-initial">  
+              <div class="flex m-auto ">
+                <span class="h-20 w-20 rounded-lg overflow-hidden bg-slate-300">
                   <svg
-                    class="h-full w-full text-gray-300"
+                    class="h-full min-w-full w-full text-slate-500"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -82,157 +78,133 @@
                 </span>
                 <button
                   type="button"
-                  class="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                  class="ml-5 bg-white py-2 px-3 border border-slate-500 my-auto rounded-md shadow-sm text-sm leading-4 font-medium text-slate-700 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary"
                 >
                   {{ $t("Buttons.ChangeButton") }}
                 </button>
               </div>
+              
+            <Treeselect
+            class="m-auto w-1/2"
+            :options="departments.data"
+            :multiple="true"
+            :disable-branch-nodes="true"
+            :placeholder="$t('TreeSelects.TreeSelectSpecialization')"
+            search-nested
+            v-model="specializationSelect"
+          />
+          
+</div>
+<div
+            class="sm:items-start pt-2"
+          >
+            <label
+              for="description"
+              class="block text-base font-medium text-secondary"
+            >
+              {{ $t("AddCompany.Description") }}
+            </label>
+            <div class="mt-1 sm:mt-0 sm:col-span-2">
+              <textarea
+              required
+                id="description"
+                name="description"
+                rows="3"
+                class="shadow-sm block w-full text-base font-medium text-slate-500 focus:ring-secondary focus:border-secondary sm:text-sm border border-slate-300 rounded-md"
+              />
+              <p class="mt-2 text-sm text-slate-500">
+                {{ $t("AddCompany.DescriptionInfo") }}
+              </p>
+            </div>
+          </div>
+
+      <div class="mb-2 pt-3">
+        <label
+          class="mb-2 block text-base font-semibold text-secondary sm:text-xl"
+        >
+          Address Details
+        </label>
+        <div class="-mx-3 flex flex-wrap">
+          <div class="w-full px-3 sm:w-1/2">
+            <div class="mb-2">
+              <div>
+    <select required id="City" name="City" class="mt-1 block w-full px-3 rounded-md border-slate-300 py-2 pl-3 pr-10 text-base font-medium text-slate-500 focus:border-secondary focus:outline-none focus:ring-secondary sm:text-sm">
+    <option selected="disable">City</option>
+
+    </select>
+  </div>
+            </div>
+          </div>         <div class="w-full px-3 sm:w-1/2">
+            <div class="mb-2">
+              <div>
+    <select id="Voivodeship" required name="Voivodeship" class="mt-1 px-3 block w-full rounded-md border-slate-300 py-2 pl-3 pr-10 text-base font-medium text-slate-500 focus:border-secondary focus:outline-none focus:ring-secondary sm:text-sm">
+    <option selected="disable">Voivodeship</option>
+
+    </select>
+  </div>
+            </div>
+          </div>
+          <div class="w-full px-3 sm:w-1/2">
+            <div class="mb-2">
+              <input
+              required
+                type="text"
+                name="Street"
+                id="Street"
+                placeholder="Street"
+                class="w-full rounded-md border border-slate-300 bg-white py-3 px-6 text-base font-medium text-slate-500 outline-none focus:border-secondary focus:shadow-md"
+              />
+            </div>
+          </div>
+          <div class="w-full px-3 sm:w-1/2">
+            <div class="mb-2">
+              <input
+              required
+                type="text"
+                name="Building"
+                id="Building"
+                placeholder="Building"
+                class="w-full rounded-md border border-slate-300 bg-white py-3 px-6 text-base font-medium text-slate-500 outline-none focus:border-secondary focus:shadow-md"
+              />
+            </div>
+          </div>
+          <div class="w-full px-3 sm:w-1/2">
+            <div class="mb-2">
+              <input
+              required
+                type="text"
+                name="PostCode"
+                id="PostCode"
+                placeholder="Post Code"
+                class="w-full rounded-md border border-slate-300 bg-white py-3 px-6 text-base font-medium text-slate-500 outline-none focus:border-secondary focus:shadow-md"
+              />
+            </div>
+          </div>
+          <div class="w-full px-3 sm:w-1/2">
+            <div class="mb-2">
+              <input
+                type="text"
+                name="PhoneNumber"
+                id="PhoneNumber"
+                placeholder="Phone number"
+                class="w-full rounded-md border border-slate-300 bg-white py-3 px-6 text-base font-medium text-slate-500 outline-none focus:border-secondary focus:shadow-md"
+              />
             </div>
           </div>
         </div>
       </div>
-      <div
-        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-      >
-        <label
-          for="email"
-          class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-        >
-          {{ $t("CommonLabels.Email") }}
-        </label>
-        <div class="mt-1 sm:mt-0 sm:col-span-2">
-          <div class="max-w-lg flex rounded-md shadow-sm">
-            <input
-              required
-              type="text"
-              name="email"
-              id="email"
-              autocomplete="email"
-              class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="pt-2 space-y-6 sm:pt-2 sm:space-y-5">
-        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-5">
-          <label
-            for="country"
-            class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-          >
-            {{ $t("CommonLabels.Country") }}
-          </label>
-          <div class="mt-1 sm:mt-0 sm:col-span-2">
-            <select
-              id="country"
-              name="country"
-              autocomplete="country-name"
-              class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
-            >
-              <option>Poland</option>
-              <option>Other country</option>
-              <option>Other country</option>
-              <option>Other country</option>
-              <option>Other country</option>
-            </select>
-          </div>
-        </div>
-        <div
-          class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-        >
-          <label
-            for="street-address"
-            class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-          >
-            {{ $t("AddCompany.StreetAddress") }}
-          </label>
-          <div class="mt-1 sm:mt-0 sm:col-span-2">
-            <input
-              required
-              type="text"
-              name="street-address"
-              id="street-address"
-              autocomplete="street-address"
-              class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
-            />
-          </div>
-        </div>
-        <div
-          class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-        >
-          <label
-            for="city"
-            class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-          >
-            {{ $t("AddCompany.City") }}
-          </label>
-          <div class="mt-1 sm:mt-0 sm:col-span-2">
-            <input
-              required
-              type="text"
-              name="city"
-              id="city"
-              autocomplete="address-level2"
-              class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
-            />
-          </div>
-        </div>
-        <div
-          class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-        >
-          <label
-            for="region"
-            class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-          >
-            {{ $t("AddCompany.Voivodeship") }}
-          </label>
-          <div class="mt-1 sm:mt-0 sm:col-span-2">
-            <input
-              required
-              type="text"
-              name="region"
-              id="region"
-              autocomplete="address-level1"
-              class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
-            />
-          </div>
-        </div>
-        <div
-          class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-        >
-          <label
-            for="postal-code"
-            class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-          >
-            {{ $t("AddCompany.PostalCode") }}
-          </label>
-          <div class="mt-1 sm:mt-0 sm:col-span-2">
-            <input
-              required
-              type="text"
-              name="postal-code"
-              id="postal-code"
-              autocomplete="postal-code"
-              class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pt-5">
-      <div class="flex justify-end">
+
+      <div>
         <button
-          type="button"
-          class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+          class="hover:shadow-form w-full rounded-md bg-secondary py-3 px-8 text-center text-base font-semibold text-white outline-none"
         >
-          {{ $t("Buttons.CancelButton") }}
+          Request adding company
         </button>
-        <button
-          type="submit"
-          class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-        >
-          {{ $t("Buttons.RequestButton") }}
-        </button>
+        <p class="flex justify-center mt-1 text-center text-sm text-slate-500">
+            {{ $t("AddCompany.HeaderInfo") }}
+          </p>    
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
+</div>
 </template>

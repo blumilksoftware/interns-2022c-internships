@@ -6,6 +6,8 @@ namespace Internships\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Internships\Http\Resources\DepartmentResource;
+use Internships\Models\Department;
 
 class CompanyController extends Controller
 {
@@ -13,6 +15,9 @@ class CompanyController extends Controller
     {
         return inertia(
             "Company/Create",
+            [
+                "departments" => DepartmentResource::collection(Department::all()),
+            ],
         );
     }
 }
