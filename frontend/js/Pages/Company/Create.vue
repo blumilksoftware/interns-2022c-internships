@@ -10,10 +10,10 @@
           <h3
             class="flex justify-center text-lg leading-6 font-medium text-gray-900"
           >
-            {{ $t("AddCompany.Header") }}
+            {{ $t("add_company.header") }}
           </h3>
           <p class="flex justify-center mt-1 max-w-2xl text-sm text-gray-500">
-            {{ $t("AddCompany.HeaderInfo") }}
+            {{ $t("add_company.header_info") }}
           </p>
         </div>
         <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
@@ -24,7 +24,7 @@
               for="username"
               class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
             >
-              {{ $t("AddCompany.CompanyName") }}
+              {{ $t("add_company.company_name") }}
             </label>
             <div class="mt-1 sm:mt-0 sm:col-span-2">
               <div class="max-w-lg flex rounded-md shadow-sm">
@@ -46,7 +46,7 @@
               for="description"
               class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
             >
-              {{ $t("AddCompany.Description") }}
+              {{ $t("add_company.description") }}
             </label>
             <div class="mt-1 sm:mt-0 sm:col-span-2">
               <textarea
@@ -56,7 +56,7 @@
                 class="max-w-lg shadow-sm block w-full focus:ring-primary focus:border-primary sm:text-sm border border-gray-300 rounded-md"
               />
               <p class="mt-2 text-sm text-gray-500">
-                {{ $t("AddCompany.DescriptionInfo") }}
+                {{ $t("add_company.description_info") }}
               </p>
             </div>
           </div>
@@ -84,7 +84,7 @@
                   type="button"
                   class="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                 >
-                  {{ $t("Buttons.ChangeButton") }}
+                  {{ $t("buttons.change_button") }}
                 </button>
               </div>
             </div>
@@ -98,7 +98,7 @@
           for="email"
           class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
         >
-          {{ $t("CommonLabels.Email") }}
+          {{ $t("common_labels.email") }}
         </label>
         <div class="mt-1 sm:mt-0 sm:col-span-2">
           <div class="max-w-lg flex rounded-md shadow-sm">
@@ -119,7 +119,7 @@
             for="country"
             class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
           >
-            {{ $t("CommonLabels.Country") }}
+            {{ $t("common_labels.country") }}
           </label>
           <div class="mt-1 sm:mt-0 sm:col-span-2">
             <select
@@ -143,7 +143,7 @@
             for="street-address"
             class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
           >
-            {{ $t("AddCompany.StreetAddress") }}
+            {{ $t("add_company.street_address") }}
           </label>
           <div class="mt-1 sm:mt-0 sm:col-span-2">
             <input
@@ -163,7 +163,7 @@
             for="city"
             class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
           >
-            {{ $t("AddCompany.City") }}
+            {{ $t("add_company.city") }}
           </label>
           <div class="mt-1 sm:mt-0 sm:col-span-2">
             <input
@@ -183,7 +183,7 @@
             for="region"
             class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
           >
-            {{ $t("AddCompany.Voivodeship") }}
+            {{ $t("add_company.voivodeship") }}
           </label>
           <div class="mt-1 sm:mt-0 sm:col-span-2">
             <input
@@ -203,7 +203,7 @@
             for="postal-code"
             class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
           >
-            {{ $t("AddCompany.PostalCode") }}
+            {{ $t("add_company.postal_code") }}
           </label>
           <div class="mt-1 sm:mt-0 sm:col-span-2">
             <input
@@ -224,13 +224,13 @@
           type="button"
           class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
         >
-          {{ $t("Buttons.CancelButton") }}
+          {{ $t("buttons.cancel_button") }}
         </button>
         <button
           type="submit"
           class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
         >
-          {{ $t("Buttons.RequestButton") }}
+          {{ $t("buttons.request_button") }}
         </button>
       </div>
     </div>

@@ -1,8 +1,3 @@
-<template>
-  <VMap class="h-full w-full" :options="state.map" @loaded="onMapLoaded">
-  </VMap>
-</template>
-
 <script setup>
 import "mapbox-gl/dist/mapbox-gl.css";
 import "v-mapbox/dist/v-mapbox.css";
@@ -32,3 +27,8 @@ function onMapLoaded(map) {
   map.addControl(new mapboxgl.FullscreenControl());
 }
 </script>
+
+<template>
+  <VMap class="h-full w-full" :options="state.map" @loaded="onMapLoaded">
+  </VMap>
+</template>

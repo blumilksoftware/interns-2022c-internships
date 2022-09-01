@@ -1,3 +1,7 @@
+<script setup>
+import locales from "@/assets/lang/index.js";
+</script>
+
 <template>
   <div>
     <select
@@ -15,7 +19,3 @@
     </select>
   </div>
 </template>
-
-<script setup>
-import locales from "@/assets/lang/index.js";
-</script>

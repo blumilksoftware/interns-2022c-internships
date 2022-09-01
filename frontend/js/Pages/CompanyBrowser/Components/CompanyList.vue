@@ -1,3 +1,12 @@
+<script setup>
+import PlaceholderImage from "@/assets/images/blumilklogo.png";
+import CompanyTile from "./CompanyTile.vue";
+
+defineProps({
+  companies: Array,
+});
+</script>
+
 <template>
   <div
     class="shadow ring-1 ring-black ring-opacity-5 md:rounded-lg overflow-x-hidden overflow-y-scroll"
@@ -12,12 +21,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import PlaceholderImage from "@/assets/images/blumilklogo.png";
-import CompanyTile from "./CompanyTile.vue";
-
-defineProps({
-  companies: Array,
-});
-</script>
