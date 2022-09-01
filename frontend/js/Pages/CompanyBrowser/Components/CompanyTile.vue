@@ -1,16 +1,4 @@
 <script setup>
-import { ref } from "vue";
-import {
-  Dialog,
-  DialogPanel,
-  DialogTitle,
-  TransitionChild,
-  TransitionRoot,
-} from "@headlessui/vue";
-import { XIcon } from "@heroicons/vue/outline";
-
-const open = ref(false);
-
 const props = defineProps({
   company: Object,
 });
@@ -68,59 +56,4 @@ function onCompanySelect() {
       </table>
     </div>
   </div>
-  <TransitionRoot as="template" :show="open">
-    <Dialog as="div" class="relative z-30" @close="open = false">
-      <div class="fixed inset-0" />
-
-      <div class="fixed inset-0 overflow-hidden">
-        <div class="absolute inset-0 inset-y-1/2 sm:inset-y-12 overflow-hidden">
-          <div
-            class="pointer-events-none fixed sm:inset-y-12 left-0 mx-auto flex max-w-screen pr-10"
-          >
-            <TransitionChild
-              as="template"
-              enter="transform transition ease-in-out duration-500 sm:duration-700"
-              enter-from="translate-y-full"
-              enter-to="sm:translate-y-50 sm:translate-y-0"
-              leave="transform transition ease-in-out duration-500 sm:duration-700"
-              leave-from="translate-y-0"
-              leave-to="translate-y-full"
-            >
-              <DialogPanel class="pointer-events-auto w-screen sm:max-w-xl">
-                <div
-                  class="flex h-screen flex-col overflow-y-scroll bg-gray-50 py-6 shadow-xl"
-                >
-                  <div class="px-4 sm:px-6">
-                    <div class="flex items-start justify-between">
-                      <img
-                        class="h-16 w-16 rounded-lg border-2"
-                        :src="'/storage/images/' + company.logo"
-                        alt=""
-                      />
-                      <DialogTitle class="text-lg font-medium text-gray-900">
-                        {{ company.name }}</DialogTitle
-                      >
-                      <div class="ml-3 flex h-7 items-center">
-                        <button
-                          type="button"
-                          class="rounded-md bg-gray-50 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                          @click="open = false"
-                        >
-                          <span class="sr-only">Close panel</span>
-                          <XIcon class="h-6 w-6" aria-hidden="true" />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="relative mt-6 flex-1 px-4 sm:px-6">
-                    {{ company.description }}
-                  </div>
-                </div>
-              </DialogPanel>
-            </TransitionChild>
-          </div>
-        </div>
-      </div>
-    </Dialog>
-  </TransitionRoot>
 </template>

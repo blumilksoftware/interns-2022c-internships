@@ -7,7 +7,10 @@
     "company_browser":{
         "companies_list": "Lista firm",
         "found_companies": "Znaleziono",
-        "search": "Wyszukaj"
+        "search": "Wyszukaj",
+        "has_signed_papers": "Umowa z uczelnią",
+        "no_companies_found": "Żadna firma nie pasuje do bieżącego wyszukiwania.",
+        "is_pending": "W oczekiwaniu"
     },
     "tree_selects":{
         "tree_select_city": "Wybierz miasto",

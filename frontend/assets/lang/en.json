@@ -6,7 +6,10 @@
     "company_browser":{
         "companies_list": "Companies list",
         "found_companies": "Found companies",
-        "search": "Search"
+        "search": "Search",
+        "has_signed_papers": "College cooperation",
+        "no_companies_found": "No companies match current filters.",
+        "is_pending": "Pending"
     },
     "tree_selects":{
         "tree_select_city": "Choose city",

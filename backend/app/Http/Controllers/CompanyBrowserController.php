@@ -7,7 +7,6 @@ namespace Internships\Http\Controllers;
 use Illuminate\Support\Facades\Request;
 use Inertia\Response;
 use Internships\Enums\CompanyStatus;
-use Internships\Enums\Role;
 use Internships\Http\Resources\CityResource;
 use Internships\Http\Resources\CompanyMarkerResource;
 use Internships\Http\Resources\CompanyResource;
@@ -19,16 +18,8 @@ class CompanyBrowserController extends Controller
 {
     public function index(): Response
     {
-        $companiesQuery = Company::query()->orderBy("has_signed_papers", "desc");
-        if (!auth()->user() || auth()->user()->role !== Role::Administrator) {
-            $companiesQuery->whereNot("status", CompanyStatus::PendingEdited)
-                ->reorder()
-                ->orderBy("status", "asc");
-        } else {
-            $companiesQuery->whereNot("status", CompanyStatus::PendingEdited)
-                ->reorder()
-                ->orderBy("status", "asc");
-        }
+        $companiesQuery = Company::query()->orderBy("has_signed_papers", "desc")
+            ->where("status", CompanyStatus::Verified);
         $verifiedCompanies = $companiesQuery->get();
 
         $companiesFiltered = $companiesQuery->when(Request::input("searchbox"), function ($query, $search): void {

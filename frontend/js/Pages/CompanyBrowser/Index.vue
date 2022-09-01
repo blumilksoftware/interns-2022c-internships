@@ -1,5 +1,6 @@
 <script setup>
 import MapDisplay from "./Components/MapDisplay.vue";
+import CompanyInfoBox from "./Components/CompanyInfoBox.vue";
 import CompanyList from "./Components/CompanyList.vue";
 import CompanyListHeader from "./Components/CompanyListHeader.vue";
 import Filter from "./Components/FilterDisclosure.vue";
@@ -15,14 +16,18 @@ defineProps({
   markers: Object,
 });
 
+let showDetail = false;
+
 const mapComponent = ref();
+
 function onCompanySelect(value) {
+  showDetail = true;
   mapComponent.value.goTo(value);
 }
 
 function onFiltersSelected(searchSelect, citySelect, specializationSelect) {
   Inertia.get(
-      route("index"),
+    route("index"),
     {
       searchbox: searchSelect.value,
       city: citySelect.value,
@@ -51,19 +56,24 @@ function onFiltersSelected(searchSelect, citySelect, specializationSelect) {
     <div
       class="flex flex-col bg-gray-50 w-full h-1/2 md:w-3/5 lg:w-3/5 xl:w-2/5 sm:h-full"
     >
-      <CompanyListHeader :total="companies.meta.total" />
-      <Filter
-        :departments="departments.data"
-        :cities="cities.data"
-        :filters="filters"
-        @selected="onFiltersSelected"
-      />
-      <CompanyList
-        class="h-full"
-        :companies="companies.data"
-        @selectedCompany="onCompanySelect"
-      />
-      <Pagination class="mt-6 mb-0 sticky" :links="companies.meta.links" />
+      <template v-if="!showDetail">
+        <CompanyListHeader :total="companies.meta.total" />
+        <Filter
+          :departments="departments.data"
+          :cities="cities.data"
+          :filters="filters"
+          @selected="onFiltersSelected"
+        />
+        <CompanyList
+          class="h-full"
+          :companies="companies.data"
+          @selectedCompany="onCompanySelect"
+        />
+        <Pagination class="mt-6 mb-0 sticky" :links="companies.meta.links" />
+      </template>
+      <template v-else>
+        <CompanyInfoBox class="h-full" />
+      </template>
     </div>
   </div>
 </template>
