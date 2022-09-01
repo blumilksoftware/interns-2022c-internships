@@ -1,5 +1,5 @@
 import "./bootstrap";
-import { createApp, h } from "vue";
+import { createApp, h, onMounted } from "vue";
 import { createInertiaApp } from "@inertiajs/inertia-vue3";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import InertiaLink from "@/js/Shared/InertiaLink.js";

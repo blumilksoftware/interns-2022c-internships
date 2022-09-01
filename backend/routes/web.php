@@ -10,5 +10,6 @@ require __DIR__ . "/auth.php";
 Route::get("/", [CompanyBrowserController::class, "index"])->name("index");
 
 Route::get("/company", [CompanyController::class, "index"])->middleware(["auth"])->name("company-index");
-Route::get("/company/create", [CompanyController::class, "create"])->middleware(["auth", "verified"])->name("company-create");
 Route::post("/company", [CompanyController::class, "store"])->name("company-store");
+Route::get("/company/create", [CompanyController::class, "create"])->middleware(["auth", "verified"])->name("company-create");
+Route::get("/company/{id}", [CompanyBrowserController::class, "show"])->name("index.show");
