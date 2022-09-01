@@ -3,7 +3,11 @@
     class="flex-col w-full mx-0 flex sm:flex-row-reverse h-full overflow-hidden"
   >
     <div class="flex bg-gray-200 w-full h-full max-h-full">
-      <MapDisplay :markers="markers.data" />
+      <MapDisplay
+        :markers="markers.data"
+        @selectedCompany="onCompanySelect"
+        ref="mapComponent"
+      />
     </div>
     <div
       class="flex flex-col bg-gray-50 w-full h-1/2 md:w-3/5 lg:w-3/5 xl:w-2/5 sm:h-full"
@@ -13,8 +17,13 @@
         :departments="departments.data"
         :cities="cities.data"
         :filters="filters"
+        @selected="onFiltersSelected"
       />
-      <CompanyList class="h-full" :companies="companies.data" />
+      <CompanyList
+        class="h-full"
+        :companies="companies.data"
+        @selectedCompany="onCompanySelect"
+      />
       <Pagination class="mt-6 mb-0 sticky" :links="companies.meta.links" />
     </div>
   </div>
@@ -26,6 +35,8 @@ import CompanyList from "./Components/CompanyList.vue";
 import CompanyListHeader from "./Components/CompanyListHeader.vue";
 import Filter from "./Components/FilterDisclosure.vue";
 import Pagination from "@/js/Shared/Components/PaginationList.vue";
+import { ref } from "vue";
+import { Inertia } from "@inertiajs/inertia";
 
 defineProps({
   filters: Object,
@@ -34,4 +45,25 @@ defineProps({
   departments: Object,
   markers: Object,
 });
+
+const mapComponent = ref();
+function onCompanySelect(value) {
+  mapComponent.value.goTo(value);
+}
+
+function onFiltersSelected(searchSelect, citySelect, specializationSelect) {
+  Inertia.get(
+    "/",
+    {
+      searchbox: searchSelect.value,
+      city: citySelect.value,
+      specialization: specializationSelect.value,
+    },
+    {
+      preserveState: true,
+      replace: true,
+      only: ["markers", "companies"],
+    }
+  );
+}
 </script>

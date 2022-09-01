@@ -61,7 +61,6 @@ import { ChevronDownIcon, SearchIcon } from "@heroicons/vue/solid";
 import { watch, ref } from "vue";
 import Treeselect from "@tkmam1x/vue3-treeselect";
 import "@tkmam1x/vue3-treeselect/dist/vue3-treeselect.css";
-import { Inertia } from "@inertiajs/inertia";
 
 const props = defineProps({
   filters: Object,
@@ -73,19 +72,8 @@ let searchSelect = ref(props.filters.searchSelect);
 let citySelect = ref(props.filters.citySelect);
 let specializationSelect = ref(props.filters.specializationSelect);
 
+const emit = defineEmits(["selected"]);
 watch([searchSelect, citySelect, specializationSelect], () => {
-  Inertia.get(
-    "/",
-    {
-      searchbox: searchSelect.value,
-      city: citySelect.value,
-      specialization: specializationSelect.value,
-    },
-    {
-      preserveState: true,
-      replace: true,
-      only: ["markers", "companies"],
-    }
-  );
+  emit("selected", searchSelect, citySelect, specializationSelect);
 });
 </script>

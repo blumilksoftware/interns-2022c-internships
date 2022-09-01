@@ -1,7 +1,7 @@
 <template>
   <div
     class="bg-white overflow-hidden shadow rounded-lg cursor-pointer"
-    @click="open = true"
+    @click="onCompanySelect"
   >
     <div class="px-2 py-3 sm:p-2">
       <table>
@@ -113,7 +113,13 @@ import {
 import { XIcon } from "@heroicons/vue/outline";
 
 const open = ref(false);
-defineProps({
+
+const props = defineProps({
   company: Object,
 });
+
+const emit = defineEmits(["selectedCompany"]);
+function onCompanySelect() {
+  emit("selectedCompany", props.company.id);
+}
 </script>

@@ -4,7 +4,7 @@
   >
     <template v-if="companies.length > 0">
       <div class="mb-1" v-for="company in companies" :key="company.id">
-        <CompanyTile :company="company" />
+        <CompanyTile :company="company" @selectedCompany="onCompanySelect" />
       </div>
     </template>
     <div class="py-2 px-2 mt-1" v-else>
@@ -19,4 +19,9 @@ import CompanyTile from "./CompanyTile.vue";
 defineProps({
   companies: Array,
 });
+
+const emit = defineEmits(["selectedCompany"]);
+function onCompanySelect(value) {
+  emit("selectedCompany", value);
+}
 </script>

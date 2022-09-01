@@ -9,11 +9,13 @@ import "v-mapbox/dist/v-mapbox.css";
 import { VMap } from "v-mapbox";
 import mapboxgl from "mapbox-gl";
 import { createMarker } from "./CompanyMarker.js";
-import { reactive } from "vue";
+import { reactive, watch } from "vue";
 
 const props = defineProps({
   markers: Array,
 });
+let loadedMap;
+let loadedMarkers = [];
 
 const state = reactive({
   map: {
@@ -33,22 +35,72 @@ const state = reactive({
   },
 });
 
-function loadMarkers(map) {
-  props.markers.forEach(function (marker) {
-    createMarker(marker, map);
+defineExpose({
+  goTo,
+  toggleMarkers,
+});
+
+function goTo(markerId) {
+  let marker = loadedMarkers.find((item) => item.id === markerId).loadedMarker;
+
+  loadedMap.flyTo({
+    center: marker.getLngLat(),
+    zoom: 15,
   });
 }
 
-function onMapLoaded(map) {
-  map.addControl(new mapboxgl.NavigationControl());
-  map.addControl(new mapboxgl.FullscreenControl());
-  map.dragRotate.disable();
-  map.touchZoomRotate.disableRotation();
-
-  map.on("idle", function () {
-    map.resize();
+function toggleMarkers() {
+  loadedMarkers.forEach(function (marker) {
+    let htmlElement = marker.loadedMarker.getElement();
+    htmlElement.style.opacity = "0.3";
+    htmlElement.style.height = "12px";
+    htmlElement.style.width = "12px";
   });
 
-  loadMarkers(map);
+  props.markers.forEach(function (marker) {
+    console.log(marker);
+    let match = loadedMarkers.find((item) => item.id === marker.id);
+
+    if (match !== null) {
+      let styledElement = match.loadedMarker.getElement();
+      styledElement.style.opacity = "1";
+      styledElement.style.height = "20px";
+      styledElement.style.width = "20px";
+    }
+  });
+}
+
+watch(
+  () => props.markers,
+  () => {
+    toggleMarkers();
+  },
+  { deep: true }
+);
+
+const emit = defineEmits(["selectedCompany"]);
+function loadMarkers() {
+  props.markers.forEach(function (marker) {
+    let loadedMarker = createMarker(marker, loadedMap);
+    loadedMarker.getElement().addEventListener("click", function () {
+      emit("selectedCompany", marker.id);
+    });
+    let id = marker.id;
+    loadedMarkers.push({ id, loadedMarker });
+  });
+}
+
+function onMapLoaded(createdMap) {
+  loadedMap = createdMap;
+  loadedMap.addControl(new mapboxgl.NavigationControl());
+  loadedMap.addControl(new mapboxgl.FullscreenControl());
+  loadedMap.dragRotate.disable();
+  loadedMap.touchZoomRotate.disableRotation();
+
+  loadedMap.on("idle", function () {
+    loadedMap.resize();
+  });
+
+  loadMarkers();
 }
 </script>

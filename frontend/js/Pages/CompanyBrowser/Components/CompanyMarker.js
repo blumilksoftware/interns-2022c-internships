@@ -14,14 +14,6 @@ export function createMarker(marker, map) {
   markerElement.style.height = "20px";
   markerElement.style.width = "20px";
 
-  markerElement.addEventListener("click", function () {
-    map.flyTo({
-      center: marker.location.coordinates,
-      zoom: 15,
-    });
-    console.log("Clicked marker with id: ", marker.id);
-  });
-
   let mapMarker = new mapboxgl.Marker(markerElement)
     .setLngLat(marker.location.coordinates)
     .setPopup(popup)
