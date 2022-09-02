@@ -100,4 +100,22 @@ class CompanyController extends Controller
             new CompanyResource(Company::query()->where("id", $id)->first()),
         );
     }
+    public function update(Company $id)
+    { 
+        dd($id);
+        Company::query()->where("id", $id)->first()->update(
+            Request::validate([
+                'status' => ['verified'],
+            ])
+        );
+
+        return redirect('company/manage')->with('success', 'companies updated.');
+    }
+
+    public function destroy($id)
+    {
+        Company::query()->where("id", $id)->first()->delete();
+
+        return redirect('company/manage')->with('success', 'company deleted.');
+    }
 }
