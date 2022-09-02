@@ -47,9 +47,9 @@ function goTo(markerId) {
 function toggleMarkers() {
   loadedMarkers.forEach(function (marker) {
     let htmlElement = marker.loadedMarker.getElement();
-    htmlElement.style.opacity = "0.3";
-    htmlElement.style.height = "12px";
-    htmlElement.style.width = "12px";
+    htmlElement.style.opacity = "0.4";
+    htmlElement.style.height = "14px";
+    htmlElement.style.width = "14px";
   });
 
   props.markers.forEach(function (marker) {

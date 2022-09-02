@@ -36,7 +36,7 @@ function onCompanySelect(value) {
 function onDetailClose() {
   showDetail.value = false;
   Inertia.get(
-      route(route().current()),
+      route("index"),
     {},
     {
       preserveState: true,
