@@ -6,12 +6,15 @@ namespace Internships\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Route;
 use Inertia\Response;
 use Internships\Enums\CompanyStatus;
+use Internships\Enums\Permission;
 use Internships\Http\Requests\CompanyRequest;
 use Internships\Http\Resources\CityResource;
 use Internships\Http\Resources\CompanyMarkerResource;
 use Internships\Http\Resources\CompanyResource;
+use Internships\Http\Resources\CompanySummaryResource;
 use Internships\Http\Resources\DepartmentResource;
 use Internships\Models\Company;
 use Internships\Models\Department;
@@ -23,10 +26,20 @@ class CompanyController extends Controller
 {
     public function index(): Response
     {
-        $companiesQuery = Company::where("user_id", auth()->user()->id);
+        if (Route::currentRouteName() === "company-index"):
+            $companiesQuery = Company::where("user_id", auth()->user()->id);
+        elseif (Route::currentRouteName() === "company-manage"):
+            $this->authorize(Permission::ManageCompanies->value);
+            $companiesQuery = Company::query()->orderBy("created_at", "desc")
+                ->whereNot("status", CompanyStatus::PendingEdited);
+        else:
+            $companiesQuery = Company::query()->orderBy("has_signed_papers", "desc")
+                ->where("status", CompanyStatus::Verified);
+        endif;
+
         $verifiedCompanies = $companiesQuery->get();
 
-        $companiesFiltered = $companiesQuery->when(\Illuminate\Support\Facades\Request::input("searchbox"), function ($query, $search): void {
+        $companiesFiltered = $companiesQuery->when(Request::input("searchbox"), function ($query, $search): void {
             $query->where("name", "like", "%" . $search . "%");
         })->when(Request::input("city"), function ($query, $citySelection): void {
             $query->whereJsonContains("address", ["city" => $citySelection]);
@@ -41,7 +54,7 @@ class CompanyController extends Controller
             [
                 "markers" => CompanyMarkerResource::collection($companiesFiltered->get()),
                 "cities" => CityResource::collection($verifiedCompanies),
-                "companies" => CompanyResource::collection($companiesFiltered->paginate(config("app.pagination", 15))
+                "companies" => CompanySummaryResource::collection($companiesFiltered->paginate(config("app.pagination", 15))
                     ->withQueryString(), ),
                 "departments" => DepartmentResource::collection(Department::all()),
                 "filters" => Request::all(["searchbox", "city", "specialization"]),
@@ -80,5 +93,13 @@ class CompanyController extends Controller
             ->with("success", __("Company :name request created", [
                 "name" => $company->name,
             ]));
+    }
+
+    public function show($id): Response
+    {
+        return $this->index()->with(
+            "selectedCompany",
+            new CompanyResource(Company::query()->where("id", $id)->first()),
+        );
     }
 }

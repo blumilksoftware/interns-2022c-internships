@@ -4,6 +4,7 @@
         "add_company": "Dodaj firmę",
         "sign_in": "Zaloguj",
         "logged_as": "Zalogowany jako",
+        "own_companies": "Własne firmy",
         "manage_companies": "Zarządzaj firmami"
     },
     "company_browser":{

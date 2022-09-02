@@ -3,6 +3,7 @@
         "map": "Map",
         "add_company": "Add company",
         "logged_as": "Logged as",
+        "own_companies": "Own companies",
         "manage_companies": "Manage companies"
     },
     "company_browser":{
