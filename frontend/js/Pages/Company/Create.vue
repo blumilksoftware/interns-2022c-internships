@@ -13,13 +13,13 @@ const form = useForm({
   description: null,
   address: {
     street: null,
-    postal_code: null,
     city: null,
     voivodeship: null,
     country: null,
+    postal_code: null,
     coordinates: {
-      latitude: "1",
-      longitude: "1",
+      latitude: "0",
+      longitude: "0",
     },
   },
   contact_details: {

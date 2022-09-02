@@ -48,7 +48,7 @@ function onClose() {
         class="pt-2 text-gray-600 text-xs lg:text-sm flex items-center justify-center lg:justify-start"
       >
         <img class="h-5 w-10" :src="LocationIcon" />{{
-          company.location.fullName
+          company.location.name
         }}
       </p>
       <blockquote class="border-l-4 border-blue-500 italic my-8 pl-8 md:pl-8">
