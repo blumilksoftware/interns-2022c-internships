@@ -35,6 +35,15 @@ function onCompanySelect(value) {
 
 function onDetailClose() {
   showDetail.value = false;
+  Inertia.get(
+      route(route().current()),
+    {},
+    {
+      preserveState: true,
+      replace: true,
+      only: ["selectedCompany"],
+    }
+  );
 }
 
 watch(
@@ -91,7 +100,6 @@ function onFiltersSelected(searchSelect, citySelect, specializationSelect) {
           :companies="companies"
           @selectedCompany="onCompanySelect"
         />
-
       </template>
       <template v-else>
         <CompanyInfoBox

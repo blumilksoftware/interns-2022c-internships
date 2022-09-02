@@ -1,4 +1,6 @@
 <script setup>
+import LocationIcon from "@/assets/icons/locationIcon.svg";
+
 defineProps({
   company: Object,
 });
@@ -10,49 +12,48 @@ function onClose() {
 </script>
 
 <template>
+  <div class="sticky h-0 right-10 w-full flex justify-end">
+    <button class="sticky right-0" @click="onClose">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="fill-current text-gray-700"
+        viewBox="0 0 16 16"
+        width="40"
+        height="40"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"
+        ></path>
+      </svg>
+    </button>
+  </div>
   <div
-    class="shadow ring-1 ring-black ring-opacity-5 md:rounded-lg overflow-x-hidden overflow-y-scroll"
+    class="shadow h-full ring-1 ring-black ring-opacity-5 md:rounded-lg overflow-x-hidden overflow-y-scroll"
   >
-    <div class="h-full rounded-lg bg-white shadow-lg p-2">
-      <div class="flex justify-end mt-8">
-        <button
-          @click="onClose"
-          class="py-2 px-4 bg-white border border-gray-200 text-gray-600 rounded hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50"
-        >
-          Close
-        </button>
+    <div class="flex justify-center mt-5 px-10">
+      <img
+        class="h-20 w-20 sm:h-40 sm:w-40 rounded-lg border-2"
+        :src="'/storage/images/' + company.logo"
+        alt=""
+      />
+    </div>
+
+    <div class="p-4 px-10 pt-1 md:p-12 text-left lg:text-left">
+      <div>
+        <h1 class="text-gray-900 pb-2 text-xl">{{ company.name }}</h1>
+        <hr class="border-b border-gray-400" />
       </div>
-
-      <div class="flex justify-center">
-        <img
-          class="h-20 w-auto sm:h-40 sm:w-40 rounded-lg border-2"
-          :src="'/storage/images/' + company.logo"
-          alt=""
-        />
-      </div>
-
-      <div class="text-center mt-2 px-10">
-        <h1 class="text-purple-900 font-bold text-2xl">{{ company.name }}</h1>
-        <p class="text-gray-500 mt-3">
-          {{ company.location.fullName }}
-        </p>
-
-        <div class="justify-content-between py-8 border-b border-indigo-50">
-          {{ company.description }}
-        </div>
-
-        <div class="mt-1">
-          <ul class="inline-grid justify-center mt-2">
-            <template v-for="specialization in company.specializations">
-              <span
-                class="bg-blue-100 text-blue-800 text-xs font-semibold mt-2 mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800"
-              >
-                {{ specialization.label }}
-              </span>
-            </template>
-          </ul>
-        </div>
-      </div>
+      <p
+        class="pt-2 text-gray-600 text-xs lg:text-sm flex items-center justify-center lg:justify-start"
+      >
+        <img class="h-5 w-10" :src="LocationIcon" />{{
+          company.location.fullName
+        }}
+      </p>
+      <blockquote class="border-l-4 border-blue-500 italic my-8 pl-8 md:pl-8">
+        {{ company.description }}
+      </blockquote>
     </div>
   </div>
 </template>

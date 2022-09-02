@@ -1,12 +1,12 @@
 import "./bootstrap";
-import { createApp, h, onMounted } from "vue";
+import "@/assets/tailwind.css";
+import { createApp, h } from "vue";
 import { createInertiaApp } from "@inertiajs/inertia-vue3";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import InertiaLink from "@/js/Shared/InertiaLink.js";
 import { InertiaProgress } from "@inertiajs/progress";
 import { createI18n } from "vue-i18n";
 import App from "@/js/Shared/Layout/App.vue";
-import "@/assets/tailwind.css";
 import messages from "@intlify/unplugin-vue-i18n/messages";
 import { ZiggyVue } from "ziggy-vue";
 import Toast from "vue-toastification";
