@@ -1,13 +1,21 @@
 <script setup>
-  import Treeselect from "vue3-treeselect";
-  import "vue3-treeselect/dist/vue3-treeselect.css";
+  import {ref} from 'vue'
+  import Treeselect from "@tkmam1x/vue3-treeselect";
+  import "@tkmam1x/vue3-treeselect/dist/vue3-treeselect.css";
   import StatusDisplay from "./StatusDisplay.vue"
   import BlueButton from "@/js/Shared/Components/BlueButton.vue";
-import RedButton from "@/js/Shared/Components/RedButton.vue";
+  import RedButton from "@/js/Shared/Components/RedButton.vue";
   const props= defineProps({
     companies: Object,
+    filter: Object,
 
   })
+  let statusSelect = ref(props.filter.statusSelect)
+
+  const emit = defineEmits (["selected"]);
+  watch([statusSelect], () => {
+    emit("selected", statusSelect);
+  });
   </script>
 
 <template>
@@ -24,7 +32,7 @@ import RedButton from "@/js/Shared/Components/RedButton.vue";
             :show-count="true"
             :disable-branch-nodes="true"
             placeholder="Choose company status"
-            v-model="StatusSelect"
+            v-model="statusSelect"
       />
     </div>
     <div class="mt-4 flex flex-col overflow-hidden overflow-scroll-y h-fit border-2 max-h-full">
