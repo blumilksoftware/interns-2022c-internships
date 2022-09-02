@@ -34,19 +34,21 @@ function onCompanySelect() {
                   <div class="text-gray-500">
                     {{ company.location.shortName }}
                   </div>
-                  <div class="mt-2" v-if="company.has_signed_papers">
-                    <span
-                      class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-800"
-                    >
-                      {{ $t("company_browser.has_signed_papers") }}
-                    </span>
-                  </div>
-                  <div class="mt-2" v-if="company.status === 'pending_new'">
-                    <span
-                      class="bg-yellow-100 text-yellow-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-200 dark:text-yellow-800"
-                    >
-                      {{ $t("company_browser.is_pending") }}
-                    </span>
+                  <div class="flex flex-inline">
+                    <div class="mt-2" v-if="company.status === 'pending_new'">
+                      <span
+                          class="bg-yellow-100 text-yellow-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-200 dark:text-yellow-800"
+                      >
+                        {{ $t("company_browser.is_pending") }}
+                      </span>
+                    </div>
+                    <div class="mt-2" v-if="company.has_signed_papers">
+                      <span
+                        class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-800"
+                      >
+                        {{ $t("company_browser.has_signed_papers") }}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -13,7 +13,7 @@
         "search": "Wyszukaj",
         "has_signed_papers": "Umowa z uczelnią",
         "no_companies_found": "Żadna firma nie pasuje do bieżącego wyszukiwania.",
-        "is_pending": "W oczekiwaniu"
+        "is_pending": "W oczekiwaniu na weryfikację"
     },
     "tree_selects":{
         "tree_select_city": "Wybierz miasto",

@@ -14,9 +14,9 @@ const form = useForm({
   address: {
     street: null,
     city: null,
+    postal_code: null,
     voivodeship: null,
     country: null,
-    postal_code: null,
     coordinates: {
       latitude: "0",
       longitude: "0",

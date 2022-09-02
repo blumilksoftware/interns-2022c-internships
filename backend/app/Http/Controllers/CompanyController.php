@@ -75,7 +75,7 @@ class CompanyController extends Controller
     public function store(CompanyRequest $request): RedirectResponse
     {
         $fetchedLocation = (new LocationFetcher())
-            ->query(collect($request->address)->except(["coordinates"])->implode(", "))
+            ->query(collect($request->address)->except(["coordinates"])->implode(" "))
             ->getLocations()
             ->first();
 
