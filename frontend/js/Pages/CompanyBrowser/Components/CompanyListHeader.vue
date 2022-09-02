@@ -1,6 +1,6 @@
 <script setup>
 defineProps({
-  companies: Object,
+  total: Number,
 });
 </script>
 
@@ -12,7 +12,7 @@ defineProps({
       {{ $t("company_browser.companies_list") }}
     </h3>
     <p class="mt-1 flex justify-center max-w-4xl text-sm text-gray-500">
-      {{ $t("company_browser.found_companies") }} : {{ companies.total }}
+      {{ $t("company_browser.found_companies") }} : {{ total }}
     </p>
   </div>
 </template>

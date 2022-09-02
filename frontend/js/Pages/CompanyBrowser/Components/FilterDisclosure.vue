@@ -1,12 +1,23 @@
 <script setup>
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
 import { ChevronDownIcon, SearchIcon } from "@heroicons/vue/solid";
-import Treeselect from "vue3-treeselect";
-import "vue3-treeselect/dist/vue3-treeselect.css";
+import { watch, ref } from "vue";
+import Treeselect from "@tkmam1x/vue3-treeselect";
+import "@tkmam1x/vue3-treeselect/dist/vue3-treeselect.css";
 
 const props = defineProps({
+  filters: Object,
   departments: Array,
   cities: Array,
+});
+
+let searchSelect = ref(props.filters.searchSelect);
+let citySelect = ref(props.filters.citySelect);
+let specializationSelect = ref(props.filters.specializationSelect);
+
+const emit = defineEmits(["selected"]);
+watch([searchSelect, citySelect, specializationSelect], () => {
+  emit("selected", searchSelect, citySelect, specializationSelect);
 });
 </script>
 
@@ -35,8 +46,8 @@ const props = defineProps({
                 <SearchIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
               </div>
               <input
-                id="search"
-                name="search"
+                name="searchbox"
+                v-model="searchSelect"
                 class="block w-full bg-white border border-gray-300 rounded-md py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:outline-none focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-slate-400 focus:border-slate-500 sm:text-sm"
                 :placeholder="$t('company_browser.search')"
                 type="search"

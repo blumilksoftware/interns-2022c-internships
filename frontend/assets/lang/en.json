@@ -1,12 +1,18 @@
 {
     "navigation_bar":{
         "map": "Map",
-        "add_company": "Add company"
+        "add_company": "Add company",
+        "logged_as": "Logged as",
+        "own_companies": "Own companies",
+        "manage_companies": "Manage companies"
     },
     "company_browser":{
         "companies_list": "Companies list",
         "found_companies": "Found companies",
-        "search": "Search"
+        "search": "Search",
+        "has_signed_papers": "College cooperation",
+        "no_companies_found": "No companies match current filters.",
+        "is_pending": "Pending"
     },
     "tree_selects":{
         "tree_select_city": "Choose city",

@@ -16,11 +16,13 @@
     "@heroicons/vue": "^1.0.6",
     "@inertiajs/inertia": "^0.11.0",
     "@inertiajs/inertia-vue3": "^0.6.0",
+    "@inertiajs/progress": "^0.2.7",
     "@intlify/unplugin-vue-i18n": "^0.5.0",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.5.2",
     "@tailwindcss/nesting": "^0.0.0-insiders.565cd3e",
     "@tailwindcss/typography": "^0.5.4",
+    "@tkmam1x/vue3-treeselect": "^0.1.15",
     "@vitejs/plugin-vue": "^3.0.1",
     "@vue-hero-icons/outline": "^1.7.2",
     "@vue/babel-preset-app": "^5.0.8",
@@ -38,7 +40,7 @@
     "vite": "^3.0.4",
     "vue": "^3.2.37",
     "vue-i18n": "^9.2.2",
-    "vue3-treeselect": "^0.1.10",
+    "vue-toastification": "^2.0.0-rc.5",
     "vuex": "^4.0.2"
   },
   "devDependencies": {

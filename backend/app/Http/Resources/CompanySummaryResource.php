@@ -8,7 +8,7 @@ use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Resources\Json\JsonResource;
 use JsonSerializable;
 
-class CompanyMarkerResource extends JsonResource
+class CompanySummaryResource extends JsonResource
 {
     /**
      * @param  \Illuminate\Http\Request  $request
@@ -17,8 +17,11 @@ class CompanyMarkerResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "label" => $this->name,
+            "name" => $this->name,
+            "logo" => $this->logo,
+            "status" => $this->status,
             "location" => new LocationResource($this->address),
+            "has_signed_papers" => $this->has_signed_papers,
         ];
     }
 }
