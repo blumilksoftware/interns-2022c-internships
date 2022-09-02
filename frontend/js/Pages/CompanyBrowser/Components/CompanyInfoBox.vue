@@ -5,10 +5,17 @@ defineProps({
   company: Object,
 });
 
-const emit = defineEmits(["close"]);
+const emit = defineEmits(["close", "destroy", "update"]);
 function onClose() {
   emit("close");
 }
+function onDestroy() {
+  emit("destroy")
+}
+function onUpdate() {
+  emit("update")
+}
+
 </script>
 
 <template>
@@ -38,7 +45,7 @@ function onClose() {
         alt=""
       />
     </div>
-
+    
     <div class="p-4 px-10 pt-1 md:p-12 text-left lg:text-left">
       <div>
         <h1 class="text-gray-900 pb-2 text-xl">{{ company.name }}</h1>
@@ -55,5 +62,9 @@ function onClose() {
         {{ company.description }}
       </blockquote>
     </div>
+    <div class="justify-center mx-auto gap-2 flex w-3/4"  v-if="$page.props.auth.can.manage_companies">
+    <div type="button" @click="onUpdate" v-if="company.status === 'pending_new'" class="w-1/2 flex justify-center p-0 bg-green-600 border rounded-3xl border-stone-900 text-white hover:bg-green-900">Approve</div>
+      <div type="button" @click="onDestroy(company.id)" class="justify-center flex w-1/2 p-0 bg-red-600 border rounded-3xl border-stone-900 text-white hover:bg-red-900">Delete</div>
+   </div>
   </div>
 </template>

@@ -13,3 +13,9 @@ Route::get("/company/own", [CompanyController::class, "index"])->middleware(["au
 Route::get("/company/create", [CompanyController::class, "create"])->middleware(["auth", "verified"])->name("company-create");
 Route::get("/company/manage", [CompanyController::class, "index"])->middleware(["auth"])->name("company-manage");
 Route::get("/company/view/{id}", [CompanyController::class, "show"])->name("index.show");
+Route::delete('/company/view/{id}', [CompanyController::class, 'destroy'])
+    ->name('index.destroy')
+    ->middleware('auth');
+Route::post('/company/view/{id}', [CompanyController::class, 'update'])
+    ->name('index.update')
+    ->middleware('auth');
