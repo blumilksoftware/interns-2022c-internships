@@ -6,13 +6,18 @@ namespace Internships\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Response;
+use Internships\Models\User;
 
 class AdminUsersController extends Controller
 {
     public function users(Request $request): Response
     {
+        $users = User::paginate(10);
         return inertia(
-            "AdminPanel/Users",
+            "AdminPanel/UsersList",
+            [
+                "users" => $users,
+            ],
         );
     }
 }
