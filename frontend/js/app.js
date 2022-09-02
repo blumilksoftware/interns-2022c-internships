@@ -14,8 +14,8 @@ import Toast from "vue-toastification";
 const i18n = createI18n({
   legacy: false,
   globalInjection: true,
-  locale: "en",
-  fallbackLocale: "en",
+  locale: "pl",
+  fallbackLocale: "pl",
   availableLocales: ["en", "pl"],
   messages: messages,
 });
