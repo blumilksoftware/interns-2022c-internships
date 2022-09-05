@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Internships\Http\Controllers;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
@@ -67,12 +68,17 @@ class CompanyController extends Controller
             ]));
     }
 
-    public function show(int $id, GetCompaniesRequest $request): Response
+    /**
+     * @throws AuthorizationException
+     */
+    public function show(Company $company, GetCompaniesRequest $request): Response
     {
+        $this->authorize("show", $company);
         session(['view-source' => url()->previous()]);
+
         return $this->list($request)->with(
             "selectedCompany",
-            new CompanyResource(Company::find($id)),
+            new CompanyResource($company),
         );
     }
 
@@ -88,23 +94,29 @@ class CompanyController extends Controller
         }
     }
 
-    public function update(Company $id)
+    /**
+     * @throws AuthorizationException
+     */
+    public function setStatus($id): RedirectResponse
     {
-        Company::query()->where("id", $id)->first()->update(
-            Request::validate([
-                'status' => ['verified'],
-            ])
-        );
+        $this->authorize(Permission::ManageCompanies);
+
+        Company::query()->where("id", $id)->update([
+                'status' => CompanyStatus::Verified,
+        ]);
 
         return redirect()->route("company-manage")
-            ->with('success', 'companies updated.');
+            ->with('success', 'status.company_status_set');
     }
 
-    public function destroy($id)
+    /**
+     * @throws AuthorizationException
+     */
+    public function destroy(Company $company): RedirectResponse
     {
-        Company::find($id)->delete();
+        $this->authorize("destroy", $company);
 
-        return redirect()->route("company-manage")
-            ->with('success', 'company deleted.');
+        $company->delete();
+        return redirect()->route("company-manage")->with('success', 'status.company_deleted');
     }
 }

@@ -36,13 +36,13 @@ function onCompanySelect(value) {
 function onDestroy() {
     if (confirm("Are you sure you want to Delete")) {
       showDetail.value = false;
-        Inertia.delete("/company/view/"+ props.selectedCompany.data.id);
+        Inertia.delete(route("index.destroy", props.selectedCompany.data.id));
     }
 }
 function onUpdate() {
-    if (confirm("Are you sure you want to Update")) {
+    if (confirm("Are you sure you want to verify company?")) {
       showDetail.value = false;
-        Inertia.replace("/company/view/"+ props.selectedCompany.data.id);
+      Inertia.post(route("index.setStatus", props.selectedCompany.data.id));
     }
 }
 

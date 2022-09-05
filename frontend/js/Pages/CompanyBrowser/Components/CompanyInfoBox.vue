@@ -62,7 +62,7 @@ function onUpdate() {
         {{ company.description }}
       </blockquote>
     </div>
-    <div class="justify-center mx-auto gap-2 flex w-3/4"  v-if="$page.props.auth.can.manage_companies">
+    <div class="justify-center mx-auto gap-2 flex w-3/4">
     <div type="button" @click="onUpdate" v-if="company.status === 'pending_new'" class="w-1/2 flex justify-center p-0 bg-green-600 border rounded-3xl border-stone-900 text-white hover:bg-green-900">Approve</div>
       <div type="button" @click="onDestroy(company.id)" class="justify-center flex w-1/2 p-0 bg-red-600 border rounded-3xl border-stone-900 text-white hover:bg-red-900">Delete</div>
    </div>
