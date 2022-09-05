@@ -10,7 +10,7 @@ return new class() extends Migration {
     public function up(): void
     {
         Schema::create("departments", function (Blueprint $table): void {
-            $table->id();
+            $table->id()->index();;
             $table->string("name");
             $table->timestamps();
         });

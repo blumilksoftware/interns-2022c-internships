@@ -4,7 +4,7 @@ import CompanyInfoBox from "./Components/CompanyInfoBox.vue";
 import CompanyList from "./Components/CompanyList.vue";
 import CompanyListHeader from "./Components/CompanyListHeader.vue";
 import Filter from "./Components/FilterDisclosure.vue";
-import { ref, watch } from "vue";
+import { ref, watch, onMounted } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 
 const props = defineProps({
@@ -21,8 +21,9 @@ const mapComponent = ref();
 
 function onCompanySelect(value) {
   Inertia.get(
-    "/company/view/" + value.toString(),
-    {},
+    route("company-show", value),
+    {
+    },
     {
       preserveState: true,
       replace: true,
@@ -48,7 +49,7 @@ function onUpdate() {
 function onDetailClose() {
   showDetail.value = false;
   Inertia.get(
-      route("index"),
+      route("company-close"),
     {},
     {
       preserveState: true,
@@ -83,6 +84,12 @@ function onFiltersSelected(searchSelect, citySelect, specializationSelect) {
     }
   );
 }
+
+onMounted(() => {
+  if (props.selectedCompany) {
+    showDetail.value = true;
+  }
+})
 </script>
 
 <template>

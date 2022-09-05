@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Internships\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Internships\Models\Company;
 use Internships\Models\Embeddable\Coordinates;
+use Internships\Services\LocationFetcher;
 use Smknstd\FakerPicsumImages\FakerPicsumImagesProvider;
 
 class CompanyRequest extends FormRequest
@@ -21,24 +23,28 @@ class CompanyRequest extends FormRequest
         ];
     }
 
-    public function data(Coordinates $coordinates): array
+    public function data(): Company
     {
         $address = $this->get("address");
-        $address["coordinates"] = $coordinates;
+        $fetchedLocation = (new LocationFetcher())
+            ->query(collect($address)
+                ->except(["coordinates"])
+                ->implode(" "))
+            ->getLocations()
+            ->first();
 
-        $logoName = null;
+        $address["coordinates"] = new Coordinates([
+            "latitude" => $fetchedLocation["coordinates"][1],
+            "longitude" => $fetchedLocation["coordinates"][0],
+        ]);
+
+        $this->merge(["address" => $address]);
+
         if(!$this->has("logo")) {
             fake()->addProvider(new FakerPicsumImagesProvider(fake()));
-            $logoName = fake()->image(storage_path("app/public/images"), 200, 200, false);
+            $this->merge(["logo" => fake()->image(storage_path("app/public/images"), 200, 200, false)]);
         }
 
-        return [
-            "name" => $this->get("name"),
-            "description" => $this->get("description"),
-            "user_id" => $this->get("user_id"),
-            "logo" => $logoName ?: $this->get("logo"),
-            "address" => $address,
-            "contact_details" => $this->get("contact_details"),
-        ];
+        return Company::query()->create($this->all());
     }
 }
