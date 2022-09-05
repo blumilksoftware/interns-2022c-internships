@@ -8,7 +8,10 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Str;
 use Inertia\Response;
+use Internships\Enums\CompanyStatus;
+use Internships\Enums\Permission;
 use Internships\Http\Requests\Api\FilterCompanies;
 use Internships\Http\Requests\Api\GetCompaniesRequest;
 use Internships\Http\Requests\Api\GetManagedCompaniesRequest;
@@ -24,7 +27,8 @@ use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 class CompanyController extends Controller
 {
     protected function list(GetCompaniesRequest|GetManagedCompaniesRequest $request,
-                            FilterCompanies $filter = new FilterCompanies()): Response|array{
+                            FilterCompanies $filter = new FilterCompanies()): Response|array
+    {
         $companies = $request->data();
 
         return inertia(
@@ -86,22 +90,24 @@ class CompanyController extends Controller
     {
         $source = session('view-source');
 
-        if($source === route("company-manage")){
-            return Redirect::to($source);
+        if(Str::is(route("company-manage") . "*", $source)
+        || Str::is(route("index") . "*", $source))
+        {
+            return Redirect::to($source)->withInput();
         }
         else {
-            return Redirect::to(route("index"));
+            return Redirect::to(route("index"))->withInput();
         }
     }
 
     /**
      * @throws AuthorizationException
      */
-    public function setStatus($id): RedirectResponse
+    public function verify(Company $company): RedirectResponse
     {
         $this->authorize(Permission::ManageCompanies);
 
-        Company::query()->where("id", $id)->update([
+        $company->update([
                 'status' => CompanyStatus::Verified,
         ]);
 
@@ -112,11 +118,11 @@ class CompanyController extends Controller
     /**
      * @throws AuthorizationException
      */
-    public function destroy(Company $company): RedirectResponse
+    public function delete(Company $company): RedirectResponse
     {
         $this->authorize("destroy", $company);
-
         $company->delete();
-        return redirect()->route("company-manage")->with('success', 'status.company_deleted');
+        return redirect()->route("company-manage")
+            ->with('success', 'status.company_deleted');
     }
 }

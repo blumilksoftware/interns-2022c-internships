@@ -3,7 +3,6 @@
 namespace Internships\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Auth;
 use Internships\Enums\CompanyStatus;
 use Internships\Enums\Role;
 use Internships\Models\Company;

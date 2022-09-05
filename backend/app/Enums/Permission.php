@@ -13,4 +13,5 @@ enum Permission: string
     {
         return __($this->value);
     }
+
 }

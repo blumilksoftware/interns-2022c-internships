@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Internships\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 use Internships\Models\Company;
 use Internships\Models\Embeddable\Coordinates;
 use Internships\Services\LocationFetcher;
@@ -12,12 +13,16 @@ use Smknstd\FakerPicsumImages\FakerPicsumImagesProvider;
 
 class CompanyRequest extends FormRequest
 {
+    public final function authorize(): bool
+    {
+        return Auth::check();
+    }
+
     public function rules(): array
     {
         return [
             "name" => "required|string|max:255",
             "description" => "required|string|max:255",
-            "user_id" => ["required", "exists:users,id"],
             "address" => ["required"],
             "contact_details" => ["required"],
         ];
@@ -25,6 +30,8 @@ class CompanyRequest extends FormRequest
 
     public function data(): Company
     {
+        $this->merge(["user_id" => auth()->id()]);
+
         $address = $this->get("address");
         $fetchedLocation = (new LocationFetcher())
             ->query(collect($address)

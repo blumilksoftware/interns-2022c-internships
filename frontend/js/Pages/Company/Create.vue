@@ -8,7 +8,6 @@ const props = defineProps({
 });
 
 const form = useForm({
-  user_id: props.auth.user.id,
   name: null,
   description: null,
   address: {

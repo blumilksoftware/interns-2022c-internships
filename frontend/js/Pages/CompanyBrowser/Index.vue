@@ -4,7 +4,7 @@ import CompanyInfoBox from "./Components/CompanyInfoBox.vue";
 import CompanyList from "./Components/CompanyList.vue";
 import CompanyListHeader from "./Components/CompanyListHeader.vue";
 import Filter from "./Components/FilterDisclosure.vue";
-import { ref, watch, onMounted } from "vue";
+import { ref, watch, onMounted, computed } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 
 const props = defineProps({
@@ -34,15 +34,16 @@ function onCompanySelect(value) {
   mapComponent.value.goTo(value);
 }
 function onDestroy() {
-    if (confirm("Are you sure you want to Delete")) {
+    if (confirm("Do you want to delete? (TRANSLATE THIS)")) {
       showDetail.value = false;
-        Inertia.delete(route("index.destroy", props.selectedCompany.data.id));
+      Inertia.delete(route("company-delete", props.selectedCompany.data.id));
     }
 }
+
 function onUpdate() {
-    if (confirm("Are you sure you want to verify company?")) {
+    if (confirm("Do you want to verify? (TRANSLATE THIS)")) {
       showDetail.value = false;
-      Inertia.post(route("index.setStatus", props.selectedCompany.data.id));
+      Inertia.post(route("company-verify", props.selectedCompany.data.id));
     }
 }
 
