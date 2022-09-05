@@ -22,7 +22,7 @@ class AdminUsersController extends Controller
         return inertia(
             "AdminPanel/UsersList",
             [
-                "users" => UserResource::collection($usersSearch->paginate(11)->withQueryString(),),
+                "users" => UserResource::collection($usersSearch->paginate(10)->withQueryString(),),
                 "filter" => Request::all("search"),
             ],
         );

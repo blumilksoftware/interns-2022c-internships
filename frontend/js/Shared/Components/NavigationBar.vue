@@ -193,12 +193,12 @@ import route from "ziggy";
             {{ $t("buttons.logout_button") }}</DisclosureButton
           >
           <DisclosureButton
-          as="a"
-          :href="route('admin')"
-          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-        >
-          Admin panel
-        </DisclosureButton>
+            as="a"
+            :href="route('admin')"
+            class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+          >
+            Admin panel
+          </DisclosureButton>
         </div>
       </div>
     </DisclosurePanel>
