@@ -21,7 +21,7 @@ const mapComponent = ref();
 
 function onCompanySelect(value) {
   Inertia.get(
-    "/company/view/" + value.toString(),
+      route("index.show", value),
     {},
     {
       preserveState: true,
@@ -30,18 +30,18 @@ function onCompanySelect(value) {
     }
   );
 
-  mapComponent.value.goTo(value);
+  //mapComponent.value.goTo(value);
 }
 function onDestroy() {
     if (confirm("Are you sure you want to Delete")) {
       showDetail.value = false;
-        Inertia.delete("/company/view/"+ props.selectedCompany.data.id);
+        Inertia.delete(route("index.destroy", props.selectedCompany.data.id));
     }
 }
 function onUpdate() {
     if (confirm("Are you sure you want to Update")) {
       showDetail.value = false;
-        Inertia.replace("/company/view/"+ props.selectedCompany.data.id);
+      Inertia.post(route("index.setStatus", props.selectedCompany.data.id));
     }
 }
 
@@ -90,11 +90,11 @@ function onFiltersSelected(searchSelect, citySelect, specializationSelect) {
     class="flex-col w-full mx-0 flex sm:flex-row-reverse h-full overflow-hidden"
   >
     <div class="flex bg-gray-200 w-full h-full max-h-full">
-      <!-- <MapDisplay
+      <MapDisplay
         :markers="markers.data"
         @selectedCompany="onCompanySelect"
         ref="mapComponent"
-      /> -->
+      />
     </div>
     <div
       class="flex flex-col bg-gray-50 w-full h-1/2 md:w-3/5 lg:w-3/5 xl:w-2/5 sm:h-full"

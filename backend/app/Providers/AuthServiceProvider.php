@@ -8,11 +8,14 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use Illuminate\Support\Facades\Gate;
 use Internships\Enums\Permission;
 use Internships\Enums\Role;
+use Internships\Models\Company;
 use Internships\Models\User;
+use Internships\Policies\CompanyPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
     protected $policies = [
+        Company::class => CompanyPolicy::class,
     ];
 
     public function boot(): void

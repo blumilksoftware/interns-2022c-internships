@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Internships\Http\Controllers;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +30,7 @@ class CompanyController extends Controller
         if (Route::currentRouteName() === "company-index"):
             $companiesQuery = Company::where("user_id", auth()->user()->id);
         elseif (Route::currentRouteName() === "company-manage"):
-            $this->authorize(Permission::ManageCompanies->value);
+            $this->authorize(Permission::ManageCompanies);
             $companiesQuery = Company::query()->orderBy("created_at", "desc")
                 ->whereNot("status", CompanyStatus::PendingEdited);
         else:
@@ -93,29 +94,41 @@ class CompanyController extends Controller
             ]));
     }
 
-    public function show($id): Response
+    /**
+     * @throws AuthorizationException
+     */
+    public function show(Company $company): Response
     {
+        $this->authorize("show", $company);
+
         return $this->index()->with(
-            "selectedCompany",
-            new CompanyResource(Company::query()->where("id", $id)->first()),
+            "selectedCompany", new CompanyResource($company),
         );
     }
-    public function update(Company $id)
-    { 
-        dd($id);
-        Company::query()->where("id", $id)->first()->update(
-            Request::validate([
-                'status' => ['verified'],
-            ])
-        );
 
-        return redirect('company/manage')->with('success', 'companies updated.');
-    }
-
-    public function destroy($id)
+    /**
+     * @throws AuthorizationException
+     */
+    public function setStatus($id): RedirectResponse
     {
-        Company::query()->where("id", $id)->first()->delete();
+        $this->authorize(Permission::ManageCompanies);
 
-        return redirect('company/manage')->with('success', 'company deleted.');
+        Company::query()->where("id", $id)->update([
+                'status' => CompanyStatus::Verified,
+        ]);
+
+        return redirect()->route("company-manage")->with('success', 'status.company_status_set');
+    }
+
+    /**
+     * @throws AuthorizationException
+     */
+    public function destroy(Company $company): RedirectResponse
+    {
+        $this->authorize("destroy", $company);
+
+        Company::query()->where("id", $company->id)->delete();
+
+        return redirect()->route("company-manage")->with('success', 'status.company_deleted');
     }
 }
