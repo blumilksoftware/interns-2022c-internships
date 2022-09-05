@@ -4,19 +4,25 @@ declare(strict_types=1);
 
 namespace Internships\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use Inertia\Response;
 use Internships\Models\Company;
+use Internships\Http\Resources\CompanyResource;
+use Internships\Enums\CompanyStatus;
 
 class AdminCompaniesController extends Controller
 {
-    public function companies(Request $request): Response
+    public function companies(): Response
     {
-        $companies = Company::paginate(10);
+        $companiesQuery = Company::query();
+        $companiesFiltered = $companiesQuery->when(Request::input("status"), function($query, $statusSelect): void{
+            $query->where("status", $statusSelect);
+        });
         return inertia(
             "AdminPanel/CompaniesList",
             [
-                "companies" => $companies,
+                "companies" => CompanyResource::collection($companiesFiltered->paginate(10)->withQueryString(),),
+                "filter" => Request::all("status"),
             ],
         );
     }

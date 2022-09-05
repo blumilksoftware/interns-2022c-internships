@@ -104,7 +104,7 @@ import route from "ziggy";
                   </MenuItem>
                   <MenuItem v-if="$page.props.auth.user" v-slot="{ active }">
                     <InertiaLink
-                      :href="route('admin')"
+                      :href="route('admin-index')"
                       :class="[
                         active ? 'bg-gray-100' : '',
                         'block px-4 py-2 text-sm text-gray-700',

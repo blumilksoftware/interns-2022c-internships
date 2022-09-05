@@ -11,12 +11,11 @@ import { ExclamationIcon } from "@heroicons/vue/solid"
     const PopAlert =ref(false)
 </script>
 <template>
-    <div
-                      @click="PopAlert = true"
-                      class="text-gray-900 hover:text-red-900 bg-red-500 border-stone-700 border-2 w-fit p-1 rounded-lg  cursor-pointer"
-                    >
-                    <slot> </slot>
-                    </div>
+ <button type="button" @click="PopAlert = true" class="inline-flex items-center rounded-md border border-transparent
+  bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2
+   focus:ring-red-500 focus:ring-offset-2">
+  <slot></slot>
+</button>
                     <TransitionRoot as="template" :show="PopAlert">
       <Dialog as="div" class="relative z-10" @close="PopAlert = false">
         <TransitionChild
@@ -82,7 +81,7 @@ import { ExclamationIcon } from "@heroicons/vue/solid"
                   </button>
                   <button
                     type="button"
-                    class="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                    class="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                     @click="PopAlert = false"
                     ref="cancelButtonRef"
                   >

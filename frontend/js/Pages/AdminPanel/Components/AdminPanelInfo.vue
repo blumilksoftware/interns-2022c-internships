@@ -6,11 +6,11 @@
         <div clas="flex justify center">
         <h1 class="text-center">Companies group by status</h1>
     <ul role="list" class="mt-3 flex flex-col">
-      <li v-for="company in companies" :key="company.name" class=" flex  rounded-md shadow-sm my-3 cursor-pointer">
+      <li v-for="company in companies" :key="company.name" class=" flex  rounded-md shadow-sm my-3">
         <div :class="[company.bgColor, 'flex-shrink-0 flex items-center  w-16 text-white text-sm  font-medium rounded-l-md']"></div>
         <div class="flex flex-1 items-center justify-between truncate rounded-r-md border-t border-r border-b border-gray-200 bg-white">
           <div class="flex-1 truncate px-4 py-2 text-md">
-            <a :href="company.href" class="font-medium text-gray-900 hover:text-gray-600">{{ company.name }}</a>
+            <InertiaLink :href="company.href" class="font-medium text-gray-900 hover:text-gray-600">{{ company.name }}</InertiaLink>
             <p class="text-gray-500">{{company.quantity}}</p>
           </div>
         </div>
@@ -32,12 +32,9 @@ const  props= defineProps({
     })
     
     const companies = [
-      { name: 'Actives ', href: '#', quantity: props.active, bgColor: 'bg-green-500' },
-      { name: 'Changed ', href: '#', quantity: props.edited, bgColor: 'bg-blue-500' },
-      { name: 'New', href: '#', quantity: props.created, bgColor: 'bg-yellow-500' },
+      { name: 'Actives ', href: '/admin/companies?status=verified', quantity: props.active, bgColor: 'bg-green-500' },
+      { name: 'Changed ', href: '/admin/companies?status=pending_edited', quantity: props.edited, bgColor: 'bg-blue-500' },
+      { name: 'New', href: '/admin/companies?status=pending_new', quantity: props.created, bgColor: 'bg-yellow-500' },
       { name: 'Outdated', href: '#', quantity: 1, bgColor: 'bg-slate-500' },
     ]
-    const users = [
-      { name: 'Users ', href: '#', quantity: 7, bgColor: 'bg-green-800' },
-  ]
     </script>

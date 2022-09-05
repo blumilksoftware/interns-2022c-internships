@@ -23,6 +23,7 @@ class CompanyResource extends JsonResource
             "logo" => $this->logo,
             "status" => $this->status,
             "description" => $this->description,
+            'address' => $this->address,
             "location" => new LocationResource($this->address),
             "contact_details" => $this->contact_details,
             "specializations" => SpecializationResource::collection($this->specializations),
