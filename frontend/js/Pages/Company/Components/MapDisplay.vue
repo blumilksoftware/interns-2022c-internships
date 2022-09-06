@@ -56,10 +56,12 @@ function resetPosition() {
     loadedMap.flyTo({
       center: coordinates[0],
       zoom: 15,
+      duration: 1500,
     });
   } else {
     loadedMap.fitBounds(bounds, {
       padding: 100,
+      duration: 1500,
     });
   }
 }
@@ -74,6 +76,7 @@ function goTo(markerId) {
   loadedMap.flyTo({
     center: marker.getLngLat(),
     zoom: 15,
+    duration: 1500,
   });
 }
 
