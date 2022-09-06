@@ -32,7 +32,7 @@ function onCompanySelect(id) {
 }
 
 function onDestroy() {
-  if (confirm("Do you want to delete?")) {
+  if (confirm("company_browser.confirm_delete")) {
     showDetail.value = false;
     Inertia.delete(route("company-delete", props.selectedCompany.data.id), {
       only: ["companies", "markers"],
@@ -44,7 +44,7 @@ function onDestroy() {
 }
 
 function onUpdate() {
-  if (confirm("Do you want to verify?")) {
+  if (confirm("company_browser.confirm_verify")) {
     showDetail.value = false;
     Inertia.post(route("company-verify", props.selectedCompany.data.id), {
       only: ["companies, markers"],
