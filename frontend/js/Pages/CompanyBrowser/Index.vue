@@ -33,6 +33,7 @@ function onCompanySelect(value) {
 
   mapComponent.value.goTo(value);
 }
+
 function onDestroy() {
     if (confirm("Do you want to delete? (TRANSLATE THIS)")) {
       showDetail.value = false;

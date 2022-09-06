@@ -14,7 +14,6 @@ let loadedMarkers = [];
 
 const state = reactive({
   map: {
-    container: "map",
     accessToken: import.meta.env.VITE_MAPBOX_TOKEN,
     style: "mapbox://styles/plencka/cl7hbllqc002d14nfp7pjt4pv?optimize=true",
     center: [16.1472681, 51.2048546],

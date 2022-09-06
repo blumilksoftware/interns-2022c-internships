@@ -16,9 +16,18 @@ let citySelect = ref(props.filters.citySelect);
 let specializationSelect = ref(props.filters.specializationSelect);
 
 const emit = defineEmits(["selected"]);
-watch([searchSelect, citySelect, specializationSelect], () => {
+function emitFilters(){
   emit("selected", searchSelect, citySelect, specializationSelect);
+}
+
+watch([citySelect, specializationSelect], () => {
+  emitFilters();
 });
+
+watch([searchSelect], _.debounce(() => {
+    emitFilters();
+  }, 500)
+);
 </script>
 
 <template>
