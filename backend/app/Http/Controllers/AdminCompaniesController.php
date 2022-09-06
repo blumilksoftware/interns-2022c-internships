@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Request;
 use Inertia\Response;
 use Internships\Models\Company;
 use Internships\Http\Resources\CompanyResource;
+use Internships\Http\Resources\UserResource;
 use Internships\Enums\CompanyStatus;
 
 class AdminCompaniesController extends Controller
@@ -25,5 +26,21 @@ class AdminCompaniesController extends Controller
                 "filter" => Request::all("status"),
             ],
         );
+    }
+    public function delete(Company $company)
+    {
+        $company->delete();
+        return redirect()->route('admin-companies')->with('message', 'Company delete successfully');
+
+    }
+    public function update(Company $company)
+    {
+        $company->update(["status"=>CompanyStatus::Verified]);
+    }
+    public function restore(Company $company)
+    {
+        $company->restore();
+        return redirect()->route('admin-trashed')->with('message', 'Company restored successfully');
+
     }
 }

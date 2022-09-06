@@ -30,16 +30,17 @@ function StatusSelected(statusSelect) {
 
 
 <template>
-  <div class="flex h-full w-full overflow-hidden">
+  <div class="flex flex-col h-full w-full overflow-hidden">
     <Companies
       :companies="companies.data"
       :filter="filter"
       class="h-full w-full"
       @selected="StatusSelected"
     />
-  </div>
-  <Pagination
+    <Pagination
     class="m-auto mb-0 flex max-w-sm sticky mx-auto border-slate-500"
     :links="companies.meta.links"
   />
+  </div>
+  
 </template>

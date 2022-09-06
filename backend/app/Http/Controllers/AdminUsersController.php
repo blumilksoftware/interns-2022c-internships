@@ -27,4 +27,16 @@ class AdminUsersController extends Controller
             ],
         );
     }
+    public function delete(user $user)
+    {
+        $user->delete();
+        return redirect()->route('admin-users')->with('message', 'User delete successfully');
+
+    }
+    public function restore(User $user)
+    {
+        $user->restore();
+        return redirect()->route('admin-trashed')->with('message', 'User restored successfully');
+
+    }
 }

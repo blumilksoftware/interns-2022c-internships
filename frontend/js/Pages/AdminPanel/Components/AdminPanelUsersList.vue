@@ -1,9 +1,10 @@
 <script setup>
-import BlueButton from "@/js/Shared/Components/BlueButton.vue";
-import RedButton from "@/js/Shared/Components/RedButton.vue";
+import Button from "@/js/Shared/Components/Button.vue";
 import RoleDisplay from "./RoleDisplay.vue";
 import { SearchIcon } from "@heroicons/vue/solid";
+import { TrashIcon } from "@heroicons/vue/outline";
 import { ref, watch } from "vue";
+import { useForm } from '@inertiajs/inertia-vue3';
 const props = defineProps({
   users: Object,
   filter: String,
@@ -13,6 +14,12 @@ const emit = defineEmits(["selected"]);
 watch([UsersSearch], () => {
   emit("selected", UsersSearch);
 });
+const form = useForm();
+function destroy(id) {
+    if (confirm("Are you sure you want to Delete")) {
+        form.delete(route('admin-users-delete', id));
+    }
+}
 </script>
 
 <template>
@@ -28,13 +35,13 @@ watch([UsersSearch], () => {
         </h1>
       </div>
     </div>
-    <div class="w-full">
+    <div class="w-full flex justify-center">
       <label for="search" class="sr-only"
         >{{ $t("company_browser.search") }}
       </label>
-      <div class="relative">
+      <div class="relative ">
         <div
-          class="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center"
+          class="pointer-events-none absolute  inset-y-0 left-0 pl-3 flex items-center"
         >
           <SearchIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
         </div>
@@ -45,7 +52,9 @@ watch([UsersSearch], () => {
           :placeholder="$t('company_browser.search')"
           type="search"
         />
+        
       </div>
+      <InertiaLink href="/admin/trashed"> <TrashIcon class="h-9 w-auto ml-5 text-gray-800" /></InertiaLink>
     </div>
     <div class="md:mt-2 w-fit flex item-center"></div>
     <div
@@ -129,12 +138,12 @@ watch([UsersSearch], () => {
                   <td
                     class="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6"
                   >
-                    <BlueButton>More</BlueButton>
+                  <Button class="hover:bg-blue-700 bg-blue-600 focus:ring-blue-500">More</Button>
                   </td>
                   <td
                     class="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6"
                   >
-                    <RedButton>Remove</RedButton>
+                  <Button @click="destroy(user.id)" class="hover:bg-red-700 bg-red-600 focus:ring-red-500">Remove</Button>
                   </td>
                 </tr>
               </tbody>

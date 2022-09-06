@@ -3,9 +3,11 @@ import { ref, watch } from "vue";
 import Treeselect from "@tkmam1x/vue3-treeselect";
 import "@tkmam1x/vue3-treeselect/dist/vue3-treeselect.css";
 import StatusDisplay from "./StatusDisplay.vue";
-import BlueButton from "@/js/Shared/Components/BlueButton.vue";
-import RedButton from "@/js/Shared/Components/RedButton.vue";
+import Button from "@/js/Shared/Components/Button.vue";
 import ApproveButton from "../../../Shared/Components/ApproveButton.vue";
+import { useForm } from '@inertiajs/inertia-vue3'
+import { TrashIcon } from "@heroicons/vue/outline";
+
 const props = defineProps({
   companies: Object,
   filter: String,
@@ -29,6 +31,18 @@ const emit = defineEmits(["selected"]);
 watch([statusSelect], () => {
   emit("selected", statusSelect);
 });
+const form = useForm();
+function destroy(id) {
+    if (confirm("Are you sure you want to Delete")) {
+        form.delete(route('admin-companies-delete', id));
+    }
+    
+}
+function approve(id) {
+    if (confirm("Are you sure you want to Approve")) {
+        form.put(route('admin-companies-update', id));
+    }
+  }
 </script>
 
 <template>
@@ -53,7 +67,10 @@ watch([statusSelect], () => {
         placeholder="Choose company status"
         v-model="statusSelect"
       />
+      <InertiaLink href="/admin/trashed"> <TrashIcon class="h-9 w-auto ml-5 text-gray-800" /></InertiaLink>
+    
     </div>
+    
     <div
       class="mt-4 flex flex-col overflow-hidden overflow-scroll-x h-fit border-2 max-h-full"
     >
@@ -109,7 +126,7 @@ watch([statusSelect], () => {
                     scope="col"
                     class="relative py-3.5 pl-3 pr-4 sm:pr-6 w-1/6"
                   >
-                    <span class="sr-only">Edit</span>
+                    <span class="sr-only">Approve</span>
                   </th>
                 </tr>
               </thead>
@@ -154,17 +171,17 @@ watch([statusSelect], () => {
                   <td
                     class="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6"
                   >
-                    <BlueButton>Edit</BlueButton>
+                    <Button class="hover:bg-blue-700 bg-blue-600 focus:ring-blue-500">Edit</Button>
                   </td>
                   <td
                     class="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6"
                   >
-                    <RedButton>Remove</RedButton>
+                  <Button @click="destroy(company.id)" class="hover:bg-red-700 bg-red-600 focus:ring-red-500">Remove</Button>
                   </td>
                   <td
                     class="relative whitespace-nowrap py-1 pl-3 pr-1 text-center text-sm font-medium sm:pr-3"
                   >
-                    <ApproveButton :status="company.status" />
+                    <ApproveButton @click="approve(company.id)" :status="company.status" />
                   </td>
                 </tr>
               </tbody>

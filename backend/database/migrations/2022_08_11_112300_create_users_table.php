@@ -20,6 +20,7 @@ return new class() extends Migration {
             $table->string("role")->default(Role::Company->value);
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

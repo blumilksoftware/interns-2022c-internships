@@ -14,7 +14,7 @@ import route from "ziggy";
 </script>
 
 <template>
-  <Disclosure as="nav" class="bg-primary z-50" v-slot="{ open }">
+  <Disclosure as="nav" class="bg-primary z-50 sticky" v-slot="{ open }">
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <div class="flex items-center">

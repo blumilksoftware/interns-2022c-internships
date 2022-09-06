@@ -22,6 +22,7 @@ return new class() extends Migration {
             $table->string("status")->default(CompanyStatus::PendingNew->value);
             $table->boolean("has_signed_papers")->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
