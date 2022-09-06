@@ -149,6 +149,7 @@ import {
   UsersIcon,
   OfficeBuildingIcon,
   ViewListIcon,
+  TrashIcon
 } from "@heroicons/vue/outline";
 const navigation = [
   {
@@ -167,6 +168,12 @@ const navigation = [
     name: "Users",
     href: "/admin/users",
     icon: UsersIcon,
+    current: false,
+  },
+  {
+    name: "Deleted",
+    href: "/admin/deleted",
+    icon: TrashIcon,
     current: false,
   },
 ];

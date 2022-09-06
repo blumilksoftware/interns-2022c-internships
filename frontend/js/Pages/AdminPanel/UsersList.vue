@@ -1,5 +1,4 @@
 <script setup>
-import SideBar from "./Components/AdminPanelLayout.vue";
 import Users from "./Components/AdminPanelUsersList.vue";
 import Pagination from "@/js/Shared/Components/PaginationList.vue";
 import { Inertia } from "@inertiajs/inertia";
@@ -21,10 +20,16 @@ function UsersSearch(UsersSearch) {
   );
 }
 </script>
+<script>
+  import SideBar from "@/js/Shared/Layout/Admin.vue"
+  import AppLayout from "@/js/Shared/Layout/App.vue"
+  export default {
+  layout: [AppLayout, SideBar],
+  }
+</script>
 
 <template>
-  <div class="flex max-h-full h-fit overflow-hidden">
-    <SideBar />
+  <div class="flex h-full w-full overflow-hidden">
     <Users :filter="filter" @selected="UsersSearch" :users="users.data" />
   </div>
   <Pagination
