@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Internships\Http\Requests\Api;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Request;
 
 class FilterCompanies extends ApiRequest
 {
-    public function data($companiesQuery)
+    public function data($companiesQuery): Builder
     {
         return $companiesQuery->when(Request::input("searchbox"), function ($query, $search): void {
             $query->where("name", "like", "%" . $search . "%");

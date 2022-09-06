@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Internships\Http\Requests\Api;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Internships\Enums\CompanyStatus;
@@ -17,13 +18,13 @@ class GetManagedCompaniesRequest extends ApiRequest
         return Auth::check();
     }
 
-    public function data()
+    public function data(): Builder
     {
         if (Gate::forUser(auth()->user())->allows(Permission::ManageCompanies->value)) {
-            return Company::query()->orderBy("created_at", "desc")
+            return Company::query()->orderBy("status", "asc")
                 ->whereNot("status", CompanyStatus::PendingEdited);
         }
 
-        return Company::where("user_id", auth()->user()->id);
+        return Company::where("user_id", auth()->user()->id)->orderBy("created_at", "desc");
     }
 }

@@ -72,12 +72,14 @@ class CompanyController extends Controller
     {
         $source = session("view-source");
 
-        if (Str::is(route("company-manage") . "*", $source)
-        || Str::is(route("index") . "*", $source)) {
+        if (Str::is(route("index"), $source)
+            || Str::is(route("company-manage"), $source)
+            || Str::is(route("index") . "/?*", $source)
+            || Str::is(route("company-manage") . "/?*", $source)) {
             return Redirect::to($source)->withInput();
         }
 
-        return Redirect::to(route("index"))->withInput();
+        return Redirect::to(route("index"));
     }
 
     /**
@@ -102,6 +104,7 @@ class CompanyController extends Controller
     {
         $this->authorize("destroy", $company);
         $company->delete();
+
         return redirect()->route("company-manage")
             ->with("success", "status.company_deleted");
     }
@@ -109,8 +112,7 @@ class CompanyController extends Controller
     protected function list(
         GetCompaniesRequest|GetManagedCompaniesRequest $request,
         FilterCompanies $filter = new FilterCompanies(),
-    ): Response|array
-    {
+    ): Response|array {
         $companies = $request->data();
 
         return inertia(

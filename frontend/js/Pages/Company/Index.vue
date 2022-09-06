@@ -34,14 +34,24 @@ function onCompanySelect(id) {
 function onDestroy() {
   if (confirm("Do you want to delete?")) {
     showDetail.value = false;
-    Inertia.delete(route("company-delete", props.selectedCompany.data.id));
+    Inertia.delete(route("company-delete", props.selectedCompany.data.id), {
+      only: ["companies", "markers"],
+      onSuccess: () => {
+        map.value.resetMarkers();
+      },
+    });
   }
 }
 
 function onUpdate() {
   if (confirm("Do you want to verify?")) {
     showDetail.value = false;
-    Inertia.post(route("company-verify", props.selectedCompany.data.id));
+    Inertia.post(route("company-verify", props.selectedCompany.data.id), {
+      only: ["companies, markers"],
+      onSuccess: () => {
+        map.value.resetMarkers();
+      },
+    });
   }
 }
 

@@ -79,13 +79,21 @@ onMounted(() => {
         <div
           type="button"
           @click="onUpdate"
-          v-if="company.status === 'pending_new'"
+          v-if="
+            company.status === 'pending_new' &&
+            $page.props.auth.can.manage_companies
+          "
           class="w-1/2 flex justify-center p-0 bg-green-600 border rounded-3xl border-stone-900 text-white hover:bg-green-900"
         >
           Approve
         </div>
         <div
           type="button"
+          v-if="
+            $page.props.auth.user &&
+            (company.owner_id === $page.props.auth.user.id ||
+              $page.props.auth.can.manage_companies)
+          "
           @click="onDestroy(company.id)"
           class="justify-center flex w-1/2 p-0 bg-red-600 border rounded-3xl border-stone-900 text-white hover:bg-red-900"
         >
