@@ -8,7 +8,7 @@ import { reactive, watch } from "vue";
 
 const props = defineProps({
   markers: Array,
-  flyTime: {Number, default: 1500}
+  flyTime: { Number, default: 2000 },
 });
 
 let loadedMarkers = [];
@@ -57,12 +57,12 @@ function resetPosition() {
     loadedMap.flyTo({
       center: coordinates[0],
       zoom: 15,
-      duration: navigator.userAgentData.mobile ? 0 : props.flyTime,
+      duration: props.flyTime,
     });
   } else {
     loadedMap.fitBounds(bounds, {
       padding: 100,
-      duration: navigator.userAgentData.mobile ? 0 : props.flyTime,
+      duration: props.flyTime,
     });
   }
 }
@@ -77,7 +77,7 @@ function goTo(markerId) {
   loadedMap.flyTo({
     center: marker.getLngLat(),
     zoom: 15,
-    duration: navigator.userAgentData.mobile ? 0 : props.flyTime,
+    duration: props.flyTime,
   });
 }
 
