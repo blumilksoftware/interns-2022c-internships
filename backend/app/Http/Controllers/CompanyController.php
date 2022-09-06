@@ -26,24 +26,6 @@ use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 class CompanyController extends Controller
 {
-    protected function list(GetCompaniesRequest|GetManagedCompaniesRequest $request,
-                            FilterCompanies $filter = new FilterCompanies()): Response|array
-    {
-        $companies = $request->data();
-
-        return inertia(
-            "CompanyBrowser/Index",
-            [
-                "cities" => fn () => CityResource::collection($companies->pluck("address")),
-                "departments" => fn () => DepartmentResource::collection(Department::with("studyFields.specializations")->get()),
-                "filters" => fn () => Request::only(["searchbox", "city", "specialization"]),
-                "markers" => fn () => CompanySummaryResource::collection($filter->data($companies)->get()),
-                "companies" => fn () => CompanySummaryResource::collection($filter->data($companies)->paginate(config("app.pagination", 15))
-                    ->withQueryString(), ),
-            ],
-        );
-    }
-
     public function index(GetCompaniesRequest $request): Response|array
     {
         return $this->list($request);
@@ -78,7 +60,7 @@ class CompanyController extends Controller
     public function show(Company $company, GetCompaniesRequest $request): Response
     {
         $this->authorize("show", $company);
-        session(['view-source' => url()->previous()]);
+        session(["view-source" => url()->previous()]);
 
         return $this->list($request)->with(
             "selectedCompany",
@@ -88,16 +70,14 @@ class CompanyController extends Controller
 
     public function close(): RedirectResponse
     {
-        $source = session('view-source');
+        $source = session("view-source");
 
-        if(Str::is(route("company-manage") . "*", $source)
-        || Str::is(route("index") . "*", $source))
-        {
+        if (Str::is(route("company-manage") . "*", $source)
+        || Str::is(route("index") . "*", $source)) {
             return Redirect::to($source)->withInput();
         }
-        else {
-            return Redirect::to(route("index"))->withInput();
-        }
+
+        return Redirect::to(route("index"))->withInput();
     }
 
     /**
@@ -108,11 +88,11 @@ class CompanyController extends Controller
         $this->authorize(Permission::ManageCompanies);
 
         $company->update([
-                'status' => CompanyStatus::Verified,
+            "status" => CompanyStatus::Verified,
         ]);
 
         return redirect()->route("company-manage")
-            ->with('success', 'status.company_status_set');
+            ->with("success", "status.company_status_set");
     }
 
     /**
@@ -123,6 +103,26 @@ class CompanyController extends Controller
         $this->authorize("destroy", $company);
         $company->delete();
         return redirect()->route("company-manage")
-            ->with('success', 'status.company_deleted');
+            ->with("success", "status.company_deleted");
+    }
+
+    protected function list(
+        GetCompaniesRequest|GetManagedCompaniesRequest $request,
+        FilterCompanies $filter = new FilterCompanies(),
+    ): Response|array
+    {
+        $companies = $request->data();
+
+        return inertia(
+            "Company/Index",
+            [
+                "cities" => fn() => CityResource::collection($companies->pluck("address")),
+                "departments" => fn() => DepartmentResource::collection(Department::with("studyFields.specializations")->get()),
+                "filters" => fn() => Request::only(["searchbox", "city", "specialization"]),
+                "markers" => fn() => CompanySummaryResource::collection($filter->data($companies)->get()),
+                "companies" => fn() => CompanySummaryResource::collection($filter->data($companies)->paginate(config("app.pagination", 15))
+                    ->withQueryString(), ),
+            ],
+        );
     }
 }

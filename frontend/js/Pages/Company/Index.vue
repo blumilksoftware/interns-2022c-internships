@@ -17,41 +17,11 @@ const props = defineProps({
 });
 
 const showDetail = ref(false);
-const mapComponent = ref();
+let map = ref();
 
-function onCompanySelect(value) {
+function onCompanySelect(id) {
   Inertia.get(
-    route("company-show", value),
-    {
-    },
-    {
-      preserveState: true,
-      replace: true,
-      only: ["selectedCompany"],
-    }
-  );
-
-  mapComponent.value.goTo(value);
-}
-
-function onDestroy() {
-    if (confirm("Do you want to delete? (TRANSLATE THIS)")) {
-      showDetail.value = false;
-      Inertia.delete(route("company-delete", props.selectedCompany.data.id));
-    }
-}
-
-function onUpdate() {
-    if (confirm("Do you want to verify? (TRANSLATE THIS)")) {
-      showDetail.value = false;
-      Inertia.post(route("company-verify", props.selectedCompany.data.id));
-    }
-}
-
-function onDetailClose() {
-  showDetail.value = false;
-  Inertia.get(
-      route("company-close"),
+    route("company-show", id),
     {},
     {
       preserveState: true,
@@ -59,6 +29,39 @@ function onDetailClose() {
       only: ["selectedCompany"],
     }
   );
+}
+
+function onDestroy() {
+  if (confirm("Do you want to delete?")) {
+    showDetail.value = false;
+    Inertia.delete(route("company-delete", props.selectedCompany.data.id));
+  }
+}
+
+function onUpdate() {
+  if (confirm("Do you want to verify?")) {
+    showDetail.value = false;
+    Inertia.post(route("company-verify", props.selectedCompany.data.id));
+  }
+}
+
+function onDetailClose() {
+  showDetail.value = false;
+  map.value.resetPosition();
+
+  Inertia.get(
+    route("company-close"),
+    {},
+    {
+      preserveState: true,
+      replace: true,
+      only: ["selectedCompany"],
+    }
+  );
+}
+
+function onDetailZoom(id) {
+  map.value.goTo(id);
 }
 
 watch(
@@ -87,11 +90,17 @@ function onFiltersSelected(searchSelect, citySelect, specializationSelect) {
   );
 }
 
+function onMapLoad() {
+  if (props.selectedCompany) {
+    map.value.goTo(props.selectedCompany.data.id);
+  }
+}
+
 onMounted(() => {
   if (props.selectedCompany) {
     showDetail.value = true;
   }
-})
+});
 </script>
 
 <template>
@@ -102,35 +111,37 @@ onMounted(() => {
       <MapDisplay
         :markers="markers.data"
         @selectedCompany="onCompanySelect"
-        ref="mapComponent"
+        @loaded="onMapLoad"
+        ref="map"
       />
     </div>
     <div
       class="flex flex-col shadow-lg bg-gray-50 w-full h-1/2 md:w-3/5 lg:w-3/5 xl:w-2/5 sm:h-full"
     >
-        <template v-if="!showDetail">
-            <CompanyListHeader :total="companies.meta.total" />
-            <Filter
-              :departments="departments.data"
-              :cities="cities.data"
-              :filters="filters"
-              @selected="onFiltersSelected"
-            />
-            <CompanyList
-              class="h-full"
-              :companies="companies"
-              @selectedCompany="onCompanySelect"
-            />
-        </template>
-        <template v-else>
-          <CompanyInfoBox
-            @destroy="onDestroy"
-            @update="onUpdate"
-            @close="onDetailClose"
-            :company="selectedCompany.data"
-            class="h-full"
-          />
-        </template>
+      <template v-if="!showDetail">
+        <CompanyListHeader :total="companies.meta.total" />
+        <Filter
+          :departments="departments.data"
+          :cities="cities.data"
+          :filters="filters"
+          @selected="onFiltersSelected"
+        />
+        <CompanyList
+          class="h-full"
+          :companies="companies"
+          @selectedCompany="onCompanySelect"
+        />
+      </template>
+      <template v-else>
+        <CompanyInfoBox
+          @destroy="onDestroy"
+          @update="onUpdate"
+          @close="onDetailClose"
+          @zoom="onDetailZoom"
+          :company="selectedCompany.data"
+          class="h-full"
+        />
+      </template>
     </div>
   </div>
 </template>

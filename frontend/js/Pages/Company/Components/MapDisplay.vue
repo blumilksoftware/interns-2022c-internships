@@ -10,15 +10,15 @@ const props = defineProps({
   markers: Array,
 });
 
-let loadedMap;
 let loadedMarkers = [];
+let loadedMap;
 
 const state = reactive({
   map: {
     accessToken: import.meta.env.VITE_MAPBOX_TOKEN,
     style: "mapbox://styles/plencka/cl7hbllqc002d14nfp7pjt4pv?optimize=true",
     center: [16.1472681, 51.2048546],
-    zoom: 5,
+    zoom: 15,
     maxZoom: 20,
     crossSourceCollisions: false,
     failIfMajorPerformanceCaveat: false,
@@ -33,9 +33,30 @@ const state = reactive({
 defineExpose({
   goTo,
   toggleMarkers,
+  resetPosition,
 });
 
+function resetPosition() {
+  const coordinates = loadedMarkers.map((marker) =>
+    marker.loadedMarker.getLngLat()
+  );
+
+  const bounds = new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]);
+
+  for (const coord of coordinates) {
+    bounds.extend(coord);
+  }
+
+  loadedMap.fitBounds(bounds, {
+    padding: 100,
+  });
+}
+
 function goTo(markerId) {
+  if (loadedMarkers.length === 0) {
+    return;
+  }
+
   let marker = loadedMarkers.find((item) => item.id === markerId).loadedMarker;
 
   loadedMap.flyTo({
@@ -72,7 +93,8 @@ watch(
   { deep: true }
 );
 
-const emit = defineEmits(["selectedCompany"]);
+const emit = defineEmits(["selectedCompany", "loaded"]);
+
 function loadMarkers() {
   props.markers.forEach(function (marker) {
     let loadedMarker = createMarker(marker, loadedMap);
@@ -88,6 +110,7 @@ function onMapLoaded(createdMap) {
   loadedMap = createdMap;
   loadedMap.addControl(new mapboxgl.NavigationControl());
   loadedMap.addControl(new mapboxgl.FullscreenControl());
+
   loadedMap.dragRotate.disable();
   loadedMap.touchZoomRotate.disableRotation();
 
@@ -96,6 +119,8 @@ function onMapLoaded(createdMap) {
   });
 
   loadMarkers();
+  resetPosition();
+  emit("loaded");
 }
 </script>
 

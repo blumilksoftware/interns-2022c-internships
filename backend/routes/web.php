@@ -21,12 +21,12 @@ Route::get("/company/manage", [CompanyController::class, "manage"])
 
 Route::get("/company/view/{company}", [CompanyController::class, "show"])
     ->name("company-show");
-Route::delete('/company/view/{company}', [CompanyController::class, 'delete'])
-    ->name('company-delete')
-    ->middleware('auth');
-Route::post('/company/view/{company}', [CompanyController::class, 'verify'])
-    ->name('company-verify')
-    ->middleware('auth');
+Route::delete("/company/view/{company}", [CompanyController::class, "delete"])
+    ->name("company-delete")
+    ->middleware("auth");
+Route::post("/company/view/{company}", [CompanyController::class, "verify"])
+    ->name("company-verify")
+    ->middleware("auth");
 
 Route::get("/company/close", [CompanyController::class, "close"])
     ->name("company-close");

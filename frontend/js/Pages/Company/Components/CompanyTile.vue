@@ -37,7 +37,7 @@ function onCompanySelect() {
                   <div class="flex flex-inline">
                     <div class="mt-2" v-if="company.status === 'pending_new'">
                       <span
-                          class="bg-yellow-100 text-yellow-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-200 dark:text-yellow-800"
+                        class="bg-yellow-100 text-yellow-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-200 dark:text-yellow-800"
                       >
                         {{ $t("company_browser.is_pending") }}
                       </span>

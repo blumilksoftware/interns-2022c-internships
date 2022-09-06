@@ -13,7 +13,7 @@ use Smknstd\FakerPicsumImages\FakerPicsumImagesProvider;
 
 class CompanyRequest extends FormRequest
 {
-    public final function authorize(): bool
+    final public function authorize(): bool
     {
         return Auth::check();
     }
@@ -36,7 +36,7 @@ class CompanyRequest extends FormRequest
         $fetchedLocation = (new LocationFetcher())
             ->query(collect($address)
                 ->except(["coordinates"])
-                ->implode(" "))
+                ->implode(" "), )
             ->getLocations()
             ->first();
 
@@ -47,7 +47,7 @@ class CompanyRequest extends FormRequest
 
         $this->merge(["address" => $address]);
 
-        if(!$this->has("logo")) {
+        if (!$this->has("logo")) {
             fake()->addProvider(new FakerPicsumImagesProvider(fake()));
             $this->merge(["logo" => fake()->image(storage_path("app/public/images"), 200, 200, false)]);
         }

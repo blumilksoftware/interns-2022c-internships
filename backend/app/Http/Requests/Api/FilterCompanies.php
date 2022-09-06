@@ -1,12 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Internships\Http\Requests\Api;
 
 use Illuminate\Support\Facades\Request;
 
 class FilterCompanies extends ApiRequest
 {
-    public function data($companiesQuery){
+    public function data($companiesQuery)
+    {
         return $companiesQuery->when(Request::input("searchbox"), function ($query, $search): void {
             $query->where("name", "like", "%" . $search . "%");
         })->when(Request::input("city"), function ($query, $citySelection): void {

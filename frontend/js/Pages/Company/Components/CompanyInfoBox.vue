@@ -1,21 +1,31 @@
 <script setup>
 import LocationIcon from "@/assets/icons/locationIcon.svg";
+import { onMounted } from "vue";
 
-defineProps({
+const props = defineProps({
   company: Object,
 });
 
-const emit = defineEmits(["close", "destroy", "update"]);
+const emit = defineEmits(["close", "destroy", "update", "zoom"]);
 function onClose() {
   emit("close");
 }
+
 function onDestroy() {
-  emit("destroy")
-}
-function onUpdate() {
-  emit("update")
+  emit("destroy");
 }
 
+function onUpdate() {
+  emit("update");
+}
+
+function onZoom() {
+  emit("zoom", props.company.id);
+}
+
+onMounted(() => {
+  emit("zoom", props.company.id);
+});
 </script>
 
 <template>
@@ -55,18 +65,33 @@ function onUpdate() {
         <p
           class="pt-2 text-gray-600 text-xs lg:text-sm flex items-center justify-center lg:justify-start"
         >
-          <img class="h-5 w-10" :src="LocationIcon" />{{
-            company.location.name
-          }}
+          <img
+            class="h-5 w-10 hover:h-6 hover:w-11"
+            :src="LocationIcon"
+            @click="onZoom"
+          />{{ company.location.name }}
         </p>
         <blockquote class="border-l-4 border-blue-500 italic my-8 pl-8 md:pl-8">
           {{ company.description }}
         </blockquote>
       </div>
       <div class="justify-center mx-auto gap-2 flex w-3/4">
-      <div type="button" @click="onUpdate" v-if="company.status === 'pending_new'" class="w-1/2 flex justify-center p-0 bg-green-600 border rounded-3xl border-stone-900 text-white hover:bg-green-900">Approve</div>
-        <div type="button" @click="onDestroy(company.id)" class="justify-center flex w-1/2 p-0 bg-red-600 border rounded-3xl border-stone-900 text-white hover:bg-red-900">Delete</div>
-     </div>
+        <div
+          type="button"
+          @click="onUpdate"
+          v-if="company.status === 'pending_new'"
+          class="w-1/2 flex justify-center p-0 bg-green-600 border rounded-3xl border-stone-900 text-white hover:bg-green-900"
+        >
+          Approve
+        </div>
+        <div
+          type="button"
+          @click="onDestroy(company.id)"
+          class="justify-center flex w-1/2 p-0 bg-red-600 border rounded-3xl border-stone-900 text-white hover:bg-red-900"
+        >
+          Delete
+        </div>
+      </div>
     </div>
   </div>
 </template>
