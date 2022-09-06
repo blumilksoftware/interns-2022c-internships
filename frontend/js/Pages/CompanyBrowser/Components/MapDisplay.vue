@@ -9,6 +9,7 @@ import { reactive, watch } from "vue";
 const props = defineProps({
   markers: Array,
 });
+
 let loadedMap;
 let loadedMarkers = [];
 

@@ -4,7 +4,7 @@ import CompanyInfoBox from "./Components/CompanyInfoBox.vue";
 import CompanyList from "./Components/CompanyList.vue";
 import CompanyListHeader from "./Components/CompanyListHeader.vue";
 import Filter from "./Components/FilterDisclosure.vue";
-import { ref, watch, onMounted, computed } from "vue";
+import { ref, watch, onMounted } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 
 const props = defineProps({
@@ -106,31 +106,31 @@ onMounted(() => {
       />
     </div>
     <div
-      class="flex flex-col bg-gray-50 w-full h-1/2 md:w-3/5 lg:w-3/5 xl:w-2/5 sm:h-full"
+      class="flex flex-col shadow-lg bg-gray-50 w-full h-1/2 md:w-3/5 lg:w-3/5 xl:w-2/5 sm:h-full"
     >
-      <template v-if="!showDetail">
-        <CompanyListHeader :total="companies.meta.total" />
-        <Filter
-          :departments="departments.data"
-          :cities="cities.data"
-          :filters="filters"
-          @selected="onFiltersSelected"
-        />
-        <CompanyList
-          class="h-full"
-          :companies="companies"
-          @selectedCompany="onCompanySelect"
-        />
-      </template>
-      <template v-else>
-        <CompanyInfoBox
-          @destroy="onDestroy"
-          @update="onUpdate"
-          @close="onDetailClose"
-          :company="selectedCompany.data"
-          class="h-full"
-        />
-      </template>
+        <template v-if="!showDetail">
+            <CompanyListHeader :total="companies.meta.total" />
+            <Filter
+              :departments="departments.data"
+              :cities="cities.data"
+              :filters="filters"
+              @selected="onFiltersSelected"
+            />
+            <CompanyList
+              class="h-full"
+              :companies="companies"
+              @selectedCompany="onCompanySelect"
+            />
+        </template>
+        <template v-else>
+          <CompanyInfoBox
+            @destroy="onDestroy"
+            @update="onUpdate"
+            @close="onDetailClose"
+            :company="selectedCompany.data"
+            class="h-full"
+          />
+        </template>
     </div>
   </div>
 </template>

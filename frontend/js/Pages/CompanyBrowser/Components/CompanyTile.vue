@@ -22,7 +22,7 @@ function onCompanySelect() {
               <div class="flex items-center">
                 <div class="flex-shrink-0">
                   <img
-                    class="h-12 w-auto sm:h-20 sm:w-20 rounded-lg border-2"
+                    class="h-12 w-auto sm:h-20 sm:w-20 shadow-lg rounded-lg border-2"
                     :src="'/storage/images/' + company.logo"
                     alt=""
                   />
