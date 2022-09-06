@@ -11,7 +11,11 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        File::cleanDirectory(storage_path("app/public/images"));
+        if (File::exists(storage_path("app/public/images"))) {
+            File::cleanDirectory(storage_path("app/public/images"));
+        } else {
+            File::makeDirectory(storage_path("app/public/images"));
+        }
 
         $this->call([
             DepartmentSeeder::class,
