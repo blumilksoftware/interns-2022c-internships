@@ -48,6 +48,8 @@ class CompanyController extends Controller
      */
     public function store(CompanyRequest $request): RedirectResponse
     {
+        $request->data();
+
         return redirect()->route("company-manage")
             ->with("success", "status.company_created");
     }
