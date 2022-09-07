@@ -4,6 +4,7 @@ import Treeselect from "@tkmam1x/vue3-treeselect";
 import "@tkmam1x/vue3-treeselect/dist/vue3-treeselect.css";
 import StatusDisplay from "./StatusDisplay.vue";
 import Button from "@/js/Shared/Components/Button.vue";
+import MoreInfo from "./MoreButtonCompany.vue";
 import ApproveButton from "../../../Shared/Components/ApproveButton.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
 import { TrashIcon } from "@heroicons/vue/outline";
@@ -16,10 +17,6 @@ const statuses = [
   {
     id: "verified",
     label: "Active",
-  },
-  {
-    id: "pending_edited",
-    label: "Edited",
   },
   {
     id: "pending_new",
@@ -41,7 +38,7 @@ function approve(id) {
   if (confirm("Are you sure you want to Approve")) {
     form.put(route("admin-companies-update", id));
   }
-}
+ }
 </script>
 
 <template>
@@ -171,9 +168,8 @@ function approve(id) {
                   <td
                     class="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6"
                   >
-                    <Button
-                      class="hover:bg-blue-700 bg-blue-600 focus:ring-blue-500"
-                      >Edit</Button
+                    <MoreInfo :company="company"
+                      ><StatusDisplay :status="company.status" /></MoreInfo
                     >
                   </td>
                   <td

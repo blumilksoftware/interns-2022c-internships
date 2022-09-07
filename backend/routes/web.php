@@ -26,6 +26,7 @@ Route::put("/admin/users/trashed/{id}", [AdminUsersController::class, "restore"]
 
 Route::get("/admin/companies", [AdminCompaniesController::class, "companies"])->middleware(["auth"])->name("admin-companies");
 Route::put("/admin/companies/{company}", [AdminCompaniesController::class, "update"])->middleware(["auth"])->name("admin-companies-update");
+Route::get("/admin/companies/edit/{company}", [AdminCompaniesController::class, "show"])->name("admin-companies-edit");
 Route::delete("/admin/companies/{company}", [AdminCompaniesController::class, "delete"])->middleware(["auth"])->name("admin-companies-delete");
 Route::get("/admin/companies/trashed", [AdminCompaniesController::class, "trashed"])->middleware(["auth"])->name("admin-trashed-companies");
 Route::put("/admin/companies/trashed/{id}", [AdminCompaniesController::class, "restore"])->middleware(["auth"])->name("admin-trashed-companies-restore");

@@ -26,6 +26,15 @@ class AdminCompaniesController extends Controller
             ],
         );
     }
+    public function show($company): Response
+    {
+        return inertia(
+            "AdminPanel/EditView",
+            [
+                'company' => CompanyResource::get($company)
+            ]
+            );
+    }
 
     public function delete(Company $company)
     {

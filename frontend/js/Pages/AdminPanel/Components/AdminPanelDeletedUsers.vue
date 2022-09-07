@@ -2,7 +2,7 @@
 import Button from "@/js/Shared/Components/Button.vue";
 import { UsersIcon } from "@heroicons/vue/outline";
 import { useForm } from "@inertiajs/inertia-vue3";
-import MoreInfo from "./MoreInfoButton.vue";
+import MoreInfo from "./MoreInfoButtonUser.vue";
 import RoleDisplay from "./RoleDisplay.vue";
 
 const props = defineProps({

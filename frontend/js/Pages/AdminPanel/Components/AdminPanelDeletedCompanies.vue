@@ -1,5 +1,6 @@
 <script setup>
 import Button from "@/js/Shared/Components/Button.vue";
+import MoreInfo from "./MoreButtonCompany.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
 const props = defineProps({
   companies: Object,
@@ -63,11 +64,13 @@ function CompanyRestore(id) {
             <td
               class="py-3.5 pl-1 pr-1 text-center text-sm font-semibold text-gray-900 sm:pl-6"
             >
+            <MoreInfo :company="company"></MoreInfo>
               <Button
                 @click="CompanyRestore(company.id)"
-                class="hover:bg-orange-700 bg-orange-600 focus:ring-orange-500"
+                class="hover:bg-orange-700 bg-orange-600 focus:ring-orange-500 ml-5"
                 >Recover</Button
               >
+              
             </td>
           </tr>
         </tbody>

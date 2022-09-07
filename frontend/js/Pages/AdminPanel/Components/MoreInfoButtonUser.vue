@@ -12,6 +12,7 @@ import { UsersIcon } from "@heroicons/vue/outline";
 
 const props = defineProps({
   user: Object,
+  company: Object,
 });
 const open = ref(false);
 </script>

@@ -1,7 +1,7 @@
 <script setup>
 import Button from "@/js/Shared/Components/Button.vue";
 import RoleDisplay from "./RoleDisplay.vue";
-import MoreInfo from "./MoreInfoButton.vue";
+import MoreInfo from "./MoreInfoButtonUser.vue";
 import { SearchIcon } from "@heroicons/vue/solid";
 import { TrashIcon } from "@heroicons/vue/outline";
 import { ref, watch } from "vue";
