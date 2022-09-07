@@ -1,10 +1,10 @@
 <script setup>
 import { ref } from "vue";
 import ImageUploader from "@/js/Shared/Components/ImageUploader.vue";
-import MdEditor from "md-editor-v3";
-import "md-editor-v3/lib/style.css";
+import MarkdownEditor from "@/js/Shared/Components/MarkdownEditor.vue";
 import { camel2title } from "./utils.js";
 import useSteps from "./useSteps.js";
+import { CheckIcon } from '@heroicons/vue/solid';
 
 const { steps, activeStep, stepPlugin } = useSteps();
 const text = ref("# Hello Editor");
@@ -31,45 +31,74 @@ defineProps({
     </ul>
 -->
 
+
+
+
     <nav aria-label="Progress">
-      <ol role="list" class="space-y-4 md:flex md:space-y-0 md:space-x-8">
+
+      <ol role="list" class="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
         <li
             v-for="(step, stepName, index) in steps"
             @click="activeStep = stepName"
 
-            class="md:flex-1"
+            class="relative md:flex md:flex-1"
         >
           <a
               v-if="step.valid"
               :href="step.href"
-              class="group flex flex-col border-l-4 border-green-600 py-2 pl-4 hover:border-green-800 md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0"
+              class="group flex w-full items-center"
           >
-            <span class="text-sm font-medium text-indigo-600 group-hover:text-indigo-800">Step {{ index + 1 }}</span>
-            <span class="text-sm font-medium">{{ camel2title(stepName) }}</span>
+          <span class="flex items-center px-6 py-4 text-sm font-medium">
+            <span class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-indigo-600 group-hover:bg-indigo-800">
+              <CheckIcon class="h-6 w-6 text-white" aria-hidden="true" />
+            </span>
+            <span class="ml-4 text-sm font-medium text-gray-900">{{ camel2title(stepName) }}</span>
+          </span>
           </a>
-
-
           <a
               v-else-if="activeStep === stepName"
               :href="step.href"
-              class="flex flex-col border-l-4 border-indigo-600 py-2 pl-4 md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0"
+              class="flex items-center px-6 py-4 text-sm font-medium"
               aria-current="step"
           >
-            <span class="text-sm font-medium text-indigo-600">Step {{ index + 1 }}</span>
-            <span class="text-sm font-medium">{{ camel2title(stepName) }}</span>
+          <span class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-indigo-600">
+            <span class="text-indigo-600">{{ index + 1 }}</span>
+          </span>
+            <span class="ml-4 text-sm font-medium text-indigo-600">{{ camel2title(stepName) }}</span>
           </a>
-
-
           <a
-              v-else :href="step.href"
-              class="group flex flex-col border-l-4 border-gray-200 py-2 pl-4 hover:border-gray-300 md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0"
+              v-else
+              :href="step.href"
+              class="group flex items-center"
           >
-            <span class="text-sm font-medium text-gray-500 group-hover:text-gray-700">Step {{ index + 1 }}</span>
-            <span class="text-sm font-medium">{{ camel2title(stepName) }}</span>
+          <span class="flex items-center px-6 py-4 text-sm font-medium">
+            <span class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
+              <span class="text-gray-500 group-hover:text-gray-900">{{ index + 1 }}</span>
+            </span>
+            <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">{{ camel2title(stepName) }}</span>
+          </span>
           </a>
+          <template
+              v-if="index !== 2"
+          >
+            <!-- Arrow separator for lg screens and up -->
+            <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
+              <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none" preserveAspectRatio="none">
+                <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke" stroke="currentcolor" stroke-linejoin="round" />
+              </svg>
+            </div>
+          </template>
         </li>
       </ol>
+
     </nav>
+
+
+
+
+
+
+
 
 
     <div class="form-body">
@@ -109,13 +138,13 @@ defineProps({
       <section v-show="activeStep === 'companyAddress'">
         <FormKit type="group" id="companyAddress" name="companyAddress">
           <label>Państwo</label>
-          <FormKit type="select" />
+          <FormKit type="text" />
 
           <label>Województwo</label>
-          <FormKit type="select" />
+          <FormKit type="text" />
 
           <label>Miasto</label>
-          <FormKit type="select" />
+          <FormKit type="text" />
 
           <label>Kod pocztowy</label>
           <FormKit
@@ -135,7 +164,7 @@ defineProps({
       <section v-show="activeStep === 'companyDescription'">
         <FormKit type="group" id="companyDescription" name="companyDescription">
           <label>Opis firmy</label>
-          <md-editor v-model="text" />
+          <MarkdownEditor v-model="text" />
           <FormKit
               type="text"
               validation="required"
@@ -148,15 +177,5 @@ defineProps({
 </template>
 
 <style>
-.formkit-form {
-  margin: auto;
-  padding: 50px;
-  width: 40vw;
-  height: 40vw;
-  flex-shrink: 0;
-  background: #fff;
-  color: #000;
-  border-radius: 0.5em;
-  box-shadow: 0.25em 0.25em 1em 0 rgba(0,0,0,0.1);
-}
+
 </style>

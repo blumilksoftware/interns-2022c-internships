@@ -31,6 +31,7 @@
     "autoprefixer": "^10.4.8",
     "axios": "^0.27.2",
     "core-js": "^3.24.1",
+    "dompurify": "^2.4.0",
     "dotenv": "^16.0.1",
     "glob-parent": "^6.0.2",
     "laravel-vite-plugin": "^0.5.2",
