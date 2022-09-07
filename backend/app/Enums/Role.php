@@ -10,4 +10,9 @@ enum Role: string
     case Moderator = "moderator";
     case Company = "company";
     case Banned = "banned";
+
+    public function label(): string
+    {
+        return __($this->value);
+    }
 }

@@ -27,9 +27,14 @@ class Company extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
     protected $casts = [
+        "name" => "string",
+        "description" => "string",
         "address" => Address::class,
         "contact_details" => ContactDetails::class,
+        "status" => CompanyStatus::class,
+        "has_signed_papers" => "boolean",
     ];
 
     public function user(): BelongsTo

@@ -10,7 +10,7 @@ return new class() extends Migration {
     public function up(): void
     {
         Schema::create("submissions", function (Blueprint $table): void {
-            $table->id();
+            $table->id()->index();
             $table->foreignId("company_original_id")->unique()->constrained("companies")->cascadeOnDelete();
             $table->foreignId("company_edited_id")->nullable()->unique()->constrained("companies")->cascadeOnDelete();
             $table->text("comment")->nullable();

@@ -1,8 +1,43 @@
+<script setup>
+import { useForm } from "@inertiajs/inertia-vue3";
+import InputError from "@/js/Shared/Components/InputError.vue";
+
+defineProps({
+  auth: Object,
+});
+
+const form = useForm({
+  name: null,
+  description: null,
+  address: {
+    street: null,
+    city: null,
+    postal_code: null,
+    voivodeship: null,
+    country: null,
+    coordinates: {
+      latitude: "0",
+      longitude: "0",
+    },
+  },
+  contact_details: {
+    email: null,
+    website_url: "1",
+    phone_number: "1",
+  },
+});
+
+const submit = () => {
+  form.post(route("company-store"), {
+    onFinish: () => form.reset(),
+  });
+};
+</script>
+
 <template>
   <form
     class="space-y-8 divide-y divide-gray-200 mx-auto mt-3"
-    action="#"
-    method="POST"
+    @submit.prevent="submit"
   >
     <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
       <div>
@@ -31,11 +66,13 @@
                 <input
                   required
                   type="text"
-                  name="username"
-                  id="username"
+                  v-model="form.name"
+                  name="name"
+                  id="name"
                   autocomplete="username"
                   class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
                 />
+                <InputError class="mt-2" :message="form.errors.name" />
               </div>
             </div>
           </div>
@@ -52,9 +89,11 @@
               <textarea
                 id="description"
                 name="description"
+                v-model="form.description"
                 rows="3"
                 class="max-w-lg shadow-sm block w-full focus:ring-primary focus:border-primary sm:text-sm border border-gray-300 rounded-md"
               />
+              <InputError class="mt-2" :message="form.errors.description" />
               <p class="mt-2 text-sm text-gray-500">
                 {{ $t("add_company.description_info") }}
               </p>
@@ -107,9 +146,11 @@
               type="text"
               name="email"
               id="email"
+              v-model="form.contact_details.email"
               autocomplete="email"
               class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
             />
+            <InputError class="mt-2" :message="form.errors.contact_details" />
           </div>
         </div>
       </div>
@@ -125,6 +166,7 @@
             <select
               id="country"
               name="country"
+              v-model="form.address.country"
               autocomplete="country-name"
               class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
             >
@@ -151,6 +193,7 @@
               type="text"
               name="street-address"
               id="street-address"
+              v-model="form.address.street"
               autocomplete="street-address"
               class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
             />
@@ -171,6 +214,7 @@
               type="text"
               name="city"
               id="city"
+              v-model="form.address.city"
               autocomplete="address-level2"
               class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
             />
@@ -191,6 +235,7 @@
               type="text"
               name="region"
               id="region"
+              v-model="form.address.voivodeship"
               autocomplete="address-level1"
               class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
             />
@@ -211,9 +256,11 @@
               type="text"
               name="postal-code"
               id="postal-code"
+              v-model="form.address.postal_code"
               autocomplete="postal-code"
               class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
             />
+            <InputError class="mt-2" :message="form.errors.address" />
           </div>
         </div>
       </div>
@@ -228,6 +275,8 @@
         </button>
         <button
           type="submit"
+          :class="{ 'opacity-25': form.processing }"
+          :disabled="form.processing"
           class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
         >
           {{ $t("buttons.request_button") }}

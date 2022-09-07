@@ -1,20 +1,21 @@
 import "./bootstrap";
+import "@/assets/tailwind.css";
 import { createApp, h } from "vue";
 import { createInertiaApp } from "@inertiajs/inertia-vue3";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import InertiaLink from "@/js/Shared/InertiaLink.js";
-import Pagination from "@/js/Shared/Components/PaginationList.vue";
+import { InertiaProgress } from "@inertiajs/progress";
 import { createI18n } from "vue-i18n";
 import App from "@/js/Shared/Layout/App.vue";
-import "@/assets/tailwind.css";
 import messages from "@intlify/unplugin-vue-i18n/messages";
 import { ZiggyVue } from "ziggy-vue";
+import Toast from "vue-toastification";
 
 const i18n = createI18n({
   legacy: false,
   globalInjection: true,
-  locale: "en",
-  fallbackLocale: "en",
+  locale: "pl",
+  fallbackLocale: "pl",
   availableLocales: ["en", "pl"],
   messages: messages,
 });
@@ -35,10 +36,20 @@ createInertiaApp({
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
       .component("InertiaLink", InertiaLink)
-      .component("Pagination", Pagination)
       .use(plugin)
       .use(i18n)
       .use(ZiggyVue)
+      .use(Toast, {
+        position: "bottom-right",
+        maxToast: 5,
+        timeout: 3000,
+        pauseOnFocusLoss: false,
+      })
       .mount(el);
   },
+});
+
+InertiaProgress.init({
+  delay: 0,
+  color: "white",
 });

@@ -33,7 +33,13 @@ import route from "ziggy";
                 >{{ $t("navigation_bar.map") }}</InertiaLink
               >
               <InertiaLink
-                :href="route('create-company')"
+                v-if="$page.props.auth.user"
+                :href="route('company-manage')"
+                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >{{ $t("navigation_bar.manage_companies") }}</InertiaLink
+              >
+              <InertiaLink
+                :href="route('company-create')"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >{{ $t("navigation_bar.add_company") }}</InertiaLink
               >
@@ -42,6 +48,13 @@ import route from "ziggy";
         </div>
         <div class="hidden sm:ml-6 sm:block">
           <div class="flex items-center">
+            <p
+              v-if="$page.props.auth.user"
+              class="text-gray-300 text-sm font-medium"
+            >
+              {{ $t("navigation_bar.logged_as") }}:
+              {{ $page.props.auth.user.full_name }}
+            </p>
             <Menu as="div" class="ml-3 relative">
               <div>
                 <MenuButton
@@ -122,8 +135,16 @@ import route from "ziggy";
           >{{ $t("navigation_bar.map") }}</DisclosureButton
         >
         <DisclosureButton
+          v-if="$page.props.auth.user"
           as="a"
-          :href="route('create-company')"
+          :href="route('company-index')"
+          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        >
+          {{ $t("navigation_bar.manage_companies") }}</DisclosureButton
+        >
+        <DisclosureButton
+          as="a"
+          :href="route('company-create')"
           class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
         >
           {{ $t("navigation_bar.add_company") }}
@@ -140,6 +161,13 @@ import route from "ziggy";
           >
             {{ $t("buttons.sign_in_button") }}</DisclosureButton
           >
+          <p
+            v-if="$page.props.auth.user"
+            class="px-3 py-2 text-gray-300 text-base font-medium"
+          >
+            {{ $t("navigation_bar.logged_as") }}:
+            {{ $page.props.auth.user.full_name }}
+          </p>
           <DisclosureButton
             v-if="$page.props.auth.user"
             as="a"

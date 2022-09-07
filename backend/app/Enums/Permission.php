@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Internships\Enums;
 
-enum CompanyStatus: string
+enum Permission: string
 {
-    case PendingNew = "pending_new";
-    case PendingEdited = "pending_edited";
-    case Verified = "verified";
+    case ManageUsers = "manage_users";
+    case ManageCompanies = "manage_companies";
 
     public function label(): string
     {

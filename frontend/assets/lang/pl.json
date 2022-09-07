@@ -2,12 +2,19 @@
     "navigation_bar":{
         "map": "Mapa",
         "add_company": "Dodaj firmę",
-        "sign_in": "Zaloguj"
+        "sign_in": "Zaloguj",
+        "logged_as": "Zalogowany jako",
+        "own_companies": "Własne firmy",
+        "manage_companies": "Zarządzaj firmami"
     },
     "company_browser":{
         "companies_list": "Lista firm",
         "found_companies": "Znaleziono",
-        "search": "Wyszukaj"
+        "search": "Wyszukaj",
+        "has_signed_papers": "Umowa z uczelnią",
+        "no_companies_found": "Żadna firma nie pasuje do bieżącego wyszukiwania.",
+        "is_pending": "W oczekiwaniu na weryfikację",
+        "delete_confirm": "Usunąć firmę?"
     },
     "tree_selects":{
         "tree_select_city": "Wybierz miasto",
@@ -82,6 +89,7 @@
         "description_503": "Nie można uzyskać dostępu do serwisu."
     },
     "validation": {
+        "required": "To pole jest wymagane.",
         "unique": "Podany adres e-mail znajduje się już w bazie.",
         "min": {
             "string": "Wprowadzony tekst jest za krótki."

@@ -9,8 +9,8 @@ class CoordinatesDefines
     public static function definition(): array
     {
         return [
-            "latitude" => fake()->latitude(),
-            "longitude" => fake()->longitude(),
+            "latitude" => fake()->latitude(min: 49, max: 54),
+            "longitude" => fake()->longitude(min: 14, max: 23),
         ];
     }
 }

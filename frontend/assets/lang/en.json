@@ -1,12 +1,18 @@
 {
     "navigation_bar":{
         "map": "Map",
-        "add_company": "Add company"
+        "add_company": "Add company",
+        "logged_as": "Logged as",
+        "own_companies": "Own companies",
+        "manage_companies": "Manage companies"
     },
     "company_browser":{
         "companies_list": "Companies list",
         "found_companies": "Found companies",
-        "search": "Search"
+        "search": "Search",
+        "has_signed_papers": "College cooperation",
+        "no_companies_found": "No companies match current filters.",
+        "is_pending": "Pending verification"
     },
     "tree_selects":{
         "tree_select_city": "Choose city",
@@ -81,6 +87,7 @@
         "description_503": "Can't access service at this time."
     },
     "validation": {
+        "required": "This field is required.",
         "unique": "Specified email address is already in the database.",
         "min": {
             "string": "Entered text is too short."
