@@ -17,12 +17,8 @@ class LocationResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "name" => $this->street . ", "
-                . $this->city . " " . $this->postal_code . ", "
-                . $this->voivodeship . ", "
-                . $this->country,
-            "shortName" => $this->city . ", "
-                . $this->country,
+            "name" => "{$this->street}, {$this->city} {$this->postal_code}, {$this->voivodeship}, {$this->country}",
+            "shortName" => "{$this->city}, {$this->country}",
             "coordinates" => [$this->coordinates->longitude, $this->coordinates->latitude],
         ];
     }

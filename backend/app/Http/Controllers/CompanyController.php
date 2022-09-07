@@ -6,6 +6,7 @@ namespace Internships\Http\Controllers;
 
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
@@ -118,12 +119,19 @@ class CompanyController extends Controller
         return inertia(
             "Company/Index",
             [
-                "cities" => fn() => CityResource::collection($companies->pluck("address")),
-                "departments" => fn() => DepartmentResource::collection(Department::with("studyFields.specializations")->get()),
-                "filters" => fn() => Request::only(["searchbox", "city", "specialization"]),
-                "markers" => fn() => CompanySummaryResource::collection($filter->data($companies)->get()),
-                "companies" => fn() => CompanySummaryResource::collection($filter->data($companies)->paginate(config("app.pagination", 15))
-                    ->withQueryString(), ),
+                "cities" => fn(): AnonymousResourceCollection
+                    => CityResource::collection($companies->pluck("address")),
+                "departments" => fn(): AnonymousResourceCollection
+                    => DepartmentResource::collection(Department::with("studyFields.specializations")->get()),
+                "filters" => fn(): array
+                    => Request::only(["searchbox", "city", "specialization"]),
+                "markers" => fn(): AnonymousResourceCollection
+                    => CompanySummaryResource::collection($filter->data($companies)->get()),
+                "companies" => fn(): AnonymousResourceCollection
+                    => CompanySummaryResource::collection(
+                        $filter->data($companies)->paginate(config("app.pagination", 15))
+                            ->withQueryString(),
+                    ),
             ],
         );
     }
