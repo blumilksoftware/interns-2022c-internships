@@ -89,6 +89,7 @@
         "description_503": "Nie można uzyskać dostępu do serwisu."
     },
     "validation": {
+        "required": "To pole jest wymagane.",
         "unique": "Podany adres e-mail znajduje się już w bazie.",
         "min": {
             "string": "Wprowadzony tekst jest za krótki."
