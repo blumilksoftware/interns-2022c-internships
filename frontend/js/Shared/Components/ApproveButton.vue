@@ -1,3 +1,9 @@
+<script setup>
+const props = defineProps({
+  status: String,
+});
+</script>
+
 <template>
   <button
     v-if="props.status !== 'verified'"
@@ -13,8 +19,3 @@
     Approve
   </div>
 </template>
-<script setup>
-const props = defineProps({
-  status: String,
-});
-</script>

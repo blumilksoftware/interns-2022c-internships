@@ -13,15 +13,15 @@ class AdminPanelController extends Controller
 {
     public function index(Request $request): Response
     {
-        $ActiveCompanies = Company::where("status", CompanyStatus::Verified)->get();
-        $NewCompanies = Company::where("status", CompanyStatus::PendingNew)->get();
-        $EditedCompanies = Company::where("status", CompanyStatus::PendingEdited)->get();
+        $activeCompanies = Company::where("status", CompanyStatus::Verified)->get();
+        $newCompanies = Company::where("status", CompanyStatus::PendingNew)->get();
+        $editedCompanies = Company::where("status", CompanyStatus::PendingEdited)->get();
         return inertia(
             "AdminPanel/Index",
             [
-                "active" => $ActiveCompanies->count(),
-                "created" => $NewCompanies->count(),
-                "edited" => $EditedCompanies->count(),
+                "active" => $activeCompanies->count(),
+                "created" => $newCompanies->count(),
+                "edited" => $editedCompanies->count(),
             ],
         );
     }

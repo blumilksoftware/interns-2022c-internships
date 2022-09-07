@@ -1,44 +1,42 @@
-
 <script setup>
-  import { ref } from "vue";
-  import {
-    Dialog,
-    DialogPanel,
-    TransitionChild,
-    TransitionRoot,
-  } from "@headlessui/vue";
-  import {
-    XIcon,
-    HomeIcon,
-    UsersIcon,
-    OfficeBuildingIcon,
-    ViewListIcon,
-    TrashIcon
-  } from "@heroicons/vue/outline";
-  const navigation = [
-    {
-      name: "Start",
-      href: "/admin",
-      icon: HomeIcon,
-      current: false,
-    },
-    {
-      name: "Companies",
-      href: "/admin/companies",
-      icon: OfficeBuildingIcon,
-      current: false,
-    },
-    {
-      name: "Users",
-      href: "/admin/users",
-      icon: UsersIcon,
-      current: false,
-    },
-  ];
-  
-  const sidebarOpen = ref(false);
-  </script>
-  
+import { ref } from "vue";
+import {
+  Dialog,
+  DialogPanel,
+  TransitionChild,
+  TransitionRoot,
+} from "@headlessui/vue";
+import {
+  XIcon,
+  HomeIcon,
+  UsersIcon,
+  OfficeBuildingIcon,
+  ViewListIcon,
+} from "@heroicons/vue/outline";
+const navigation = [
+  {
+    name: "Start",
+    href: "/admin",
+    icon: HomeIcon,
+    current: false,
+  },
+  {
+    name: "Companies",
+    href: "/admin/companies",
+    icon: OfficeBuildingIcon,
+    current: false,
+  },
+  {
+    name: "Users",
+    href: "/admin/users",
+    icon: UsersIcon,
+    current: false,
+  },
+];
+
+const sidebarOpen = ref(false);
+</script>
+
 <template>
   <div>
     <TransitionRoot as="template" :show="sidebarOpen">

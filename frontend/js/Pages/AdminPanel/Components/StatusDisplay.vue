@@ -17,7 +17,7 @@ const props = defineProps({
   >
   <span
     v-else-if="props.status === 'pending_edited'"
-    class="inline-flex rounded-full bg-blue-100 px-2 text-xs font-semibold leading-5 text-blue-800"
-    >Edited</span
+    class="inline-flex rounded-full bg-yellow-100 px-2 text-xs font-semibold leading-5 text-yellow-500"
+    >New</span
   >
 </template>

@@ -1,10 +1,32 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
+<script setup>
+const props = defineProps({
+  active: Number,
+  created: Number,
+  edited: Number,
+});
+
+const companies = [
+  {
+    name: "Actives ",
+    href: "/admin/companies?status=verified",
+    quantity: props.active,
+    bgColor: "bg-green-500",
+  },
+  {
+    name: "New",
+    href: "/admin/companies?status=pending_new",
+    quantity: props.created + props.edited,
+    bgColor: "bg-yellow-500",
+  },
+];
+</script>
+
 <template>
   <div
     class="xl:m-auto my-10 mx-8 max-w-4xl px-0 sm:px-0 border-1 border-gray-700 shadow-md rounded-lg bg-white w-full lg:px-8"
   >
     <div class="mx-5 my-5 max-w-3xl text-lg font-bold">
-      Welcome!
+      Welcome! {{ $page.props.auth.user.full_name }}
       <div clas="flex justify center">
         <h1 class="text-center">Companies group by status</h1>
         <ul role="list" class="mt-3 flex flex-col">
@@ -28,7 +50,10 @@
                   class="font-medium text-gray-900 hover:text-gray-600"
                   >{{ company.name }}</InertiaLink
                 >
-                <p class="text-gray-500">{{ company.quantity }}</p>
+                <p v-if="company.quantity > 0" class="text-gray-500">
+                  {{ company.quantity }}
+                </p>
+                <p v-else class="text-gray-500">0</p>
               </div>
             </div>
           </li>
@@ -40,33 +65,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-const props = defineProps({
-  active: Number,
-  created: Number,
-  edited: Number,
-});
-
-const companies = [
-  {
-    name: "Actives ",
-    href: "/admin/companies?status=verified",
-    quantity: props.active,
-    bgColor: "bg-green-500",
-  },
-  {
-    name: "Changed ",
-    href: "/admin/companies?status=pending_edited",
-    quantity: props.edited,
-    bgColor: "bg-blue-500",
-  },
-  {
-    name: "New",
-    href: "/admin/companies?status=pending_new",
-    quantity: props.created,
-    bgColor: "bg-yellow-500",
-  },
-  { name: "Outdated", href: "#", quantity: 1, bgColor: "bg-slate-500" },
-];
-</script>
