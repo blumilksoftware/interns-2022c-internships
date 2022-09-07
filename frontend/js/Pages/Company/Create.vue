@@ -1,287 +1,162 @@
 <script setup>
-import { useForm } from "@inertiajs/inertia-vue3";
-import InputError from "@/js/Shared/Components/InputError.vue";
+import { ref } from "vue";
+import ImageUploader from "@/js/Shared/Components/ImageUploader.vue";
+import MdEditor from "md-editor-v3";
+import "md-editor-v3/lib/style.css";
+import { camel2title } from "./utils.js";
+import useSteps from "./useSteps.js";
+
+const { steps, activeStep, stepPlugin } = useSteps();
+const text = ref("# Hello Editor");
 
 defineProps({
-  auth: Object,
+  image: File,
 });
-
-const form = useForm({
-  name: null,
-  description: null,
-  address: {
-    street: null,
-    city: null,
-    postal_code: null,
-    voivodeship: null,
-    country: null,
-    coordinates: {
-      latitude: "0",
-      longitude: "0",
-    },
-  },
-  contact_details: {
-    email: null,
-    website_url: "1",
-    phone_number: "1",
-  },
-});
-
-const submit = () => {
-  form.post(route("company-store"), {
-    onFinish: () => form.reset(),
-  });
-};
 </script>
 
 <template>
-  <form
-    class="space-y-8 divide-y divide-gray-200 mx-auto mt-3"
-    @submit.prevent="submit"
-  >
-    <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
-      <div>
-        <div>
-          <h3
-            class="flex justify-center text-lg leading-6 font-medium text-gray-900"
-          >
-            {{ $t("add_company.header") }}
-          </h3>
-          <p class="flex justify-center mt-1 max-w-2xl text-sm text-gray-500">
-            {{ $t("add_company.header_info") }}
-          </p>
-        </div>
-        <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
-          <div
-            class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-          >
-            <label
-              for="username"
-              class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-            >
-              {{ $t("add_company.company_name") }}
-            </label>
-            <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <div class="max-w-lg flex rounded-md shadow-sm">
-                <input
-                  required
-                  type="text"
-                  v-model="form.name"
-                  name="name"
-                  id="name"
-                  autocomplete="username"
-                  class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
-                />
-                <InputError class="mt-2" :message="form.errors.name" />
-              </div>
-            </div>
-          </div>
-          <div
-            class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-          >
-            <label
-              for="description"
-              class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-            >
-              {{ $t("add_company.description") }}
-            </label>
-            <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <textarea
-                id="description"
-                name="description"
-                v-model="form.description"
-                rows="3"
-                class="max-w-lg shadow-sm block w-full focus:ring-primary focus:border-primary sm:text-sm border border-gray-300 rounded-md"
-              />
-              <InputError class="mt-2" :message="form.errors.description" />
-              <p class="mt-2 text-sm text-gray-500">
-                {{ $t("add_company.description_info") }}
-              </p>
-            </div>
-          </div>
+  <FormKit type="form" #default="{ value }" :plugins="[stepPlugin]">
 
-          <div
-            class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-gray-200 sm:pt-5"
-          >
-            <label for="photo" class="block text-sm font-medium text-gray-700">
-              Logo
-            </label>
-            <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <div class="flex justify-center items-center">
-                <span class="h-14 w-14 rounded-lg overflow-hidden bg-gray-100">
-                  <svg
-                    class="h-full w-full text-gray-300"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z"
-                    />
-                  </svg>
-                </span>
-                <button
-                  type="button"
-                  class="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-                >
-                  {{ $t("buttons.change_button") }}
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
+<!--
+    <ul class="steps">
+      <li
+        v-for="(step, stepName) in steps"
+        class="step"
+        @click="activeStep = stepName"
+        :data-step-valid="step.valid"
+        :data-step-active="activeStep === stepName"
       >
-        <label
-          for="email"
-          class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+        {{ camel2title(stepName) }}
+      </li>
+    </ul>
+-->
+
+    <nav aria-label="Progress">
+      <ol role="list" class="space-y-4 md:flex md:space-y-0 md:space-x-8">
+        <li
+            v-for="(step, stepName, index) in steps"
+            @click="activeStep = stepName"
+
+            class="md:flex-1"
         >
-          {{ $t("common_labels.email") }}
-        </label>
-        <div class="mt-1 sm:mt-0 sm:col-span-2">
-          <div class="max-w-lg flex rounded-md shadow-sm">
-            <input
-              required
-              type="text"
-              name="email"
-              id="email"
-              v-model="form.contact_details.email"
-              autocomplete="email"
-              class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
-            />
-            <InputError class="mt-2" :message="form.errors.contact_details" />
-          </div>
-        </div>
-      </div>
-      <div class="pt-2 space-y-6 sm:pt-2 sm:space-y-5">
-        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-5">
-          <label
-            for="country"
-            class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+          <a
+              v-if="step.valid"
+              :href="step.href"
+              class="group flex flex-col border-l-4 border-green-600 py-2 pl-4 hover:border-green-800 md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0"
           >
-            {{ $t("common_labels.country") }}
-          </label>
-          <div class="mt-1 sm:mt-0 sm:col-span-2">
-            <select
-              id="country"
-              name="country"
-              v-model="form.address.country"
-              autocomplete="country-name"
-              class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
-            >
-              <option>Poland</option>
-              <option>Other country</option>
-              <option>Other country</option>
-              <option>Other country</option>
-              <option>Other country</option>
-            </select>
-          </div>
-        </div>
-        <div
-          class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-        >
-          <label
-            for="street-address"
-            class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+            <span class="text-sm font-medium text-indigo-600 group-hover:text-indigo-800">Step {{ index + 1 }}</span>
+            <span class="text-sm font-medium">{{ camel2title(stepName) }}</span>
+          </a>
+
+
+          <a
+              v-else-if="activeStep === stepName"
+              :href="step.href"
+              class="flex flex-col border-l-4 border-indigo-600 py-2 pl-4 md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0"
+              aria-current="step"
           >
-            {{ $t("add_company.street_address") }}
-          </label>
-          <div class="mt-1 sm:mt-0 sm:col-span-2">
-            <input
-              required
-              type="text"
-              name="street-address"
-              id="street-address"
-              v-model="form.address.street"
-              autocomplete="street-address"
-              class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
-            />
-          </div>
-        </div>
-        <div
-          class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-        >
-          <label
-            for="city"
-            class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+            <span class="text-sm font-medium text-indigo-600">Step {{ index + 1 }}</span>
+            <span class="text-sm font-medium">{{ camel2title(stepName) }}</span>
+          </a>
+
+
+          <a
+              v-else :href="step.href"
+              class="group flex flex-col border-l-4 border-gray-200 py-2 pl-4 hover:border-gray-300 md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0"
           >
-            {{ $t("add_company.city") }}
-          </label>
-          <div class="mt-1 sm:mt-0 sm:col-span-2">
-            <input
-              required
+            <span class="text-sm font-medium text-gray-500 group-hover:text-gray-700">Step {{ index + 1 }}</span>
+            <span class="text-sm font-medium">{{ camel2title(stepName) }}</span>
+          </a>
+        </li>
+      </ol>
+    </nav>
+
+
+    <div class="form-body">
+      <!-- 1 panel -->
+      <section v-show="activeStep === 'companyInfo'">
+        <FormKit type="group" id="companyInfo" name="companyInfo">
+          <label>Logo</label>
+          <ImageUploader v-model="image"/>
+
+          <label>Nazwa firmy</label>
+          <FormKit
               type="text"
-              name="city"
-              id="city"
-              v-model="form.address.city"
-              autocomplete="address-level2"
-              class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
-            />
-          </div>
-        </div>
-        <div
-          class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-        >
-          <label
-            for="region"
-            class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-          >
-            {{ $t("add_company.voivodeship") }}
-          </label>
-          <div class="mt-1 sm:mt-0 sm:col-span-2">
-            <input
-              required
+              validation="required"
+          />
+
+          <label>E-mail</label>
+          <FormKit
               type="text"
-              name="region"
-              id="region"
-              v-model="form.address.voivodeship"
-              autocomplete="address-level1"
-              class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
-            />
-          </div>
-        </div>
-        <div
-          class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-        >
-          <label
-            for="postal-code"
-            class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-          >
-            {{ $t("add_company.postal_code") }}
-          </label>
-          <div class="mt-1 sm:mt-0 sm:col-span-2">
-            <input
-              required
+              validation="required"
+          />
+
+          <label>Numer telefonu</label>
+          <FormKit
               type="text"
-              name="postal-code"
-              id="postal-code"
-              v-model="form.address.postal_code"
-              autocomplete="postal-code"
-              class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
-            />
-            <InputError class="mt-2" :message="form.errors.address" />
-          </div>
-        </div>
-      </div>
+              validation="required"
+          />
+
+          <label>Strona www</label>
+          <FormKit
+              type="text"
+              validation="required"
+          />
+        </FormKit>
+      </section>
+
+      <!-- 2 panel -->
+      <section v-show="activeStep === 'companyAddress'">
+        <FormKit type="group" id="companyAddress" name="companyAddress">
+          <label>Państwo</label>
+          <FormKit type="select" />
+
+          <label>Województwo</label>
+          <FormKit type="select" />
+
+          <label>Miasto</label>
+          <FormKit type="select" />
+
+          <label>Kod pocztowy</label>
+          <FormKit
+              type="text"
+              validation="required"
+          />
+
+          <label>Ulica</label>
+          <FormKit
+              type="text"
+              validation="required"
+          />
+        </FormKit>
+      </section>
+
+      <!-- 3 panel -->
+      <section v-show="activeStep === 'companyDescription'">
+        <FormKit type="group" id="companyDescription" name="companyDescription">
+          <label>Opis firmy</label>
+          <md-editor v-model="text" />
+          <FormKit
+              type="text"
+              validation="required"
+          />
+        </FormKit>
+      </section>
+
     </div>
-    <div class="pt-5">
-      <div class="flex justify-end">
-        <button
-          type="button"
-          class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-        >
-          {{ $t("buttons.cancel_button") }}
-        </button>
-        <button
-          type="submit"
-          :class="{ 'opacity-25': form.processing }"
-          :disabled="form.processing"
-          class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-        >
-          {{ $t("buttons.request_button") }}
-        </button>
-      </div>
-    </div>
-  </form>
+  </FormKit>
 </template>
+
+<style>
+.formkit-form {
+  margin: auto;
+  padding: 50px;
+  width: 40vw;
+  height: 40vw;
+  flex-shrink: 0;
+  background: #fff;
+  color: #000;
+  border-radius: 0.5em;
+  box-shadow: 0.25em 0.25em 1em 0 rgba(0,0,0,0.1);
+}
+</style>

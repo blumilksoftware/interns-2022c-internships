@@ -10,6 +10,11 @@ import App from "@/js/Shared/Layout/App.vue";
 import messages from "@intlify/unplugin-vue-i18n/messages";
 import { ZiggyVue } from "ziggy-vue";
 import Toast from "vue-toastification";
+import {
+  plugin as formkitPlugin,
+  defaultConfig as formkitDefaultConfig,
+} from "@formkit/vue";
+import "@formkit/themes/genesis";
 
 const i18n = createI18n({
   legacy: false,
@@ -45,6 +50,7 @@ createInertiaApp({
         timeout: 3000,
         pauseOnFocusLoss: false,
       })
+      .use(formkitPlugin, formkitDefaultConfig)
       .mount(el);
   },
 });
