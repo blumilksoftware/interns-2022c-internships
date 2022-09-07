@@ -37,7 +37,7 @@ function drop(event) {
   <div
     :class="[
       dragging ? 'bg-gray-100' : 'bg-white',
-      'relative mt-6 w-full flex justify-center transition transition-colors p-6 border border-gray-300 rounded-md',
+      'relative w-full flex justify-center transition transition-colors p-6 border border-gray-300 rounded-md',
     ]"
     @dragover.prevent="dragging = true"
     @dragleave="dragging = false"

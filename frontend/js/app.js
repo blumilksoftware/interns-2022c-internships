@@ -14,7 +14,7 @@ import {
   plugin as formkitPlugin,
   defaultConfig as formkitDefaultConfig,
 } from "@formkit/vue";
-import "@formkit/themes/genesis";
+import formkitConfig from "../formkit.config";
 
 const i18n = createI18n({
   legacy: false,
@@ -50,7 +50,7 @@ createInertiaApp({
         timeout: 3000,
         pauseOnFocusLoss: false,
       })
-      .use(formkitPlugin, formkitDefaultConfig)
+        .use(formkitPlugin, formkitDefaultConfig(formkitConfig))
       .mount(el);
   },
 });

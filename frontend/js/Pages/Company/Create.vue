@@ -15,7 +15,11 @@ defineProps({
 </script>
 
 <template>
-  <FormKit type="form" #default="{ value }" :plugins="[stepPlugin]">
+  <FormKit
+      type="form"
+      #default="{ value }"
+      :plugins="[stepPlugin]"
+  >
 
 <!--
     <ul class="steps">
@@ -31,12 +35,9 @@ defineProps({
     </ul>
 -->
 
-
-
-
     <nav aria-label="Progress">
 
-      <ol role="list" class="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
+      <ol role="list" class="bg-white divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
         <li
             v-for="(step, stepName, index) in steps"
             @click="activeStep = stepName"
@@ -49,7 +50,7 @@ defineProps({
               class="group flex w-full items-center"
           >
           <span class="flex items-center px-6 py-4 text-sm font-medium">
-            <span class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-indigo-600 group-hover:bg-indigo-800">
+            <span class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary group-hover:bg-secondary">
               <CheckIcon class="h-6 w-6 text-white" aria-hidden="true" />
             </span>
             <span class="ml-4 text-sm font-medium text-gray-900">{{ camel2title(stepName) }}</span>
@@ -61,10 +62,10 @@ defineProps({
               class="flex items-center px-6 py-4 text-sm font-medium"
               aria-current="step"
           >
-          <span class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-indigo-600">
-            <span class="text-indigo-600">{{ index + 1 }}</span>
+          <span class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-primary">
+            <span class="text-primary">{{ index + 1 }}</span>
           </span>
-            <span class="ml-4 text-sm font-medium text-indigo-600">{{ camel2title(stepName) }}</span>
+            <span class="ml-4 text-sm font-medium text-primary">{{ camel2title(stepName) }}</span>
           </a>
           <a
               v-else
@@ -95,18 +96,13 @@ defineProps({
 
 
 
-
-
-
-
-
-
-    <div class="form-body">
+    <div class="max-h-full flex justify-center pt-8">
       <!-- 1 panel -->
       <section v-show="activeStep === 'companyInfo'">
         <FormKit type="group" id="companyInfo" name="companyInfo">
           <label>Logo</label>
           <ImageUploader v-model="image"/>
+
 
           <label>Nazwa firmy</label>
           <FormKit
@@ -136,28 +132,36 @@ defineProps({
 
       <!-- 2 panel -->
       <section v-show="activeStep === 'companyAddress'">
-        <FormKit type="group" id="companyAddress" name="companyAddress">
-          <label>Państwo</label>
-          <FormKit type="text" />
+        <div class="flex flex-col-reverse md:flex-row">
+          <div>
+            <FormKit type="group" id="companyAddress" name="companyAddress">
+              <label>Państwo</label>
+              <FormKit type="text" />
 
-          <label>Województwo</label>
-          <FormKit type="text" />
+              <label>Województwo</label>
+              <FormKit type="text" />
 
-          <label>Miasto</label>
-          <FormKit type="text" />
+              <label>Miasto</label>
+              <FormKit type="text" />
 
-          <label>Kod pocztowy</label>
-          <FormKit
-              type="text"
-              validation="required"
-          />
+              <label>Kod pocztowy</label>
+              <FormKit
+                  type="text"
+                  validation="required"
+              />
 
-          <label>Ulica</label>
-          <FormKit
-              type="text"
-              validation="required"
-          />
-        </FormKit>
+              <label>Ulica</label>
+              <FormKit
+                  type="text"
+                  validation="required"
+              />
+            </FormKit>
+          </div>
+          <div>
+            [[mapa]]
+          </div>
+
+        </div>
       </section>
 
       <!-- 3 panel -->
@@ -171,7 +175,6 @@ defineProps({
           />
         </FormKit>
       </section>
-
     </div>
   </FormKit>
 </template>
