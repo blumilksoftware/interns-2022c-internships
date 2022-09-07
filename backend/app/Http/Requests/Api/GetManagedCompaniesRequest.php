@@ -11,14 +11,14 @@ use Internships\Enums\CompanyStatus;
 use Internships\Enums\Permission;
 use Internships\Models\Company;
 
-class GetManagedCompaniesRequest extends ApiRequest
+class GetManagedCompaniesRequest extends GetCompaniesRequest
 {
     final public function authorize(): bool
     {
         return Auth::check();
     }
 
-    public function data(): Builder
+    final protected function data(): Builder
     {
         if (Gate::forUser(auth()->user())->allows(Permission::ManageCompanies->value)) {
             return Company::query()->orderBy("status", "asc")

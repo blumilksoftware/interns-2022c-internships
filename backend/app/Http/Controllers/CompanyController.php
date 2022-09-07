@@ -6,35 +6,28 @@ namespace Internships\Http\Controllers;
 
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
 use Inertia\Response;
 use Internships\Enums\CompanyStatus;
 use Internships\Enums\Permission;
-use Internships\Http\Requests\Api\FilterCompanies;
 use Internships\Http\Requests\Api\GetCompaniesRequest;
 use Internships\Http\Requests\Api\GetManagedCompaniesRequest;
 use Internships\Http\Requests\CompanyRequest;
-use Internships\Http\Resources\CityResource;
 use Internships\Http\Resources\CompanyResource;
-use Internships\Http\Resources\CompanySummaryResource;
-use Internships\Http\Resources\DepartmentResource;
 use Internships\Models\Company;
-use Internships\Models\Department;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 class CompanyController extends Controller
 {
     public function index(GetCompaniesRequest $request): Response
     {
-        return $this->list($request);
+        return $request->list();
     }
 
-    public function manage(): Response
+    public function manage(GetManagedCompaniesRequest $request): Response
     {
-        return $this->list(new GetManagedCompaniesRequest());
+        return $request->list();
     }
 
     public function create(): Response
@@ -108,31 +101,5 @@ class CompanyController extends Controller
 
         return redirect()->route("company-manage")
             ->with("success", "status.company_deleted");
-    }
-
-    protected function list(
-        GetCompaniesRequest|GetManagedCompaniesRequest $request,
-        FilterCompanies $filter = new FilterCompanies(),
-    ): Response {
-        $companies = $request->data();
-
-        return inertia(
-            "Company/Index",
-            [
-                "cities" => fn(): AnonymousResourceCollection
-                    => CityResource::collection($companies->pluck("address")),
-                "departments" => fn(): AnonymousResourceCollection
-                    => DepartmentResource::collection(Department::with("studyFields.specializations")->get()),
-                "filters" => fn(): array
-                    => Request::only(["searchbox", "city", "specialization"]),
-                "markers" => fn(): AnonymousResourceCollection
-                    => CompanySummaryResource::collection($filter->data($companies)->get()),
-                "companies" => fn(): AnonymousResourceCollection
-                    => CompanySummaryResource::collection(
-                        $filter->data($companies)->paginate(config("app.pagination", 15))
-                            ->withQueryString(),
-                    ),
-            ],
-        );
     }
 }

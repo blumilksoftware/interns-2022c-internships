@@ -74,7 +74,7 @@ function goTo(markerId) {
 
   let marker = loadedMarkers.find((item) => item.id === markerId);
 
-  if(marker){
+  if (marker) {
     loadedMap.flyTo({
       center: marker.loadedMarker.getLngLat(),
       zoom: 15,
