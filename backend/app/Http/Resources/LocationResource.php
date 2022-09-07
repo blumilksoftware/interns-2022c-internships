@@ -21,8 +21,7 @@ class LocationResource extends JsonResource
                 . $this->city . " " . $this->postal_code . ", "
                 . $this->voivodeship . ", "
                 . $this->country,
-            "shortName" => $this->city . ", "
-                . $this->country,
+            "shortName" => "{$this->city}, {$this->country}",
             "coordinates" => [$this->coordinates->longitude, $this->coordinates->latitude],
         ];
     }
