@@ -26,7 +26,7 @@ use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 class CompanyController extends Controller
 {
-    public function index(GetCompaniesRequest $request): Response|array
+    public function index(GetCompaniesRequest $request): Response
     {
         return $this->list($request);
     }
@@ -112,7 +112,7 @@ class CompanyController extends Controller
     protected function list(
         GetCompaniesRequest|GetManagedCompaniesRequest $request,
         FilterCompanies $filter = new FilterCompanies(),
-    ): Response|array {
+    ): Response {
         $companies = $request->data();
 
         return inertia(
