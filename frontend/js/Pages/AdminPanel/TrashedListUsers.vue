@@ -1,8 +1,6 @@
 <script setup>
-import DeletedItems from "./Components/AdminPanelDeletedItems.vue";
-import Pagination from "@/js/Shared/Components/PaginationList.vue";
+import DeletedItems from "./Components/AdminPanelDeletedUsers.vue";
 defineProps({
-  companies: Object,
   users: Object,
 });
 </script>
@@ -16,7 +14,7 @@ defineProps({
 
 <template>
     <div class="flex flex-col w-full max-h-full overflow-hidden">
-      <DeletedItems :users="users.data"  :companies="companies.data"  class="max-h-full overflow-hidden" />
+      <DeletedItems :users="users.data" class="max-h-full overflow-hidden" />
 
     </div>
 </template>

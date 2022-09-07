@@ -5,20 +5,15 @@
   } from "@heroicons/vue/outline";
   import { useForm } from '@inertiajs/inertia-vue3';
   const props = defineProps({
-    companies: Object,
     users: Object,
   });
   const form = useForm();
 function UserRestore(id) {
     if (confirm("Are you sure you want to restore")) {
-        form.put(route('admin-trashed-users', id));
+        form.put(route('admin-trashed-users-restore', id));
     }
 }
-function CompanyRestore(id) {
-    if (confirm("Are you sure you want to restore")) {
-        form.put(route('admin-trashed-companies', id));
-    }
-}
+
   </script>
   <template>
        <div class="overflow-hidden rounded-lg w-full h-full bg-white shadow overflow-y-auto">
@@ -62,29 +57,6 @@ function CompanyRestore(id) {
                 </td>
                 <td class="item-end">
                   <Button @click="UserRestore(user.id)" class="hover:bg-orange-700 bg-orange-600 focus:ring-orange-500">Recover</Button>
-                </td>
-                </tr>
-                <tr v-for="company in props.companies" :key="company.id">
-                <td
-                  class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"
-                >
-                  <div class="flex items-center">
-                    <div class="h-10 w-10 flex-shrink-0">
-                      <img
-                        class="h-10 w-10 rounded-lg"
-                        :src="'/storage/images/' + company.logo"
-                        alt=""
-                      />
-                    </div>
-                    <div class="ml-4">
-                      <div class="font-medium text-gray-900 overflow-hidden">
-                        {{ company.name }}
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="item-end">
-                  <Button @click="CompanyRestore(company.id)" class="hover:bg-orange-700 bg-orange-600 focus:ring-orange-500">Recover</Button>
                 </td>
                 </tr>
                 </tbody>

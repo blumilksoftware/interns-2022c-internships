@@ -33,10 +33,23 @@ class AdminUsersController extends Controller
         return redirect()->route('admin-users')->with('message', 'User delete successfully');
 
     }
-    public function restore(User $user)
+    public function trashed(Request $request): Response
     {
-        $user->restore();
-        return redirect()->route('admin-trashed')->with('message', 'User restored successfully');
+        $users = User::onlyTrashed();
+        
+        return inertia(
+            "AdminPanel/TrashedListUsers",
+            [
+                'users'=> UserResource::collection($users->get()),
+            ],
+           
+        );
+        
+    }
+    public function restore($id)
+    {
+        User::where('id', $id)->onlyTrashed()->restore();
+        return redirect()->route('admin-trashed-users')->with('message', 'User restored successfully');
 
     }
 }

@@ -37,10 +37,24 @@ class AdminCompaniesController extends Controller
     {
         $company->update(["status"=>CompanyStatus::Verified]);
     }
-    public function restore(Company $company)
+    public function trashed(Request $request): Response
     {
-        $company->restore();
-        return redirect()->route('admin-trashed')->with('message', 'Company restored successfully');
+        $companies = Company::onlyTrashed();
+        
+        return inertia(
+            "AdminPanel/TrashedListCompanies",
+            [
+                'companies'=> CompanyResource::collection($companies->get()),
+            ],
+           
+        );
+        
+    }
+    public function restore($id)
+    {
+        Company::where('id', $id)->onlyTrashed()->restore();
+        return redirect()->route('admin-trashed-companies')->with('message', 'Company restored successfully');
 
     }
+    
 }

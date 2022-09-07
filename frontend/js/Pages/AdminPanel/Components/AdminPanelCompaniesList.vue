@@ -67,7 +67,7 @@ function approve(id) {
         placeholder="Choose company status"
         v-model="statusSelect"
       />
-      <InertiaLink href="/admin/trashed"> <TrashIcon class="h-9 w-auto ml-5 text-gray-800" /></InertiaLink>
+      <InertiaLink href="/admin/companies/trashed"> <TrashIcon class="h-9 w-auto ml-5 text-gray-800" /></InertiaLink>
     
     </div>
     

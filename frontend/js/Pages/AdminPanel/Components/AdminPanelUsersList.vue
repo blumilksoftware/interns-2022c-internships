@@ -54,7 +54,7 @@ function destroy(id) {
         />
         
       </div>
-      <InertiaLink href="/admin/trashed"> <TrashIcon class="h-9 w-auto ml-5 text-gray-800" /></InertiaLink>
+      <InertiaLink href="/admin/users/trashed"> <TrashIcon class="h-9 w-auto ml-5 text-gray-800" /></InertiaLink>
     </div>
     <div class="md:mt-2 w-fit flex item-center"></div>
     <div
