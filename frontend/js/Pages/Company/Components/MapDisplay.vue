@@ -72,13 +72,15 @@ function goTo(markerId) {
     return;
   }
 
-  let marker = loadedMarkers.find((item) => item.id === markerId).loadedMarker;
+  let marker = loadedMarkers.find((item) => item.id === markerId);
 
-  loadedMap.flyTo({
-    center: marker.getLngLat(),
-    zoom: 15,
-    duration: props.flyTime,
-  });
+  if(marker){
+    loadedMap.flyTo({
+      center: marker.loadedMarker.getLngLat(),
+      zoom: 15,
+      duration: props.flyTime,
+    });
+  }
 }
 
 function resetMarkers() {
