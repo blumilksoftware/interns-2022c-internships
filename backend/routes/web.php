@@ -16,7 +16,7 @@ Route::post("/company/create", [CompanyController::class, "store"])
     ->name("company-store");
 
 Route::get("/company/manage", [CompanyController::class, "manage"])
-    ->middleware(["auth"])
+    ->middleware("auth")
     ->name("company-manage");
 
 Route::get("/company/view/{company}", [CompanyController::class, "show"])
