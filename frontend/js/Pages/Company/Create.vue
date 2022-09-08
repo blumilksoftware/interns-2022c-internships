@@ -6,7 +6,7 @@ import { camel2title } from "./utils.js";
 import useSteps from "./useSteps.js";
 import { CheckIcon } from '@heroicons/vue/solid';
 
-const { steps, activeStep, stepPlugin } = useSteps();
+const { steps, activeStep, stepPlugin, setStep } = useSteps();
 const text = ref("# Hello Editor");
 
 defineProps({
@@ -17,26 +17,12 @@ defineProps({
 <template>
   <FormKit
       type="form"
-      #default="{ value }"
+      #default="{ value, state: { valid }}"
       :plugins="[stepPlugin]"
+      :actions="false"
   >
 
-<!--
-    <ul class="steps">
-      <li
-        v-for="(step, stepName) in steps"
-        class="step"
-        @click="activeStep = stepName"
-        :data-step-valid="step.valid"
-        :data-step-active="activeStep === stepName"
-      >
-        {{ camel2title(stepName) }}
-      </li>
-    </ul>
--->
-
     <nav aria-label="Progress">
-
       <ol role="list" class="bg-white divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
         <li
             v-for="(step, stepName, index) in steps"
@@ -95,14 +81,12 @@ defineProps({
     </nav>
 
 
-
     <div class="max-h-full flex justify-center pt-8">
       <!-- 1 panel -->
       <section v-show="activeStep === 'companyInfo'">
         <FormKit type="group" id="companyInfo" name="companyInfo">
           <label>Logo</label>
           <ImageUploader v-model="image"/>
-
 
           <label>Nazwa firmy</label>
           <FormKit
@@ -176,6 +160,13 @@ defineProps({
         </FormKit>
       </section>
     </div>
+
+    <div class="flex flex-col items-center justify-center md:flex-row">
+        <FormKit type="button" :disabled="activeStep === 'companyInfo'" @click="setStep(-1)" v-text="'< ' + 'Previous step'" />
+        <div class=""><FormKit type="submit" label="Submit Application" :disabled="!valid" /></div>
+        <div class="order-first md:order-last"><FormKit type="button" class="next" :disabled="activeStep === 'companyDescription' " @click="setStep(1)" v-text="'Next step' + ' >'"/></div>
+    </div>
+
   </FormKit>
 </template>
 

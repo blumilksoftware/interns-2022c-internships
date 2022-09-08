@@ -3,6 +3,9 @@ import { generateClasses } from '@formkit/themes'
 export default {
     config: {
         classes: generateClasses({
+            global: {
+                outer: 'formkit-disabled:opacity-50',
+            },
             text: {
                 //outer: 'mb-5',
                 //label: 'block mb-1 font-bold text-sm',
@@ -13,8 +16,11 @@ export default {
                 message: 'text-red-500 mb-1 text-xs'
             },
             submit: {
-                input: 'group mt-2 relative w-80 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-800 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary',
-            }
+                input: 'group mt-2 relative w-60 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-800 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary',
+            },
+            button: {
+                input: 'group mt-2 relative w-60 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-800 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary',
+            },
         })
     }
 }

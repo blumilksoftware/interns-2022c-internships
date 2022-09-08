@@ -2,7 +2,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   mode: "jit",
-  content: ["./**/*.{vue,html}"],
+  content: ["./**/*.{vue,html}", "./formkit.config.js"],
   theme: {
     extend: {
       fontFamily: {
@@ -20,6 +20,6 @@ module.exports = {
     require("@tailwindcss/typography"),
     require("@tailwindcss/aspect-ratio"),
     require("@tailwindcss/nesting"),
-    require('@formkit/themes'),
+    require('@formkit/themes/tailwindcss'),
   ],
 };
