@@ -2,6 +2,7 @@
 import LocationIcon from "@/assets/icons/locationIcon.svg";
 import { onMounted } from "vue";
 import { XIcon } from "@heroicons/vue/outline";
+import MarkdownEditor from "@/js/Shared/Components/MarkdownEditor.vue"
 
 const props = defineProps({
   company: Object,
@@ -61,9 +62,7 @@ onMounted(() => {
             @click="onZoom"
           />{{ company.location.name }}
         </p>
-        <blockquote class="border-l-4 border-blue-500 italic my-8 pl-8 md:pl-8">
-          {{ company.description }}
-        </blockquote>
+        <MarkdownEditor :previewOnly="true" class="w-full py-5" v-model="company.description" />
       </div>
       <div class="justify-center mx-auto gap-2 flex w-3/4">
         <div
