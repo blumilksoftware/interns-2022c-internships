@@ -92,7 +92,7 @@ defineProps({
                 :href="step.href"
                 class="group flex w-full items-center"
             >
-          <span class="flex items-center px-6 py-2 text-sm font-medium">
+          <span class="flex items-center px-6 py-2 text-sm font-medium md:py-4">
             <span class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary group-hover:bg-secondary md:h-10 md:w-10">
               <CheckIcon class="h-4 w-4 text-white md:h-6 md:w-6" aria-hidden="true" />
             </span>
