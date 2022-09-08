@@ -58,7 +58,11 @@ Route::put("/admin/companies/{company}", [AdminCompaniesController::class, "upda
     ->middleware(["auth"])
     ->name("admin-companies-update");
 Route::get("/admin/companies/edit/{company}", [AdminCompaniesController::class, "show"])
+    ->middleware(["auth"])
     ->name("admin-companies-edit");
+Route::put("/admin/companies/edit/{company}", [AdminCompaniesController::class, "store"])
+    ->middleware(["auth"])
+    ->name("admin-companies-store");
 Route::delete("/admin/companies/{company}", [AdminCompaniesController::class, "delete"])
     ->middleware(["auth"]) 
     ->name("admin-companies-delete");

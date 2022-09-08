@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Internships\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Request;
 use Inertia\Response;
 use Internships\Enums\CompanyStatus;
 use Internships\Enums\Permission;
+use Internships\Http\Requests\CompanyRequest;
 use Internships\Http\Resources\CompanyResource;
 use Internships\Models\Company;
 
@@ -32,22 +34,44 @@ class AdminCompaniesController extends Controller
         );
     }
 
-    public function show($company): Response
+    public function show(Company $company)
     {
-        $this->authorize(Permission::ManageCompanies);
         return inertia(
-            "AdminPanel/EditView",
+            "AdminPanel/EditPage",
             [
-                "company" => CompanyResource::get($company),
+                "company" => [
+                    "id" => $company->id,
+                    "name" => $company->name,
+                    "address" => $company->address,
+                    "description" => $company->description,
+                    "address" => $company->address,
+                    "contact_details" => $company->contact_details,
+                ],
             ],
         );
+    }
+
+    public function store(CompanyRequest $request, Company $company): RedirectResponse
+    {
+        $request->validate([
+            "name" => "required",
+            "address" => "required",
+            "description" => "required",
+            "address" => "required",
+            "contact_details" => "required",
+        ]);
+
+        $company->update($request->all());
+
+        return redirect()->route("admin-companies")
+            ->with("message", "status.company_updated");
     }
 
     public function delete(Company $company)
     {
         $this->authorize(Permission::ManageCompanies);
         $company->delete();
-        return redirect()->route("admin-companies")->with("message", "Company delete successfully");
+        return redirect()->route("admin-companies")->with("message", "status.company_deleted");
     }
 
     public function update(Company $company): void
@@ -72,6 +96,6 @@ class AdminCompaniesController extends Controller
     {
         $this->authorize(Permission::ManageCompanies);
         Company::where("id", $id)->onlyTrashed()->restore();
-        return redirect()->route("admin-trashed-companies")->with("message", "Company restored successfully");
+        return redirect()->route("admin-trashed-companies")->with("message", "status.company_restored");
     }
 }

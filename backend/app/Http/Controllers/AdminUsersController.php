@@ -36,7 +36,7 @@ class AdminUsersController extends Controller
     {
         $this->authorize(Permission::ManageCompanies);
         $user->delete();
-        return redirect()->route("admin-users")->with("message", "User delete successfully");
+        return redirect()->route("admin-users")->with("message", "status.company_deleted");
     }
 
     public function trashed(Request $request): Response
@@ -55,6 +55,6 @@ class AdminUsersController extends Controller
     {
         $this->authorize(Permission::ManageCompanies);
         User::where("id", $id)->onlyTrashed()->restore();
-        return redirect()->route("admin-trashed-users")->with("message", "User restored successfully");
+        return redirect()->route("admin-trashed-users")->with("message", "status.company_restored");
     }
 }

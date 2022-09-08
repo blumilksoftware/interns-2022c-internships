@@ -2,35 +2,34 @@
 import { useForm } from "@inertiajs/inertia-vue3";
 import InputError from "@/js/Shared/Components/InputError.vue";
 
-defineProps({
-  auth: Object,
+const props = defineProps({
+  company: Object,
 });
 
 const form = useForm({
-  name: null,
-  description: null,
+  _method: "put",
+  name: props.company.name,
+  description: props.company.description,
   address: {
-    street: null,
-    city: null,
-    postal_code: null,
-    voivodeship: null,
-    country: null,
+    street: props.company.address.street,
+    city: props.company.address.city,
+    postal_code: props.company.address.postal_code,
+    voivodeship: props.company.address.voivodeship,
+    country: props.company.address.country,
     coordinates: {
-      latitude: "0",
-      longitude: "0",
+      latitude: props.company.address.coordinates.latitude,
+      longitude: props.company.address.coordinates.longitude,
     },
   },
   contact_details: {
-    email: null,
-    website_url: "1",
-    phone_number: "1",
+    email: props.company.contact_details.email,
+    website_url: props.company.contact_details.website_url,
+    phone_number: props.company.contact_details.phone_number,
   },
 });
 
 const submit = () => {
-  form.put(route("company-store"), {
-    onFinish: () => form.reset(),
-  });
+  form.put(route("admin-companies-store", props.company.id), {});
 };
 </script>
 

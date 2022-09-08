@@ -8,12 +8,17 @@ import {
   TransitionRoot,
 } from "@headlessui/vue";
 import Button from "@/js/Shared/Components/Button.vue";
+import { useForm } from "@inertiajs/inertia-vue3";
 import { XIcon, PencilIcon } from "@heroicons/vue/outline";
 
+const form = useForm();
 const props = defineProps({
   company: Object,
 });
 const open = ref(false);
+function EditCompany(id) {
+  form.get(route("admin-companies-edit", id));
+}
 </script>
 
 <template>
@@ -129,7 +134,7 @@ const open = ref(false);
                 <button
                   type="button"
                   class="inline-flex w-full justify-center rounded-md border border-transparent hover:bg-blue-700 bg-blue-600 focus:ring-blue-500 px-4 py-2 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 sm:text-sm"
-                  @click="open = false"
+                  @click="EditCompany(company.id)"
                 >
                   <PencilIcon class="h-5 w-auto mr-1" />
                   {{ $t("buttons.edit_button") }}
