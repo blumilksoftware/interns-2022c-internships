@@ -4,7 +4,7 @@ import CompanyInfoBox from "./Components/CompanyInfoBox.vue";
 import CompanyList from "./Components/CompanyList.vue";
 import CompanyListHeader from "./Components/CompanyListHeader.vue";
 import Filter from "./Components/FilterDisclosure.vue";
-import { ref, watch } from "vue";
+import { ref, watch, onMounted } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 
 const props = defineProps({
@@ -17,11 +17,11 @@ const props = defineProps({
 });
 
 const showDetail = ref(false);
-const mapComponent = ref();
+let map = ref();
 
-function onCompanySelect(value) {
+function onCompanySelect(id) {
   Inertia.get(
-    "/company/view/" + value.toString(),
+    route("company-show", id),
     {},
     {
       preserveState: true,
@@ -29,14 +29,38 @@ function onCompanySelect(value) {
       only: ["selectedCompany"],
     }
   );
+}
 
-  mapComponent.value.goTo(value);
+function onDestroy() {
+  if (confirm("company_browser.confirm_delete")) {
+    showDetail.value = false;
+    Inertia.delete(route("company-delete", props.selectedCompany.data.id), {
+      only: ["companies", "markers"],
+      onSuccess: () => {
+        map.value.resetMarkers();
+      },
+    });
+  }
+}
+
+function onUpdate() {
+  if (confirm("company_browser.confirm_verify")) {
+    showDetail.value = false;
+    Inertia.post(route("company-verify", props.selectedCompany.data.id), {
+      only: ["companies, markers"],
+      onSuccess: () => {
+        map.value.resetMarkers();
+      },
+    });
+  }
 }
 
 function onDetailClose() {
   showDetail.value = false;
+  map.value.resetPosition();
+
   Inertia.get(
-    route("index"),
+    route("company-close"),
     {},
     {
       preserveState: true,
@@ -44,6 +68,10 @@ function onDetailClose() {
       only: ["selectedCompany"],
     }
   );
+}
+
+function onDetailZoom(id) {
+  map.value.goTo(id);
 }
 
 watch(
@@ -71,6 +99,18 @@ function onFiltersSelected(searchSelect, citySelect, specializationSelect) {
     }
   );
 }
+
+function onMapLoad() {
+  if (props.selectedCompany) {
+    map.value.goTo(props.selectedCompany.data.id);
+  }
+}
+
+onMounted(() => {
+  if (props.selectedCompany) {
+    showDetail.value = true;
+  }
+});
 </script>
 
 <template>
@@ -78,14 +118,15 @@ function onFiltersSelected(searchSelect, citySelect, specializationSelect) {
     class="flex-col w-full mx-0 flex sm:flex-row-reverse h-full overflow-hidden"
   >
     <div class="flex bg-gray-200 w-full h-full max-h-full">
-      <!-- <MapDisplay
+      <MapDisplay
         :markers="markers.data"
         @selectedCompany="onCompanySelect"
-        ref="mapComponent"
-      /> -->
+        @loaded="onMapLoad"
+        ref="map"
+      />
     </div>
     <div
-      class="flex flex-col bg-gray-50 w-full h-1/2 md:w-3/5 lg:w-3/5 xl:w-2/5 sm:h-full"
+      class="flex flex-col shadow-lg bg-gray-50 w-full h-1/2 md:w-3/5 lg:w-3/5 xl:w-2/5 sm:h-full"
     >
       <template v-if="!showDetail">
         <CompanyListHeader :total="companies.meta.total" />
@@ -103,7 +144,10 @@ function onFiltersSelected(searchSelect, citySelect, specializationSelect) {
       </template>
       <template v-else>
         <CompanyInfoBox
+          @destroy="onDestroy"
+          @update="onUpdate"
           @close="onDetailClose"
+          @zoom="onDetailZoom"
           :company="selectedCompany.data"
           class="h-full"
         />

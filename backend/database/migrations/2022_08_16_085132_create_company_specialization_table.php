@@ -12,7 +12,7 @@ return new class() extends Migration {
     public function up(): void
     {
         Schema::create("company_specialization", function (Blueprint $table): void {
-            $table->id();
+            $table->id()->index();
             $table->foreignIdFor(Company::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Specialization::class)->constrained()->cascadeOnDelete();
         });

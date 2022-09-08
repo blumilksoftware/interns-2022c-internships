@@ -12,7 +12,7 @@
         "search": "Search",
         "has_signed_papers": "College cooperation",
         "no_companies_found": "No companies match current filters.",
-        "is_pending": "Pending"
+        "is_pending": "Pending verification"
     },
     "tree_selects":{
         "tree_select_city": "Choose city",
@@ -87,6 +87,7 @@
         "description_503": "Can't access service at this time."
     },
     "validation": {
+        "required": "This field is required.",
         "unique": "Specified email address is already in the database.",
         "min": {
             "string": "Entered text is too short."

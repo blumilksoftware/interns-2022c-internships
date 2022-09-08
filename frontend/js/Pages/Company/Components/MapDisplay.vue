@@ -8,17 +8,18 @@ import { reactive, watch } from "vue";
 
 const props = defineProps({
   markers: Array,
+  flyTime: { Number, default: 2000 },
 });
-let loadedMap;
+
 let loadedMarkers = [];
+let loadedMap;
 
 const state = reactive({
   map: {
-    container: "map",
     accessToken: import.meta.env.VITE_MAPBOX_TOKEN,
     style: "mapbox://styles/plencka/cl7hbllqc002d14nfp7pjt4pv?optimize=true",
     center: [16.1472681, 51.2048546],
-    zoom: 5,
+    zoom: 15,
     maxZoom: 20,
     crossSourceCollisions: false,
     failIfMajorPerformanceCaveat: false,
@@ -33,18 +34,67 @@ const state = reactive({
 defineExpose({
   goTo,
   toggleMarkers,
+  resetPosition,
+  resetMarkers,
 });
 
-function goTo(markerId) {
-  let marker = loadedMarkers.find((item) => item.id === markerId).loadedMarker;
+function resetPosition() {
+  if (loadedMarkers.length === 0) {
+    return;
+  }
 
-  loadedMap.flyTo({
-    center: marker.getLngLat(),
-    zoom: 15,
+  const coordinates = loadedMarkers.map((marker) =>
+    marker.loadedMarker.getLngLat()
+  );
+
+  const bounds = new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]);
+
+  for (const coord of coordinates) {
+    bounds.extend(coord);
+  }
+
+  if (loadedMarkers.length === 1) {
+    loadedMap.flyTo({
+      center: coordinates[0],
+      zoom: 15,
+      duration: props.flyTime,
+    });
+  } else {
+    loadedMap.fitBounds(bounds, {
+      padding: 100,
+      duration: props.flyTime,
+    });
+  }
+}
+
+function goTo(markerId) {
+  if (loadedMarkers.length === 0) {
+    return;
+  }
+
+  let marker = loadedMarkers.find((item) => item.id === markerId);
+
+  if (marker) {
+    loadedMap.flyTo({
+      center: marker.loadedMarker.getLngLat(),
+      zoom: 15,
+      duration: props.flyTime,
+    });
+  }
+}
+
+function resetMarkers() {
+  loadedMarkers.forEach(function (marker) {
+    marker.loadedMarker.remove();
   });
+  loadedMarkers = [];
+
+  loadMarkers();
 }
 
 function toggleMarkers() {
+  resetPosition();
+
   loadedMarkers.forEach(function (marker) {
     let htmlElement = marker.loadedMarker.getElement();
     htmlElement.style.opacity = "0.4";
@@ -55,7 +105,7 @@ function toggleMarkers() {
   props.markers.forEach(function (marker) {
     let match = loadedMarkers.find((item) => item.id === marker.id);
 
-    if (match !== null) {
+    if (match) {
       let styledElement = match.loadedMarker.getElement();
       styledElement.style.opacity = "1";
       styledElement.style.height = "20px";
@@ -72,7 +122,8 @@ watch(
   { deep: true }
 );
 
-const emit = defineEmits(["selectedCompany"]);
+const emit = defineEmits(["selectedCompany", "loaded"]);
+
 function loadMarkers() {
   props.markers.forEach(function (marker) {
     let loadedMarker = createMarker(marker, loadedMap);
@@ -88,6 +139,7 @@ function onMapLoaded(createdMap) {
   loadedMap = createdMap;
   loadedMap.addControl(new mapboxgl.NavigationControl());
   loadedMap.addControl(new mapboxgl.FullscreenControl());
+
   loadedMap.dragRotate.disable();
   loadedMap.touchZoomRotate.disableRotation();
 
@@ -96,6 +148,8 @@ function onMapLoaded(createdMap) {
   });
 
   loadMarkers();
+  resetPosition();
+  emit("loaded");
 }
 </script>
 

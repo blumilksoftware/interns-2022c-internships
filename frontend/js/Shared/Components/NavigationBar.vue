@@ -34,12 +34,6 @@ import route from "ziggy";
               >
               <InertiaLink
                 v-if="$page.props.auth.user"
-                :href="route('company-index')"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >{{ $t("navigation_bar.own_companies") }}</InertiaLink
-              >
-              <InertiaLink
-                v-if="$page.props.auth.can.manage_companies"
                 :href="route('company-manage')"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >{{ $t("navigation_bar.manage_companies") }}</InertiaLink

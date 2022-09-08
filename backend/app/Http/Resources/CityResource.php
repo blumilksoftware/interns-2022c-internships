@@ -16,8 +16,8 @@ class CityResource extends JsonResource
     public function toArray($request): array|Arrayable|JsonSerializable
     {
         return [
-            "id" => $this->address->city,
-            "label" => $this->address->city,
+            "id" => $this->city,
+            "label" => $this->city,
         ];
     }
 }

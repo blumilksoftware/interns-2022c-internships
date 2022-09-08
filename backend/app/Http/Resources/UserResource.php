@@ -22,7 +22,6 @@ class UserResource extends JsonResource
             "email" => $this->email,
             "email_verified_at" => $this->email_verified_at,
             "role" => $this->role,
-            "children" => CompanyResource::collection($this->companies),
         ];
     }
 }

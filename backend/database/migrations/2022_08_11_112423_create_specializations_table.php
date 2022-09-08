@@ -11,7 +11,7 @@ return new class() extends Migration {
     public function up(): void
     {
         Schema::create("specializations", function (Blueprint $table): void {
-            $table->id();
+            $table->id()->index();
             $table->string("name");
             $table->foreignIdFor(StudyField::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
