@@ -2,6 +2,7 @@
 import LocationIcon from "@/assets/icons/locationIcon.svg";
 import { onMounted } from "vue";
 import { XIcon } from "@heroicons/vue/outline";
+import Button from "@/js/Shared/Components/Button.vue";
 
 const props = defineProps({
   company: Object,
@@ -66,29 +67,28 @@ onMounted(() => {
         </blockquote>
       </div>
       <div class="justify-center mx-auto gap-2 flex w-3/4">
-        <div
+        <Button
           type="button"
           @click="onUpdate"
           v-if="
             company.status === 'pending_new' &&
             $page.props.auth.can.manage_companies
           "
-          class="w-1/2 flex justify-center p-0 bg-green-600 border rounded-3xl border-stone-900 text-white hover:bg-green-900"
+          class=" bg-green-600 border hover:bg-green-900"
         >
-          Approve
-        </div>
-        <div
-          type="button"
+        {{ $t("buttons.approve_button") }}
+      </Button>
+        <Button
           v-if="
             $page.props.auth.user &&
             (company.owner_id === $page.props.auth.user.id ||
               $page.props.auth.can.manage_companies)
           "
           @click="onDestroy(company.id)"
-          class="justify-center flex w-1/2 p-0 bg-red-600 border rounded-3xl border-stone-900 text-white hover:bg-red-900"
+          class=" bg-red-600 border hover:bg-red-900"
         >
-          Delete
-        </div>
+        {{ $t("buttons.remove_button") }}
+        </Button>
       </div>
     </div>
   </div>
