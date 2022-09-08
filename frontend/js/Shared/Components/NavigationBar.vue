@@ -137,7 +137,7 @@ import route from "ziggy";
         <DisclosureButton
           v-if="$page.props.auth.user"
           as="a"
-          :href="route('company-index')"
+          :href="route('company-manage')"
           class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
         >
           {{ $t("navigation_bar.manage_companies") }}</DisclosureButton
