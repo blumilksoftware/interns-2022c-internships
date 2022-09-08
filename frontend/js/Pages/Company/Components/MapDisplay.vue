@@ -72,6 +72,8 @@ function goTo(markerId) {
       zoom: 15,
       duration: props.flyTime,
     });
+
+    marker.loadedMarker.togglePopup();
   }
 }
 
@@ -128,7 +130,17 @@ function onMapLoaded() {
     loadedMap.resize();
   });
 
-  createCollegeMarker(loadedMap);
+  let collegeMarker = createCollegeMarker(loadedMap);
+  collegeMarker.getElement()
+      .addEventListener("click", function () {
+        loadedMap.flyTo({
+          center: collegeMarker.getLngLat(),
+          zoom: 15,
+          duration: props.flyTime,
+        });
+
+        collegeMarker.togglePopup();
+      });
   loadMarkers();
   resetPosition();
   emit("loaded");
