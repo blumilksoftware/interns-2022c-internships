@@ -1,4 +1,4 @@
-import mapboxgl from "mapbox-gl";
+import maplibregl from "maplibre-gl";
 import LocationIcon from "@/assets/icons/locationIcon.svg";
 
 function popupHTML(marker) {
@@ -6,7 +6,7 @@ function popupHTML(marker) {
 }
 
 export function createMarker(marker, map) {
-  const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(popupHTML(marker));
+  const popup = new maplibregl.Popup({ offset: 25 }).setHTML(popupHTML(marker));
 
   let markerElement = document.createElement("img");
   markerElement.className = "marker";
@@ -14,10 +14,10 @@ export function createMarker(marker, map) {
   markerElement.style.height = "20px";
   markerElement.style.width = "20px";
 
-  let mapMarker = new mapboxgl.Marker(markerElement)
-    .setLngLat(marker.location.coordinates)
-    .setPopup(popup)
-    .addTo(map);
+  let mapMarker = new maplibregl.Marker(markerElement)
+      .setLngLat(marker.location.coordinates)
+      .setPopup(popup)
+      .addTo(map);
 
   markerElement.addEventListener("mouseenter", function () {
     mapMarker.togglePopup();

@@ -11,7 +11,7 @@ The project contains a modified default configuration and is structured as follo
 sh setup.sh
 ```
 Or you can do provided steps in the file manually.
-Remember to add VITE_MAPBOX_TOKEN key in .env.
+Remember to add VITE_MAPLIBRE_TOKEN and API_GEOCODE_TOKEN keys in .env.
 
 ### 2. Run development environment:
 To develop the application in a local environment:
