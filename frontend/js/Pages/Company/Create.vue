@@ -187,7 +187,7 @@ defineProps({
 
     <div class="flex flex-col items-center justify-center md:flex-row">
         <FormKit type="button" :disabled="activeStep === 'companyInfo'" @click="setStep(-1)" v-text="'< ' + 'Previous step'" />
-        <div class=""><FormKit type="submit" label="Submit Application" :disabled="!valid" /></div>
+        <div class=""><FormKit type="submit" :disabled="!valid" /></div>
         <div class="order-first md:order-last"><FormKit type="button" class="next" :disabled="activeStep === 'companyDescription' " @click="setStep(1)" v-text="'Next step' + ' >'"/></div>
     </div>
 
