@@ -1,5 +1,6 @@
 <script setup>
 import { useForm } from "@inertiajs/inertia-vue3";
+import InputError from "@/js/Shared/Components/InputError.vue";
 import { ref } from "vue";
 import ImageUploader from "@/js/Shared/Components/ImageUploader.vue";
 import MarkdownEditor from "@/js/Shared/Components/MarkdownEditor.vue";
@@ -11,6 +12,7 @@ import MapGeocode from "./Components/MapGeocode.vue";
 const form = useForm({
   name: null,
   description: "",
+  logoFile: null,
   address: {
     street: null,
     city: null,
@@ -29,7 +31,7 @@ const form = useForm({
 function submit() {
   form.address.coordinates = getCoordinatesFromMap();
   form.post(route("company-store"), {
-    onFinish: () => form.reset(),
+    _method: 'put',
   });
 }
 
@@ -63,11 +65,6 @@ function getCoordinatesFromMap(){
     longitude: coords.lng,
   }
 }
-
-defineProps({
-  image: File,
-});
-
 </script>
 
 <template>
@@ -153,7 +150,8 @@ defineProps({
           <!-- 1 panel -->
           <section class="flex flex-col items-center w-full md:w-auto" v-show="activeStep === 'info'">
             <label>Logo</label>
-            <ImageUploader class="h-52 w-52" v-model="image"/>
+            <ImageUploader class="h-52 w-52" v-model="form.logoFile"/>
+            <InputError class="mt-2" :message="form.errors.logoFile" />
 
             <FormKit type="group" id="info" name="info">
               <FormKit
@@ -162,6 +160,7 @@ defineProps({
                   label="Nazwa firmy"
                   validation="required|length:2,255"
               />
+              <InputError class="mt-2" :message="form.errors.name" />
 
               <FormKit
                   v-model="form.contact_details.email"
@@ -169,6 +168,7 @@ defineProps({
                   label="E-Mail Firmowy"
                   validation="required|email"
               />
+              <InputError class="mt-2" :message="form.errors.contact_details" />
 
               <FormKit
                   v-model="form.contact_details.phone_number"
@@ -229,6 +229,7 @@ defineProps({
                       type="text"
                       validation="required"
                   />
+                  <InputError class="mt-2" :message="form.errors.address" />
 
                   <FormKit
                       help="Ustaw marker na mapie"
@@ -255,6 +256,7 @@ defineProps({
                   v-model="form.description"
                   validation="required"
               />
+              <InputError class="mt-2" :message="form.errors.description" />
             </FormKit>
           </section>
         </div>
@@ -272,6 +274,9 @@ defineProps({
         >
           {{ $t("buttons.request_button") }}
         </FormKit>
+        <progress v-if="form.progress" :value="form.progress.percentage" max="100">
+          {{ form.progress.percentage }}%
+        </progress>
       </div>
     </FormKit>
   </div>
