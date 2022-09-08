@@ -1,6 +1,6 @@
 <script setup>
 import Button from "@/js/Shared/Components/Button.vue";
-import MoreInfo from "./MoreButtonCompany.vue";
+import MoreInfo from "./MoreInfoButtonCompany.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
 const props = defineProps({
   companies: Object,
@@ -20,7 +20,7 @@ function CompanyRestore(id) {
       <h1
         class="text-lg hidden md:flex justify-center font-semibold text-gray-900"
       >
-        Deleted companies
+        {{ $t("admin_panel.deleted_companies") }}
       </h1>
       <table class="min-w-full divide-y mt-2 divide-gray-100">
         <thead class="bg-gray-50">
@@ -29,14 +29,12 @@ function CompanyRestore(id) {
               scope="col"
               class="py-3.5 pl-1 pr-1 text-center text-sm font-semibold text-gray-900 sm:pl-6"
             >
-              Name
+              {{ $t("add_company.company_name") }}
             </th>
             <th
               scope="col"
               class="py-3.5 pl-1 pr-1 text-center text-sm font-semibold text-gray-900 sm:pl-6"
-            >
-              Options
-            </th>
+            ></th>
           </tr>
         </thead>
         <tbody
@@ -68,7 +66,7 @@ function CompanyRestore(id) {
               <Button
                 @click="CompanyRestore(company.id)"
                 class="hover:bg-orange-700 bg-orange-600 focus:ring-orange-500 ml-5"
-                >Recover</Button
+                >{{ $t("buttons.restore_button") }}</Button
               >
             </td>
           </tr>

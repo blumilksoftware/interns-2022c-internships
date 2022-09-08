@@ -4,8 +4,8 @@ import Treeselect from "@tkmam1x/vue3-treeselect";
 import "@tkmam1x/vue3-treeselect/dist/vue3-treeselect.css";
 import StatusDisplay from "./StatusDisplay.vue";
 import Button from "@/js/Shared/Components/Button.vue";
-import MoreInfo from "./MoreButtonCompany.vue";
-import ApproveButton from "../../../Shared/Components/ApproveButton.vue";
+import MoreInfo from "./MoreInfoButtonCompany.vue";
+import ApproveButton from "@/js/Shared/Components/ApproveButton.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
 import { TrashIcon } from "@heroicons/vue/outline";
 
@@ -16,7 +16,7 @@ const props = defineProps({
 const statuses = [
   {
     id: "verified",
-    label: "Active",
+    label: "Verified",
   },
   {
     id: "pending_new",
@@ -50,7 +50,7 @@ function approve(id) {
         <h1
           class="text-3xl hidden md:flex justify-center font-semibold text-gray-900"
         >
-          Companies
+          {{ $t("admin_panel.companies_header") }}
         </h1>
       </div>
     </div>
@@ -87,19 +87,13 @@ function approve(id) {
                     scope="col"
                     class="py-3.5 pl-4 pr-1 text-left text-sm font-semibold text-gray-900 sm:pl-6 w-1/3 min-w-md"
                   >
-                    Name
+                    {{ $t("add_company.company_name") }}
                   </th>
                   <th
                     scope="col"
                     class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell w-1/4 min-w-md"
                   >
-                    City
-                  </th>
-                  <th
-                    scope="col"
-                    class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell w-1/4 min-w-md"
-                  >
-                    E-Mail
+                    {{ $t("common_labels.email") }}
                   </th>
                   <th
                     scope="col"
@@ -110,21 +104,15 @@ function approve(id) {
                   <th
                     scope="col"
                     class="relative py-3.5 pl-3 pr-4 sm:pr-6 w-1/6"
-                  >
-                    <span class="sr-only">Edit</span>
-                  </th>
+                  ></th>
                   <th
                     scope="col"
                     class="relative py-3.5 pl-3 pr-4 sm:pr-6 w-1/6"
-                  >
-                    <span class="sr-only">Remove</span>
-                  </th>
+                  ></th>
                   <th
                     scope="col"
                     class="relative py-3.5 pl-3 pr-4 sm:pr-6 w-1/6"
-                  >
-                    <span class="sr-only">Approve</span>
-                  </th>
+                  ></th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white max-h-full">
@@ -146,13 +134,6 @@ function approve(id) {
                         </div>
                         <div class="text-gray-500">{{ company.email }}</div>
                       </div>
-                    </div>
-                  </td>
-                  <td
-                    class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell"
-                  >
-                    <div class="text-gray-900">
-                      {{ company.location.name.city }}
                     </div>
                   </td>
                   <td
@@ -180,16 +161,18 @@ function approve(id) {
                     <Button
                       @click="destroy(company.id)"
                       class="hover:bg-red-700 bg-red-600 focus:ring-red-500"
-                      >Remove</Button
+                      >{{ $t("buttons.remove_button") }}</Button
                     >
                   </td>
                   <td
                     class="relative whitespace-nowrap py-1 pl-3 pr-1 text-center text-sm font-medium sm:pr-3"
                   >
                     <ApproveButton
+                      v-if="company.status !== 'verified'"
                       @click="approve(company.id)"
                       :status="company.status"
                     />
+                    <ApproveButton v-else :status="company.status" />
                   </td>
                 </tr>
               </tbody>

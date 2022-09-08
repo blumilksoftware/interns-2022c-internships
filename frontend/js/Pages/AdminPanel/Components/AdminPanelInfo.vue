@@ -7,7 +7,7 @@ const props = defineProps({
 
 const companies = [
   {
-    name: "Actives ",
+    name: "Verified ",
     href: "/admin/companies?status=verified",
     quantity: props.active,
     bgColor: "bg-green-500",
@@ -26,9 +26,9 @@ const companies = [
     class="xl:m-auto my-10 mx-8 max-w-4xl px-0 sm:px-0 border-1 border-gray-700 shadow-md rounded-lg bg-white w-full lg:px-8"
   >
     <div class="mx-5 my-5 max-w-3xl text-lg font-bold">
-      Welcome! {{ $page.props.auth.user.full_name }}
+      {{ $t("admin_panel.welcome") }} ! {{ $page.props.auth.user.full_name }}
       <div clas="flex justify center">
-        <h1 class="text-center">Companies group by status</h1>
+        <h1 class="text-center">{{ $t("admin_panel.grouped") }}</h1>
         <ul role="list" class="mt-3 flex flex-col">
           <li
             v-for="company in companies"
@@ -59,7 +59,7 @@ const companies = [
           </li>
         </ul>
         <div class="mx-5 mt-11 max-w-3xl text-md text-end">
-          For details check out tabs on the left
+          {{ $t("admin_panel.more_info") }}
         </div>
       </div>
     </div>

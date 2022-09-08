@@ -68,15 +68,20 @@ const open = ref(false);
                     >{{ user.full_name }}</DialogTitle
                   >
                   <div class="absolute top-0 right-0 hidden pt-4 pr-4 sm:block">
-                <button type="button" class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" @click="open = false">
-                  <span class="sr-only">Close</span>
-                  <XIcon class="h-6 w-6" aria-hidden="true" />
-                </button>
-              </div>
+                    <button
+                      type="button"
+                      class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      @click="open = false"
+                    >
+                      <XIcon class="h-6 w-6" aria-hidden="true" />
+                    </button>
+                  </div>
                   <slot></slot>
                   <div class="text-gray-400">{{ user.email }}</div>
                   <div class="mt-2">
-                    <p class="text-sm text-gray-900">Owned companies:</p>
+                    <p class="text-sm text-gray-900">
+                      {{ $t("navigation_bar.own_companies") }}:
+                    </p>
                     <div v-for="child in props.user.children" :key="child.id">
                       <div class="flex items-center justify-center">
                         <div class="flex-shrink-0 justify-center my-2">

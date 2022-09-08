@@ -23,7 +23,7 @@ function UserRestore(id) {
       <h1
         class="text-lg hidden md:flex justify-center font-semibold text-gray-900"
       >
-        Deleted users
+        {{ $t("admin_panel.deleted_users") }}
       </h1>
       <table class="min-w-full divide-y mt-2 divide-gray-100">
         <thead class="bg-gray-50">
@@ -32,14 +32,13 @@ function UserRestore(id) {
               scope="col"
               class="py-3.5 pl-1 pr-1 text-center text-sm font-semibold text-gray-900 sm:pl-6"
             >
-              Name
+              {{ $t("registration.first_name") }}
+              {{ $t("registration.last_name") }}
             </th>
             <th
               scope="col"
               class="py-3.5 pl-1 pr-1 text-center text-sm font-semibold text-gray-900 sm:pl-6"
-            >
-              Options
-            </th>
+            ></th>
           </tr>
         </thead>
         <tbody
@@ -70,7 +69,7 @@ function UserRestore(id) {
                 <Button
                   @click="UserRestore(user.id)"
                   class="hover:bg-orange-700 bg-orange-600 focus:ring-orange-500 ml-5"
-                  >Recover</Button
+                  >{{ $t("buttons.restore_button") }}</Button
                 >
               </div>
             </td>

@@ -32,7 +32,7 @@ function destroy(id) {
         <h1
           class="text-3xl hidden md:flex justify-center font-semibold text-gray-900"
         >
-          Users
+          {{ $t("admin_panel.users_header") }}
         </h1>
       </div>
     </div>
@@ -76,30 +76,31 @@ function destroy(id) {
                     scope="col"
                     class="py-3.5 pl-1 pr-1 text-left text-lg font-semibold text-gray-900 sm:pl-6 w-1/4"
                   >
-                    First Name
+                    {{ $t("registration.first_name") }}
                   </th>
                   <th
                     scope="col"
                     class="py-3.5 pl-1 pr-1 text-left text-lg font-semibold text-gray-900 sm:pl-6 w-1/4"
                   >
-                    Last name
+                    {{ $t("registration.last_name") }}
                   </th>
                   <th
                     scope="col"
                     class="lg:table-cell hidden py-3.5 pr-2 text-left text-lg font-semibold text-gray-900 pl-2 sm:pl-6 w-1/3"
                   >
-                    E-mail
+                    {{ $t("common_labels.email") }}
                   </th>
                   <th
                     scope="col"
                     class="lg:table-cell hidden py-3.5 pl-1 pr-2 text-left text-sm font-semibold text-gray-900 sm:pl-6 w-1/3"
                   >
-                    Role
+                    {{ $t("admin_panel.role") }}
                   </th>
 
-                  <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                    <span class="sr-only">Remove</span>
-                  </th>
+                  <th
+                    scope="col"
+                    class="relative py-3.5 pl-3 pr-4 sm:pr-6"
+                  ></th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white">
@@ -150,7 +151,7 @@ function destroy(id) {
                     <Button
                       @click="destroy(user.id)"
                       class="hover:bg-red-700 bg-red-600 focus:ring-red-500"
-                      >Remove</Button
+                      >{{ $t("buttons.remove_button") }}</Button
                     >
                   </td>
                 </tr>

@@ -18,7 +18,9 @@
     },
     "tree_selects":{
         "tree_select_city": "Wybierz miasto",
-        "tree_select_specialization": "Wybierz specjalizację"
+        "tree_select_specialization": "Wybierz specjalizację",
+        "tree_select_active": "Zweryfikowane",
+        "tree_select_new": "Nowe"
     },
     "pagination":{
         "next": "Następna",
@@ -63,13 +65,21 @@
         "cancel_button": "Zakończ",
         "request_button": "Zgłoś",
         "registration_button": "Zarejestruj się",
-        "go_home_button": "Wróć na stronę główną"
+        "go_home_button": "Wróć na stronę główną",
+        "remove_button": "Usuń",
+        "restore_button": "Przywróć",
+        "more_info_button": "Więcej",
+        "edit_button": "Edytuj",
+        "approve_button": "Zatwierdź"
     },
     "common_labels":{
         "email": "Adres e-mail",
         "password": "Hasło",
         "password_confirm": "Potwierdź hasło",
-        "country": "Kraj"
+        "country": "Kraj",
+        "address": "Adres",
+        "contact": "Kontakt",
+        "specialization": "Specjalizacja"
     },
     "error":{
         "header": "Błąd",
@@ -108,5 +118,19 @@
         "user": "Brak podanego adresu e-mail w bazie.",
         "reset": "Twoje hasło zostało zmienione.",
         "token": "Token do zmiany hasła wygasł, prosimy utworzyć nowe żądanie."
+    },
+    "admin_panel":{
+        "companies_header": "Firmy",
+        "users_header": "Użytkownicy",
+        "deleted_companies": "Usunięte firmy",
+        "deleted_users": "Usunięci użytkownicy",
+        "welcome": "Witaj",
+        "grouped": "Firmy grupowane po statusie",
+        "more_info": "Po więcej informacji sprawdź zakładki z lewej",
+        "role": "Rola",
+        "administrator": "Administrator",
+        "company_owner": "Właściciel firmy",
+        "status_verified": "Zweryfikowana",
+        "status_new": "Nowa"
     }
 }

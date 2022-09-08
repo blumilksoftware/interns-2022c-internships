@@ -16,7 +16,9 @@
     },
     "tree_selects":{
         "tree_select_city": "Choose city",
-        "tree_select_specialization": "Choose specialization"
+        "tree_select_specialization": "Choose specialization",
+        "tree_select_active": "Verified",
+        "tree_select_new": "New"
     },
     "pagination":{
         "next": "Next",
@@ -61,13 +63,21 @@
         "cancel_button": "Cancel",
         "request_button": "Request",
         "registration_button": "Register",
-        "go_home_button": "Go back home"
+        "go_home_button": "Go back home",
+        "remove_button": "Remove",
+        "restore_button": "Restore",
+        "more_info_button": "More",
+        "edit_button": "Edit",
+        "approve_button": "Approve"
     },
     "common_labels":{
         "email": "Email address",
         "password": "Password",
         "password_confirm": "Confirm password",
-        "country": "Country"
+        "country": "Country",
+        "address": "Address",
+        "contact": "Contact",
+        "specialization": "Specialization"
     },
     "error":{
         "header": "Error",
@@ -106,5 +116,19 @@
         "user": "The specified email address does not exist in our database.",
         "reset": "Your password has been changed.",
         "token": "Token to change the password has expired, please create a new request."
+    },
+    "admin_panel":{
+        "companies_header": "Companies",
+        "users_header": "Users",
+        "deleted_companies": "Deleted companies",
+        "deleted_users": "Deleted users",
+        "welcome": "Welcome",
+        "grouped": "Companies group by status",
+        "more_info": "For details check out tabs on the left",
+        "role": "Role",
+        "administrator": "Administrator",
+        "company_owner": "Company owner",
+        "status_verified": "Verified",
+        "status_new": "New"
     }
 }
