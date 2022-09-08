@@ -31,6 +31,7 @@ const props = defineProps({
       'quote',
       'link',
       'pageFullscreen',
+      'preview',
     ]},
   previewTheme: {String, default: "github"},
 });

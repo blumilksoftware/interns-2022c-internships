@@ -15,8 +15,8 @@ function createMarker(center) {
   let markerElement = document.createElement("img");
   markerElement.className = "marker";
   markerElement.src = LocationIcon;
-  markerElement.style.height = "20px";
-  markerElement.style.width = "20px";
+  markerElement.style.height = "35px";
+  markerElement.style.width = "35px";
 
   return new maplibregl.Marker(markerElement, {draggable: true})
       .setLngLat(center);
@@ -37,12 +37,16 @@ async function find(placeName) {
 
   if (results.features[0]) {
     locationMarker.setLngLat(results.features[0].center);
-    loadedMap.fitBounds(results.features[0].bbox, {maxZoom: 19})
+    loadedMap.flyTo({
+      center: results.features[0].center,
+      zoom: 15,
+      duration: 0,
+    });
   }
 }
 
 function getCoordinates() {
-  return locationMarker.center;
+  return locationMarker.getLngLat();
 }
 
 function onMapLoaded() {

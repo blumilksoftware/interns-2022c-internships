@@ -124,9 +124,6 @@ function onMapLoaded() {
   loadedMap.addControl(new maplibregl.GeolocateControl());
   loadedMap.addControl(new maplibregl.LogoControl());
 
-  loadedMap.dragRotate.disable();
-  loadedMap.touchZoomRotate.disableRotation();
-
   loadedMap.on("idle", function () {
     loadedMap.resize();
   });
