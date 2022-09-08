@@ -4,10 +4,14 @@ import ImageUploader from "@/js/Shared/Components/ImageUploader.vue";
 import MarkdownEditor from "@/js/Shared/Components/MarkdownEditor.vue";
 import { camel2title } from "./utils.js";
 import useSteps from "./useSteps.js";
-import { CheckIcon } from '@heroicons/vue/solid';
+import { CheckIcon, ExclamationCircleIcon } from '@heroicons/vue/solid';
 
-const { steps, activeStep, stepPlugin, setStep } = useSteps();
+const { steps, activeStep, stepPlugin, setStep, visitedSteps } = useSteps();
 const text = ref("# Hello Editor");
+
+const checkStepValidity = (stepName) => {
+  return (steps[stepName].errorCount > 0 || steps[stepName].blockingCount > 0) && visitedSteps.value.includes(stepName)
+}
 
 defineProps({
   image: File,
@@ -54,6 +58,18 @@ defineProps({
             <span class="ml-4 text-sm font-medium text-primary">{{ camel2title(stepName) }}</span>
           </a>
           <a
+              v-else-if="checkStepValidity(stepName)"
+              :href="step.href"
+              class="group flex w-full items-center"
+          >
+          <span class="flex items-center px-6 py-4 text-sm font-medium">
+            <span class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary group-hover:bg-secondary">
+              <ExclamationCircleIcon class="h-6 w-6 text-white" aria-hidden="true" />
+            </span>
+            <span class="ml-4 text-sm font-medium text-gray-900">{{ camel2title(stepName) }}</span>
+          </span>
+          </a>
+          <a
               v-else
               :href="step.href"
               class="group flex items-center"
@@ -91,25 +107,24 @@ defineProps({
           <label>Nazwa firmy</label>
           <FormKit
               type="text"
-              validation="required"
+              validation="required|length:2,255"
           />
 
           <label>E-mail</label>
           <FormKit
-              type="text"
-              validation="required"
+              type="email"
+              validation="required|email"
           />
 
           <label>Numer telefonu</label>
           <FormKit
               type="text"
-              validation="required"
           />
 
           <label>Strona www</label>
           <FormKit
-              type="text"
-              validation="required"
+              type="url"
+              validation="url"
           />
         </FormKit>
       </section>
@@ -120,13 +135,22 @@ defineProps({
           <div>
             <FormKit type="group" id="companyAddress" name="companyAddress">
               <label>Państwo</label>
-              <FormKit type="text" />
+              <FormKit
+                  type="text"
+                  validation="required"
+              />
 
               <label>Województwo</label>
-              <FormKit type="text" />
+              <FormKit
+                  type="text"
+                  validation="required"
+              />
 
               <label>Miasto</label>
-              <FormKit type="text" />
+              <FormKit
+                  type="text"
+                  validation="required"
+              />
 
               <label>Kod pocztowy</label>
               <FormKit
@@ -168,6 +192,7 @@ defineProps({
     </div>
 
   </FormKit>
+
 </template>
 
 <style>
