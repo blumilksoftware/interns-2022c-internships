@@ -56,7 +56,7 @@ class CompanyController extends Controller
         $this->authorize("show", $company);
         session(["view-source" => url()->previous()]);
 
-        return $this->list($request)->with(
+        return $request->list()->with(
             "selectedCompany",
             new CompanyResource($company),
         );

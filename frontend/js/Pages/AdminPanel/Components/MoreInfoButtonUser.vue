@@ -8,7 +8,7 @@ import {
   TransitionRoot,
 } from "@headlessui/vue";
 import Button from "@/js/Shared/Components/Button.vue";
-import { UsersIcon } from "@heroicons/vue/outline";
+import { UsersIcon, XIcon } from "@heroicons/vue/outline";
 
 const props = defineProps({
   user: Object,
@@ -67,6 +67,12 @@ const open = ref(false);
                     class="text-lg font-medium leading-6 text-gray-900"
                     >{{ user.full_name }}</DialogTitle
                   >
+                  <div class="absolute top-0 right-0 hidden pt-4 pr-4 sm:block">
+                <button type="button" class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" @click="open = false">
+                  <span class="sr-only">Close</span>
+                  <XIcon class="h-6 w-6" aria-hidden="true" />
+                </button>
+              </div>
                   <slot></slot>
                   <div class="text-gray-400">{{ user.email }}</div>
                   <div class="mt-2">
@@ -91,15 +97,6 @@ const open = ref(false);
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="mt-5 sm:mt-6">
-                <button
-                  type="button"
-                  class="inline-flex w-full justify-center rounded-md border border-transparent hover:bg-blue-700 bg-blue-600 focus:ring-blue-500 px-4 py-2 text-base font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 sm:text-sm"
-                  @click="open = false"
-                >
-                  Close
-                </button>
               </div>
             </DialogPanel>
           </TransitionChild>

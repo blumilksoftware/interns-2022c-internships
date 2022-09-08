@@ -38,7 +38,7 @@ function approve(id) {
   if (confirm("Are you sure you want to Approve")) {
     form.put(route("admin-companies-update", id));
   }
- }
+}
 </script>
 
 <template>
@@ -151,7 +151,9 @@ function approve(id) {
                   <td
                     class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell"
                   >
-                    <div class="text-gray-900">{{ company.address.city }}</div>
+                    <div class="text-gray-900">
+                      {{ company.location.name.city }}
+                    </div>
                   </td>
                   <td
                     class="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell"
@@ -169,8 +171,8 @@ function approve(id) {
                     class="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6"
                   >
                     <MoreInfo :company="company"
-                      ><StatusDisplay :status="company.status" /></MoreInfo
-                    >
+                      ><StatusDisplay :status="company.status"
+                    /></MoreInfo>
                   </td>
                   <td
                     class="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6"

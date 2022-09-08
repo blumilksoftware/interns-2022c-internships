@@ -35,8 +35,8 @@ class CompanyRequest extends FormRequest
         $address = $this->get("address");
         $fetchedLocation = (new LocationFetcher())
             ->query(collect($address)
-                ->except(["coordinates"])
-                ->implode(" "), )
+            ->except(["coordinates"])
+            ->implode(" "), )
             ->getLocations()
             ->first();
 

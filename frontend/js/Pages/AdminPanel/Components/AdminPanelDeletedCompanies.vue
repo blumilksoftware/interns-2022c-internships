@@ -64,13 +64,12 @@ function CompanyRestore(id) {
             <td
               class="py-3.5 pl-1 pr-1 text-center text-sm font-semibold text-gray-900 sm:pl-6"
             >
-            <MoreInfo :company="company"></MoreInfo>
+              <MoreInfo :company="company"></MoreInfo>
               <Button
                 @click="CompanyRestore(company.id)"
                 class="hover:bg-orange-700 bg-orange-600 focus:ring-orange-500 ml-5"
                 >Recover</Button
               >
-              
             </td>
           </tr>
         </tbody>
