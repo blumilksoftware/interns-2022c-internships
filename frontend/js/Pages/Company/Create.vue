@@ -68,7 +68,6 @@ defineProps({
   image: File,
 });
 
-let valid = false;
 </script>
 
 <template>
@@ -188,62 +187,62 @@ let valid = false;
 
           <!-- 2 panel -->
           <section class="flex flex-col items-center w-full md:w-auto" v-show="activeStep === 'address'">
-                <FormKit type="group" id="address" name="address">
-                  <div class="flex flex-col-reverse md:flex-row">
-                    <div>
-                      <FormKit
-                          v-model="form.address.country"
-                          id="country"
-                          label="Kraj"
-                          type="text"
-                          validation="required"
-                      />
+            <FormKit type="group" id="address" name="address">
+              <div class="flex flex-col-reverse md:flex-row">
+                <div>
+                  <FormKit
+                      v-model="form.address.country"
+                      id="country"
+                      label="Kraj"
+                      type="text"
+                      validation="required"
+                  />
 
-                      <FormKit
-                          v-model="form.address.voivodeship"
-                          id="voivodeship"
-                          label="Województwo"
-                          type="text"
-                          validation="required"
-                      />
+                  <FormKit
+                      v-model="form.address.voivodeship"
+                      id="voivodeship"
+                      label="Województwo"
+                      type="text"
+                      validation="required"
+                  />
 
-                      <FormKit
-                          v-model="form.address.city"
-                          id="city"
-                          label="Miasto"
-                          type="text"
-                          validation="required"
-                      />
+                  <FormKit
+                      v-model="form.address.city"
+                      id="city"
+                      label="Miasto"
+                      type="text"
+                      validation="required"
+                  />
 
-                      <FormKit
-                          v-model="form.address.postal_code"
-                          label="Kod pocztowy"
-                          id="postal_code"
-                          type="text"
-                          validation="required"
-                      />
+                  <FormKit
+                      v-model="form.address.postal_code"
+                      label="Kod pocztowy"
+                      id="postal_code"
+                      type="text"
+                      validation="required"
+                  />
 
-                      <FormKit
-                          v-model="form.address.street"
-                          label="Ulica"
-                          id="street"
-                          type="text"
-                          validation="required"
-                      />
+                  <FormKit
+                      v-model="form.address.street"
+                      label="Ulica"
+                      id="street"
+                      type="text"
+                      validation="required"
+                  />
 
-                      <FormKit
-                          help="Ustaw marker na mapie"
-                          type="button"
-                          @click="generateCoordinates"
-                      >
-                        Generuj
-                      </FormKit>
-                    </div>
-                    <div class="pl-0 md:pl-5 h-96 w-full md:w-96">
-                      <MapGeocode ref="map" />
-                    </div>
-                  </div>
-                </FormKit>
+                  <FormKit
+                      help="Ustaw marker na mapie"
+                      type="button"
+                      @click="generateCoordinates"
+                  >
+                    Generuj
+                  </FormKit>
+                </div>
+                <div class="pl-0 md:pl-5 h-96 w-full md:w-96">
+                  <MapGeocode ref="map" />
+                </div>
+              </div>
+            </FormKit>
           </section>
 
           <!-- 3 panel -->
@@ -258,23 +257,23 @@ let valid = false;
               />
             </FormKit>
           </section>
-          </div>
         </div>
-      </FormKit>
-    <div class="flex flex-col w-full items-center">
-      <div class="flex flex-col md:flex-row items-center">
-        <FormKit type="button" :disabled="activeStep === 'info'" @click="setStep(-1)" v-text="'< ' + 'Previous step'" />
-        <FormKit type="button" class="next" :disabled="activeStep === 'description' " @click="setStep(1)" v-text="'Next step' + ' >'"/>
       </div>
-      <FormKit
-          class="flex flex-col"
-          type="submit"
-          :disabled="form.processing && !valid"
-          @click="submit"
-      >
-        {{ $t("buttons.request_button") }}
-      </FormKit>
-    </div>
+      <div class="flex flex-col w-full items-center">
+        <div class="flex flex-col md:flex-row items-center">
+          <FormKit type="button" :disabled="activeStep === 'info'" @click="setStep(-1)" v-text="'< ' + 'Previous step'" />
+          <FormKit type="button" class="next" :disabled="activeStep === 'description' " @click="setStep(1)" v-text="'Next step' + ' >'"/>
+        </div>
+        <FormKit
+            class="flex flex-col"
+            type="submit"
+            :disabled="form.processing || !valid"
+            @click="submit"
+        >
+          {{ $t("buttons.request_button") }}
+        </FormKit>
+      </div>
+    </FormKit>
   </div>
 </template>
 
