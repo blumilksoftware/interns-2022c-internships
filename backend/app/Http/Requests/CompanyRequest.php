@@ -35,8 +35,8 @@ class CompanyRequest extends FormRequest
             "contact_details.email" => ["required", "email"],
             "logoFile" => [
                 File::image()
-                    ->max(12 * 1024)
-                    ->dimensions(Rule::dimensions()->maxWidth(1000)->maxHeight(1000)),
+                    ->max(3 * 1024)
+                    ->dimensions(Rule::dimensions()->maxWidth(2000)->maxHeight(2000)),
             ],
         ];
     }

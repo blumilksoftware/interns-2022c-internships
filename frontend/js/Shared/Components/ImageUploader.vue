@@ -56,12 +56,13 @@ function drop(event) {
           'mx-auto h-12 w-12',
         ]"
       />
-      <span>Prześlij plik</span>
-      <span class="block text-xs text-gray-500"> PNG, JPG, GIF do 10MB </span>
+      <span>{{ $t("image_uploader.upload_file") }}</span>
+      <span class="block text-xs text-gray-500">{{ $t("image_uploader.allowed_extensions") }}</span>
       <input
         :id="id"
         ref="file"
         type="file"
+        accept=".png,.jpg,.gif"
         class="hidden"
         @change="onChange"
       />
