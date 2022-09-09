@@ -6,6 +6,9 @@ import CompanyListHeader from "./Components/CompanyListHeader.vue";
 import Filter from "./Components/FilterDisclosure.vue";
 import { ref, watch, onMounted } from "vue";
 import { Inertia } from "@inertiajs/inertia";
+import { useI18n } from "vue-i18n"
+
+const i18n = useI18n();
 
 const props = defineProps({
   filters: Object,
@@ -32,7 +35,7 @@ function onCompanySelect(id) {
 }
 
 function onDestroy() {
-  if (confirm("company_browser.confirm_delete")) {
+  if (confirm(i18n.t("company_browser.delete_confirm"))) {
     showDetail.value = false;
     Inertia.delete(route("company-delete", props.selectedCompany.data.id), {
       only: ["companies", "markers"],
@@ -44,7 +47,7 @@ function onDestroy() {
 }
 
 function onUpdate() {
-  if (confirm("company_browser.confirm_verify")) {
+  if (confirm(i18n.t("company_browser.verify_confirm"))) {
     showDetail.value = false;
     Inertia.post(route("company-verify", props.selectedCompany.data.id), {
       only: ["companies, markers"],

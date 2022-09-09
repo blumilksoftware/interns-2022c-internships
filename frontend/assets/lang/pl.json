@@ -14,7 +14,10 @@
         "has_signed_papers": "Umowa z uczelnią",
         "no_companies_found": "Żadna firma nie pasuje do bieżącego wyszukiwania.",
         "is_pending": "W oczekiwaniu na weryfikację",
-        "delete_confirm": "Usunąć firmę?"
+        "delete_button": "Usuń",
+        "verify_button": "Zweryfikuj",
+        "delete_confirm": "Czy na pewno usunąć firmę?",
+        "verify_confirm": "Czy na pewno zweryfikować firmę?"
     },
     "tree_selects":{
         "tree_select_city": "Wybierz miasto",
@@ -87,6 +90,11 @@
     "image_uploader": {
         "allowed_extensions": "PNG, JPG, GIF do 3MB",
         "upload_file": "Prześlij obraz"
+    },
+    "status": {
+        "company_created": "Zgłoszenie nowej firmy zostało przesłane",
+        "company_deleted": "Firma została usunięta",
+        "company_verified": "Firma została zweryfikowana"
     },
     "error":{
         "header": "Błąd",
