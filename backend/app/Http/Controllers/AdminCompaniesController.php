@@ -28,7 +28,7 @@ class AdminCompaniesController extends Controller
         return inertia(
             "AdminPanel/CompaniesList",
             [
-                "companies" => CompanyResource::collection($companiesFiltered->paginate(10), ),
+                "companies" => CompanyResource::collection($companiesFiltered->paginate(10)->withQueryString(), ),
                 "filter" => Request::all("status"),
             ],
         );

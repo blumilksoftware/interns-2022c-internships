@@ -17,7 +17,7 @@ const props = defineProps({
         <ul role="list" class="mt-3 flex flex-col">
           <li class="flex rounded-md shadow-sm my-3">
             <div
-              class="bg-green-500 flex-shrink-0 flex items-center w-16 text-white text-sm font-medium rounded-l-md,"
+              class="bg-green-500 flex-shrink-0 flex items-center w-16 text-white text-sm font-medium rounded-l-md"
             ></div>
             <div
               class="flex flex-1 items-center justify-between truncate rounded-r-md border-t border-r border-b border-gray-200 bg-white"
@@ -45,7 +45,7 @@ const props = defineProps({
                   class="font-medium text-gray-900 hover:text-gray-600"
                   >{{ $t("tree_selects.tree_select_new") }}</InertiaLink
                 >
-                {{ props.active }}
+                {{ props.created }}
               </div>
             </div>
           </li>

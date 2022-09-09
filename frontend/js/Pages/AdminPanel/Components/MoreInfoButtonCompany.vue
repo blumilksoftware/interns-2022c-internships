@@ -62,7 +62,7 @@ function EditCompany(id) {
               <div class="absolute top-0 right-0 hidden pt-4 pr-4 sm:block">
                 <button
                   type="button"
-                  class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  class="rounded-md bg-white text-gray-600 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   @click="open = false"
                 >
                   <span class="sr-only">Close</span>
@@ -82,11 +82,11 @@ function EditCompany(id) {
                       class="text-lg font-medium leading-6 text-gray-900"
                       >{{ company.name }}</DialogTitle
                     >
-                    <div class="text-gray-400">
+                    <div class="text-gray-600">
                       {{ company.contact_details.email }}
                     </div>
-                    <div class="flex mt-3">
-                      <slot></slot>
+                    <div class="flex mt-3 my-auto item-center text-center">
+                      <slot ></slot>
                       <div v-if="company.has_signed_papers">
                         <span
                           class="bg-green-100 text-green-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-800"
@@ -99,12 +99,12 @@ function EditCompany(id) {
                 </div>
                 <div class="mt-3 text-start sm:mt-5">
                   {{ $t("add_company.description") }}
-                  <div class="text-gray-400">{{ company.description }}</div>
+                  <div class="text-gray-600">{{ company.description }}</div>
                 </div>
                 <div class="flex gap-2 mx-auto">
                   <div class="mt-3 text-start sm:mt-5 mx-3">
                     {{ $t("common_labels.address") }}
-                    <div class="text-gray-400">
+                    <div class="text-gray-600">
                       {{ company.location.shortName }}
                     </div>
                   </div>
@@ -113,7 +113,7 @@ function EditCompany(id) {
                     <div
                       v-for="item in company.contact_details"
                       :key="item.id"
-                      class="text-gray-400"
+                      class="text-gray-600"
                     >
                       {{ item }}
                     </div>
@@ -123,7 +123,7 @@ function EditCompany(id) {
                     <div
                       v-for="item in company.specializations"
                       :key="item.id"
-                      class="text-gray-400"
+                      class="text-gray-600"
                     >
                       {{ item.label }}
                     </div>

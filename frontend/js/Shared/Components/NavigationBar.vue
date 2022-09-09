@@ -96,7 +96,7 @@ import route from "ziggy";
                       >{{ $t("buttons.logout_button") }}</InertiaLink
                     >
                   </MenuItem>
-                  <MenuItem v-if="$page.props.auth.user" v-slot="{ active }">
+                  <MenuItem v-if="$page.props.auth.user &&  $page.props.auth.can.manage_companies" v-slot="{ active }">
                     <InertiaLink
                       :href="route('admin-index')"
                       :class="[
@@ -187,6 +187,7 @@ import route from "ziggy";
             {{ $t("buttons.logout_button") }}</DisclosureButton
           >
           <DisclosureButton
+          v-if="$page.props.auth.user &&  $page.props.auth.can.manage_companies"
             as="a"
             :href="route('admin')"
             class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
