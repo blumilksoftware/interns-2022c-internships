@@ -284,7 +284,7 @@ function getCoordinatesFromMap(){
               type="button"
               :disabled="activeStep === 'info'"
               @click="setStep(-1)"
-              v-text="'< ' + $t('add_company.next_step_button')"
+              v-text="'< ' + $t('add_company.previous_step_button')"
           />
           <FormKit
               type="button"
