@@ -9,15 +9,22 @@ RUN if [ ${INSTALL_XDEBUG} = true ]; then \
     && docker-php-ext-enable xdebug \
 ;fi
 
-RUN apk add --no-cache pcre-dev $PHPIZE_DEPS \
+RUN set -e; \
+    apk add --no-cache pcre-dev $PHPIZE_DEPS \
     zip \
+    gd-dev \
     libzip-dev \
     libpng-dev \
-    && pecl install redis \
-    && docker-php-ext-install \
+    jpeg-dev \
+    libjpeg-turbo-dev \
+    freetype-dev
+
+RUN pecl install redis \
+    && docker-php-ext-enable \
+    redis
+
+RUN docker-php-ext-configure zip \
+    && docker-php-ext-configure gd --with-jpeg --with-freetype \
+    && set -e; docker-php-ext-install \
     zip \
     gd \
-    && docker-php-ext-configure \
-    zip \
-    && docker-php-ext-enable \
-    redis \

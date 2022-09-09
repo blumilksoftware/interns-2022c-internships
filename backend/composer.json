@@ -17,6 +17,7 @@
   },
   "require": {
     "php": "^8.1",
+    "ext-gd": "*",
     "ext-pdo": "*",
     "ext-redis": "*",
     "fruitcake/laravel-cors": "^3.0",
@@ -28,6 +29,7 @@
     "laravel/socialite": "^5.2",
     "laravel/telescope": "^4.6",
     "laravel/tinker": "^2.7.2",
+    "laravolt/avatar": "^4.1",
     "spatie/data-transfer-object": "^3.8",
     "spatie/laravel-model-states": "^2.1",
     "symfony/yaml": "^6.1",
@@ -41,7 +43,6 @@
     "mockery/mockery": "^1.5",
     "nunomaduro/collision": "^6.2",
     "phpunit/phpunit": "^9.5",
-    "smknstd/fakerphp-picsum-images": "^1.0",
     "spatie/laravel-ignition": "^1.2"
   },
   "scripts": {
