@@ -17,7 +17,7 @@ function UserRestore(id) {
 </script>
 <template>
   <div
-    class="overflow-hidden rounded-lg w-full h-full bg-white shadow overflow-y-auto"
+    class="overflow-hidden rounded-lg w-full h-full  shadow overflow-y-auto"
   >
     <div class="px-4 py-5 sm:p-6">
       <h1

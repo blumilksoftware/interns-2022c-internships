@@ -21,7 +21,7 @@ const open = ref(false);
   <Button
     @click="open = true"
     class="hover:bg-blue-700 bg-blue-600 focus:ring-blue-500"
-    >More</Button
+    >{{ $t("buttons.more_info_button") }}</Button
   >
   <TransitionRoot as="template" :show="open">
     <Dialog as="div" class="relative z-10" @close="open = false">
