@@ -28,7 +28,7 @@ class AdminCompaniesController extends Controller
         return inertia(
             "AdminPanel/CompaniesList",
             [
-                "companies" => CompanyResource::collection($companiesFiltered->paginate(10)->withQueryString(), ),
+                "companies" => CompanyResource::collection($companiesFiltered->paginate(10), ),
                 "filter" => Request::all("status"),
             ],
         );
@@ -36,6 +36,7 @@ class AdminCompaniesController extends Controller
 
     public function show(Company $company)
     {
+        $this->authorize(Permission::ManageCompanies);
         return inertia(
             "AdminPanel/EditPage",
             [
@@ -53,6 +54,7 @@ class AdminCompaniesController extends Controller
 
     public function store(CompanyRequest $request, Company $company): RedirectResponse
     {
+        $this->authorize(Permission::ManageCompanies);
         $request->validate([
             "name" => "required",
             "address" => "required",
