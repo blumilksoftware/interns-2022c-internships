@@ -128,5 +128,27 @@
         "user": "Brak podanego adresu e-mail w bazie.",
         "reset": "Twoje hasło zostało zmienione.",
         "token": "Token do zmiany hasła wygasł, prosimy utworzyć nowe żądanie."
+    },
+    "markdown": {
+        "bold": "Pogrubienie",
+        "italic": "Kursywa",
+        "quote": "Cytat",
+        "link": "Link",
+        "fullscreen": "Pełny ekran",
+        "preview": "Podglad",
+        "h1": "Nagłówek 1",
+        "h2": "Nagłówek 2",
+        "h3": "Nagłówek 3",
+        "h4": "Nagłówek 4",
+        "h5": "Nagłówek 5",
+        "h6": "Nagłówek 6",
+        "linkAdd": "Dodaj ",
+        "linkDescription": "Nazwa",
+        "enterLinkDescription": "Wprowadź nazwę linku...",
+        "linkLabel": "Link",
+        "enterLink": "Wprowadź link...",
+        "ok": "Zatwierdź",
+        "letterCount": "Liczba znaków",
+        "scrollAuto": "Scrollowanie Automatyczne"
     }
 }

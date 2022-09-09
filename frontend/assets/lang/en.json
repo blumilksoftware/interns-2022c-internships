@@ -126,5 +126,27 @@
         "user": "The specified email address does not exist in our database.",
         "reset": "Your password has been changed.",
         "token": "Token to change the password has expired, please create a new request."
+    },
+    "markdown": {
+        "bold": "Bold",
+        "italic": "Italic",
+        "quote": "Quote",
+        "link": "Link",
+        "fullscreen": "Fullscreen",
+        "preview": "Preview",
+        "h1": "Header 1",
+        "h2": "Header 2",
+        "h3": "Header 3",
+        "h4": "Header 4",
+        "h5": "Header 5",
+        "h6": "Header 6",
+        "linkAdd": "Add ",
+        "linkDescription": "Displayed name",
+        "enterLinkDescription": "Enter link description...",
+        "linkLabel": "Link",
+        "enterLink": "Enter link...",
+        "ok": "Ok",
+        "letterCount": "Letter count",
+        "scrollAuto": "Scroll Auto"
     }
 }
