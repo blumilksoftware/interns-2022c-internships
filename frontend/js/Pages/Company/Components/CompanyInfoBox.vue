@@ -72,9 +72,9 @@ onMounted(() => {
             company.status === 'pending_new' &&
             $page.props.auth.can.manage_companies
           "
-          class="w-1/2 flex justify-center p-0 bg-green-600 border rounded-3xl border-stone-900 text-white hover:bg-green-900"
+          class="cursor-pointer mt-2 relative w-60 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
         >
-          Approve
+          {{ $t("company_browser.verify_button") }}
         </div>
         <div
           type="button"
@@ -84,9 +84,9 @@ onMounted(() => {
               $page.props.auth.can.manage_companies)
           "
           @click="onDestroy(company.id)"
-          class="justify-center flex w-1/2 p-0 bg-red-600 border rounded-3xl border-stone-900 text-white hover:bg-red-900"
+          class="cursor-pointer mt-2 relative w-60 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
         >
-          Delete
+          {{ $t("company_browser.delete_button") }}
         </div>
       </div>
     </div>

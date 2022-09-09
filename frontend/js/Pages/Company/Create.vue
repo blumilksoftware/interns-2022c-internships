@@ -82,7 +82,7 @@ function getCoordinatesFromMap(){
         :actions="false"
     >
 
-      <nav aria-label="Progress">
+      <nav aria-label="Progress" class="cursor-pointer">
         <ol role="list" class="flex bg-white divide-y-0 divide-gray-300 border border-gray-300">
           <li
               v-for="(step, stepName, index) in steps"
