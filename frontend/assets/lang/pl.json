@@ -70,7 +70,8 @@
         "restore_button": "Przywróć",
         "more_info_button": "Więcej",
         "edit_button": "Edytuj",
-        "approve_button": "Zatwierdź"
+        "approve_button": "Zatwierdź",
+        "save_button": "Save"
     },
     "common_labels":{
         "email": "Adres e-mail",

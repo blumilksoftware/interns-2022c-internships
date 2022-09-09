@@ -68,7 +68,7 @@ const sidebarOpen = ref(false);
             leave-to="-translate-x-full"
           >
             <DialogPanel
-              class="relative flex w-full max-w-xs flex-1 flex-col bg-white"
+              class="relative flex w-full max-w-fit flex-1 flex-col bg-white"
             >
               <TransitionChild
                 as="template"
@@ -109,11 +109,11 @@ const sidebarOpen = ref(false);
                         item.current
                           ? 'text-gray-500'
                           : 'text-gray-400 group-hover:text-gray-500',
-                        'mr-4 flex-shrink-0 h-6 w-6',
+                        'mr-4 flex-shrink-0 h-10 w-10',
                       ]"
                       aria-hidden="true"
                     />
-                    {{ item.name }}
+
                   </InertiaLink>
                 </nav>
               </div>
@@ -123,7 +123,7 @@ const sidebarOpen = ref(false);
         </div>
       </Dialog>
     </TransitionRoot>
-    <div class="hidden md:fixed md:top-12 md:flex h-full md:w-64 md:flex-col">
+    <div class="hidden md:fixed md:top-12 md:flex h-full md:w-fit md:flex-col">
       <div
         class="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white"
       >
@@ -145,17 +145,16 @@ const sidebarOpen = ref(false);
                 item.current
                   ? 'text-gray-500'
                   : 'text-gray-400 group-hover:text-gray-500',
-                'mr-3 flex-shrink-0 h-6 w-6',
+                'mr-3 flex-shrink-0 justify-center h-12 w-12',
               ]"
               aria-hidden="true"
             />
-            {{ item.name }}
           </InertiaLink>
         </nav>
       </div>
     </div>
   </div>
-  <div class="flex flex-col md:pl-64">
+  <div class="flex flex-col md:pl-32">
     <div
       class="sticky top-0 z-10 bg-gray-100 pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden"
     >

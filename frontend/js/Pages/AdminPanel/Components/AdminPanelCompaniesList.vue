@@ -43,7 +43,7 @@ function approve(id) {
 
 <template>
   <div
-    class="px-4 sm:px-6 lg:px-8 w-full offset-r-0 mt-1 h-7/8 relative overflow-hidden"
+    class="px-4 sm:px-4 lg:px-4 w-full offset-r-0 mt-1 h-7/8 relative overflow-hidden"
   >
     <div class="md:flex md:items-center">
       <div class="md:flex-auto">
@@ -69,7 +69,7 @@ function approve(id) {
     </div>
 
     <div
-      class="mt-4 flex flex-col overflow-hidden overflow-scroll-x h-fit border-2 max-h-full"
+      class="mt-4 flex flex-col overflow-hidden overflow-scroll-x w-full h-fit border-2 max-h-full"
     >
       <div
         class="-my-4 -mx-4 overflow-x-auto h-full overflow-y-auto sm:-mx-6 lg:-mx-8"

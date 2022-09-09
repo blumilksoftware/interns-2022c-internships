@@ -14,7 +14,7 @@ const props = defineProps({
   </button>
   <div
     v-else
-    class="inline-flex items-center disabled rounded-md border border-transparent bg-slate-300 px-4 py-2 text-sm font-medium text-white shadow-sm"
+    class="inline-flex items-center disabled rounded-md border border-transparent bg-slate-300 px-4 py-2 text-sm font-medium text-white shadow-sm cursor-not-allowed"
   >
     {{ $t("buttons.approve_button") }}
   </div>

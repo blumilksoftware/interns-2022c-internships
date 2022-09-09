@@ -68,7 +68,8 @@
         "restore_button": "Restore",
         "more_info_button": "More",
         "edit_button": "Edit",
-        "approve_button": "Approve"
+        "approve_button": "Approve",
+        "save_button": "Save"
     },
     "common_labels":{
         "email": "Email address",
