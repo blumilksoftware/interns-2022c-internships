@@ -6,6 +6,7 @@ namespace Internships\Http\Controllers;
 
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use Inertia\Response;
@@ -15,7 +16,9 @@ use Internships\Http\Requests\Api\GetCompaniesRequest;
 use Internships\Http\Requests\Api\GetManagedCompaniesRequest;
 use Internships\Http\Requests\CompanyRequest;
 use Internships\Http\Resources\CompanyResource;
+use Internships\Http\Resources\DepartmentResource;
 use Internships\Models\Company;
+use Internships\Models\Department;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 class CompanyController extends Controller
@@ -34,6 +37,10 @@ class CompanyController extends Controller
     {
         return inertia(
             "Company/Create",
+            [
+                "departments" => fn(): AnonymousResourceCollection
+                => DepartmentResource::collection(Department::with("studyFields.specializations")->get()),
+            ],
         );
     }
 

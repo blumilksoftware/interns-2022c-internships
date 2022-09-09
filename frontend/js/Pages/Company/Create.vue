@@ -8,11 +8,18 @@ import { camel2title } from "./utils.js";
 import useSteps from "./useSteps.js";
 import { CheckIcon, ExclamationCircleIcon } from '@heroicons/vue/solid';
 import MapGeocode from "./Components/MapGeocode.vue";
+import Treeselect from "@tkmam1x/vue3-treeselect";
+import "@tkmam1x/vue3-treeselect/dist/vue3-treeselect.css";
+
+const props = defineProps({
+  departments: Array,
+});
 
 const form = useForm({
   name: null,
   description: "",
   logoFile: null,
+  specializations: null,
   address: {
     street: null,
     city: null,
@@ -257,6 +264,17 @@ function getCoordinatesFromMap(){
                   validation="required"
               />
               <InputError class="mt-2" :message="form.errors.description" />
+
+              <label>Wybierz specjalizacje pasujące do twojej firmy:</label>
+              <Treeselect
+                  class="mt-2 w-96"
+                  :options="props.departments.data"
+                  :multiple="true"
+                  :disable-branch-nodes="true"
+                  :placeholder="$t('tree_selects.tree_select_specialization')"
+                  search-nested
+                  v-model="form.specializations"
+              />
             </FormKit>
           </section>
         </div>
