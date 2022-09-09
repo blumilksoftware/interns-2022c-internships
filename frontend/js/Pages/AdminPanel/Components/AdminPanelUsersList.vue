@@ -10,11 +10,19 @@ const props = defineProps({
   users: Object,
   filter: String,
 });
-let UsersSearch = ref(props.filter.UsersSearch);
+let userSearch = ref(props.filter.userSearch);
 const emit = defineEmits(["selected"]);
-watch([UsersSearch], () => {
-  emit("selected", UsersSearch);
-});
+
+function emitSearch() {
+  emit("selected", userSearch);
+}
+
+watch(
+  [userSearch],
+  _.debounce(() => {
+    emitSearch();
+  }, 500)
+);
 const form = useForm();
 function destroy(id) {
   if (confirm("Are you sure you want to Delete")) {
@@ -47,7 +55,7 @@ function destroy(id) {
           <SearchIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
         </div>
         <input
-          v-model="UsersSearch"
+          v-model="userSearch"
           name="searchbox"
           class="block w-full bg-white border border-gray-300 rounded-md py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:outline-none focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-slate-400 focus:border-slate-500 sm:text-sm"
           :placeholder="$t('company_browser.search')"

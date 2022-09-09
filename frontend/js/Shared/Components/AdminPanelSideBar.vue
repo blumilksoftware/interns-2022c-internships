@@ -113,7 +113,6 @@ const sidebarOpen = ref(false);
                       ]"
                       aria-hidden="true"
                     />
-
                   </InertiaLink>
                 </nav>
               </div>

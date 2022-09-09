@@ -74,10 +74,10 @@ onMounted(() => {
             company.status === 'pending_new' &&
             $page.props.auth.can.manage_companies
           "
-          class=" bg-green-600 border hover:bg-green-900"
+          class="bg-green-600 border hover:bg-green-900"
         >
-        {{ $t("buttons.approve_button") }}
-      </Button>
+          {{ $t("buttons.approve_button") }}
+        </Button>
         <Button
           v-if="
             $page.props.auth.user &&
@@ -85,9 +85,9 @@ onMounted(() => {
               $page.props.auth.can.manage_companies)
           "
           @click="onDestroy(company.id)"
-          class=" bg-red-600 border hover:bg-red-900"
+          class="bg-red-600 border hover:bg-red-900"
         >
-        {{ $t("buttons.remove_button") }}
+          {{ $t("buttons.remove_button") }}
         </Button>
       </div>
     </div>
