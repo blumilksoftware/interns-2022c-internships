@@ -60,7 +60,7 @@ function approve(id) {
         :multiple="false"
         :show-count="true"
         :disable-branch-nodes="true"
-        placeholder="Choose company status"
+        :placeholder= "$t('admin_panel.select_tree')"
         v-model="statusSelect"
       />
       <InertiaLink href="/admin/companies/trashed">

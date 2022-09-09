@@ -130,6 +130,7 @@
         "administrator": "Administrator",
         "company_owner": "Company owner",
         "status_verified": "Verified",
-        "status_new": "New"
+        "status_new": "New",
+        "select_tree": "Choose status"
     }
 }

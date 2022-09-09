@@ -132,6 +132,7 @@
         "administrator": "Administrator",
         "company_owner": "Właściciel firmy",
         "status_verified": "Zweryfikowana",
-        "status_new": "Nowa"
+        "status_new": "Nowa",
+        "select_tree": "Choose status"
     }
 }
