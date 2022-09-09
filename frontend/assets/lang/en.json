@@ -33,15 +33,28 @@
         "last_name": "Last name"
     },
     "add_company": {
+        "logo": "Company logo",
         "header": "Company add request",
         "header_info": "After filling up the form, your request will be send to moderator, where will be verified.",
         "company_name": "Company name",
-        "description": "Description",
+        "description": "Company description",
         "description_info": "Write about your company to help students with the decision.",
         "street_address": "Street address",
         "city": "City",
         "voivodeship": "Voivodeship",
-        "postal_code": "Postal code"
+        "postal_code": "Postal code",
+        "email": "Company email",
+        "phone_number": "Phone number",
+        "website_url": "Website url",
+        "country": "Country",
+        "generate_button": "Generate",
+        "set_marker": "Set marker on the map",
+        "select_specializations": "Choose specializations that fit your company",
+        "next_step_button": "Next step",
+        "previous_step_button": "Previous step",
+        "step_info": "General information",
+        "step_address": "Address details",
+        "step_description": "Company description"
     },
     "forgot_password":{
         "header": "Please fill email, we will send you a link to change your password",
@@ -69,6 +82,10 @@
         "password_confirm": "Confirm password",
         "country": "Country"
     },
+    "image_uploader": {
+        "allowed_extensions": "PNG, JPG, GIF up to 3MB",
+        "upload_file": "Upload image"
+    },
     "error":{
         "header": "Error",
         "name_401": "Unauthorized",
@@ -93,9 +110,12 @@
             "string": "Entered text is too short."
         },
         "max": {
-            "string": "Entered text is too long."
+            "string": "Entered text is too long.",
+            "file": "Maximum allowable image size: 3MB."
         },
-        "confirmed": "Entered passwords differ."
+        "confirmed": "Entered passwords differ.",
+        "image": "Uploaded file must be an image with a PNG, JPG or GIF extension.",
+        "dimensions": "Maximum allowable dimensions of the image: 2000 x 2000 pixels."
     },
     "auth": {
         "failed": "Wrong email address or password entered."

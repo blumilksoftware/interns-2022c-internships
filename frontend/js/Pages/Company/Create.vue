@@ -4,7 +4,6 @@ import InputError from "@/js/Shared/Components/InputError.vue";
 import { ref } from "vue";
 import ImageUploader from "@/js/Shared/Components/ImageUploader.vue";
 import MarkdownEditor from "@/js/Shared/Components/MarkdownEditor.vue";
-import { camel2title } from "./utils.js";
 import useSteps from "./useSteps.js";
 import { CheckIcon, ExclamationCircleIcon } from '@heroicons/vue/solid';
 import MapGeocode from "./Components/MapGeocode.vue";
@@ -100,7 +99,7 @@ function getCoordinatesFromMap(){
             <span class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary group-hover:bg-secondary md:h-10 md:w-10">
               <CheckIcon class="h-4 w-4 text-white md:h-6 md:w-6" aria-hidden="true" />
             </span>
-            <span class="ml-4 text-sm font-medium text-gray-900">{{ camel2title(stepName) }}</span>
+            <span class="ml-4 text-sm font-medium text-gray-900">{{ $t("add_company.step_" + stepName) }}</span>
           </span>
             </a>
             <a
@@ -112,7 +111,7 @@ function getCoordinatesFromMap(){
           <span class="flex h-6 w-6 bg-primary flex-shrink-0 items-center justify-center rounded-full border-2 border-primary md:h-10 md:w-10">
             <span class="text-white">{{ index + 1 }}</span>
           </span>
-              <span class="ml-4 text-sm font-medium text-primary">{{ camel2title(stepName) }}</span>
+              <span class="ml-4 text-sm font-medium text-primary">{{ $t("add_company.step_" + stepName) }}</span>
             </a>
             <a
                 v-else-if="checkStepValidity(stepName)"
@@ -123,7 +122,7 @@ function getCoordinatesFromMap(){
             <span class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-red-700 group-hover:bg-red-800 md:h-10 md:w-10">
               <ExclamationCircleIcon class="h-10 w-10 text-white" aria-hidden="true" />
             </span>
-            <span class="ml-4 text-sm font-medium text-gray-900">{{ camel2title(stepName) }}</span>
+            <span class="ml-4 text-sm font-medium text-gray-900">{{ $t("add_company.step_" + stepName) }}</span>
           </span>
             </a>
             <a
@@ -135,7 +134,7 @@ function getCoordinatesFromMap(){
             <span class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400 md:h-10 md:w-10">
               <span class="text-gray-500 group-hover:text-gray-900">{{ index + 1 }}</span>
             </span>
-            <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">{{ camel2title(stepName) }}</span>
+            <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">{{ $t("add_company.step_" + stepName) }}</span>
           </span>
             </a>
             <template
@@ -156,7 +155,7 @@ function getCoordinatesFromMap(){
         <div class="w-full flex flex-col items-center pt-8">
           <!-- 1 panel -->
           <section class="flex flex-col items-center w-full md:w-auto" v-show="activeStep === 'info'">
-            <label>Logo</label>
+            <label>{{ $t("add_company.logo") }}</label>
             <ImageUploader class="h-52 w-52" v-model="form.logoFile"/>
             <InputError class="mt-2" :message="form.errors.logoFile" />
 
@@ -164,7 +163,7 @@ function getCoordinatesFromMap(){
               <FormKit
                   v-model="form.name"
                   type="text"
-                  label="Nazwa firmy"
+                  :label='$t("add_company.company_name")'
                   validation="required|length:2,255"
               />
               <InputError class="mt-2" :message="form.errors.name" />
@@ -172,21 +171,21 @@ function getCoordinatesFromMap(){
               <FormKit
                   v-model="form.contact_details.email"
                   type="email"
-                  label="E-Mail Firmowy"
+                  :label='$t("add_company.email")'
                   validation="required|email"
               />
               <InputError class="mt-2" :message="form.errors.contact_details" />
 
               <FormKit
                   v-model="form.contact_details.phone_number"
-                  label="Telefon"
+                  :label='$t("add_company.phone_number")'
                   type="text"
               />
 
               <FormKit
                   v-model="form.contact_details.website_url"
                   type="url"
-                  label="Strona internetowa"
+                  :label='$t("add_company.website_url")'
                   validation="url"
               />
             </FormKit>
@@ -200,7 +199,7 @@ function getCoordinatesFromMap(){
                   <FormKit
                       v-model="form.address.country"
                       id="country"
-                      label="Kraj"
+                      :label='$t("add_company.country")'
                       type="text"
                       validation="required"
                   />
@@ -208,7 +207,7 @@ function getCoordinatesFromMap(){
                   <FormKit
                       v-model="form.address.voivodeship"
                       id="voivodeship"
-                      label="Województwo"
+                      :label='$t("add_company.voivodeship")'
                       type="text"
                       validation="required"
                   />
@@ -216,14 +215,14 @@ function getCoordinatesFromMap(){
                   <FormKit
                       v-model="form.address.city"
                       id="city"
-                      label="Miasto"
+                      :label='$t("add_company.city")'
                       type="text"
                       validation="required"
                   />
 
                   <FormKit
                       v-model="form.address.postal_code"
-                      label="Kod pocztowy"
+                      :label='$t("add_company.postal_code")'
                       id="postal_code"
                       type="text"
                       validation="required"
@@ -231,7 +230,7 @@ function getCoordinatesFromMap(){
 
                   <FormKit
                       v-model="form.address.street"
-                      label="Ulica"
+                      :label='$t("add_company.street_address")'
                       id="street"
                       type="text"
                       validation="required"
@@ -239,11 +238,11 @@ function getCoordinatesFromMap(){
                   <InputError class="mt-2" :message="form.errors.address" />
 
                   <FormKit
-                      help="Ustaw marker na mapie"
+                      :help='$t("add_company.set_marker")'
                       type="button"
                       @click="generateCoordinates"
                   >
-                    Generuj
+                    {{ $t("add_company.generate_button") }}
                   </FormKit>
                 </div>
                 <div class="pl-0 md:pl-5 h-96 w-full md:w-96">
@@ -256,7 +255,7 @@ function getCoordinatesFromMap(){
           <!-- 3 panel -->
           <section class="flex flex-col items-center w-full md:w-auto" v-show="activeStep === 'description'">
             <FormKit type="group" id="description" name="description">
-              <label>Opis firmy</label>
+              <label>{{ $t("add_company.description") }}</label>
               <MarkdownEditor class="flex w-screen sticky" v-model="form.description" />
               <FormKit
                   type="hidden"
@@ -265,7 +264,7 @@ function getCoordinatesFromMap(){
               />
               <InputError class="mt-2" :message="form.errors.description" />
 
-              <label>Wybierz specjalizacje pasujące do twojej firmy:</label>
+              <label>{{ $t("add_company.select_specializations") }}</label>
               <Treeselect
                   class="mt-2 w-96"
                   :options="props.departments.data"
@@ -281,8 +280,19 @@ function getCoordinatesFromMap(){
       </div>
       <div class="flex flex-col w-full items-center">
         <div class="flex flex-col md:flex-row items-center">
-          <FormKit type="button" :disabled="activeStep === 'info'" @click="setStep(-1)" v-text="'< ' + 'Previous step'" />
-          <FormKit type="button" class="next" :disabled="activeStep === 'description' " @click="setStep(1)" v-text="'Next step' + ' >'"/>
+          <FormKit
+              type="button"
+              :disabled="activeStep === 'info'"
+              @click="setStep(-1)"
+              v-text="'< ' + $t('add_company.previous_step_button')"
+          />
+          <FormKit
+              type="button"
+              class="next"
+              :disabled="activeStep === 'description' "
+              @click="setStep(1)"
+              v-text="$t('add_company.next_step_button') + ' >'"
+          />
         </div>
         <FormKit
             class="flex flex-col"
