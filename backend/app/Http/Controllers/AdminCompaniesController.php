@@ -66,14 +66,14 @@ class AdminCompaniesController extends Controller
         $company->update($request->all());
 
         return redirect()->route("admin-companies")
-            ->with("message", "status.company_updated");
+            ->with("success", "status.company_updated");
     }
 
     public function delete(Company $company)
     {
         $this->authorize(Permission::ManageCompanies);
         $company->delete();
-        return redirect()->route("admin-companies")->with("message", "status.company_deleted");
+        return redirect()->route("admin-companies")->with("success", "status.company_deleted");
     }
 
     public function update(Company $company): void
@@ -98,6 +98,6 @@ class AdminCompaniesController extends Controller
     {
         $this->authorize(Permission::ManageCompanies);
         Company::where("id", $id)->onlyTrashed()->restore();
-        return redirect()->route("admin-trashed-companies")->with("message", "status.company_restored");
+        return redirect()->route("admin-trashed-companies")->with("success", "status.company_restored");
     }
 }

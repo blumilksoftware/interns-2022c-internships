@@ -1,5 +1,5 @@
 <script setup>
-import Button from "@/js/Shared/Components/Button.vue";
+import RemoveButton from "@/js/Shared/Components/RemoveUserButton.vue";
 import RoleDisplay from "./RoleDisplay.vue";
 import MoreInfo from "./MoreInfoButtonUser.vue";
 import { SearchIcon } from "@heroicons/vue/solid";
@@ -156,11 +156,12 @@ function destroy(id) {
                   <td
                     class="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6"
                   >
-                    <Button
+                  <RemoveButton
+                      v-if="user.role !== 'verified'"
                       @click="destroy(user.id)"
-                      class="hover:bg-red-700 bg-red-600 focus:ring-red-500"
-                      >{{ $t("buttons.remove_button") }}</Button
-                    >
+                      :role="user.role"
+                    />
+                    <RemoveButton v-else :role="user.role" />
                   </td>
                 </tr>
               </tbody>

@@ -32,15 +32,13 @@ class AdminUsersController extends Controller
         );
     }
 
-    public function delete(user $user, Request $request)
+    public function delete(user $user,)
     {
-        if ($user->where("role", "administrator")) {
-            abort(401, "You can not remove other admins!");
-        } else {
-            $this->authorize(Permission::ManageCompanies);
+         $this->authorize(Permission::ManageCompanies);
+
             $user->delete();
-            return redirect()->route("admin-users")->with("message", "status.company_deleted");
-        }
+            return redirect()->route("admin-users")->with("success", "status.user_deleted");
+    
     }
 
     public function trashed(Request $request): Response
@@ -59,6 +57,6 @@ class AdminUsersController extends Controller
     {
         $this->authorize(Permission::ManageCompanies);
         User::where("id", $id)->onlyTrashed()->restore();
-        return redirect()->route("admin-trashed-users")->with("message", "status.company_restored");
+        return redirect()->route("admin-trashed-users")->with("success", "status.user_restored");
     }
 }
