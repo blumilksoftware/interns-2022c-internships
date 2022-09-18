@@ -86,10 +86,14 @@ function drop(event) {
       />
     </label>
     <div v-show="imagePreviewUrl" class="flex items-center">
-      <img :src="imagePreviewUrl" class="max-h-full max-w-full" alt="Logo" />
+      <img
+        :src="imagePreviewUrl"
+        class="max-h-full max-w-full"
+        :alt="$t('add_company.logo')"
+      />
       <button
         type="button"
-        title="Usuń"
+        :title="$t('add_company.logo_delete')"
         class="absolute top-1 right-1 p-1 rounded-md hover:bg-gray-100"
         @click="value = null"
       >

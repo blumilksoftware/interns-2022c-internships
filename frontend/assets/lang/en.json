@@ -38,6 +38,7 @@
     },
     "add_company": {
         "logo": "Company logo",
+        "logo_delete": "Delete",
         "header": "Company add request",
         "header_info": "After filling up the form, your request will be send to moderator, where will be verified.",
         "company_name": "Company name",

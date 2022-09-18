@@ -39,6 +39,7 @@
     },
     "add_company": {
         "logo": "Logo firmy",
+        "logo_delete": "Usuń",
         "header": "Zgłoś swoja firmę",
         "header_info": "Po wypełnieniu formularza, Twoje zgłoszenie zostanie przekazane moderatorowi do weryfikacji.",
         "company_name": "Nazwa firmy",
