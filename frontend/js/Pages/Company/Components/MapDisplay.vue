@@ -1,9 +1,9 @@
 <script setup>
-import 'maplibre-gl/dist/maplibre-gl.css';
+import "maplibre-gl/dist/maplibre-gl.css";
 import maplibregl from "maplibre-gl";
-import {Map} from 'maplibre-gl';
-import {markRaw, onMounted, onUnmounted, ref, watch} from "vue";
-import '@maptiler/geocoder/css/geocoder.css';
+import { Map } from "maplibre-gl";
+import { markRaw, onMounted, onUnmounted, ref, watch } from "vue";
+import "@maptiler/geocoder/css/geocoder.css";
 import { createCompanyMarker, createCollegeMarker } from "./Markers.js";
 
 const mapContainer = ref();
@@ -14,7 +14,6 @@ const props = defineProps({
   markers: Array,
   flyTime: { Number, default: 2000 },
 });
-
 
 defineExpose({
   goTo,
@@ -29,7 +28,7 @@ function resetPosition() {
   }
 
   const coordinates = loadedMarkers.map((marker) =>
-      marker.loadedMarker.getLngLat()
+    marker.loadedMarker.getLngLat()
   );
 
   const bounds = new maplibregl.LngLatBounds(coordinates[0], coordinates[0]);
@@ -99,11 +98,11 @@ function toggleMarkers() {
 }
 
 watch(
-    () => props.markers,
-    () => {
-      toggleMarkers();
-    },
-    {deep: true}
+  () => props.markers,
+  () => {
+    toggleMarkers();
+  },
+  { deep: true }
 );
 
 const emit = defineEmits(["selectedCompany", "loaded"]);
@@ -115,7 +114,7 @@ function loadMarkers() {
       emit("selectedCompany", marker.id);
     });
     let id = marker.id;
-    loadedMarkers.push({id, loadedMarker});
+    loadedMarkers.push({ id, loadedMarker });
   });
 }
 
@@ -131,46 +130,49 @@ function onMapLoaded() {
   });
 
   let collegeMarker = createCollegeMarker(loadedMap);
-  collegeMarker.getElement()
-      .addEventListener("click", function () {
-        loadedMap.flyTo({
-          center: collegeMarker.getLngLat(),
-          zoom: 15,
-          duration: props.flyTime,
-        });
+  collegeMarker.getElement().addEventListener("click", function () {
+    loadedMap.flyTo({
+      center: collegeMarker.getLngLat(),
+      zoom: 15,
+      duration: props.flyTime,
+    });
 
-        collegeMarker.togglePopup();
-      });
+    collegeMarker.togglePopup();
+  });
   loadMarkers();
   resetPosition();
   emit("loaded");
 }
 
 onMounted(() => {
-  loadedMap = markRaw(new Map({
-    container: mapContainer.value,
-    style: `https://api.maptiler.com/maps/streets/style.json?key=${import.meta.env.VITE_MAPLIBRE_TOKEN}`,
-    center: [16.1472681, 51.2048546],
-    zoom: 15,
-    maxZoom: 20,
-    doubleClickZoom: false,
-    crossSourceCollisions: false,
-    failIfMajorPerformanceCaveat: false,
-    attributionControl: false,
-    preserveDrawingBuffer: true,
-    hash: false,
-    minPitch: 0,
-    maxPitch: 60,
-  }));
+  loadedMap = markRaw(
+    new Map({
+      container: mapContainer.value,
+      style: `https://api.maptiler.com/maps/streets/style.json?key=${
+        import.meta.env.VITE_MAPLIBRE_TOKEN
+      }`,
+      center: [16.1472681, 51.2048546],
+      zoom: 15,
+      maxZoom: 20,
+      doubleClickZoom: false,
+      crossSourceCollisions: false,
+      failIfMajorPerformanceCaveat: false,
+      attributionControl: false,
+      preserveDrawingBuffer: true,
+      hash: false,
+      minPitch: 0,
+      maxPitch: 60,
+    })
+  );
 
   loadedMap.on("load", function () {
     onMapLoaded();
   });
-})
+});
 
 onUnmounted(() => {
   loadedMap.remove();
-})
+});
 </script>
 
 <template>

@@ -50,7 +50,7 @@ createInertiaApp({
         timeout: 3000,
         pauseOnFocusLoss: false,
       })
-        .use(formkitPlugin, formkitDefaultConfig(formkitConfig))
+      .use(formkitPlugin, formkitDefaultConfig(formkitConfig))
       .mount(el);
   },
 });

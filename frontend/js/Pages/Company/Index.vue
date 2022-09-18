@@ -6,7 +6,7 @@ import CompanyListHeader from "./Components/CompanyListHeader.vue";
 import Filter from "./Components/FilterDisclosure.vue";
 import { ref, watch, onMounted } from "vue";
 import { Inertia } from "@inertiajs/inertia";
-import { useI18n } from "vue-i18n"
+import { useI18n } from "vue-i18n";
 
 const i18n = useI18n();
 

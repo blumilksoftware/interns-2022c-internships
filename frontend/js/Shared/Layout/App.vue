@@ -2,7 +2,7 @@
 import NavigationBar from "@/js/Shared/Components/NavigationBar.vue";
 import { useToast } from "vue-toastification";
 import { watch } from "vue";
-import { useI18n } from "vue-i18n"
+import { useI18n } from "vue-i18n";
 
 const i18n = useI18n();
 
