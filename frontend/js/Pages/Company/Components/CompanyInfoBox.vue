@@ -64,7 +64,7 @@ onMounted(() => {
         </p>
         <MarkdownEditor
           :previewOnly="true"
-          class="w-full py-5"
+          class="!bg-transparent w-full py-5"
           :modelValue="company.description"
         />
       </div>
