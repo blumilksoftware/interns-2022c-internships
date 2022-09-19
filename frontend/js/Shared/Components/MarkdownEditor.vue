@@ -79,10 +79,10 @@ MdEditor.config({
 
 <template>
   <md-editor
-      language="key.translated"
-      :previewTheme="props.previewTheme"
-      :toolbars="props.toolbarOptions"
-      :sanitize="sanitize"
-      v-model="text"
+    language="key.translated"
+    :previewTheme="props.previewTheme"
+    :toolbars="props.toolbarOptions"
+    :sanitize="sanitize"
+    v-model="text"
   />
 </template>

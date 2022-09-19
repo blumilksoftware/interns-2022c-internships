@@ -20,6 +20,6 @@ module.exports = {
     require("@tailwindcss/typography"),
     require("@tailwindcss/aspect-ratio"),
     require("@tailwindcss/nesting"),
-    require('@formkit/themes/tailwindcss'),
+    require("@formkit/themes/tailwindcss"),
   ],
 };

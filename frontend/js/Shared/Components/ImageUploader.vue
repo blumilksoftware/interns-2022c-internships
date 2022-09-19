@@ -1,18 +1,33 @@
 <script setup>
 import { computed, ref } from "vue";
 import { PhotographIcon, XIcon } from "@heroicons/vue/solid";
+import { useToast } from "vue-toastification";
+import { useI18n } from "vue-i18n";
+
+const toast = useToast();
+const i18n = useI18n();
 
 const props = defineProps({
   modelValue: File,
   id: String,
 });
 
+const maxFileSize = 3 * 1024 * 1024;
+const acceptedFileTypes = ["image/jpeg", "image/png", "image/gif"];
+
 const emit = defineEmits(["update:modelValue"]);
 const value = computed({
   get: () => props.modelValue,
   set: (value) => {
-    emit("update:modelValue", value);
-    console.log(value);
+    if (value === null) {
+      emit("update:modelValue", null);
+    } else if (!acceptedFileTypes.includes(value.type)) {
+      toast.error(i18n.t("validation.image"));
+    } else if (value.size > maxFileSize) {
+      toast.error(i18n.t("validation.max.file"));
+    } else {
+      emit("update:modelValue", value);
+    }
   },
 });
 
@@ -57,21 +72,28 @@ function drop(event) {
         ]"
       />
       <span>{{ $t("image_uploader.upload_file") }}</span>
-      <span class="block text-xs text-gray-500">{{ $t("image_uploader.allowed_extensions") }}</span>
+      <span class="block text-xs text-gray-500">{{
+        $t("image_uploader.allowed_extensions")
+      }}</span>
       <input
         :id="id"
         ref="file"
         type="file"
         accept=".png,.jpg,.gif"
         class="hidden"
+        @click="file.value = null"
         @change="onChange"
       />
     </label>
-    <div v-show="imagePreviewUrl">
-      <img :src="imagePreviewUrl" class="max-h-64" />
+    <div v-show="imagePreviewUrl" class="flex items-center">
+      <img
+        :src="imagePreviewUrl"
+        class="max-h-full max-w-full"
+        :alt="$t('add_company.logo')"
+      />
       <button
         type="button"
-        title="Usuń"
+        :title="$t('add_company.logo_delete')"
         class="absolute top-1 right-1 p-1 rounded-md hover:bg-gray-100"
         @click="value = null"
       >
