@@ -1,48 +1,52 @@
 <script setup>
-import { ref } from 'vue';
-import MdEditor from 'md-editor-v3';
-import 'md-editor-v3/lib/style.css';
+import { ref } from "vue";
+import MdEditor from "md-editor-v3";
+import "md-editor-v3/lib/style.css";
 import dompurify from "dompurify";
-import { useI18n } from "vue-i18n"
+import { useI18n } from "vue-i18n";
 
 const i18n = useI18n();
 
-const sanitize = (html) => dompurify.sanitize(html, {
-  USE_PROFILES: { html: false },
-  ADD_TAGS: [
-    'strong',
-    'em',
-    'h1',
-    'h2',
-    'h3',
-    'h4',
-    'h5',
-    'h6',
-    'p',
-    'a',
-    'br',
-    'blockquote',
-  ],
-  ADD_ATTR: ['href'],
-});
-const text = ref('# Hello Editor');
+const sanitize = (html) =>
+  dompurify.sanitize(html, {
+    USE_PROFILES: { html: false },
+    ADD_TAGS: [
+      "strong",
+      "em",
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+      "p",
+      "a",
+      "br",
+      "blockquote",
+    ],
+    ADD_ATTR: ["href"],
+  });
+const text = ref("# Hello Editor");
 const props = defineProps({
-  toolbarOptions: {Array, default: [
-      'bold',
-      'italic',
-      'title',
-      'quote',
-      'link',
-      'pageFullscreen',
-      'preview',
-    ]},
-  previewTheme: {String, default: "github"},
+  toolbarOptions: {
+    Array,
+    default: [
+      "bold",
+      "italic",
+      "title",
+      "quote",
+      "link",
+      "pageFullscreen",
+      "preview",
+    ],
+  },
+  previewTheme: { String, default: "github" },
 });
 
 MdEditor.config({
   editorConfig: {
     languageUserDefined: {
-      'key.translated': {
+      "key.translated": {
         toolbarTips: {
           bold: i18n.t("markdown.bold"),
           italic: i18n.t("markdown.italic"),
@@ -70,10 +74,10 @@ MdEditor.config({
         footer: {
           markdownTotal: i18n.t("markdown.letterCount"),
           scrollAuto: i18n.t("markdown.scrollAuto"),
-        }
+        },
       },
     },
-  }
+  },
 });
 </script>
 

@@ -6,6 +6,7 @@ namespace Database\Factories;
 
 use Database\Factories\Embeddable\AddressDefines;
 use Database\Factories\Embeddable\ContactDetailsDefines;
+use function DeepCopy\deep_copy;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Internships\Enums\CompanyStatus;
 use Internships\Models\Company;
@@ -15,7 +16,6 @@ use Internships\Models\Specialization;
 use Internships\Models\Submission;
 use Internships\Models\User;
 use Internships\Services\LogoGenerator;
-use function DeepCopy\deep_copy;
 
 class CompanyFactory extends Factory
 {

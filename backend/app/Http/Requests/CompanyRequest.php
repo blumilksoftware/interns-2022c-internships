@@ -45,20 +45,19 @@ class CompanyRequest extends FormRequest
     {
         $this->merge(["user_id" => auth()->id()]);
 
-        if ($this->hasFile('logoFile')) {
-            $image = $this->file('logoFile');
-            $filename = Str::uuid() . '.' . $image->guessExtension();
+        if ($this->hasFile("logoFile")) {
+            $image = $this->file("logoFile");
+            $filename = Str::uuid() . "." . $image->guessExtension();
 
             $img = Image::make($image->getRealPath());
 
-            $img->resize(200, 200, function ($constraint) {
+            $img->resize(200, 200, function ($constraint): void {
                 $constraint->aspectRatio();
             });
 
             $img->stream();
-            Storage::disk('public')->put('images/'. $filename, $img);
-        }
-        else{
+            Storage::disk("public")->put("images/" . $filename, $img);
+        } else {
             $filename = (new LogoGenerator())->generateLogoFromName($this->name);
         }
         $this->merge(["logo" => $filename]);
