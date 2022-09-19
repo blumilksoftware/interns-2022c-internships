@@ -85,7 +85,9 @@ return [
         ],
     ],
     'seed' => [
-        'admin_email' => env('DB_SEED_ADMIN_EMAIL', 'admin@example.com'),
-        'admin_password' => env('DB_SEED_ADMIN_PASSWORD', 'password'),
+        'admin' => [
+            'email' => env('DB_SEED_ADMIN_EMAIL', 'admin@example.com'),
+            'password' => env('DB_SEED_ADMIN_PASSWORD', 'password'),
+        ],
     ],
 ];
