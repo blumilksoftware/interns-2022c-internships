@@ -1,4 +1,7 @@
 {
+    "college":{
+        "marker_info": "Our college."
+    },
     "navigation_bar":{
         "map": "Map",
         "add_company": "Add company",

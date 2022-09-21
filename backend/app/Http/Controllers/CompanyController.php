@@ -94,8 +94,7 @@ class CompanyController extends Controller
             "status" => CompanyStatus::Verified,
         ]);
 
-        return redirect()->route("company-manage")
-            ->with("success", "status.company_verified");
+        return redirect()->route("company-manage");
     }
 
     /**
@@ -106,7 +105,6 @@ class CompanyController extends Controller
         $this->authorize("destroy", $company);
         $company->delete();
 
-        return redirect()->route("company-manage")
-            ->with("success", "status.company_deleted");
+        return redirect()->route("company-manage");
     }
 }

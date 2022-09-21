@@ -5,6 +5,9 @@ import { Map } from "maplibre-gl";
 import { markRaw, onMounted, onUnmounted, ref, watch } from "vue";
 import "@maptiler/geocoder/css/geocoder.css";
 import { createCompanyMarker, createCollegeMarker } from "./Markers.js";
+import { useI18n } from "vue-i18n";
+
+const i18n = useI18n();
 
 const mapContainer = ref();
 let loadedMap;
@@ -58,6 +61,7 @@ function resetMarkers() {
 
   loadedMarkers = [];
   loadMarkers();
+  resetPosition();
 }
 
 function goTo(markerId) {
@@ -129,7 +133,10 @@ function onMapLoaded() {
     loadedMap.resize();
   });
 
-  let collegeMarker = createCollegeMarker(loadedMap);
+  let collegeMarker = createCollegeMarker(
+    loadedMap,
+    i18n.t("college.marker_info")
+  );
   collegeMarker.getElement().addEventListener("click", function () {
     loadedMap.flyTo({
       center: collegeMarker.getLngLat(),

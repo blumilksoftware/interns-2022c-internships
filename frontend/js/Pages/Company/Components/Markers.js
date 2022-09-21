@@ -23,8 +23,8 @@ function placeMarkerOnMap(map, position, popup, markerElement) {
     .addTo(map);
 }
 
-export function createCollegeMarker(map) {
-  const popup = new maplibregl.Popup({ offset: 25 }).setText("Nasza uczelnia.");
+export function createCollegeMarker(map, collegeMarkerInfo) {
+  const popup = new maplibregl.Popup({ offset: 25 }).setText(collegeMarkerInfo);
 
   let markerHtmlElement = document.createElement("img");
   markerHtmlElement.className = "marker";
