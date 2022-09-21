@@ -21,7 +21,7 @@ const props = defineProps({
 
 const form = useForm({
   name: null,
-  description: "",
+  description: "*" + i18n.t("add_company.description_info") + "*",
   logoFile: null,
   specializations: null,
   address: {
@@ -335,18 +335,18 @@ function getCoordinatesFromMap() {
             v-show="activeStep === 'description'"
           >
             <FormKit type="group" id="description" name="description">
-            <label>{{ $t("add_company.description") }}</label>
-              <div class="flex flex-col md:flex-row w-full h-96">
-                <MarkdownEditor
-                  :preview="false"
-                  class="!h-96 !w-full"
-                  v-model="form.description"
-                />
-                <MarkdownEditor
-                  :previewOnly="true"
-                  class="!h-96 !w-full !p-5"
-                  v-model="form.description"
-                />
+              <label>{{ $t("add_company.description") }}</label>
+              <div class="flex flex-col md:flex-row w-full h-full pt-2">
+                    <MarkdownEditor
+                      :preview="false"
+                      class="!h-64 md:!h-96 !w-full"
+                      v-model="form.description"
+                    />
+                    <MarkdownEditor
+                      :previewOnly="true"
+                      class="!h-64 md:!h-96 !w-full !p-5 !mt-2 md:!mt-0"
+                      v-model="form.description"
+                    />
               </div>
               <FormKit
                 type="hidden"
@@ -355,7 +355,7 @@ function getCoordinatesFromMap() {
               />
               <InputError class="mt-2" :message="form.errors.description" />
 
-              <label class="pt-10">{{ $t("add_company.select_specializations") }}</label>
+              <label class="pt-5">{{ $t("add_company.select_specializations") }}</label>
               <Treeselect
                 class="mt-2 w-96"
                 :options="props.departments.data"
