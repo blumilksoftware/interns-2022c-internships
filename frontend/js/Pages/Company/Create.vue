@@ -331,15 +331,23 @@ function getCoordinatesFromMap() {
 
           <!-- 3 panel -->
           <section
-            class="flex flex-col items-center w-full md:w-auto"
+            class="flex flex-col items-center h-full w-full md:w-2/3"
             v-show="activeStep === 'description'"
           >
             <FormKit type="group" id="description" name="description">
-              <label>{{ $t("add_company.description") }}</label>
-              <MarkdownEditor
-                class="flex w-screen sticky"
-                v-model="form.description"
-              />
+            <label>{{ $t("add_company.description") }}</label>
+              <div class="flex flex-col md:flex-row w-full h-96">
+                <MarkdownEditor
+                  :preview="false"
+                  class="!h-96 !w-full"
+                  v-model="form.description"
+                />
+                <MarkdownEditor
+                  :previewOnly="true"
+                  class="!h-96 !w-full !p-5"
+                  v-model="form.description"
+                />
+              </div>
               <FormKit
                 type="hidden"
                 v-model="form.description"
@@ -347,7 +355,7 @@ function getCoordinatesFromMap() {
               />
               <InputError class="mt-2" :message="form.errors.description" />
 
-              <label>{{ $t("add_company.select_specializations") }}</label>
+              <label class="pt-10">{{ $t("add_company.select_specializations") }}</label>
               <Treeselect
                 class="mt-2 w-96"
                 :options="props.departments.data"
