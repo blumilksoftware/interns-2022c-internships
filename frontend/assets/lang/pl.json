@@ -96,9 +96,10 @@
         "upload_file": "Prześlij obraz"
     },
     "status": {
-        "company_created": "Zgłoszenie nowej firmy zostało przesłane",
-        "company_deleted": "Firma została usunięta",
-        "company_verified": "Firma została zweryfikowana"
+        "company_created": "Zgłoszenie nowej firmy zostało przesłane.",
+        "company_deleted": "Firma została usunięta.",
+        "company_verified": "Firma została zweryfikowana.",
+        "cannot_select_more": "Nie można wybrać więcej elementów."
     },
     "error":{
         "header": "Błąd",

@@ -95,9 +95,10 @@
         "upload_file": "Upload image"
     },
     "status": {
-        "company_created": "New company application has been submitted",
-        "company_deleted": "Company has been deleted",
-        "company_verified": "Company has been verified"
+        "company_created": "New company application has been submitted.",
+        "company_deleted": "Company has been deleted.",
+        "company_verified": "Company has been verified.",
+        "cannot_select_more": "Cannot select any more elements."
     },
     "error":{
         "header": "Error",
