@@ -33,7 +33,7 @@ createInertiaApp({
     const i18n = createI18n({
       legacy: false,
       globalInjection: true,
-      locale: "pl",
+      locale: Intl.DateTimeFormat().resolvedOptions().locale,
       fallbackLocale: "pl",
       availableLocales: ["en", "pl"],
       messages: messages,
