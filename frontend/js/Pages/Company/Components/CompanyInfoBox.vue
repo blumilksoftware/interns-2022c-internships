@@ -62,7 +62,7 @@
             alt=""
           />
           <div class="flex flex-col justify-center sm:gap-2 rounded-lg shadow-md p-2 bg-white">
-            <p class="hidden sm:flex justify-center font-semibold">Dane kontaktowe</p>
+            <p class="hidden sm:flex justify-center font-semibold">{{ $t("company_browser.contact_details") }}</p>
             <div class="flex items-center"><EnvelopeIcon class="h-6 mx-2"/><a class="text-blue-700 font-medium" :href="'mailto:' + company.contact_details.email">{{ company.contact_details.email }}</a></div>
             <div class="flex items-center"><GlobeAltIcon class="h-6 mx-2"/><a class="text-blue-700 font-medium" :href=company.contact_details.website_url target="_blank">{{ company.contact_details.website_url }}</a></div>
             <div class="flex items-center"><DevicePhoneMobileIcon class="h-6 mx-2"/>{{ company.contact_details.phone_number }}</div>
@@ -70,7 +70,7 @@
         </div>
 
           <div class="mt-2 rounded-lg p-2 bg-white shadow-md">
-          <p class="font-medium">Firma poszukuje</p>
+          <p class="font-medium">{{ $t("company_browser.company_seeks") }}</p>
           <ul class="list-decimal list-inside">
             <li v-for="specialization in company.specializations" :key="company.specializations.id">
               <InertiaLink
@@ -83,7 +83,7 @@
           </div>
   
           <div class="mt-2 rounded-lg p-2 bg-white shadow-md">
-            <p class="font-medium">Opis</p>
+            <p class="font-medium">{{ $t("company_browser.description") }}</p>
             <MarkdownEditor
             :previewOnly="true"
             class="!bg-transparent w-full"
