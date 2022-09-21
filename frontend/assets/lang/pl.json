@@ -19,8 +19,11 @@
         "is_pending": "W oczekiwaniu na weryfikację",
         "delete_button": "Usuń",
         "verify_button": "Zweryfikuj",
-        "delete_confirm": "Czy na pewno usunąć firmę?",
-        "verify_confirm": "Czy na pewno zweryfikować firmę?"
+        "delete_confirm": "Czy na pewno chcesz usunąć firmę?",
+        "verify_confirm": "Czy na pewno chcesz zweryfikować firmę?",
+        "contact_details": "Dane kontaktowe",
+        "company_seeks": "Firma poszukuje",
+        "description": "Opis"
     },
     "tree_selects":{
         "tree_select_city": "Wybierz miasto",
