@@ -1,7 +1,7 @@
 <script setup>
 import { useForm } from "@inertiajs/inertia-vue3";
 import InputError from "@/js/Shared/Components/InputError.vue";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import ImageUploader from "@/js/Shared/Components/ImageUploader.vue";
 import MarkdownEditor from "@/js/Shared/Components/MarkdownEditor.vue";
 import useSteps from "./useSteps.js";
@@ -9,9 +9,14 @@ import { CheckCircleIcon, XCircleIcon } from "@heroicons/vue/24/solid";
 import MapGeocode from "./Components/MapGeocode.vue";
 import Treeselect from "@tkmam1x/vue3-treeselect";
 import "@tkmam1x/vue3-treeselect/dist/vue3-treeselect.css";
+import { useI18n } from "vue-i18n";
+import { useToast } from "vue-toastification";
+
+const i18n = useI18n();
+const toast = useToast();
 
 const props = defineProps({
-  departments: Array,
+  departments: Object,
 });
 
 const form = useForm({
@@ -33,6 +38,33 @@ const form = useForm({
     phone_number: null,
   },
 });
+
+const specializationLimit = 4;
+let toastLimiter = false;
+
+function showSelectError() {
+  if(!toastLimiter){
+    toast.error(i18n.t("status.cannot_select_more"));
+    toastLimiter = true;
+  }
+  else{
+    return;
+  }
+  setTimeout(function() {
+    toastLimiter = false;
+  }, 3000)
+}
+
+watch(
+  () => form.specializations,
+  () => {
+    if( form.specializations && form.specializations.length > specializationLimit ){
+      showSelectError();
+      form.specializations = form.specializations.slice(0, specializationLimit);
+    }
+  },
+  { deep: true }
+);
 
 function submit() {
   form.address.coordinates = getCoordinatesFromMap();
@@ -366,5 +398,3 @@ function getCoordinatesFromMap() {
     </FormKit>
   </div>
 </template>
-
-<style></style>
