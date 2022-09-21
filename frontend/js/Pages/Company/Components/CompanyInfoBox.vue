@@ -40,27 +40,13 @@
       <div
         class="shadow h-full ring-1 ring-black ring-opacity-5 md:rounded-lg overflow-x-hidden overflow-y-scroll"
       >
-        <div class="flex flex-row justify-center mt-5 px-10 md:py-4 gap-2 md:gap-8 mb-5">
-          <img
-            class="h-24 w-24 sm:h-40 sm:w-40 shadow-lg rounded-lg border-2"
-            :src="'/storage/images/' + company.logo"
-            alt=""
-          />
-          <div class="flex flex-col justify-center md:gap-2 rounded-lg shadow-md p-2 bg-white">
-            <p class="hidden md:flex justify-center  font-semibold">Dane kontaktowe</p>
-            <div class="flex items-center"><EnvelopeIcon class="h-6 mx-2"/><a :href="'mailto:' + company.contact_details.email">{{ company.contact_details.email }}</a></div>
-            <div class="flex items-center"><GlobeAltIcon class="h-6 mx-2"/><a :href=company.contact_details.website_url target="_blank">{{ company.contact_details.website_url }}</a></div>
-            <div class="flex items-center"><DevicePhoneMobileIcon class="h-6 mx-2"/>{{ company.contact_details.phone_number }}</div>
-          </div>
-        </div>
-  
-        <div class="p-4 px-10 pt-1 text-left sm:text-left">
+        <div class="mt-4 p-4 px-10 pt-1 text-left sm:text-left">
           <div>
-            <h1 class="text-gray-900 pb-2 text-2xl">{{ company.name }}</h1>
+            <h1 class="text-gray-900 pb-2 text-2xl text-center">{{ company.name }}</h1>
             <hr class="border-b border-gray-300" />
           </div>
           <p
-            class="pt-2 text-gray-600 text-xs sm:text-sm flex items-center justify-center sm:justify-start mb-4"
+            class="pt-2 text-gray-600 text-xs sm:text-sm flex items-center justify-center  mb-4"
           >
             <img
               class="h-5 w-10 hover:h-6 hover:w-11"
@@ -69,6 +55,20 @@
             />{{ company.location.name }}
           </p>
   
+          <div class="flex flex-row justify-center mt-5 px-10 sm:py-4 gap-2 sm:gap-4 mb-5">
+          <img
+            class="h-24 w-24 sm:h-36 sm:w-36 shadow-lg rounded-lg border-2"
+            :src="'/storage/images/' + company.logo"
+            alt=""
+          />
+          <div class="flex flex-col justify-center sm:gap-2 rounded-lg shadow-md p-2 bg-white">
+            <p class="hidden sm:flex justify-center font-semibold">Dane kontaktowe</p>
+            <div class="flex items-center"><EnvelopeIcon class="h-6 mx-2"/><a class="text-blue-700 font-medium" :href="'mailto:' + company.contact_details.email">{{ company.contact_details.email }}</a></div>
+            <div class="flex items-center"><GlobeAltIcon class="h-6 mx-2"/><a class="text-blue-700 font-medium" :href=company.contact_details.website_url target="_blank">{{ company.contact_details.website_url }}</a></div>
+            <div class="flex items-center"><DevicePhoneMobileIcon class="h-6 mx-2"/>{{ company.contact_details.phone_number }}</div>
+          </div>
+        </div>
+
           <div class="mt-2 rounded-lg p-2 bg-white shadow-md">
           <p class="font-medium">Firma poszukuje</p>
           <ul class="list-decimal list-inside">
