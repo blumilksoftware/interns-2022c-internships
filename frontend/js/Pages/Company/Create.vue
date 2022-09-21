@@ -5,7 +5,7 @@ import { ref } from "vue";
 import ImageUploader from "@/js/Shared/Components/ImageUploader.vue";
 import MarkdownEditor from "@/js/Shared/Components/MarkdownEditor.vue";
 import useSteps from "./useSteps.js";
-import { CheckIcon, ExclamationCircleIcon } from "@heroicons/vue/solid";
+import { CheckCircleIcon, XCircleIcon } from "@heroicons/vue/24/solid";
 import MapGeocode from "./Components/MapGeocode.vue";
 import Treeselect from "@tkmam1x/vue3-treeselect";
 import "@tkmam1x/vue3-treeselect/dist/vue3-treeselect.css";
@@ -103,10 +103,10 @@ function getCoordinatesFromMap() {
                 class="flex items-center px-6 py-2 text-sm font-medium md:py-4"
               >
                 <span
-                  class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary group-hover:bg-secondary md:h-10 md:w-10"
+                  class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-green-700 group-hover:bg-secondary md:h-10 md:w-10"
                 >
-                  <CheckIcon
-                    class="h-4 w-4 text-white md:h-6 md:w-6"
+                  <CheckCircleIcon
+                    class="h-9 w-9 text-white"
                     aria-hidden="true"
                   />
                 </span>
@@ -141,8 +141,8 @@ function getCoordinatesFromMap() {
                 <span
                   class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-red-700 group-hover:bg-red-800 md:h-10 md:w-10"
                 >
-                  <ExclamationCircleIcon
-                    class="h-10 w-10 text-white"
+                  <XCircleIcon
+                    class="h-9 w-9 text-white"
                     aria-hidden="true"
                   />
                 </span>

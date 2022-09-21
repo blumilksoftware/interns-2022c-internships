@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref } from "vue";
-import { PhotographIcon, XIcon } from "@heroicons/vue/solid";
+import { PhotoIcon, XMarkIcon } from "@heroicons/vue/24/solid";
 import { useToast } from "vue-toastification";
 import { useI18n } from "vue-i18n";
 
@@ -63,7 +63,7 @@ function drop(event) {
       :for="id"
       class="block cursor-pointer text-center space-y-1 my-4 group text-sm rounded-md font-medium text-teal-600 hover:text-teal-700"
     >
-      <PhotographIcon
+      <PhotoIcon
         :class="[
           dragging
             ? 'text-teal-500'
@@ -97,7 +97,7 @@ function drop(event) {
         class="absolute top-1 right-1 p-1 rounded-md hover:bg-gray-100"
         @click="value = null"
       >
-        <XIcon class="h-6 w-6 text-gray-600" />
+        <XMarkIcon class="h-6 w-6 text-gray-600" />
       </button>
     </div>
   </div>

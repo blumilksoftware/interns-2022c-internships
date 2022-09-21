@@ -8,7 +8,7 @@ import {
   MenuItem,
   MenuItems,
 } from "@headlessui/vue";
-import { UserIcon, MenuIcon, XIcon, CodeIcon } from "@heroicons/vue/outline";
+import { UserIcon, Bars3Icon, XMarkIcon, CodeBracketIcon } from "@heroicons/vue/24/outline";
 import LanguageSwitch from "./LanguageSwitch.vue";
 import route from "ziggy";
 </script>
@@ -108,7 +108,7 @@ import route from "ziggy";
                   class="bg-gray-800 p-1 rounded-full text-gray-400 focus:outline-none focus:ring-2 focus:ring-white"
                 >
                   <span class="sr-only">View code</span>
-                  <CodeIcon class="h-6 w-6" aria-hidden="true" />
+                  <CodeBracketIcon class="h-6 w-6" aria-hidden="true" />
                 </a>
               </div>
             </div>
@@ -120,8 +120,8 @@ import route from "ziggy";
             class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
           >
             <span class="sr-only">Open main menu</span>
-            <MenuIcon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
-            <XIcon v-else class="block h-6 w-6" aria-hidden="true" />
+            <Bars3Icon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
+            <XMarkIcon v-else class="block h-6 w-6" aria-hidden="true" />
           </DisclosureButton>
         </div>
       </div>

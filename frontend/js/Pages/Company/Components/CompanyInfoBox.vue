@@ -1,7 +1,7 @@
 <script setup>
 import LocationIcon from "@/assets/icons/locationIcon.svg";
 import { onMounted } from "vue";
-import { XIcon } from "@heroicons/vue/outline";
+import { XMarkIcon } from "@heroicons/vue/24/outline";
 import MarkdownEditor from "@/js/Shared/Components/MarkdownEditor.vue";
 
 const props = defineProps({
@@ -34,7 +34,7 @@ onMounted(() => {
   <div>
     <div class="sticky h-0 right-10 w-full flex justify-end">
       <button class="sticky right-0" @click="onClose">
-        <XIcon class="pr-5 pt-5 h-12 w-12 text-gray-700" />
+        <XMarkIcon class="pr-5 pt-5 h-12 w-12 text-gray-700" />
       </button>
     </div>
     <div
