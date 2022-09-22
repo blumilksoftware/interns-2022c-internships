@@ -1,2 +1,2 @@
 #!/bin/sh
-docker exec -it internships php $@
+docker exec -it intern-php php $@
