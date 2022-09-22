@@ -56,11 +56,12 @@
           </p>
   
           <div class="flex flex-row justify-center mt-5 px-10 sm:py-4 gap-2 sm:gap-4 mb-5">
-          <img
-            class="h-24 w-24 sm:h-36 sm:w-36 shadow-lg rounded-lg border-2"
-            :src="'/storage/images/' + company.logo"
+          <div
+            class="flex items-center h-24 w-24 sm:h-36 sm:w-36 shadow-lg rounded-lg border-2"
             alt=""
-          />
+          >
+            <img :src="'/storage/images/' + company.logo" />
+        </div>
           <div class="flex flex-col justify-center sm:gap-2 rounded-lg shadow-md p-2 bg-white">
             <p class="hidden sm:flex justify-center font-semibold">{{ $t("company_browser.contact_details") }}</p>
             <div class="flex items-center"><EnvelopeIcon class="h-6 mx-2"/><a class="text-blue-700 font-medium" :href="'mailto:' + company.contact_details.email">{{ company.contact_details.email }}</a></div>
