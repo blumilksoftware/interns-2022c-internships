@@ -55,10 +55,9 @@
             />{{ company.location.name }}
           </p>
   
-          <div class="flex flex-row justify-center mt-5 px-10 sm:py-4 gap-2 sm:gap-4 mb-5">
+          <div class="flex items-center flex-row justify-center mt-5 px-10 sm:py-4 gap-2 sm:gap-4 mb-5">
           <div
-            class="h-24 w-24 sm:h-36 sm:w-36 shadow-lg rounded-lg border-2"
-            alt=""
+            class="h-24 w-24 sm:h-36 sm:w-36 shadow-lg rounded-lg border-2 shrink-0"
           >
           <img class="object-contain h-full w-full" :src="'/storage/images/' + company.logo" />
         </div>
