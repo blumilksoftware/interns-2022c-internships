@@ -27,7 +27,7 @@ const sanitize = (html) =>
       "ol",
       "li",
     ],
-    ADD_ATTR: ["href"],
+    ADD_ATTR: ["href", "target"],
   });
 const text = ref("# Hello Editor");
 const props = defineProps({
@@ -79,6 +79,13 @@ MdEditor.config({
       },
     },
   },
+  markedRenderer(renderer) {
+    renderer.link = (href, title, text) => {
+      return `<a href="${href}" target="_blank">${text}</a>`;
+    };
+
+    return renderer;
+  }
 });
 </script>
 
