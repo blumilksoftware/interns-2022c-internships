@@ -91,3 +91,10 @@ MdEditor.config({
     v-model="text"
   />
 </template>
+
+<style>
+    #md-editor-v3-preview {
+    word-break: normal !important;
+    text-align: justify;
+  }
+</style>
