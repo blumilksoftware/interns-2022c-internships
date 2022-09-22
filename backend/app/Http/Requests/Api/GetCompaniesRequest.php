@@ -7,8 +7,11 @@ namespace Internships\Http\Requests\Api;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Request;
-use Inertia\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Internships\Enums\CompanyStatus;
+use Internships\Enums\Permission;
+use Inertia\Response;
 use Internships\Http\Resources\CityResource;
 use Internships\Http\Resources\CompanySummaryResource;
 use Internships\Http\Resources\DepartmentResource;
@@ -44,7 +47,13 @@ class GetCompaniesRequest extends ApiRequest
 
     protected function data(): Builder
     {
+        if (Gate::forUser(auth()->user())->allows(Permission::ManageCompanies->value)) {
+            return Company::query()->orderBy("status", "asc")
+                ->whereNot("status", CompanyStatus::PendingEdited);
+        }
+
         return Company::query()->orderBy("has_signed_papers", "desc")
-            ->where("status", CompanyStatus::Verified);
+            ->where("status", CompanyStatus::Verified)
+            ->orWhere("user_id", auth()->user()->id);
     }
 }

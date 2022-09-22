@@ -30,7 +30,7 @@ import route from "ziggy";
               <InertiaLink
                 :href="route('index')"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >{{ $t("navigation_bar.map") }}</InertiaLink
+                >{{ $t("company_browser.companies_list") }}</InertiaLink
               >
               <InertiaLink
                 v-if="$page.props.auth.user"
@@ -132,7 +132,7 @@ import route from "ziggy";
           as="a"
           :href="route('index')"
           class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-          >{{ $t("navigation_bar.map") }}</DisclosureButton
+          >{{ $t("company_browser.companies_list") }}</DisclosureButton
         >
         <DisclosureButton
           v-if="$page.props.auth.user"
