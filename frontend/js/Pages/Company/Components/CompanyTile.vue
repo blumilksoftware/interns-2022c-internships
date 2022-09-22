@@ -22,9 +22,9 @@
                 <div class="flex items-center">
                   <div class="flex-shrink-0">
                     <div
-                      class="flex items-center h-12 w-12 sm:h-20 sm:w-20 shadow-lg rounded-lg border-2"
+                      class="h-12 w-12 sm:h-20 sm:w-20 shadow-lg rounded-lg border-2"
                     >
-                      <img :src="'/storage/images/' + company.logo"/>
+                      <img class="object-contain h-full w-full" :src="'/storage/images/' + company.logo"/>
                   </div>
                   </div>
                   <div class="ml-4">
