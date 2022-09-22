@@ -28,7 +28,7 @@ class CompanyRequest extends FormRequest
     {
         return [
             "name" => ["required", "string", "max:255"],
-            "description" => ["required", "string", "max:255"],
+            "description" => ["required", "string", "max:2500"],
             "address.street" => ["required", "string"],
             "address.city" => ["required", "string"],
             "address.postal_code" => ["required", "string"],

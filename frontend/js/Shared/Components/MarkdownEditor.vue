@@ -23,6 +23,9 @@ const sanitize = (html) =>
       "a",
       "br",
       "blockquote",
+      "ul",
+      "ol",
+      "li",
     ],
     ADD_ATTR: ["href"],
   });
