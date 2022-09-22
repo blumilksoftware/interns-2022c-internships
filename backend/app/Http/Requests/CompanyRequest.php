@@ -7,6 +7,9 @@ namespace Internships\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
+use Internships\Enums\CompanyStatus;
+use Internships\Enums\Permission;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\File;
@@ -64,6 +67,12 @@ class CompanyRequest extends FormRequest
 
         $company = Company::query()->create($this->except(["logoFile", "specializations"]));
         $company->specializations()->sync($this->specializations);
+
+        if (Gate::forUser(auth()->user())->allows(Permission::ManageCompanies->value)) {
+            $company->update([
+                "status" => CompanyStatus::Verified,
+            ]);
+        }
 
         return $company;
     }

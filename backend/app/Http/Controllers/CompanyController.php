@@ -4,22 +4,23 @@ declare(strict_types=1);
 
 namespace Internships\Http\Controllers;
 
-use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Str;
 use Inertia\Response;
-use Internships\Enums\CompanyStatus;
+use Illuminate\Support\Str;
+use Internships\Models\Company;
 use Internships\Enums\Permission;
-use Internships\Http\Requests\Api\GetCompaniesRequest;
-use Internships\Http\Requests\Api\GetManagedCompaniesRequest;
+use Internships\Models\Department;
+use Internships\Enums\CompanyStatus;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 use Internships\Http\Requests\CompanyRequest;
 use Internships\Http\Resources\CompanyResource;
+use Illuminate\Auth\Access\AuthorizationException;
 use Internships\Http\Resources\DepartmentResource;
-use Internships\Models\Company;
-use Internships\Models\Department;
+use Internships\Http\Requests\Api\GetCompaniesRequest;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
+use Internships\Http\Requests\Api\GetManagedCompaniesRequest;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class CompanyController extends Controller
 {
@@ -47,12 +48,10 @@ class CompanyController extends Controller
     /**
      * @throws UnknownProperties
      */
-    public function store(CompanyRequest $request): RedirectResponse
+    public function store(CompanyRequest $request): Response
     {
-        $request->data();
-
-        return redirect()->route("company-manage")
-            ->with("success", "status.company_created");
+        return $this->show($request->data(), new GetCompaniesRequest())
+            ->with(["success" => "status.company_created"]);
     }
 
     /**
@@ -94,7 +93,7 @@ class CompanyController extends Controller
             "status" => CompanyStatus::Verified,
         ]);
 
-        return redirect()->route("company-manage");
+        return Redirect::route("company-manage");
     }
 
     /**
@@ -105,6 +104,6 @@ class CompanyController extends Controller
         $this->authorize("destroy", $company);
         $company->delete();
 
-        return redirect()->route("company-manage");
+        return Redirect::route("company-manage");
     }
 }
