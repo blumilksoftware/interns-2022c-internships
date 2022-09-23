@@ -22,7 +22,7 @@
         "delete_confirm": "Czy na pewno chcesz usunąć firmę?",
         "verify_confirm": "Czy na pewno chcesz zweryfikować firmę?",
         "contact_details": "Dane kontaktowe",
-        "company_seeks": "Firma poszukuje",
+        "company_seeks": "Poszukuje studentów z:",
         "description": "Opis"
     },
     "tree_selects":{

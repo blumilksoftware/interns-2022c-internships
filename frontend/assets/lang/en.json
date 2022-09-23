@@ -21,7 +21,7 @@
         "delete_confirm": "Are you sure you want to remove the company?",
         "verify_confirm": "Are you sure you want to verify the company?",
         "contact_details": "Contact details",
-        "company_seeks": "Company seeks",
+        "company_seeks": "Is looking for students of:",
         "description": "Description"
     },
     "tree_selects":{
