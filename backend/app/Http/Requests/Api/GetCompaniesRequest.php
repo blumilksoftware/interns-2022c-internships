@@ -6,12 +6,11 @@ namespace Internships\Http\Requests\Api;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Request;
+use Inertia\Response;
 use Internships\Enums\CompanyStatus;
 use Internships\Enums\Permission;
-use Inertia\Response;
 use Internships\Http\Resources\CityResource;
 use Internships\Http\Resources\CompanySummaryResource;
 use Internships\Http\Resources\DepartmentResource;

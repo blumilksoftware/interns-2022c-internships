@@ -4,23 +4,22 @@ declare(strict_types=1);
 
 namespace Internships\Http\Controllers;
 
-use Inertia\Response;
-use Illuminate\Support\Str;
-use Internships\Models\Company;
-use Internships\Enums\Permission;
-use Internships\Models\Department;
-use Internships\Enums\CompanyStatus;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
+use Inertia\Response;
+use Internships\Enums\CompanyStatus;
+use Internships\Enums\Permission;
+use Internships\Http\Requests\Api\GetCompaniesRequest;
+use Internships\Http\Requests\Api\GetManagedCompaniesRequest;
 use Internships\Http\Requests\CompanyRequest;
 use Internships\Http\Resources\CompanyResource;
-use Illuminate\Auth\Access\AuthorizationException;
 use Internships\Http\Resources\DepartmentResource;
-use Internships\Http\Requests\Api\GetCompaniesRequest;
+use Internships\Models\Company;
+use Internships\Models\Department;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
-use Internships\Http\Requests\Api\GetManagedCompaniesRequest;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class CompanyController extends Controller
 {

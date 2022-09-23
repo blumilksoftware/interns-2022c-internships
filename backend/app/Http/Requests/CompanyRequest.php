@@ -6,13 +6,13 @@ namespace Internships\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
-use Internships\Enums\CompanyStatus;
-use Internships\Enums\Permission;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\File;
+use Internships\Enums\CompanyStatus;
+use Internships\Enums\Permission;
 use Internships\Models\Company;
 use Internships\Services\LogoGenerator;
 use Intervention\Image\Facades\Image;
