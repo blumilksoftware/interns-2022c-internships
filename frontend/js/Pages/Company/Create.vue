@@ -225,7 +225,7 @@ function onActiveStepChange(stepName) {
             </section>
 
             <section
-              class="flex flex-col items-center w-full ssm:w-screen"
+              class="flex flex-col items-center w-screen ssm:w-full"
               v-show="activeStep === 'description'"
             >
               <FormKit type="group" id="description" name="description">
@@ -235,12 +235,12 @@ function onActiveStepChange(stepName) {
                 >
                   <MarkdownEditor
                     :preview="false"
-                    class="!h-64 md:!h-96 !w-4/5 max-w-md"
+                    class="!h-64 md:!h-96 !w-full max-w-lg"
                     v-model="form.description"
                   />
                   <MarkdownEditor
                     :previewOnly="true"
-                    class="!h-64 md:!h-96 !w-4/5 !p-5 max-w-md"
+                    class="!h-64 md:!h-96 !w-full !p-5 max-w-lg"
                     v-model="form.description"
                   />
                 </div>
