@@ -54,7 +54,7 @@ onMounted(() => {
         v-for="(step, stepName, index) in props.steps"
         :key="step"
         @click="setStep(stepName)"
-        class="justify-center ssm:justify-start relative flex flex-1"
+        class="justify-start relative flex flex-1"
       >
         <a
           v-if="activeStep === stepName"
@@ -67,14 +67,14 @@ onMounted(() => {
           >
             <span class="text-white">{{ index + 1 }}</span>
           </span>
-          <span class="ssm:block ml-4 text-sm font-medium text-primary">{{
+          <span class="ml-4 text-sm font-medium text-primary">{{
             $t("add_company.step_" + stepName)
           }}</span>
         </a>
         <a
           v-else-if="step.valid"
           :href="step.href"
-          class="group flex justify-center ssm:justify-start w-full items-center"
+          class="group flex justify-start w-full items-center"
         >
           <span class="flex items-center px-6 py-2 text-sm font-medium md:py-4">
             <span
@@ -82,7 +82,7 @@ onMounted(() => {
             >
               <CheckCircleIcon class="h-9 w-9 text-white" aria-hidden="true" />
             </span>
-            <span class="ssm:block ml-4 text-sm font-medium text-gray-900">{{
+            <span class="ml-4 text-sm font-medium text-gray-900">{{
               $t("add_company.step_" + stepName)
             }}</span>
           </span>
@@ -90,7 +90,7 @@ onMounted(() => {
         <a
           v-else-if="checkStepValidity(stepName)"
           :href="step.href"
-          class="group flex justify-center ssm:justify-start w-full items-center"
+          class="group flex justify-start w-full items-center"
         >
           <span class="flex items-center px-6 py-2 text-sm font-medium md:py-4">
             <span
@@ -98,7 +98,7 @@ onMounted(() => {
             >
               <XCircleIcon class="h-9 w-9 text-white" aria-hidden="true" />
             </span>
-            <span class="ssm:block ml-4 text-sm font-medium text-gray-900">{{
+            <span class="ml-4 text-sm font-medium text-gray-900">{{
               $t("add_company.step_" + stepName)
             }}</span>
           </span>
@@ -113,7 +113,7 @@ onMounted(() => {
               }}</span>
             </span>
             <span
-              class="ssm:block ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900"
+              class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900"
               >{{ $t("add_company.step_" + stepName) }}</span
             >
           </span>
