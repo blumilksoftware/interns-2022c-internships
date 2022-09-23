@@ -148,7 +148,7 @@ onMounted(() => {
       />
     </div>
     <div
-      class="flex flex-col shadow-lg bg-gray-50 w-full h-1/2 md:w-3/5 lg:w-3/5 xl:w-2/5 sm:h-full"
+      class="flex flex-col shadow-lg bg-gray-50 w-full h-1/2 md:max-w-md sm:h-full"
     >
       <template v-if="!showDetail">
         <CompanyListHeader :total="companies.meta.total" />

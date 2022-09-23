@@ -224,12 +224,12 @@ function onActiveStepChange(stepName) {
                 <div class="flex flex-col items-center justify-center xl:flex-row w-full h-full pt-2">
                   <MarkdownEditor
                     :preview="false"
-                    class="!h-64 md:!h-96 !w-4/5 md:!w-1/3"
+                    class="!h-64 md:!h-96 !w-4/5 max-w-md"
                     v-model="form.description"
                   />
                   <MarkdownEditor
                     :previewOnly="true"
-                    class="!h-64 md:!h-96 !w-4/5 !p-5 md:!w-1/3"
+                    class="!h-64 md:!h-96 !w-4/5 !p-5 max-w-md"
                     v-model="form.description"
                   />
                 </div>
