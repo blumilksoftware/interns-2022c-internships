@@ -31,13 +31,17 @@ function onCompanySelect() {
                   </div>
                 </div>
                 <div class="ml-4">
-                  <div class="font-medium text-md sm:text-lg max-w-sm text-ellipsis overflow-hidden ... text-gray-900">
+                  <div
+                    class="font-medium text-md sm:text-lg max-w-sm text-ellipsis overflow-hidden ... text-gray-900"
+                  >
                     {{ company.name }}
                   </div>
                   <div class="text-gray-500">
                     {{ company.location.shortName }}
                   </div>
-                  <div class="flex flex-inline max-w-sm text-ellipsis overflow-hidden ...">
+                  <div
+                    class="flex flex-inline max-w-sm text-ellipsis overflow-hidden ..."
+                  >
                     <div class="mt-2" v-if="company.status === 'pending_new'">
                       <span
                         class="bg-yellow-100 text-yellow-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-200 dark:text-yellow-800"

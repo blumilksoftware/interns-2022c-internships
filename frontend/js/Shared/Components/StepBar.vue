@@ -1,6 +1,11 @@
 <script setup>
 import { computed, watch, onMounted } from "vue";
-import { CheckCircleIcon, XCircleIcon, ChevronDoubleRightIcon, ChevronDoubleLeftIcon } from "@heroicons/vue/24/solid";
+import {
+  CheckCircleIcon,
+  XCircleIcon,
+  ChevronDoubleRightIcon,
+  ChevronDoubleLeftIcon,
+} from "@heroicons/vue/24/solid";
 import useSteps from "./useSteps.js";
 
 const { activeStep, visitedSteps } = useSteps();
@@ -159,7 +164,7 @@ onMounted(() => {
         }"
         class="w-24 h-10 m-5 flex justify-center items-center rounded-lg shadow-md z-10 bg-gray-100 hover:bg-gray-200 opacity-60 hover:opacity-100"
       >
-      <ChevronDoubleRightIcon class="w-5 h-5" />
+        <ChevronDoubleRightIcon class="w-5 h-5" />
       </button>
     </div>
   </nav>

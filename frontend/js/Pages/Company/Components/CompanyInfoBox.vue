@@ -107,7 +107,7 @@ onMounted(() => {
           <ul class="list-decimal list-inside">
             <li
               v-for="specialization in company.specializations"
-              :key="company.specializations.id"
+              :key="specialization.id"
             >
               <InertiaLink
                 :href="route('index', { specialization: specialization.id })"
