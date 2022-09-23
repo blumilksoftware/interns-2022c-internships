@@ -67,10 +67,9 @@ onMounted(() => {
           >
             <span class="text-white">{{ index + 1 }}</span>
           </span>
-          <span
-            class="hidden ssm:block ml-4 text-sm font-medium text-primary"
-            >{{ $t("add_company.step_" + stepName) }}</span
-          >
+          <span class="ssm:block ml-4 text-sm font-medium text-primary">{{
+            $t("add_company.step_" + stepName)
+          }}</span>
         </a>
         <a
           v-else-if="step.valid"
@@ -83,10 +82,9 @@ onMounted(() => {
             >
               <CheckCircleIcon class="h-9 w-9 text-white" aria-hidden="true" />
             </span>
-            <span
-              class="hidden ssm:block ml-4 text-sm font-medium text-gray-900"
-              >{{ $t("add_company.step_" + stepName) }}</span
-            >
+            <span class="ssm:block ml-4 text-sm font-medium text-gray-900">{{
+              $t("add_company.step_" + stepName)
+            }}</span>
           </span>
         </a>
         <a
@@ -100,10 +98,9 @@ onMounted(() => {
             >
               <XCircleIcon class="h-9 w-9 text-white" aria-hidden="true" />
             </span>
-            <span
-              class="hidden ssm:block ml-4 text-sm font-medium text-gray-900"
-              >{{ $t("add_company.step_" + stepName) }}</span
-            >
+            <span class="ssm:block ml-4 text-sm font-medium text-gray-900">{{
+              $t("add_company.step_" + stepName)
+            }}</span>
           </span>
         </a>
         <a v-else :href="step.href" class="group flex items-center">
@@ -116,7 +113,7 @@ onMounted(() => {
               }}</span>
             </span>
             <span
-              class="hidden ssm:block ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900"
+              class="ssm:block ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900"
               >{{ $t("add_company.step_" + stepName) }}</span
             >
           </span>
