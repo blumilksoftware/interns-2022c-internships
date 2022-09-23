@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
     @vite('js/app.js')
 </head>
-<body class="h-full mt-0">
+<body class="h-full w-full ssm:w-screen mt-0">
     @routes
     @inertia
 </body>

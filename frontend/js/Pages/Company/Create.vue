@@ -122,7 +122,7 @@ function onActiveStepChange(stepName) {
             class="flex flex-col w-full h-full items-center justify-center p-8 gap-3 md:w-auto"
           >
             <section
-              class="flex flex-col items-center w-full"
+              class="flex flex-col items-center w-full ssm:w-screen"
               v-show="activeStep === 'info'"
             >
               <label>{{ $t("add_company.logo") }}</label>
@@ -162,7 +162,7 @@ function onActiveStepChange(stepName) {
             </section>
 
             <section
-              class="flex flex-col items-center w-full"
+              class="flex flex-col items-center w-full ssm:w-screen"
               v-show="activeStep === 'address'"
             >
               <FormKit type="group" id="address" name="address">
@@ -225,13 +225,13 @@ function onActiveStepChange(stepName) {
             </section>
 
             <section
-              class="flex flex-col items-center w-full"
+              class="flex flex-col items-center w-full ssm:w-screen"
               v-show="activeStep === 'description'"
             >
               <FormKit type="group" id="description" name="description">
                 <label>{{ $t("add_company.description") }}</label>
                 <div
-                  class="flex flex-col items-center justify-center xl:flex-row w-full h-full pt-2"
+                  class="flex flex-col items-center justify-center lg:flex-row w-full h-full pt-2"
                 >
                   <MarkdownEditor
                     :preview="false"

@@ -7,7 +7,7 @@ import locales from "@/assets/lang/index.js";
     <select
       v-model="$i18n.locale"
       @change="$formkit.setLocale($i18n.locale)"
-      class="select w-fit text-sm sm:text-xs pl-2 pr-6 py-2 text-gray-50 bg-gray-800 border-slate-900 focus:outline-none focus:ring-slate-900 focus:border-slate-800 rounded-full overflow-hidden"
+      class="select w-fit text-sm sm:text-xs pl-2 pr-6 py-2 text-gray-50 bg-primary focus:bg-blue-900 hover:bg-blue-900 rounded-full overflow-hidden"
     >
       <option
         class="border-slate-900"
