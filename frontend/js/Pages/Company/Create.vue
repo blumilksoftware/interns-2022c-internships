@@ -133,7 +133,7 @@ function onActiveStepChange(stepName) {
                   :label="$t('add_company.company_name')"
                   validation="required|length:2,255"
                 />
-                <InputError class="mt-2" :message="form.errors.name" />
+                <InputError :message="form.errors.name" />
 
                 <FormKit
                   v-model="form.contact_details.email"
@@ -141,10 +141,7 @@ function onActiveStepChange(stepName) {
                   :label="$t('add_company.email')"
                   validation="required|email"
                 />
-                <InputError
-                  class="mt-2"
-                  :message="form.errors.contact_details"
-                />
+                <InputError :message="form.errors.contact_details" />
 
                 <FormKit
                   v-model="form.contact_details.phone_number"
@@ -204,7 +201,7 @@ function onActiveStepChange(stepName) {
                       type="text"
                       validation="required"
                     />
-                    <InputError class="mt-2" :message="form.errors.address" />
+                    <InputError :message="form.errors.address" />
 
                     <FormKit
                       :help="$t('add_company.set_marker')"
@@ -224,15 +221,15 @@ function onActiveStepChange(stepName) {
             <section class="flex flex-col items-center w-full" v-show="activeStep === 'description'">
               <FormKit type="group" id="description" name="description">
                 <label>{{ $t("add_company.description") }}</label>
-                <div class="flex flex-col xl:flex-row w-full h-full pt-2">
+                <div class="flex flex-col items-center justify-center xl:flex-row w-full h-full pt-2">
                   <MarkdownEditor
                     :preview="false"
-                    class="!h-64 md:!h-96 !m-auto !w-4/5 md:!w-2/3"
+                    class="!h-64 md:!h-96 !w-4/5 md:!w-1/3"
                     v-model="form.description"
                   />
                   <MarkdownEditor
                     :previewOnly="true"
-                    class="!h-64 md:!h-96 !m-auto !w-4/5 !p-5 md:!w-2/3"
+                    class="!h-64 md:!h-96 !w-4/5 !p-5 md:!w-1/3"
                     v-model="form.description"
                   />
                 </div>
@@ -241,7 +238,7 @@ function onActiveStepChange(stepName) {
                   v-model="form.description"
                   validation="required"
                 />
-                <InputError class="mt-2" :message="form.errors.description" />
+                <InputError :message="form.errors.description" />
 
                 <label class="pt-5">{{
                   $t("add_company.select_specializations")
@@ -254,6 +251,11 @@ function onActiveStepChange(stepName) {
                   :placeholder="$t('tree_selects.tree_select_specialization')"
                   search-nested
                   v-model="form.specializations"
+                />
+                <FormKit
+                  type="hidden"
+                  v-model="form.specializations"
+                  validation="required"
                 />
               </FormKit>
             </section>
