@@ -8,7 +8,12 @@ import {
   MenuItem,
   MenuItems,
 } from "@headlessui/vue";
-import { UserIcon, Bars3Icon, XMarkIcon, CodeBracketIcon } from "@heroicons/vue/24/outline";
+import {
+  UserIcon,
+  Bars3Icon,
+  XMarkIcon,
+  CodeBracketIcon,
+} from "@heroicons/vue/24/outline";
 import LanguageSwitch from "./LanguageSwitch.vue";
 import route from "ziggy";
 </script>

@@ -33,13 +33,7 @@ const text = ref("# Hello Editor");
 const props = defineProps({
   toolbarOptions: {
     Array,
-    default: [
-      "bold",
-      "italic",
-      "title",
-      "quote",
-      "link",
-    ],
+    default: ["bold", "italic", "title", "quote", "link"],
   },
   previewTheme: { String, default: "github" },
 });
@@ -85,7 +79,7 @@ MdEditor.config({
     };
 
     return renderer;
-  }
+  },
 });
 </script>
 
@@ -100,8 +94,8 @@ MdEditor.config({
 </template>
 
 <style>
-    #md-editor-v3-preview {
-    word-break: normal !important;
-    text-align: justify;
-  }
+#md-editor-v3-preview {
+  word-break: normal !important;
+  text-align: justify;
+}
 </style>
