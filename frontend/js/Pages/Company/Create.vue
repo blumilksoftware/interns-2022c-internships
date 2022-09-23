@@ -210,7 +210,6 @@ function onActiveStepChange(stepName) {
                     <InputError :message="form.errors.address" />
 
                     <FormKit
-                      :help="$t('add_company.set_marker')"
                       type="button"
                       @click="generateCoordinates"
                     >
