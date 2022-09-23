@@ -132,7 +132,8 @@
         },
         "confirmed": "Entered passwords differ.",
         "image": "Uploaded file must be an image with a PNG, JPG or GIF extension.",
-        "dimensions": "Maximum allowable dimensions of the image: 2000 x 2000 pixels."
+        "dimensions": "Maximum allowable dimensions of the image: 2000 x 2000 pixels.",
+        "uploaded": "An error occurred while uploading a file"
     },
     "auth": {
         "failed": "Wrong email address or password entered."

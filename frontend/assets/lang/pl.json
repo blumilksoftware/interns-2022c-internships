@@ -133,7 +133,8 @@
         },
         "confirmed": "Wprowadzone hasła się różnią.",
         "image": "Przesyłany plik musi być obrazem z rozszerzeniem PNG, JPG lub GIF.",
-        "dimensions": "Maksymalne dopuszczalne wymiary obrazu: 2000 x 2000 pikseli."
+        "dimensions": "Maksymalne dopuszczalne wymiary obrazu: 2000 x 2000 pikseli.",
+        "uploaded": "Wystąpił błąd przy przesyłaniu pliku"
     },
     "auth": {
         "failed": "Wprowadzono błędny adres e-mail lub hasło."

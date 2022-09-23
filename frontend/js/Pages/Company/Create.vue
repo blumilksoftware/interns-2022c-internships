@@ -280,13 +280,6 @@ function onActiveStepChange(stepName) {
             >
               {{ $t("buttons.request_button") }}
             </FormKit>
-            <progress
-              v-if="form.progress"
-              :value="form.progress.percentage"
-              max="100"
-            >
-              {{ form.progress.percentage }}%
-            </progress>
           </div>
         </FormKit>
       </template>
