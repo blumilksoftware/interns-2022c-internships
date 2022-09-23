@@ -58,7 +58,7 @@
         "phone_number": "Phone number",
         "website_url": "Website url",
         "country": "Country",
-        "generate_button": "Generate",
+        "generate_button": "Place marker",
         "set_marker": "Set marker on the map",
         "select_specializations": "Choose specializations that fit your company",
         "next_step_button": "Next step",

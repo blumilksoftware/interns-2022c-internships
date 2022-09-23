@@ -119,9 +119,9 @@ function onActiveStepChange(stepName) {
           :actions="false"
         >
           <div
-            class="flex flex-column w-full h-full items-center justify-center p-8 gap-3 md:w-auto"
+            class="flex flex-col w-full h-full items-center justify-center p-8 gap-3 md:w-auto"
           >
-            <section v-show="activeStep === 'info'">
+            <section class="flex flex-col items-center w-full" v-show="activeStep === 'info'">
               <label>{{ $t("add_company.logo") }}</label>
               <ImageUploader class="h-52 w-52" v-model="form.logoFile" />
               <InputError class="mt-2" :message="form.errors.logoFile" />
@@ -161,8 +161,7 @@ function onActiveStepChange(stepName) {
               </FormKit>
             </section>
 
-            <!-- 2 panel -->
-            <section v-show="activeStep === 'address'">
+            <section class="flex flex-col items-center w-full" v-show="activeStep === 'address'">
               <FormKit type="group" id="address" name="address">
                 <div class="flex flex-col-reverse lg:flex-row">
                   <div>
@@ -222,7 +221,7 @@ function onActiveStepChange(stepName) {
               </FormKit>
             </section>
 
-            <section v-show="activeStep === 'description'">
+            <section class="flex flex-col items-center w-full" v-show="activeStep === 'description'">
               <FormKit type="group" id="description" name="description">
                 <label>{{ $t("add_company.description") }}</label>
                 <div class="flex flex-col xl:flex-row w-full h-full pt-2">
