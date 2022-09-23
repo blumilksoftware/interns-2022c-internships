@@ -1,6 +1,6 @@
 <script setup>
 import { computed, watch, onMounted } from "vue";
-import { CheckCircleIcon, XCircleIcon } from "@heroicons/vue/24/solid";
+import { CheckCircleIcon, XCircleIcon, ChevronDoubleRightIcon, ChevronDoubleLeftIcon } from "@heroicons/vue/24/solid";
 import useSteps from "./useSteps.js";
 
 const { activeStep, visitedSteps } = useSteps();
@@ -144,9 +144,9 @@ onMounted(() => {
         :style="{
           visibility: activeStep !== stepNames[0] ? 'visible' : 'hidden',
         }"
-        class="w-14 h-14 m-5 flex justify-center items-center rounded-full shadow-md z-10 bg-gray-100 hover:bg-gray-200 opacity-60 hover:opacity-100"
+        class="w-24 h-10 m-5 flex justify-center items-center rounded-lg shadow-md z-10 bg-gray-100 hover:bg-gray-200 opacity-60 hover:opacity-100"
       >
-        Lewo
+        <ChevronDoubleLeftIcon class="w-5 h-5" />
       </button>
 
       <button
@@ -157,9 +157,9 @@ onMounted(() => {
               ? 'visible'
               : 'hidden',
         }"
-        class="w-14 h-14 m-5 flex justify-center items-center rounded-full shadow-md z-10 bg-gray-100 hover:bg-gray-200 opacity-60 hover:opacity-100"
+        class="w-24 h-10 m-5 flex justify-center items-center rounded-lg shadow-md z-10 bg-gray-100 hover:bg-gray-200 opacity-60 hover:opacity-100"
       >
-        Prawo
+      <ChevronDoubleRightIcon class="w-5 h-5" />
       </button>
     </div>
   </nav>
