@@ -209,10 +209,7 @@ function onActiveStepChange(stepName) {
                     />
                     <InputError :message="form.errors.address" />
 
-                    <FormKit
-                      type="button"
-                      @click="generateCoordinates"
-                    >
+                    <FormKit type="button" @click="generateCoordinates">
                       {{ $t("add_company.generate_button") }}
                     </FormKit>
                   </div>
