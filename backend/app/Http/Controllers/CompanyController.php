@@ -8,6 +8,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Inertia\Response;
 use Internships\Enums\CompanyStatus;
@@ -47,10 +48,10 @@ class CompanyController extends Controller
     /**
      * @throws UnknownProperties
      */
-    public function store(CompanyRequest $request): Response
+    public function store(CompanyRequest $request): RedirectResponse
     {
-        return $this->show($request->data(), new GetCompaniesRequest())
-            ->with(["success" => "status.company_created"]);
+        Session::flash("success", "status.company_created");
+        return Redirect::route("company-show", ["company" => $request->data()]);
     }
 
     /**
