@@ -6,7 +6,6 @@ namespace Database\Factories;
 
 use Database\Factories\Embeddable\AddressDefines;
 use Database\Factories\Embeddable\ContactDetailsDefines;
-use function DeepCopy\deep_copy;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Internships\Enums\CompanyStatus;
 use Internships\Models\Company;
@@ -21,15 +20,14 @@ class CompanyFactory extends Factory
 {
     public function definition(): array
     {
-        $name = deep_copy(fake()->company());
-        $imageName = (new LogoGenerator())->generateLogoFromName($name);
+        $name = fake()->company();
 
         return [
             "name" => $name,
             "description" => fake()->sentence(100),
             "user_id" => User::factory(),
             "address" => new Address(AddressDefines::definition()),
-            "logo" => $imageName,
+            "logo" => (new LogoGenerator())->generateLogoFromName($name),
             "contact_details" => new ContactDetails(ContactDetailsDefines::definition()),
             "status" => fake()->randomElement(CompanyStatus::cases()),
             "has_signed_papers" => fake()->boolean(),
