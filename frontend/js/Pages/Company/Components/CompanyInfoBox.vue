@@ -87,17 +87,26 @@ onMounted(() => {
               >
             </div>
             <div class="flex items-center">
-              <GlobeAltIcon class="h-6 mx-2" /><a
+              <GlobeAltIcon class="h-6 mx-2" />
+              <a
+                v-if="company.contact_details.website_url"
                 class="text-blue-700 font-medium"
                 :href="company.contact_details.website_url"
                 target="_blank"
                 >{{ company.contact_details.website_url }}</a
               >
+              <span v-else>{{
+                $t("company_browser.information_not_provided")
+              }}</span>
             </div>
             <div class="flex items-center">
-              <DevicePhoneMobileIcon class="h-6 mx-2" />{{
+              <DevicePhoneMobileIcon class="h-6 mx-2" />
+              <span v-if="company.contact_details.phone_number">{{
                 company.contact_details.phone_number
-              }}
+              }}</span>
+              <span v-else>{{
+                $t("company_browser.information_not_provided")
+              }}</span>
             </div>
           </div>
         </div>

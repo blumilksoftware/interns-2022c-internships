@@ -22,7 +22,8 @@
         "verify_confirm": "Are you sure you want to verify the company?",
         "contact_details": "Contact details",
         "company_seeks": "Is looking for students of:",
-        "description": "Description"
+        "description": "Description",
+        "information_not_provided": "Not provided"
     },
     "tree_selects":{
         "tree_select_city": "Choose city",

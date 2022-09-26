@@ -23,7 +23,8 @@
         "verify_confirm": "Czy na pewno chcesz zweryfikować firmę?",
         "contact_details": "Dane kontaktowe",
         "company_seeks": "Poszukuje studentów z:",
-        "description": "Opis"
+        "description": "Opis",
+        "information_not_provided": "Nie podano"
     },
     "tree_selects":{
         "tree_select_city": "Wybierz miasto",
