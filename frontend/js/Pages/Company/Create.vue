@@ -268,7 +268,10 @@ function onActiveStepChange(stepName) {
             </section>
           </div>
 
-          <div class="flex flex-row justify-center">
+          <div
+            class="flex flex-row justify-center"
+            v-if="activeStep === 'description'"
+          >
             <FormKit
               type="submit"
               @click="submit"
