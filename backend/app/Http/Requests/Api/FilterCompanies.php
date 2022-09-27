@@ -11,7 +11,8 @@ class FilterCompanies extends ApiRequest
 {
     public function data(Builder $companiesQuery): Builder
     {
-        return $companiesQuery->when(Request::input("searchbox"), function (Builder $query, string $search): void {
+        $search = Request::input("searchbox");
+        return $companiesQuery->when(filled($search), function (Builder $query) use ($search): void {
             $query->where("name", "like", "%" . $search . "%");
         })->when(Request::input("city"), function (Builder $query, string $citySelection): void {
             $query->whereJsonContains("address", ["city" => $citySelection]);
