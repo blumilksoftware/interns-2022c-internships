@@ -53,7 +53,7 @@ class GetCompaniesRequest extends ApiRequest
 
         return Company::query()->orderBy("has_signed_papers", "desc")
             ->where("status", CompanyStatus::Verified)
-            ->when(auth()->user(), function ($query): void {
+            ->when(auth()->user(), function (Builder $query): void {
                 $query->orWhere("user_id", auth()->user()->id);
             });
     }

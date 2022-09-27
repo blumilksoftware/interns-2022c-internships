@@ -15,6 +15,7 @@ use Internships\Enums\CompanyStatus;
 use Internships\Enums\Permission;
 use Internships\Models\Company;
 use Internships\Services\LogoGenerator;
+use Intervention\Image\Constraint;
 use Intervention\Image\Facades\Image;
 
 class CompanyRequest extends FormRequest
@@ -54,7 +55,7 @@ class CompanyRequest extends FormRequest
 
             $img = Image::make($image->getRealPath());
 
-            $img->resize(200, 200, function ($constraint): void {
+            $img->resize(200, 200, function (Constraint $constraint): void {
                 $constraint->aspectRatio();
             });
 
