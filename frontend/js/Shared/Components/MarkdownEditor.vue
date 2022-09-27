@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed, reactive } from "vue";
 import MdEditor from "md-editor-v3";
 import "md-editor-v3/lib/style.css";
 import dompurify from "dompurify";
@@ -38,39 +38,43 @@ const props = defineProps({
   previewTheme: { String, default: "github" },
 });
 
+const translationKeys = reactive({
+  toolbarTips: {
+    bold: computed(() => i18n.t("markdown.bold")),
+    italic: computed(() => i18n.t("markdown.italic")),
+    quote: computed(() => i18n.t("markdown.quote")),
+    link: computed(() => i18n.t("markdown.link")),
+    pageFullscreen: computed(() => i18n.t("markdown.fullscreen")),
+    preview: computed(() => i18n.t("markdown.preview")),
+  },
+  titleItem: {
+    h1: computed(() => i18n.t("markdown.h1")),
+    h2: computed(() => i18n.t("markdown.h2")),
+    h3: computed(() => i18n.t("markdown.h3")),
+    h4: computed(() => i18n.t("markdown.h4")),
+    h5: computed(() => i18n.t("markdown.h5")),
+    h6: computed(() => i18n.t("markdown.h6")),
+  },
+  linkModalTips: {
+    title: computed(() => i18n.t("markdown.linkAdd")),
+    descLable: computed(() => i18n.t("markdown.linkDescription")),
+    descLablePlaceHolder: computed(() =>
+      i18n.t("markdown.enterLinkDescription")
+    ),
+    urlLable: computed(() => i18n.t("markdown.linkLabel")),
+    UrlLablePlaceHolder: computed(() => i18n.t("markdown.enterLink")),
+    buttonOK: computed(() => i18n.t("markdown.ok")),
+  },
+  footer: {
+    markdownTotal: computed(() => i18n.t("markdown.letterCount")),
+    scrollAuto: computed(() => i18n.t("markdown.scrollAuto")),
+  },
+});
+
 MdEditor.config({
   editorConfig: {
     languageUserDefined: {
-      "key.translated": {
-        toolbarTips: {
-          bold: i18n.t("markdown.bold"),
-          italic: i18n.t("markdown.italic"),
-          quote: i18n.t("markdown.quote"),
-          link: i18n.t("markdown.link"),
-          pageFullscreen: i18n.t("markdown.fullscreen"),
-          preview: i18n.t("markdown.preview"),
-        },
-        titleItem: {
-          h1: i18n.t("markdown.h1"),
-          h2: i18n.t("markdown.h2"),
-          h3: i18n.t("markdown.h3"),
-          h4: i18n.t("markdown.h4"),
-          h5: i18n.t("markdown.h5"),
-          h6: i18n.t("markdown.h6"),
-        },
-        linkModalTips: {
-          title: i18n.t("markdown.linkAdd"),
-          descLable: i18n.t("markdown.linkDescription"),
-          descLablePlaceHolder: i18n.t("markdown.enterLinkDescription"),
-          urlLable: i18n.t("markdown.linkLabel"),
-          UrlLablePlaceHolder: i18n.t("markdown.enterLink"),
-          buttonOK: i18n.t("markdown.ok"),
-        },
-        footer: {
-          markdownTotal: i18n.t("markdown.letterCount"),
-          scrollAuto: i18n.t("markdown.scrollAuto"),
-        },
-      },
+      "key.translated": translationKeys,
     },
   },
   markedRenderer(renderer) {
