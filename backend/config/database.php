@@ -84,10 +84,4 @@ return [
             'database' => env('REDIS_CACHE_DB', '1'),
         ],
     ],
-    'seed' => [
-        'admin' => [
-            'email' => env('DB_SEED_ADMIN_EMAIL', 'admin@example.com'),
-            'password' => env('DB_SEED_ADMIN_PASSWORD', 'password'),
-        ],
-    ],
 ];
