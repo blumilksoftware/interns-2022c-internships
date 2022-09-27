@@ -18,7 +18,7 @@
         "is_pending": "Pending verification",
         "delete_button": "Delete",
         "verify_button": "Verify",
-        "delete_confirm": "Are you sure you want to remove the company?",
+        "delete_confirm": "Are you sure you want to remove the company? This action cannot be undone!",
         "verify_confirm": "Are you sure you want to verify the company?",
         "contact_details": "Contact details",
         "company_seeks": "Is looking for students of:",
