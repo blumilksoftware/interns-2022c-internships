@@ -44,7 +44,7 @@ const navItems = reactive([
     class="bg-primary z-50 w-full ssm:w-screen"
     v-slot="{ open }"
   >
-    <div class="mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto px-4 md:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <div class="flex items-center">
           <div class="flex-shrink-0">
@@ -54,7 +54,7 @@ const navItems = reactive([
               alt="Workflow"
             />
           </div>
-          <div class="hidden sm:block sm:ml-6">
+          <div class="hidden lg:block lg:ml-6">
             <div class="flex space-x-4">
               <template v-for="navItem in navItems" :key="navItem.routeName">
                 <template v-if="navItem.show">
@@ -74,7 +74,7 @@ const navItems = reactive([
             </div>
           </div>
         </div>
-        <div class="hidden sm:ml-6 sm:block">
+        <div class="hidden lg:ml-6 lg:block">
           <div class="flex items-center">
             <p
               v-if="$page.props.auth.user"
@@ -142,7 +142,7 @@ const navItems = reactive([
             </div>
           </div>
         </div>
-        <div class="-mr-2 flex sm:hidden">
+        <div class="-mr-2 flex lg:hidden">
           <LanguageSwitch class="flex pr-3" />
           <DisclosureButton
             class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
@@ -154,7 +154,7 @@ const navItems = reactive([
         </div>
       </div>
     </div>
-    <DisclosurePanel class="sm:hidden">
+    <DisclosurePanel class="lg:hidden">
       <div class="px-2 pt-2 pb-3 space-y-1">
         <template v-for="navItem in navItems" :key="navItem.routeName">
           <div class="flex flex-col" v-if="navItem.show">
