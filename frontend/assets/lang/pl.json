@@ -19,7 +19,7 @@
         "is_pending": "W oczekiwaniu na weryfikację",
         "delete_button": "Usuń",
         "verify_button": "Zweryfikuj",
-        "delete_confirm": "Czy na pewno chcesz usunąć firmę?",
+        "delete_confirm": "Czy na pewno chcesz usunąć firmę? Tej akcji nie można cofnąć!",
         "verify_confirm": "Czy na pewno chcesz zweryfikować firmę?",
         "contact_details": "Dane kontaktowe",
         "company_seeks": "Poszukuje studentów z:",

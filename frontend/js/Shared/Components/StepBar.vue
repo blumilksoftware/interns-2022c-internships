@@ -3,8 +3,8 @@ import { computed, watch, onMounted } from "vue";
 import {
   CheckCircleIcon,
   XCircleIcon,
-  ChevronDoubleRightIcon,
-  ChevronDoubleLeftIcon,
+  ChevronRightIcon,
+  ChevronLeftIcon,
 } from "@heroicons/vue/24/solid";
 import useSteps from "./useSteps.js";
 
@@ -140,15 +140,15 @@ onMounted(() => {
   </nav>
   <slot name="content" />
 
-  <div class="flex flex-row justify-center">
+  <div class="flex flex-row justify-center gap-8">
     <button
       @click="flipStep(-1)"
       :style="{
         visibility: activeStep !== stepNames[0] ? 'visible' : 'hidden',
       }"
-      class="w-24 h-10 m-5 flex justify-center items-center rounded-lg shadow-md z-10 bg-gray-100 hover:bg-gray-200 opacity-60 hover:opacity-100"
+      class="w-24 h-10 text-white flex justify-center items-center rounded-lg shadow-md bg-primary hover:bg-secondary"
     >
-      <ChevronDoubleLeftIcon class="w-5 h-5" />
+      <ChevronLeftIcon class="w-5 h-5" />
     </button>
 
     <button
@@ -157,9 +157,9 @@ onMounted(() => {
         visibility:
           activeStep !== stepNames[stepNames.length - 1] ? 'visible' : 'hidden',
       }"
-      class="w-24 h-10 m-5 flex justify-center items-center rounded-lg shadow-md z-10 bg-gray-100 hover:bg-gray-200 opacity-60 hover:opacity-100"
+      class="w-24 h-10 text-white flex justify-center items-center rounded-lg shadow-md bg-primary hover:bg-secondary"
     >
-      <ChevronDoubleRightIcon class="w-5 h-5" />
+      <ChevronRightIcon class="w-5 h-5" />
     </button>
   </div>
 </template>

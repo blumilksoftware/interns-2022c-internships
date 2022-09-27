@@ -6,6 +6,7 @@ import {
   EnvelopeIcon,
   GlobeAltIcon,
   DevicePhoneMobileIcon,
+  TrashIcon,
 } from "@heroicons/vue/24/outline";
 import MarkdownEditor from "@/js/Shared/Components/MarkdownEditor.vue";
 
@@ -136,7 +137,7 @@ onMounted(() => {
           />
         </div>
       </div>
-      <div class="justify-center mx-auto gap-2 flex w-3/4">
+      <div class="justify-center mx-auto gap-2 flex w-3/4 pb-5">
         <div
           type="button"
           @click="onUpdate"
@@ -156,9 +157,9 @@ onMounted(() => {
               $page.props.auth.can.manage_companies)
           "
           @click="onDestroy"
-          class="cursor-pointer mt-2 relative w-60 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+          class="cursor-pointer mt-2 relative flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
         >
-          {{ $t("company_browser.delete_button") }}
+          <TrashIcon class="h-6 w-6" />
         </div>
       </div>
     </div>
