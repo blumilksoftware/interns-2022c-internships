@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Request;
 
 class FilterCompanies extends ApiRequest
 {
-    public function data($companiesQuery): Builder
+    public function data(Builder $companiesQuery): Builder
     {
         return $companiesQuery->when(Request::input("searchbox"), function (Builder $query, string $search): void {
             $query->where("name", "like", "%" . $search . "%");

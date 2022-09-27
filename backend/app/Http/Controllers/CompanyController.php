@@ -51,7 +51,7 @@ class CompanyController extends Controller
     public function store(CompanyRequest $request): RedirectResponse
     {
         Session::flash("success", "status.company_created");
-        
+
         return Redirect::route("company-show", ["company" => $request->data()]);
     }
 
