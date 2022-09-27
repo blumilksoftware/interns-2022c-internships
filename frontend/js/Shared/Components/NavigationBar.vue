@@ -1,4 +1,6 @@
 <script setup>
+import { computed, reactive } from "vue";
+import { usePage } from "@inertiajs/inertia-vue3";
 import {
   Disclosure,
   DisclosureButton,
@@ -16,6 +18,24 @@ import {
 } from "@heroicons/vue/24/outline";
 import LanguageSwitch from "./LanguageSwitch.vue";
 import route from "ziggy";
+
+const navItems = reactive([
+  {
+    labelKey: "company_browser.companies_list",
+    routeName: "index",
+    show: true,
+  },
+  {
+    labelKey: "navigation_bar.manage_companies",
+    routeName: "company-manage",
+    show: computed(() => usePage().props.value.auth.user),
+  },
+  {
+    labelKey: "navigation_bar.add_company",
+    routeName: "company-create",
+    show: true,
+  },
+]);
 </script>
 
 <template>
@@ -36,22 +56,21 @@ import route from "ziggy";
           </div>
           <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4">
-              <InertiaLink
-                :href="route('index')"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >{{ $t("company_browser.companies_list") }}</InertiaLink
-              >
-              <InertiaLink
-                v-if="$page.props.auth.user"
-                :href="route('company-manage')"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >{{ $t("navigation_bar.manage_companies") }}</InertiaLink
-              >
-              <InertiaLink
-                :href="route('company-create')"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >{{ $t("navigation_bar.add_company") }}</InertiaLink
-              >
+              <template v-for="navItem in navItems" :key="navItem.routeName">
+                <template v-if="navItem.show">
+                  <InertiaLink
+                    :href="route(navItem.routeName)"
+                    class="hover:text-white px-3 py-2 border-solid border-b-2"
+                    :class="
+                      route().current() === navItem.routeName
+                        ? 'text-white font-bold border-white border-solid border-b-2'
+                        : 'text-gray-400 border-gray-400'
+                    "
+                  >
+                    {{ $t(navItem.labelKey) }}
+                  </InertiaLink>
+                </template>
+              </template>
             </div>
           </div>
         </div>
@@ -137,27 +156,23 @@ import route from "ziggy";
     </div>
     <DisclosurePanel class="sm:hidden">
       <div class="px-2 pt-2 pb-3 space-y-1">
-        <DisclosureButton
-          as="a"
-          :href="route('index')"
-          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-          >{{ $t("company_browser.companies_list") }}</DisclosureButton
-        >
-        <DisclosureButton
-          v-if="$page.props.auth.user"
-          as="a"
-          :href="route('company-manage')"
-          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-        >
-          {{ $t("navigation_bar.manage_companies") }}</DisclosureButton
-        >
-        <DisclosureButton
-          as="a"
-          :href="route('company-create')"
-          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-        >
-          {{ $t("navigation_bar.add_company") }}
-        </DisclosureButton>
+        <template v-for="navItem in navItems" :key="navItem.routeName">
+          <div class="flex flex-col" v-if="navItem.show">
+            <DisclosureButton
+              v-if="navItem.show"
+              as="a"
+              :href="route(navItem.routeName)"
+              class="inline-flex hover:text-white px-3 py-2"
+              :class="
+                route().current() === navItem.routeName
+                  ? 'text-white font-bold'
+                  : 'text-gray-400'
+              "
+            >
+              {{ $t(navItem.labelKey) }}
+            </DisclosureButton>
+          </div>
+        </template>
       </div>
       <div class="pt-4 pb-3 border-t border-gray-700">
         <div class="flex items-center px-5"></div>
