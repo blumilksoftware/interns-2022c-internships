@@ -14,19 +14,20 @@ use Internships\Models\Embeddable\ContactDetails;
 use Internships\Models\Specialization;
 use Internships\Models\Submission;
 use Internships\Models\User;
-use Smknstd\FakerPicsumImages\FakerPicsumImagesProvider;
+use Internships\Services\LogoGenerator;
 
 class CompanyFactory extends Factory
 {
     public function definition(): array
     {
-        fake()->addProvider(new FakerPicsumImagesProvider(fake()));
+        $name = fake()->company();
+
         return [
-            "name" => fake()->company(),
+            "name" => $name,
             "description" => fake()->sentence(100),
             "user_id" => User::factory(),
             "address" => new Address(AddressDefines::definition()),
-            "logo" => fake()->image(storage_path("app/public/images"), 200, 200, false),
+            "logo" => (new LogoGenerator())->generateLogoFromName($name),
             "contact_details" => new ContactDetails(ContactDetailsDefines::definition()),
             "status" => fake()->randomElement(CompanyStatus::cases()),
             "has_signed_papers" => fake()->boolean(),
@@ -59,6 +60,7 @@ class CompanyFactory extends Factory
                 $companyOriginal = Company::factory([
                     "name" => $company->name,
                     "user_id" => $company->user_id,
+                    "logo" => $company->logo,
                     "contact_details" => $company->contact_details,
                     "status" => CompanyStatus::Verified,
                     "has_signed_papers" => $company->has_signed_papers,

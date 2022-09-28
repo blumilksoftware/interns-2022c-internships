@@ -6,10 +6,17 @@ namespace Internships\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\File;
+use Internships\Enums\CompanyStatus;
+use Internships\Enums\Permission;
 use Internships\Models\Company;
-use Internships\Models\Embeddable\Coordinates;
-use Internships\Services\LocationFetcher;
-use Smknstd\FakerPicsumImages\FakerPicsumImagesProvider;
+use Internships\Services\LogoGenerator;
+use Intervention\Image\Constraint;
+use Intervention\Image\Facades\Image;
 
 class CompanyRequest extends FormRequest
 {
@@ -22,9 +29,19 @@ class CompanyRequest extends FormRequest
     {
         return [
             "name" => ["required", "string", "max:255"],
-            "description" => ["required", "string", "max:255"],
-            "address" => ["required"],
-            "contact_details" => ["required"],
+            "description" => ["required", "string", "max:2500"],
+            "address.street" => ["required", "string"],
+            "address.city" => ["required", "string"],
+            "address.postal_code" => ["required", "string"],
+            "address.voivodeship" => ["required", "string"],
+            "address.country" => ["required", "string"],
+            "address.coordinates" => ["required"],
+            "contact_details.email" => ["required", "email"],
+            "logoFile" => ["nullable",
+                File::image()
+                    ->max(3 * 1024)
+                    ->dimensions(Rule::dimensions()->maxWidth(2000)->maxHeight(2000)),
+            ],
         ];
     }
 
@@ -32,26 +49,32 @@ class CompanyRequest extends FormRequest
     {
         $this->merge(["user_id" => auth()->id()]);
 
-        $address = $this->get("address");
-        $fetchedLocation = (new LocationFetcher())
-            ->query(collect($address)
-                ->except(["coordinates"])
-                ->implode(" "), )
-            ->getLocations()
-            ->first();
+        if ($this->hasFile("logoFile")) {
+            $image = $this->file("logoFile");
+            $filename = Str::uuid() . "." . $image->guessExtension();
 
-        $address["coordinates"] = new Coordinates([
-            "latitude" => $fetchedLocation["coordinates"][1],
-            "longitude" => $fetchedLocation["coordinates"][0],
-        ]);
+            $img = Image::make($image->getRealPath());
 
-        $this->merge(["address" => $address]);
+            $img->resize(200, 200, function (Constraint $constraint): void {
+                $constraint->aspectRatio();
+            });
 
-        if (!$this->has("logo")) {
-            fake()->addProvider(new FakerPicsumImagesProvider(fake()));
-            $this->merge(["logo" => fake()->image(storage_path("app/public/images"), 200, 200, false)]);
+            $img->stream();
+            Storage::disk("public")->put("images/" . $filename, $img);
+        } else {
+            $filename = (new LogoGenerator())->generateLogoFromName($this->name);
+        }
+        $this->merge(["logo" => $filename]);
+
+        $company = Company::query()->create($this->except(["logoFile", "specializations"]));
+        $company->specializations()->sync($this->specializations);
+
+        if (Gate::forUser(auth()->user())->allows(Permission::ManageCompanies->value)) {
+            $company->update([
+                "status" => CompanyStatus::Verified,
+            ]);
         }
 
-        return Company::query()->create($this->all());
+        return $company;
     }
 }

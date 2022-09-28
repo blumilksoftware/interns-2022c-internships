@@ -1,4 +1,7 @@
 {
+    "college":{
+        "marker_info": "Nasza uczelnia."
+    },
     "navigation_bar":{
         "map": "Mapa",
         "add_company": "Dodaj firmę",
@@ -14,7 +17,14 @@
         "has_signed_papers": "Umowa z uczelnią",
         "no_companies_found": "Żadna firma nie pasuje do bieżącego wyszukiwania.",
         "is_pending": "W oczekiwaniu na weryfikację",
-        "delete_confirm": "Usunąć firmę?"
+        "delete_button": "Usuń",
+        "verify_button": "Zweryfikuj",
+        "delete_confirm": "Czy na pewno chcesz usunąć firmę? Tej akcji nie można cofnąć!",
+        "verify_confirm": "Czy na pewno chcesz zweryfikować firmę?",
+        "contact_details": "Dane kontaktowe",
+        "company_seeks": "Poszukuje studentów z:",
+        "description": "Opis",
+        "information_not_provided": "Nie podano"
     },
     "tree_selects":{
         "tree_select_city": "Wybierz miasto",
@@ -35,15 +45,29 @@
         "last_name": "Nazwisko"
     },
     "add_company": {
+        "logo": "Logo firmy",
+        "logo_delete": "Usuń",
         "header": "Zgłoś swoja firmę",
         "header_info": "Po wypełnieniu formularza, Twoje zgłoszenie zostanie przekazane moderatorowi do weryfikacji.",
         "company_name": "Nazwa firmy",
-        "description": "Opis",
+        "description": "Opis firmy",
         "description_info": "Napisz coś o swojej firmie, aby ułatwić studentom wybór.",
         "street_address": "Ulica",
         "city": "Miasto",
         "voivodeship": "Województwo",
-        "postal_code": "Kod pocztowy"
+        "postal_code": "Kod pocztowy",
+        "email": "E-mail firmowy",
+        "phone_number": "Numer telefonu",
+        "website_url": "Strona internetowa",
+        "country": "Kraj",
+        "generate_button": "Ustaw marker",
+        "set_marker": "Ustaw marker na mapie",
+        "select_specializations": "Wybierz specjalizacje pasujące do Twojej firmy",
+        "next_step_button": "Następny krok",
+        "previous_step_button": "Poprzedni krok",
+        "step_info": "Informacje ogólne",
+        "step_address": "Dane adresowe",
+        "step_description": "Opis firmy"
     },
     "forgot_password":{
         "header": "Podaj adres e-mail, na którym zostało założone konto, wyślemy link zmieniający hasło",
@@ -71,6 +95,16 @@
         "password_confirm": "Potwierdź hasło",
         "country": "Kraj"
     },
+    "image_uploader": {
+        "allowed_extensions": "PNG, JPG, GIF do 3MB",
+        "upload_file": "Prześlij obraz"
+    },
+    "status": {
+        "company_created": "Zgłoszenie nowej firmy zostało przesłane.",
+        "company_deleted": "Firma została usunięta.",
+        "company_verified": "Firma została zweryfikowana.",
+        "cannot_select_more": "Nie można wybrać więcej elementów."
+    },
     "error":{
         "header": "Błąd",
         "name_401": "Wymagana autoryzacja",
@@ -95,9 +129,13 @@
             "string": "Wprowadzony tekst jest za krótki."
         },
         "max": {
-            "string": "Wprowadzony tekst jest za długi."
+            "string": "Wprowadzony tekst jest za długi.",
+            "file": "Maksymalny dopuszczalny rozmiar przesyłanego obrazu: 3MB."
         },
-        "confirmed": "Wprowadzone hasła się różnią."
+        "confirmed": "Wprowadzone hasła się różnią.",
+        "image": "Przesyłany plik musi być obrazem z rozszerzeniem PNG, JPG lub GIF.",
+        "dimensions": "Maksymalne dopuszczalne wymiary obrazu: 2000 x 2000 pikseli.",
+        "uploaded": "Wystąpił błąd przy przesyłaniu pliku"
     },
     "auth": {
         "failed": "Wprowadzono błędny adres e-mail lub hasło."
@@ -108,5 +146,27 @@
         "user": "Brak podanego adresu e-mail w bazie.",
         "reset": "Twoje hasło zostało zmienione.",
         "token": "Token do zmiany hasła wygasł, prosimy utworzyć nowe żądanie."
+    },
+    "markdown": {
+        "bold": "Pogrubienie",
+        "italic": "Kursywa",
+        "quote": "Cytat",
+        "link": "Link",
+        "fullscreen": "Pełny ekran",
+        "preview": "Podglad",
+        "h1": "Nagłówek 1",
+        "h2": "Nagłówek 2",
+        "h3": "Nagłówek 3",
+        "h4": "Nagłówek 4",
+        "h5": "Nagłówek 5",
+        "h6": "Nagłówek 6",
+        "linkAdd": "Dodaj ",
+        "linkDescription": "Nazwa",
+        "enterLinkDescription": "Wprowadź nazwę linku...",
+        "linkLabel": "Link",
+        "enterLink": "Wprowadź link...",
+        "ok": "Zatwierdź",
+        "letterCount": "Liczba znaków",
+        "scrollAuto": "Scrollowanie Automatyczne"
     }
 }

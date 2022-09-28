@@ -6,6 +6,11 @@ import CompanyListHeader from "./Components/CompanyListHeader.vue";
 import Filter from "./Components/FilterDisclosure.vue";
 import { ref, watch, onMounted } from "vue";
 import { Inertia } from "@inertiajs/inertia";
+import { useI18n } from "vue-i18n";
+import { useToast } from "vue-toastification";
+
+const i18n = useI18n();
+const toast = useToast();
 
 const props = defineProps({
   filters: Object,
@@ -27,32 +32,48 @@ function onCompanySelect(id) {
       preserveState: true,
       replace: true,
       only: ["selectedCompany"],
+      onSuccess: () => {
+        showDetail.value = true;
+        map.value.goTo(id);
+      },
     }
   );
 }
 
 function onDestroy() {
-  if (confirm("company_browser.confirm_delete")) {
-    showDetail.value = false;
-    Inertia.delete(route("company-delete", props.selectedCompany.data.id), {
-      only: ["companies", "markers"],
-      onSuccess: () => {
-        map.value.resetMarkers();
-      },
-    });
-  }
+  Inertia.delete(route("company-delete", props.selectedCompany.data.id), {
+    preserveState: true,
+    replace: true,
+    only: ["companies", "markers"],
+    onBefore: () => {
+      return confirm(i18n.t("company_browser.delete_confirm"));
+    },
+    onSuccess: () => {
+      showDetail.value = false;
+      map.value.resetMarkers();
+      toast.success(i18n.t("status.company_deleted"));
+    },
+  });
 }
 
 function onUpdate() {
-  if (confirm("company_browser.confirm_verify")) {
-    showDetail.value = false;
-    Inertia.post(route("company-verify", props.selectedCompany.data.id), {
+  Inertia.patch(
+    route("company-verify", props.selectedCompany.data.id),
+    {},
+    {
+      preserveState: true,
+      replace: true,
       only: ["companies, markers"],
-      onSuccess: () => {
-        map.value.resetMarkers();
+      onBefore: () => {
+        return confirm(i18n.t("company_browser.verify_confirm"));
       },
-    });
-  }
+      onSuccess: () => {
+        showDetail.value = false;
+        map.value.resetMarkers();
+        toast.success(i18n.t("status.company_verified"));
+      },
+    }
+  );
 }
 
 function onDetailClose() {
@@ -109,6 +130,7 @@ function onMapLoad() {
 onMounted(() => {
   if (props.selectedCompany) {
     showDetail.value = true;
+    map.value.goTo(props.selectedCompany.id);
   }
 });
 </script>
@@ -126,7 +148,7 @@ onMounted(() => {
       />
     </div>
     <div
-      class="flex flex-col shadow-lg bg-gray-50 w-full h-1/2 md:w-3/5 lg:w-3/5 xl:w-2/5 sm:h-full"
+      class="flex flex-col shadow-lg bg-gray-50 w-full h-1/2 md:max-w-lg sm:h-full"
     >
       <template v-if="!showDetail">
         <CompanyListHeader :total="companies.meta.total" />
