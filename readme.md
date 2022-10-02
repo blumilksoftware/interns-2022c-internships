@@ -43,6 +43,6 @@ docker-compose exec node npm run lint
 ### 2. Running tests
 To run tests:
 ```shell script
-docker-compose run -e XDEBUG_MODE=off php php artisan test
+docker-compose run --rm -e XDEBUG_MODE=off php php artisan test
 ```
-The XDEBUG_MODE=off improves performance if xDebug is installed.
+The XDEBUG_MODE=off disables xDebug if it's installed, improving performance.
