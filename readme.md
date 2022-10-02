@@ -39,3 +39,10 @@ You can remove `f` at the end of these commands if you don't want to fix issues:
 docker-compose exec php composer run cs
 docker-compose exec node npm run lint
 ```
+
+### 2. Running tests
+To run tests:
+```shell script
+docker-compose run -e XDEBUG_MODE=off php php artisan test
+```
+The XDEBUG_MODE=off improves performance if xDebug is installed.
