@@ -1,287 +1,287 @@
 <script setup>
 import { useForm } from "@inertiajs/inertia-vue3";
 import InputError from "@/js/Shared/Components/InputError.vue";
+import { ref, watch } from "vue";
+import ImageUploader from "@/js/Shared/Components/ImageUploader.vue";
+import MarkdownEditor from "@/js/Shared/Components/MarkdownEditor.vue";
+import MapGeocode from "./Components/MapGeocode.vue";
+import Treeselect from "@tkmam1x/vue3-treeselect";
+import "@tkmam1x/vue3-treeselect/dist/vue3-treeselect.css";
+import { useI18n } from "vue-i18n";
+import { useToast } from "vue-toastification";
+import StepBar from "@/js/Shared/Components/StepBar.vue";
+import useSteps from "@/js/Shared/Components/useSteps.js";
 
-defineProps({
-  auth: Object,
+const i18n = useI18n();
+const toast = useToast();
+
+const props = defineProps({
+  departments: Object,
 });
 
 const form = useForm({
   name: null,
-  description: null,
+  description: "*" + i18n.t("add_company.description_info") + "*",
+  logoFile: null,
+  specializations: null,
   address: {
     street: null,
     city: null,
     postal_code: null,
     voivodeship: null,
     country: null,
-    coordinates: {
-      latitude: "0",
-      longitude: "0",
-    },
+    coordinates: null,
   },
   contact_details: {
     email: null,
-    website_url: "1",
-    phone_number: "1",
+    website_url: null,
+    phone_number: null,
   },
 });
 
-const submit = () => {
-  form.put(route("company-store"), {
-    onFinish: () => form.reset(),
+const specializationLimit = 4;
+let toastLimiter = false;
+
+function showSelectError() {
+  if (!toastLimiter) {
+    toast.error(i18n.t("status.cannot_select_more"));
+    toastLimiter = true;
+  } else {
+    return;
+  }
+  setTimeout(function () {
+    toastLimiter = false;
+  }, 3000);
+}
+
+watch(
+  () => form.specializations,
+  () => {
+    if (
+      form.specializations &&
+      form.specializations.length > specializationLimit
+    ) {
+      showSelectError();
+      form.specializations = form.specializations.slice(0, specializationLimit);
+    }
+  },
+  { deep: true }
+);
+
+function submit() {
+  form.address.coordinates = getCoordinatesFromMap();
+  form.post(route("company-store"), {
+    _method: "put",
   });
-};
+}
+
+let map = ref();
+
+function getLocationFromInputs() {
+  return [
+    form.address.street,
+    form.address.city,
+    form.address.voivodeship,
+    form.address.country,
+    form.address.postal_code,
+  ].join(", ");
+}
+
+function generateCoordinates() {
+  map.value.find(getLocationFromInputs());
+}
+
+function getCoordinatesFromMap() {
+  let coords = map.value.getCoordinates();
+
+  return {
+    latitude: coords.lat,
+    longitude: coords.lng,
+  };
+}
+
+const { steps, stepPlugin } = useSteps();
+
+const activeStep = ref("info");
+
+function onActiveStepChange(stepName) {
+  activeStep.value = stepName;
+}
 </script>
-
 <template>
-  <form
-    class="space-y-8 divide-y divide-gray-200 mx-auto mt-3"
-    @submit.prevent="submit"
-  >
-    <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
-      <div>
-        <div>
-          <h3
-            class="flex justify-center text-lg leading-6 font-medium text-gray-900"
-          >
-            {{ $t("add_company.header") }}
-          </h3>
-          <p class="flex justify-center mt-1 max-w-2xl text-sm text-gray-500">
-            {{ $t("add_company.header_info") }}
-          </p>
-        </div>
-        <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
+  <div class="w-full h-full">
+    <StepBar @stepChanged="onActiveStepChange" :steps="steps">
+      <template v-slot:content>
+        <FormKit
+          type="form"
+          #default="{ state: { valid } }"
+          :plugins="[stepPlugin]"
+          :actions="false"
+        >
           <div
-            class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
+            class="flex flex-col w-full h-full items-center justify-center p-8 gap-3 md:w-auto"
           >
-            <label
-              for="username"
-              class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+            <section
+              class="flex flex-col items-center w-full ssm:w-screen"
+              v-show="activeStep === 'info'"
             >
-              {{ $t("add_company.company_name") }}
-            </label>
-            <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <div class="max-w-lg flex rounded-md shadow-sm">
-                <input
-                  required
-                  type="text"
+              <label>{{ $t("add_company.logo") }}</label>
+              <ImageUploader class="h-52 w-52" v-model="form.logoFile" />
+              <InputError class="mt-2" :message="form.errors.logoFile" />
+
+              <FormKit type="group" id="info" name="info">
+                <FormKit
                   v-model="form.name"
-                  name="name"
-                  id="name"
-                  autocomplete="username"
-                  class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
+                  type="text"
+                  :label="$t('add_company.company_name')"
+                  validation="required|length:2,255"
                 />
-                <InputError class="mt-2" :message="form.errors.name" />
-              </div>
-            </div>
-          </div>
-          <div
-            class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-          >
-            <label
-              for="description"
-              class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-            >
-              {{ $t("add_company.description") }}
-            </label>
-            <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <textarea
-                id="description"
-                name="description"
-                v-model="form.description"
-                rows="3"
-                class="max-w-lg shadow-sm block w-full focus:ring-primary focus:border-primary sm:text-sm border border-gray-300 rounded-md"
-              />
-              <InputError class="mt-2" :message="form.errors.description" />
-              <p class="mt-2 text-sm text-gray-500">
-                {{ $t("add_company.description_info") }}
-              </p>
-            </div>
-          </div>
+                <InputError :message="form.errors.name" />
 
-          <div
-            class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-gray-200 sm:pt-5"
-          >
-            <label for="photo" class="block text-sm font-medium text-gray-700">
-              Logo
-            </label>
-            <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <div class="flex justify-center items-center">
-                <span class="h-14 w-14 rounded-lg overflow-hidden bg-gray-100">
-                  <svg
-                    class="h-full w-full text-gray-300"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z"
+                <FormKit
+                  v-model="form.contact_details.email"
+                  type="email"
+                  :label="$t('add_company.email')"
+                  validation="required|email"
+                />
+                <InputError :message="form.errors.contact_details" />
+
+                <FormKit
+                  v-model="form.contact_details.phone_number"
+                  :label="$t('add_company.phone_number')"
+                  type="text"
+                />
+
+                <FormKit
+                  v-model="form.contact_details.website_url"
+                  type="url"
+                  :label="$t('add_company.website_url')"
+                  validation="url"
+                />
+              </FormKit>
+            </section>
+
+            <section
+              class="flex flex-col items-center w-full ssm:w-screen"
+              v-show="activeStep === 'address'"
+            >
+              <FormKit type="group" id="address" name="address">
+                <div class="flex flex-col-reverse lg:flex-row">
+                  <div>
+                    <FormKit
+                      v-model="form.address.country"
+                      id="country"
+                      :label="$t('add_company.country')"
+                      type="text"
+                      validation="required"
                     />
-                  </svg>
-                </span>
-                <button
-                  type="button"
-                  class="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-                >
-                  {{ $t("buttons.change_button") }}
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-      >
-        <label
-          for="email"
-          class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-        >
-          {{ $t("common_labels.email") }}
-        </label>
-        <div class="mt-1 sm:mt-0 sm:col-span-2">
-          <div class="max-w-lg flex rounded-md shadow-sm">
-            <input
-              required
-              id="description"
-              name="description"
-              v-model="form.contact_details.email"
-              rows="3"
-              class="shadow-sm block w-full text-base font-medium text-slate-500 focus:ring-secondary focus:border-secondary sm:text-sm border border-slate-300 rounded-md"
-            />
-            <p class="mt-2 text-sm text-slate-500">
-              {{ $t("AddCompany.DescriptionInfo") }}
-            </p>
-            <InputError class="mt-2" :message="form.errors.contact_details" />
-          </div>
-        </div>
 
-        <div class="mb-2 pt-3">
-          <label
-            class="mb-2 block text-base font-semibold text-secondary sm:text-xl"
-          >
-            Address Details
-          </label>
-          <div class="mt-1 sm:mt-0 sm:col-span-2">
-            <select
-              id="country"
-              name="country"
-              v-model="form.address.country"
-              autocomplete="country-name"
-              class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
+                    <FormKit
+                      v-model="form.address.voivodeship"
+                      id="voivodeship"
+                      :label="$t('add_company.voivodeship')"
+                      type="text"
+                      validation="required"
+                    />
+
+                    <FormKit
+                      v-model="form.address.city"
+                      id="city"
+                      :label="$t('add_company.city')"
+                      type="text"
+                      validation="required"
+                    />
+
+                    <FormKit
+                      v-model="form.address.postal_code"
+                      :label="$t('add_company.postal_code')"
+                      id="postal_code"
+                      type="text"
+                      validation="required"
+                    />
+
+                    <FormKit
+                      v-model="form.address.street"
+                      :label="$t('add_company.street_address')"
+                      id="street"
+                      type="text"
+                      validation="required"
+                    />
+                    <InputError :message="form.errors.address" />
+
+                    <FormKit type="button" @click="generateCoordinates">
+                      {{ $t("add_company.generate_button") }}
+                    </FormKit>
+                  </div>
+                  <div class="pl-0 lg:pl-5 h-96 w-full lg:w-96">
+                    <MapGeocode ref="map" class="rounded-lg" />
+                  </div>
+                </div>
+              </FormKit>
+            </section>
+
+            <section
+              class="flex flex-col items-center w-screen ssm:w-full"
+              v-show="activeStep === 'description'"
             >
-              <option>Poland</option>
-              <option>Other country</option>
-              <option>Other country</option>
-              <option>Other country</option>
-              <option>Other country</option>
-            </select>
+              <FormKit type="group" id="description" name="description">
+                <label>{{ $t("add_company.description") }}</label>
+                <div
+                  class="flex flex-col items-center justify-center lg:flex-row w-full h-full pt-2"
+                >
+                  <MarkdownEditor
+                    :preview="false"
+                    class="!h-64 md:!h-96 !w-full max-w-lg"
+                    v-model="form.description"
+                  />
+                  <MarkdownEditor
+                    :previewOnly="true"
+                    class="!h-64 md:!h-96 !w-full !p-5 max-w-lg"
+                    v-model="form.description"
+                  />
+                </div>
+                <FormKit
+                  type="hidden"
+                  v-model="form.description"
+                  validation="required"
+                />
+                <InputError :message="form.errors.description" />
+
+                <label class="pt-5">{{
+                  $t("add_company.select_specializations")
+                }}</label>
+                <Treeselect
+                  class="mt-2 w-96"
+                  :options="props.departments.data"
+                  :multiple="true"
+                  :disable-branch-nodes="true"
+                  :placeholder="$t('tree_selects.tree_select_specialization')"
+                  search-nested
+                  v-model="form.specializations"
+                />
+                <FormKit
+                  type="hidden"
+                  v-model="form.specializations"
+                  validation="required"
+                />
+              </FormKit>
+            </section>
           </div>
-        </div>
-        <div
-          class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-        >
-          <label
-            for="street-address"
-            class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+
+          <div
+            class="flex flex-row justify-center"
+            v-if="activeStep === 'description'"
           >
-            {{ $t("add_company.street_address") }}
-          </label>
-          <div class="mt-1 sm:mt-0 sm:col-span-2">
-            <input
-              required
-              type="text"
-              name="street-address"
-              id="street-address"
-              v-model="form.address.street"
-              autocomplete="street-address"
-              class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
-            />
+            <FormKit
+              type="submit"
+              @click="submit"
+              :disabled="form.processing || !valid"
+            >
+              {{ $t("buttons.request_button") }}
+            </FormKit>
           </div>
-        </div>
-        <div
-          class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-        >
-          <label
-            for="city"
-            class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-          >
-            {{ $t("add_company.city") }}
-          </label>
-          <div class="mt-1 sm:mt-0 sm:col-span-2">
-            <input
-              required
-              type="text"
-              name="city"
-              id="city"
-              v-model="form.address.city"
-              autocomplete="address-level2"
-              class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
-            />
-          </div>
-        </div>
-        <div
-          class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-        >
-          <label
-            for="region"
-            class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-          >
-            {{ $t("add_company.voivodeship") }}
-          </label>
-          <div class="mt-1 sm:mt-0 sm:col-span-2">
-            <input
-              required
-              type="text"
-              name="region"
-              id="region"
-              v-model="form.address.voivodeship"
-              autocomplete="address-level1"
-              class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
-            />
-          </div>
-        </div>
-        <div
-          class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-        >
-          <label
-            for="postal-code"
-            class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-          >
-            {{ $t("add_company.postal_code") }}
-          </label>
-          <div class="mt-1 sm:mt-0 sm:col-span-2">
-            <input
-              required
-              type="text"
-              name="postal-code"
-              id="postal-code"
-              v-model="form.address.postal_code"
-              autocomplete="postal-code"
-              class="flex-1 block w-full focus:ring-primary focus:border-primary min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
-            />
-            <InputError class="mt-2" :message="form.errors.address" />
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pt-5">
-      <div class="flex justify-end">
-        <button
-          type="button"
-          class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-        >
-          {{ $t("buttons.cancel_button") }}
-        </button>
-        <button
-          type="submit"
-          :class="{ 'opacity-25': form.processing }"
-          :disabled="form.processing"
-          class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-        >
-          {{ $t("buttons.request_button") }}
-        </button>
-      </div>
-    </div>
-  </form>
+        </FormKit>
+      </template>
+    </StepBar>
+  </div>
 </template>

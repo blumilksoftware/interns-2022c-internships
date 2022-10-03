@@ -27,3 +27,4 @@ vendor
 *.njsproj
 *.sln
 *.sw?
+.vs/slnx.sqlite

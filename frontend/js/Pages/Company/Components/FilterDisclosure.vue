@@ -1,6 +1,6 @@
 <script setup>
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
-import { ChevronDownIcon, SearchIcon } from "@heroicons/vue/solid";
+import { ChevronDownIcon, MagnifyingGlassIcon } from "@heroicons/vue/24/solid";
 import { watch, ref } from "vue";
 import Treeselect from "@tkmam1x/vue3-treeselect";
 import "@tkmam1x/vue3-treeselect/dist/vue3-treeselect.css";
@@ -54,7 +54,10 @@ watch(
               <div
                 class="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center"
               >
-                <SearchIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
+                <MagnifyingGlassIcon
+                  class="h-5 w-5 text-gray-400"
+                  aria-hidden="true"
+                />
               </div>
               <input
                 name="searchbox"

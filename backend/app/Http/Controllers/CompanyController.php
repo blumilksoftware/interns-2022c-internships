@@ -6,7 +6,9 @@ namespace Internships\Http\Controllers;
 
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Inertia\Response;
 use Internships\Enums\CompanyStatus;
@@ -15,7 +17,9 @@ use Internships\Http\Requests\Api\GetCompaniesRequest;
 use Internships\Http\Requests\Api\GetManagedCompaniesRequest;
 use Internships\Http\Requests\CompanyRequest;
 use Internships\Http\Resources\CompanyResource;
+use Internships\Http\Resources\DepartmentResource;
 use Internships\Models\Company;
+use Internships\Models\Department;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 class CompanyController extends Controller
@@ -34,6 +38,10 @@ class CompanyController extends Controller
     {
         return inertia(
             "Company/Create",
+            [
+                "departments" => fn(): AnonymousResourceCollection
+                => DepartmentResource::collection(Department::with("studyFields.specializations")->get()),
+            ],
         );
     }
 
@@ -42,10 +50,9 @@ class CompanyController extends Controller
      */
     public function store(CompanyRequest $request): RedirectResponse
     {
-        $request->data();
+        Session::flash("success", "status.company_created");
 
-        return redirect()->route("company-manage")
-            ->with("success", "status.company_created");
+        return Redirect::route("company-show", ["company" => $request->data()]);
     }
 
     /**
@@ -87,8 +94,7 @@ class CompanyController extends Controller
             "status" => CompanyStatus::Verified,
         ]);
 
-        return redirect()->route("company-manage")
-            ->with("success", "status.company_verified");
+        return Redirect::route("company-manage");
     }
 
     /**
@@ -99,7 +105,6 @@ class CompanyController extends Controller
         $this->authorize("destroy", $company);
         $company->delete();
 
-        return redirect()->route("company-manage")
-            ->with("success", "status.company_deleted");
+        return Redirect::route("company-manage");
     }
 }

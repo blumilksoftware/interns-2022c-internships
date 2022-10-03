@@ -27,7 +27,7 @@ Route::get("/company/view/{company}", [CompanyController::class, "show"])
 Route::delete("/company/view/{company}", [CompanyController::class, "delete"])
     ->name("company-delete")
     ->middleware("auth");
-Route::post("/company/view/{company}", [CompanyController::class, "verify"])
+Route::patch("/company/view/{company}", [CompanyController::class, "verify"])
     ->name("company-verify")
     ->middleware("auth");
 

@@ -1,34 +1,21 @@
 <script setup>
-import "mapbox-gl/dist/mapbox-gl.css";
-import "v-mapbox/dist/v-mapbox.css";
-import { VMap } from "v-mapbox";
-import mapboxgl from "mapbox-gl";
-import { createMarker } from "./CompanyMarker.js";
-import { reactive, watch } from "vue";
+import "maplibre-gl/dist/maplibre-gl.css";
+import maplibregl from "maplibre-gl";
+import { Map } from "maplibre-gl";
+import { markRaw, onMounted, onUnmounted, ref, watch } from "vue";
+import "@maptiler/geocoder/css/geocoder.css";
+import { createCompanyMarker, createCollegeMarker } from "./Markers.js";
+import { useI18n } from "vue-i18n";
+
+const i18n = useI18n();
+
+const mapContainer = ref();
+let loadedMap;
+let loadedMarkers = [];
 
 const props = defineProps({
   markers: Array,
   flyTime: { Number, default: 2000 },
-});
-
-let loadedMarkers = [];
-let loadedMap;
-
-const state = reactive({
-  map: {
-    accessToken: import.meta.env.VITE_MAPBOX_TOKEN,
-    style: "mapbox://styles/plencka/cl7hbllqc002d14nfp7pjt4pv?optimize=true",
-    center: [16.1472681, 51.2048546],
-    zoom: 15,
-    maxZoom: 20,
-    crossSourceCollisions: false,
-    failIfMajorPerformanceCaveat: false,
-    attributionControl: false,
-    preserveDrawingBuffer: true,
-    hash: false,
-    minPitch: 0,
-    maxPitch: 60,
-  },
 });
 
 defineExpose({
@@ -47,7 +34,7 @@ function resetPosition() {
     marker.loadedMarker.getLngLat()
   );
 
-  const bounds = new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]);
+  const bounds = new maplibregl.LngLatBounds(coordinates[0], coordinates[0]);
 
   for (const coord of coordinates) {
     bounds.extend(coord);
@@ -67,29 +54,30 @@ function resetPosition() {
   }
 }
 
+function resetMarkers() {
+  loadedMarkers.forEach(function (marker) {
+    marker.loadedMarker.remove();
+  });
+
+  loadedMarkers = [];
+  loadMarkers();
+  resetPosition();
+}
+
 function goTo(markerId) {
   if (loadedMarkers.length === 0) {
     return;
   }
-
   let marker = loadedMarkers.find((item) => item.id === markerId);
-
   if (marker) {
     loadedMap.flyTo({
       center: marker.loadedMarker.getLngLat(),
       zoom: 15,
       duration: props.flyTime,
     });
+
+    marker.loadedMarker.togglePopup();
   }
-}
-
-function resetMarkers() {
-  loadedMarkers.forEach(function (marker) {
-    marker.loadedMarker.remove();
-  });
-  loadedMarkers = [];
-
-  loadMarkers();
 }
 
 function toggleMarkers() {
@@ -104,7 +92,6 @@ function toggleMarkers() {
 
   props.markers.forEach(function (marker) {
     let match = loadedMarkers.find((item) => item.id === marker.id);
-
     if (match) {
       let styledElement = match.loadedMarker.getElement();
       styledElement.style.opacity = "1";
@@ -126,7 +113,7 @@ const emit = defineEmits(["selectedCompany", "loaded"]);
 
 function loadMarkers() {
   props.markers.forEach(function (marker) {
-    let loadedMarker = createMarker(marker, loadedMap);
+    let loadedMarker = createCompanyMarker(marker, loadedMap);
     loadedMarker.getElement().addEventListener("click", function () {
       emit("selectedCompany", marker.id);
     });
@@ -135,25 +122,66 @@ function loadMarkers() {
   });
 }
 
-function onMapLoaded(createdMap) {
-  loadedMap = createdMap;
-  loadedMap.addControl(new mapboxgl.NavigationControl());
-  loadedMap.addControl(new mapboxgl.FullscreenControl());
-
-  loadedMap.dragRotate.disable();
-  loadedMap.touchZoomRotate.disableRotation();
+function onMapLoaded() {
+  loadedMap.addControl(new maplibregl.NavigationControl());
+  loadedMap.addControl(new maplibregl.FullscreenControl());
+  loadedMap.addControl(new maplibregl.ScaleControl());
+  loadedMap.addControl(new maplibregl.GeolocateControl());
+  loadedMap.addControl(new maplibregl.LogoControl());
 
   loadedMap.on("idle", function () {
     loadedMap.resize();
   });
 
+  let collegeMarker = createCollegeMarker(
+    loadedMap,
+    i18n.t("college.marker_info")
+  );
+  collegeMarker.getElement().addEventListener("click", function () {
+    loadedMap.flyTo({
+      center: collegeMarker.getLngLat(),
+      zoom: 15,
+      duration: props.flyTime,
+    });
+
+    collegeMarker.togglePopup();
+  });
   loadMarkers();
   resetPosition();
   emit("loaded");
 }
+
+onMounted(() => {
+  loadedMap = markRaw(
+    new Map({
+      container: mapContainer.value,
+      style: `https://api.maptiler.com/maps/streets/style.json?key=${
+        import.meta.env.VITE_MAPLIBRE_TOKEN
+      }`,
+      center: [16.1472681, 51.2048546],
+      zoom: 15,
+      maxZoom: 20,
+      doubleClickZoom: false,
+      crossSourceCollisions: false,
+      failIfMajorPerformanceCaveat: false,
+      attributionControl: false,
+      preserveDrawingBuffer: true,
+      hash: false,
+      minPitch: 0,
+      maxPitch: 60,
+    })
+  );
+
+  loadedMap.on("load", function () {
+    onMapLoaded();
+  });
+});
+
+onUnmounted(() => {
+  loadedMap.remove();
+});
 </script>
 
 <template>
-  <VMap class="h-full w-full" :options="state.map" @loaded="onMapLoaded">
-  </VMap>
+  <div class="map h-full w-full" ref="mapContainer"></div>
 </template>

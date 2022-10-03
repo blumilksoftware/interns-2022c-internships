@@ -17,6 +17,6 @@ return [
     ],
     'mapbox' => [
         'geocode_url' => env('API_GEOCODE_URL'),
-        'token_public' => env('VITE_MAPBOX_TOKEN'),
+        'token_public' => env('API_GEOCODE_TOKEN'),
     ],
 ];
