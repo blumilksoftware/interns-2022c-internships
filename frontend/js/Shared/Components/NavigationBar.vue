@@ -78,6 +78,7 @@ const navItems = reactive([
           <div class="flex items-center">
             <p
               v-if="$page.props.auth.user"
+              dusk="logged-as-name"
               class="text-gray-300 text-sm font-medium"
             >
               {{ $t("navigation_bar.logged_as") }}:

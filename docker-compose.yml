@@ -50,6 +50,20 @@ services:
       - ${DOCKER_DEV_DB_EXTERNAL_PORT:-3306}:3306
     restart: unless-stopped
 
+  database-test:
+    image: mysql:8.0
+    container_name: intern-mysql-test
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DOCKER_TEST_DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${DOCKER_TEST_DB_DATABASE}
+      - MYSQL_USER=${DOCKER_TEST_DB_USERNAME}
+      - MYSQL_PASSWORD=${DOCKER_TEST_DB_PASSWORD}
+    networks:
+      - intern-dev
+    ports:
+      - ${DOCKER_TEST_DB_EXTERNAL_PORT:-3306}:3306
+    restart: unless-stopped
+  
   redis:
     image: redis:7
     container_name: intern-redis
@@ -90,16 +104,23 @@ services:
   selenium:
     image: selenium/standalone-chrome
     container_name: intern-selenium
+    depends_on:
+      - web
     volumes:
       - /dev/shm:/dev/shm
     networks:
       - intern-dev
+    ports:
+      - 4444:4444
+      - 7900:7900
     restart: unless-stopped
 
 
 networks:
   intern-dev:
     driver: bridge
+    external: false
+    name: intern-dev
 
 volumes:
   intern-mysql-data:

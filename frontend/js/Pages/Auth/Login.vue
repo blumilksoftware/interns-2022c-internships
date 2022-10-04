@@ -98,6 +98,7 @@ const submit = () => {
         </div>
         <div>
           <button
+            dusk="login-submit"
             type="submit"
             :class="{ 'opacity-25': form.processing }"
             :disabled="form.processing"
