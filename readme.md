@@ -46,3 +46,9 @@ To run tests:
 docker-compose run --rm -e XDEBUG_MODE=off php php artisan test
 ```
 The XDEBUG_MODE=off disables xDebug if it's installed, improving performance.
+
+For Browser suite testing, use this instead:
+```
+docker-compose run --rm -e XDEBUG_MODE=off php php artisan dusk
+```
+You need to properly setup environment based on provided .example files.
