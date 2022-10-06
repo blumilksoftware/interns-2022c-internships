@@ -23,7 +23,7 @@ services:
       args:
         INSTALL_XDEBUG: ${DOCKER_INSTALL_XDEBUG:-false}
     container_name: intern-php
-    working_dir: /application/backend
+    working_dir: /application
     user: ${CURRENT_UID:-1000}
     volumes:
       - .:/application
@@ -111,8 +111,7 @@ services:
     networks:
       - intern-dev
     ports:
-      - 4444:4444
-      - 7900:7900
+      - ${SELENIUM_PORT}:${SELENIUM_PORT}
     restart: unless-stopped
 
 

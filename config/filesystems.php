@@ -28,6 +28,6 @@ return [
         ],
     ],
     'links' => [
-        base_path(env('VITE_PUBLIC_DIRECTORY_PATH') . '/storage') => storage_path('app/public'),
+        base_path('public/storage') => storage_path('app/public'),
     ],
 ];

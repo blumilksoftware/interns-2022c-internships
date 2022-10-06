@@ -9,14 +9,7 @@ use Internships\Console\Kernel as ConsoleKernel;
 use Internships\Exceptions\ExceptionHandler;
 use Internships\Http\Kernel as HttpKernel;
 
-$application = new Illuminate\Foundation\Application(
-    dirname(__DIR__),
-);
-
-$application->useEnvironmentPath(dirname(__DIR__));
-$application->useStoragePath(dirname(__DIR__) . "/storage");
-$application->useLangPath(dirname(__DIR__, 2) . "/lang");
-$application->useDatabasePath(dirname(__DIR__) . "/database");
+$application = new Illuminate\Foundation\Application(dirname(__DIR__));
 
 $application->singleton(HttpKernelContract::class, HttpKernel::class);
 $application->singleton(ConsoleKernelContract::class, ConsoleKernel::class);

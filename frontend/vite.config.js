@@ -7,9 +7,6 @@ import path from "path";
 export default ({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
   return defineConfig({
-    build: {
-      outDir: process.env.VITE_PUBLIC_DIRECTORY_PATH + "/build/",
-    },
     server: {
       host: process.env.VITE_HOST,
       port: process.env.VITE_PORT,
@@ -23,19 +20,15 @@ export default ({ mode }) => {
     resolve: {
       alias: {
         "@": "",
-        ziggy: path.resolve(
-          "../backend/vendor/tightenco/ziggy/dist/index.m.js"
-        ),
-        "ziggy-vue": path.resolve(
-          "../backend/vendor/tightenco/ziggy/dist/vue.m.js"
-        ),
+        ziggy: path.resolve("../vendor/tightenco/ziggy/dist/index.m.js"),
+        "ziggy-vue": path.resolve("../vendor/tightenco/ziggy/dist/vue.m.js"),
       },
     },
     plugins: [
       laravel({
         input: ["./js/app.js"],
         refresh: ["./views/**/*", "./js/**/*", "./assets/**/*"],
-        publicDirectory: process.env.VITE_PUBLIC_DIRECTORY_PATH,
+        publicDirectory: "../public",
       }),
       vue({
         template: {

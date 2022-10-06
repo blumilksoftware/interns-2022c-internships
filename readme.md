@@ -2,7 +2,7 @@
 Website for apprenticeship programme.
 # Architecture
 The project contains a modified default configuration and is structured as follows:
-* `backend` stores configuration for Composer and Laravel application and other PHP related stuff;
+* The application root stores configuration for Composer and Laravel application;
 * `frontend` is for Node.js npm, Vite, Vue.js and lint configuration - it also contains assets used in the webpage;
 
 ## Setup and Run
