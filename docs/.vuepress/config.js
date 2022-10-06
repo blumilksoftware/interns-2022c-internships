@@ -29,11 +29,11 @@ export default defineUserConfig({
         navbar: [
           {
             text: "Dokumentacja techniczna",
-            link: "technical",
+            link: "/pl/technical/",
           },
           {
             text: "Dokumentacja użytkowa",
-            link: "user",
+            link: "/pl/user/",
           },
           {
             text: "GitHub",
@@ -71,11 +71,11 @@ export default defineUserConfig({
         navbar: [
           {
             text: "Technical documentation",
-            link: "technical",
+            link: "/en/technical/",
           },
           {
             text: "User documentation",
-            link: "user",
+            link: "/en/user/",
           },
           {
             text: "GitHub",
