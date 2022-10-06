@@ -18,7 +18,7 @@ sh setup.sh
 Jeżeli nie chcesz korzystać ze skryptu. Możesz uruchomić aplikację w sposób manualny.
 
 
-Kopia przykładowego pliku .env. (Zobacz: [Konfiguracja pliku .env](konfiguracja-env)):
+Kopia przykładowego pliku .env. (Zobacz: [Konfiguracja pliku .env](/pl/technical/configure.html#plik-env)):
 ```
 cp .env.example .env
 ```

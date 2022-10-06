@@ -25,7 +25,7 @@ The college structure seeder populates the database with information about the u
 php artisan db:seed --class=DepartmentSeeder
 ```
 
-[University structure seeder configuration](configure)
+[College structure seeder configuration](/en/technical/configure.html#college-structure-seeder)
 
 ### Random data seeder
 Seeder UserSeeder populates a database with users who own their own companies. The companies have random names, descriptions, contact information and logos. Seeder startup:

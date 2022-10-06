@@ -6,7 +6,7 @@ Ogólna konfiguracja aplikacji (dla backendu oraz frontendu) znajduje się w gł
 
 ### Plik .env
 Do prawidłowego funkcjonowania aplikacji konieczne jest:
-1. Wygenerowanie klucza (patrz: [uruchomienie](run)). Wygenerowany klucz powinien znajdować się w `APP_KEY`.
+1. Wygenerowanie klucza (patrz: [uruchomienie](/pl/technical/run)). Wygenerowany klucz powinien znajdować się w `APP_KEY`.
 2. [Wygenerowanie](https://cloud.maptiler.com/account/keys/) i ustawienie tokena MapLibre w zmiennej `VITE_MAPLIBRE_TOKEN`. 
 
 W pliku .env możemy skonfigurować ponaddto:

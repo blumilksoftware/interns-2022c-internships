@@ -9,4 +9,4 @@ Sekcja zawiera informacje techniczne odnośnie konfiguracji oraz uruchomienia ap
 - [Vite](https://vitejs.dev/)
 
 ## Dokumentacja użytkowa
-Jeśli jesteś użytkownikiem i poszukujesz instrukcji obsługi strony internetowej, przejdź na [Dokumentacja użytkowa](user)
+Jeśli jesteś użytkownikiem i poszukujesz instrukcji obsługi strony internetowej, przejdź na [Dokumentacja użytkowa](/pl/user)

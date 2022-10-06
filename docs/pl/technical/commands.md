@@ -43,4 +43,4 @@ php artisan locate:place 5A Sejmowa 59-220 Legnica Dolnośląskie Polska
 ```
 
 ## Migracje oraz seedery
-Sekcja zawierająca informacje na migracji oraz seederów znajduje się: [migracje oraz seedery](migrations-and-seeders) 
+Sekcja zawierająca informacje na migracji oraz seederów znajduje się: [migracje oraz seedery](/pl/technical/migrations-and-seeders) 

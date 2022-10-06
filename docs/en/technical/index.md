@@ -9,4 +9,4 @@ The section contains technical information on how to set up and run the Internsh
 - [Vite](https://vitejs.dev/)
 
 ## User documentation
-If you are a user and looking for a website manual, go to [User Documentation](user)
+If you are a user and looking for a website manual, go to [User Documentation](/en/user/)

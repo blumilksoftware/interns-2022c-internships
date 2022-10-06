@@ -5,7 +5,7 @@ The general configuration of the application (for the backend and frontend) is l
 
 ### The .env file
 In order for the application to function properly, it is necessary to:
-1. Generate key (patrz: [uruchomienie](run)). The generated key should be in `APP_KEY`.
+1. Generate key (see: [run](/en/technical/run.html#manual)). The generated key should be in `APP_KEY`.
 2. [Generate](https://cloud.maptiler.com/account/keys/) and set MapLibre token in the `VITE_MAPLIBRE_TOKEN` variable. 
 
 In the .env file, we can also configure:
