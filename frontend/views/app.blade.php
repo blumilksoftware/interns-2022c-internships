@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-full bg-gray-100">
+<html class="h-full bg-gray-100 dark:bg-gray-700">
 <head>
     <title>Praktyki @yield('title')</title>
     <meta charset="utf-8"/>

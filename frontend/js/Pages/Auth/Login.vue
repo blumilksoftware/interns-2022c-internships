@@ -34,7 +34,7 @@ const submit = () => {
           alt="Workflow"
         />
         <h2
-          class="mt-6 text-center text-3xl tracking-tight font-bold text-gray-900"
+          class="mt-6 text-center text-3xl tracking-tight font-bold text-gray-900 dark:text-slate-200"
         >
           {{ $t("sign_in.header") }}
         </h2>
@@ -57,7 +57,7 @@ const submit = () => {
               autocomplete="email"
               v-model="form.email"
               required
-              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
+              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm dark:bg-gray-600 dark:border-gray-800 dark:placeholder-zinc-200"
               :placeholder="$t('common_labels.email')"
             />
           </div>
@@ -69,7 +69,7 @@ const submit = () => {
               autocomplete="current-password"
               v-model="form.password"
               required
-              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
+              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm dark:bg-gray-600 dark:border-gray-800 dark:placeholder-zinc-200"
               :placeholder="$t('common_labels.password')"
             />
           </div>
@@ -81,16 +81,19 @@ const submit = () => {
               name="remember-me"
               v-model:checked="form.remember"
               type="checkbox"
-              class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+              class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded dark:bg-gray-600"
             />
-            <label for="remember-me" class="ml-2 block text-sm text-gray-900">
+            <label
+              for="remember-me"
+              class="ml-2 block text-sm text-gray-900 dark:text-slate-200"
+            >
               {{ $t("sign_in.remember") }}
             </label>
           </div>
           <div class="text-sm">
             <InertiaLink
               :href="route('password.request')"
-              class="font-medium text-primary hover:text-primary"
+              class="font-medium text-primary hover:text-primary dark:text-slate-200"
             >
               {{ $t("sign_in.forgot_password") }}
             </InertiaLink>
