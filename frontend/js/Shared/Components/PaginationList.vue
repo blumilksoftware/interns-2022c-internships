@@ -24,14 +24,14 @@ const next = computed({
       <template v-for="(link, p) in [previous, next]" :key="p">
         <div
           v-if="link.url === null"
-          class="w-full mr-1 mb-1 px-4 py-3 text-center text-sm leading-4 text-gray-400 border rounded"
+          class="w-full mr-1 mb-1 px-4 py-3 text-center text-sm leading-4 text-gray-400 border rounded dark:text-slate-200"
         >
           {{ $t(link.label) }}
         </div>
         <InertiaLink
           v-else
           preserve-state
-          class="w-full mr-1 mb-1 px-4 py-3 text-center text-sm leading-4 border rounded hover:bg-white focus:border-indigo-500 focus:text-indigo-500"
+          class="w-full mr-1 mb-1 px-4 py-3 text-center text-sm leading-4 border rounded hover:bg-white focus:border-indigo-500 focus:text-indigo-500 dark:text-slate-200"
           :class="{ 'bg-blue-700 text-white': link.active }"
           :href="link.url"
         >

@@ -37,7 +37,7 @@ watch(
     <div class="w-full rounded-2xl">
       <Disclosure v-slot="{ open }">
         <DisclosureButton
-          class="flex w-full justify-center rounded-lg bg-slate-100 px-4 py-2 text-left text-sm font-medium text-slate-900 hover:bg-slate-200 focus:outline-none focus-visible:ring focus-visible:ring-slate-500 focus-visible:ring-opacity-75"
+          class="flex w-full justify-center rounded-lg bg-slate-100 px-4 py-2 text-left text-sm font-medium text-slate-900 hover:bg-slate-200 focus:outline-none focus-visible:ring focus-visible:ring-slate-500 focus-visible:ring-opacity-75 dark:bg-gray-800 dark:text-slate-200"
         >
           <span> {{ $t("company_browser.search") }} </span>
           <ChevronDownIcon

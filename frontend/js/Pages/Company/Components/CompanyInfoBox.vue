@@ -40,7 +40,9 @@ onMounted(() => {
   <div>
     <div class="sticky h-0 right-10 w-full flex justify-end">
       <button class="sticky right-0" @click="onClose">
-        <XMarkIcon class="pr-5 pt-5 h-12 w-12 text-gray-700" />
+        <XMarkIcon
+          class="pr-5 pt-5 h-12 w-12 text-gray-700 dark:text-zinc-200"
+        />
       </button>
     </div>
     <div
@@ -48,13 +50,15 @@ onMounted(() => {
     >
       <div class="mt-4 p-4 px-10 pt-1 text-left sm:text-left">
         <div>
-          <h1 class="text-gray-900 pb-2 text-2xl text-center">
+          <h1
+            class="text-gray-900 pb-2 text-2xl text-center dark:text-slate-200"
+          >
             {{ company.name }}
           </h1>
           <hr class="border-b border-gray-300" />
         </div>
         <p
-          class="pt-2 text-gray-600 text-xs sm:text-sm flex items-center justify-center mb-4"
+          class="pt-2 text-gray-600 text-xs sm:text-sm flex items-center justify-center mb-4 dark:text-slate-200"
         >
           <img
             class="h-5 w-10 hover:h-6 hover:w-11"
@@ -75,7 +79,7 @@ onMounted(() => {
             />
           </div>
           <div
-            class="flex flex-col justify-center sm:gap-2 rounded-lg shadow-md p-2 bg-white"
+            class="flex flex-col justify-center sm:gap-2 rounded-lg shadow-md p-2 bg-white dark:bg-gray-800 dark:text-slate-200"
           >
             <p class="hidden sm:flex justify-center font-semibold">
               {{ $t("company_browser.contact_details") }}
@@ -112,7 +116,9 @@ onMounted(() => {
           </div>
         </div>
 
-        <div class="mt-2 rounded-lg p-2 bg-white shadow-md">
+        <div
+          class="mt-2 rounded-lg p-2 bg-white shadow-md dark:bg-gray-800 dark:text-slate-200"
+        >
           <p class="font-medium">{{ $t("company_browser.company_seeks") }}</p>
           <ul class="list-decimal list-inside">
             <li
@@ -128,7 +134,9 @@ onMounted(() => {
           </ul>
         </div>
 
-        <div class="mt-2 rounded-lg p-2 bg-white shadow-md">
+        <div
+          class="mt-2 rounded-lg p-2 bg-white shadow-md dark:bg-gray-800 dark:text-slate-200"
+        >
           <p class="font-medium">{{ $t("company_browser.description") }}</p>
           <MarkdownEditor
             :previewOnly="true"
