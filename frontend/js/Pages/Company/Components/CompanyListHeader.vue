@@ -6,7 +6,7 @@ defineProps({
 
 <template>
   <div
-    class="px-2 py-1 pt-4 pb-5 rounded-lg border-b bg-gray-50 border-gray-200 hidden sm:block dark:bg-gray-800 dark:border-gray-900"
+    class="px-2 py-1 pt-4 pb-5 rounded-lg border-b bg-gray-50 border-gray-200 hidden sm:block dark:bg-gray-700 dark:border-gray-800"
   >
     <h3
       class="flex justify-center text-lg leading-6 font-medium text-gray-900 dark:text-slate-200"
