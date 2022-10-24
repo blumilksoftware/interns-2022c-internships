@@ -41,7 +41,7 @@ const navItems = reactive([
 <template>
   <Disclosure
     as="nav"
-    class="bg-primary z-50 w-full ssm:w-screen"
+    class="bg-primary z-50 w-full ssm:w-screen dark:bg-slate-800"
     v-slot="{ open }"
   >
     <div class="mx-auto px-4 md:px-6 lg:px-8">
@@ -133,7 +133,7 @@ const navItems = reactive([
                 <a
                   href="https://github.com/blumilksoftware/internships"
                   target="_blank"
-                  class="bg-gray-800 p-1 rounded-full text-gray-400 focus:outline-none focus:ring-2 focus:ring-white"
+                  class="bg-gray-800 p-1 rounded-full text-gray-400 focus:outline-none focus:ring-2 focus:ring-white dark:bg-slate-900"
                 >
                   <span class="sr-only">View code</span>
                   <CodeBracketIcon class="h-6 w-6" aria-hidden="true" />
@@ -145,7 +145,7 @@ const navItems = reactive([
         <div class="-mr-2 flex lg:hidden">
           <LanguageSwitch class="flex pr-3" />
           <DisclosureButton
-            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white "
           >
             <span class="sr-only">Open main menu</span>
             <Bars3Icon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
