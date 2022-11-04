@@ -41,14 +41,23 @@ docker-compose exec node npm run lint
 ```
 
 ### 2. Running tests
+Before running tests, you might want to clear cache to make sure you are using newest configuration:
+```
+docker-compose run exec php php artisan config:clear
+```
+
 To run tests:
 ```shell script
-docker-compose run --rm -e XDEBUG_MODE=off php php artisan test
+docker-compose run --rm php php artisan test
 ```
-The XDEBUG_MODE=off disables xDebug if it's installed, improving performance.
 
-For Browser suite testing, use this instead:
+### 3. Browser testing
+You might have to install chrome drivers first:
+```shell script
+docker-compose run --rm php php artisan dusk:chrome-driver
 ```
-docker-compose run --rm -e XDEBUG_MODE=off php php artisan dusk
+
+To run browser tests:
+```shell script
+docker-compose run --rm php php artisan dusk
 ```
-You need to properly setup environment based on provided .example files.
