@@ -43,7 +43,7 @@ docker-compose exec node npm run lint
 ### 2. Running tests
 Before running tests, you might want to clear cache to make sure you are using newest configuration:
 ```
-docker-compose run exec php php artisan config:clear
+docker-compose exec php php artisan config:clear
 ```
 
 To run tests:
