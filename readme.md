@@ -57,6 +57,8 @@ You might have to install chrome drivers first:
 docker-compose run --rm php php artisan dusk:chrome-driver
 ```
 
+Browser testing will not work if you are running development vite server.
+
 To run browser tests:
 ```shell script
 docker-compose run --rm php php artisan dusk
