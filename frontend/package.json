@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "./node_modules/.bin/vite",
     "build": "./node_modules/.bin/vite build --emptyOutDir",
+    "dev-build": "./node_modules/.bin/vite build --emptyOutDir --mode development",
     "preview": "./node_modules/.bin/vite preview",
     "lint": "./node_modules/.bin/eslint . --ext .js,.vue",
     "lintf": "./node_modules/.bin/eslint . --ext .js,.vue --fix"

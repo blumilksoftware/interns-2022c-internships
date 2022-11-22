@@ -31,8 +31,24 @@ class UserTest extends DuskTestCase
                 ->type("password", "password");
 
             $browser->press("@login-submit")
-                ->waitFor("@logged-as-name")
-                ->assertPathIs((new HomePage())->url());
+                ->waitUntilMissing('#nprogress')
+                ->assertAuthenticatedAs($this->user)
+                ->assertPathIs((new HomePage())->url())
+                ->logout();
+        });
+    }
+
+    public function testGuestCantLoginWithWrongPassword(): void
+    {
+        $this->browse(function (Browser $browser): void {
+            $browser->visit((new LoginPage())->url())
+                ->type("email", $this->user->email)
+                ->type("password", "wrongpassword");
+
+            $browser->press("@login-submit")
+                ->waitUntilMissing('#nprogress')
+                ->assertPathIs((new LoginPage())->url())
+                ->assertVue("message", "auth.failed", "@error-message");
         });
     }
 }

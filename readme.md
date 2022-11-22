@@ -57,7 +57,13 @@ You might have to install chrome drivers first:
 docker-compose run --rm php php artisan dusk:chrome-driver
 ```
 
-Browser testing will not work if you are running development vite server.
+Browser testing will not work if you are running dev vite server.
+You have to build an application in development mode.
+
+To do that, you can use the provided command:
+```shell script
+docker-compose run --rm node npm run dev-build
+```
 
 To run browser tests:
 ```shell script
