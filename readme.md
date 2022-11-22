@@ -58,7 +58,7 @@ docker-compose run --rm php php artisan dusk:chrome-driver
 ```
 
 Browser testing will not work if you are running dev vite server.
-You have to build an application in development mode.
+You have to build an application in the development mode to be able to pass all tests.
 
 To do that, you can use the provided command:
 ```shell script
