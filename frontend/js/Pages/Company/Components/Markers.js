@@ -1,6 +1,7 @@
 import maplibregl from "maplibre-gl";
 import LocationIcon from "@/assets/icons/locationIcon.svg";
 import CollegeIcon from "@/assets/icons/college.svg";
+import config from "@/assets.json";
 
 function setDefaultSize(markerHtmlElement) {
   markerHtmlElement.style.height = "20px";
@@ -33,7 +34,7 @@ export function createCollegeMarker(map, collegeMarkerInfo) {
   setDefaultSize(markerHtmlElement);
   let createdMarker = placeMarkerOnMap(
     map,
-    [16.1472681, 51.2048546],
+    [config.college.longitude, config.college.latitude],
     popup,
     markerHtmlElement
   );

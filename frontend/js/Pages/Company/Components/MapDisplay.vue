@@ -6,6 +6,7 @@ import { markRaw, onMounted, onUnmounted, ref, watch } from "vue";
 import "@maptiler/geocoder/css/geocoder.css";
 import { createCompanyMarker, createCollegeMarker } from "./Markers.js";
 import { useI18n } from "vue-i18n";
+import config from "@/assets.json";
 
 const i18n = useI18n();
 
@@ -133,10 +134,7 @@ function onMapLoaded() {
     loadedMap.resize();
   });
 
-  let collegeMarker = createCollegeMarker(
-    loadedMap,
-    i18n.t("college.marker_info")
-  );
+  let collegeMarker = createCollegeMarker(loadedMap, config.college.name);
   collegeMarker.getElement().addEventListener("click", function () {
     loadedMap.flyTo({
       center: collegeMarker.getLngLat(),
@@ -158,7 +156,7 @@ onMounted(() => {
       style: `https://api.maptiler.com/maps/streets/style.json?key=${
         import.meta.env.VITE_MAPLIBRE_TOKEN
       }`,
-      center: [16.1472681, 51.2048546],
+      center: [config.college.longitude, config.college.latitude],
       zoom: 15,
       maxZoom: 20,
       doubleClickZoom: false,
