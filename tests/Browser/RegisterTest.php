@@ -1,21 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Browser;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Internships\Models\User;
 use Laravel\Dusk\Browser;
-use Tests\DuskTestCase;
+use Tests\Browser\Pages\CompanyCreatePage;
+use Tests\Browser\Pages\HomePage;
 use Tests\Browser\Pages\RegisterPage;
 use Tests\Browser\Pages\VerifyEmailPage;
-use Tests\Browser\Pages\HomePage;
-use Tests\Browser\Pages\CompanyCreatePage;
+use Tests\DuskTestCase;
 
 class RegisterTest extends DuskTestCase
 {
     use DatabaseMigrations;
 
-    public function visitRegisterPageAndFillFields(Browser $browser){
+    public function visitRegisterPageAndFillFields(Browser $browser): void
+    {
         $browser->visit((new RegisterPage())->url())
             ->type("first_name", "ExampleName")
             ->type("last_name", "ExampleSurname")
@@ -29,10 +32,10 @@ class RegisterTest extends DuskTestCase
         $this->browse(function (Browser $browser): void {
             $this->visitRegisterPageAndFillFields($browser);
             $browser->press("@register-submit")
-                ->waitUntilMissing('#nprogress')
+                ->waitUntilMissing("#nprogress")
                 ->assertPathIs((new HomePage())->url());
 
-            $user = User::where('email',"test@example.com")->first();
+            $user = User::where("email", "test@example.com")->first();
             $browser->assertAuthenticatedAs($user)
                 ->logout();
         });
@@ -43,10 +46,10 @@ class RegisterTest extends DuskTestCase
         $this->browse(function (Browser $browser): void {
             $this->visitRegisterPageAndFillFields($browser);
             $browser->press("@register-submit")
-                ->waitUntilMissing('#nprogress');
-                
+                ->waitUntilMissing("#nprogress");
+
             $browser->visit((new CompanyCreatePage())->url())
-                ->waitUntilMissing('#nprogress')
+                ->waitUntilMissing("#nprogress")
                 ->assertPathIs((new VerifyEmailPage())->url())
                 ->logout();
         });
@@ -61,7 +64,7 @@ class RegisterTest extends DuskTestCase
             $browser->type("email", $user->email);
 
             $browser->press("@register-submit")
-                ->waitUntilMissing('#nprogress')
+                ->waitUntilMissing("#nprogress")
                 ->assertVue("message", "validation.unique", "@error-message");
         });
     }
@@ -73,7 +76,7 @@ class RegisterTest extends DuskTestCase
             $browser->type("password_confirmation", "wrongpassword");
 
             $browser->press("@register-submit")
-                ->waitUntilMissing('#nprogress')
+                ->waitUntilMissing("#nprogress")
                 ->assertVue("message", "validation.confirmed", "@error-message");
         });
     }
