@@ -2,10 +2,10 @@
 home: true
 title: Home
 actions:
-  - text: Dokumentacja po polsku
+  - text: Polski
     link: pl
     type: primary
-  - text: Documentation in English
+  - text: English
     link: en
     type: primary
 ---

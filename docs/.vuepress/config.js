@@ -2,6 +2,7 @@ import { defineUserConfig } from "vuepress";
 import { defaultTheme } from "@vuepress/theme-default";
 
 export default defineUserConfig({
+  port: process.env.EXTERNAL_DOCS_PORT,
   sidebar: "auto",
   title: "Internships",
   description: "Project documentation",
