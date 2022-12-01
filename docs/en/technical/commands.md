@@ -2,7 +2,7 @@
 In the application, we can use all the commands offered by the Laravel framework and the custom commands described below.
 
 ## Using commands via Docker
-If the application is running in Docker containers (for example, it was launched using [convenient script](/en/technical/run.html#using-a-convenient-script)), in order to send commands, use docker-compose in the root directory of the application:
+If the application is running in Docker containers (for example, it was launched using [convenient script](../technical/run.html#using-a-convenient-script)), in order to send commands, use docker-compose in the root directory of the application:
 
 ```
 docker-compose exec {service} {command}
@@ -43,4 +43,4 @@ php artisan locate:place 5A Sejmowa 59-220 Legnica Dolnośląskie Polska
 ```
 
 ## Migrations and seeders
-The section containing information on migration and seeders can be found: [Migrations and seeders](/en/technical/migrations-and-seeders) 
+The section containing information on migration and seeders can be found: [Migrations and seeders](../technical/migrations-and-seeders) 

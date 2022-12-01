@@ -25,7 +25,7 @@ Seeder struktury uczelni uzupełnia bazę danych informacjami na temat struktury
 php artisan db:seed --class=DepartmentSeeder
 ```
 
-[Konfiguracja seedera struktury uczelni](/pl/technical/configure#seeder-struktury-uczelni)
+[Konfiguracja seedera struktury uczelni](../technical/configure#seeder-struktury-uczelni)
 
 ### Seeder losowych danych
 Seeder UserSeeder wypełnia bazę danych użytkownikami, które posiadają własne firmy. Firmy posiadają losowe nazwy, opisy, dane kontaktowe oraz loga. Uruchomienie seedera:
