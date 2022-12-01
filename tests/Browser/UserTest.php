@@ -9,14 +9,12 @@ use Internships\Models\User;
 use Laravel\Dusk\Browser;
 use Tests\Browser\Pages\HomePage;
 use Tests\Browser\Pages\LoginPage;
-use Tests\Browser\Pages\RegisterPage;
 use Tests\Browser\Pages\CompanyCreatePage;
 use Tests\DuskTestCase;
 
 class UserTest extends DuskTestCase
 {
     use DatabaseMigrations;
-
     protected User $user;
 
     protected function setUp(): void
@@ -24,7 +22,7 @@ class UserTest extends DuskTestCase
         parent::setUp();
         $this->user = User::factory()->create();
     }
-
+    
     public function testGuestCanLogin(): void
     {
         $this->browse(function (Browser $browser): void {
@@ -40,60 +38,10 @@ class UserTest extends DuskTestCase
         });
     }
 
-    public function testGuestCanCreateAccount(): void
-    {
-        $this->browse(function (Browser $browser): void {
-            $browser->visit((new RegisterPage())->url())
-                ->type("first_name", "ExampleName")
-                ->type("last_name", "ExampleSurname")
-                ->type("email", "test_" . $this->user->email)
-                ->type("password", "password123")
-                ->type("password_confirmation", "password123")
-                ->press("@register-submit")
-                ->waitUntilMissing('#nprogress')
-                ->assertPathIs((new HomePage())->url());
-
-            $user = User::where('email',"test_" . $this->user->email)->first();
-            $browser->assertAuthenticatedAs($user)
-                ->logout();
-        });
-    }
-
-    public function testGuestCantRegisterWithExistingEmail(): void
-    {
-        $this->browse(function (Browser $browser): void {
-            $browser->visit((new RegisterPage())->url())
-                ->type("first_name", "ExampleName")
-                ->type("last_name", "ExampleSurname")
-                ->type("email", $this->user->email)
-                ->type("password", "password123")
-                ->type("password_confirmation", "password123");
-
-            $browser->press("@register-submit")
-                ->waitUntilMissing('#nprogress')
-                ->assertVue("message", "validation.unique", "@error-message");
-        });
-    }
-
-    public function testGuestCantRegisterWithUnconfirmedPassword(): void
-    {
-        $this->browse(function (Browser $browser): void {
-            $browser->visit((new RegisterPage())->url())
-                ->type("first_name", "ExampleName")
-                ->type("last_name", "ExampleSurname")
-                ->type("email", "test_" . $this->user->email)
-                ->type("password", "password123")
-                ->type("password_confirmation", "password1234");
-
-            $browser->press("@register-submit")
-                ->waitUntilMissing('#nprogress')
-                ->assertVue("message", "validation.confirmed", "@error-message");
-        });
-    }
-
     public function testGuestCantLoginWithWrongPassword(): void
     {
         $this->browse(function (Browser $browser): void {
+
             $browser->visit((new LoginPage())->url())
                 ->type("email", $this->user->email)
                 ->type("password", "wrongpassword");
