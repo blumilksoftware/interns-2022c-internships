@@ -3,6 +3,7 @@ import { defaultTheme } from "@vuepress/theme-default";
 
 export default defineUserConfig({
   port: process.env.EXTERNAL_DOCS_PORT,
+  base: process.env.VUEPRESS_BASE || "/",
   sidebar: "auto",
   title: "Internships",
   description: "Project documentation",

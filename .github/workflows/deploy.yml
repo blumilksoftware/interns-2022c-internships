@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+defaults:
+  run:
+    working-directory: ./docs
 
 jobs:
   build:
@@ -18,7 +21,7 @@ jobs:
         with:
           node-version: "16"
           cache: "npm"
-          cache-dependency-path: "./package-lock.json"
+          cache-dependency-path: "./docs/package-lock.json"
 
       - name: Determine npm cache directory
         id: npm-cache
@@ -36,11 +39,11 @@ jobs:
           npm install
       - name: Build dependencies
         run: |
-          npm run build -- --base=/internships/
+          npm run build
       - uses: actions/upload-artifact@master
         with:
           name: page
-          path: dist
+          path: ./docs/.vuepress/dist
           if-no-files-found: error
 
   deploy:
