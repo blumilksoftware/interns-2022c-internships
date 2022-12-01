@@ -9,6 +9,7 @@ use Internships\Models\User;
 use Laravel\Dusk\Browser;
 use Tests\Browser\Pages\HomePage;
 use Tests\Browser\Pages\LoginPage;
+use Tests\Browser\Pages\CompanyCreatePage;
 use Tests\DuskTestCase;
 
 class UserTest extends DuskTestCase
@@ -49,6 +50,14 @@ class UserTest extends DuskTestCase
                 ->waitUntilMissing('#nprogress')
                 ->assertPathIs((new LoginPage())->url())
                 ->assertVue("message", "auth.failed", "@error-message");
+        });
+    }
+
+    public function testRedirectGuestToLoginOnAuthRequirePage(): void
+    {
+        $this->browse(function (Browser $browser): void {
+            $browser->visit((new CompanyCreatePage())->url())
+                ->assertPathIs((new LoginPage())->url());
         });
     }
 }
