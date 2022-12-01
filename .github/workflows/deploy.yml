@@ -1,0 +1,72 @@
+name: "Building and deploying website"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    name: "Building website"
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+          cache: "npm"
+          cache-dependency-path: "./package-lock.json"
+
+      - name: Determine npm cache directory
+        id: npm-cache
+        run: |
+          echo "dir=$(npm config get cache)" >> $GITHUB_OUTPUT
+      - name: Restore npm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.npm-cache.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install dependencies
+        run: |
+          npm install
+      - name: Build dependencies
+        run: |
+          npm run build -- --base=/internships/
+      - uses: actions/upload-artifact@master
+        with:
+          name: page
+          path: dist
+          if-no-files-found: error
+
+  deploy:
+    needs: build
+    name: "Deploying website to GitHub Pages"
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@master
+        with:
+          name: page
+          path: .
+      - uses: actions/upload-pages-artifact@v1
+        with:
+          path: .
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
+      - uses: geekyeggo/delete-artifact@v2
+        with:
+          name: page
