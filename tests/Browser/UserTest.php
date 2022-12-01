@@ -44,8 +44,8 @@ class UserTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser): void {
             $browser->visit((new RegisterPage())->url())
-                ->type("first_name", "first_name")
-                ->type("last_name", "last_name")
+                ->type("first_name", "ExampleName")
+                ->type("last_name", "ExampleSurname")
                 ->type("email", "test_" . $this->user->email)
                 ->type("password", "password123")
                 ->type("password_confirmation", "password123")
@@ -56,6 +56,38 @@ class UserTest extends DuskTestCase
             $user = User::where('email',"test_" . $this->user->email)->first();
             $browser->assertAuthenticatedAs($user)
                 ->logout();
+        });
+    }
+
+    public function testGuestCantRegisterWithExistingEmail(): void
+    {
+        $this->browse(function (Browser $browser): void {
+            $browser->visit((new RegisterPage())->url())
+                ->type("first_name", "ExampleName")
+                ->type("last_name", "ExampleSurname")
+                ->type("email", $this->user->email)
+                ->type("password", "password123")
+                ->type("password_confirmation", "password123");
+
+            $browser->press("@register-submit")
+                ->waitUntilMissing('#nprogress')
+                ->assertVue("message", "validation.unique", "@error-message");
+        });
+    }
+
+    public function testGuestCantRegisterWithUnconfirmedPassword(): void
+    {
+        $this->browse(function (Browser $browser): void {
+            $browser->visit((new RegisterPage())->url())
+                ->type("first_name", "ExampleName")
+                ->type("last_name", "ExampleSurname")
+                ->type("email", "test_" . $this->user->email)
+                ->type("password", "password123")
+                ->type("password_confirmation", "password1234");
+
+            $browser->press("@register-submit")
+                ->waitUntilMissing('#nprogress')
+                ->assertVue("message", "validation.confirmed", "@error-message");
         });
     }
 
