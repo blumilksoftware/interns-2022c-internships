@@ -44,6 +44,3 @@ Instalacja zależności frontendowych:
 ```
 docker-compose run --rm -u "$(id -u):$(id -g)" node npm install
 ```
-
-## Środowisko produkcyjne
-*todo*

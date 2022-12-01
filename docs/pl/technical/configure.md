@@ -80,12 +80,15 @@ Wszelkie pliki konfiguracyjne od frontendu znajdują się w katalogu `frontend`.
 
 ### Nazwa i koordynaty uczelni
 Nazwę oraz koordynaty uczelni można ustawić w pliku `assets.json`. Przykładowa konfiguracja:
-``` json
-todo
+```json
+{
+  "college": {
+    "name": "Collegium Witelona Uczelnia Państwowa",
+    "latitude": 51.2048546,
+    "longitude": 16.1472681
+  }
+}
 ```
-
-### Styl mapy
-todo
 
 ### Kolory strony
 W celu zmiany koloru podstawowego oraz dodatkowego (domyślnie jest to: <span style="background-color:#171c58">#171c58</span> oraz <span style="background-color:#34375c">#34375c</span>), należy udać się do pliku `tailwind.config.js`.

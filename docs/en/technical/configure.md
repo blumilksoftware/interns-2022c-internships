@@ -79,12 +79,15 @@ All configuration files from the frontend are located in the `frontend` director
 
 ### College name and coordinates
 The name and coordinates of the university can be set in the `assets.json` file. Example configuration:
-``` json
-todo
+```json
+{
+  "college": {
+    "name": "Collegium Witelona Uczelnia Państwowa",
+    "latitude": 51.2048546,
+    "longitude": 16.1472681
+  }
+}
 ```
-
-### Map style
-todo
 
 ### Website colors
 In order to change the primary and secondary colors (the defaults: <span style="background-color:#171c58">#171c58</span> and <span style="background-color:#34375c">#34375c</span>), go to file `tailwind.config.js`.

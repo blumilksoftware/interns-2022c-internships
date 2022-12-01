@@ -44,6 +44,3 @@ Installing frontend dependencies:
 ```
 docker-compose run --rm -u "$(id -u):$(id -g)" node npm install
 ```
-
-## Production environment
-*todo*
