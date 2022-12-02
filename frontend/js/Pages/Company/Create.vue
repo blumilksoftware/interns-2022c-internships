@@ -251,7 +251,7 @@ function onActiveStepChange(stepName) {
                   $t("add_company.select_specializations")
                 }}</label>
                 <Treeselect
-                  class="mt-2 w-96"
+                  class="mt-2 max-w-md"
                   :options="props.departments.data"
                   :multiple="true"
                   :disable-branch-nodes="true"
@@ -285,3 +285,5 @@ function onActiveStepChange(stepName) {
     </StepBar>
   </div>
 </template>
+
+<style></style>
