@@ -104,9 +104,14 @@ const navItems = reactive([
                 <MenuItems
                   class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                 >
-                  <MenuItem v-if="!$page.props.auth.user" v-slot="{ active }">
+                  <MenuItem
+                    v-if="!$page.props.auth.user"
+                    v-slot="{ active, close }"
+                  >
                     <InertiaLink
                       :href="route('login')"
+                      preserve-state
+                      @click="close"
                       :class="[
                         active ? 'bg-gray-100' : '',
                         'block px-4 py-2 text-sm text-gray-700',
@@ -114,9 +119,14 @@ const navItems = reactive([
                       >{{ $t("buttons.sign_in_button") }}</InertiaLink
                     >
                   </MenuItem>
-                  <MenuItem v-if="$page.props.auth.user" v-slot="{ active }">
+                  <MenuItem
+                    v-if="$page.props.auth.user"
+                    v-slot="{ active, close }"
+                  >
                     <InertiaLink
                       :href="route('logout')"
+                      preserve-state
+                      @click="close"
                       :class="[
                         active ? 'bg-gray-100' : '',
                         'block px-4 py-2 text-sm text-gray-700',
