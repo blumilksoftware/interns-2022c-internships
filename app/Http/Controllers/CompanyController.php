@@ -55,22 +55,6 @@ class CompanyController extends Controller
         return Redirect::route("company-show", ["company" => $request->data()]);
     }
 
-    protected function decidePath(): string
-    {
-        $source = session("view-source");
-
-        if (Str::is(route("index"), $source)
-            || Str::is(route("index") . "?*", $source)
-            || Str::is(route("index") . "/?*", $source)
-            || Str::is(route("company-manage"), $source)
-            || Str::is(route("company-manage") . "?*", $source)
-            || Str::is(route("company-manage") . "/?*", $source)) {
-            return $source;
-        }
-
-        return route("index");
-    }
-
     /**
      * @throws AuthorizationException
      */
@@ -81,7 +65,7 @@ class CompanyController extends Controller
 
         return $request->list($this->decidePath())->with(
             "selectedCompany",
-            new CompanyResource($company)
+            new CompanyResource($company),
         );
     }
 
@@ -113,5 +97,21 @@ class CompanyController extends Controller
         $company->delete();
 
         return Redirect::route("company-manage");
+    }
+
+    protected function decidePath(): string
+    {
+        $source = session("view-source");
+
+        if (Str::is(route("index"), $source)
+            || Str::is(route("index") . "?*", $source)
+            || Str::is(route("index") . "/?*", $source)
+            || Str::is(route("company-manage"), $source)
+            || Str::is(route("company-manage") . "?*", $source)
+            || Str::is(route("company-manage") . "/?*", $source)) {
+            return $source;
+        }
+
+        return route("index");
     }
 }

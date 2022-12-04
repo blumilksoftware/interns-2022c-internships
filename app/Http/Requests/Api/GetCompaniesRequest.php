@@ -21,7 +21,7 @@ class GetCompaniesRequest extends ApiRequest
 {
     public function list(
         string $expectedPath,
-        FilterCompanies $filter = new FilterCompanies()
+        FilterCompanies $filter = new FilterCompanies(),
     ): Response {
         $companies = $this->data();
 
@@ -39,7 +39,7 @@ class GetCompaniesRequest extends ApiRequest
                 "companies" => fn(): AnonymousResourceCollection
                 => CompanySummaryResource::collection(
                     $filter->data($companies)->paginate(config("app.pagination", 15))
-                        ->setPath($expectedPath)
+                        ->setPath($expectedPath),
                 ),
             ],
         );
