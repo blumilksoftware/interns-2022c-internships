@@ -3,7 +3,6 @@ import { pl, en } from "@formkit/i18n";
 
 export default {
   locales: { pl, en },
-  locale: "pl",
   config: {
     classes: generateClasses({
       global: {

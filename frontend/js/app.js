@@ -15,6 +15,12 @@ import {
 } from "@formkit/vue";
 import formkitConfig from "../formkit.config";
 
+const getLocale = () => {
+  return (
+    localStorage.getItem("locale") || navigator.language.split("-")[0] || "pl"
+  );
+};
+
 createInertiaApp({
   resolve: (name) => {
     const page = resolvePageComponent(
@@ -32,8 +38,7 @@ createInertiaApp({
   setup({ el, App, props, plugin }) {
     const i18n = createI18n({
       legacy: false,
-      globalInjection: true,
-      locale: "pl",
+      locale: getLocale(),
       fallbackLocale: "pl",
       availableLocales: ["en", "pl"],
       messages: messages,
@@ -50,7 +55,10 @@ createInertiaApp({
         timeout: 3000,
         pauseOnFocusLoss: false,
       })
-      .use(formkitPlugin, formkitDefaultConfig(formkitConfig))
+      .use(
+        formkitPlugin,
+        formkitDefaultConfig({ ...formkitConfig, locale: getLocale() })
+      )
       .mount(el);
   },
 });

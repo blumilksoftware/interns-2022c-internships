@@ -1,12 +1,20 @@
 <script setup>
 import locales from "@/assets/lang/index.js";
+import { inject } from "vue";
+
+const formkitConfig = inject(Symbol.for("FormKitConfig"));
+
+const setLocale = (locale) => {
+  localStorage.setItem("locale", locale);
+  formkitConfig.locale = locale;
+};
 </script>
 
 <template>
   <div>
     <select
       v-model="$i18n.locale"
-      @change="$formkit.setLocale($i18n.locale)"
+      @change="setLocale($i18n.locale)"
       class="select w-fit text-sm sm:text-xs pl-2 pr-6 py-2 text-gray-50 bg-primary focus:bg-blue-900 hover:bg-blue-900 rounded-full overflow-hidden"
     >
       <option
