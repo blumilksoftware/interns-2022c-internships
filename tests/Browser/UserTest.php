@@ -7,7 +7,6 @@ namespace Tests\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Internships\Models\User;
 use Laravel\Dusk\Browser;
-use Tests\Browser\Pages\CompanyCreatePage;
 use Tests\Browser\Pages\HomePage;
 use Tests\Browser\Pages\LoginPage;
 use Tests\DuskTestCase;
@@ -22,6 +21,20 @@ class UserTest extends DuskTestCase
     {
         parent::setUp();
         $this->user = User::factory()->create();
+    }
+
+    public function testGuestCanNavigateToLoginPage(): void
+    {
+        $this->browse(function (Browser $browser): void {
+            $browser->visit((new HomePage())->url())
+                ->type("email", $this->user->email)
+                ->type("password", "password");
+
+            $browser->press("@login-submit")
+                ->waitUntilMissing("#nprogress")
+                ->assertAuthenticatedAs($this->user)
+                ->assertPathIs((new LoginPage())->url());
+        });
     }
 
     public function testGuestCanLogin(): void
@@ -50,14 +63,6 @@ class UserTest extends DuskTestCase
                 ->waitUntilMissing("#nprogress")
                 ->assertPathIs((new LoginPage())->url())
                 ->assertVue("message", "auth.failed", "@error-message");
-        });
-    }
-
-    public function testRedirectGuestToLoginOnAuthRequiredPage(): void
-    {
-        $this->browse(function (Browser $browser): void {
-            $browser->visit((new CompanyCreatePage())->url())
-                ->assertPathIs((new LoginPage())->url());
         });
     }
 }

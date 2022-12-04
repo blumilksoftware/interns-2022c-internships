@@ -143,6 +143,7 @@ onMounted(() => {
   <div class="flex flex-row justify-center gap-8">
     <button
       @click="flipStep(-1)"
+      dusk="form_back"
       :style="{
         visibility: activeStep !== stepNames[0] ? 'visible' : 'hidden',
       }"
@@ -153,6 +154,7 @@ onMounted(() => {
 
     <button
       @click="flipStep(1)"
+      dusk="form_next"
       :style="{
         visibility:
           activeStep !== stepNames[stepNames.length - 1] ? 'visible' : 'hidden',

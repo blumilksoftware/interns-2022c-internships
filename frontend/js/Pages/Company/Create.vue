@@ -132,6 +132,8 @@ function onActiveStepChange(stepName) {
               <FormKit type="group" id="info" name="info">
                 <FormKit
                   v-model="form.name"
+                  id="name"
+                  name="name"
                   type="text"
                   :label="$t('add_company.company_name')"
                   validation="required|length:2,255"
@@ -141,6 +143,8 @@ function onActiveStepChange(stepName) {
                 <FormKit
                   v-model="form.contact_details.email"
                   type="email"
+                  id="email"
+                  name="email"
                   :label="$t('add_company.email')"
                   validation="required|email"
                 />
@@ -149,12 +153,16 @@ function onActiveStepChange(stepName) {
                 <FormKit
                   v-model="form.contact_details.phone_number"
                   :label="$t('add_company.phone_number')"
+                  id="phone_number"
+                  name="phone_number"
                   type="text"
                 />
 
                 <FormKit
                   v-model="form.contact_details.website_url"
                   type="url"
+                  id="url"
+                  name="url"
                   :label="$t('add_company.website_url')"
                   validation="url"
                 />
@@ -171,6 +179,7 @@ function onActiveStepChange(stepName) {
                     <FormKit
                       v-model="form.address.country"
                       id="country"
+                      name="country"
                       :label="$t('add_company.country')"
                       type="text"
                       validation="required"
@@ -179,6 +188,7 @@ function onActiveStepChange(stepName) {
                     <FormKit
                       v-model="form.address.voivodeship"
                       id="voivodeship"
+                      name="voivodeship"
                       :label="$t('add_company.voivodeship')"
                       type="text"
                       validation="required"
@@ -187,6 +197,7 @@ function onActiveStepChange(stepName) {
                     <FormKit
                       v-model="form.address.city"
                       id="city"
+                      name="city"
                       :label="$t('add_company.city')"
                       type="text"
                       validation="required"
@@ -196,6 +207,7 @@ function onActiveStepChange(stepName) {
                       v-model="form.address.postal_code"
                       :label="$t('add_company.postal_code')"
                       id="postal_code"
+                      name="postal_code"
                       type="text"
                       validation="required"
                     />
@@ -204,12 +216,17 @@ function onActiveStepChange(stepName) {
                       v-model="form.address.street"
                       :label="$t('add_company.street_address')"
                       id="street"
+                      name="street"
                       type="text"
                       validation="required"
                     />
                     <InputError :message="form.errors.address" />
 
-                    <FormKit type="button" @click="generateCoordinates">
+                    <FormKit
+                      dusk="company_form_set_marker"
+                      type="button"
+                      @click="generateCoordinates"
+                    >
                       {{ $t("add_company.generate_button") }}
                     </FormKit>
                   </div>
@@ -257,6 +274,7 @@ function onActiveStepChange(stepName) {
                   :disable-branch-nodes="true"
                   :placeholder="$t('tree_selects.tree_select_specialization')"
                   search-nested
+                  dusk="form_specialization_hidden"
                   v-model="form.specializations"
                 />
                 <FormKit
@@ -274,6 +292,7 @@ function onActiveStepChange(stepName) {
           >
             <FormKit
               type="submit"
+              dusk="form_submit"
               @click="submit"
               :disabled="form.processing || !valid"
             >
