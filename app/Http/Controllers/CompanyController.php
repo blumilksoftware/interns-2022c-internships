@@ -26,12 +26,12 @@ class CompanyController extends Controller
 {
     public function index(GetCompaniesRequest $request): Response
     {
-        return $request->list();
+        return $request->list(route("index"));
     }
 
     public function manage(GetManagedCompaniesRequest $request): Response
     {
-        return $request->list();
+        return $request->list(route("company-manage"));
     }
 
     public function create(): Response
@@ -55,6 +55,22 @@ class CompanyController extends Controller
         return Redirect::route("company-show", ["company" => $request->data()]);
     }
 
+    protected function decidePath(): string
+    {
+        $source = session("view-source");
+
+        if (Str::is(route("index"), $source)
+            || Str::is(route("index") . "?*", $source)
+            || Str::is(route("index") . "/?*", $source)
+            || Str::is(route("company-manage"), $source)
+            || Str::is(route("company-manage") . "?*", $source)
+            || Str::is(route("company-manage") . "/?*", $source)) {
+            return $source;
+        }
+
+        return route("index");
+    }
+
     /**
      * @throws AuthorizationException
      */
@@ -63,24 +79,15 @@ class CompanyController extends Controller
         $this->authorize("show", $company);
         session(["view-source" => url()->previous()]);
 
-        return $request->list()->with(
+        return $request->list($this->decidePath())->with(
             "selectedCompany",
-            new CompanyResource($company),
+            new CompanyResource($company)
         );
     }
 
     public function close(): RedirectResponse
     {
-        $source = session("view-source");
-
-        if (Str::is(route("index"), $source)
-            || Str::is(route("company-manage"), $source)
-            || Str::is(route("index") . "/?*", $source)
-            || Str::is(route("company-manage") . "/?*", $source)) {
-            return Redirect::to($source)->withInput();
-        }
-
-        return Redirect::to(route("index"));
+        return Redirect::to($this->decidePath());
     }
 
     /**
