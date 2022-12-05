@@ -1,0 +1,45 @@
+name: Javascript lint
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+    paths:
+      - "**.js"
+      - "**.vue"
+      - "package.json"
+      - "package-lock.json"
+
+jobs:
+  test-and-lint-js:
+    name: Javascript lint
+    timeout-minutes: 10
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-npm-dependencies-${{ hashFiles('package.lock') }}
+          restore-keys: ${{ runner.os }}-npm-dependencies
+
+      - name: Set up node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache-dependency-path: "./frontend/package-lock.json"
+
+      - name: Install frontend dependencies
+        run: npm --prefix ./frontend ci
+
+      - name: Lint js codebase
+        run: npm --prefix ./frontend run lint
