@@ -18,6 +18,7 @@ import {
 } from "@heroicons/vue/24/outline";
 import LanguageSwitch from "./LanguageSwitch.vue";
 import route from "ziggy";
+import assets from "@/assets.json";
 
 const navItems = reactive([
   {
@@ -46,14 +47,19 @@ const navItems = reactive([
   >
     <div class="mx-auto px-4 md:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
-        <div class="flex items-center">
-          <div class="flex-shrink-0">
-            <img
-              class="block h-8 w-auto"
-              src="@/assets/images/navbar_logo.svg"
-              alt="Workflow"
-            />
-          </div>
+        <div class="flex-shrink-0 flex items-center">
+          <a :href="assets.college.website" target="_blank">
+            <div class="flex flex-row items-center text-white">
+              <img
+                class="block h-8 w-auto"
+                src="@/assets/images/navbar_logo.svg"
+                alt="Logo uczelni"
+              />
+              <div class="hidden ssm:block ml-2 text-lg font-semibold">
+                Strona uczelni
+              </div>
+            </div></a
+          >
           <div class="hidden lg:block lg:ml-6">
             <div class="flex space-x-4">
               <template v-for="navItem in navItems" :key="navItem.routeName">

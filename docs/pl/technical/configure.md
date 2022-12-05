@@ -84,6 +84,7 @@ Nazwę oraz koordynaty uczelni można ustawić w pliku `assets.json`. Przykłado
 {
   "college": {
     "name": "Collegium Witelona Uczelnia Państwowa",
+    "website": "http://www.pwsz.legnica.edu.pl/",
     "latitude": 51.2048546,
     "longitude": 16.1472681
   }

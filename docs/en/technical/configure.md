@@ -83,6 +83,7 @@ The name and coordinates of the university can be set in the `assets.json` file.
 {
   "college": {
     "name": "Collegium Witelona Uczelnia Państwowa",
+    "website": "http://www.pwsz.legnica.edu.pl/",
     "latitude": 51.2048546,
     "longitude": 16.1472681
   }
