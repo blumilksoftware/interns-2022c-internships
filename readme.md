@@ -69,3 +69,8 @@ To run browser tests:
 ```shell script
 docker-compose run --rm php php artisan dusk
 ```
+
+If you have the XDebugger installed, you can add `-e XDEBUG_MODE=off` to improve performance:
+```shell script
+docker-compose run --rm -e XDEBUG_MODE=off php php artisan dusk
+```
