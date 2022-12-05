@@ -46,6 +46,13 @@ Before running tests, you might want to clear cache to make sure you are using n
 docker-compose exec php php artisan config:clear
 ```
 
+You have to build an application in the development mode to be able to pass all tests.
+
+To do that, you can use the provided command:
+```shell script
+docker-compose run --rm node npm run dev-build
+```
+
 To run tests:
 ```shell script
 docker-compose run --rm php php artisan test
@@ -55,14 +62,6 @@ docker-compose run --rm php php artisan test
 You might have to install chrome drivers first:
 ```shell script
 docker-compose run --rm php php artisan dusk:chrome-driver
-```
-
-Browser testing will not work if you are running dev vite server.
-You have to build an application in the development mode to be able to pass all tests.
-
-To do that, you can use the provided command:
-```shell script
-docker-compose run --rm node npm run dev-build
 ```
 
 To run browser tests:
