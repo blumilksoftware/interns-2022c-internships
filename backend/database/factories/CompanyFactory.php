@@ -26,9 +26,9 @@ class CompanyFactory extends Factory
             "name" => $name,
             "description" => fake()->sentence(100),
             "user_id" => User::factory(),
-            "address" => new Address(AddressDefines::definition()),
+            "address" => Address::from(AddressDefines::definition()),
             "logo" => (new LogoGenerator())->generateLogoFromName($name),
-            "contact_details" => new ContactDetails(ContactDetailsDefines::definition()),
+            "contact_details" => ContactDetails::from(ContactDetailsDefines::definition()),
             "status" => fake()->randomElement(CompanyStatus::cases()),
             "has_signed_papers" => fake()->boolean(),
         ];
