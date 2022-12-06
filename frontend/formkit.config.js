@@ -10,7 +10,7 @@ export default {
         messages: "list-none p-0 mt-1 mb-0 ",
         message: "text-red-500 mb-1 text-xs",
         input:
-          "w-full h-12 border-2 border-gray-300 rounded-xl shadow-sm font-normal",
+          "w-full h-12 border-1 border-gray-400 rounded-xl shadow-sm font-normal focus:border-primary ",
       },
       submit: {
         input: "",
