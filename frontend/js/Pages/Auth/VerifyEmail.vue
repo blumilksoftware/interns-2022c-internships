@@ -1,21 +1,21 @@
 <script setup>
-import { computed } from "vue";
-import { useForm } from "@inertiajs/inertia-vue3";
-import route from "ziggy";
+import { computed } from "vue"
+import { useForm } from "@inertiajs/inertia-vue3"
+import route from "ziggy"
 
 const props = defineProps({
   status: String,
-});
+})
 
-const form = useForm();
+const form = useForm()
 
 const submit = () => {
-  form.post(route("verification.send"));
-};
+  form.post(route("verification.send"))
+}
 
 const verificationLinkSent = computed(
-  () => props.status === "verification-link-sent"
-);
+  () => props.status === "verification-link-sent",
+)
 </script>
 
 <template>
@@ -28,7 +28,7 @@ const verificationLinkSent = computed(
           class="mx-auto h-17 w-auto ring-4 ring-primary rounded-full bg-primary"
           src="@/assets/images/navbar_logo.svg"
           alt="Workflow"
-        />
+        >
         <h2
           class="mt-6 text-center text-lg tracking-tight font-bold text-gray-900"
         >
@@ -36,8 +36,8 @@ const verificationLinkSent = computed(
         </h2>
       </div>
       <div
-        class="mb-4 font-medium text-sm text-green-600"
         v-if="verificationLinkSent"
+        class="mb-4 font-medium text-sm text-green-600"
       >
         {{ $t("verify_email.email_sent") }}
       </div>

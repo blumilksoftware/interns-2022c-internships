@@ -1,72 +1,70 @@
 <script setup>
-import "maplibre-gl/dist/maplibre-gl.css";
-import maplibregl from "maplibre-gl";
-import { Map } from "maplibre-gl";
-import { markRaw, onMounted, onUnmounted, ref } from "vue";
-import "@maptiler/geocoder/css/geocoder.css";
-import { Geocoder } from "@maptiler/geocoder";
-import LocationIcon from "@/assets/icons/locationIcon.svg";
+import "maplibre-gl/dist/maplibre-gl.css"
+import maplibregl from "maplibre-gl"
+import { onMounted, onUnmounted, ref } from "vue"
+import LocationIcon from "@/assets/icons/locationIcon.svg"
 
-const mapContainer = ref();
-let loadedMap;
-let locationMarker;
+const mapContainer = ref()
+let loadedMap
+let locationMarker
 
 function createMarker(center) {
-  let markerElement = document.createElement("img");
-  markerElement.className = "marker";
-  markerElement.src = LocationIcon;
-  markerElement.style.height = "35px";
-  markerElement.style.width = "35px";
+  let markerElement = document.createElement("img")
+  markerElement.className = "marker"
+  markerElement.src = LocationIcon
+  markerElement.style.height = "35px"
+  markerElement.style.width = "35px"
 
   return new maplibregl.Marker(markerElement, { draggable: true }).setLngLat(
-    center
-  );
+    center,
+  )
 }
-
-const geocoder = new Geocoder({
-  key: import.meta.env.VITE_MAPLIBRE_TOKEN,
-});
 
 defineExpose({
   find,
   getCoordinates,
-});
+})
+
+function getQueryUrl(query) {
+  query = encodeURIComponent(query)
+  return `https://api.maptiler.com/geocoding/${query}.json?key=${import.meta.env.VITE_MAPLIBRE_TOKEN}`
+}
 
 async function find(placeName) {
-  const response = await fetch(geocoder.getQueryUrl(placeName));
-  const results = await response.json();
+  const response = await fetch(getQueryUrl(placeName))
+  const results = await response.json()
 
   if (results.features[0]) {
-    locationMarker.setLngLat(results.features[0].center);
+    locationMarker.setLngLat(results.features[0].center)
     loadedMap.flyTo({
       center: results.features[0].center,
       zoom: 15,
       duration: 0,
-    });
+    })
   }
 }
 
 function getCoordinates() {
-  return locationMarker.getLngLat();
+  return locationMarker.getLngLat()
 }
 
 function onMapLoaded() {
-  loadedMap.addControl(new maplibregl.NavigationControl());
-  loadedMap.addControl(new maplibregl.FullscreenControl());
-  loadedMap.addControl(new maplibregl.ScaleControl());
-  loadedMap.addControl(new maplibregl.LogoControl());
-  loadedMap.dragRotate.disable();
-  loadedMap.touchZoomRotate.disableRotation();
-  locationMarker = createMarker([16.1472681, 51.2048546]).addTo(loadedMap);
+  loadedMap.addControl(new maplibregl.NavigationControl())
+  loadedMap.addControl(new maplibregl.FullscreenControl())
+  loadedMap.addControl(new maplibregl.ScaleControl())
+  loadedMap.addControl(new maplibregl.LogoControl())
+  loadedMap.dragRotate.disable()
+  loadedMap.touchZoomRotate.disableRotation()
+  locationMarker = createMarker([16.1472681, 51.2048546]).addTo(loadedMap)
 
   loadedMap.on("idle", function () {
-    loadedMap.resize();
-  });
+    loadedMap.resize()
+  })
 }
 
 onMounted(() => {
-  loadedMap = markRaw(
-    new Map({
+  loadedMap =
+    new maplibregl.Map({
       container: mapContainer.value,
       style: `https://api.maptiler.com/maps/streets/style.json?key=${
         import.meta.env.VITE_MAPLIBRE_TOKEN
@@ -81,19 +79,21 @@ onMounted(() => {
       hash: false,
       minPitch: 0,
       maxPitch: 60,
-    })
-  );
+    }),
 
   loadedMap.on("load", function () {
-    onMapLoaded();
-  });
-});
+    onMapLoaded()
+  })
+})
 
 onUnmounted(() => {
-  loadedMap.remove();
-});
+  loadedMap.remove()
+})
 </script>
 
 <template>
-  <div class="map h-full w-full" ref="mapContainer"></div>
+  <div
+    ref="mapContainer"
+    class="map h-full w-full"
+  />
 </template>
