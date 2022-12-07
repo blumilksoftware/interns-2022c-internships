@@ -60,11 +60,11 @@ const navItems = reactive([
                 <template v-if="navItem.show">
                   <InertiaLink
                     :href="route(navItem.routeName)"
-                    class="hover:text-white px-3 py-2 border-solid border-b-2"
+                    class="hover:text-white px-3 py-2 transition-all"
                     :class="
                       route().current() === navItem.routeName
-                        ? 'text-white font-bold border-white border-solid border-b-2'
-                        : 'text-gray-400 border-gray-400'
+                        ? 'text-white font-bold border-white border-solid border-b-2 transition-all'
+                        : 'text-gray-400 border-gray-400 transition-all'
                     "
                   >
                     {{ $t(navItem.labelKey) }}
