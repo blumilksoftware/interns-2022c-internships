@@ -1,19 +1,31 @@
 <script setup>
+import { ref, watch } from "vue";
+
 import MapGeocode from "./Components/MapGeocode.vue";
 import MarkdownEditor from "@/js/Shared/Components/MarkdownEditor.vue";
 import Treeselect from "@tkmam1x/vue3-treeselect";
 import "@tkmam1x/vue3-treeselect/dist/vue3-treeselect.css";
+import StepBar from "@/js/Shared/Components/StepBar.vue";
+import useSteps from "@/js/Shared/Components/useSteps.js";
 
 import {
   MapPinIcon,
   BuildingOffice2Icon,
   PencilSquareIcon,
 } from "@heroicons/vue/24/solid";
+
+const { steps, stepPlugin } = useSteps();
+
+const activeStep = ref("info");
+
+function onActiveStepChange(stepName) {
+  activeStep.value = stepName;
+}
 </script>
 <template>
   <div class="flex justify-center">
     <div class="w-full md:w-4/6 p-6">
-      <!-- step bar -->
+      <!-- step bar
       <div class="flex items-center flex-col-reverse gap-3 xl:flex-row pb-10">
         <div class="flex flex-col gap-4 flex-1">
           <h1 class="text-4xl font-semibold text-primary">
@@ -46,68 +58,94 @@ import {
             <PencilSquareIcon class="h-12 w-12 p-2 bg-gray-200 rounded-xl" />
           </div>
         </div>
-      </div>
+      </div> -->
 
-      <!-- sekcja 1 -->
-      <div class="flex justify-center items-center gap-8 flex-col md:flex-row">
-        <div
-          class="border border-black aspect-[1/1] rounded-xl w-full max-w-[250px] ssm:w-80"
-        >
-          test
-        </div>
-        <div class="flex flex-col gap-3 w-full ssm:w-80">
+      <StepBar @stepChanged="onActiveStepChange" :steps="steps">
+        <template v-slot:content>
           <FormKit
-            type="text"
-            label="Nazwa firmy"
-            placeholder="Wprowadź nazwę firmy"
-          />
-          <FormKit
-            type="text"
-            label="E-mail firmowy"
-            placeholder="Wprowadź e-mail do kontaktu"
-          />
-          <FormKit
-            type="text"
-            label="Numer telefonu"
-            placeholder="Na przykład: 123-456-789"
-          />
-          <FormKit
-            type="text"
-            label="Strona internetowa"
-            placeholder="Na przykład: https://example.com"
-          />
-        </div>
-      </div>
-
-      <!-- sekcja 2 -->
-      <div
-        class="flex justify-center items-center gap-8 flex-col-reverse md:flex-row"
-      >
-        <div class="flex flex-col gap-3 w-full ssm:w-80">
-          <FormKit type="text" label="Kraj" />
-          <FormKit type="text" label="Województwo" />
-          <FormKit type="text" label="Miasto" />
-          <FormKit type="text" label="Kod pocztowy" />
-          <FormKit type="text" label="Ulica" />
-        </div>
-        <div class="border aspect-[1/1] rounded-xl w-full ssm:w-80">
-          <MapGeocode ref="map" class="rounded-lg" />
-        </div>
-      </div>
-
-      <!-- sekcja 3 -->
-      <div class="flex justify-center items-center flex-col md:flex-row">
-        <MarkdownEditor
-          :preview="false"
-          class="!h-64 md:!h-96 !w-full max-w-lg"
-          v-model="test"
-        />
-        <MarkdownEditor
-          :previewOnly="true"
-          class="!h-64 md:!h-96 !w-full !p-5 max-w-lg"
-          v-model="test"
-        />
-      </div>
+            type="form"
+            #default="{ state: { valid } }"
+            :plugins="[stepPlugin]"
+            :actions="false"
+          >
+            <!-- sekcja 1 -->
+            <section v-show="activeStep === 'info'">
+              <FormKit type="group" id="info" name="info">
+                <div
+                  class="flex justify-center items-center gap-8 flex-col md:flex-row"
+                >
+                  <div
+                    class="border border-black aspect-[1/1] rounded-xl w-full max-w-[250px] ssm:w-80"
+                  >
+                    test
+                  </div>
+                  <div class="flex flex-col gap-3 w-full ssm:w-80">
+                    <FormKit
+                      type="text"
+                      label="Nazwa firmy"
+                      placeholder="Wprowadź nazwę firmy"
+                      validation="required"
+                    />
+                    <FormKit
+                      type="text"
+                      label="E-mail firmowy"
+                      placeholder="Wprowadź e-mail do kontaktu"
+                    />
+                    <FormKit
+                      type="text"
+                      label="Numer telefonu"
+                      placeholder="Na przykład: 123-456-789"
+                    />
+                    <FormKit
+                      type="text"
+                      label="Strona internetowa"
+                      placeholder="Na przykład: https://example.com"
+                    />
+                  </div>
+                </div>
+              </FormKit>
+            </section>
+            <!-- sekcja 2 -->
+            <section v-show="activeStep === 'address'">
+              <FormKit type="group" id="address" name="address">
+                <div
+                  class="flex justify-center items-center gap-8 flex-col-reverse md:flex-row"
+                >
+                  <div class="flex flex-col gap-3 w-full ssm:w-80">
+                    <FormKit type="text" label="Kraj" />
+                    <FormKit type="text" label="Województwo" />
+                    <FormKit type="text" label="Miasto" />
+                    <FormKit type="text" label="Kod pocztowy" />
+                    <FormKit type="text" label="Ulica" validation="required" />
+                  </div>
+                  <div class="border aspect-[1/1] rounded-xl w-full ssm:w-80">
+                    <MapGeocode ref="map" class="rounded-lg" />
+                  </div>
+                </div>
+              </FormKit>
+            </section>
+            <!-- sekcja 3 -->
+            <section v-show="activeStep === 'description'">
+              <FormKit type="group" id="description" name="description">
+                <div
+                  class="flex justify-center items-center flex-col md:flex-row"
+                >
+                  <MarkdownEditor
+                    :preview="false"
+                    class="!h-64 md:!h-96 !w-full max-w-lg"
+                    v-model="test"
+                  />
+                  <MarkdownEditor
+                    :previewOnly="true"
+                    class="!h-64 md:!h-96 !w-full !p-5 max-w-lg"
+                    v-model="test"
+                  />
+                </div>
+              </FormKit>
+            </section>
+          </FormKit>
+        </template>
+      </StepBar>
     </div>
   </div>
 </template>

@@ -10,7 +10,7 @@ export default {
         messages: "list-none p-0 mt-1 mb-0 ",
         message: "text-red-500 mb-1 text-xs",
         input:
-          "w-full h-12 border-1 border-gray-400 rounded-xl shadow-sm font-normal focus:border-primary ",
+          "w-full h-12 border-1 border-gray-400 rounded-xl shadow-sm font-normal focus:ring-primary formkit-invalid:border-red-500",
       },
       submit: {
         input: "",
