@@ -4,6 +4,7 @@ import {
   MapPinIcon,
   BuildingOffice2Icon,
   PencilSquareIcon,
+  ArrowSmallLeftIcon,
 } from "@heroicons/vue/24/solid";
 import useSteps from "./useSteps.js";
 
@@ -93,4 +94,30 @@ onMounted(() => {
     </div>
   </div>
   <slot name="content" />
+
+  <div class="flex flex-row justify-end gap-8">
+    <button
+      @click="flipStep(-1)"
+      :style="{
+        visibility: activeStep !== stepNames[0] ? 'visible' : 'hidden',
+      }"
+      class="p-3 text-primary rounded-xl font-medium"
+    >
+      <div class="flex flex-row items-center gap-1">
+        <ArrowSmallLeftIcon class="h-4" />
+        <span>Poprzedni krok</span>
+      </div>
+    </button>
+
+    <button
+      @click="flipStep(1)"
+      :style="{
+        visibility:
+          activeStep !== stepNames[stepNames.length - 1] ? 'visible' : 'hidden',
+      }"
+      class="p-3 text-white rounded-xl font-medium bg-primary hover:bg-secondary"
+    >
+      Następny krok
+    </button>
+  </div>
 </template>
