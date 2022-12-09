@@ -14,6 +14,12 @@ import {
   PencilSquareIcon,
 } from "@heroicons/vue/24/solid";
 
+const icons = {
+  info: BuildingOffice2Icon,
+  address: MapPinIcon,
+  description: PencilSquareIcon,
+};
+
 const { steps, stepPlugin } = useSteps();
 
 const activeStep = ref("info");
@@ -25,7 +31,7 @@ function onActiveStepChange(stepName) {
 <template>
   <div class="flex justify-center sm:p-6">
     <div class="w-full max-w-screen-xl bg-white rounded-xl p-6 ssm:p-10">
-      <StepBar @stepChanged="onActiveStepChange" :steps="steps">
+      <StepBar @stepChanged="onActiveStepChange" :steps="steps" :icons="icons">
         <template v-slot:content>
           <FormKit
             type="form"

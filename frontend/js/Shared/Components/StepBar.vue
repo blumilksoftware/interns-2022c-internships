@@ -11,6 +11,7 @@ import useSteps from "./useSteps.js";
 const { activeStep, visitedSteps } = useSteps();
 const props = defineProps({
   steps: Object,
+  icons: Object,
 });
 
 const checkStepValidity = (stepName) => {
@@ -58,7 +59,10 @@ onMounted(() => {
           :class="{ 'border-emerald-700': step.valid }"
           class="h-20 w-fit px-3 border-2 border-primary rounded-xl flex items-center justify-center gap-2 cursor-default"
         >
-          <BuildingOffice2Icon class="h-12 w-12 p-2 bg-gray-200 rounded-xl" />
+          <component
+            :is="props.icons[stepName]"
+            class="h-12 w-12 p-2 bg-gray-200 rounded-xl"
+          />
           <div class="flex flex-col">
             <span class="text-xs font-semibold text-primary"
               >{{ ++index }}/{{ Object.keys(steps).length }}</span
@@ -72,7 +76,10 @@ onMounted(() => {
           @click="activeStep = stepName"
           class="h-20 w-20 border-2 border-emerald-700 rounded-xl flex items-center justify-center cursor-pointer"
         >
-          <MapPinIcon class="h-12 w-12 p-2 bg-gray-200 rounded-xl" />
+          <component
+            :is="props.icons[stepName]"
+            class="h-12 w-12 p-2 bg-gray-200 rounded-xl"
+          />
         </div>
 
         <div
@@ -80,7 +87,10 @@ onMounted(() => {
           @click="activeStep = stepName"
           class="h-20 w-20 border-2 border-red-800 rounded-xl flex items-center justify-center cursor-pointer"
         >
-          <MapPinIcon class="h-12 w-12 p-2 bg-gray-200 rounded-xl" />
+          <component
+            :is="props.icons[stepName]"
+            class="h-12 w-12 p-2 bg-gray-200 rounded-xl"
+          />
         </div>
 
         <div
@@ -88,7 +98,10 @@ onMounted(() => {
           @click="activeStep = stepName"
           class="h-20 w-20 border-2 border-gray-400 rounded-xl flex items-center justify-center cursor-pointer"
         >
-          <MapPinIcon class="h-12 w-12 p-2 bg-gray-200 rounded-xl" />
+          <component
+            :is="props.icons[stepName]"
+            class="h-12 w-12 p-2 bg-gray-200 rounded-xl"
+          />
         </div>
       </template>
     </div>
