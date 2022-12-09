@@ -17,7 +17,8 @@ export default {
           "p-3 text-white rounded-xl font-medium bg-primary hover:bg-secondary text-base",
       },
       button: {
-        input: "",
+        input:
+          "p-3 text-white rounded-xl font-medium bg-primary hover:bg-secondary text-base",
       },
     }),
   },
