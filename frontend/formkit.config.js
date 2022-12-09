@@ -1,5 +1,5 @@
-import { generateClasses } from "@formkit/themes";
-import { pl, en } from "@formkit/i18n";
+import { generateClasses } from "@formkit/themes"
+import { pl, en } from "@formkit/i18n"
 
 export default {
   locales: { pl, en },
@@ -22,4 +22,4 @@ export default {
       },
     }),
   },
-};
+}
