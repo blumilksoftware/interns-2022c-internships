@@ -1,11 +1,6 @@
 <script setup>
 import { computed, watch, onMounted } from "vue";
-import {
-  MapPinIcon,
-  BuildingOffice2Icon,
-  PencilSquareIcon,
-  ArrowSmallLeftIcon,
-} from "@heroicons/vue/24/solid";
+import { ArrowSmallLeftIcon } from "@heroicons/vue/24/solid";
 import useSteps from "./useSteps.js";
 
 const { activeStep, visitedSteps } = useSteps();
