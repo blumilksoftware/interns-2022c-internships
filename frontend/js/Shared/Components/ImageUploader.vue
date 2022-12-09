@@ -51,8 +51,8 @@ function drop(event) {
 <template>
   <div
     :class="[
-      dragging ? 'bg-gray-100' : 'bg-white',
-      'relative w-full flex justify-center transition p-6 border border-gray-300 rounded-md',
+      dragging ? 'bg-gray-100' : 'bg-transparent',
+      'relative w-full flex justify-center transition p-3',
     ]"
     @dragover.prevent="dragging = true"
     @dragleave="dragging = false"
@@ -61,14 +61,12 @@ function drop(event) {
     <label
       v-show="!imagePreviewUrl"
       :for="id"
-      class="block cursor-pointer text-center space-y-1 my-4 group text-sm rounded-md font-medium text-teal-600 hover:text-teal-700"
+      class="block cursor-pointer text-center space-y-1 my-4 group text-sm rounded-md font-medium text-primary"
     >
       <PhotoIcon
         :class="[
-          dragging
-            ? 'text-teal-500'
-            : 'text-gray-400 group-hover:text-teal-500',
-          'mx-auto h-12 w-12',
+          dragging ? 'text-primary' : 'text-gray-400 group-hover:text-primary',
+          'mx-auto h-24 w-24',
         ]"
       />
       <span>{{ $t("image_uploader.upload_file") }}</span>
@@ -97,7 +95,7 @@ function drop(event) {
         class="absolute top-1 right-1 p-1 rounded-md hover:bg-gray-100"
         @click="value = null"
       >
-        <XMarkIcon class="h-6 w-6 text-gray-600" />
+        <XMarkIcon class="h-6 w-6 text-primary bg-white" />
       </button>
     </div>
   </div>
