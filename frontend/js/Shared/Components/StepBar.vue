@@ -52,13 +52,13 @@ onMounted(() => {
           v-if="activeStep === stepName"
           @click="activeStep = stepName"
           :class="{ 'border-emerald-700': step.valid }"
-          class="h-20 w-fit px-3 border-2 border-primary rounded-xl flex items-center justify-center gap-2 cursor-default"
+          class="h-20 w-20 ssm:w-fit ssm:px-3 border-2 border-primary rounded-xl flex items-center justify-center gap-2 cursor-default"
         >
           <component
             :is="props.icons[stepName]"
             class="h-12 w-12 p-2 bg-gray-200 rounded-xl"
           />
-          <div class="flex flex-col">
+          <div class="hidden ssm:flex flex-col">
             <span class="text-xs font-semibold text-primary"
               >{{ ++index }}/{{ Object.keys(steps).length }}</span
             >
