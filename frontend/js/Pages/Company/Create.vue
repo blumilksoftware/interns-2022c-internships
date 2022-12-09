@@ -224,8 +224,8 @@ const createCompanyForm = ref(null);
 
                     <InputError :message="form.errors.address" />
                   </div>
-                  <div>
-                    <div class="border aspect-[1/1] rounded-xl w-full ssm:w-80">
+                  <div class="w-full ssm:w-80">
+                    <div class="border aspect-[1/1] rounded-xl">
                       <MapGeocode ref="map" class="rounded-lg" />
                     </div>
                     <FormKit type="button" @click="generateCoordinates">
@@ -238,50 +238,44 @@ const createCompanyForm = ref(null);
             <!-- sekcja 3 -->
             <section class="section-step" v-show="activeStep === 'description'">
               <FormKit type="group" id="description" name="description">
-                <div class="flex flex-col items-center gap-5">
-                  <div
-                    class="flex justify-center items-center flex-col md:flex-row"
-                  >
-                    <MarkdownEditor
-                      :preview="false"
-                      class="!h-64 md:!h-96 !w-full max-w-lg"
-                      v-model="form.description"
-                    />
-                    <MarkdownEditor
-                      :previewOnly="true"
-                      class="!h-64 md:!h-96 !w-full !p-5 max-w-lg"
-                      v-model="form.description"
-                    />
-                  </div>
+                <div
+                  class="flex justify-center items-center flex-col md:flex-row"
+                >
+                  <MarkdownEditor
+                    :preview="false"
+                    class="!h-64 md:!h-96 !w-full max-w-lg"
+                    v-model="form.description"
+                  />
+                  <MarkdownEditor
+                    :previewOnly="true"
+                    class="!h-64 md:!h-96 !w-full !p-5 max-w-lg"
+                    v-model="form.description"
+                  />
+                </div>
 
+                <FormKit
+                  type="hidden"
+                  v-model="form.description"
+                  validation="required"
+                />
+                <InputError :message="form.errors.description" />
+
+                <div class="flex items-center flex-col pt-5">
+                  <label>{{ $t("add_company.select_specializations") }} </label>
+                  <Treeselect
+                    class="max-w-md"
+                    :options="props.departments.data"
+                    :multiple="true"
+                    :disable-branch-nodes="true"
+                    :placeholder="$t('tree_selects.tree_select_specialization')"
+                    search-nested
+                    v-model="form.specializations"
+                  />
                   <FormKit
                     type="hidden"
-                    v-model="form.description"
+                    v-model="form.specializations"
                     validation="required"
                   />
-                  <InputError :message="form.errors.description" />
-
-                  <div>
-                    <label
-                      >{{ $t("add_company.select_specializations") }}
-                    </label>
-                    <Treeselect
-                      class="max-w-md"
-                      :options="props.departments.data"
-                      :multiple="true"
-                      :disable-branch-nodes="true"
-                      :placeholder="
-                        $t('tree_selects.tree_select_specialization')
-                      "
-                      search-nested
-                      v-model="form.specializations"
-                    />
-                    <FormKit
-                      type="hidden"
-                      v-model="form.specializations"
-                      validation="required"
-                    />
-                  </div>
                 </div>
               </FormKit>
               <Teleport to=".step-buttons" v-if="activeStep === 'description'">
