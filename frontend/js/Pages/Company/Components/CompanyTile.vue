@@ -1,11 +1,11 @@
 <script setup>
 const props = defineProps({
   company: Object,
-});
+})
 
-const emit = defineEmits(["selectedCompany"]);
+const emit = defineEmits(["selectedCompany"])
 function onCompanySelect() {
-  emit("selectedCompany", props.company.id);
+  emit("selectedCompany", props.company.id)
 }
 </script>
 
@@ -27,7 +27,7 @@ function onCompanySelect() {
                     <img
                       class="object-contain h-full w-full"
                       :src="'/storage/images/' + company.logo"
-                    />
+                    >
                   </div>
                 </div>
                 <div class="ml-4">
@@ -42,14 +42,20 @@ function onCompanySelect() {
                   <div
                     class="flex flex-inline max-w-sm text-ellipsis overflow-hidden ..."
                   >
-                    <div class="mt-2" v-if="company.status === 'pending_new'">
+                    <div
+                      v-if="company.status === 'pending_new'"
+                      class="mt-2"
+                    >
                       <span
                         class="bg-yellow-100 text-yellow-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-200 dark:text-yellow-800"
                       >
                         {{ $t("company_browser.is_pending") }}
                       </span>
                     </div>
-                    <div class="mt-2" v-if="company.has_signed_papers">
+                    <div
+                      v-if="company.has_signed_papers"
+                      class="mt-2"
+                    >
                       <span
                         class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-800"
                       >

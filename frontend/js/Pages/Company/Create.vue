@@ -17,8 +17,8 @@ import {
   PencilSquareIcon,
 } from "@heroicons/vue/24/solid";
 
-const i18n = useI18n();
-const toast = useToast();
+const i18n = useI18n()
+const toast = useToast()
 
 const props = defineProps({
   departments: Object,
@@ -47,14 +47,14 @@ let toastLimiter = false;
 
 function showSelectError() {
   if (!toastLimiter) {
-    toast.error(i18n.t("status.cannot_select_more"));
-    toastLimiter = true;
+    toast.error(i18n.t("status.cannot_select_more"))
+    toastLimiter = true
   } else {
-    return;
+    return
   }
   setTimeout(function () {
-    toastLimiter = false;
-  }, 3000);
+    toastLimiter = false
+  }, 3000)
 }
 
 watch(
@@ -64,18 +64,18 @@ watch(
       form.specializations &&
       form.specializations.length > specializationLimit
     ) {
-      showSelectError();
-      form.specializations = form.specializations.slice(0, specializationLimit);
+      showSelectError()
+      form.specializations = form.specializations.slice(0, specializationLimit)
     }
   },
-  { deep: true }
-);
+  { deep: true },
+)
 
 function submit() {
-  form.address.coordinates = getCoordinatesFromMap();
+  form.address.coordinates = getCoordinatesFromMap()
   form.post(route("company-store"), {
     _method: "put",
-  });
+  })
 }
 
 let map = ref();
@@ -86,17 +86,17 @@ function getLocationFromInputs() {
     form.address.voivodeship,
     form.address.country,
     form.address.postal_code,
-  ].join(", ");
+  ].join(", ")
 }
 function generateCoordinates() {
-  map.value.find(getLocationFromInputs());
+  map.value.find(getLocationFromInputs())
 }
 function getCoordinatesFromMap() {
   let coords = map.value.getCoordinates();
   return {
     latitude: coords.lat,
     longitude: coords.lng,
-  };
+  }
 }
 
 const icons = {
@@ -107,12 +107,13 @@ const icons = {
 
 const { steps, stepPlugin } = useSteps();
 
-const activeStep = ref("info");
+const activeStep = ref("info")
 
 function onActiveStepChange(stepName) {
-  activeStep.value = stepName;
+  activeStep.value = stepName
 }
 </script>
+
 <template>
   <div class="flex justify-center sm:p-6">
     <div class="w-full max-w-screen-xl bg-white rounded-xl p-6 ssm:p-10">
@@ -180,41 +181,41 @@ function onActiveStepChange(stepName) {
                 >
                   <div class="flex flex-col gap-3 w-full ssm:w-80">
                     <FormKit
-                      v-model="form.address.country"
                       id="country"
+                      v-model="form.address.country"
                       :label="$t('add_company.country')"
                       type="text"
                       validation="required"
                     />
 
                     <FormKit
-                      v-model="form.address.voivodeship"
                       id="voivodeship"
+                      v-model="form.address.voivodeship"
                       :label="$t('add_company.voivodeship')"
                       type="text"
                       validation="required"
                     />
 
                     <FormKit
-                      v-model="form.address.city"
                       id="city"
+                      v-model="form.address.city"
                       :label="$t('add_company.city')"
                       type="text"
                       validation="required"
                     />
 
                     <FormKit
+                      id="postal_code"
                       v-model="form.address.postal_code"
                       :label="$t('add_company.postal_code')"
-                      id="postal_code"
                       type="text"
                       validation="required"
                     />
 
                     <FormKit
+                      id="street"
                       v-model="form.address.street"
                       :label="$t('add_company.street_address')"
-                      id="street"
                       type="text"
                       validation="required"
                     />
@@ -239,9 +240,9 @@ function onActiveStepChange(stepName) {
                   class="flex justify-center items-center flex-col md:flex-row"
                 >
                   <MarkdownEditor
+                    v-model="form.description"
                     :preview="false"
                     class="!h-64 md:!h-96 !w-full max-w-lg"
-                    v-model="form.description"
                   />
                   <div
                     class="!h-64 md:!h-96 !w-full !p-5 max-w-lg border-2 border-gray-100"
@@ -254,8 +255,8 @@ function onActiveStepChange(stepName) {
                 </div>
 
                 <FormKit
-                  type="hidden"
                   v-model="form.description"
+                  type="hidden"
                   validation="required"
                 />
                 <InputError :message="form.errors.description" />

@@ -3,7 +3,7 @@ import { computed, watch, onMounted } from "vue";
 import { ArrowSmallLeftIcon } from "@heroicons/vue/24/solid";
 import useSteps from "./useSteps.js";
 
-const { activeStep, visitedSteps } = useSteps();
+const { activeStep, visitedSteps } = useSteps()
 const props = defineProps({
   steps: Object,
   icons: Object,
@@ -14,28 +14,29 @@ const checkStepValidity = (stepName) => {
     (props.steps[stepName].errorCount > 0 ||
       props.steps[stepName].blockingCount > 0) &&
     visitedSteps.value.includes(stepName)
-  );
-};
+  )
+}
 
-const emit = defineEmits(["stepChanged"]);
+const emit = defineEmits(["stepChanged"])
 watch(activeStep, (newStep) => {
-  emit("stepChanged", newStep);
-});
+  emit("stepChanged", newStep)
+})
 
 const stepNames = computed(() => {
-  return Object.keys(props.steps);
-});
+  return Object.keys(props.steps)
+})
 
 const flipStep = (delta) => {
-  const stepTest = Object.keys(props.steps);
-  const currentIndex = stepTest.indexOf(activeStep.value);
-  activeStep.value = stepTest[currentIndex + delta];
-};
+  const stepTest = Object.keys(props.steps)
+  const currentIndex = stepTest.indexOf(activeStep.value)
+  activeStep.value = stepTest[currentIndex + delta]
+}
 
 onMounted(() => {
-  flipStep(1);
-});
+  flipStep(1)
+})
 </script>
+
 <template>
   <div class="flex items-center flex-col-reverse gap-3 xl:flex-row pb-10">
     <div v-if="activeStep" class="flex flex-col gap-4 flex-1">

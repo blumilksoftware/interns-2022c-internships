@@ -1,50 +1,50 @@
 <script setup>
-import { computed, ref } from "vue";
-import { PhotoIcon, XMarkIcon } from "@heroicons/vue/24/solid";
-import { useToast } from "vue-toastification";
-import { useI18n } from "vue-i18n";
+import { computed, ref } from "vue"
+import { PhotoIcon, XMarkIcon } from "@heroicons/vue/24/solid"
+import { useToast } from "vue-toastification"
+import { useI18n } from "vue-i18n"
 
-const toast = useToast();
-const i18n = useI18n();
+const toast = useToast()
+const i18n = useI18n()
 
 const props = defineProps({
   modelValue: File,
   id: String,
-});
+})
 
-const maxFileSize = 3 * 1024 * 1024;
-const acceptedFileTypes = ["image/jpeg", "image/png", "image/gif"];
+const maxFileSize = 3 * 1024 * 1024
+const acceptedFileTypes = ["image/jpeg", "image/png", "image/gif"]
 
-const emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits(["update:modelValue"])
 const value = computed({
   get: () => props.modelValue,
   set: (value) => {
     if (value === null) {
-      emit("update:modelValue", null);
+      emit("update:modelValue", null)
     } else if (!acceptedFileTypes.includes(value.type)) {
-      toast.error(i18n.t("validation.image"));
+      toast.error(i18n.t("validation.image"))
     } else if (value.size > maxFileSize) {
-      toast.error(i18n.t("validation.max.file"));
+      toast.error(i18n.t("validation.max.file"))
     } else {
-      emit("update:modelValue", value);
+      emit("update:modelValue", value)
     }
   },
-});
+})
 
 const imagePreviewUrl = computed(() =>
-  value.value ? URL.createObjectURL(value.value) : null
-);
-const file = ref(null);
-const dragging = ref(false);
+  value.value ? URL.createObjectURL(value.value) : null,
+)
+const file = ref(null)
+const dragging = ref(false)
 
 function onChange() {
-  value.value = file.value.files[0];
+  value.value = file.value.files[0]
 }
 
 function drop(event) {
-  file.value.files = event.dataTransfer.files;
-  onChange();
-  dragging.value = false;
+  file.value.files = event.dataTransfer.files
+  onChange()
+  dragging.value = false
 }
 </script>
 
@@ -81,14 +81,17 @@ function drop(event) {
         class="hidden"
         @click="file.value = null"
         @change="onChange"
-      />
+      >
     </label>
-    <div v-show="imagePreviewUrl" class="flex items-center">
+    <div
+      v-show="imagePreviewUrl"
+      class="flex items-center"
+    >
       <img
         :src="imagePreviewUrl"
         class="max-h-full max-w-full"
         :alt="$t('add_company.logo')"
-      />
+      >
       <button
         type="button"
         :title="$t('add_company.logo_delete')"

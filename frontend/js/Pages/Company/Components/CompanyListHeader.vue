@@ -1,7 +1,7 @@
 <script setup>
 defineProps({
   total: Number,
-});
+})
 </script>
 
 <template>
