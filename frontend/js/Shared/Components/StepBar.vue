@@ -1,13 +1,13 @@
 <script setup>
-import { computed, watch, onMounted } from "vue";
-import { ArrowSmallLeftIcon } from "@heroicons/vue/24/solid";
-import useSteps from "./useSteps.js";
+import { computed, watch, onMounted } from "vue"
+import { ArrowSmallLeftIcon } from "@heroicons/vue/24/solid"
+import useSteps from "./useSteps.js"
 
 const { activeStep, visitedSteps } = useSteps()
 const props = defineProps({
   steps: Object,
   icons: Object,
-});
+})
 
 const checkStepValidity = (stepName) => {
   return (
@@ -61,7 +61,7 @@ onMounted(() => {
           />
           <div class="hidden ssm:flex flex-col">
             <span class="text-xs font-semibold text-primary"
-              >{{ ++index }}/{{ Object.keys(steps).length }}</span
+            >{{ ++index }}/{{ Object.keys(steps).length }}</span
             >
             <strong>{{ $t("add_company.step_" + stepName) }}</strong>
           </div>

@@ -1,28 +1,28 @@
 <script setup>
-import { useForm } from "@inertiajs/inertia-vue3";
-import InputError from "@/js/Shared/Components/InputError.vue";
-import { ref, watch } from "vue";
-import ImageUploader from "@/js/Shared/Components/ImageUploader.vue";
-import MarkdownEditor from "@/js/Shared/Components/MarkdownEditor.vue";
-import MapGeocode from "./Components/MapGeocode.vue";
-import Treeselect from "@tkmam1x/vue3-treeselect";
-import "@tkmam1x/vue3-treeselect/dist/vue3-treeselect.css";
-import { useI18n } from "vue-i18n";
-import { useToast } from "vue-toastification";
-import StepBar from "@/js/Shared/Components/StepBar.vue";
-import useSteps from "@/js/Shared/Components/useSteps.js";
+import { useForm } from "@inertiajs/inertia-vue3"
+import InputError from "@/js/Shared/Components/InputError.vue"
+import { ref, watch } from "vue"
+import ImageUploader from "@/js/Shared/Components/ImageUploader.vue"
+import MarkdownEditor from "@/js/Shared/Components/MarkdownEditor.vue"
+import MapGeocode from "./Components/MapGeocode.vue"
+import Treeselect from "@tkmam1x/vue3-treeselect"
+import "@tkmam1x/vue3-treeselect/dist/vue3-treeselect.css"
+import { useI18n } from "vue-i18n"
+import { useToast } from "vue-toastification"
+import StepBar from "@/js/Shared/Components/StepBar.vue"
+import useSteps from "@/js/Shared/Components/useSteps.js"
 import {
   MapPinIcon,
   BuildingOffice2Icon,
   PencilSquareIcon,
-} from "@heroicons/vue/24/solid";
+} from "@heroicons/vue/24/solid"
 
 const i18n = useI18n()
 const toast = useToast()
 
 const props = defineProps({
   departments: Object,
-});
+})
 const form = useForm({
   name: null,
   description: "*" + i18n.t("add_company.description_info") + "*",
@@ -41,9 +41,9 @@ const form = useForm({
     website_url: null,
     phone_number: null,
   },
-});
-const specializationLimit = 4;
-let toastLimiter = false;
+})
+const specializationLimit = 4
+let toastLimiter = false
 
 function showSelectError() {
   if (!toastLimiter) {
@@ -78,7 +78,7 @@ function submit() {
   })
 }
 
-let map = ref();
+let map = ref()
 function getLocationFromInputs() {
   return [
     form.address.street,
@@ -92,7 +92,7 @@ function generateCoordinates() {
   map.value.find(getLocationFromInputs())
 }
 function getCoordinatesFromMap() {
-  let coords = map.value.getCoordinates();
+  let coords = map.value.getCoordinates()
   return {
     latitude: coords.lat,
     longitude: coords.lng,
@@ -103,9 +103,9 @@ const icons = {
   info: BuildingOffice2Icon,
   address: MapPinIcon,
   description: PencilSquareIcon,
-};
+}
 
-const { steps, stepPlugin } = useSteps();
+const { steps, stepPlugin } = useSteps()
 
 const activeStep = ref("info")
 
