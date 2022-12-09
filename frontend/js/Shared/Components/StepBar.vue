@@ -52,11 +52,11 @@ onMounted(() => {
           v-if="activeStep === stepName"
           @click="activeStep = stepName"
           :class="{ 'border-emerald-700': step.valid }"
-          class="h-20 w-20 ssm:w-fit ssm:px-3 border-2 border-primary rounded-xl flex items-center justify-center gap-2 cursor-default"
+          class="max-h-20 aspect-[1/1] ssm:aspect-[1/0] p-3 ssm:w-fit border-2 border-primary rounded-xl flex items-center justify-center gap-2 cursor-default"
         >
           <component
             :is="props.icons[stepName]"
-            class="h-12 w-12 p-2 bg-gray-200 rounded-xl"
+            class="h-full w-full ssm:h-12 ssm:w-12 p-2 bg-gray-200 rounded-xl"
           />
           <div class="hidden ssm:flex flex-col">
             <span class="text-xs font-semibold text-primary"
@@ -69,33 +69,33 @@ onMounted(() => {
         <div
           v-else-if="step.valid"
           @click="activeStep = stepName"
-          class="h-20 w-20 border-2 border-emerald-700 rounded-xl flex items-center justify-center cursor-pointer"
+          class="max-h-20 aspect-[1/1] p-3 border-2 border-emerald-700 rounded-xl flex items-center justify-center cursor-pointer"
         >
           <component
             :is="props.icons[stepName]"
-            class="h-12 w-12 p-2 bg-gray-200 rounded-xl"
+            class="h-full w-full p-2 bg-gray-200 rounded-xl"
           />
         </div>
 
         <div
           v-else-if="checkStepValidity(stepName)"
           @click="activeStep = stepName"
-          class="h-20 w-20 border-2 border-red-800 rounded-xl flex items-center justify-center cursor-pointer"
+          class="max-h-20 aspect-[1/1] p-3 border-2 border-red-800 rounded-xl flex items-center justify-center cursor-pointer"
         >
           <component
             :is="props.icons[stepName]"
-            class="h-12 w-12 p-2 bg-gray-200 rounded-xl"
+            class="h-full w-full p-2 bg-gray-200 rounded-xl"
           />
         </div>
 
         <div
           v-else
           @click="activeStep = stepName"
-          class="h-20 w-20 border-2 border-gray-400 rounded-xl flex items-center justify-center cursor-pointer"
+          class="max-h-20 aspect-[1/1] p-3 border-2 border-gray-400 rounded-xl flex items-center justify-center cursor-pointer"
         >
           <component
             :is="props.icons[stepName]"
-            class="h-12 w-12 p-2 bg-gray-200 rounded-xl"
+            class="h-full w-full p-2 bg-gray-200 rounded-xl"
           />
         </div>
       </template>
