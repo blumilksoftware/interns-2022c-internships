@@ -94,7 +94,7 @@ onMounted(() => {
     </div>
   </div>
   <slot name="content" />
-
+  <hr class="mt-12 mb-6 bg-secondary rounded h-0" />
   <div class="flex flex-row justify-end gap-8">
     <button
       @click="flipStep(-1)"
