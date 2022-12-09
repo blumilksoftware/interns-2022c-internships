@@ -246,11 +246,14 @@ const createCompanyForm = ref(null);
                     class="!h-64 md:!h-96 !w-full max-w-lg"
                     v-model="form.description"
                   />
-                  <MarkdownEditor
-                    :previewOnly="true"
-                    class="!h-64 md:!h-96 !w-full !p-5 max-w-lg"
-                    v-model="form.description"
-                  />
+                  <div
+                    class="!h-64 md:!h-96 !w-full !p-5 max-w-lg border-2 border-gray-100"
+                  >
+                    <MarkdownEditor
+                      :previewOnly="true"
+                      v-model="form.description"
+                    />
+                  </div>
                 </div>
 
                 <FormKit
