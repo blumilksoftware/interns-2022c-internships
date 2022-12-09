@@ -42,7 +42,7 @@ onMounted(() => {
       <h1 class="text-4xl font-semibold text-primary">
         {{ $t("add_company.descriptions." + activeStep + "_title") }}
       </h1>
-      <h4 class="text-md">
+      <h4 class="text-base">
         {{ $t("add_company.descriptions." + activeStep + "_description") }}
       </h4>
     </div>
@@ -103,12 +103,10 @@ onMounted(() => {
   </div>
   <slot name="content" />
   <hr class="mt-12 mb-6 bg-secondary rounded h-0" />
-  <div class="flex flex-row justify-end gap-8">
+  <div class="step-buttons flex flex-row justify-end gap-8">
     <button
       @click="flipStep(-1)"
-      :style="{
-        visibility: activeStep !== stepNames[0] ? 'visible' : 'hidden',
-      }"
+      v-if="activeStep !== stepNames[0]"
       class="p-3 text-primary rounded-xl font-medium"
     >
       <div class="flex flex-row items-center gap-1">
@@ -119,10 +117,7 @@ onMounted(() => {
 
     <button
       @click="flipStep(1)"
-      :style="{
-        visibility:
-          activeStep !== stepNames[stepNames.length - 1] ? 'visible' : 'hidden',
-      }"
+      v-if="activeStep !== stepNames[stepNames.length - 1]"
       class="p-3 text-white rounded-xl font-medium bg-primary hover:bg-secondary"
     >
       Następny krok

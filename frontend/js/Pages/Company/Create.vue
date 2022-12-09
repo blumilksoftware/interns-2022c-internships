@@ -27,6 +27,13 @@ const activeStep = ref("info");
 function onActiveStepChange(stepName) {
   activeStep.value = stepName;
 }
+
+const createCompanyForm = ref(null);
+
+function submitForm() {
+  const node = createCompanyForm.value.node;
+  node.submit();
+}
 </script>
 <template>
   <div class="flex justify-center sm:p-6">
@@ -38,6 +45,7 @@ function onActiveStepChange(stepName) {
             #default="{ state: { valid } }"
             :plugins="[stepPlugin]"
             :actions="false"
+            ref="createCompanyForm"
           >
             <!-- sekcja 1 -->
             <section class="section-step" v-show="activeStep === 'info'">
@@ -113,6 +121,11 @@ function onActiveStepChange(stepName) {
                   />
                 </div>
               </FormKit>
+              <Teleport to=".step-buttons" v-if="activeStep === 'description'">
+                <FormKit type="submit" @click="submitForm">
+                  Prześlij formularz
+                </FormKit>
+              </Teleport>
             </section>
           </FormKit>
         </template>
