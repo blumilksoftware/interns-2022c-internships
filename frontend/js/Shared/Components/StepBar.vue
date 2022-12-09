@@ -38,12 +38,12 @@ onMounted(() => {
 </script>
 <template>
   <div class="flex items-center flex-col-reverse gap-3 xl:flex-row pb-10">
-    <div class="flex flex-col gap-4 flex-1">
+    <div v-if="activeStep" class="flex flex-col gap-4 flex-1">
       <h1 class="text-4xl font-semibold text-primary">
         {{ $t("add_company.descriptions." + activeStep + "_title") }}
       </h1>
       <h4 class="text-base">
-        {{ $t("add_company.descriptions." + activeStep + "_description") }}
+        {{ $t("add_company.descriptions." + activeStep + "_text") }}
       </h4>
     </div>
     <div class="flex gap-3 flex-1 justify-end">
@@ -111,7 +111,7 @@ onMounted(() => {
     >
       <div class="flex flex-row items-center gap-1">
         <ArrowSmallLeftIcon class="h-4" />
-        <span>Poprzedni krok</span>
+        <span> {{ $t("add_company.previous_step_button") }} </span>
       </div>
     </button>
 
@@ -120,7 +120,7 @@ onMounted(() => {
       v-if="activeStep !== stepNames[stepNames.length - 1]"
       class="p-3 text-white rounded-xl font-medium bg-primary hover:bg-secondary"
     >
-      Następny krok
+      {{ $t("add_company.next_step_button") }}
     </button>
   </div>
 </template>

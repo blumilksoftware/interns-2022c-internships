@@ -112,8 +112,6 @@ const activeStep = ref("info");
 function onActiveStepChange(stepName) {
   activeStep.value = stepName;
 }
-
-const createCompanyForm = ref(null);
 </script>
 <template>
   <div class="flex justify-center sm:p-6">
@@ -126,7 +124,6 @@ const createCompanyForm = ref(null);
             :plugins="[stepPlugin]"
             :actions="false"
           >
-            <!-- sekcja 1 -->
             <section class="section-step" v-show="activeStep === 'info'">
               <FormKit type="group" id="info" name="info">
                 <div
@@ -175,7 +172,7 @@ const createCompanyForm = ref(null);
                 </div>
               </FormKit>
             </section>
-            <!-- sekcja 2 -->
+
             <section class="section-step" v-show="activeStep === 'address'">
               <FormKit type="group" id="address" name="address">
                 <div
@@ -235,7 +232,7 @@ const createCompanyForm = ref(null);
                 </div>
               </FormKit>
             </section>
-            <!-- sekcja 3 -->
+
             <section class="section-step" v-show="activeStep === 'description'">
               <FormKit type="group" id="description" name="description">
                 <div
@@ -287,7 +284,7 @@ const createCompanyForm = ref(null);
                   @click="submit"
                   :disabled="form.processing || !valid"
                 >
-                  Prześlij formularz
+                  {{ $t("add_company.submit_button") }}
                 </FormKit>
               </Teleport>
             </section>
