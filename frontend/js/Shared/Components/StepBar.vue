@@ -1,6 +1,6 @@
 <script setup>
 import { computed, watch, onMounted } from "vue"
-import { ArrowSmallLeftIcon } from "@heroicons/vue/24/solid"
+import { ArrowSmallLeftIcon, CheckCircleIcon, XCircleIcon } from "@heroicons/vue/24/solid"
 import useSteps from "./useSteps.js"
 
 const { activeStep, visitedSteps } = useSteps()
@@ -53,40 +53,46 @@ onMounted(() => {
           v-if="activeStep === stepName"
           @click="activeStep = stepName"
           :class="{ 'border-emerald-700': step.valid }"
-          class="max-h-20 aspect-[1/1] ssm:aspect-[1/0] p-3 ssm:w-fit border-2 border-primary rounded-xl flex items-center justify-center gap-2 cursor-default"
+          class="relative max-h-20 aspect-[1/1] ssm:aspect-[1/0] p-3 ssm:w-fit border-2 border-primary rounded-xl flex items-center justify-center gap-2 cursor-default"
         >
           <component
             :is="props.icons[stepName]"
             class="h-full w-full ssm:h-12 ssm:w-12 p-2 bg-gray-200 rounded-xl"
           />
+          <span class="animate-ping absolute bottom-3 right-3 ssm:hidden inline-flex rounded-full h-4 w-4 bg-primary opacity-75" />
+          <span class="absolute bottom-3 right-3 ssm:hidden inline-flex rounded-full h-4 w-4 bg-primary" />
           <div class="hidden ssm:flex flex-col">
             <span class="text-xs font-semibold text-primary"
             >{{ ++index }}/{{ Object.keys(steps).length }}</span
             >
             <strong>{{ $t("add_company.step_" + stepName) }}</strong>
           </div>
+
+
         </div>
 
         <div
           v-else-if="step.valid"
           @click="activeStep = stepName"
-          class="max-h-20 aspect-[1/1] p-3 border-2 border-emerald-700 rounded-xl flex items-center justify-center cursor-pointer"
+          class="relative max-h-20 aspect-[1/1] p-3 border-2 border-emerald-700 rounded-xl flex items-center justify-center cursor-pointer"
         >
           <component
             :is="props.icons[stepName]"
             class="h-full w-full p-2 bg-gray-200 rounded-xl"
           />
+          <CheckCircleIcon class="absolute bottom-1 right-1 p-1 h-8 w-8 text-emerald-700 " />
         </div>
 
         <div
           v-else-if="checkStepValidity(stepName)"
           @click="activeStep = stepName"
-          class="max-h-20 aspect-[1/1] p-3 border-2 border-red-800 rounded-xl flex items-center justify-center cursor-pointer"
+          class="relative max-h-20 aspect-[1/1] p-3 border-2 border-red-800 rounded-xl flex items-center justify-center cursor-pointer"
         >
           <component
             :is="props.icons[stepName]"
             class="h-full w-full p-2 bg-gray-200 rounded-xl"
           />
+          <XCircleIcon class="absolute bottom-1 right-1 p-1 h-8 w-8 text-red-800" />
         </div>
 
         <div
