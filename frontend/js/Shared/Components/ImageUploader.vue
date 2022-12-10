@@ -61,7 +61,7 @@ function drop(event) {
     <label
       v-show="!imagePreviewUrl"
       :for="id"
-      class="block cursor-pointer text-center space-y-1 my-4 group text-sm rounded-md font-medium text-primary"
+      class="h-full w-full flex justify-center flex-col cursor-pointer text-center group text-sm rounded-md font-medium text-primary"
     >
       <PhotoIcon
         :class="[
@@ -85,7 +85,7 @@ function drop(event) {
     </label>
     <div
       v-show="imagePreviewUrl"
-      class="flex items-center"
+      class="flex items-center justify-center"
     >
       <img
         :src="imagePreviewUrl"

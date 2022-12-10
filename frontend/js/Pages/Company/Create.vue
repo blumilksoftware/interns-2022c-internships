@@ -134,7 +134,7 @@ function onActiveStepChange(stepName) {
                     class="border-2 border-gray-400 aspect-[1/1] rounded-xl w-full max-w-[250px] ssm:w-80"
                   >
                     <ImageUploader
-                      class="h-full w-full flex items-center justify-center"
+                      class="h-full w-full max-h-full max-w-full"
                       v-model="form.logoFile"
                     />
                   </div>
