@@ -81,9 +81,8 @@ const navItems = reactive([
           <div class="flex items-center">
             <p
               v-if="$page.props.auth.user"
-              class="text-gray-300 text-sm font-medium"
+              class="text-gray-300"
             >
-              {{ $t("navigation_bar.logged_as") }}:
               {{ $page.props.auth.user.full_name }}
             </p>
             <Menu
@@ -145,9 +144,11 @@ const navItems = reactive([
                 </MenuItems>
               </transition>
             </Menu>
+
+
             <div class="flex items-center">
-              <LanguageSwitch class="flex pl-5" />
-              <div class="flex pl-5">
+              <LanguageSwitch class="flex pl-6" />
+              <div class="flex pl-6">
                 <a
                   href="https://github.com/blumilksoftware/internships"
                   target="_blank"

@@ -261,7 +261,7 @@ function onActiveStepChange(stepName) {
                 />
                 <InputError :message="form.errors.description" />
 
-                <div class="flex items-center flex-col pt-5">
+                <div class="flex items-center flex-col pt-5 gap-1">
                   <label>{{ $t("add_company.select_specializations") }} </label>
                   <Treeselect
                     class="max-w-md"

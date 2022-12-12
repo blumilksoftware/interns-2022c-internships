@@ -22,7 +22,7 @@ watch(
     v-if="message"
     v-show="message"
   >
-    <p class="text-sm mt-2 text-red-600">
+    <p class="text-red-500 mb-1 text-sm font-medium">
       {{ $t(message) }}
     </p>
   </div>
