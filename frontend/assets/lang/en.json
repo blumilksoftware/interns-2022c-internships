@@ -73,11 +73,11 @@
         "step_description": "Company description",
         "submit_button": "Submit form",
         "descriptions": {
-            "info_title": "Complete the company's basic details.",
+            "info_title": "Complete the company's basic details",
             "info_text": "Fill in your company name, contact email, phone number, and website. For your company's identity, it's also a good idea to add a logo.",
-            "address_title": "Find your company.",
+            "address_title": "Find your company",
             "address_text": "Complete all the fields in the form, then click on the Set Marker button. You can move the marker on the map to pinpoint the exact location of your business.",
-            "description_title": "Write something about your company.",
+            "description_title": "Write something about your company",
             "description_text": "Describe your company to make it easier for students to choose, for this purpose use the text editor below. Then select the specializations from the list that your company is interested in."
         }
     },

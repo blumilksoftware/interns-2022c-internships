@@ -74,11 +74,11 @@
         "step_description": "Opis firmy",
         "submit_button": "Prześlij formularz",
         "descriptions": {
-            "info_title": "Uzupełnij podstawowe dane firmy.",
+            "info_title": "Uzupełnij podstawowe dane firmy",
             "info_text": "Uzupełnij nazwę swojej firmy, e-mail do kontaktu, numer telefonu oraz stronę internetową. Dla identyfikacji firmy, warto również dodać logo.",
-            "address_title": "Znajdź swoją firmę.",
+            "address_title": "Znajdź swoją firmę",
             "address_text": "Uzupełnij wszystkie pola formularza, a następnie kliknij w przycisk Ustaw marker. Możesz przesunąć marker na mapie, aby dokładnie określić lokalizację firmy.",
-            "description_title": "Napisz coś o swojej firmie.",
+            "description_title": "Napisz coś o swojej firmie",
             "description_text": "Opisz swoją firmę, aby ułatwić studentom wybór, w tym celu skorzystaj z poniższego edytora tekstu. Następnie wybierz specjalizacje z listy, które interesują Twoją firmę."
         }
     },
