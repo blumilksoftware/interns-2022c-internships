@@ -1,15 +1,15 @@
 {
-    "college":{
+    "college": {
         "marker_info": "Our college."
     },
-    "navigation_bar":{
+    "navigation_bar": {
         "map": "Map",
         "add_company": "Add company",
         "logged_as": "Logged as",
         "own_companies": "Own companies",
         "manage_companies": "Manage companies"
     },
-    "company_browser":{
+    "company_browser": {
         "companies_list": "Companies list",
         "found_companies": "Found companies",
         "search": "Search",
@@ -23,22 +23,26 @@
         "contact_details": "Contact details",
         "company_seeks": "Is looking for students of:",
         "description": "Description",
-        "information_not_provided": "Not provided"
+        "information_not_provided": "Not provided",
+        "back_to_list": "Back to company list",
+        "copy_link": "Copy link",
+        "link_copied": "Link copied to clipboard",
+        "link_not_copied": "Failed to copy link to clipboard"
     },
-    "tree_selects":{
+    "tree_selects": {
         "tree_select_city": "Choose city",
         "tree_select_specialization": "Choose specialization"
     },
-    "pagination":{
+    "pagination": {
         "next": "Next",
         "previous": "Previous"
     },
-    "sign_in":{
+    "sign_in": {
         "header": "Sign in",
         "remember": "Remember me",
         "forgot_password": "Forgot your password?"
     },
-    "registration":{
+    "registration": {
         "header": "User Registration",
         "first_name": "First name",
         "last_name": "Last name"
@@ -76,9 +80,8 @@
             "description_title": "Write something about your company.",
             "description_text": "Describe your company to make it easier for students to choose, for this purpose use the text editor below. Then select the specializations from the list that your company is interested in."
         }
-
     },
-    "forgot_password":{
+    "forgot_password": {
         "header": "Please fill email, we will send you a link to change your password",
         "reset_button": "Send reset link",
         "reset_confirm_header": "Please enter new password twice to change it",
@@ -89,7 +92,7 @@
         "email_sent": "A new verification link has been sent to your email address.",
         "resend_email_button": "Resend verification link"
     },
-    "buttons":{
+    "buttons": {
         "sign_in_button": "Sign in",
         "logout_button": "Logout",
         "change_button": "Change",
@@ -98,7 +101,7 @@
         "registration_button": "Register",
         "go_home_button": "Go back home"
     },
-    "common_labels":{
+    "common_labels": {
         "email": "Email address",
         "password": "Password",
         "password_confirm": "Confirm password",
@@ -114,7 +117,7 @@
         "company_verified": "Company has been verified.",
         "cannot_select_more": "Cannot select any more elements."
     },
-    "error":{
+    "error": {
         "header": "Error",
         "name_401": "Unauthorized",
         "description_401": "You cannot do that.",

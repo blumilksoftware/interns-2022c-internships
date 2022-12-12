@@ -2,13 +2,19 @@
 import LocationIcon from "@/assets/icons/locationIcon.svg"
 import { onMounted } from "vue"
 import {
-  XMarkIcon,
   EnvelopeIcon,
   GlobeAltIcon,
   DevicePhoneMobileIcon,
   TrashIcon,
+  ArrowSmallLeftIcon,
+  LinkIcon,
 } from "@heroicons/vue/24/outline"
 import MarkdownEditor from "@/js/Shared/Components/MarkdownEditor.vue"
+import { useToast } from "vue-toastification"
+import { useI18n } from "vue-i18n"
+
+const toast = useToast()
+const i18n = useI18n()
 
 const props = defineProps({
   company: Object,
@@ -34,16 +40,31 @@ function onZoom() {
 onMounted(() => {
   emit("zoom", props.company.id)
 })
+
+async function copyUrl() {
+  try {
+    await navigator.clipboard.writeText(window.location.href)
+    toast.success(i18n.t("company_browser.link_copied"))
+  } catch (err) {
+    toast.error(i18n.t("company_browser.link_not_copied"))
+  }
+}
 </script>
 
 <template>
   <div>
-    <div class="sticky h-0 right-10 w-full flex justify-end">
-      <button
-        class="sticky right-0"
-        @click="onClose"
+    <div class= "flex justify-between px-3 py-1">
+      <button class="flex"
+              @click="onClose"
       >
-        <XMarkIcon class="pr-5 pt-5 h-12 w-12 text-gray-700" />
+        <ArrowSmallLeftIcon class="h-6" />
+        {{ $t("company_browser.back_to_list") }}
+      </button>
+      <button class="flex"
+              @click="copyUrl"
+      >
+        <LinkIcon class="h-6" />
+        {{ $t("company_browser.copy_link") }}
       </button>
     </div>
     <div
@@ -51,7 +72,7 @@ onMounted(() => {
     >
       <div class="mt-4 p-4 px-10 pt-1 text-left sm:text-left">
         <div>
-          <h1 class="text-gray-900 pb-2 text-2xl text-center">
+          <h1 class="text-gray-900 pb-2 text-2xl text-center font-medium">
             {{ company.name }}
           </h1>
           <hr class="border-b border-gray-300">
@@ -67,33 +88,32 @@ onMounted(() => {
         </p>
 
         <div
-          class="flex items-center flex-row justify-center mt-5 px-10 sm:py-4 gap-2 sm:gap-4 mb-5"
+          class="flex items-center flex-col mt-5 sm:py-4 gap-2 sm:gap-4 mb-5 "
         >
-          <div
-            class="h-24 w-24 sm:h-36 sm:w-36 shadow-lg rounded-lg border-2 shrink-0"
+
+          <img
+            class="aspect-[1/1] max-h-24 ssm:max-h-48 shadow-lg rounded-lg border-2 object-contain"
+            :src="'/storage/images/' + company.logo"
           >
-            <img
-              class="object-contain h-full w-full"
-              :src="'/storage/images/' + company.logo"
-            >
-          </div>
+
           <div
-            class="flex flex-col justify-center sm:gap-2 rounded-lg shadow-md p-2 bg-white"
+            class="flex flex-col justify-center sm:gap-2 rounded-lg shadow-md p-2 bg-white w-full "
           >
-            <p class="hidden sm:flex justify-center font-semibold">
+
+            <p class="flex justify-center font-semibold  ">
               {{ $t("company_browser.contact_details") }}
             </p>
-            <div class="flex items-center">
-              <EnvelopeIcon class="h-6 mx-2" /><a
-                class="text-blue-700 font-medium"
+            <div class="truncate flex gap-2 ">
+              <EnvelopeIcon class="h-6 w-6 shrink-0" /><a
+                class="text-blue-700 font-medium text-ellipsis overflow-hidden"
                 :href="'mailto:' + company.contact_details.email"
               >{{ company.contact_details.email }}</a>
             </div>
-            <div class="flex items-center">
-              <GlobeAltIcon class="h-6 mx-2" />
+            <div class="truncate flex gap-2">
+              <GlobeAltIcon class="h-6 w-6 shrink-0" />
               <a
                 v-if="company.contact_details.website_url"
-                class="text-blue-700 font-medium"
+                class="text-blue-700 font-medium text-ellipsis overflow-hidden"
                 :href="company.contact_details.website_url"
                 target="_blank"
               >{{ company.contact_details.website_url }}</a>
@@ -101,9 +121,9 @@ onMounted(() => {
                 $t("company_browser.information_not_provided")
               }}</span>
             </div>
-            <div class="flex items-center">
-              <DevicePhoneMobileIcon class="h-6 mx-2" />
-              <span v-if="company.contact_details.phone_number">{{
+            <div class="truncate flex gap-2">
+              <DevicePhoneMobileIcon class="h-6 w-6 shrink-0" />
+              <span class="text-ellipsis overflow-hidden" v-if="company.contact_details.phone_number">{{
                 company.contact_details.phone_number
               }}</span>
               <span v-else>{{
@@ -113,6 +133,8 @@ onMounted(() => {
           </div>
         </div>
 
+
+        
         <div class="mt-2 rounded-lg p-2 bg-white shadow-md">
           <p class="font-medium">
             {{ $t("company_browser.company_seeks") }}
@@ -142,7 +164,7 @@ onMounted(() => {
           />
         </div>
       </div>
-      <div class="justify-center mx-auto gap-2 flex w-3/4 pb-5">
+      <div class="flex justify-center mx-auto gap-2 w-3/4 pb-10">
         <div
           v-if="
             company.status === 'pending_new' &&
