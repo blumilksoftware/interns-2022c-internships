@@ -166,7 +166,7 @@
         "quote": "Cytat",
         "link": "Link",
         "fullscreen": "Pełny ekran",
-        "preview": "Podglad",
+        "preview": "Podgląd",
         "h1": "Nagłówek 1",
         "h2": "Nagłówek 2",
         "h3": "Nagłówek 3",
@@ -180,6 +180,6 @@
         "enterLink": "Wprowadź link...",
         "ok": "Zatwierdź",
         "letterCount": "Liczba znaków",
-        "scrollAuto": "Scrollowanie Automatyczne"
+        "scrollAuto": "Scrollowanie automatyczne"
     }
 }
