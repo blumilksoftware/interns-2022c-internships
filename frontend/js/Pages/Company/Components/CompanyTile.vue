@@ -21,14 +21,10 @@ function onCompanySelect() {
             <td class="whitespace-nowrap py-4 pl-1 pr-3 text-sm sm:pl-1">
               <div class="flex items-center">
                 <div class="flex-shrink-0">
-                  <div
-                    class="h-12 w-12 sm:h-20 sm:w-20 shadow-lg rounded-lg border-2"
+                  <img
+                    class="h-12 w-12 sm:h-20 sm:w-20 shadow-lg rounded-lg border-2 object-contain"
+                    :src="'/storage/images/' + company.logo"
                   >
-                    <img
-                      class="object-contain h-full w-full"
-                      :src="'/storage/images/' + company.logo"
-                    >
-                  </div>
                 </div>
                 <div class="ml-4">
                   <div
