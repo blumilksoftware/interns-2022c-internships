@@ -7,5 +7,5 @@ const locales = [
     name: "English",
     lang: "en",
   },
-];
-export default locales;
+]
+export default locales
