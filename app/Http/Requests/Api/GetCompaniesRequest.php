@@ -39,6 +39,7 @@ class GetCompaniesRequest extends ApiRequest
                 "companies" => fn(): AnonymousResourceCollection
                 => CompanySummaryResource::collection(
                     $filter->data($companies)->paginate(config("app.pagination", 15))
+                        ->withQueryString()
                         ->setPath($expectedPath),
                 ),
             ],
