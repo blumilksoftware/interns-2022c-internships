@@ -16,7 +16,7 @@ class AddressDefines
             "city" => fake()->city(),
             "street" => fake()->streetName(),
             "postal_code" => fake()->postcode(),
-            "coordinates" => new Coordinates(CoordinatesDefines::definition()),
+            "coordinates" => Coordinates::from(CoordinatesDefines::definition()),
         ];
     }
 }

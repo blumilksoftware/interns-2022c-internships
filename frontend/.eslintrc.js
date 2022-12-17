@@ -1,26 +1,31 @@
 module.exports = {
-  root: true,
   env: {
     node: true,
+    "vue/setup-compiler-macros": true,
   },
-  extends: ["plugin:vue/vue3-essential", "eslint:recommended", "@vue/prettier"],
-  parserOptions: {
-    parser: "@babel/eslint-parser",
-  },
+  extends: [
+    "eslint:recommended",
+    "plugin:vue/vue3-essential",
+  ],
   rules: {
-    "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "prettier/prettier": ["error", { endOfLine: "auto" }],
+    semi: [2, "never"],
+    quotes: ["error", "double"],
+    indent: ["error", 2],
+    "eol-last": ["error", "always"],
+    "vue/html-indent": ["error", 2],
+    "comma-dangle": ["error", "always-multiline"],
+    "comma-spacing": ["error"],
+    "key-spacing": ["error"],
+    "object-curly-spacing": ["error", "always"],
+    "vue/require-default-prop": 0,
     "vue/multi-word-component-names": "off",
-    "vue/component-tags-order": [
-      "error",
-      {
-        order: ["script", "template", "style"],
-      },
-    ],
+    "vue/padding-line-between-blocks": ["error", "always"],
+    "vue/component-tags-order": ["error", {
+      "order": ["script", "template", "style"],
+    }],
   },
   globals: {
-    _: true,
-    route: true,
+    _: "readonly",
+    route: "readonly",
   },
-};
+}

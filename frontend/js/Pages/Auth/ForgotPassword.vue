@@ -1,20 +1,20 @@
 <script setup>
-import { useForm } from "@inertiajs/inertia-vue3";
-import InputError from "@/js/Shared/Components/InputError.vue";
-import route from "ziggy";
+import { useForm } from "@inertiajs/inertia-vue3"
+import InputError from "@/js/Shared/Components/InputError.vue"
+import route from "ziggy"
 
 defineProps({
   status: String,
   errors: String,
-});
+})
 
 const form = useForm({
   email: "",
-});
+})
 
 const submit = () => {
-  form.post(route("password.email"));
-};
+  form.post(route("password.email"))
+}
 </script>
 
 <template>
@@ -27,7 +27,7 @@ const submit = () => {
           class="mx-auto h-17 w-auto ring-4 ring-primary rounded-full bg-primary"
           src="@/assets/images/navbar_logo.svg"
           alt="Workflow"
-        />
+        >
         <h2
           class="mt-6 text-center text-xl tracking-tight font-bold text-gray-900"
         >
@@ -35,27 +35,39 @@ const submit = () => {
         </h2>
       </div>
 
-      <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
+      <div
+        v-if="status"
+        class="mb-4 font-medium text-sm text-green-600"
+      >
         {{ $t(status) }}
       </div>
-      <InputError class="mt-2" :message="form.errors.email" />
+      <InputError
+        class="mt-2"
+        :message="form.errors.email"
+      />
 
-      <form class="mt-8 space-y-6" @submit.prevent="submit">
+      <form
+        class="mt-8 space-y-6"
+        @submit.prevent="submit"
+      >
         <div class="rounded-md shadow-sm -space-y-px">
           <div>
-            <label for="email-address" class="sr-only">{{
+            <label
+              for="email-address"
+              class="sr-only"
+            >{{
               $t("common_labels.email")
             }}</label>
             <input
               id="email-address"
+              v-model="form.email"
               name="email"
               type="email"
-              v-model="form.email"
               autocomplete="email"
               required
               class="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
               :placeholder="$t('common_labels.email')"
-            />
+            >
           </div>
         </div>
         <div>

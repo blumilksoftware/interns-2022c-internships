@@ -1,7 +1,7 @@
 <script setup>
-import { useForm } from "@inertiajs/inertia-vue3";
-import InputError from "@/js/Shared/Components/InputError.vue";
-import route from "ziggy";
+import { useForm } from "@inertiajs/inertia-vue3"
+import InputError from "@/js/Shared/Components/InputError.vue"
+import route from "ziggy"
 
 const form = useForm({
   first_name: "",
@@ -10,19 +10,19 @@ const form = useForm({
   password: "",
   password_confirmation: "",
   terms: false,
-});
+})
 
 const submit = () => {
   form.post(route("register"), {
     onFinish: () => form.reset("password", "password_confirmation"),
-  });
-};
+  })
+}
 </script>
 
 <template>
   <form
-    @submit.prevent="submit"
     class="space-y-8 divide-y divide-gray-200 mx-auto mt-11"
+    @submit.prevent="submit"
   >
     <div class="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
       <div>
@@ -44,15 +44,18 @@ const submit = () => {
           </label>
           <div class="mt-1 sm:mt-0 sm:col-span-2">
             <input
+              id="first_name"
+              v-model="form.first_name"
               required
               type="text"
               name="first_name"
-              id="first_name"
-              v-model="form.first_name"
               autocomplete="given-name"
               class="block max-w-lg w-80 shadow-sm focus:ring-primary focus:border-primary sm:text-sm border-gray-300 rounded-md"
+            >
+            <InputError
+              class="mt-2"
+              :message="form.errors.first_name"
             />
-            <InputError class="mt-2" :message="form.errors.first_name" />
           </div>
         </div>
         <div
@@ -66,15 +69,18 @@ const submit = () => {
           </label>
           <div class="mt-1 sm:mt-0 sm:col-span-2">
             <input
+              id="last_name"
+              v-model="form.last_name"
               required
               type="text"
               name="last_name"
-              id="last_name"
-              v-model="form.last_name"
               autocomplete="family-name"
               class="block max-w-lg w-80 shadow-sm focus:ring-primary focus:border-primary sm:text-sm border-gray-300 rounded-md"
+            >
+            <InputError
+              class="mt-2"
+              :message="form.errors.last_name"
             />
-            <InputError class="mt-2" :message="form.errors.last_name" />
           </div>
         </div>
         <div
@@ -88,15 +94,18 @@ const submit = () => {
           </label>
           <div class="mt-1 sm:mt-0 sm:col-span-2">
             <input
-              required
               id="email"
+              v-model="form.email"
+              required
               name="email"
               type="email"
-              v-model="form.email"
               autocomplete="email"
               class="block max-w-lg w-80 shadow-sm focus:ring-primary focus:border-primary sm:text-sm border-gray-300 rounded-md"
+            >
+            <InputError
+              class="mt-2"
+              :message="form.errors.email"
             />
-            <InputError class="mt-2" :message="form.errors.email" />
           </div>
         </div>
         <div
@@ -110,16 +119,19 @@ const submit = () => {
           </label>
           <div class="mt-1 sm:mt-0 sm:col-span-2">
             <input
-              required
               id="password"
+              v-model="form.password"
+              required
               name="password"
               type="password"
               minlength="8"
-              v-model="form.password"
               autocomplete="password"
               class="block max-w-lg w-80 shadow-sm focus:ring-primary focus:border-primary sm:text-sm border-gray-300 rounded-md"
+            >
+            <InputError
+              class="mt-2"
+              :message="form.errors.password"
             />
-            <InputError class="mt-2" :message="form.errors.password" />
           </div>
         </div>
         <div
@@ -133,15 +145,15 @@ const submit = () => {
           </label>
           <div class="mt-1 sm:mt-0 sm:col-span-2">
             <input
-              required
               id="password_confirmation"
+              v-model="form.password_confirmation"
+              required
               name="password_confirmation"
               type="password"
               minlength="8"
-              v-model="form.password_confirmation"
               autocomplete="password"
               class="block max-w-lg w-80 shadow-sm focus:ring-primary focus:border-primary sm:text-sm border-gray-300 rounded-md"
-            />
+            >
             <InputError
               class="mt-2"
               :message="form.errors.password_confirmation"
