@@ -19,8 +19,8 @@ watch(
 
 <template>
   <div dusk="error-message"
-    v-if="message"
-    v-show="message"
+       v-if="message"
+       v-show="message"
   >
     <p class="text-red-500 mb-1 text-sm font-medium">
       {{ $t(message) }}

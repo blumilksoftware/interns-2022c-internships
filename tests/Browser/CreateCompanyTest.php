@@ -78,7 +78,7 @@ class CreateCompanyTest extends DuskTestCase
 
         $browser->waitFor(".vue-treeselect__multi-value-label")
             ->click(".vue-treeselect__control-arrow-container");
-        
+
         $browser->waitUntilMissing(".vue-treeselect__menu");
     }
 }

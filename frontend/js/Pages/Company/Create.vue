@@ -143,8 +143,8 @@ function onActiveStepChange(stepName) {
                     <FormKit
                       v-model="form.name"
                       id="name"
-                  name="name"
-                  type="text"
+                      name="name"
+                      type="text"
                       :label="$t('add_company.company_name')"
                       validation="required|length:2,255"
                     />
@@ -154,24 +154,24 @@ function onActiveStepChange(stepName) {
                       v-model="form.contact_details.email"
                       type="email"
                       id="email"
-                  name="email"
-                  :label="$t('add_company.email')"
+                      name="email"
+                      :label="$t('add_company.email')"
                       validation="required|email"
                     />
                     <FormKit
                       v-model="form.contact_details.phone_number"
                       :label="$t('add_company.phone_number')"
                       id="phone_number"
-                  name="phone_number"
-                  type="text"
+                      name="phone_number"
+                      type="text"
                     />
 
                     <FormKit
                       v-model="form.contact_details.website_url"
                       type="url"
                       id="url"
-                  name="url"
-                  :label="$t('add_company.website_url')"
+                      name="url"
+                      :label="$t('add_company.website_url')"
                       validation="url"
                     />
 
@@ -284,7 +284,7 @@ function onActiveStepChange(stepName) {
                     :placeholder="$t('tree_selects.tree_select_specialization')"
                     search-nested
                     dusk="form_specialization_hidden"
-                  v-model="form.specializations"
+                    v-model="form.specializations"
                   />
                   <FormKit
                     type="hidden"
@@ -297,7 +297,7 @@ function onActiveStepChange(stepName) {
                 <FormKit
                   type="submit"
                   dusk="form_submit"
-              @click="submit"
+                  @click="submit"
                   :disabled="form.processing || !valid"
                 >
                   {{ $t("add_company.submit_button") }}
