@@ -56,7 +56,7 @@ const navItems = reactive([
                 alt="Logo uczelni"
               />
               <div class="hidden ssm:block ml-2 text-lg font-semibold">
-                Strona uczelni
+                {{ $t("navigation_bar.college_website") }}
               </div>
             </div></a
           >
