@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Internships\Models\Embeddable;
 
-use JessArcher\CastableDataTransferObject\CastableDataTransferObject;
+use Spatie\LaravelData\Data;
 
-class Coordinates extends CastableDataTransferObject
+class Coordinates extends Data
 {
-    public readonly float $latitude;
-    public readonly float $longitude;
+    public function __construct(
+        public readonly float $latitude,
+        public readonly float $longitude,
+    ) {}
 }

@@ -1,24 +1,28 @@
 <script setup>
-import { useForm } from "@inertiajs/inertia-vue3";
-import InputError from "@/js/Shared/Components/InputError.vue";
-import { ref, watch } from "vue";
-import ImageUploader from "@/js/Shared/Components/ImageUploader.vue";
-import MarkdownEditor from "@/js/Shared/Components/MarkdownEditor.vue";
-import MapGeocode from "./Components/MapGeocode.vue";
-import Treeselect from "@tkmam1x/vue3-treeselect";
-import "@tkmam1x/vue3-treeselect/dist/vue3-treeselect.css";
-import { useI18n } from "vue-i18n";
-import { useToast } from "vue-toastification";
-import StepBar from "@/js/Shared/Components/StepBar.vue";
-import useSteps from "@/js/Shared/Components/useSteps.js";
+import { useForm } from "@inertiajs/inertia-vue3"
+import InputError from "@/js/Shared/Components/InputError.vue"
+import { ref, watch } from "vue"
+import ImageUploader from "@/js/Shared/Components/ImageUploader.vue"
+import MarkdownEditor from "@/js/Shared/Components/MarkdownEditor.vue"
+import MapGeocode from "./Components/MapGeocode.vue"
+import Treeselect from "@tkmam1x/vue3-treeselect"
+import "@tkmam1x/vue3-treeselect/dist/vue3-treeselect.css"
+import { useI18n } from "vue-i18n"
+import { useToast } from "vue-toastification"
+import StepBar from "@/js/Shared/Components/StepBar.vue"
+import useSteps from "@/js/Shared/Components/useSteps.js"
+import {
+  MapPinIcon,
+  BuildingOffice2Icon,
+  PencilSquareIcon,
+} from "@heroicons/vue/24/solid"
 
-const i18n = useI18n();
-const toast = useToast();
+const i18n = useI18n()
+const toast = useToast()
 
 const props = defineProps({
   departments: Object,
-});
-
+})
 const form = useForm({
   name: null,
   description: "*" + i18n.t("add_company.description_info") + "*",
@@ -37,21 +41,20 @@ const form = useForm({
     website_url: null,
     phone_number: null,
   },
-});
-
-const specializationLimit = 4;
-let toastLimiter = false;
+})
+const specializationLimit = 4
+let toastLimiter = false
 
 function showSelectError() {
   if (!toastLimiter) {
-    toast.error(i18n.t("status.cannot_select_more"));
-    toastLimiter = true;
+    toast.error(i18n.t("status.cannot_select_more"))
+    toastLimiter = true
   } else {
-    return;
+    return
   }
   setTimeout(function () {
-    toastLimiter = false;
-  }, 3000);
+    toastLimiter = false
+  }, 3000)
 }
 
 watch(
@@ -61,22 +64,21 @@ watch(
       form.specializations &&
       form.specializations.length > specializationLimit
     ) {
-      showSelectError();
-      form.specializations = form.specializations.slice(0, specializationLimit);
+      showSelectError()
+      form.specializations = form.specializations.slice(0, specializationLimit)
     }
   },
-  { deep: true }
-);
+  { deep: true },
+)
 
 function submit() {
-  form.address.coordinates = getCoordinatesFromMap();
+  form.address.coordinates = getCoordinatesFromMap()
   form.post(route("company-store"), {
     _method: "put",
-  });
+  })
 }
 
-let map = ref();
-
+let map = ref()
 function getLocationFromInputs() {
   return [
     form.address.street,
@@ -84,204 +86,212 @@ function getLocationFromInputs() {
     form.address.voivodeship,
     form.address.country,
     form.address.postal_code,
-  ].join(", ");
+  ].join(", ")
 }
-
 function generateCoordinates() {
-  map.value.find(getLocationFromInputs());
+  map.value.find(getLocationFromInputs())
 }
-
 function getCoordinatesFromMap() {
-  let coords = map.value.getCoordinates();
-
+  let coords = map.value.getCoordinates()
   return {
     latitude: coords.lat,
     longitude: coords.lng,
-  };
+  }
 }
 
-const { steps, stepPlugin } = useSteps();
+const icons = {
+  info: BuildingOffice2Icon,
+  address: MapPinIcon,
+  description: PencilSquareIcon,
+}
 
-const activeStep = ref("info");
+const { steps, stepPlugin } = useSteps()
+
+const activeStep = ref("info")
 
 function onActiveStepChange(stepName) {
-  activeStep.value = stepName;
+  activeStep.value = stepName
 }
 </script>
+
 <template>
-  <div class="w-full h-full">
-    <StepBar @stepChanged="onActiveStepChange" :steps="steps">
-      <template v-slot:content>
-        <FormKit
-          type="form"
-          #default="{ state: { valid } }"
-          :plugins="[stepPlugin]"
-          :actions="false"
-        >
-          <div
-            class="flex flex-col w-full h-full items-center justify-center p-8 gap-3 md:w-auto"
+  <div class="flex justify-center sm:p-6">
+    <div class="w-full max-w-screen-xl bg-white rounded-xl p-6 ssm:p-10">
+      <StepBar @stepChanged="onActiveStepChange" :steps="steps" :icons="icons">
+        <template v-slot:content>
+          <FormKit
+            type="form"
+            #default="{ state: { valid } }"
+            :plugins="[stepPlugin]"
+            :actions="false"
           >
-            <section
-              class="flex flex-col items-center w-full ssm:w-screen"
-              v-show="activeStep === 'info'"
-            >
-              <label>{{ $t("add_company.logo") }}</label>
-              <ImageUploader class="h-52 w-52" v-model="form.logoFile" />
-              <InputError class="mt-2" :message="form.errors.logoFile" />
-
+            <section class="section-step" v-show="activeStep === 'info'">
               <FormKit type="group" id="info" name="info">
-                <FormKit
-                  v-model="form.name"
-                  type="text"
-                  :label="$t('add_company.company_name')"
-                  validation="required|length:2,255"
-                />
-                <InputError :message="form.errors.name" />
+                <div
+                  class="flex justify-center items-center gap-8 flex-col md:flex-row"
+                >
+                  <div
+                    class="border-2 border-gray-400 aspect-[1/1] rounded-xl w-full max-w-[250px] ssm:w-80"
+                  >
+                    <ImageUploader
+                      class="h-full w-full max-h-full max-w-full"
+                      v-model="form.logoFile"
+                    />
+                  </div>
 
-                <FormKit
-                  v-model="form.contact_details.email"
-                  type="email"
-                  :label="$t('add_company.email')"
-                  validation="required|email"
-                />
-                <InputError :message="form.errors.contact_details" />
+                  <div class="flex flex-col gap-3 w-full ssm:w-80">
+                    <FormKit
+                      v-model="form.name"
+                      type="text"
+                      :label="$t('add_company.company_name')"
+                      validation="required|length:2,255"
+                    />
+                    <InputError :message="form.errors.name" />
 
-                <FormKit
-                  v-model="form.contact_details.phone_number"
-                  :label="$t('add_company.phone_number')"
-                  type="text"
-                />
+                    <FormKit
+                      v-model="form.contact_details.email"
+                      type="email"
+                      :label="$t('add_company.email')"
+                      validation="required|email"
+                    />
+                    <FormKit
+                      v-model="form.contact_details.phone_number"
+                      :label="$t('add_company.phone_number')"
+                      type="text"
+                    />
 
-                <FormKit
-                  v-model="form.contact_details.website_url"
-                  type="url"
-                  :label="$t('add_company.website_url')"
-                  validation="url"
-                />
+                    <FormKit
+                      v-model="form.contact_details.website_url"
+                      type="url"
+                      :label="$t('add_company.website_url')"
+                      validation="url"
+                    />
+
+                    <InputError :message="form.errors.contact_details" />
+                    <InputError class="mt-2" :message="form.errors.logoFile" />
+                  </div>
+                </div>
               </FormKit>
             </section>
 
-            <section
-              class="flex flex-col items-center w-full ssm:w-screen"
-              v-show="activeStep === 'address'"
-            >
+            <section class="section-step" v-show="activeStep === 'address'">
               <FormKit type="group" id="address" name="address">
-                <div class="flex flex-col-reverse lg:flex-row">
-                  <div>
+                <div
+                  class="flex justify-center items-center gap-8 flex-col-reverse md:flex-row"
+                >
+                  <div class="flex flex-col gap-3 w-full ssm:w-80">
                     <FormKit
-                      v-model="form.address.country"
                       id="country"
+                      v-model="form.address.country"
                       :label="$t('add_company.country')"
                       type="text"
                       validation="required"
                     />
 
                     <FormKit
-                      v-model="form.address.voivodeship"
                       id="voivodeship"
+                      v-model="form.address.voivodeship"
                       :label="$t('add_company.voivodeship')"
                       type="text"
                       validation="required"
                     />
 
                     <FormKit
-                      v-model="form.address.city"
                       id="city"
+                      v-model="form.address.city"
                       :label="$t('add_company.city')"
                       type="text"
                       validation="required"
                     />
 
                     <FormKit
+                      id="postal_code"
                       v-model="form.address.postal_code"
                       :label="$t('add_company.postal_code')"
-                      id="postal_code"
                       type="text"
                       validation="required"
                     />
 
                     <FormKit
+                      id="street"
                       v-model="form.address.street"
                       :label="$t('add_company.street_address')"
-                      id="street"
                       type="text"
                       validation="required"
                     />
-                    <InputError :message="form.errors.address" />
 
+                    <InputError :message="form.errors.address" />
+                  </div>
+                  <div class="w-full ssm:w-80">
+                    <div class="border aspect-[1/1] rounded-xl">
+                      <MapGeocode ref="map" class="rounded-lg" />
+                    </div>
                     <FormKit type="button" @click="generateCoordinates">
                       {{ $t("add_company.generate_button") }}
                     </FormKit>
                   </div>
-                  <div class="pl-0 lg:pl-5 h-96 w-full lg:w-96">
-                    <MapGeocode ref="map" class="rounded-lg" />
-                  </div>
                 </div>
               </FormKit>
             </section>
 
-            <section
-              class="flex flex-col items-center w-screen ssm:w-full"
-              v-show="activeStep === 'description'"
-            >
+            <section class="section-step" v-show="activeStep === 'description'">
               <FormKit type="group" id="description" name="description">
-                <label>{{ $t("add_company.description") }}</label>
                 <div
-                  class="flex flex-col items-center justify-center lg:flex-row w-full h-full pt-2"
+                  class="flex justify-center items-center flex-col md:flex-row"
                 >
                   <MarkdownEditor
+                    v-model="form.description"
                     :preview="false"
                     class="!h-64 md:!h-96 !w-full max-w-lg"
-                    v-model="form.description"
                   />
-                  <MarkdownEditor
-                    :previewOnly="true"
-                    class="!h-64 md:!h-96 !w-full !p-5 max-w-lg"
-                    v-model="form.description"
-                  />
+                  <div
+                    class="!h-64 md:!h-96 !w-full !p-5 max-w-lg border-2 border-gray-100"
+                  >
+                    <MarkdownEditor
+                      :previewOnly="true"
+                      v-model="form.description"
+                    />
+                  </div>
                 </div>
+
                 <FormKit
-                  type="hidden"
                   v-model="form.description"
+                  type="hidden"
                   validation="required"
                 />
                 <InputError :message="form.errors.description" />
 
-                <label class="pt-5">{{
-                  $t("add_company.select_specializations")
-                }}</label>
-                <Treeselect
-                  class="mt-2 w-96"
-                  :options="props.departments.data"
-                  :multiple="true"
-                  :disable-branch-nodes="true"
-                  :placeholder="$t('tree_selects.tree_select_specialization')"
-                  search-nested
-                  v-model="form.specializations"
-                />
-                <FormKit
-                  type="hidden"
-                  v-model="form.specializations"
-                  validation="required"
-                />
+                <div class="flex items-center flex-col pt-5 gap-1">
+                  <label>{{ $t("add_company.select_specializations") }} </label>
+                  <Treeselect
+                    class="max-w-md"
+                    :options="props.departments.data"
+                    :multiple="true"
+                    :disable-branch-nodes="true"
+                    :placeholder="$t('tree_selects.tree_select_specialization')"
+                    search-nested
+                    v-model="form.specializations"
+                  />
+                  <FormKit
+                    type="hidden"
+                    v-model="form.specializations"
+                    validation="required"
+                  />
+                </div>
               </FormKit>
+              <Teleport to=".step-buttons" v-if="activeStep === 'description'">
+                <FormKit
+                  type="submit"
+                  @click="submit"
+                  :disabled="form.processing || !valid"
+                >
+                  {{ $t("add_company.submit_button") }}
+                </FormKit>
+              </Teleport>
             </section>
-          </div>
-
-          <div
-            class="flex flex-row justify-center"
-            v-if="activeStep === 'description'"
-          >
-            <FormKit
-              type="submit"
-              @click="submit"
-              :disabled="form.processing || !valid"
-            >
-              {{ $t("buttons.request_button") }}
-            </FormKit>
-          </div>
-        </FormKit>
-      </template>
-    </StepBar>
+          </FormKit>
+        </template>
+      </StepBar>
+    </div>
   </div>
 </template>

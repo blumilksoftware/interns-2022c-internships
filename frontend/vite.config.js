@@ -1,11 +1,11 @@
-import { defineConfig, loadEnv } from "vite";
-import laravel from "laravel-vite-plugin";
-import vue from "@vitejs/plugin-vue";
-import VueI18nPlugin from "@intlify/unplugin-vue-i18n/vite";
-import path from "path";
+import { defineConfig, loadEnv } from "vite"
+import laravel from "laravel-vite-plugin"
+import vue from "@vitejs/plugin-vue"
+import VueI18nPlugin from "@intlify/unplugin-vue-i18n/vite"
+import path from "path"
 
 export default ({ mode }) => {
-  process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
+  process.env = { ...process.env, ...loadEnv(mode, process.cwd()) }
   return defineConfig({
     build: {
       outDir: process.env.VITE_PUBLIC_DIRECTORY_PATH + "/build/",
@@ -24,10 +24,10 @@ export default ({ mode }) => {
       alias: {
         "@": "",
         ziggy: path.resolve(
-          "../backend/vendor/tightenco/ziggy/dist/index.m.js"
+          "../backend/vendor/tightenco/ziggy/dist/index.m.js",
         ),
         "ziggy-vue": path.resolve(
-          "../backend/vendor/tightenco/ziggy/dist/vue.m.js"
+          "../backend/vendor/tightenco/ziggy/dist/vue.m.js",
         ),
       },
     },
@@ -49,5 +49,5 @@ export default ({ mode }) => {
         include: "./assets/lang/**",
       }),
     ],
-  });
-};
+  })
+}

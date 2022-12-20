@@ -1,165 +1,133 @@
 <script setup>
-import { computed, watch, onMounted } from "vue";
-import {
-  CheckCircleIcon,
-  XCircleIcon,
-  ChevronRightIcon,
-  ChevronLeftIcon,
-} from "@heroicons/vue/24/solid";
-import useSteps from "./useSteps.js";
+import { computed, watch, onMounted } from "vue"
+import { ArrowSmallLeftIcon, CheckCircleIcon, XCircleIcon } from "@heroicons/vue/24/solid"
+import useSteps from "./useSteps.js"
 
-const { activeStep, visitedSteps } = useSteps();
+const { activeStep, visitedSteps } = useSteps()
 const props = defineProps({
   steps: Object,
-});
+  icons: Object,
+})
 
 const checkStepValidity = (stepName) => {
   return (
     (props.steps[stepName].errorCount > 0 ||
       props.steps[stepName].blockingCount > 0) &&
     visitedSteps.value.includes(stepName)
-  );
-};
+  )
+}
 
-const emit = defineEmits(["stepChanged"]);
+const emit = defineEmits(["stepChanged"])
 watch(activeStep, (newStep) => {
-  emit("stepChanged", newStep);
-});
+  emit("stepChanged", newStep)
+})
 
 const stepNames = computed(() => {
-  return Object.keys(props.steps);
-});
+  return Object.keys(props.steps)
+})
 
 const flipStep = (delta) => {
-  const stepTest = Object.keys(props.steps);
-  const currentIndex = stepTest.indexOf(activeStep.value);
-  activeStep.value = stepTest[currentIndex + delta];
-};
+  const stepTest = Object.keys(props.steps)
+  const currentIndex = stepTest.indexOf(activeStep.value)
+  activeStep.value = stepTest[currentIndex + delta]
+}
 
 onMounted(() => {
-  flipStep(1);
-});
+  flipStep(1)
+})
 </script>
-<template>
-  <nav aria-label="Progress" class="cursor-pointer">
-    <ol
-      role="list"
-      class="flex bg-white divide-y-0 divide-gray-300 border border-gray-300"
-    >
-      <li
-        v-for="(step, stepName, index) in steps"
-        :key="step"
-        @click="activeStep = stepName"
-        class="justify-center ssm:justify-start relative flex flex-1"
-      >
-        <a
-          v-if="step.valid"
-          :href="step.href"
-          class="group flex justify-center ssm:justify-start w-full items-center"
-        >
-          <span class="flex items-center px-6 py-2 text-sm font-medium md:py-4">
-            <span
-              class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-green-700 group-hover:bg-secondary md:h-10 md:w-10"
-            >
-              <CheckCircleIcon class="h-9 w-9 text-white" aria-hidden="true" />
-            </span>
-            <span
-              class="hidden ssm:block ml-4 text-sm font-medium text-gray-900"
-              >{{ $t("add_company.step_" + stepName) }}</span
-            >
-          </span>
-        </a>
-        <a
-          v-else-if="activeStep === stepName"
-          :href="step.href"
-          class="flex items-center px-6 py-2 text-sm font-medium md:py-4"
-          aria-current="step"
-        >
-          <span
-            class="flex h-6 w-6 bg-primary flex-shrink-0 items-center justify-center rounded-full border-2 border-primary md:h-10 md:w-10"
-          >
-            <span class="text-white">{{ index + 1 }}</span>
-          </span>
-          <span
-            class="hidden ssm:block ml-4 text-sm font-medium text-primary"
-            >{{ $t("add_company.step_" + stepName) }}</span
-          >
-        </a>
-        <a
-          v-else-if="checkStepValidity(stepName)"
-          :href="step.href"
-          class="group flex justify-center ssm:justify-start w-full items-center"
-        >
-          <span class="flex items-center px-6 py-2 text-sm font-medium md:py-4">
-            <span
-              class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-red-700 group-hover:bg-red-800 md:h-10 md:w-10"
-            >
-              <XCircleIcon class="h-9 w-9 text-white" aria-hidden="true" />
-            </span>
-            <span
-              class="hidden ssm:block ml-4 text-sm font-medium text-gray-900"
-              >{{ $t("add_company.step_" + stepName) }}</span
-            >
-          </span>
-        </a>
-        <a v-else :href="step.href" class="group flex items-center">
-          <span class="flex items-center px-6 py-2 text-sm font-medium md:py-4">
-            <span
-              class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400 md:h-10 md:w-10"
-            >
-              <span class="text-gray-500 group-hover:text-gray-900">{{
-                index + 1
-              }}</span>
-            </span>
-            <span
-              class="hidden ssm:block ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900"
-              >{{ $t("add_company.step_" + stepName) }}</span
-            >
-          </span>
-        </a>
-        <template v-if="index !== 2">
-          <!-- Arrow separator for lg screens and up -->
-          <div class="absolute top-0 right-0 h-full w-5 md:block">
-            <svg
-              class="h-full w-full text-gray-300"
-              viewBox="0 0 22 80"
-              fill="none"
-              preserveAspectRatio="none"
-            >
-              <path
-                d="M0 -2L20 40L0 82"
-                vector-effect="non-scaling-stroke"
-                stroke="currentcolor"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </div>
-        </template>
-      </li>
-    </ol>
-  </nav>
-  <slot name="content" />
 
-  <div class="flex flex-row justify-center gap-8">
+<template>
+  <div class="flex items-center flex-col-reverse gap-3 xl:flex-row pb-10">
+    <div v-if="activeStep" class="flex flex-col gap-4 flex-1">
+      <h1 class="text-4xl font-semibold text-primary">
+        {{ $t("add_company.descriptions." + activeStep + "_title") }}
+      </h1>
+      <h4 class="text-base">
+        {{ $t("add_company.descriptions." + activeStep + "_text") }}
+      </h4>
+    </div>
+    <div class="flex gap-3 flex-1 justify-end">
+      <template v-for="(step, stepName, index) in steps" :key="step">
+        <div
+          v-if="activeStep === stepName"
+          @click="activeStep = stepName"
+          :class="{ 'border-emerald-700': step.valid }"
+          class="relative max-h-20 aspect-[1/1] ssm:aspect-[1/0] p-3 ssm:w-fit border-2 border-primary rounded-xl flex items-center justify-center gap-2 cursor-default"
+        >
+          <component
+            :is="props.icons[stepName]"
+            class="h-full w-full ssm:h-12 ssm:w-12 p-2 bg-gray-200 rounded-xl"
+          />
+          <span class="animate-ping absolute bottom-3 right-3 ssm:hidden inline-flex rounded-full h-4 w-4 bg-primary opacity-75" />
+          <span class="absolute bottom-3 right-3 ssm:hidden inline-flex rounded-full h-4 w-4 bg-primary" />
+          <div class="hidden ssm:flex flex-col">
+            <span class="text-xs font-semibold text-primary"
+            >{{ ++index }}/{{ Object.keys(steps).length }}</span
+            >
+            <strong>{{ $t("add_company.step_" + stepName) }}</strong>
+          </div>
+
+
+        </div>
+
+        <div
+          v-else-if="step.valid"
+          @click="activeStep = stepName"
+          class="relative max-h-20 aspect-[1/1] p-3 border-2 border-emerald-700 rounded-xl flex items-center justify-center cursor-pointer"
+        >
+          <component
+            :is="props.icons[stepName]"
+            class="h-full w-full p-2 bg-gray-200 rounded-xl"
+          />
+          <CheckCircleIcon class="absolute bottom-1 right-1 p-1 h-8 w-8 text-emerald-700 " />
+        </div>
+
+        <div
+          v-else-if="checkStepValidity(stepName)"
+          @click="activeStep = stepName"
+          class="relative max-h-20 aspect-[1/1] p-3 border-2 border-red-800 rounded-xl flex items-center justify-center cursor-pointer"
+        >
+          <component
+            :is="props.icons[stepName]"
+            class="h-full w-full p-2 bg-gray-200 rounded-xl"
+          />
+          <XCircleIcon class="absolute bottom-1 right-1 p-1 h-8 w-8 text-red-800" />
+        </div>
+
+        <div
+          v-else
+          @click="activeStep = stepName"
+          class="max-h-20 aspect-[1/1] p-3 border-2 border-gray-400 rounded-xl flex items-center justify-center cursor-pointer"
+        >
+          <component
+            :is="props.icons[stepName]"
+            class="h-full w-full p-2 bg-gray-200 rounded-xl"
+          />
+        </div>
+      </template>
+    </div>
+  </div>
+  <slot name="content" />
+  <hr class="mt-12 mb-6 bg-secondary rounded h-0" />
+  <div class="step-buttons flex flex-row justify-end gap-8">
     <button
       @click="flipStep(-1)"
-      :style="{
-        visibility: activeStep !== stepNames[0] ? 'visible' : 'hidden',
-      }"
-      class="w-24 h-10 text-white flex justify-center items-center rounded-lg shadow-md bg-primary hover:bg-secondary"
+      v-if="activeStep !== stepNames[0]"
+      class="p-3 text-primary rounded-xl font-medium"
     >
-      <ChevronLeftIcon class="w-5 h-5" />
+      <div class="flex flex-row items-center gap-1">
+        <ArrowSmallLeftIcon class="h-4" />
+        <span> {{ $t("add_company.previous_step_button") }} </span>
+      </div>
     </button>
 
     <button
       @click="flipStep(1)"
-      :style="{
-        visibility:
-          activeStep !== stepNames[stepNames.length - 1] ? 'visible' : 'hidden',
-      }"
-      class="w-24 h-10 text-white flex justify-center items-center rounded-lg shadow-md bg-primary hover:bg-secondary"
+      v-if="activeStep !== stepNames[stepNames.length - 1]"
+      class="p-3 text-white rounded-xl font-medium bg-primary hover:bg-secondary"
     >
-      <ChevronRightIcon class="w-5 h-5" />
+      {{ $t("add_company.next_step_button") }}
     </button>
   </div>
 </template>
