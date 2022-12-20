@@ -8,7 +8,7 @@
 3. Description
    ![Step three](./images/manage-company/create-description.png)
 4. Description
-   ![Step four](./images/manage-company/tworzenie-bazowe.png)
+   ![Step four](./images/manage-company/create-specializations.png)
 
 
 ## Viewing your own companies
