@@ -173,6 +173,7 @@ const submit = () => {
           </button>
         </InertiaLink>
         <button
+          dusk="register-submit"
           type="submit"
           :class="{ 'opacity-25': form.processing }"
           :disabled="form.processing"
