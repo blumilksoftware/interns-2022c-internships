@@ -14,7 +14,7 @@ Po założeniu konta należy je aktywować. W tym celu odwiedź swoją skrzynkę
 ![E-mail weryfikacyjny](./images/account-verify.png)
 Aby dokończyć aktywację, kliknij w przycisk `Verify Email Address` lub skorzystaj z linku na dole wiadomości.
 ## Odzyskiwanie hasła
-W przypadku zapomnienia hasła, możemy je zresetować. W tym celu należy odszukać na podstronie logowania odnośnik `Nie pamiętasz hasła?`.
+W przypadku zapomnienia hasła, można je zresetować. W tym celu należy odszukać na podstronie logowania odnośnik `Nie pamiętasz hasła?`.
 
 W formularzu należy podać poprawny adres e-mail, a następnie kliknąć w przycisk `Wyślij link`. Na Twoją skrzynkę pocztową powinna przyjść poniższa wiadomość.
 
