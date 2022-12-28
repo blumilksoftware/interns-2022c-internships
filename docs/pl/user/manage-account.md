@@ -1,28 +1,21 @@
 # Zarządzanie kontem
 
 ## Rejestracja
+W celu założenia nowego konta, wybierz opcję `Zaloguj` z paska nawigacyjnego, następnie kliknij w przycisk `Zarejestruj się`.
 
-1. Kliknij ikonę użytkownika znajdującą się na pasku nawigacyjnym.
-   ![Krok pierwszy](./images/manage-account/rejestracja-ikona-uzytkownika.png)
-2. Kliknij w przycisk `Zaloguj`.
-   ![Krok drugi](./images/manage-account/rejestracja-zaloguj.png)
-3. Wybierz przycisk `Zarejestruj się`.
-   ![Krok trzeci](./images/manage-account/rejestracja-zarejestruj.png)
-4. Uzupełnij formularz i kliknij w przycisk `Zarejestruj się`.
-   ![Krok czwarty](./images/manage-account/rejestracja-formularz.png)
-
+![Formularz rejestracji](./images/account-register.png)
+Po uzupełnieniu formularza, kliknij w przycisk `Zarejestruj się`.
+::: tip
+Pamiętaj o wprowadzeniu poprawnego adresu e-mail, ponieważ będzie potrzebny do weryfikacji konta.
+:::
 ## Potwierdzenie maila
+Po założeniu konta należy je aktywować. W tym celu odwiedź swoją skrzynkę pocztową i odszukaj wiadomość zatytułowaną `Verify Email Address`. 
 
-1. Wejdź na adres e-mail podany przy rejestracji i odszukaj wiadomość zatytułowaną `Verify Email Address`.
-   ![Krok pierwszy](./images/manage-account/email-wiadomosc.png)
-2. Aby zweryfikować swój adres e-mail, kliknij w przycisk `Verify Email Address`.
-   ![Krok drugi](./images/manage-account/email-przycisk.png)
-3. W przypadku problemów, możesz także uzyć linku na dole wiadomości.
-   ![Krok trzeci](./images/manage-account/email-link.png)
-
+![E-mail weryfikacyjny](./images/account-verify.png)
+Aby dokończyć aktywację, kliknij w przycisk `Verify Email Address` lub skorzystaj z linku na dole wiadomości.
 ## Odzyskiwanie hasła
+W przypadku zapomnienia hasła, możemy je zresetować. W tym celu należy odszukać na podstronie logowania odnośnik `Nie pamiętasz hasła?`.
 
-1. Na stronie logowania kliknij w tekst `Nie pamiętasz hasła?`.
-   ![Krok pierwszy](./images/manage-account/odzyskaj-tekst.png)
-2. Wpisz adres e-mail użyty przy zakładaniu konta, następnie kliknij w `Wyślij link`.
-   ![Krok drugi](./images/manage-account/odzyskaj-wyslij.png)
+W formularzu należy podać poprawny adres e-mail, a następnie kliknąć w przycisk `Wyślij link`. Na Twoją skrzynkę pocztową powinna przyjść poniższa wiadomość.
+
+![E-mail weryfikacyjny](./images/account-reset.png)

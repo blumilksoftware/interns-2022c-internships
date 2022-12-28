@@ -17,7 +17,7 @@ export default defineUserConfig({
   markdown: {
     importCode: {
       handleImportPath: (str) =>
-        str.replace(/^@/, path.resolve(__dirname, './assets')),
+        str.replace(/^@/, path.resolve(__dirname, '../assets')),
     },
   },
   title: "Internships",
