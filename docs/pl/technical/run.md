@@ -4,10 +4,9 @@
 Aplikacja została skonfigurowana pod uruchomienie w skonteneryzowanym środowisku za pomocą oprogramowania Docker i narzędzia Docker Compose. Dzięki czemu, można ją uruchomić na dowolnym środowisku, niezależnie od jego rodzaju i konfiguracji infrastruktury.
 
 ::: tip
-Informacje odnośnie instalacji Dockera oraz Docker Compose znajdują się w ich oficjalnej dokumentacji:
-https://docs.docker.com/engine/install/
-https://docs.docker.com/compose/
+Zobacz szczegółową instrukcję instalacji na oficjalnej dokumentacji: [Docker](https://docs.docker.com/engine/install/), [Docker Compose](https://docs.docker.com/compose/)
 :::
+
 ### Za pomocą wygodnego skryptu
 W celu minimalizacji działań potrzebnych do przygotowania środowiska deweloperskiego, przygotowano wygodny skrypt `setup.sh` znajdujący się w głównym katalogu projektu. Uruchomienie skryptu:
 ```

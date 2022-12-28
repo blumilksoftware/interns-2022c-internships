@@ -4,53 +4,7 @@ The project contains a modified default configuration and is structured as follo
 - `frontend` is for Node.js npm, Vite, Vue.js and lint configuration - it also contains assets used in the webpage;
 
 ## Backend - structure
-```
-└── backend
-    ├── app
-    │   ├── Console
-    │   │   └── Commands
-    │   ├── Enums
-    │   ├── Exceptions
-    │   ├── Http
-    │   │   ├── Controllers
-    │   │   │   └── Auth
-    │   │   ├── Middleware
-    │   │   ├── Requests
-    │   │   │   ├── Api
-    │   │   │   └── Auth
-    │   │   └── Resources
-    │   ├── Models
-    │   │   └── Embeddable
-    │   ├── Policies
-    │   ├── Providers
-    │   └── Services
-    ├── bootstrap
-    ├── config
-    ├── database
-    │   ├── factories
-    │   │   └── Embeddable
-    │   ├── migrations
-    │   └── seeders
-    │       └── Data
-    ├── routes
-    ├── storage
-    └── tests
-```
+@[code](@/structure/backend.md)
+
 ## Frontend - structure
-```
-    ├── frontend
-    │   ├── assets
-    │   │   ├── icons
-    │   │   ├── images
-    │   │   └── lang
-    │   ├── js
-    │   │   ├── Pages
-    │   │   │   ├── Auth
-    │   │   │   └── Company
-    │   │   │       └── Components
-    │   │   └── Shared
-    │   │       ├── Components
-    │   │       └── Layout
-    │   └── views
-    └── public
-```
+@[code](@/structure/frontend.md)

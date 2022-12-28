@@ -9,15 +9,10 @@ docker-compose exec {service} {command}
 ```
 
 In the {service}, enter the appropriate service name (all services are in the docker-compose.yml file):
-- web (nginx)
-- php
-- database (MySQL)
-- redis
-- node
-- mailhog
+@[code](@/docker/service-list.md)
 
 ::: tip
-For more information about the exec command, see the Docker documentation: [https://docs.docker.com/engine/reference/commandline/compose_exec](https://docs.docker.com/engine/reference/commandline/compose_exec/)
+For more information about the exec command, see the [Docker documentation.](https://docs.docker.com/engine/reference/commandline/compose_exec/)
 :::
 
 ## Creating an administrator account

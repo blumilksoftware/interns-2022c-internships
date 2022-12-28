@@ -4,9 +4,7 @@
 The application has been configured to run in a containerized environment using Docker software and the Docker Compose tool. Thus, it can be run on any environment, regardless of its type and infrastructure configuration.
 
 ::: tip
-For information on installing Docker and Docker Compose, see their official documentation:
-https://docs.docker.com/engine/install/
-https://docs.docker.com/compose/
+For official installation instructions, see their official documentation: [Docker](https://docs.docker.com/engine/install/), [Docker Compose](https://docs.docker.com/compose/).
 :::
 ### Using a convenient script
 In order to minimize the steps needed to prepare the development environment, a convenient `setup.sh` script located in the project's main directory has been prepared. Running the script:
@@ -18,7 +16,7 @@ sh setup.sh
 If you do not want to use the script. You can run the application manually.
 
 
-A copy of the exmaple .env file. (See: [Configuring the .env file](../technical/configure.html#the-env-file)):
+A copy of the example .env file. (See: [Configuring the .env file](../technical/configure.html#the-env-file)):
 ```
 cp .env.example .env
 ```

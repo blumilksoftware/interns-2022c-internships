@@ -9,12 +9,7 @@ docker-compose exec {serwis} {komenda}
 ```
 
 W miejscu {serwis} należy wpisać odpowiednią nazwę serwisu (wszystkie serwisy znajdują się w pliku docker-compose.yml):
-- web (nginx)
-- php
-- database (MySQL)
-- redis
-- node
-- mailhog
+@[code](@/docker/service-list.md)
 
 ::: tip
 Więcej informacji odnośnie polecenia exec znajduje się w dokumentacji Dockera: [https://docs.docker.com/engine/reference/commandline/compose_exec](https://docs.docker.com/engine/reference/commandline/compose_exec/)

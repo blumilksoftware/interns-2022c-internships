@@ -1,10 +1,25 @@
 import { defineUserConfig } from "vuepress";
 import { defaultTheme } from "@vuepress/theme-default";
+import { registerComponentsPlugin } from '@vuepress/plugin-register-components'
+import { getDirname, path } from '@vuepress/utils'
+
+const __dirname = getDirname(import.meta.url)
 
 export default defineUserConfig({
+  plugins: [
+    registerComponentsPlugin({
+      componentsDir: path.resolve(__dirname, './components'),
+    }),
+  ],
   port: process.env.EXTERNAL_DOCS_PORT,
   base: process.env.VUEPRESS_BASE || "/",
   sidebar: "auto",
+  markdown: {
+    importCode: {
+      handleImportPath: (str) =>
+        str.replace(/^@/, path.resolve(__dirname, './assets')),
+    },
+  },
   title: "Internships",
   description: "Project documentation",
 
