@@ -9,7 +9,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Str;
 use Inertia\Response;
 use Internships\Enums\CompanyStatus;
 use Internships\Enums\Permission;
@@ -26,12 +25,12 @@ class CompanyController extends Controller
 {
     public function index(GetCompaniesRequest $request): Response
     {
-        return $request->list();
+        return $request->list(route("index"));
     }
 
     public function manage(GetManagedCompaniesRequest $request): Response
     {
-        return $request->list();
+        return $request->list(route("company-manage"));
     }
 
     public function create(): Response
@@ -63,7 +62,7 @@ class CompanyController extends Controller
         $this->authorize("show", $company);
         session(["view-source" => url()->previous()]);
 
-        return $request->list()->with(
+        return $request->list($this->decidePath())->with(
             "selectedCompany",
             new CompanyResource($company),
         );
@@ -71,16 +70,7 @@ class CompanyController extends Controller
 
     public function close(): RedirectResponse
     {
-        $source = session("view-source");
-
-        if (Str::is(route("index"), $source)
-            || Str::is(route("company-manage"), $source)
-            || Str::is(route("index") . "/?*", $source)
-            || Str::is(route("company-manage") . "/?*", $source)) {
-            return Redirect::to($source)->withInput();
-        }
-
-        return Redirect::to(route("index"));
+        return Redirect::to($this->decidePath());
     }
 
     /**
@@ -106,5 +96,19 @@ class CompanyController extends Controller
         $company->delete();
 
         return Redirect::route("company-manage");
+    }
+
+    protected function decidePath(): string
+    {
+        $source = session("view-source");
+
+        $routeRegex = "/^(?:" . str_replace("/", '\/', route("index")) 
+        . "|" . str_replace("/", '\/', route("company-manage")) . ')(?:[?\/].*)?$/';
+
+        if (preg_match($routeRegex, $source)) {
+            return $source;
+        }
+
+        return route("index");
     }
 }
