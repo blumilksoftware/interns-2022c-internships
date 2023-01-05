@@ -1,6 +1,5 @@
 <script setup>
-import { computed, reactive } from "vue"
-import { usePage } from "@inertiajs/inertia-vue3"
+import { reactive } from "vue"
 import {
   Disclosure,
   DisclosureButton,

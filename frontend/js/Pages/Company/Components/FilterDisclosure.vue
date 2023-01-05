@@ -4,6 +4,7 @@ import { ChevronDownIcon, MagnifyingGlassIcon } from "@heroicons/vue/24/solid"
 import { watch, ref } from "vue"
 import Treeselect from "@tkmam1x/vue3-treeselect"
 import "@tkmam1x/vue3-treeselect/dist/vue3-treeselect.css"
+import { usePage } from "@inertiajs/inertia-vue3"
 
 const props = defineProps({
   filters: Object,
@@ -14,13 +15,33 @@ const props = defineProps({
 let searchSelect = ref(props.filters.searchSelect)
 let citySelect = ref(props.filters.citySelect)
 let specializationSelect = ref(props.filters.specializationSelect)
+let ownedCompaniesSelect = ref(props.filters.ownedCompaniesSelect)
+let companyStatusSelect = ref(props.filters.companyStatusSelect)
+
+let ownedFilterValues = [
+  {
+    id: "owned",
+    label: "company_browser.owned_only"
+  },
+];
+
+let companyStatusFilterValues = [
+  {
+    id: "verified",
+    label: "company_browser.verified_only"
+  },
+  {
+    id: "pending_new",
+    label: "company_browser.unverified_only"
+  },
+];
 
 const emit = defineEmits(["selected"])
 function emitFilters() {
-  emit("selected", searchSelect, citySelect, specializationSelect)
+  emit("selected", searchSelect, citySelect, specializationSelect, ownedCompaniesSelect, companyStatusSelect)
 }
 
-watch([citySelect, specializationSelect], () => {
+watch([citySelect, specializationSelect, ownedCompaniesSelect, companyStatusSelect], () => {
   emitFilters()
 })
 
@@ -87,6 +108,24 @@ watch(
             :disable-branch-nodes="true"
             :placeholder="$t('tree_selects.tree_select_specialization')"
             search-nested
+          />
+          <Treeselect
+            v-if="usePage().props.value.auth.user"
+            v-model="ownedCompaniesSelect"
+            class="mt-2"
+            :options="ownedFilterValues"
+            :multiple="false"
+            :disable-branch-nodes="true"
+            :placeholder="$t('tree_selects.tree_select_ownedCompanies')"
+          />
+          <Treeselect
+            v-if="usePage().props.value.auth.user"
+            v-model="companyStatusSelect"
+            class="mt-2"
+            :options="companyStatusFilterValues"
+            :multiple="false"
+            :disable-branch-nodes="true"
+            :placeholder="$t('tree_selects.tree_select_verifiedCompanies')"
           />
         </DisclosurePanel>
       </Disclosure>
