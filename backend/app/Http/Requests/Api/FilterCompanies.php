@@ -21,8 +21,7 @@ class FilterCompanies extends ApiRequest
                 $query->where("specialization_id", $specializationSelection);
             });
         })->when(Request::input("owned"), function (Builder $query, string $ownedSelect): void {
-            if(auth()->user() && $ownedSelect === "owned")
-            {
+            if (auth()->user() && $ownedSelect === "owned") {
                 $query->where("user_id", auth()->user()->id);
             }
         })->when(Request::input("companyStatus"), function (Builder $query, string $companyStatus): void {

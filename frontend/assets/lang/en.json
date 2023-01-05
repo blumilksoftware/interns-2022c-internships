@@ -27,11 +27,16 @@
         "back_to_list": "Back to company list",
         "copy_link": "Copy link",
         "link_copied": "Link copied to clipboard",
-        "link_not_copied": "Failed to copy link to clipboard"
+        "link_not_copied": "Failed to copy link to clipboard",
+        "owned_only": "Only owned",
+        "verified_only": "Only verified",
+        "unverified_only": "Only unverified"
     },
     "tree_selects": {
-        "tree_select_city": "Choose city",
-        "tree_select_specialization": "Choose specialization"
+        "city": "Choose city",
+        "specialization": "Choose specialization",
+        "ownedCompanies": "Choose owner",
+        "verifiedCompanies": "Choose status"
     },
     "pagination": {
         "next": "Next",

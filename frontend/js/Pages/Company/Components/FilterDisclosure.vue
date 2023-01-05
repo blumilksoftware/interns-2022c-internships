@@ -1,10 +1,13 @@
 <script setup>
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue"
 import { ChevronDownIcon, MagnifyingGlassIcon } from "@heroicons/vue/24/solid"
-import { watch, ref } from "vue"
+import { watch, ref, computed } from "vue"
 import Treeselect from "@tkmam1x/vue3-treeselect"
 import "@tkmam1x/vue3-treeselect/dist/vue3-treeselect.css"
 import { usePage } from "@inertiajs/inertia-vue3"
+import { useI18n } from "vue-i18n"
+
+const i18n = useI18n()
 
 const props = defineProps({
   filters: Object,
@@ -21,20 +24,20 @@ let companyStatusSelect = ref(props.filters.companyStatusSelect)
 let ownedFilterValues = [
   {
     id: "owned",
-    label: "company_browser.owned_only"
+    label: computed(() => i18n.t("company_browser.owned_only")),
   },
-];
+]
 
 let companyStatusFilterValues = [
   {
     id: "verified",
-    label: "company_browser.verified_only"
+    label: computed(() => i18n.t("company_browser.verified_only")),
   },
   {
     id: "pending_new",
-    label: "company_browser.unverified_only"
+    label: computed(() => i18n.t("company_browser.unverified_only")),
   },
-];
+]
 
 const emit = defineEmits(["selected"])
 function emitFilters() {
@@ -98,7 +101,7 @@ watch(
             :multiple="false"
             :show-count="true"
             :disable-branch-nodes="true"
-            :placeholder="$t('tree_selects.tree_select_city')"
+            :placeholder="$t('tree_selects.city')"
           />
           <Treeselect
             v-model="specializationSelect"
@@ -106,7 +109,7 @@ watch(
             :options="props.departments"
             :multiple="false"
             :disable-branch-nodes="true"
-            :placeholder="$t('tree_selects.tree_select_specialization')"
+            :placeholder="$t('tree_selects.specialization')"
             search-nested
           />
           <Treeselect
@@ -116,7 +119,7 @@ watch(
             :options="ownedFilterValues"
             :multiple="false"
             :disable-branch-nodes="true"
-            :placeholder="$t('tree_selects.tree_select_ownedCompanies')"
+            :placeholder="$t('tree_selects.ownedCompanies')"
           />
           <Treeselect
             v-if="usePage().props.value.auth.user"
@@ -125,7 +128,7 @@ watch(
             :options="companyStatusFilterValues"
             :multiple="false"
             :disable-branch-nodes="true"
-            :placeholder="$t('tree_selects.tree_select_verifiedCompanies')"
+            :placeholder="$t('tree_selects.verifiedCompanies')"
           />
         </DisclosurePanel>
       </Disclosure>

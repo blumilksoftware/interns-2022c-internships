@@ -54,7 +54,7 @@ class CompanyController extends Controller
     public function show(Company $company, GetCompaniesRequest $request): Response
     {
         $this->authorize("show", $company);
-        $routeRegex = '/^' . str_replace("/", '\/', route("index"))  . '(?:\?.*)?$/';
+        $routeRegex = "/^" . str_replace("/", '\/', route("index")) . '(?:\?.*)?$/';
 
         if (preg_match($routeRegex, url()->previous())) {
             return session(["view-source" => url()->previous()]);

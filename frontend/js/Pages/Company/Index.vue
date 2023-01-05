@@ -105,7 +105,7 @@ watch(
   { deep: true },
 )
 
-function onFiltersSelected(searchSelect, citySelect, specializationSelect, ownedCompaniesSelect, companyStatusSelect,) {
+function onFiltersSelected(searchSelect, citySelect, specializationSelect, ownedCompaniesSelect, companyStatusSelect) {
   Inertia.get(
     route(route().current()),
     {
