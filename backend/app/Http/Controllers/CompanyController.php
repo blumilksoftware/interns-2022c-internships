@@ -54,11 +54,6 @@ class CompanyController extends Controller
     public function show(Company $company, GetCompaniesRequest $request): Response
     {
         $this->authorize("show", $company);
-        $routeRegex = "/^" . str_replace("/", '\/', route("index")) . '(?:\?.*)?$/';
-
-        if (preg_match($routeRegex, url()->previous())) {
-            return session(["view-source" => url()->previous()]);
-        }
 
         return $request->list()->with(
             "selectedCompany",
@@ -66,9 +61,15 @@ class CompanyController extends Controller
         );
     }
 
-    public function close(): RedirectResponse
+    public function close(GetCompaniesRequest $request): RedirectResponse
     {
-        return Redirect::to(session("view-source", route("index")));
+        $routeRegex = '/^' . str_replace("/", '\/', route("index")) . '(?:\?.*)?$/';
+
+        if(url()->previous() && preg_match($routeRegex, url()->previous())){
+            return back()->withInput($request->query());
+        }
+        
+        return Redirect::to(route("index"));
     }
 
     /**
