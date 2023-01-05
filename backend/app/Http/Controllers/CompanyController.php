@@ -13,7 +13,6 @@ use Inertia\Response;
 use Internships\Enums\CompanyStatus;
 use Internships\Enums\Permission;
 use Internships\Http\Requests\Api\GetCompaniesRequest;
-use Internships\Http\Requests\Api\GetManagedCompaniesRequest;
 use Internships\Http\Requests\CompanyRequest;
 use Internships\Http\Resources\CompanyResource;
 use Internships\Http\Resources\DepartmentResource;
@@ -25,12 +24,7 @@ class CompanyController extends Controller
 {
     public function index(GetCompaniesRequest $request): Response
     {
-        return $request->list(route("index"));
-    }
-
-    public function manage(GetManagedCompaniesRequest $request): Response
-    {
-        return $request->list(route("company-manage"));
+        return $request->list();
     }
 
     public function create(): Response
@@ -60,9 +54,13 @@ class CompanyController extends Controller
     public function show(Company $company, GetCompaniesRequest $request): Response
     {
         $this->authorize("show", $company);
-        session(["view-source" => url()->previous()]);
+        $routeRegex = '/^' . str_replace("/", '\/', route("index"))  . '(?:\?.*)?$/';
 
-        return $request->list($this->decidePath())->with(
+        if (preg_match($routeRegex, url()->previous())) {
+            return session(["view-source" => url()->previous()]);
+        }
+
+        return $request->list()->with(
             "selectedCompany",
             new CompanyResource($company),
         );
@@ -70,7 +68,7 @@ class CompanyController extends Controller
 
     public function close(): RedirectResponse
     {
-        return Redirect::to($this->decidePath());
+        return Redirect::to(session("view-source", route("index")));
     }
 
     /**
@@ -84,7 +82,7 @@ class CompanyController extends Controller
             "status" => CompanyStatus::Verified,
         ]);
 
-        return Redirect::route("company-manage");
+        return Redirect::route("index");
     }
 
     /**
@@ -95,20 +93,6 @@ class CompanyController extends Controller
         $this->authorize("destroy", $company);
         $company->delete();
 
-        return Redirect::route("company-manage");
-    }
-
-    protected function decidePath(): string
-    {
-        $source = session("view-source");
-
-        $routeRegex = "/^(?:" . str_replace("/", '\/', route("index")) 
-        . "|" . str_replace("/", '\/', route("company-manage")) . ')(?:[?\/].*)?$/';
-
-        if (preg_match($routeRegex, $source)) {
-            return $source;
-        }
-
-        return route("index");
+        return Redirect::route("index");
     }
 }

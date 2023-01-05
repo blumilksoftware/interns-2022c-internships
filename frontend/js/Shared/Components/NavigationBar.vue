@@ -26,11 +26,6 @@ const navItems = reactive([
     show: true,
   },
   {
-    labelKey: "navigation_bar.manage_companies",
-    routeName: "company-manage",
-    show: computed(() => usePage().props.value.auth.user),
-  },
-  {
     labelKey: "navigation_bar.add_company",
     routeName: "company-create",
     show: true,
