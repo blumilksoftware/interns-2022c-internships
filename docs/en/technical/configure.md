@@ -8,7 +8,7 @@ In order for the application to function properly, it is necessary to:
 1. Generate key (see: [run](../technical/run.html#manual)). The generated key should be in `APP_KEY`.
 2. [Generate](https://cloud.maptiler.com/account/keys/) and set MapLibre token in the `VITE_MAPLIBRE_TOKEN` variable. 
 
-In the .env file, we can also configure:
+In the `.env` file, we can also configure:
 - Application environment settings
 @[code sh](@/env/app-default.md)
 

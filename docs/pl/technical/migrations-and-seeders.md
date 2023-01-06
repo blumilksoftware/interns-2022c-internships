@@ -28,13 +28,13 @@ php artisan db:seed --class=DepartmentSeeder
 [Konfiguracja seedera struktury uczelni](../technical/configure#seeder-struktury-uczelni)
 
 ### Seeder losowych danych
-Seeder UserSeeder wypełnia bazę danych użytkownikami, które posiadają własne firmy. Firmy posiadają losowe nazwy, opisy, dane kontaktowe oraz loga. Uruchomienie seedera:
+Seeder `UserSeeder` wypełnia bazę danych użytkownikami, które posiadają własne firmy. Firmy posiadają losowe nazwy, opisy, dane kontaktowe oraz loga. Uruchomienie seedera:
 ```
 php artisan db:seed --class=UserSeeder
 ```
 
 ### Seeder ogólny
-Jeżeli chcemy stworzyć strukturę uczelni opraz wypełnić ją losowymi danymi, możemy wywołać ogólny seeder - DatabaseSeeder
+Jeżeli chcemy stworzyć strukturę uczelni opraz wypełnić ją losowymi danymi, możemy wywołać ogólny seeder - `DatabaseSeeder`
 ```
 php artisan db:seed
 ```

@@ -16,7 +16,7 @@ sh setup.sh
 If you do not want to use the script. You can run the application manually.
 
 
-A copy of the example .env file. (See: [Configuring the .env file](../technical/configure.html#the-env-file)):
+A copy of the example `.env` file. (See: [Configuring the .env file](../technical/configure.html#the-env-file)):
 ```
 cp .env.example .env
 ```

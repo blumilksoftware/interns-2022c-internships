@@ -2,14 +2,14 @@
 
 
 ## Ogólna konfiguracja oraz konfiguracja backendu
-Ogólna konfiguracja aplikacji (dla backendu oraz frontendu) znajduje się w głównym katalogu projektu, w pliku .env.
+Ogólna konfiguracja aplikacji (dla backendu oraz frontendu) znajduje się w głównym katalogu projektu, w pliku `.env`.
 
 ### Plik .env
 Do prawidłowego funkcjonowania aplikacji konieczne jest:
 1. Wygenerowanie klucza (patrz: [uruchomienie](../technical/run)). Wygenerowany klucz powinien znajdować się w `APP_KEY`.
 2. [Wygenerowanie](https://cloud.maptiler.com/account/keys/) i ustawienie tokena MapLibre w zmiennej `VITE_MAPLIBRE_TOKEN`. 
 
-W pliku .env możemy skonfigurować ponaddto:
+W pliku `.env` możemy skonfigurować ponaddto:
 - Ustawienia środowiska aplikacji 
 @[code sh](@/env/app-default.md)
 
