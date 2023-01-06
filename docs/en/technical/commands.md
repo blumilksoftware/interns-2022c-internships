@@ -2,7 +2,7 @@
 In the application, we can use all the commands offered by the Laravel framework and the custom commands described below.
 
 ## Using commands via Docker
-If the application is running in Docker containers (for example, it was launched using [convenient script](../technical/run.html#using-a-convenient-script)), in order to send commands, use docker-compose in the root directory of the application:
+If the application is running in Docker containers (for example, it was launched using [convenient script](../technical/run.html#using-a-convenient-script)), in order to run commands, use docker-compose in the root directory of the application:
 
 ```
 docker-compose exec {service} {command}
@@ -26,7 +26,7 @@ Example command usage:
 php artisan make:admin email@example.com password123 Jane Doe
 ```
 
-## Locate with the locate:place command
+## Locate with locate:place command
 To test the geocoding service, you can use the command:
 ```
 php artisan locate:place {adres}

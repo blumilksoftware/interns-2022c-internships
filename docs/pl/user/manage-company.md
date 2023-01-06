@@ -14,14 +14,14 @@ Edycja opisu firmy odbywa się przez specjalny edytor wykorzystujący język Mar
 ![Edytor opisu](./images/company-markdown.png)
 
 ## Przeglądanie własnych firm
-Lista dodanych przez ciebie firm znajduje się pod przyciskiem `Zarządzaj firmami` w pasku nawigacyjnym. 
+Lista dodanych przez Ciebie firm znajduje się pod przyciskiem `Zarządzaj firmami` w pasku nawigacyjnym. 
 
 ![Lista własnych firm](./images/company-list.png)
 Firma, która jeszcze nie została zweryfikowana przez moderatora strony będzie miała status `W oczekiwaniu na weryfikację`.
 
 Po kliknięciu w kafelek z firmą można zobaczyć jej opis oraz ją [usunąć](#usuwanie-firmy).
 ## Usuwanie firmy
-W widoku z opisem Twojej firmy możesz ją usunąc. W tym celu odszukaj czerwony przycisk na dole strony z ikoną kosza na śmieci.
+W widoku z opisem Twojej firmy możesz ją usunąć. W tym celu odszukaj czerwony przycisk na dole strony z ikoną kosza na śmieci.
 
 ![Usuwanie firmy](./images/company-delete.png)
-Przed usunięciem firmy zostanie wyświetlone stosowny komunikat potwierdzający zapytanie.
+Przed usunięciem firmy zostanie wyświetlone stosowny komunikat potwierdzający usunięcie.

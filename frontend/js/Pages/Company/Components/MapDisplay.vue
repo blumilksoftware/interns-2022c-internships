@@ -151,7 +151,8 @@ onMounted(() => {
     style: `https://api.maptiler.com/maps/streets/style.json?key=${
       import.meta.env.VITE_MAPLIBRE_TOKEN
     }`,
-    center: [assets.college.longitude, assets.college.latitude],    zoom: 15,
+    center: [assets.college.longitude, assets.college.latitude],
+    zoom: 15,
     maxZoom: 20,
     doubleClickZoom: false,
     crossSourceCollisions: false,

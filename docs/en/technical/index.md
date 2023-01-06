@@ -1,7 +1,7 @@
 # Introduction
 The section contains technical information on how to set up and run the Internships application.
 
-## Technologies used
+## Used technologies
 - [Laravel 9](https://laravel.com/)
 - [Inertia](https://inertiajs.com/)
 - [Vue 3](https://vuejs.org/)

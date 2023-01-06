@@ -1,9 +1,9 @@
 # Configuration
 
 ## General setup and backend configuration
-The general configuration of the application (for the backend and frontend) is located in the project's root directory, in the .env file.
+The general configuration of the application (for the backend and frontend) is located in the project's root directory, in the `.env` file.
 
-### The .env file
+### .env file
 In order for the application to function properly, it is necessary to:
 1. Generate key (see: [run](../technical/run.html#manual)). The generated key should be in `APP_KEY`.
 2. [Generate](https://cloud.maptiler.com/account/keys/) and set MapLibre token in the `VITE_MAPLIBRE_TOKEN` variable. 

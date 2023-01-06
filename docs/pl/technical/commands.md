@@ -1,18 +1,18 @@
-# Komendy
-W aplikacji możemy korzystać ze wszystkich komend oferowanych przez framework Laravel oraz niżej opisanych poleceń niestandardowych.
+# Polecenia
+W aplikacji możemy korzystać ze wszystkich poleceń oferowanych przez framework Laravel oraz niżej opisanych poleceń niestandardowych.
 
-## Używanie komend przez Dockera
-Jeżeli aplikacja pracuje w kontenerach Dockera (na przykład została uruchomiona za pomocą [wygodnego skryptu](/pl/technical/run.html#za-pomoca-wygodnego-skryptu)), w celu wysyłania komend należy skorzystać z docker-compose w głównym katalogu aplikacji:
+## Używanie poleceń przez Dockera
+Jeżeli aplikacja pracuje w kontenerach Dockera (na przykład została uruchomiona za pomocą [wygodnego skryptu](/pl/technical/run.html#za-pomoca-wygodnego-skryptu)), w celu wywoływania poleceń należy skorzystać z `docker-compose` w głównym katalogu aplikacji:
 
 ```
 docker-compose exec {serwis} {komenda}
 ```
 
-W miejscu {serwis} należy wpisać odpowiednią nazwę serwisu (wszystkie serwisy znajdują się w pliku docker-compose.yml):
+W miejscu {serwis} należy wpisać odpowiednią nazwę serwisu (wszystkie serwisy znajdują się w pliku `docker-compose.yml`):
 @[code](@/docker/service-list.md)
 
 ::: tip
-Więcej informacji odnośnie polecenia exec znajduje się w dokumentacji Dockera: [https://docs.docker.com/engine/reference/commandline/compose_exec](https://docs.docker.com/engine/reference/commandline/compose_exec/)
+Więcej informacji odnośnie polecenia `exec` znajduje się w dokumentacji Dockera: [https://docs.docker.com/engine/reference/commandline/compose_exec](https://docs.docker.com/engine/reference/commandline/compose_exec/)
 :::
 
 ## Tworzenie konta administratora
@@ -21,13 +21,13 @@ Tworzenie konta administratora odbywa się za pomocą polecenia artisan z żąda
 php artisan make:admin {email} {hasło} {imię} {nazwisko}
 ```
 
-Przykładowe użycie komendy:
+Przykładowe użycie polecenia:
 ```
 php artisan make:admin email@example.com haslo123 Jan Kowalski
 ```
 
-## Lokalizowanie komendą locate:place
-W celu przetestowania serwisu od geokodowania, można skorzystać z komendy:
+## Lokalizowanie poleceniem locate:place
+W celu przetestowania serwisu od geokodowania, można skorzystać z polecenia:
 ```
 php artisan locate:place {adres}
 ```

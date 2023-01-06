@@ -28,13 +28,13 @@ php artisan db:seed --class=DepartmentSeeder
 [College structure seeder configuration](../technical/configure.html#college-structure-seeder)
 
 ### Random data seeder
-Seeder UserSeeder populates a database with users who own their own companies. The companies have random names, descriptions, contact information and logos. Seeder startup:
+Seeder `UserSeeder` populates a database with users who own their own companies. The companies have random names, descriptions, contact information and logos. Seeder startup:
 ```
 php artisan db:seed --class=UserSeeder
 ```
 
 ### General Seeder
-If we want to create a structure of the college and fill it with random data, we can call a general seeder - DatabaseSeeder
+If we want to create a structure of the college and fill it with random data, we can call a general seeder - `DatabaseSeeder`
 ```
 php artisan db:seed
 ```

@@ -2,12 +2,12 @@
 Do prawidłowego funkcjonowania aplikacji, baza danych musi mieć odpowiednią strukturę. W tym celu zostały stworzone odpowiednie migracje oraz seedery.
 
 ## Migracje
-Migracje tworzą jedynie strukturę bazy danych, ale nie wypełniają jej danymi. W celu wywołania migracji, należy użyć komendy:
+Migracje tworzą jedynie strukturę bazy danych, ale nie wypełniają jej danymi. W celu wywołania migracji, należy użyć polecenia:
 ```
 php artisan migrate
 ```
 
-Jeżeli z jakiegoś powodu potrzebujemy przebudować całą bazę danych (wyczyścic i stworzyć strukturę na nowo), istnieje polecenie:
+Jeżeli z jakiegoś powodu potrzebujemy przebudować całą bazę danych (wyczyścić i stworzyć strukturę na nowo), istnieje polecenie:
 ```
 php artisan migrate:refresh
 ```
@@ -20,7 +20,7 @@ Więcej informacji odnośnie migracji znajduje się w [dokumentacji Laravela](ht
 Seedery wypełniają danymi utworzoną strukturę bazy danych. W aplikacji zostały utworzone dwa główne seedery: struktury uczelni oraz losowych danych.
 
 ### Seeder struktury uczelni
-Seeder struktury uczelni uzupełnia bazę danych informacjami na temat struktury uczelni: nazwami wydziałów, kierunkami oraz specjalizacjami. Są to dane potrzebne do prawidłowego dodawania oraz filtrowania firm. Uruchomienie seedera struktury uczelni następuje przez wywołanie komendy:
+Seeder struktury uczelni uzupełnia bazę danych informacjami na temat struktury uczelni: nazwami wydziałów, kierunkami oraz specjalizacjami. Są to dane potrzebne do prawidłowego dodawania oraz filtrowania firm. Uruchomienie seedera struktury uczelni następuje przez wywołanie polecenia:
 ```
 php artisan db:seed --class=DepartmentSeeder
 ```
