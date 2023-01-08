@@ -63,12 +63,12 @@ class CompanyController extends Controller
 
     public function close(GetCompaniesRequest $request): RedirectResponse
     {
-        $routeRegex = '/^' . str_replace("/", '\/', route("index")) . '(?:\?.*)?$/';
+        $routeRegex = "/^" . str_replace("/", '\/', route("index")) . '(?:\?.*)?$/';
 
-        if(url()->previous() && preg_match($routeRegex, url()->previous())){
+        if (url()->previous() && preg_match($routeRegex, url()->previous())) {
             return back()->withInput($request->query());
         }
-        
+
         return Redirect::to(route("index"));
     }
 
