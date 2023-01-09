@@ -57,12 +57,12 @@ const translationKeys = reactive({
   },
   linkModalTips: {
     title: computed(() => i18n.t("markdown.linkAdd")),
-    descLable: computed(() => i18n.t("markdown.linkDescription")),
-    descLablePlaceHolder: computed(() =>
+    descLabel: computed(() => i18n.t("markdown.linkDescription")),
+    descLabelPlaceHolder: computed(() =>
       i18n.t("markdown.enterLinkDescription"),
     ),
-    urlLable: computed(() => i18n.t("markdown.linkLabel")),
-    UrlLablePlaceHolder: computed(() => i18n.t("markdown.enterLink")),
+    urlLabel: computed(() => i18n.t("markdown.linkLabel")),
+    urlLabelPlaceHolder: computed(() => i18n.t("markdown.enterLink")),
     buttonOK: computed(() => i18n.t("markdown.ok")),
   },
   footer: {

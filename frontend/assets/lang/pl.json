@@ -8,7 +8,8 @@
         "sign_in": "Zaloguj",
         "logged_as": "Zalogowany jako",
         "own_companies": "Własne firmy",
-        "manage_companies": "Zarządzaj firmami"
+        "manage_companies": "Zarządzaj firmami",
+        "college_website": "Strona uczelni"
     },
     "company_browser": {
         "companies_list": "Lista firm",
