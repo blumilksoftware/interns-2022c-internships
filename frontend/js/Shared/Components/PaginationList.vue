@@ -3,6 +3,7 @@ import { computed } from "vue"
 
 const props = defineProps({
   links: Array,
+  routeName: String,
 })
 
 const previous = computed({
@@ -16,6 +17,17 @@ const next = computed({
     return props.links[props.links.length - 1]
   },
 })
+
+function getUrl(url){
+  let linkUrl = new URL(url)
+  let params = linkUrl.searchParams
+  let queryString = ""
+  params.forEach((value, key) => {
+    queryString += `&${key}=${value}`
+  })
+
+  return route(props.routeName) + "?" + queryString.substring(1)
+}
 </script>
 
 <template>
@@ -36,7 +48,7 @@ const next = computed({
           preserve-state
           class="w-full mr-1 mb-1 px-4 py-3 text-center text-sm leading-4 border rounded hover:bg-white focus:border-indigo-500 focus:text-indigo-500"
           :class="{ 'bg-blue-700 text-white': link.active }"
-          :href="link.url"
+          :href="getUrl(link.url)"
         >
           {{ $t(link.label) }}
         </InertiaLink>
