@@ -3,9 +3,7 @@ import "maplibre-gl/dist/maplibre-gl.css"
 import maplibregl from "maplibre-gl"
 import { onMounted, onUnmounted, ref, watch } from "vue"
 import { createCompanyMarker, createCollegeMarker } from "./Markers.js"
-import { useI18n } from "vue-i18n"
-
-const i18n = useI18n()
+import assets from "@/assets.json"
 
 const mapContainer = ref()
 let loadedMap
@@ -131,10 +129,7 @@ function onMapLoaded() {
     loadedMap.resize()
   })
 
-  let collegeMarker = createCollegeMarker(
-    loadedMap,
-    i18n.t("college.marker_info"),
-  )
+  let collegeMarker = createCollegeMarker(loadedMap, assets.college.name)
   collegeMarker.getElement().addEventListener("click", function () {
     loadedMap.flyTo({
       center: collegeMarker.getLngLat(),
@@ -156,7 +151,7 @@ onMounted(() => {
     style: `https://api.maptiler.com/maps/streets/style.json?key=${
       import.meta.env.VITE_MAPLIBRE_TOKEN
     }`,
-    center: [16.1472681, 51.2048546],
+    center: [assets.college.longitude, assets.college.latitude],
     zoom: 15,
     maxZoom: 20,
     doubleClickZoom: false,

@@ -1,0 +1,7 @@
+- web (nginx)
+- php
+- database (MySQL)
+- redis
+- node
+- node-docs
+- mailhog

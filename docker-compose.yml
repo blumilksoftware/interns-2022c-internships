@@ -74,7 +74,7 @@ services:
     networks:
       - intern-dev
     restart: unless-stopped
-  
+
   node:
     image: node:18.7.0-alpine3.16
     container_name: intern-node
@@ -90,6 +90,21 @@ services:
     ports:
       - ${EXTERNAL_NODE_PORT:-5173}:${EXTERNAL_NODE_PORT:-5173}
     restart: unless-stopped
+
+  node-docs:
+    image: node:18.7.0-alpine3.16
+    container_name: intern-docs
+    env_file:
+      - .env
+    working_dir: /application/docs
+    tty: true
+    user: ${CURRENT_UID}
+    volumes:
+      - .:/application
+    networks:
+      - intern-dev
+    ports:
+      - ${EXTERNAL_DOCS_PORT:-8080}:${EXTERNAL_DOCS_PORT:-8080}
 
   mailhog:
     image: mailhog/mailhog:v1.0.1
