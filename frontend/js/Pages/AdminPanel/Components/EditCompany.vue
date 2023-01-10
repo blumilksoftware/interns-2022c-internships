@@ -1,10 +1,11 @@
 <script setup>
 import { useForm } from "@inertiajs/inertia-vue3";
 import InputError from "@/js/Shared/Components/InputError.vue";
+import { ref, onMounted } from "vue";
+import MapGeocode from "./EditCompanyMap.vue";
+import "@tkmam1x/vue3-treeselect/dist/vue3-treeselect.css";
 
-const props = defineProps({
-  company: Object,
-});
+
 
 const form = useForm({
   _method: "put",
@@ -27,15 +28,42 @@ const form = useForm({
     phone_number: props.company.contact_details.phone_number,
   },
 });
+const props = defineProps({
+  company: Object,
+});
+
+
 
 const submit = () => {
+  form.address.coordinates = getCoordinatesFromMap();
   form.put(route("admin-companies-store", props.company.id), {});
+
 };
+let map = ref();
+
+
+function generateCoordinates() {
+  map.value.onMapLoaded([props.company.address.coordinates.latitude, props.company.address.coordinates.longitude]);
+}
+
+function getCoordinatesFromMap() {
+  let coords = map.value.getCoordinates();
+
+  return {
+    latitude: coords.lat,
+    longitude: coords.lng,
+  };
+}
+onMounted(()=> {
+  generateCoordinates()
+}
+)
+
 </script>
 
 <template>
   <form @submit.prevent="submit">
-    <div class="flex h-full w-full items-center justify-center mt-10">
+    <div class="flex h-full w-full items-center justify-center mt-1">
       <div
         class="grid bg-white rounded-lg shadow-xl w-11/12 md:w-9/12 lg:w-1/2"
       >
@@ -46,7 +74,11 @@ const submit = () => {
             </h1>
           </div>
         </div>
-
+        <div class="flex justify-center">
+          <div class="pl-0 lg:pl-5 h-96 w-full lg:w-full">
+                    <MapGeocode ref="map" class="rounded-lg flex" />
+                  </div>
+        </div>
         <div class="grid grid-cols-1 mt-5 mx-7">
           <label
             class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold"

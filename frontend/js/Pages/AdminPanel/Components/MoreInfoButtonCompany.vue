@@ -9,7 +9,7 @@ import {
 } from "@headlessui/vue";
 import Button from "@/js/Shared/Components/Button.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
-import { XIcon, PencilIcon } from "@heroicons/vue/outline";
+import { XMarkIcon, PencilIcon } from "@heroicons/vue/24/outline";
 
 const form = useForm();
 const props = defineProps({
@@ -66,7 +66,7 @@ function EditCompany(id) {
                   @click="open = false"
                 >
                   <span class="sr-only">Close</span>
-                  <XIcon class="h-6 w-6" aria-hidden="true" />
+                  <XMarkIcon class="h-6 w-6" aria-hidden="true" />
                 </button>
               </div>
               <div>

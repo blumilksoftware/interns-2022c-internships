@@ -45,7 +45,6 @@ class AdminCompaniesController extends Controller
                     "name" => $company->name,
                     "address" => $company->address,
                     "description" => $company->description,
-                    "address" => $company->address,
                     "contact_details" => $company->contact_details,
                 ],
             ],
@@ -59,7 +58,6 @@ class AdminCompaniesController extends Controller
             "name" => "required",
             "address" => "required",
             "description" => "required",
-            "address" => "required",
             "contact_details" => "required",
         ]);
 

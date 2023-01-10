@@ -34,10 +34,6 @@ Route::patch("/company/view/{company}", [CompanyController::class, "verify"])
 Route::get("/company/close", [CompanyController::class, "close"])
     ->name("company-close");
 
-Route::get("/admin", [AdminPanelController::class, "index"])
-    ->middleware(["auth"])
-    ->name("admin-index");
-
 Route::get("/admin/users", [AdminUsersController::class, "users"])
     ->middleware(["auth"])
     ->name("admin-users");

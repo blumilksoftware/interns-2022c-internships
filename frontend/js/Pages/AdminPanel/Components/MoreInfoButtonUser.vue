@@ -8,7 +8,7 @@ import {
   TransitionRoot,
 } from "@headlessui/vue";
 import Button from "@/js/Shared/Components/Button.vue";
-import { UsersIcon, XIcon } from "@heroicons/vue/outline";
+import { UserIcon, XMarkIcon } from "@heroicons/vue/24/outline";
 
 const props = defineProps({
   user: Object,
@@ -59,7 +59,7 @@ const open = ref(false);
                 <div
                   class="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-slate-300"
                 >
-                  <UsersIcon />
+                  <UserIcon />
                 </div>
                 <div class="mt-3 text-center sm:mt-5">
                   <DialogTitle
@@ -73,7 +73,7 @@ const open = ref(false);
                       class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                       @click="open = false"
                     >
-                      <XIcon class="h-6 w-6" aria-hidden="true" />
+                      <XMarkIcon class="h-6 w-6" aria-hidden="true" />
                     </button>
                   </div>
                   <slot></slot>

@@ -126,7 +126,7 @@ const navItems = reactive([
                   </MenuItem>
                   <MenuItem v-if="$page.props.auth.user &&  $page.props.auth.can.manage_companies" v-slot="{ active }">
                     <InertiaLink
-                      :href="route('admin-index')"
+                      :href="route('admin-companies')"
                       :class="[
                         active ? 'bg-gray-100' : '',
                         'block px-4 py-2 text-sm text-gray-700',
@@ -213,7 +213,7 @@ const navItems = reactive([
           <DisclosureButton
           v-if="$page.props.auth.user &&  $page.props.auth.can.manage_companies"
             as="a"
-            :href="route('admin')"
+            :href="route('admin-companies')"
             class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
             Admin panel

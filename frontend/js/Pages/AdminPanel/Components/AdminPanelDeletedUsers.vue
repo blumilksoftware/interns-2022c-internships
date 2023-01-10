@@ -1,6 +1,6 @@
 <script setup>
 import Button from "@/js/Shared/Components/Button.vue";
-import { UsersIcon } from "@heroicons/vue/outline";
+import { UsersIcon } from "@heroicons/vue/24/outline";
 import { useForm } from "@inertiajs/inertia-vue3";
 import MoreInfo from "./MoreInfoButtonUser.vue";
 import RoleDisplay from "./RoleDisplay.vue";

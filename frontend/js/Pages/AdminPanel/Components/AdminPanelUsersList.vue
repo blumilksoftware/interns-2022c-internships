@@ -2,8 +2,8 @@
 import RemoveButton from "@/js/Shared/Components/RemoveUserButton.vue";
 import RoleDisplay from "./RoleDisplay.vue";
 import MoreInfo from "./MoreInfoButtonUser.vue";
-import { SearchIcon } from "@heroicons/vue/solid";
-import { TrashIcon } from "@heroicons/vue/outline";
+import { MagnifyingGlassIcon } from "@heroicons/vue/24/solid";
+import { TrashIcon } from "@heroicons/vue/24/outline";
 import { ref, watch } from "vue";
 import { useForm } from "@inertiajs/inertia-vue3";
 const props = defineProps({
@@ -38,13 +38,13 @@ function destroy(id) {
     <div class="md:flex md:items-center">
       <div class="md:flex-auto">
         <h1
-          class="text-3xl hidden md:flex justify-center font-semibold text-gray-900"
+          class="text-3xl hidden md:flex justify-center font-semibold  text-gray-900"
         >
           {{ $t("admin_panel.users_header") }}
         </h1>
       </div>
     </div>
-    <div class="w-full flex justify-center">
+    <div class="w-full flex justify-center mt-3">
       <label for="search" class="sr-only"
         >{{ $t("company_browser.search") }}
       </label>
@@ -52,7 +52,7 @@ function destroy(id) {
         <div
           class="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center"
         >
-          <SearchIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
+          <MagnifyingGlassIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
         </div>
         <input
           v-model="userSearch"
@@ -157,7 +157,7 @@ function destroy(id) {
                     class="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6"
                   >
                   <RemoveButton
-                      v-if="user.role !== 'verified'"
+                      v-if="user.role !== 'administrator'"
                       @click="destroy(user.id)"
                       :role="user.role"
                     />

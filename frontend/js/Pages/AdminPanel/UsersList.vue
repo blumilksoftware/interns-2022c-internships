@@ -27,7 +27,6 @@ export default {
   layout: [AppLayout, SideBar],
 };
 </script>
-
 <template>
   <div class="flex h-full flex-col w-full overflow-hidden">
     <Users :filter="filter" @selected="UsersSearch" :users="users.data" />

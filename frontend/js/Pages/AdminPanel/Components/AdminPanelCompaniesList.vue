@@ -1,19 +1,21 @@
 <script setup>
 import { ref, watch } from "vue";
-import Treeselect from "@tkmam1x/vue3-treeselect";
-import "@tkmam1x/vue3-treeselect/dist/vue3-treeselect.css";
 import StatusDisplay from "./StatusDisplay.vue";
 import Button from "@/js/Shared/Components/Button.vue";
 import MoreInfo from "./MoreInfoButtonCompany.vue";
 import ApproveButton from "@/js/Shared/Components/ApproveButton.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
-import { TrashIcon } from "@heroicons/vue/outline";
+import { TrashIcon } from "@heroicons/vue/24/outline";
 
 const props = defineProps({
   companies: Object,
   filter: String,
 });
-const statuses = [
+const statuses = ref([
+  {
+    id: "",
+    label: "All",
+  },  
   {
     id: "verified",
     label: "Verified",
@@ -22,8 +24,8 @@ const statuses = [
     id: "pending_new",
     label: "New",
   },
-];
-let statusSelect = ref(props.filter.statusSelect);
+]);
+let statusSelect = ref("");
 const emit = defineEmits(["selected"]);
 watch([statusSelect], () => {
   emit("selected", statusSelect);
@@ -54,15 +56,12 @@ function approve(id) {
         </h1>
       </div>
     </div>
-    <div class="md:mt-2 flex item-center">
-      <Treeselect
-        :options="statuses"
-        :multiple="false"
-        :show-count="true"
-        :disable-branch-nodes="true"
-        :placeholder= "$t('admin_panel.select_tree')"
-        v-model="statusSelect"
-      />
+    <div class="md:mt-2 flex item-center justify-center">
+      <select v-model="statusSelect">
+        <option v-for="status in statuses" :value="status.id">
+          {{ status.label }}
+          </option>
+      </select>
       <InertiaLink href="/admin/companies/trashed">
         <TrashIcon class="h-9 w-auto ml-5 text-gray-800"
       /></InertiaLink>

@@ -7,27 +7,19 @@ import {
   TransitionRoot,
 } from "@headlessui/vue";
 import {
-  XIcon,
+  XMarkIcon,
   HomeIcon,
   UsersIcon,
-  OfficeBuildingIcon,
-  ViewListIcon,
-} from "@heroicons/vue/outline";
+  BuildingOfficeIcon,
+  BookmarkIcon,
+} from "@heroicons/vue/24/outline";
 const navigation = [
   {
-    name: "Start",
-    href: "/admin",
-    icon: HomeIcon,
-    current: false,
-  },
-  {
-    name: "Companies",
     href: "/admin/companies",
-    icon: OfficeBuildingIcon,
+    icon: BuildingOfficeIcon,
     current: false,
   },
   {
-    name: "Users",
     href: "/admin/users",
     icon: UsersIcon,
     current: false,
@@ -86,7 +78,7 @@ const sidebarOpen = ref(false);
                     @click="sidebarOpen = false"
                   >
                     <span class="sr-only">Close sidebar</span>
-                    <XIcon class="h-6 w-6 text-white" aria-hidden="true" />
+                    <XMarkIcon class="h-6 w-6 text-white" aria-hidden="true" />
                   </button>
                 </div>
               </TransitionChild>
@@ -163,7 +155,7 @@ const sidebarOpen = ref(false);
         @click="sidebarOpen = true"
       >
         <span class="sr-only">Open sidebar</span>
-        <ViewListIcon class="h-6 w-6" aria-hidden="true" />
+        <BookmarkIcon class="h-6 w-6" aria-hidden="true" />
       </button>
     </div>
     <main class="flex-1">

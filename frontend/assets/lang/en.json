@@ -175,7 +175,7 @@
         "ok": "Ok",
         "letterCount": "Letter count",
         "scrollAuto": "Scroll Auto"
-    }
+    },
 
 "admin_panel":{
     "companies_header": "Companies",
@@ -192,4 +192,4 @@
     "status_new": "New",
     "select_tree": "Choose status"
     }
-},
+}
