@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 use Inertia\Response;
 use Internships\Enums\CompanyStatus;
 use Internships\Enums\Permission;
@@ -55,6 +56,13 @@ class CompanyController extends Controller
     {
         $this->authorize("show", $company);
 
+        $source = url()->previous();
+        if (Str::is(route("index"), $source)
+            || Str::is(route("index") . "?*", $source)
+            || Str::is(route("index") . "/?*", $source)) {
+            session(["view-source" => $source]);
+        }
+
         return $request->list()->with(
             "selectedCompany",
             new CompanyResource($company),
@@ -63,13 +71,10 @@ class CompanyController extends Controller
 
     public function close(GetCompaniesRequest $request): RedirectResponse
     {
-        $routeRegex = "/^" . str_replace("/", '\/', route("index")) . '(?:\?.*)?$/';
+        $source = session("view-source", route("index"));
+        session()->forget("view-source");
 
-        if (url()->previous() && preg_match($routeRegex, url()->previous())) {
-            return back()->withInput($request->query());
-        }
-
-        return Redirect::to(route("index"));
+        return Redirect::to($source);
     }
 
     /**
