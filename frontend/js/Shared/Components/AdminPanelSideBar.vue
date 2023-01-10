@@ -8,7 +8,6 @@ import {
 } from "@headlessui/vue";
 import {
   XMarkIcon,
-  HomeIcon,
   UsersIcon,
   BuildingOfficeIcon,
   BookmarkIcon,

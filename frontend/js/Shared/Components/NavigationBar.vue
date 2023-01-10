@@ -124,7 +124,13 @@ const navItems = reactive([
                       >{{ $t("buttons.logout_button") }}</InertiaLink
                     >
                   </MenuItem>
-                  <MenuItem v-if="$page.props.auth.user &&  $page.props.auth.can.manage_companies" v-slot="{ active }">
+                  <MenuItem
+                    v-if="
+                      $page.props.auth.user &&
+                      $page.props.auth.can.manage_companies
+                    "
+                    v-slot="{ active }"
+                  >
                     <InertiaLink
                       :href="route('admin-companies')"
                       :class="[
@@ -211,7 +217,9 @@ const navItems = reactive([
             {{ $t("buttons.logout_button") }}</DisclosureButton
           >
           <DisclosureButton
-          v-if="$page.props.auth.user &&  $page.props.auth.can.manage_companies"
+            v-if="
+              $page.props.auth.user && $page.props.auth.can.manage_companies
+            "
             as="a"
             :href="route('admin-companies')"
             class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"

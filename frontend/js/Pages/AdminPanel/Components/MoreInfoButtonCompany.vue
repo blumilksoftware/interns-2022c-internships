@@ -86,7 +86,7 @@ function EditCompany(id) {
                       {{ company.contact_details.email }}
                     </div>
                     <div class="flex mt-3 my-auto item-center text-center">
-                      <slot ></slot>
+                      <slot></slot>
                       <div v-if="company.has_signed_papers">
                         <span
                           class="bg-green-100 text-green-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-800"

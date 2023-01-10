@@ -4,7 +4,6 @@ const props = defineProps({
 });
 </script>
 
-
 <template>
   <button
     v-if="props.role !== 'administrator'"

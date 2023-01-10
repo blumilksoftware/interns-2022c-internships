@@ -32,13 +32,12 @@ class AdminUsersController extends Controller
         );
     }
 
-    public function delete(user $user,)
+    public function delete(user $user)
     {
-         $this->authorize(Permission::ManageCompanies);
+        $this->authorize(Permission::ManageCompanies);
 
-            $user->delete();
-            return redirect()->route("admin-users")->with("success", "status.user_deleted");
-    
+        $user->delete();
+        return redirect()->route("admin-users")->with("success", "status.user_deleted");
     }
 
     public function trashed(Request $request): Response

@@ -15,7 +15,7 @@ const statuses = ref([
   {
     id: "",
     label: "All",
-  },  
+  },
   {
     id: "verified",
     label: "Verified",
@@ -60,7 +60,7 @@ function approve(id) {
       <select v-model="statusSelect">
         <option v-for="status in statuses" :value="status.id">
           {{ status.label }}
-          </option>
+        </option>
       </select>
       <InertiaLink href="/admin/companies/trashed">
         <TrashIcon class="h-9 w-auto ml-5 text-gray-800"
@@ -151,7 +151,9 @@ function approve(id) {
                     class="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6"
                   >
                     <MoreInfo :company="company"
-                      ><StatusDisplay :status="company.status" class="text-sm font-semibold my-auto"
+                      ><StatusDisplay
+                        :status="company.status"
+                        class="text-sm font-semibold my-auto"
                     /></MoreInfo>
                   </td>
                   <td

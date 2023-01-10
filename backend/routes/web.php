@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
 use Internships\Http\Controllers\AdminCompaniesController;
-use Internships\Http\Controllers\AdminPanelController;
 use Internships\Http\Controllers\AdminUsersController;
 use Internships\Http\Controllers\CompanyController;
 

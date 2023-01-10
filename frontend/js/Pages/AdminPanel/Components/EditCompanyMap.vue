@@ -23,7 +23,6 @@ function createMarker(center) {
   );
 }
 
-
 defineExpose({
   getCoordinates,
   onMapLoaded,

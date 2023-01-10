@@ -5,8 +5,6 @@ import { ref, onMounted } from "vue";
 import MapGeocode from "./EditCompanyMap.vue";
 import "@tkmam1x/vue3-treeselect/dist/vue3-treeselect.css";
 
-
-
 const form = useForm({
   _method: "put",
   name: props.company.name,
@@ -32,18 +30,17 @@ const props = defineProps({
   company: Object,
 });
 
-
-
 const submit = () => {
   form.address.coordinates = getCoordinatesFromMap();
   form.put(route("admin-companies-store", props.company.id), {});
-
 };
 let map = ref();
 
-
 function generateCoordinates() {
-  map.value.onMapLoaded([props.company.address.coordinates.latitude, props.company.address.coordinates.longitude]);
+  map.value.onMapLoaded([
+    props.company.address.coordinates.latitude,
+    props.company.address.coordinates.longitude,
+  ]);
 }
 
 function getCoordinatesFromMap() {
@@ -54,11 +51,9 @@ function getCoordinatesFromMap() {
     longitude: coords.lng,
   };
 }
-onMounted(()=> {
-  generateCoordinates()
-}
-)
-
+onMounted(() => {
+  generateCoordinates();
+});
 </script>
 
 <template>
@@ -76,8 +71,8 @@ onMounted(()=> {
         </div>
         <div class="flex justify-center">
           <div class="pl-0 lg:pl-5 h-96 w-full lg:w-full">
-                    <MapGeocode ref="map" class="rounded-lg flex" />
-                  </div>
+            <MapGeocode ref="map" class="rounded-lg flex" />
+          </div>
         </div>
         <div class="grid grid-cols-1 mt-5 mx-7">
           <label
