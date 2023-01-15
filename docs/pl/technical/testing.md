@@ -4,7 +4,7 @@ Przed uruchomieniem testów warto wyczyścić cache, aby upewnić się, że uży
 docker-compose exec php php artisan config:clear
 ```
 
-Musisz zbudować aplikację w trybie deweloperskim, aby móc przejść wszystkie testy.
+Następnie trzeba zbudować aplikację w trybie deweloperskim, aby wszystkie testy mogły przejść.
 
 Aby to zrobić, możesz użyć poniższego polecenia:
 ```shell script
@@ -17,7 +17,7 @@ docker-compose run --rm php php artisan test
 ```
 
 ## Testowanie przeglądarkowe
-Być może będziesz musiał najpierw zainstalować sterowniki do chrome:
+Być może będziesz musiał najpierw zainstalować sterowniki do Chrome:
 ```shell script
 docker-compose run --rm php php artisan dusk:chrome-driver
 ```
