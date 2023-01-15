@@ -281,7 +281,7 @@ function onActiveStepChange(stepName) {
                     :options="props.departments.data"
                     :multiple="true"
                     :disable-branch-nodes="true"
-                    :placeholder="$t('tree_selects.tree_select_specialization')"
+                    :placeholder="$t('tree_selects.specialization')"
                     search-nested
                     dusk="form_specialization_hidden"
                     v-model="form.specializations"
