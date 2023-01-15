@@ -10,11 +10,4 @@ class RegisterPage extends Page
     {
         return "/register";
     }
-
-    public function elements(): array
-    {
-        return [
-            "@element" => "#selector",
-        ];
-    }
 }

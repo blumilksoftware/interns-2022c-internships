@@ -10,11 +10,4 @@ class HomePage extends Page
     {
         return "/";
     }
-
-    public function elements(): array
-    {
-        return [
-            "@element" => "#selector",
-        ];
-    }
 }

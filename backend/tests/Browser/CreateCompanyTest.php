@@ -19,7 +19,6 @@ class CreateCompanyTest extends DuskTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->user = User::factory()->create();
     }
 
     public function testRedirectGuestToLoginOnCompanyCreate(): void

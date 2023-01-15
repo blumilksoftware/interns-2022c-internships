@@ -10,11 +10,4 @@ class CompanyCreatePage extends Page
     {
         return "/company/create";
     }
-
-    public function elements(): array
-    {
-        return [
-            "@element" => "#selector",
-        ];
-    }
 }

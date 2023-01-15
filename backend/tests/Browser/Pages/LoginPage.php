@@ -10,11 +10,4 @@ class LoginPage extends Page
     {
         return "/login";
     }
-
-    public function elements(): array
-    {
-        return [
-            "@element" => "#selector",
-        ];
-    }
 }

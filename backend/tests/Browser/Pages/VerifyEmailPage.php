@@ -10,11 +10,4 @@ class VerifyEmailPage extends Page
     {
         return "/verify-email";
     }
-
-    public function elements(): array
-    {
-        return [
-            "@element" => "#selector",
-        ];
-    }
 }
