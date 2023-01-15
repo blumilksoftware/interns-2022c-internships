@@ -8,6 +8,7 @@ use Database\Seeders\DepartmentSeeder;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Internships\Models\User;
 use Laravel\Dusk\Browser;
+use Tests\Browser\Components\TreeSelect;
 use Tests\Browser\Pages\CompanyCreatePage;
 use Tests\Browser\Pages\LoginPage;
 use Tests\DuskTestCase;
@@ -55,29 +56,15 @@ class CreateCompanyTest extends DuskTestCase
                 ->press("@company_form_set_marker")
                 ->press("@form_next");
 
-            $this->getFirstDepartmentFromInputComponent($browser);
+            $browser->within(new TreeSelect(), function ($browser): void {
+                $browser->selectFirst(3);
+            });
+
             $browser->press("@form_submit")
                 ->waitUntilMissing("#nprogress")
                 ->assertSee("TestCompanyName");
 
             $browser->logout();
         });
-    }
-
-    protected function getFirstDepartmentFromInputComponent(Browser $browser): void
-    {
-        $browser->click(".vue-treeselect__value-container")
-            ->waitFor(".vue-treeselect__menu");
-
-        $browser->elements(".vue-treeselect__list")[0]->click();
-        for ($i = 0; $i < 3; $i++) {
-            $browser->waitFor(".vue-treeselect__list-item")
-                ->elements(".vue-treeselect__list-item")[0]->click();
-        }
-
-        $browser->waitFor(".vue-treeselect__multi-value-label")
-            ->click(".vue-treeselect__control-arrow-container");
-
-        $browser->waitUntilMissing(".vue-treeselect__menu");
     }
 }
