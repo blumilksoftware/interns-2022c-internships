@@ -113,6 +113,7 @@ onMounted(() => {
   <div class="step-buttons flex flex-row justify-end gap-8">
     <button
       @click="flipStep(-1)"
+      dusk="form_back"
       v-if="activeStep !== stepNames[0]"
       class="p-3 text-primary rounded-xl font-medium"
     >
@@ -124,6 +125,7 @@ onMounted(() => {
 
     <button
       @click="flipStep(1)"
+      dusk="form_next"
       v-if="activeStep !== stepNames[stepNames.length - 1]"
       class="p-3 text-white rounded-xl font-medium bg-primary hover:bg-secondary"
     >

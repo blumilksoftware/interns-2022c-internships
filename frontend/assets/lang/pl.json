@@ -29,11 +29,16 @@
         "back_to_list": "Powrót do listy firm",
         "copy_link": "Skopiuj link",
         "link_copied": "Link skopiowany do schowka",
-        "link_not_copied": "Nie udało się skopiować linku do schowka"
+        "link_not_copied": "Nie udało się skopiować linku do schowka",
+        "owned_only": "Tylko moje firmy",
+        "verified_only": "Tylko zweryfikowane",
+        "unverified_only": "Tylko niezweryfikowane"
     },
     "tree_selects": {
-        "tree_select_city": "Wybierz miasto",
-        "tree_select_specialization": "Wybierz specjalizację"
+        "city": "Wybierz miasto",
+        "specialization": "Wybierz specjalizację",
+        "ownedCompanies": "Wybierz właściciela",
+        "verifiedCompanies": "Wybierz status"
     },
     "pagination": {
         "next": "Następna",

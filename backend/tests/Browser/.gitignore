@@ -1,0 +1,4 @@
+/console/*
+/screenshots/*
+/source/*
+!.gitkeep

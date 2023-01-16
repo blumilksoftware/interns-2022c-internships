@@ -37,6 +37,7 @@ function onCompanySelect(value) {
     </div>
     <Pagination
       class="mt-6 mb-0 sticky"
+      routeName="index"
       :links="companies.meta.links"
     />
   </div>

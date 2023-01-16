@@ -19,6 +19,7 @@ watch(
 
 <template>
   <div
+    dusk="error-message"
     v-if="message"
     v-show="message"
   >

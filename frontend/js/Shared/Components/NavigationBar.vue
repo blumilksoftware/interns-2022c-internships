@@ -1,6 +1,5 @@
 <script setup>
-import { computed, reactive } from "vue"
-import { usePage } from "@inertiajs/inertia-vue3"
+import { reactive } from "vue"
 import {
   Disclosure,
   DisclosureButton,
@@ -25,11 +24,6 @@ const navItems = reactive([
     labelKey: "company_browser.companies_list",
     routeName: "index",
     show: true,
-  },
-  {
-    labelKey: "navigation_bar.manage_companies",
-    routeName: "company-manage",
-    show: computed(() => usePage().props.value.auth.user),
   },
   {
     labelKey: "navigation_bar.add_company",
@@ -87,6 +81,7 @@ const navItems = reactive([
           <div class="flex items-center">
             <p
               v-if="$page.props.auth.user"
+              dusk="logged-as-name"
               class="text-gray-300"
             >
               {{ $page.props.auth.user.full_name }}
