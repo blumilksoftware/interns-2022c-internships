@@ -190,6 +190,10 @@
     "company_owner": "Company owner",
     "status_verified": "Verified",
     "status_new": "New",
-    "select_tree": "Choose status"
+    "select_tree": "Choose status",
+    "edit": "Edit company",
+    "all": "All",
+    "verified": "Verified",
+    "pending_new": "New"
     }
 }

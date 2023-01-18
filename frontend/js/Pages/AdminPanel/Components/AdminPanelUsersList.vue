@@ -1,5 +1,5 @@
 <script setup>
-import RemoveButton from "@/js/Shared/Components/RemoveUserButton.vue";
+import RemoveButton from "./RemoveUserButton.vue";
 import RoleDisplay from "./RoleDisplay.vue";
 import MoreInfo from "./MoreInfoButtonUser.vue";
 import { MagnifyingGlassIcon } from "@heroicons/vue/24/solid";

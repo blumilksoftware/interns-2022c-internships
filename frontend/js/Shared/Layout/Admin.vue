@@ -1,5 +1,5 @@
 <script setup>
-import SideBar from "@/js/Shared/Components/AdminPanelSideBar.vue";
+import SideBar from "@/js/Pages/AdminPanel/Components/AdminPanelSideBar.vue";
 </script>
 
 <template>

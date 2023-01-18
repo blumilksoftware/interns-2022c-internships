@@ -190,6 +190,10 @@
         "company_owner": "Właściciel firmy",
         "status_verified": "Zweryfikowana",
         "status_new": "Nowa",
-        "select_tree": "Wybierz status"
+        "select_tree": "Wybierz status",
+        "edit": "Edytuj firme",
+        "all": "Wszystkie",
+        "verified": "Zweryfikowane",
+        "pending_new": "Nowe"
     }
 }

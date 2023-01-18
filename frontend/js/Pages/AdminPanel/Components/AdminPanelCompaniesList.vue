@@ -14,15 +14,15 @@ const props = defineProps({
 const statuses = ref([
   {
     id: "",
-    label: "All",
+    label: i18n.t("admin_panel.all") ,
   },
   {
     id: "verified",
-    label: "Verified",
+    label: i18n.t("admin_panel.verified") ,
   },
   {
     id: "pending_new",
-    label: "New",
+    label: i18n.t("admin_panel.pending_new") ,
   },
 ]);
 let statusSelect = ref("");

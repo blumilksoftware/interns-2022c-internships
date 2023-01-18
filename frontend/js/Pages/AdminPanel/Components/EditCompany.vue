@@ -38,8 +38,8 @@ let map = ref();
 
 function generateCoordinates() {
   map.value.onMapLoaded([
-    props.company.address.coordinates.latitude,
     props.company.address.coordinates.longitude,
+    props.company.address.coordinates.latitude,
   ]);
 }
 
@@ -65,7 +65,7 @@ onMounted(() => {
         <div class="flex justify-center">
           <div class="flex">
             <h1 class="text-gray-600 pt-2 font-bold md:text-2xl text-xl">
-              Edit company
+              {{ $t("admin_panel.edit") }}
             </h1>
           </div>
         </div>
