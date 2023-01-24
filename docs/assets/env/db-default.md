@@ -1,0 +1,7 @@
+DB_CONNECTION=mysql
+DB_HOST=intern-mysql
+DB_PORT=3306
+DB_DATABASE=intern
+DB_USERNAME=intern
+DB_PASSWORD=password
+DB_ROOT_PASSWORD=example

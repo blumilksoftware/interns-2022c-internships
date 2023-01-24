@@ -6,7 +6,9 @@ import MoreInfo from "./MoreInfoButtonCompany.vue";
 import ApproveButton from "@/js/Shared/Components/ApproveButton.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
 import { TrashIcon } from "@heroicons/vue/24/outline";
+import { useI18n } from "vue-i18n";
 
+const i18n = useI18n();
 const props = defineProps({
   companies: Object,
   filter: String,

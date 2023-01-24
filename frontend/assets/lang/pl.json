@@ -1,16 +1,17 @@
 {
-    "college":{
+    "college": {
         "marker_info": "Nasza uczelnia."
     },
-    "navigation_bar":{
+    "navigation_bar": {
         "map": "Mapa",
         "add_company": "Dodaj firmę",
         "sign_in": "Zaloguj",
         "logged_as": "Zalogowany jako",
         "own_companies": "Własne firmy",
-        "manage_companies": "Zarządzaj firmami"
+        "manage_companies": "Zarządzaj firmami",
+        "college_website": "Strona uczelni"
     },
-    "company_browser":{
+    "company_browser": {
         "companies_list": "Lista firm",
         "found_companies": "Znaleziono",
         "search": "Wyszukaj",
@@ -24,24 +25,39 @@
         "contact_details": "Dane kontaktowe",
         "company_seeks": "Poszukuje studentów z:",
         "description": "Opis",
-        "information_not_provided": "Nie podano"
+        "information_not_provided": "Nie podano",
+        "back_to_list": "Powrót do listy firm",
+        "copy_link": "Skopiuj link",
+        "link_copied": "Link skopiowany do schowka",
+        "link_not_copied": "Nie udało się skopiować linku do schowka",
+        "owned_only": "Tylko moje firmy",
+        "verified_only": "Tylko zweryfikowane",
+        "unverified_only": "Tylko niezweryfikowane"
     },
+<<<<<<< HEAD
     "tree_selects":{
         "tree_select_city": "Wybierz miasto",
         "tree_select_specialization": "Wybierz specjalizację",
         "tree_select_active": "Zweryfikowane",
         "tree_select_new": "Nowe"
+=======
+    "tree_selects": {
+        "city": "Wybierz miasto",
+        "specialization": "Wybierz specjalizację",
+        "ownedCompanies": "Wybierz właściciela",
+        "verifiedCompanies": "Wybierz status"
+>>>>>>> origin/main
     },
-    "pagination":{
+    "pagination": {
         "next": "Następna",
         "previous": "Poprzednia"
     },
-    "sign_in":{
+    "sign_in": {
         "header": "Logowanie",
         "remember": "Zapamiętaj mnie",
         "forgot_password": "Nie pamiętasz hasła?"
     },
-    "registration":{
+    "registration": {
         "header": "Rejestracja",
         "first_name": "Imię",
         "last_name": "Nazwisko"
@@ -69,9 +85,18 @@
         "previous_step_button": "Poprzedni krok",
         "step_info": "Informacje ogólne",
         "step_address": "Dane adresowe",
-        "step_description": "Opis firmy"
+        "step_description": "Opis firmy",
+        "submit_button": "Prześlij formularz",
+        "descriptions": {
+            "info_title": "Uzupełnij podstawowe dane firmy",
+            "info_text": "Uzupełnij nazwę swojej firmy, e-mail do kontaktu, numer telefonu oraz stronę internetową. Dla identyfikacji firmy, warto również dodać logo.",
+            "address_title": "Znajdź swoją firmę",
+            "address_text": "Uzupełnij wszystkie pola formularza, a następnie kliknij w przycisk Ustaw marker. Możesz przesunąć marker na mapie, aby dokładnie określić lokalizację firmy.",
+            "description_title": "Napisz coś o swojej firmie",
+            "description_text": "Opisz swoją firmę, aby ułatwić studentom wybór, w tym celu skorzystaj z poniższego edytora tekstu. Następnie wybierz specjalizacje z listy, które interesują Twoją firmę."
+        }
     },
-    "forgot_password":{
+    "forgot_password": {
         "header": "Podaj adres e-mail, na którym zostało założone konto, wyślemy link zmieniający hasło",
         "reset_button": "Wyślij link",
         "reset_confirm_header": "Wprowadź nowe hasło dwa razy, aby je zmienić",
@@ -82,7 +107,7 @@
         "email_sent": "Nowy link weryfikacyjny został wysłany na Twój adres e-mail.",
         "resend_email_button": "Wyślij ponownie link weryfikacyjny"
     },
-    "buttons":{
+    "buttons": {
         "sign_in_button": "Zaloguj",
         "logout_button": "Wyloguj",
         "change_button": "Zmień",
@@ -97,7 +122,7 @@
         "approve_button": "Zatwierdź",
         "save_button": "Save"
     },
-    "common_labels":{
+    "common_labels": {
         "email": "Adres e-mail",
         "password": "Hasło",
         "password_confirm": "Potwierdź hasło",
@@ -105,7 +130,7 @@
     },
     "image_uploader": {
         "allowed_extensions": "PNG, JPG, GIF do 3MB",
-        "upload_file": "Prześlij obraz"
+        "upload_file": "Prześlij logo firmy"
     },
     "status": {
         "company_created": "Zgłoszenie nowej firmy zostało przesłane.",
@@ -113,7 +138,7 @@
         "company_verified": "Firma została zweryfikowana.",
         "cannot_select_more": "Nie można wybrać więcej elementów."
     },
-    "error":{
+    "error": {
         "header": "Błąd",
         "name_401": "Wymagana autoryzacja",
         "description_401": "Nie możesz tego zrobić.",
@@ -161,7 +186,7 @@
         "quote": "Cytat",
         "link": "Link",
         "fullscreen": "Pełny ekran",
-        "preview": "Podglad",
+        "preview": "Podgląd",
         "h1": "Nagłówek 1",
         "h2": "Nagłówek 2",
         "h3": "Nagłówek 3",
@@ -175,6 +200,7 @@
         "enterLink": "Wprowadź link...",
         "ok": "Zatwierdź",
         "letterCount": "Liczba znaków",
+<<<<<<< HEAD
         "scrollAuto": "Scrollowanie Automatyczne"
     },
     "admin_panel":{
@@ -195,5 +221,8 @@
         "all": "Wszystkie",
         "verified": "Zweryfikowane",
         "pending_new": "Nowe"
+=======
+        "scrollAuto": "Scrollowanie automatyczne"
+>>>>>>> origin/main
     }
 }

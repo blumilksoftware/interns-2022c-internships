@@ -1,11 +1,11 @@
 <script setup>
-import { ref, computed, reactive } from "vue";
-import MdEditor from "md-editor-v3";
-import "md-editor-v3/lib/style.css";
-import dompurify from "dompurify";
-import { useI18n } from "vue-i18n";
+import { ref, computed, reactive } from "vue"
+import MdEditor from "md-editor-v3"
+import "md-editor-v3/lib/style.css"
+import dompurify from "dompurify"
+import { useI18n } from "vue-i18n"
 
-const i18n = useI18n();
+const i18n = useI18n()
 
 const sanitize = (html) =>
   dompurify.sanitize(html, {
@@ -28,15 +28,15 @@ const sanitize = (html) =>
       "li",
     ],
     ADD_ATTR: ["href", "target"],
-  });
-const text = ref("# Hello Editor");
+  })
+const text = ref("# Hello Editor")
 const props = defineProps({
   toolbarOptions: {
     Array,
     default: ["bold", "italic", "title", "quote", "link"],
   },
   previewTheme: { String, default: "github" },
-});
+})
 
 const translationKeys = reactive({
   toolbarTips: {
@@ -57,19 +57,19 @@ const translationKeys = reactive({
   },
   linkModalTips: {
     title: computed(() => i18n.t("markdown.linkAdd")),
-    descLable: computed(() => i18n.t("markdown.linkDescription")),
-    descLablePlaceHolder: computed(() =>
-      i18n.t("markdown.enterLinkDescription")
+    descLabel: computed(() => i18n.t("markdown.linkDescription")),
+    descLabelPlaceHolder: computed(() =>
+      i18n.t("markdown.enterLinkDescription"),
     ),
-    urlLable: computed(() => i18n.t("markdown.linkLabel")),
-    UrlLablePlaceHolder: computed(() => i18n.t("markdown.enterLink")),
+    urlLabel: computed(() => i18n.t("markdown.linkLabel")),
+    urlLabelPlaceHolder: computed(() => i18n.t("markdown.enterLink")),
     buttonOK: computed(() => i18n.t("markdown.ok")),
   },
   footer: {
     markdownTotal: computed(() => i18n.t("markdown.letterCount")),
     scrollAuto: computed(() => i18n.t("markdown.scrollAuto")),
   },
-});
+})
 
 MdEditor.config({
   editorConfig: {
@@ -79,21 +79,21 @@ MdEditor.config({
   },
   markedRenderer(renderer) {
     renderer.link = (href, title, text) => {
-      return `<a href="${href}" target="_blank">${text}</a>`;
-    };
+      return `<a href="${href}" target="_blank">${text}</a>`
+    }
 
-    return renderer;
+    return renderer
   },
-});
+})
 </script>
 
 <template>
   <md-editor
+    v-model="text"
     language="key.translated"
-    :previewTheme="props.previewTheme"
+    :preview-theme="props.previewTheme"
     :toolbars="props.toolbarOptions"
     :sanitize="sanitize"
-    v-model="text"
   />
 </template>
 

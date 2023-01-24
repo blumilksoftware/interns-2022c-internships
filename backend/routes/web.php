@@ -17,10 +17,6 @@ Route::get("/company/create", [CompanyController::class, "create"])
 Route::post("/company/create", [CompanyController::class, "store"])
     ->name("company-store");
 
-Route::get("/company/manage", [CompanyController::class, "manage"])
-    ->middleware("auth")
-    ->name("company-manage");
-
 Route::get("/company/view/{company}", [CompanyController::class, "show"])
     ->name("company-show");
 Route::delete("/company/view/{company}", [CompanyController::class, "delete"])

@@ -50,6 +50,20 @@ services:
       - ${DOCKER_DEV_DB_EXTERNAL_PORT:-3306}:3306
     restart: unless-stopped
 
+  database-test:
+    image: mysql:8.0
+    container_name: intern-mysql-test
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DOCKER_TEST_DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${DOCKER_TEST_DB_DATABASE}
+      - MYSQL_USER=${DOCKER_TEST_DB_USERNAME}
+      - MYSQL_PASSWORD=${DOCKER_TEST_DB_PASSWORD}
+    networks:
+      - intern-dev
+    ports:
+      - ${DOCKER_TEST_DB_EXTERNAL_PORT:-3306}:3306
+    restart: unless-stopped
+    
   redis:
     image: redis:7
     container_name: intern-redis
@@ -60,7 +74,7 @@ services:
     networks:
       - intern-dev
     restart: unless-stopped
-  
+
   node:
     image: node:18.7.0-alpine3.16
     container_name: intern-node
@@ -77,6 +91,21 @@ services:
       - ${EXTERNAL_NODE_PORT:-5173}:${EXTERNAL_NODE_PORT:-5173}
     restart: unless-stopped
 
+  node-docs:
+    image: node:18.7.0-alpine3.16
+    container_name: intern-docs
+    env_file:
+      - .env
+    working_dir: /application/docs
+    tty: true
+    user: ${CURRENT_UID}
+    volumes:
+      - .:/application
+    networks:
+      - intern-dev
+    ports:
+      - ${EXTERNAL_DOCS_PORT:-8080}:${EXTERNAL_DOCS_PORT:-8080}
+
   mailhog:
     image: mailhog/mailhog:v1.0.1
     container_name: intern-mailhog
@@ -90,17 +119,22 @@ services:
   selenium:
     image: selenium/standalone-chrome
     container_name: intern-selenium
+    depends_on:
+      - web
     volumes:
       - /dev/shm:/dev/shm
     networks:
       - intern-dev
+    ports:
+      - ${SELENIUM_PORT}:${SELENIUM_PORT}
     restart: unless-stopped
-
 
 networks:
   intern-dev:
     driver: bridge
-
+    external: false
+    name: intern-dev
+    
 volumes:
   intern-mysql-data:
     name: intern-mysql-data

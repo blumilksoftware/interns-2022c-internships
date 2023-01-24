@@ -1,35 +1,59 @@
 <script setup>
-import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
-import { ChevronDownIcon, MagnifyingGlassIcon } from "@heroicons/vue/24/solid";
-import { watch, ref } from "vue";
-import Treeselect from "@tkmam1x/vue3-treeselect";
-import "@tkmam1x/vue3-treeselect/dist/vue3-treeselect.css";
+import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue"
+import { ChevronDownIcon, MagnifyingGlassIcon } from "@heroicons/vue/24/solid"
+import { watch, ref, computed } from "vue"
+import Treeselect from "@tkmam1x/vue3-treeselect"
+import "@tkmam1x/vue3-treeselect/dist/vue3-treeselect.css"
+import { usePage } from "@inertiajs/inertia-vue3"
+import { useI18n } from "vue-i18n"
+
+const i18n = useI18n()
 
 const props = defineProps({
   filters: Object,
   departments: Array,
   cities: Array,
-});
+})
 
-let searchSelect = ref(props.filters.searchSelect);
-let citySelect = ref(props.filters.citySelect);
-let specializationSelect = ref(props.filters.specializationSelect);
+let searchSelect = ref(props.filters.searchSelect)
+let citySelect = ref(props.filters.citySelect)
+let specializationSelect = ref(props.filters.specializationSelect)
+let ownedCompaniesSelect = ref(props.filters.ownedCompaniesSelect)
+let companyStatusSelect = ref(props.filters.companyStatusSelect)
 
-const emit = defineEmits(["selected"]);
+let ownedFilterValues = [
+  {
+    id: "owned",
+    label: computed(() => i18n.t("company_browser.owned_only")),
+  },
+]
+
+let companyStatusFilterValues = [
+  {
+    id: "verified",
+    label: computed(() => i18n.t("company_browser.verified_only")),
+  },
+  {
+    id: "pending_new",
+    label: computed(() => i18n.t("company_browser.unverified_only")),
+  },
+]
+
+const emit = defineEmits(["selected"])
 function emitFilters() {
-  emit("selected", searchSelect, citySelect, specializationSelect);
+  emit("selected", searchSelect, citySelect, specializationSelect, ownedCompaniesSelect, companyStatusSelect)
 }
 
-watch([citySelect, specializationSelect], () => {
-  emitFilters();
-});
+watch([citySelect, specializationSelect, ownedCompaniesSelect, companyStatusSelect], () => {
+  emitFilters()
+})
 
 watch(
   [searchSelect],
   _.debounce(() => {
-    emitFilters();
-  }, 500)
-);
+    emitFilters()
+  }, 500),
+)
 </script>
 
 <template>
@@ -47,8 +71,10 @@ watch(
         </DisclosureButton>
         <DisclosurePanel class="px-4 pt-4 pb-2 text-sm text-slate-500">
           <div class="w-full">
-            <label for="search" class="sr-only"
-              >{{ $t("company_browser.search") }}
+            <label
+              for="search"
+              class="sr-only"
+            >{{ $t("company_browser.search") }}
             </label>
             <div class="relative">
               <div
@@ -60,31 +86,49 @@ watch(
                 />
               </div>
               <input
-                name="searchbox"
                 v-model="searchSelect"
+                name="searchbox"
                 class="block w-full bg-white border border-gray-300 rounded-md py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:outline-none focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-slate-400 focus:border-slate-500 sm:text-sm"
                 :placeholder="$t('company_browser.search')"
                 type="search"
-              />
+              >
             </div>
           </div>
           <Treeselect
+            v-model="citySelect"
             class="mt-2"
             :options="props.cities"
             :multiple="false"
             :show-count="true"
             :disable-branch-nodes="true"
-            :placeholder="$t('tree_selects.tree_select_city')"
-            v-model="citySelect"
+            :placeholder="$t('tree_selects.city')"
           />
           <Treeselect
+            v-model="specializationSelect"
             class="mt-2"
             :options="props.departments"
             :multiple="false"
             :disable-branch-nodes="true"
-            :placeholder="$t('tree_selects.tree_select_specialization')"
+            :placeholder="$t('tree_selects.specialization')"
             search-nested
-            v-model="specializationSelect"
+          />
+          <Treeselect
+            v-if="usePage().props.value.auth.user"
+            v-model="ownedCompaniesSelect"
+            class="mt-2"
+            :options="ownedFilterValues"
+            :multiple="false"
+            :disable-branch-nodes="true"
+            :placeholder="$t('tree_selects.ownedCompanies')"
+          />
+          <Treeselect
+            v-if="usePage().props.value.auth.user"
+            v-model="companyStatusSelect"
+            class="mt-2"
+            :options="companyStatusFilterValues"
+            :multiple="false"
+            :disable-branch-nodes="true"
+            :placeholder="$t('tree_selects.verifiedCompanies')"
           />
         </DisclosurePanel>
       </Disclosure>

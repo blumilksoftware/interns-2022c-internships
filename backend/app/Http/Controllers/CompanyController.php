@@ -14,7 +14,6 @@ use Inertia\Response;
 use Internships\Enums\CompanyStatus;
 use Internships\Enums\Permission;
 use Internships\Http\Requests\Api\GetCompaniesRequest;
-use Internships\Http\Requests\Api\GetManagedCompaniesRequest;
 use Internships\Http\Requests\CompanyRequest;
 use Internships\Http\Resources\CompanyResource;
 use Internships\Http\Resources\DepartmentResource;
@@ -25,11 +24,6 @@ use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 class CompanyController extends Controller
 {
     public function index(GetCompaniesRequest $request): Response
-    {
-        return $request->list();
-    }
-
-    public function manage(GetManagedCompaniesRequest $request): Response
     {
         return $request->list();
     }
@@ -61,7 +55,13 @@ class CompanyController extends Controller
     public function show(Company $company, GetCompaniesRequest $request): Response
     {
         $this->authorize("show", $company);
-        session(["view-source" => url()->previous()]);
+
+        $source = url()->previous();
+        if (Str::is(route("index"), $source)
+            || Str::is(route("index") . "?*", $source)
+            || Str::is(route("index") . "/?*", $source)) {
+            session(["view-source" => $source]);
+        }
 
         return $request->list()->with(
             "selectedCompany",
@@ -69,18 +69,12 @@ class CompanyController extends Controller
         );
     }
 
-    public function close(): RedirectResponse
+    public function close(GetCompaniesRequest $request): RedirectResponse
     {
-        $source = session("view-source");
+        $source = session("view-source", route("index"));
+        session()->forget("view-source");
 
-        if (Str::is(route("index"), $source)
-            || Str::is(route("company-manage"), $source)
-            || Str::is(route("index") . "/?*", $source)
-            || Str::is(route("company-manage") . "/?*", $source)) {
-            return Redirect::to($source)->withInput();
-        }
-
-        return Redirect::to(route("index"));
+        return Redirect::to($source);
     }
 
     /**
@@ -94,7 +88,7 @@ class CompanyController extends Controller
             "status" => CompanyStatus::Verified,
         ]);
 
-        return Redirect::route("company-manage");
+        return Redirect::route("index");
     }
 
     /**
@@ -105,6 +99,6 @@ class CompanyController extends Controller
         $this->authorize("destroy", $company);
         $company->delete();
 
-        return Redirect::route("company-manage");
+        return Redirect::route("index");
     }
 }

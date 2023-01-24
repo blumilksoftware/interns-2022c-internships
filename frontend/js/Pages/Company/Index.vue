@@ -1,16 +1,16 @@
 <script setup>
-import MapDisplay from "./Components/MapDisplay.vue";
-import CompanyInfoBox from "./Components/CompanyInfoBox.vue";
-import CompanyList from "./Components/CompanyList.vue";
-import CompanyListHeader from "./Components/CompanyListHeader.vue";
-import Filter from "./Components/FilterDisclosure.vue";
-import { ref, watch, onMounted } from "vue";
-import { Inertia } from "@inertiajs/inertia";
-import { useI18n } from "vue-i18n";
-import { useToast } from "vue-toastification";
+import MapDisplay from "./Components/MapDisplay.vue"
+import CompanyInfoBox from "./Components/CompanyInfoBox.vue"
+import CompanyList from "./Components/CompanyList.vue"
+import CompanyListHeader from "./Components/CompanyListHeader.vue"
+import Filter from "./Components/FilterDisclosure.vue"
+import { ref, watch, onMounted } from "vue"
+import { Inertia } from "@inertiajs/inertia"
+import { useI18n } from "vue-i18n"
+import { useToast } from "vue-toastification"
 
-const i18n = useI18n();
-const toast = useToast();
+const i18n = useI18n()
+const toast = useToast()
 
 const props = defineProps({
   filters: Object,
@@ -19,10 +19,10 @@ const props = defineProps({
   departments: Object,
   markers: Object,
   selectedCompany: Object,
-});
+})
 
-const showDetail = ref(false);
-let map = ref();
+const showDetail = ref(false)
+let map = ref()
 
 function onCompanySelect(id) {
   Inertia.get(
@@ -33,11 +33,11 @@ function onCompanySelect(id) {
       replace: true,
       only: ["selectedCompany"],
       onSuccess: () => {
-        showDetail.value = true;
-        map.value.goTo(id);
+        showDetail.value = true
+        map.value.goTo(id)
       },
-    }
-  );
+    },
+  )
 }
 
 function onDestroy() {
@@ -46,14 +46,14 @@ function onDestroy() {
     replace: true,
     only: ["companies", "markers"],
     onBefore: () => {
-      return confirm(i18n.t("company_browser.delete_confirm"));
+      return confirm(i18n.t("company_browser.delete_confirm"))
     },
     onSuccess: () => {
-      showDetail.value = false;
-      map.value.resetMarkers();
-      toast.success(i18n.t("status.company_deleted"));
+      showDetail.value = false
+      map.value.resetMarkers()
+      toast.success(i18n.t("status.company_deleted"))
     },
-  });
+  })
 }
 
 function onUpdate() {
@@ -65,20 +65,20 @@ function onUpdate() {
       replace: true,
       only: ["companies, markers"],
       onBefore: () => {
-        return confirm(i18n.t("company_browser.verify_confirm"));
+        return confirm(i18n.t("company_browser.verify_confirm"))
       },
       onSuccess: () => {
-        showDetail.value = false;
-        map.value.resetMarkers();
-        toast.success(i18n.t("status.company_verified"));
+        showDetail.value = false
+        map.value.resetMarkers()
+        toast.success(i18n.t("status.company_verified"))
       },
-    }
-  );
+    },
+  )
 }
 
 function onDetailClose() {
-  showDetail.value = false;
-  map.value.resetPosition();
+  showDetail.value = false
+  map.value.resetPosition()
 
   Inertia.get(
     route("company-close"),
@@ -87,52 +87,54 @@ function onDetailClose() {
       preserveState: true,
       replace: true,
       only: ["selectedCompany"],
-    }
-  );
+    },
+  )
 }
 
 function onDetailZoom(id) {
-  map.value.goTo(id);
+  map.value.goTo(id)
 }
 
 watch(
   () => props.selectedCompany,
   () => {
     if (props.selectedCompany) {
-      showDetail.value = true;
+      showDetail.value = true
     }
   },
-  { deep: true }
-);
+  { deep: true },
+)
 
-function onFiltersSelected(searchSelect, citySelect, specializationSelect) {
+function onFiltersSelected(searchSelect, citySelect, specializationSelect, ownedCompaniesSelect, companyStatusSelect) {
   Inertia.get(
     route(route().current()),
     {
       searchbox: searchSelect.value,
       city: citySelect.value,
       specialization: specializationSelect.value,
+      owned: ownedCompaniesSelect.value,
+      companyStatus: companyStatusSelect.value,
     },
     {
       preserveState: true,
       replace: true,
       only: ["markers", "companies"],
-    }
-  );
+    },
+  )
 }
 
 function onMapLoad() {
   if (props.selectedCompany) {
-    map.value.goTo(props.selectedCompany.data.id);
+    map.value.goTo(props.selectedCompany.data.id)
   }
 }
 
 onMounted(() => {
   if (props.selectedCompany) {
-    showDetail.value = true;
-    map.value.goTo(props.selectedCompany.id);
+    showDetail.value = true
+    map.value.goTo(props.selectedCompany.id)
   }
-});
+})
 </script>
 
 <template>
@@ -141,10 +143,10 @@ onMounted(() => {
   >
     <div class="flex bg-gray-200 w-full h-full max-h-full">
       <MapDisplay
+        ref="map"
         :markers="markers.data"
         @selectedCompany="onCompanySelect"
         @loaded="onMapLoad"
-        ref="map"
       />
     </div>
     <div
@@ -166,12 +168,12 @@ onMounted(() => {
       </template>
       <template v-else>
         <CompanyInfoBox
+          :company="selectedCompany.data"
+          class="h-full"
           @destroy="onDestroy"
           @update="onUpdate"
           @close="onDetailClose"
           @zoom="onDetailZoom"
-          :company="selectedCompany.data"
-          class="h-full"
         />
       </template>
     </div>
