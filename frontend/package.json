@@ -36,7 +36,7 @@
     "md-editor-v3": "^2.5.0",
     "postcss": "^8.4.19",
     "tailwindcss": "^3.2.4",
-    "vite": "^3.2.5",
+    "vite": "^3.2.7",
     "vue": "^3.2.45",
     "vue-i18n": "^9.2.2",
     "vue-toastification": "^2.0.0-rc.5"
